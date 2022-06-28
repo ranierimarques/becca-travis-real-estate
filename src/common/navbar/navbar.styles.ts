@@ -22,18 +22,17 @@ export const Language = styled('button', {
   alignItems: 'center',
   gap: '6px',
 
-
   color: '#9D446E',
   fontSize: '12px',
   lineHeight: '16px',
-  fontWeight: '400'
+  fontWeight: '400',
 })
 
 export const OptionsList = styled('ul', {
   display: 'flex',
   alignItems: 'center',
   gap: '32px',
-  
+
   '& a': {
     display: 'flex',
     alignItems: 'center',
@@ -42,8 +41,8 @@ export const OptionsList = styled('ul', {
     color: '#9D446E',
     fontSize: '12px',
     lineHeight: '16px',
-    fontWeight: '400'
-  }
+    fontWeight: '400',
+  },
 })
 
 // Second Navbar
@@ -73,7 +72,7 @@ export const Link = styled('a', {
   color: '#9D446E',
   fontWeight: '400',
   fontSize: '14px',
-  lineHeight: '21px'
+  lineHeight: '21px',
 })
 
 export const TalkToMe = styled('a', {
@@ -85,7 +84,5 @@ export const TalkToMe = styled('a', {
   color: '#FFF5F5',
   fontWeight: '400',
   fontSize: '14px',
-  lineHeight: '21px'
+  lineHeight: '21px',
 })
-
-
