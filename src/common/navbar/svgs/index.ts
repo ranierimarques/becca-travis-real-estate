@@ -1,0 +1,7 @@
+export { default as ArrowDownSvg } from './arrow-down';
+export { default as ChatSvg } from './chat';
+export { default as EarthSvg } from './earth';
+export { default as LogoSvg } from './logo';
+export { default as ShieldSvg } from './shield';
+export { default as UserSvg } from './user';
+

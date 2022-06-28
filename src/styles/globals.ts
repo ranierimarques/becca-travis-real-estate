@@ -15,7 +15,7 @@ export const globalStyles = globalCss({
     '-webkit-tap-highlight-color': 'transparent',
   },
   body: {
-    background: '#111111',
+    background: '#FFFFFF',
   },
   html: {
     colorScheme: 'dark',
