@@ -13,6 +13,8 @@ export const globalStyles = globalCss({
     textRendering: 'optimizeLegibility',
     '-webkit-font-smoothing': 'antialiased',
     '-webkit-tap-highlight-color': 'transparent',
+    fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
   },
   body: {
     background: '#FFFFFF',
