@@ -47,6 +47,7 @@ export const SearchInput = styled('input', {
   fontSize: 14,
   lineHeight: '24px',
   color: '#2A2A33',
+  caretColor: '#7B3455',
 
   '&::placeholder': {
     fontWeight: 500,
