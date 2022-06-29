@@ -25,7 +25,7 @@ export const Link = styled('a', {
   color: '#9D446E',
   fontWeight: '400',
   fontSize: '14px',
-  lineHeight: '21px'
+  lineHeight: '21px',
 })
 
 export const TalkToMe = styled('a', {
@@ -35,7 +35,7 @@ export const TalkToMe = styled('a', {
   borderRadius: '6px',
 
   color: '#FFF5F5',
-  fontWeight: '400',
+  fontWeight: '300',
   fontSize: '14px',
-  lineHeight: '21px'
+  lineHeight: '21px',
 })
