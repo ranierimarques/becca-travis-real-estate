@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'
+import { Loupe } from './svgs'
 
 export function Hero() {
   return (
@@ -16,6 +17,7 @@ export function Hero() {
           type="text"
           placeholder="Search by address, neighborhood, city or ZIP code"
         />
+        <Loupe />
       </S.InputWrapper>
 
       <S.HelperText>

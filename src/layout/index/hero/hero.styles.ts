@@ -29,10 +29,29 @@ export const Title = styled('h1', {
 
 export const InputWrapper = styled('div', {
   marginTop: 32,
+  padding: '18px 16px 18px 24px',
+
+  background: '#FFFFFF',
+  display: 'flex',
+  alignItems: 'center',
+  gap: 16,
+
+  borderRadius: 8,
+  width: 594,
 })
 
 export const SearchInput = styled('input', {
-  height: 60,
+  width: '100%',
+
+  fontWeight: 600,
+  fontSize: 14,
+  lineHeight: '24px',
+  color: '#2A2A33',
+
+  '&::placeholder': {
+    fontWeight: 500,
+    color: '#7C8999',
+  },
 })
 
 export const HelperText = styled('span', {
