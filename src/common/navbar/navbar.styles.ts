@@ -82,7 +82,7 @@ export const TalkToMe = styled('a', {
   borderRadius: '6px',
 
   color: '#FFF5F5',
-  fontWeight: '400',
+  fontWeight: '300',
   fontSize: '14px',
   lineHeight: '21px',
 })
