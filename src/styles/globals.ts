@@ -19,7 +19,4 @@ export const globalStyles = globalCss({
   body: {
     background: '#FFFFFF',
   },
-  html: {
-    colorScheme: 'dark',
-  },
 })
