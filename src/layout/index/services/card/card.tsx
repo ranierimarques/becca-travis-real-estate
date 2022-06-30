@@ -15,13 +15,7 @@ type cardProps = {
 export function Card({ data }: cardProps) {
   return (
     <S.Container>
-      <Image
-        src={data.image}
-        alt={data.alt}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="50% 35%"
-      />
+      <Image src={data.image} alt={data.alt} />
       <S.Title>{data.title}</S.Title>
       <S.Description>{data.description}</S.Description>
       <a href={data.href}>{data.buttonText}</a>
