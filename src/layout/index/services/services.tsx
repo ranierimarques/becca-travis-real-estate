@@ -1,3 +1,4 @@
+import { Hat } from '@common'
 import { Card } from '.'
 import { downtownHuntsville } from './images'
 import * as S from './services.styles'
@@ -32,7 +33,7 @@ const cardsData = [
 export function Services() {
   return (
     <S.Section>
-      <S.Hat>MAIN SERVICES</S.Hat>
+      <Hat>MAIN SERVICES</Hat>
       <S.Title>How can we help you now?</S.Title>
       <S.Description>
         We’re always ready to help by providing <br />
