@@ -1,4 +1,4 @@
-import { Hero } from '@layout/index'
+import { Hero, Services } from '@layout/index'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
@@ -10,6 +10,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Hero />
+      <Services />
     </main>
   )
 }
