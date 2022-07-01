@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import {
   athens,
   decatur,
@@ -63,8 +64,16 @@ export function OurCommunities() {
         {communitiesData.map(community => {
           return (
             <S.Community key={community.community}>
-              <Image src={community.image} alt={community.alt} layout="fill" />
-              <span>{community.community}</span>
+              <Link href={community.href} passHref>
+                <a>
+                  <Image
+                    src={community.image}
+                    alt={community.alt}
+                    layout="fill"
+                  />
+                  <span>{community.community}</span>
+                </a>
+              </Link>
             </S.Community>
           )
         })}
