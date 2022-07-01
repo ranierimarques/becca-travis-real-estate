@@ -9,36 +9,65 @@ import {
 } from "./images"
 import * as S from "./our-communities.styles"
 
+const communitiesData = [
+  {
+    image: harvest,
+    alt: "Harvest road",
+    community: `Harvest, AL`,
+    href: "#",
+    hover: "Find out more about Harvest",
+  },
+  {
+    image: huntsville,
+    alt: "Huntsville forest",
+    community: `Huntsville, AL`,
+    href: "#",
+    hover: "Find out more about Huntsville",
+  },
+  {
+    image: hamptonCover,
+    alt: "Hamptom Cove lake",
+    community: `Hamptom Cove, AL`,
+    href: "#",
+    hover: "Find out more about Hamptom Cove",
+  },
+  {
+    image: decatur,
+    alt: "Decatur home",
+    community: `Decatur, AL`,
+    href: "#",
+    hover: "Find out more about Decatur",
+  },
+  {
+    image: athens,
+    alt: "Athens river",
+    community: `Athens, AL`,
+    href: "#",
+    hover: "Find out more about Athens",
+  },
+  {
+    image: meridianville,
+    alt: "Meridianville house",
+    community: `Meridianville, AL`,
+    href: "#",
+    hover: "Find out more about Meridianville",
+  },
+]
+
 export function OurCommunities() {
   return (
     <S.Section>
       <S.Heading>MEET OUR COMMUNITIES</S.Heading>
       <S.Title>Our communities</S.Title>
       <S.CommunitiesList>
-        <li>
-          <Image src={harvest} alt="Harvest photo" layout="fill" />
-          <span>Harvest, AL</span>
-        </li>
-        <li>
-          <Image src={huntsville} alt="Huntsville photo" layout="fill" />
-          <span>Huntsville, AL</span>
-        </li>
-        <li>
-          <Image src={hamptonCover} alt="Hampton Cover photo" layout="fill" />
-          <span>Hamptom Cove, AL</span>
-        </li>
-        <li>
-          <Image src={decatur} alt="Decatur photo" layout="fill" />
-          <span>Decatur, AL</span>
-        </li>
-        <li>
-          <Image src={athens} alt="Athens photo" layout="fill" />
-          <span>Athens, AL</span>
-        </li>
-        <li>
-          <Image src={meridianville} alt="Meridianville photo" layout="fill" />
-          <span>Meridianville, AL</span>
-        </li>
+        {communitiesData.map(community => {
+          return (
+            <S.Community key={community.community}>
+              <Image src={community.image} alt={community.alt} layout="fill" />
+              <span>{community.community}</span>
+            </S.Community>
+          )
+        })}
       </S.CommunitiesList>
     </S.Section>
   )

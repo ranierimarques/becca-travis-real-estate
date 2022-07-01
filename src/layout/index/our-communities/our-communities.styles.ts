@@ -3,6 +3,7 @@ import { styled } from 'stitches.config'
 export const Section = styled('section', {
   maxWidth: 1072,
   margin: '0 auto',
+  padding: '160px 0',
 
   display: 'flex',
   flexDirection: 'column',
@@ -36,15 +37,15 @@ export const CommunitiesList = styled('ul', {
   display: 'flex',
   flexWrap: 'wrap',
   gap: 32,
+})
 
-  '& li': {
-    position: 'relative',
-    width: '336px',
-    height: '229px',
-    background: 'linear-gradient(180deg, rgba(78, 75, 89, 0) 50%, rgba(0, 0, 0, 0.6) 100%)',
-    borderRadius: 8,
-    overflow: 'hidden'
-  },
+export const Community = styled('li', {
+  position: 'relative',
+  width: '336px',
+  height: '229px',
+  background: 'linear-gradient(180deg, rgba(78, 75, 89, 0) 50%, rgba(0, 0, 0, 0.6) 100%)',
+  borderRadius: 8,
+  overflow: 'hidden',
 
   '& span': {
     position: 'absolute',
