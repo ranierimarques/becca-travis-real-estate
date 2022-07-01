@@ -1,0 +1,7 @@
+export { default as athens } from './athens.jpg'
+export { default as decatur } from './decatur.jpg'
+export { default as hamptonCover } from './hampton-cover.jpg'
+export { default as harvest } from './harvest.jpg'
+export { default as huntsville } from './huntsville.jpg'
+export { default as meridianville } from './meridianville.jpg'
+

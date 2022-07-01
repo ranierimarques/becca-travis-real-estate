@@ -1,3 +1,4 @@
 import { styled } from 'stitches.config'
 
-export const Header = styled('header', {})
+export const Header = styled('header', {
+})
