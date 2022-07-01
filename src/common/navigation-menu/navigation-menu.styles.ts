@@ -31,7 +31,9 @@ export const Content = styled(NavigationMenu.Content, {
   top: 0,
   left: 0,
 
-  marginTop: 20,
+  marginTop: 40,
+
+  zIndex: 10
 })
 
 export const ContentList = styled('ul', {
