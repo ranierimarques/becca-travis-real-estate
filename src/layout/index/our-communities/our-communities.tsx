@@ -9,6 +9,7 @@ import {
   meridianville,
 } from "./images"
 import * as S from "./our-communities.styles"
+import { ArrowLeftSvg } from "./svgs"
 
 const communitiesData = [
   {
@@ -16,42 +17,36 @@ const communitiesData = [
     alt: "Harvest road",
     community: `Harvest, AL`,
     href: "#",
-    hover: "Find out more about Harvest",
   },
   {
     image: huntsville,
     alt: "Huntsville forest",
     community: `Huntsville, AL`,
     href: "#",
-    hover: "Find out more about Huntsville",
   },
   {
     image: hamptonCover,
     alt: "Hamptom Cove lake",
     community: `Hamptom Cove, AL`,
     href: "#",
-    hover: "Find out more about Hamptom Cove",
   },
   {
     image: decatur,
     alt: "Decatur home",
     community: `Decatur, AL`,
     href: "#",
-    hover: "Find out more about Decatur",
   },
   {
     image: athens,
     alt: "Athens river",
     community: `Athens, AL`,
     href: "#",
-    hover: "Find out more about Athens",
   },
   {
     image: meridianville,
     alt: "Meridianville house",
     community: `Meridianville, AL`,
     href: "#",
-    hover: "Find out more about Meridianville",
   },
 ]
 
@@ -66,12 +61,17 @@ export function OurCommunities() {
             <S.Community key={community.community}>
               <Link href={community.href} passHref>
                 <a>
+                  <S.ImageMask />
                   <Image
                     src={community.image}
                     alt={community.alt}
                     layout="fill"
                   />
-                  <span>{community.community}</span>
+                  <S.Description>{community.community}</S.Description>
+                  <S.HoverSpan>
+                    Read more
+                    <ArrowLeftSvg />
+                  </S.HoverSpan>
                 </a>
               </Link>
             </S.Community>
