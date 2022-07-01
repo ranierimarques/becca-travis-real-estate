@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import { styled } from 'stitches.config'
-
-export const Link = styled('a', {
-  padding: '10px 16px',
-
-  background: '#8C3C62',
-  borderRadius: 6,
-
-  color: '#FFF5F5',
-  fontWeight: 300,
-  fontSize: 14,
-  lineHeight: '21px',
-})
-=======
 import type * as Stitches from '@stitches/react'
 import { css, styled } from 'stitches.config'
 
@@ -88,4 +73,3 @@ export const Button = styled('button', sharedStyles, {
 })
 
 export type ButtonVariants = Stitches.VariantProps<typeof sharedStyles>
->>>>>>> 7e9988a7263c0eca721e5c075f331683b1b9d9a8
