@@ -1,4 +1,6 @@
+import { Box, Button } from '@common'
 import Image, { StaticImageData } from 'next/image'
+import Link from 'next/link'
 import * as S from './card.styles'
 
 type cardProps = {
@@ -14,11 +16,28 @@ type cardProps = {
 
 export function Card({ data }: cardProps) {
   return (
-    <S.Container>
-      <Image src={data.image} alt={data.alt} />
-      <S.Title>{data.title}</S.Title>
-      <S.Description>{data.description}</S.Description>
-      <a href={data.href}>{data.buttonText}</a>
-    </S.Container>
+    <Link href={data.href} passHref>
+      <S.Link>
+        <Box css={{ position: 'relative', height: 189, '& > span': { zIndex: -1 } }}>
+          <Image
+            src={data.image}
+            alt={data.alt}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="0% 15%"
+          />
+        </Box>
+        <S.Title>{data.title}</S.Title>
+        <S.Description>{data.description}</S.Description>
+        <Button
+          color="magentaLight"
+          as="span"
+          outlined
+          css={{ margin: '24px auto 32px' }}
+        >
+          {data.buttonText}
+        </Button>
+      </S.Link>
+    </Link>
   )
 }

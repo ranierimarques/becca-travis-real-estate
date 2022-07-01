@@ -1,2 +1,4 @@
+export { Box } from './box/box'
+export { Button } from './button/button'
 export { Hat } from './hat/hat'
 export { Navbar } from './navbar/navbar'
