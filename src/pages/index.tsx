@@ -1,4 +1,10 @@
-import { AboutHuntsville, Hero, OurCommunities, Services } from "@layout/index"
+import {
+  AboutHuntsville,
+  Hero,
+  OurCommunities,
+  RentToOwn,
+  Services,
+} from "@layout/index"
 import type { NextPage } from "next"
 import Head from "next/head"
 
@@ -11,6 +17,7 @@ const Home: NextPage = () => {
 
       <Hero />
       <Services />
+      <RentToOwn />
       <AboutHuntsville />
       <OurCommunities />
     </main>
