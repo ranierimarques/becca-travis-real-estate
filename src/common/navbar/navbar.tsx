@@ -1,11 +1,10 @@
-import { HelperNavbar, MainNavbar } from "."
-import * as S from "./navbar.styles"
+import { HelperNavbar, MainNavbar } from '.'
 
 export function Navbar() {
   return (
-    <S.Header>
+    <header>
       <HelperNavbar />
       <MainNavbar />
-    </S.Header>
+    </header>
   )
 }

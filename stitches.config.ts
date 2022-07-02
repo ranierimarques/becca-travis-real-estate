@@ -27,6 +27,7 @@ export const { styled, getCssText, globalCss, css } = createStitches({
       tangerine7: '#7F4124',
       tangerine8: '#C57E59',
       tangerine9: '#E5AC8A',
+      tangerine10: '#F5DED0',
 
       green1: '#83CF77',
       green2: '#6EBB5A',

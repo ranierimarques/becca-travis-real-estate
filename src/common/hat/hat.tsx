@@ -1,9 +1,15 @@
-import * as S from './hat.styles'
+import { styled } from 'stitches.config'
 
-type hatProps = {
-  children: string
-}
+export const Hat = styled('span', {
+  display: 'inline-block',
 
-export function Hat({ children }: hatProps) {
-  return <S.Container>{children}</S.Container>
-}
+  background: '#9D446E1A',
+  padding: '8px 16px',
+  borderRadius: '9999px',
+
+  color: '$magenta3',
+  fontWeight: '500',
+  fontSize: '14px',
+  lineHeight: '24px',
+  textTransform: 'uppercase',
+})
