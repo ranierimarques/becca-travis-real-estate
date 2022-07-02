@@ -1,6 +1,6 @@
 import { styled } from 'stitches.config'
 
-export const SecondNav = styled('div', {
+export const Nav = styled('nav', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
