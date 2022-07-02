@@ -30,8 +30,8 @@ export function Card({ data }: cardProps) {
         <S.Title>{data.title}</S.Title>
         <S.Description>{data.description}</S.Description>
         <Button
-          color="magentaLight"
           as="span"
+          color="magentaLight"
           outlined
           css={{ margin: '24px auto 32px' }}
         >
