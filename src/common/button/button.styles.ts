@@ -16,6 +16,8 @@ const sharedStyles = css({
   background: '$$primaryColor',
   color: '$$secondaryColor',
 
+  userSelect: 'none',
+
   '&:hover': {
     filter: 'brightness(0.9)',
   },
@@ -29,6 +31,7 @@ const sharedStyles = css({
       magenta: {
         $$primaryColor: '$colors$magenta9',
         $$secondaryColor: '$colors$offWhite1',
+        '&:focus:not(&:active)': { boxShadow: '0 0 0 4px rgba(157, 68, 110, 0.2)' },
       },
       magentaLight: {
         $$primaryColor: '$colors$magenta1',
