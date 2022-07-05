@@ -47,6 +47,7 @@ export const { styled, getCssText, globalCss, css, keyframes } = createStitches(
       gray3: '#5F5C6B',
       gray4: '#7A7786',
       gray5: '#8C8A97',
+      gray6: '#586474'
     },
   },
 })
