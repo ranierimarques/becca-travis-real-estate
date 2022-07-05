@@ -11,28 +11,6 @@ export const Section = styled('section', {
   justifyContent: 'space-between'
 })
 
-export const ContentContainer = styled('div', {
-  '& h2': {
-    marginBottom: 16,
-
-    fontWeight: '500',
-    fontSize: '24px',
-    lineHeight: '36px',
-    color: '$magenta6',
-  },
-
-  '& p': {
-    maxWidth: '458px',
-
-    marginBottom: 24,
-
-    fontWeight: '400',
-    fontSize: '16px',
-    lineHeight: '28px',
-    color: '$gray2',
-  }
-})
-
 export const ImageContainer = styled('div', {
   position: 'relative',
 
@@ -57,10 +35,22 @@ export const Svg = styled(WaveSvg, {
   zIndex: 5,
 })
 
-export const Svg2 = styled(WaveSvg, {
-  position: 'absolute',
-  top: 67,
-  left: -45,
-  zIndex: 5,
+export const Title = styled('h2', {
+  marginBottom: 16,
+
+    fontWeight: '500',
+    fontSize: '24px',
+    lineHeight: '36px',
+    color: '$magenta6',
 })
 
+export const Paragraph = styled('p', {
+  maxWidth: '458px',
+
+    marginBottom: 24,
+
+    fontWeight: '400',
+    fontSize: '16px',
+    lineHeight: '28px',
+    color: '$gray2',
+})
