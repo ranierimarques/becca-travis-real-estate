@@ -1,7 +1,7 @@
 import { Box, Hat } from "@common"
 import Image from "next/image"
 import * as S from "./achievements.styles"
-import { becca, huntsville } from "./images"
+import { becca } from "./images"
 import {
   ChatSvg,
   CupSvg,
