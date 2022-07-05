@@ -10,26 +10,24 @@ export const Section = styled('section', {
   justifyContent: 'space-between'
 })
 
-export const ContentContainer = styled('div', {
-  '& h2': {
-    marginBottom: 16,
+export const Title = styled('h2', {
+  marginBottom: 16,
 
-    fontWeight: '500',
-    fontSize: '24px',
-    lineHeight: '36px',
-    color: '$magenta6',
-  },
+  fontWeight: '500',
+  fontSize: '24px',
+  lineHeight: '36px',
+  color: '$magenta6',
+})
 
-  '& p': {
-    maxWidth: '458px',
+export const Paragraph = styled('p', {
+  maxWidth: '458px',
 
-    marginBottom: 24,
+  marginBottom: 24,
 
-    fontWeight: '400',
-    fontSize: '16px',
-    lineHeight: '28px',
-    color: '$gray2',
-  }
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '28px',
+  color: '$gray2',
 })
 
 export const ImageContainer = styled('div', {

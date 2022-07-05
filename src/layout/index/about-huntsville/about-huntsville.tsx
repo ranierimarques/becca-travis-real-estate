@@ -6,18 +6,18 @@ import { huntsville } from "./images"
 export function AboutHuntsville() {
   return (
     <S.Section>
-      <S.ContentContainer>
-        <h2>About Huntsville</h2>
-        <p>
+      <div>
+        <S.Title>About Huntsville</S.Title>
+        <S.Paragraph>
           Huntsville, the city where waves of history wash over you as soon as
           it rains. Whether you&apos;re moving across town or relocating from
           another state there are plenty reasons to choose Huntsville: more than
           any website can portray and all without leaving this place!
-        </p>
+        </S.Paragraph>
         <Button href="#" css={{ padding: "12px 24px" }}>
           Learn more
         </Button>
-      </S.ContentContainer>
+      </div>
       <S.ImageContainer>
         <S.Svg />
         <Image src={huntsville} alt="Huntsville drone shoot" />
