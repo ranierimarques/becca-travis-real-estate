@@ -1,5 +1,6 @@
 import {
   AboutHuntsville,
+  Achievements,
   Hero,
   OurCommunities,
   RentToOwn,
@@ -17,6 +18,7 @@ const Home: NextPage = () => {
 
       <Hero />
       <Services />
+      <Achievements />
       <RentToOwn />
       <AboutHuntsville />
       <OurCommunities />
