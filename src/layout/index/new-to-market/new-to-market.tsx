@@ -66,7 +66,7 @@ export function NewToMarket() {
         {houses.map(house => {
           return (
             <S.House key={house.address}>
-              <Link href="#" passHref>
+              <Link href="#">
                 <a>
                   <Box css={{ position: "relative" }}>
                     <S.New>New</S.New>

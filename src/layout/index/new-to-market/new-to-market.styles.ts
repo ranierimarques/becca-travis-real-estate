@@ -110,6 +110,6 @@ export const VAMLS = styled('span', {
   fontWeight: '500',
   fontSize: '14px',
   lineHeight: '24px',
-  color: '&gray6',
+  color: '$gray6',
   opacity: '0.8',
 })
