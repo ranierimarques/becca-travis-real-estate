@@ -1,37 +1,34 @@
-import Image from "next/image"
-import Link from "next/link"
-
-import { Box, Hat } from "@common"
-
-import { house1, house2, house3 } from "./images"
-import { BedSvg, FavoriteSvg, ShowerSvg, SquareSvg } from "./svgs"
-
-import * as S from "./new-to-market.styles"
+import { Box, Hat } from '@common'
+import Image from 'next/image'
+import Link from 'next/link'
+import { house1, house2, house3 } from './images'
+import * as S from './new-to-market.styles'
+import { BedSvg, FavoriteSvg, ShowerSvg, SquareSvg } from './svgs'
 
 const houses = [
   {
     image: house1,
-    value: "875,000",
-    address: "100 Leshawn Cove, Harvest",
+    value: '875,000',
+    address: '100 Leshawn Cove, Harvest',
     bedrooms: 4,
     bathrooms: 5,
-    squareFeet: "4,058",
+    squareFeet: '4,058',
   },
   {
     image: house2,
-    value: "280,000",
-    address: "826 Crestview Drive, Madison",
+    value: '280,000',
+    address: '826 Crestview Drive, Madison',
     bedrooms: 3,
     bathrooms: 4,
-    squareFeet: "2,072",
+    squareFeet: '2,072',
   },
   {
     image: house3,
-    value: "575,000",
-    address: "27855 Cricket Lane, Harvest",
+    value: '575,000',
+    address: '27855 Cricket Lane, Harvest',
     bedrooms: 4,
     bathrooms: 5,
-    squareFeet: "5,030",
+    squareFeet: '5,030',
   },
 ]
 
@@ -40,9 +37,9 @@ export function NewToMarket() {
     <S.Section>
       <Box
         css={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
           gap: 8,
           marginBottom: 40,
         }}
@@ -50,10 +47,10 @@ export function NewToMarket() {
         <Hat>NEW PROPERTIES</Hat>
         <Box
           css={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
           }}
         >
           <S.Title>New to Market</S.Title>
@@ -68,12 +65,10 @@ export function NewToMarket() {
             <S.House key={house.address}>
               <Link href="#">
                 <a>
-                  <Box css={{ position: "relative" }}>
+                  <Box css={{ position: 'relative' }}>
                     <S.New>New</S.New>
                     <Image src={house.image} alt="house" />
-                    <Box
-                      css={{ position: "absolute", top: "16px", right: "16px" }}
-                    >
+                    <Box css={{ position: 'absolute', top: '16px', right: '16px' }}>
                       <FavoriteSvg />
                     </Box>
                   </Box>
@@ -82,8 +77,8 @@ export function NewToMarket() {
                     <S.Address>{house.address}</S.Address>
                     <Box
                       css={{
-                        display: "flex",
-                        alignItems: "center",
+                        display: 'flex',
+                        alignItems: 'center',
                         gap: 24,
                         marginBottom: 18,
                       }}

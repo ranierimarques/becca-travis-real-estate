@@ -9,12 +9,10 @@ export const Section = styled('section', {
 
   padding: '95px 0 105px',
 
-  background: 'rgba(205, 209, 214, 0.1)'
+  background: 'rgba(205, 209, 214, 0.1)',
 })
 
 export const Line = styled('div', {
-  marginBottom: '16px',
-
   width: '40px',
   height: '2px',
 
@@ -53,9 +51,8 @@ export const Badges = styled('ul', {
   display: 'flex',
   justifyContent: 'flex-start',
   flexWrap: 'wrap',
-  gap: '16px'
+  gap: '16px',
 })
-
 
 export const Badge = styled('li', {
   display: 'flex',
@@ -72,7 +69,6 @@ export const Badge = styled('li', {
   filter: 'drop-shadow(0px 8px 15px rgba(91, 47, 32, 0.08))',
   borderRadius: '8px',
 })
-
 
 export const BadgeTitle = styled('h4', {
   fontWeight: '500',
