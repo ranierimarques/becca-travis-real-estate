@@ -134,7 +134,7 @@ export function NavigationMenu() {
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
-          <StyledTriggerWithCaret>Communities</StyledTriggerWithCaret>
+          <StyledTriggerWithCaret>Community guides</StyledTriggerWithCaret>
           <S.Content>
             <S.Communities>
               <div>
