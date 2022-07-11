@@ -1,0 +1,27 @@
+export default function Svg({ ...props }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        clipRule="evenodd"
+        d="M6.944 19H5.056A1.056 1.056 0 0 1 4 17.944v-7.388C4 9.973 4.473 9.5 5.056 9.5h1.888C7.527 9.5 8 9.973 8 10.556v7.388C8 18.527 7.527 19 6.944 19v0Z"
+        stroke="#fff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m8 10.572 3.649-4.75a1.734 1.734 0 0 1 2.714-.047v0c.265.321.409.725.409 1.141v3.271h3.096a1.8 1.8 0 0 1 1.496.8l.329.49a1.8 1.8 0 0 1 .234 1.5l-1.359 4.721A1.8 1.8 0 0 1 16.839 19H10.55a1.8 1.8 0 0 1-1.318-.574L8 17.1"
+        stroke="#fff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}

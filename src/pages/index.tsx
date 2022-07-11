@@ -8,6 +8,7 @@ import {
   RentToOwn,
   Services,
 } from "@layout/index"
+import { LastCall } from "@shared"
 import type { NextPage } from "next"
 import Head from "next/head"
 
@@ -26,6 +27,7 @@ const Home: NextPage = () => {
       <AboutHuntsville />
       <OurCommunities />
       <ClientTestimonials />
+      <LastCall />
     </main>
   )
 }
