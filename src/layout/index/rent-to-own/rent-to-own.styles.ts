@@ -4,7 +4,7 @@ import { WaveSvg } from "./svgs"
 export const Section = styled('section', {
   maxWidth: '1072px',
   margin: '0 auto',
-  paddingBottom: '65px',
+  paddingBottom: '116px',
 
   display: 'flex',
   alignItems: 'center',
