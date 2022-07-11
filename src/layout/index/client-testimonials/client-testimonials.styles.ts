@@ -144,6 +144,8 @@ export const Viewport = styled(ScrollAreaPrimitive.Viewport, {
 
   background: 'rgba(205, 209, 214, 0.1)',
   borderRadius: '8px',
+
+  overscrollBehavior: 'contain'
 });
 
 export const Scrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
