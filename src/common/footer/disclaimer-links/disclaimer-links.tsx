@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Box } from 'src/common/box/box'
 import * as S from './disclaimer-links.styles'
 
 const links = [
@@ -11,12 +12,23 @@ const links = [
 
 export function DisclaimerLinks() {
   return (
-    <div>
+    <Box
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 32,
+
+        padding: '20px 0',
+        boxShadow: 'inset 0 1px 0 0 $colors$magenta9, inset 0 -1px 0 0 $colors$magenta9',
+        background: '$magenta7',
+      }}
+    >
       {links.map(link => (
-        <Link href={link.href} key={link.text}>
-          <a>{link.text}</a>
+        <Link href={link.href} key={link.text} passHref>
+          <S.Link>{link.text}</S.Link>
         </Link>
       ))}
-    </div>
+    </Box>
   )
 }
