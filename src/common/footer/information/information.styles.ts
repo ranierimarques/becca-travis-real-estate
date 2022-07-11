@@ -1,7 +1,7 @@
 import { styled } from 'stitches.config'
 
 export const Link = styled('a', {
-  fontWeight: '500',
+  fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
   color: '#CDD1D6',
@@ -10,7 +10,7 @@ export const Link = styled('a', {
 export const Slogan = styled('span', {
   display: 'block',
 
-  fontWeight: '500',
+  fontWeight: '400',
   fontSize: '14px',
   lineHeight: '18px',
   letterSpacing: '0.8px',
@@ -46,14 +46,14 @@ export const SocialLink = styled('a', {
   alignItems: 'center',
   gap: 12,
 
-  fontWeight: '500',
+  fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
   color: '#CDD1D6',
 })
 
 export const AboutUsDescription = styled('p', {
-  fontWeight: '500',
+  fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
   color: '#CDD1D6',

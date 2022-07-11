@@ -43,56 +43,41 @@ function Links({ links }: linksProps) {
 
 export function Information() {
   return (
-    <Box css={{ padding: '64px 0', maxWidth: 1072, margin: '0 auto' }}>
-      <div>
-        <div>
-          <Link href="/">
-            <a>
-              <Logo />
-            </a>
-          </Link>
-          <S.Slogan>
-            Love where you home. <br />
-            Home where you love
-          </S.Slogan>
-        </div>
+    <Box
+      css={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateRows: 'auto auto auto',
+        rowGap: 40,
 
-        <Box css={{ display: 'flex', gap: 24 }}>
-          <ColdwellBanker />
-          <Box
-            css={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              width: 90,
-              height: 'fit-content',
-              gap: 8,
-              userSelect: 'none',
-              pointerEvents: 'none',
-            }}
-          >
-            <Image src={Realtor} alt="Realtor logo" />
-            <Image src={EqualHousing} alt="Equal Housing logo" />
-            <Image src={Mls} alt="MLS logo" />
-          </Box>
-        </Box>
-      </div>
+        padding: '64px 0',
+        maxWidth: 1072,
+        margin: '0 auto',
+      }}
+    >
+      {/* Slogan and Logo Link */}
+      <Box css={{ gridRow: 'span 2' }}>
+        <Link href="/">
+          <a>
+            <Logo />
+          </a>
+        </Link>
+        <S.Slogan>
+          Love where you home. <br />
+          Home where you love
+        </S.Slogan>
+      </Box>
 
-      <div>
+      {/* Site map */}
+      <Box css={{ gridRow: 'span 2' }}>
         <S.Title>Site map</S.Title>
         <S.Separator />
         <S.LinkList>
           <Links links={siteMapLinks} />
         </S.LinkList>
-      </div>
+      </Box>
 
-      <div>
-        <S.Title>Resources</S.Title>
-        <S.Separator />
-        <S.LinkList>
-          <Links links={resourcesLinks} />
-        </S.LinkList>
-      </div>
-
+      {/* Contact */}
       <div>
         <S.Title>Contact</S.Title>
         <S.Separator />
@@ -118,7 +103,8 @@ export function Information() {
         </S.LinkList>
       </div>
 
-      <div>
+      {/* Get social */}
+      <Box css={{ alignSelf: 'end' }}>
         <S.Title>Get social</S.Title>
         <S.Separator />
         <S.LinkList css={{ flexDirection: 'row', gap: 8 }}>
@@ -138,8 +124,38 @@ export function Information() {
             </a>
           </li>
         </S.LinkList>
+      </Box>
+
+      {/* Images */}
+      <Box css={{ display: 'flex', gap: 24, alignItems: 'flex-end', alignSelf: 'end' }}>
+        <ColdwellBanker />
+        <Box
+          css={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            width: 90,
+            height: 'fit-content',
+            gap: 8,
+            userSelect: 'none',
+            pointerEvents: 'none',
+          }}
+        >
+          <Image src={Realtor} alt="Realtor logo" />
+          <Image src={EqualHousing} alt="Equal Housing logo" />
+          <Image src={Mls} alt="MLS logo" />
+        </Box>
+      </Box>
+
+      {/* Resources */}
+      <div>
+        <S.Title>Resources</S.Title>
+        <S.Separator />
+        <S.LinkList>
+          <Links links={resourcesLinks} />
+        </S.LinkList>
       </div>
 
+      {/* About Us */}
       <div>
         <S.Title>About us</S.Title>
         <S.Separator />
