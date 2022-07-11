@@ -2,7 +2,7 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
-  padding: '160px 0 120px',
+  paddingBottom: '120px',
   margin: '0 auto',
   maxWidth: '1072px',
 })
