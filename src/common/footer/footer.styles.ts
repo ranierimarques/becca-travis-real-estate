@@ -1,3 +1,5 @@
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {})
+export const Footer = styled('footer', {
+  background: '$magenta8',
+})

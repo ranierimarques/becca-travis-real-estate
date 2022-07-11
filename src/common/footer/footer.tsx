@@ -3,10 +3,10 @@ import * as S from './footer.styles'
 
 export function Footer() {
   return (
-    <footer>
+    <S.Footer>
       <Information />
       <DisclaimerLinks />
       <Copyrights />
-    </footer>
+    </S.Footer>
   )
 }
