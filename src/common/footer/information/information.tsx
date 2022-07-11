@@ -6,7 +6,6 @@ import * as S from './information.styles'
 
 const siteMapLinks = [
   { href: '/', text: 'Search for homes' },
-  { href: '/', text: 'Search for homes' },
   { href: '/', text: 'Buying' },
   { href: '/', text: 'Selling' },
   { href: '/', text: 'About huntsville' },
@@ -47,7 +46,9 @@ export function Information() {
       <div>
         <div>
           <Link href="/">
-            <Logo />
+            <a>
+              <Logo />
+            </a>
           </Link>
           <span>
             Love where you home. <br />
@@ -63,19 +64,6 @@ export function Information() {
             <Image src={Mls} alt="MLS logo" />
           </div>
         </div>
-      </div>
-
-      <div>
-        <span>Site map</span>
-        <ul>
-          {siteMapLinks.map(link => (
-            <li key={link.text}>
-              <Link href={link.href}>
-                <a>{link.text}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
 
       <div>
