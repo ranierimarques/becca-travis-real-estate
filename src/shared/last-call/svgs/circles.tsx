@@ -1,0 +1,44 @@
+export default function Svg({ ...props }) {
+  return (
+    <svg
+      width="736"
+      height="452"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle
+        opacity=".1"
+        cx="401.5"
+        cy="226.5"
+        r="152.515"
+        stroke="#E8B7CE"
+        strokeWidth="2"
+      />
+      <circle
+        opacity=".1"
+        cx="401.081"
+        cy="226.081"
+        r="241.081"
+        stroke="#E8B7CE"
+        strokeWidth="2"
+      />
+      <circle
+        opacity=".1"
+        cx="401.5"
+        cy="226.5"
+        r="327.679"
+        stroke="#E8B7CE"
+        strokeWidth="2"
+      />
+      <circle
+        opacity=".1"
+        cx="401.5"
+        cy="226.5"
+        r="400.5"
+        stroke="#E8B7CE"
+        strokeWidth="2"
+      />
+    </svg>
+  )
+}
