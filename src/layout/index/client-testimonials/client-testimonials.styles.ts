@@ -1,3 +1,4 @@
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
@@ -5,6 +6,8 @@ export const Section = styled('section', {
   margin: '0 auto',
   maxWidth: '1072px',
 })
+
+// =========== Title ===========
 
 export const Title = styled('h2', {
   marginBottom: 16,
@@ -31,10 +34,34 @@ export const MoreTestimonials = styled('a', {
   color: '$magenta9',
 })
 
+// =========== Testimonials ===========
+
+// ======== Clients Buttons ========
+
 export const Clients = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
   gap: 24,
+})
+
+export const ImageWrapper = styled('div', {
+  opacity: "0.4",
+})
+
+export const ClientName = styled('span', {
+  alignSelf: 'start',
+
+  fontWeight: '600',
+  fontSize: '14px',
+  lineHeight: '21px',
+  color: '#A6AEB8',
+})
+
+export const BeccaClient = styled('span', {
+  fontWeight: '400',
+  fontSize: '10px',
+  lineHeight: '15px',
+  color: '#A6AEB8',
 })
 
 export const Client = styled('button', {
@@ -48,55 +75,46 @@ export const Client = styled('button', {
   borderRadius: '8px',
   cursor: 'pointer',
 
-  '&.active': {
-    background: '#FADCD0',
+  variants: {
+    active: {
+      true: {
+        background: '$tangerine5',
+        [`${ImageWrapper}`]: {
+          opacity: "1",
+        },
+        [`${ClientName}`]: {
+          color: '$magenta7',
+        },
+        [`${BeccaClient}`]: {
+          color: '$magenta9',
+        },
+      }
+    }
   }
 })
 
 
-export const ListClientName = styled('div', {
-  fontWeight: '600',
-  fontSize: '14px',
-  lineHeight: '21px',
-  color: '#A6AEB8',
-
-  '&.active': {
-    color: '#692C49',
-  }
-})
-
-export const ListBeccaClient = styled('div', {
-  fontWeight: '400',
-  fontSize: '10px',
-  lineHeight: '15px',
-  color: '#A6AEB8',
-
-  '&.active': {
-    color: '#8C3C62',
-  }
-})
+// ======== Client Message ========
 
 export const Testimonial = styled('div', {
   display: "flex",
   flexDirection: 'column',
   justifyContent: "flex-start",
-  
-  padding: '16px',
+
+  padding: '16px 16px 0 16px',
 
   background: 'rgba(205, 209, 214, 0.1)',
   borderRadius: '8px',
 })
 
-
-export const ClientName = styled('span', {
+export const TestimonialClientName = styled('span', {
   fontWeight: '600',
   fontSize: '24px',
   lineHeight: '36px',
   color: '$magenta7',
 })
 
-
-export const BeccaClient = styled('span', {
+export const TestimonialBeccaClient = styled('span', {
   marginBottom: 32,
 
   fontWeight: '400',
@@ -114,4 +132,53 @@ export const Message = styled('p', {
   color: '$gray2',
 })
 
+//  ========== Radix ===============
 
+export const ScrollArea = styled(ScrollAreaPrimitive.Root, {
+  overflow: "hidden",
+})
+
+export const Viewport = styled(ScrollAreaPrimitive.Viewport, {
+  maxHeight: "242px",
+  padding: '0 16px 16px 16px',
+
+  background: 'rgba(205, 209, 214, 0.1)',
+  borderRadius: '8px',
+});
+
+export const Scrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
+  display: "flex",
+  userSelect: "none",
+  touchAction: "none",
+  padding: 2,
+  marginRight: 2,
+  
+  '&[data-orientation="vertical"]': { width: 8 },
+  '&[data-orientation="horizontal"]': {
+    flexDirection: "column",
+    height: 10
+  }
+})
+
+export const Thumb = styled(ScrollAreaPrimitive.Thumb, {
+  flex: 1,
+  background: 'rgba(140, 138, 151, 0.2)',
+  borderRadius: 10,
+  position: "relative",
+  
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "100%",
+    height: "100%",
+    minWidth: 44,
+    minHeight: 44
+  }
+})
+
+export const Corner = styled(ScrollAreaPrimitive.Corner, {
+  background: '$black'
+})
