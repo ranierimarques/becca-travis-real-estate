@@ -7,6 +7,10 @@ export const Link = styled('a', {
   lineHeight: '24px',
   color: '#E3E5E8',
 
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+
   '& + &::before': {
     content: `''`,
     display: 'block',
