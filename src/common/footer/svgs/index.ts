@@ -1,0 +1,8 @@
+export { default as ColdwellBanker } from './coldwell-banker'
+export { default as Facebook } from './facebook'
+export { default as Heart } from './heart'
+export { default as Instagram } from './instagram'
+export { default as Linkedin } from './linkedin'
+export { default as Logo } from './logo'
+export { default as Mail } from './mail'
+export { default as Phone } from './phone'
