@@ -146,7 +146,7 @@ export function LastCall() {
               right: '36px',
 
               padding: '10px',
-              background: '#tangerine9',
+              background: '$tangerine9',
               borderRadius: '12px',
 
               zIndex: 2,
