@@ -1,4 +1,4 @@
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
@@ -44,8 +44,8 @@ export const Clients = styled('ul', {
   gap: 24,
 })
 
-export const ImageWrapper = styled('div', {
-  opacity: "0.4",
+export const ImageWrapper = styled('span', {
+  opacity: '0.4',
 })
 
 export const ClientName = styled('span', {
@@ -65,8 +65,8 @@ export const BeccaClient = styled('span', {
 })
 
 export const Client = styled('button', {
-  display: "flex",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
   gap: 16,
   padding: '16px 0 18px 24px',
 
@@ -80,7 +80,7 @@ export const Client = styled('button', {
       true: {
         background: '$tangerine5',
         [`${ImageWrapper}`]: {
-          opacity: "1",
+          opacity: '1',
         },
         [`${ClientName}`]: {
           color: '$magenta7',
@@ -88,18 +88,17 @@ export const Client = styled('button', {
         [`${BeccaClient}`]: {
           color: '$magenta9',
         },
-      }
-    }
-  }
+      },
+    },
+  },
 })
-
 
 // ======== Client Message ========
 
 export const Testimonial = styled('div', {
-  display: "flex",
+  display: 'flex',
   flexDirection: 'column',
-  justifyContent: "flex-start",
+  justifyContent: 'flex-start',
 
   padding: '16px 16px 0 16px',
 
@@ -124,7 +123,7 @@ export const TestimonialBeccaClient = styled('span', {
 })
 
 export const Message = styled('p', {
-  maxWidth: "612px",
+  maxWidth: '612px',
 
   fontWeight: '400',
   fontSize: '14px',
@@ -135,52 +134,52 @@ export const Message = styled('p', {
 //  ========== Radix ===============
 
 export const ScrollArea = styled(ScrollAreaPrimitive.Root, {
-  overflow: "hidden",
+  overflow: 'hidden',
 })
 
 export const Viewport = styled(ScrollAreaPrimitive.Viewport, {
-  maxHeight: "242px",
+  maxHeight: '242px',
   padding: '0 16px 16px 16px',
 
   background: 'rgba(205, 209, 214, 0.1)',
   borderRadius: '8px',
 
-  overscrollBehavior: 'contain'
-});
+  overscrollBehavior: 'contain',
+})
 
 export const Scrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
-  display: "flex",
-  userSelect: "none",
-  touchAction: "none",
+  display: 'flex',
+  userSelect: 'none',
+  touchAction: 'none',
   padding: 2,
   marginRight: 2,
-  
+
   '&[data-orientation="vertical"]': { width: 8 },
   '&[data-orientation="horizontal"]': {
-    flexDirection: "column",
-    height: 10
-  }
+    flexDirection: 'column',
+    height: 10,
+  },
 })
 
 export const Thumb = styled(ScrollAreaPrimitive.Thumb, {
   flex: 1,
   background: 'rgba(140, 138, 151, 0.2)',
   borderRadius: 10,
-  position: "relative",
-  
-  "&::before": {
+  position: 'relative',
+
+  '&::before': {
     content: '""',
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '100%',
+    height: '100%',
     minWidth: 44,
-    minHeight: 44
-  }
+    minHeight: 44,
+  },
 })
 
 export const Corner = styled(ScrollAreaPrimitive.Corner, {
-  background: '$black'
+  background: '$black',
 })
