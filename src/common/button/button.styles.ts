@@ -31,7 +31,9 @@ const sharedStyles = css({
       magenta: {
         $$primaryColor: '$colors$magenta9',
         $$secondaryColor: '$colors$offWhite1',
-        '&:focus:not(&:active)': { boxShadow: '0 0 0 4px rgba(157, 68, 110, 0.2)' },
+        '&:focus:not(&:active)': {
+          boxShadow: '0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
+        },
       },
       magentaLight: {
         $$primaryColor: '$colors$magenta1',

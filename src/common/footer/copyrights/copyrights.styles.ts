@@ -9,7 +9,7 @@ export const MadeBy = styled('span', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '32px',
-  color: '#F6F6F8',
+  color: '$black',
 })
 
 export const Link = styled('a', {
