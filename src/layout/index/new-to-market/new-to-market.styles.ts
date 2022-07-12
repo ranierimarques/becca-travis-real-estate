@@ -27,7 +27,7 @@ export const Houses = styled('ul', {
 })
 
 export const House = styled('li', {
-  border: '1px solid #CDD1D6',
+  border: '1px solid $grayW8',
   borderRadius: '8px',
   overflow: 'hidden',
 
@@ -37,7 +37,7 @@ export const House = styled('li', {
 export const New = styled('span', {
   display: 'block',
   padding: 5,
-  background: '#D35D6E',
+  background: '$red2',
   borderRadius: '5px',
 
   position: 'absolute',

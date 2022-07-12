@@ -9,7 +9,7 @@ export const MadeBy = styled('span', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '32px',
-  color: '$black',
+  color: '$offWhite2',
 })
 
 export const Link = styled('a', {
@@ -32,5 +32,5 @@ export const Copyright = styled('span', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '32px',
-  color: '#F6F6F8',
+  color: '$offWhite2',
 })

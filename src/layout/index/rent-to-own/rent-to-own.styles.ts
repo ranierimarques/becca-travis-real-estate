@@ -1,5 +1,5 @@
 import { styled } from 'stitches.config'
-import { WaveSvg } from "./svgs"
+import { WaveSvg } from './svgs'
 
 export const Section = styled('section', {
   maxWidth: '1072px',
@@ -8,7 +8,7 @@ export const Section = styled('section', {
 
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 })
 
 export const ImageContainer = styled('div', {
@@ -25,7 +25,6 @@ export const ImageContainer = styled('div', {
     borderRadius: '8px',
     zIndex: -1,
   },
-
 })
 
 export const Svg = styled(WaveSvg, {
@@ -38,19 +37,19 @@ export const Svg = styled(WaveSvg, {
 export const Title = styled('h2', {
   marginBottom: 16,
 
-    fontWeight: '500',
-    fontSize: '24px',
-    lineHeight: '36px',
-    color: '$magenta6',
+  fontWeight: '500',
+  fontSize: '24px',
+  lineHeight: '36px',
+  color: '$magenta6',
 })
 
 export const Paragraph = styled('p', {
   maxWidth: '458px',
 
-    marginBottom: 24,
+  marginBottom: 24,
 
-    fontWeight: '400',
-    fontSize: '16px',
-    lineHeight: '28px',
-    color: '$gray2',
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '28px',
+  color: '$gray2',
 })

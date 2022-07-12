@@ -64,13 +64,16 @@ const linkStyles = {
   userSelect: 'none',
   borderRadius: 4,
 
-  color: '#9D446E',
+  color: '$magenta1',
   fontWeight: 400,
   fontSize: 14,
   lineHeight: '21px',
 
-  '&:focus': { position: 'relative', boxShadow: '0 0 0 2px rgba(157, 68, 110, 0.2)' },
-  '&:hover': { backgroundColor: 'rgba(157, 68, 110, 0.04)' },
+  '&:focus': {
+    position: 'relative',
+    boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)',
+  },
+  '&:hover': { backgroundColor: 'rgba($colors$magenta1Rgb, 0.04)' },
 }
 
 export const Trigger = styled(NavigationMenuPrimitive.Trigger, {
@@ -127,12 +130,12 @@ export const Indicator = styled(NavigationMenuPrimitive.Indicator, {
 export const Arrow = styled('div', {
   position: 'relative',
   top: '70%',
-  backgroundColor: 'white',
+  backgroundColor: '$white',
   width: 14,
   height: 10,
   transform: 'rotate(45deg)',
   borderTopLeftRadius: 3,
-  boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.1)',
+  boxShadow: `0px 0px 8px rgba($colors$blackRgb, 0.1)`,
 })
 
 export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
@@ -140,7 +143,7 @@ export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   transformOrigin: 'top center',
   marginTop: 10,
   width: '100%',
-  backgroundColor: 'white',
+  backgroundColor: '$white',
   borderRadius: 8,
   overflow: 'hidden',
   boxShadow:
@@ -199,12 +202,12 @@ export const CardLink = styled('a', {
   userSelect: 'none',
   borderRadius: 5,
 
-  '&:focus': { boxShadow: '0 0 0 2px rgba(157, 68, 110, 0.2)' },
-  '&:hover': { backgroundColor: 'rgba(157, 68, 110, 0.04)' },
+  '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)' },
+  '&:hover': { backgroundColor: 'rgba($colors$magenta1Rgb, 0.04)' },
 })
 
 export const LinkTitle = styled('div', {
-  color: '#586474',
+  color: '$grayW4',
   fontWeight: 500,
   fontSize: 14,
   lineHeight: '18px',
@@ -213,7 +216,7 @@ export const LinkTitle = styled('div', {
 })
 
 export const LinkText = styled('p', {
-  color: '#7C8999',
+  color: '$grayW5',
   fontWeight: 400,
   fontSize: 12,
   lineHeight: '18px',
@@ -233,7 +236,7 @@ export const CommunitiesTitle = styled('h3', {
   fontWeight: 500,
   fontSize: 14,
   lineHeight: '21px',
-  color: '#58243C',
+  color: '$magenta6',
 })
 
 // About Huntsville
@@ -243,10 +246,10 @@ export const HuntsvilleLink = styled('a', {
 
   padding: 16,
 
-  background: 'rgba(95, 92, 107, 0.08)',
+  background: 'rgba($colors$gray3Rgb, 0.08)',
   borderRadius: '8px',
 
-  '&:focus': { boxShadow: '0 0 0 2px rgba(157, 68, 110, 0.2)' },
+  '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)' },
 })
 
 export const HuntsvilleHeader = styled('header', {
@@ -259,7 +262,7 @@ export const HomeIcon = styled(HomeSvg, {
   boxSizing: 'content-box',
   padding: 5,
 
-  background: '#FBB693',
+  background: '$tangerine2',
   borderRadius: 5,
 })
 
@@ -267,7 +270,7 @@ export const HuntsvilleTitle = styled('h4', {
   fontWeight: 500,
   fontSize: 12,
   lineHeight: '22px',
-  color: '#7B3455',
+  color: '$magenta8',
 })
 
 export const HuntsvilleDescription = styled('p', {
@@ -278,7 +281,7 @@ export const HuntsvilleDescription = styled('p', {
   fontWeight: 400,
   fontSize: 10,
   lineHeight: '15px',
-  color: '#8C3C62',
+  color: '$magenta9',
 })
 
 export const Separator = styled('div', {
@@ -286,7 +289,7 @@ export const Separator = styled('div', {
 
   width: '100%',
   height: 1,
-  background: '#8C8A97',
+  background: '$gray5',
   opacity: 0.4,
   borderRadius: 9999,
 })
@@ -311,7 +314,7 @@ export const OurCommunitiesListLink = styled('a', {
 
   transition: 'filter .15s cubic-bezier(.4,0,.2,1)',
 
-  '&:focus': { boxShadow: '0 0 0 3px rgba(140, 60, 98)' },
+  '&:focus': { boxShadow: '0 0 0 3px $colors$magenta9' },
   '&:hover': { filter: 'brightness(0.8)' },
 })
 
@@ -320,7 +323,8 @@ export const OurCommunitiesImageOverlay = styled('div', {
   width: '100%',
   height: '100%',
   zIndex: 1,
-  background: 'linear-gradient(180deg, rgba(78, 75, 89, 0) 50%, rgba(0, 0, 0, 0.6) 100%)',
+  background:
+    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.6) 100%)',
 })
 
 export const OurCommunitiesImageName = styled('span', {
@@ -331,6 +335,6 @@ export const OurCommunitiesImageName = styled('span', {
   fontWeight: 600,
   fontSize: 10,
   lineHeight: '15px',
-  color: '#FFFFFF',
+  color: '$white',
   zIndex: 2,
 })

@@ -9,14 +9,14 @@ export const Section = styled('section', {
 
   padding: '95px 0 105px',
 
-  background: 'rgba(205, 209, 214, 0.1)',
+  background: `rgba($colors$grayW8Rgb, 0.1)`,
 })
 
 export const Line = styled('div', {
   width: '40px',
   height: '2px',
 
-  background: '#9D446E',
+  background: '$magenta1',
   borderRadius: '35px',
 })
 
@@ -29,13 +29,13 @@ export const Title = styled('h2', {
   fontWeight: '500',
   fontSize: '36px',
   lineHeight: '50px',
-  color: '#58243C',
+  color: '$magenta6',
 })
 
 export const Paragraph = styled('p', {
   maxWidth: '300px',
 
-  border: '1px solid #CF84A7',
+  border: '1px solid $magenta3',
   borderRadius: '8px',
   padding: '24px',
 
@@ -64,9 +64,9 @@ export const Badge = styled('li', {
 
   padding: '12px 0 12px 16px',
 
-  boxShadow: 'inset 0 0 0 2px rgba(229, 172, 138, 0.5)',
+  boxShadow: 'inset 0 0 0 2px rgba($colors$tangerine9Rgb, 0.5)',
 
-  filter: 'drop-shadow(0px 8px 15px rgba(91, 47, 32, 0.08))',
+  filter: 'drop-shadow(0px 8px 15px rgba($colors$tangerine6Rgb, 0.08))',
   borderRadius: '8px',
 })
 

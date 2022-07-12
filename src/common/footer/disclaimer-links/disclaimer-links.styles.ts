@@ -5,7 +5,7 @@ export const Link = styled('a', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '24px',
-  color: '#E3E5E8',
+  color: '$grayW9',
 
   '&:hover': {
     textDecoration: 'underline',

@@ -31,12 +31,7 @@ export function Achievements() {
   return (
     <S.Section>
       <Box
-        css={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 16,
-        }}
+        css={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}
       >
         <Hat>Becca Travis Real State Group</Hat>
         <S.Line></S.Line>
@@ -46,25 +41,14 @@ export function Achievements() {
         </S.Title>
       </Box>
 
-      <Box
-        css={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: '56px',
-        }}
-      >
+      <Box css={{ display: 'flex', alignItems: 'flex-start', gap: '56px' }}>
         <S.Paragraph>
           We thrive on satisfied customers and individuals who seek us out because they
           know that when you come here what matters most is getting results and when it
           comes to real estate, we want to exceed your expectations.
         </S.Paragraph>
 
-        <Box
-          css={{
-            position: 'relative',
-            top: '-53px',
-          }}
-        >
+        <Box css={{ position: 'relative', top: '-53px' }}>
           <Image src={becca} alt="Becca Travis" quality={100} />
           <Box css={{ position: 'absolute', bottom: 66, left: -219 }}>
             <LineLeftSvg />

@@ -15,22 +15,22 @@ export const Title = styled('h2', {
   fontWeight: 500,
   fontSize: 36,
   lineHeight: '50px',
-  color: '#58243C'
+  color: '$magenta6',
 })
 
 export const Heading = styled('div', {
   width: 'fit-content',
-  
+
   marginBottom: 8,
   padding: '8px 16px',
 
-  background: 'rgba(157, 68, 110, 0.1)',
+  background: 'rgba($colors$magenta1Rgb, 0.1)',
   borderRadius: 999,
 
   fontWeight: 500,
   fontSize: 14,
   lineHeight: '24px',
-  color: '#CF84A7',
+  color: '$magenta3',
 })
 
 export const CommunitiesList = styled('ul', {
@@ -38,7 +38,6 @@ export const CommunitiesList = styled('ul', {
   flexWrap: 'wrap',
   gap: 32,
 })
-
 
 export const HoverSpan = styled('p', {
   display: 'flex',
@@ -55,7 +54,7 @@ export const HoverSpan = styled('p', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '24px',
-  color: '#FFFFFF',
+  color: '$white',
   zIndex: 5,
 
   transition: 'all ease-out 200ms',
@@ -69,9 +68,8 @@ export const Description = styled('span', {
   fontWeight: 600,
   fontSize: 20,
   lineHeight: '30px',
-  color: '#FFFFFF',
+  color: '$white',
   zIndex: 3,
-
 
   transition: 'all ease-out 200ms',
 })
@@ -83,25 +81,23 @@ export const Community = styled('li', {
   borderRadius: 8,
   overflow: 'hidden',
 
-  
   '&:hover': {
     [`& ${HoverSpan}`]: {
-      
-
       opacity: 1,
       visibility: 'visible',
     },
-    
+
     [`& ${Description}`]: {
       bottom: 48,
     },
-  }
+  },
 })
 
 export const ImageMask = styled('div', {
-  background: 'linear-gradient(180deg, rgba(78, 75, 89, 0) 50%, rgba(0, 0, 0, 0.6) 100%)',
+  background:
+    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.6) 100%)',
   position: 'absolute',
   width: '100%',
   height: '100%',
-  zIndex: 2
+  zIndex: 2,
 })

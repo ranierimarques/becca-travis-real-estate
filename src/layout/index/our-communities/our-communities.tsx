@@ -1,5 +1,5 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from 'next/image'
+import Link from 'next/link'
 import {
   athens,
   decatur,
@@ -7,46 +7,46 @@ import {
   harvest,
   huntsville,
   meridianville,
-} from "./images"
-import * as S from "./our-communities.styles"
-import { ArrowLeftSvg } from "./svgs"
+} from './images'
+import * as S from './our-communities.styles'
+import { ArrowLeftSvg } from './svgs'
 
 const communitiesData = [
   {
     image: harvest,
-    alt: "Harvest road",
+    alt: 'Harvest road',
     community: `Harvest, AL`,
-    href: "#",
+    href: '#',
   },
   {
     image: huntsville,
-    alt: "Huntsville forest",
+    alt: 'Huntsville forest',
     community: `Huntsville, AL`,
-    href: "#",
+    href: '#',
   },
   {
     image: hamptonCover,
-    alt: "Hamptom Cove lake",
+    alt: 'Hamptom Cove lake',
     community: `Hamptom Cove, AL`,
-    href: "#",
+    href: '#',
   },
   {
     image: decatur,
-    alt: "Decatur home",
+    alt: 'Decatur home',
     community: `Decatur, AL`,
-    href: "#",
+    href: '#',
   },
   {
     image: athens,
-    alt: "Athens river",
+    alt: 'Athens river',
     community: `Athens, AL`,
-    href: "#",
+    href: '#',
   },
   {
     image: meridianville,
-    alt: "Meridianville house",
+    alt: 'Meridianville house',
     community: `Meridianville, AL`,
-    href: "#",
+    href: '#',
   },
 ]
 
@@ -62,11 +62,7 @@ export function OurCommunities() {
               <Link href={community.href} passHref>
                 <a>
                   <S.ImageMask />
-                  <Image
-                    src={community.image}
-                    alt={community.alt}
-                    layout="fill"
-                  />
+                  <Image src={community.image} alt={community.alt} layout="fill" />
                   <S.Description>{community.community}</S.Description>
                   <S.HoverSpan>
                     Read more

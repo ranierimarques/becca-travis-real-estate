@@ -13,7 +13,7 @@ export const LanguageButton = styled('button', {
   alignItems: 'center',
   gap: 6,
 
-  color: '#9D446E',
+  color: '$magenta1',
   fontSize: 12,
   lineHeight: '16px',
   fontWeight: 400,

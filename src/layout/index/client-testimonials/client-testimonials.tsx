@@ -1,8 +1,7 @@
-import { useState } from 'react'
-
 import { Box, Hat } from '@common'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import * as S from './client-testimonials.styles'
 import { client1, client2, client3 } from './images'
 import { StarSvg } from './svgs'
@@ -55,17 +54,11 @@ export function ClientTestimonials() {
         </Box>
       </div>
 
-      <Box
-        css={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 92,
-          height: '329px',
-        }}
-      >
+      <Box css={{ display: 'flex', alignItems: 'center', gap: 92, height: '329px' }}>
         <S.Clients>
           {testimonials.map((testimonial, i) => {
             const isActive = testimonial.name === activeTestimonial.name
+
             return (
               <li key={testimonial.name}>
                 <S.Client onClick={() => setIndex(i)} active={isActive}>
@@ -88,12 +81,7 @@ export function ClientTestimonials() {
         <div>
           <S.Testimonial>
             <Box
-              css={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 24,
-                marginBottom: 4,
-              }}
+              css={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 4 }}
             >
               <S.TestimonialClientName>{activeTestimonial.name}</S.TestimonialClientName>
 

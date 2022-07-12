@@ -3,7 +3,7 @@ import { styled } from 'stitches.config'
 export const Hat = styled('span', {
   display: 'inline-block',
 
-  background: '#9D446E1A',
+  background: 'rgba($magenta1Rgb, 0.1)',
   padding: '8px 16px',
   borderRadius: '9999px',
 

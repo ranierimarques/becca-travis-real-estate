@@ -4,7 +4,7 @@ export const Link = styled('a', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
-  color: '#CDD1D6',
+  color: '$grayW8',
 })
 
 export const Slogan = styled('span', {
@@ -49,14 +49,14 @@ export const SocialLink = styled('a', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
-  color: '#CDD1D6',
+  color: '$grayW8',
 })
 
 export const AboutUsDescription = styled('p', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
-  color: '#CDD1D6',
+  color: '$grayW8',
 
   maxWidth: 459,
 })

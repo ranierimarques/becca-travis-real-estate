@@ -54,14 +54,14 @@ export const ClientName = styled('span', {
   fontWeight: '600',
   fontSize: '14px',
   lineHeight: '21px',
-  color: '#A6AEB8',
+  color: '$grayW7',
 })
 
 export const BeccaClient = styled('span', {
   fontWeight: '400',
   fontSize: '10px',
   lineHeight: '15px',
-  color: '#A6AEB8',
+  color: '$grayW7',
 })
 
 export const Client = styled('button', {
@@ -79,15 +79,9 @@ export const Client = styled('button', {
     active: {
       true: {
         background: '$tangerine5',
-        [`${ImageWrapper}`]: {
-          opacity: '1',
-        },
-        [`${ClientName}`]: {
-          color: '$magenta7',
-        },
-        [`${BeccaClient}`]: {
-          color: '$magenta9',
-        },
+        [`${ImageWrapper}`]: { opacity: '1' },
+        [`${ClientName}`]: { color: '$magenta7' },
+        [`${BeccaClient}`]: { color: '$magenta9' },
       },
     },
   },
@@ -102,7 +96,7 @@ export const Testimonial = styled('div', {
 
   padding: '16px 16px 0 16px',
 
-  background: 'rgba(205, 209, 214, 0.1)',
+  background: 'rgba($colors$grayW8Rgb, 0.1)',
   borderRadius: '8px',
 })
 
@@ -141,7 +135,7 @@ export const Viewport = styled(ScrollAreaPrimitive.Viewport, {
   maxHeight: '242px',
   padding: '0 16px 16px 16px',
 
-  background: 'rgba(205, 209, 214, 0.1)',
+  background: 'rgba($colors$grayW8Rgb, 0.1)',
   borderRadius: '8px',
 
   overscrollBehavior: 'contain',
@@ -163,7 +157,7 @@ export const Scrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
 
 export const Thumb = styled(ScrollAreaPrimitive.Thumb, {
   flex: 1,
-  background: 'rgba(140, 138, 151, 0.2)',
+  background: 'rgba($colors$gray5Rgb, 0.2)',
   borderRadius: 10,
   position: 'relative',
 

@@ -1,7 +1,8 @@
 import { styled } from 'stitches.config'
 
 export const Link = styled('a', {
-  boxShadow: 'inset 0 0 0 1px #E3E5E8, 0px 8px 40px rgba(0, 0, 0, 0.05)',
+  boxShadow:
+    'inset 0 0 0 1px $colors$grayW9Rgb, 0px 8px 40px rgba($colors$blackRgb, 0.05)',
   borderRadius: '8px',
   overflow: 'hidden',
   flexGrow: 1,

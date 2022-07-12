@@ -3,13 +3,13 @@ import { css, styled } from 'stitches.config'
 export const Section = styled('section', {
   margin: '0 auto',
   maxWidth: '1072px',
-  padding: '120px 0'
+  padding: '120px 0',
 })
 
 export const Container = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  
+
   position: 'relative',
 
   padding: '86px 0 86px 63px',
@@ -34,7 +34,7 @@ export const Paragraph = styled('p', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '30px',
-  color: '#E3E5E8',
+  color: '$grayW9',
 })
 
 export const SvgStyles = css({

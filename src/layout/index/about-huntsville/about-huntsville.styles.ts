@@ -1,5 +1,5 @@
 import { styled } from 'stitches.config'
-import { SpiralSvg } from "./svgs"
+import { SpiralSvg } from './svgs'
 
 export const Section = styled('section', {
   maxWidth: '1072px',
@@ -7,7 +7,7 @@ export const Section = styled('section', {
 
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 })
 
 export const Title = styled('h2', {
@@ -44,7 +44,6 @@ export const ImageContainer = styled('div', {
     borderRadius: '8px',
     zIndex: -1,
   },
-
 })
 
 export const Svg = styled(SpiralSvg, {

@@ -60,6 +60,6 @@ export const globalStyles = globalCss({
     fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
   },
   body: {
-    background: '#FFFFFF',
+    background: '$white',
   },
 })
