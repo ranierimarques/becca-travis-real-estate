@@ -3,7 +3,7 @@ import { styled } from 'stitches.config'
 export const Section = styled('section', {
   maxWidth: '1072px',
   margin: '0 auto',
-  padding: '120px 0 160px'
+  padding: '120px 0 160px',
 })
 
 export const Title = styled('h2', {
@@ -23,7 +23,7 @@ export const ViewAll = styled('a', {
 export const Houses = styled('ul', {
   display: 'flex',
   alignItems: 'center',
-  gap: 32
+  gap: 32,
 })
 
 export const House = styled('li', {
@@ -40,10 +40,10 @@ export const New = styled('span', {
   background: '#D35D6E',
   borderRadius: '5px',
 
-  position: "absolute", 
-  top: "16px", 
-  left: "16px",
-  zIndex: "2",
+  position: 'absolute',
+  top: '16px',
+  left: '16px',
+  zIndex: '2',
 
   fontWeight: '600',
   fontSize: '12px',
@@ -52,7 +52,7 @@ export const New = styled('span', {
 })
 
 export const HouseInfo = styled('div', {
-  padding: '14px 0 16px 16px'
+  padding: '14px 0 16px 16px',
 })
 
 export const Value = styled('h4', {
@@ -110,6 +110,6 @@ export const VAMLS = styled('span', {
   fontWeight: '500',
   fontSize: '14px',
   lineHeight: '24px',
-  color: '$gray6',
+  color: '$grayW4',
   opacity: '0.8',
 })

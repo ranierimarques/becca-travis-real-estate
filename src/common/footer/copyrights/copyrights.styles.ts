@@ -24,7 +24,7 @@ export const Link = styled('a', {
 })
 
 export const Heart = styled(HeartSvg, {
-  filter: 'drop-shadow(0px 0px 10px rgba(254, 161, 102, 0.5))',
+  filter: 'drop-shadow(0px 0px 10px rgba($colors$tangerine1Rgb, 0.5))',
   margin: '0 4px',
 })
 
