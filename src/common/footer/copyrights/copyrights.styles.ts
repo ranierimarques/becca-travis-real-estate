@@ -1,4 +1,4 @@
-import { styled } from 'stitches.config'
+import { keyframes, styled } from 'stitches.config'
 import { Heart as HeartSvg } from '../svgs'
 
 export const MadeBy = styled('span', {
@@ -23,9 +23,31 @@ export const Link = styled('a', {
   },
 })
 
+const scaleIn = keyframes({
+  from: {
+    transform: 'rotateX(0deg) scale(1)',
+    filter: 'drop-shadow(0px 0px 15px rgba($colors$tangerine1Rgb, 0.8))',
+  },
+  to: {
+    transform: 'rotateX(-15deg) scale(0.85)',
+    filter: 'drop-shadow(0px 0px 10px rgba($colors$tangerine1Rgb, 0.5))',
+  },
+})
+
 export const Heart = styled(HeartSvg, {
   filter: 'drop-shadow(0px 0px 10px rgba($colors$tangerine1Rgb, 0.5))',
   margin: '0 4px',
+  '&:hover': {
+    animation: `${scaleIn} 800ms ease infinite alternate`,
+  },
+
+  variants: {
+    active: {
+      true: {
+        animation: `${scaleIn} 800ms ease infinite alternate`,
+      },
+    },
+  },
 })
 
 export const Copyright = styled('span', {

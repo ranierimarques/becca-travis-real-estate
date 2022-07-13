@@ -1,7 +1,12 @@
+import { useState } from 'react'
 import { Box } from 'src/common/box/box'
 import * as S from './copyrights.styles'
 
 export function Copyrights() {
+  const [isHeartActive, setIsHeartActive] = useState(false)
+
+  const handleToggleHeartActive = () => setIsHeartActive(!isHeartActive)
+
   return (
     <Box
       css={{
@@ -14,7 +19,7 @@ export function Copyrights() {
       }}
     >
       <S.MadeBy>
-        Made with <S.Heart /> by
+        Made with <S.Heart active={isHeartActive} onClick={handleToggleHeartActive} /> by
         <S.Link href="http://octanestd.com/">Octane Studio</S.Link>
       </S.MadeBy>
 
