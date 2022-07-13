@@ -166,7 +166,7 @@ export const ViewportPosition = styled('div', {
   justifyContent: 'center',
   width: '100%',
   top: '100%',
-  left: -20,
+  left: -60, // Edit this
   perspective: '2000px',
 })
 
