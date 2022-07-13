@@ -82,7 +82,7 @@ export const ImageOverlay = styled('div', {
   top: 0,
   width: '100%',
   height: '100%',
-  background: '#0F141A', // TODO: Fix Color
+  background: '$details1',
   opacity: 0.7,
 })
 

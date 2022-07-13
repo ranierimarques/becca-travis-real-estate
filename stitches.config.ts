@@ -40,6 +40,7 @@ const rgbColors = {
   yellow1: 'rgb(237, 218, 90)', // #EDDA5A
   yellow2: 'rgb(217, 188, 58)', // #D9BC3A
   yellow3: 'rgb(179, 154, 32)', // #B39A20
+  yellow4: 'rgb(255, 244, 186)', // #FFF4BA
 
   gray1: 'rgb(51, 48, 62)', // #33303E
   gray2: 'rgb(78, 75, 89)', // #4E4B59
@@ -57,6 +58,8 @@ const rgbColors = {
   grayW8: 'rgb(205, 209, 214)', // #CDD1D6
   grayW9: 'rgb(227, 229, 232)', // #E3E5E8
   grayW10: 'rgb(246, 246, 248)', // #F6F6F8
+
+  details1: 'rgb(15, 20, 26)', // #0F141A
 }
 
 const basicColors = Object.entries(rgbColors).reduce(

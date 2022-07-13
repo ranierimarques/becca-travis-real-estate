@@ -92,7 +92,8 @@ export function ClientTestimonials() {
                   gap: 4,
                   padding: '4px 10px',
                   borderRadius: '999px',
-                  backgroundColor: 'rgba(255, 225, 66, 0.2);',
+                  backgroundColor: '$yellow4',
+                  color: '$yellow3',
                 }}
               >
                 <StarSvg /> 5
