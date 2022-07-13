@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
-import { Button } from '@common'
-import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { forwardRef, ReactNode, Ref } from 'react'
+import { Button } from "@common"
+import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { forwardRef, ReactNode, Ref } from "react"
 import {
   athens,
   decatur,
@@ -12,8 +12,8 @@ import {
   harvest,
   huntsville,
   meridianville,
-} from './images'
-import * as S from './navigation-menu.styles'
+} from "./images"
+import * as S from "./navigation-menu.styles"
 
 type wrapperLinkProps = {
   onClick?: any
@@ -56,18 +56,22 @@ const CustomLink = ({ children, href }: customLinkProps) => {
   )
 }
 
-const StyledTriggerWithCaret = forwardRef(({ children, ...props }: any, forwardedRef) => (
-  <S.Trigger {...props} ref={forwardedRef}>
-    {children}
-    <S.Caret aria-hidden />
-  </S.Trigger>
-))
+const StyledTriggerWithCaret = forwardRef(
+  ({ children, ...props }: any, forwardedRef) => (
+    <S.Trigger {...props} ref={forwardedRef}>
+      {children}
+      <S.Caret aria-hidden />
+    </S.Trigger>
+  )
+)
 
-const StyledIndicatorWithArrow = forwardRef(({ ...props }: any, forwardedRef) => (
-  <S.Indicator {...props} ref={forwardedRef}>
-    <S.Arrow />
-  </S.Indicator>
-))
+const StyledIndicatorWithArrow = forwardRef(
+  ({ ...props }: any, forwardedRef) => (
+    <S.Indicator {...props} ref={forwardedRef}>
+      <S.Arrow />
+    </S.Indicator>
+  )
+)
 
 const ContentListItem = ({ children, title, href }: any) => (
   <li>
@@ -81,12 +85,12 @@ const ContentListItem = ({ children, title, href }: any) => (
 )
 
 const communitiesListItems = [
-  { image: harvest, name: 'Harvest', href: '/' },
-  { image: huntsville, name: 'Huntsville', href: '/' },
-  { image: hamptonCove, name: 'Hamptom Cove', href: '/' },
-  { image: decatur, name: 'Decatur', href: '/' },
-  { image: athens, name: 'Athens', href: '/' },
-  { image: meridianville, name: 'Meridianville', href: '/' },
+  { image: harvest, name: "Harvest", href: "/" },
+  { image: huntsville, name: "Huntsville", href: "/" },
+  { image: hamptonCove, name: "Hamptom Cove", href: "/" },
+  { image: decatur, name: "Decatur", href: "/" },
+  { image: athens, name: "Athens", href: "/" },
+  { image: meridianville, name: "Meridianville", href: "/" },
 ]
 
 export function NavigationMenu() {
@@ -146,8 +150,8 @@ export function NavigationMenu() {
                       <S.HuntsvilleTitle>Huntsville</S.HuntsvilleTitle>
                     </S.HuntsvilleHeader>
                     <S.HuntsvilleDescription>
-                      Huntsville, the city where waves of history wash over you as soon as
-                      it rains...
+                      Huntsville, the city where waves of history wash over you
+                      as soon as it rains...
                     </S.HuntsvilleDescription>
                   </S.HuntsvilleLink>
                 </CustomLink>
@@ -165,9 +169,9 @@ export function NavigationMenu() {
                           <S.OurCommunitiesImageOverlay />
                           <Image
                             style={{
-                              userSelect: 'none',
-                              pointerEvents: 'none',
-                              borderRadius: '4px',
+                              userSelect: "none",
+                              pointerEvents: "none",
+                              borderRadius: "4px",
                             }}
                             src={item.image}
                             alt={`${item.name} photo`}
@@ -193,7 +197,7 @@ export function NavigationMenu() {
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
-          <CustomLink href="/">
+          <CustomLink href="/blog">
             <S.Link>Blog</S.Link>
           </CustomLink>
         </NavigationMenuPrimitive.Item>
