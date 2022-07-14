@@ -1,7 +1,13 @@
 import { Box, Hat } from "@common"
+import Image from "next/image"
+
 import * as S from "./hero.styles"
 
-export function Hero() {
+interface HeroProps {
+  graphcms: any
+}
+
+export function Hero({ graphcms }: HeroProps) {
   return (
     <S.Section>
       <S.Background />
@@ -12,28 +18,37 @@ export function Hero() {
         updates about Huntsville &amp; North Alabama
       </S.Description>
       <S.LastPost>
-        <Box
-          css={{
-            width: "336px",
-            height: "326px",
-            backgroundColor: "$gray1",
-          }}
-        ></Box>
+        <Image
+          src={graphcms.posts[0].postBanner[0].url}
+          alt="image"
+          width={272}
+          height={272}
+        />
         <Box
           css={{
             display: "flex",
+            width: "358px",
             flexDirection: "column",
             alignItems: "flex-start",
-            padding: "32px 0 46px 32px",
+            padding: "32px",
           }}
         >
-          <Hat>Huntsville</Hat>
-          <S.PostTitle>Need help selling your home?</S.PostTitle>
+          <Box
+            css={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Hat>Huntsville</Hat>
+
+            <S.PostDate>{graphcms.posts[0].datePublished}</S.PostDate>
+          </Box>
+          <S.PostTitle>{graphcms.posts[0].title}</S.PostTitle>
           <S.PostDescription>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi.
+            {graphcms.posts[0].postDescription}
           </S.PostDescription>
-          <S.PostDate>Feb 17, 2022</S.PostDate>
         </Box>
       </S.LastPost>
     </S.Section>

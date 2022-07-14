@@ -27,8 +27,8 @@ export const Title = styled('h1', {
   marginBottom: '24px',
 
   fontWeight: '500',
-  fontSize: '40px',
-  lineHeight: '64px',
+  fontSize: '36px',
+  lineHeight: '50px',
   color: '$magenta6',
 })
 
@@ -46,6 +46,8 @@ export const Description = styled('p', {
 
 export const LastPost = styled('div', {
   display: 'flex',
+
+  width: '630px',
 
   background: '$offWhite2',
 
