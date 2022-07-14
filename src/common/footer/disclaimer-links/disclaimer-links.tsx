@@ -21,7 +21,7 @@ export function DisclaimerLinks() {
 
         padding: '20px 0',
         boxShadow: 'inset 0 1px 0 0 $colors$magenta9, inset 0 -1px 0 0 $colors$magenta9',
-        background: 'rgba($colors$magenta7Rgb, 0.5)',
+        background: 'rgba($colors$magenta7Rgb, 0.32)',
       }}
     >
       {links.map(link => (
