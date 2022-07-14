@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import { useState } from 'react'
 import { Box } from 'src/common/box/box'
+import { Logo } from '../svgs'
 import * as S from './copyrights.styles'
 
 export function Copyrights() {
@@ -10,12 +12,15 @@ export function Copyrights() {
   return (
     <Box
       css={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        alignItems: 'center',
+
         padding: '32px 0',
         maxWidth: 1072,
         margin: '0 auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+
+        boxShadow: '0 -1px 0 0 $colors$grayW9',
       }}
     >
       <S.MadeBy>
@@ -23,9 +28,13 @@ export function Copyrights() {
         <S.Link href="http://octanestd.com/">Octane Studio</S.Link>
       </S.MadeBy>
 
-      <S.Copyright>
-        © 2022 Becca Travis Real State Group. All rights reserved.
-      </S.Copyright>
+      <Link href="/" passHref>
+        <S.LogoLink>
+          <Logo />
+        </S.LogoLink>
+      </Link>
+
+      <S.Copyright>© 2022 — All rights reserved.</S.Copyright>
     </Box>
   )
 }

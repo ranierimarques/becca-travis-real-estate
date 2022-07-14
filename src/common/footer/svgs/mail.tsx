@@ -7,14 +7,13 @@ export default function Svg({ ...props }) {
         width="15"
         height="13.333"
         rx="4"
-        stroke="#CDD1D6"
-        strokeWidth="1.2"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="m14.583 7.5-3.512 2.944c-.62.52-1.522.52-2.142 0L5.417 7.5"
-        stroke="#CDD1D6"
+        d="m14.583 7.5-3.513 2.944c-.619.52-1.521.52-2.14 0L5.416 7.5"
+        stroke="currentColor"
         strokeWidth="1.2"
         strokeLinecap="round"
         strokeLinejoin="round"
