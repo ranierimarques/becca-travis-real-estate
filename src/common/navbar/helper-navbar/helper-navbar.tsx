@@ -1,17 +1,17 @@
-import { Box } from '@common'
-import Link from 'next/link'
-import { ChatSvg, EarthSvg, ShieldSvg, UserSvg } from '../svgs'
-import * as S from './helper-navbar.styles'
+import { Box } from "@common"
+import Link from "next/link"
+import { ChatSvg, EarthSvg, ShieldSvg, UserSvg } from "../svgs"
+import * as S from "./helper-navbar.styles"
 
 const links = [
-  { icon: <ShieldSvg />, text: 'Knowledge center', href: '/' },
-  { icon: <ChatSvg />, text: 'Contact Us', href: '/' },
-  { icon: <UserSvg />, text: 'My account', href: '/' },
+  { icon: <ShieldSvg />, text: "Local Guides", href: "/" },
+  { icon: <ChatSvg />, text: "Contact Us", href: "/" },
+  { icon: <UserSvg />, text: "My account", href: "/" },
 ]
 
 export function HelperNavbar() {
   return (
-    <Box css={{ padding: '12px 0', background: '$tangerine10' }}>
+    <Box css={{ padding: "12px 0", background: "$tangerine10" }}>
       <S.Nav>
         <S.LanguageButton>
           <EarthSvg />
