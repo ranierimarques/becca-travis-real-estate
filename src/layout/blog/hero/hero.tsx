@@ -1,21 +1,23 @@
-import { Box, Hat } from "@common"
-import Image from "next/image"
+import { Box, Hat } from '@common'
+import Image from 'next/image'
 
-import * as S from "./hero.styles"
+import * as S from './hero.styles'
 
 interface HeroProps {
   graphcms: any
 }
 
 export function Hero({ graphcms }: HeroProps) {
+  console.log(graphcms)
+
   return (
     <S.Section>
       <S.Background />
       <Hat>NEWS</Hat>
       <S.Title>Becca Travis Blog</S.Title>
       <S.Description>
-        Stay up to date with the latest real estate news, insights and lifestyle
-        updates about Huntsville &amp; North Alabama
+        Stay up to date with the latest real estate news, insights and lifestyle updates
+        about Huntsville &amp; North Alabama
       </S.Description>
       <S.LastPost>
         <Image
@@ -26,19 +28,19 @@ export function Hero({ graphcms }: HeroProps) {
         />
         <Box
           css={{
-            display: "flex",
-            width: "358px",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            padding: "32px",
+            display: 'flex',
+            width: '358px',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            padding: '32px',
           }}
         >
           <Box
             css={{
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "space-between",
+              display: 'flex',
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
             <Hat>Huntsville</Hat>
@@ -46,9 +48,7 @@ export function Hero({ graphcms }: HeroProps) {
             <S.PostDate>{graphcms.posts[0].datePublished}</S.PostDate>
           </Box>
           <S.PostTitle>{graphcms.posts[0].title}</S.PostTitle>
-          <S.PostDescription>
-            {graphcms.posts[0].postDescription}
-          </S.PostDescription>
+          <S.PostDescription>{graphcms.posts[0].postDescription}</S.PostDescription>
         </Box>
       </S.LastPost>
     </S.Section>

@@ -19,13 +19,7 @@ export function Card({ data }: cardProps) {
     <Link href={data.href} passHref>
       <S.Link>
         <Box css={{ position: 'relative', height: 189, '& > span': { zIndex: -1 } }}>
-          <Image
-            src={data.image}
-            alt={data.alt}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="0% 15%"
-          />
+          <Image src={data.image} alt={data.alt} layout="fill" objectFit="cover" />
         </Box>
         <S.Title>{data.title}</S.Title>
         <S.Description>{data.description}</S.Description>
