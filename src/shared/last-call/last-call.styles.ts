@@ -12,29 +12,39 @@ export const Container = styled('div', {
 
   position: 'relative',
 
-  padding: '86px 0 86px 63px',
-  background: '$magenta9',
+  padding: '64px 0 64px 64px',
+  
+  background: 'rgba($colors$tangerine10Rgb, 0.75)',
+  border: '1px solid rgba($colors$tangerine7Rgb, 0.15)',
+  boxShadow: '0px 14px 50px rgba($colors$blackRgb, 0.08)',
   borderRadius: '24px',
 })
 
 export const Title = styled('h3', {
   maxWidth: '262px',
-  marginBottom: '16px',
+  marginBottom: '20px',
 
-  fontWeight: '700',
+  fontWeight: '600',
   fontSize: '32px',
-  lineHeight: '46px',
-  color: '$offWhite2',
+  lineHeight: '44px',
+  color: '$gray1',
+})
+
+export const BeccaTravis = styled('h3', {
+  fontWeight: '600',
+  fontSize: '32px',
+  lineHeight: '44px',
+  color: '$magenta1'
 })
 
 export const Paragraph = styled('p', {
   maxWidth: '237px',
-  marginBottom: '56px',
+  marginBottom: '32px',
 
-  fontWeight: '400',
+  fontWeight: '300',
   fontSize: '16px',
-  lineHeight: '30px',
-  color: '$grayW9',
+  lineHeight: '29px',
+  color: '$details1',
 })
 
 export const SvgStyles = css({

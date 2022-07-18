@@ -1,7 +1,7 @@
-import { Box, Button } from '@common'
-import Image from 'next/image'
-import { becca } from './images'
-import * as S from './last-call.styles'
+import { Box, Button } from "@common"
+import Image from "next/image"
+import { becca } from "./images"
+import * as S from "./last-call.styles"
 import {
   CirclesSvg,
   HeartSvg,
@@ -10,38 +10,45 @@ import {
   MedalSvg,
   PinSvg,
   ShieldSvg,
-} from './svgs'
+} from "./svgs"
 
 export function LastCall() {
   return (
     <S.Section>
       <S.Container>
-        <Box css={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          <S.Title>Get started with Becca Travis</S.Title>
+        <Box
+          css={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
+          <S.Title>
+            Get started with <S.BeccaTravis>Becca Travis</S.BeccaTravis>
+          </S.Title>
           <S.Paragraph>
             Is there a problem finding your dream home? Just contact us
           </S.Paragraph>
           <Box
             css={{
-              display: 'flex',
-              alignItems: 'center',
+              display: "flex",
+              alignItems: "center",
               gap: 24,
 
-              color: '$grayW10',
-              fontWeight: '400',
-              fontSize: '16px',
-              lineHeight: '24px',
+              color: "$magenta1",
+              fontWeight: "400",
+              fontSize: "16px",
+              lineHeight: "24px",
             }}
           >
             <Button
               href="#"
               css={{
-                backgroundColor: '$white',
-                color: '$magenta1',
-                padding: '10px 20px',
-                fontWeight: '500',
-                fontSize: '16px',
-                lineHeight: '36px',
+                color: "$white",
+                padding: "12px 20px",
+                fontWeight: "500",
+                fontSize: "14px",
+                lineHeight: "21px",
               }}
             >
               Schedule
@@ -50,12 +57,13 @@ export function LastCall() {
             <Button
               href="#"
               css={{
-                color: '$white',
-                padding: '10px 20px',
-                border: '1px solid $white',
-                fontWeight: '500',
-                fontSize: '16px',
-                lineHeight: '36px',
+                color: "$magenta1",
+                padding: "12px 20px",
+                border: "1px solid $magenta1",
+                backgroundColor: "transparent",
+                fontWeight: "500",
+                fontSize: "14px",
+                lineHeight: "21px",
               }}
             >
               Call
@@ -66,13 +74,16 @@ export function LastCall() {
         <div>
           <Box
             css={{
-              position: 'absolute',
-              top: '31px',
-              left: '428px',
+              position: "absolute",
+              top: "26px",
+              left: "471px",
 
-              padding: '10px',
-              background: '$tangerine1',
-              borderRadius: '16px',
+              padding: "10px",
+              background: "$tangerine1",
+              borderRadius: "16px",
+
+              filter:
+                "drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))",
 
               zIndex: 2,
             }}
@@ -81,13 +92,16 @@ export function LastCall() {
           </Box>
           <Box
             css={{
-              position: 'absolute',
-              bottom: '183px',
-              left: '387px',
+              position: "absolute",
+              bottom: "160px",
+              left: "384px",
 
-              padding: '10px',
-              background: '$tangerine9',
-              borderRadius: '12px',
+              padding: "10px",
+              background: "$tangerine1",
+              borderRadius: "12px",
+
+              filter:
+                "drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))",
 
               zIndex: 2,
             }}
@@ -96,13 +110,16 @@ export function LastCall() {
           </Box>
           <Box
             css={{
-              position: 'absolute',
-              bottom: '86px',
-              left: '498px',
+              position: "absolute",
+              bottom: "36px",
+              left: "474px",
 
-              padding: '10px',
-              background: '$tangerine9',
-              borderRadius: '14px',
+              padding: "10px",
+              background: "$tangerine2",
+              borderRadius: "14px",
+
+              filter:
+                "drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))",
 
               zIndex: 2,
             }}
@@ -111,13 +128,16 @@ export function LastCall() {
           </Box>
           <Box
             css={{
-              position: 'absolute',
-              top: '29px',
-              right: '28px',
+              position: "absolute",
+              top: "23px",
+              right: "69px",
 
-              padding: '10px',
-              background: '$tangerine9',
-              borderRadius: '14px',
+              padding: "10px",
+              background: "$tangerine2",
+              borderRadius: "14px",
+
+              filter:
+                "drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))",
 
               zIndex: 2,
             }}
@@ -126,13 +146,16 @@ export function LastCall() {
           </Box>
           <Box
             css={{
-              position: 'absolute',
-              top: '189px',
-              right: '63px',
+              position: "absolute",
+              top: "159px",
+              right: "32px",
 
-              padding: '10px',
-              background: '$tangerine1',
-              borderRadius: '16px',
+              padding: "10px",
+              background: "$tangerine1",
+              borderRadius: "16px",
+
+              filter:
+                "drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))",
 
               zIndex: 2,
             }}
@@ -141,13 +164,16 @@ export function LastCall() {
           </Box>
           <Box
             css={{
-              position: 'absolute',
-              bottom: '28px',
-              right: '36px',
+              position: "absolute",
+              bottom: "69px",
+              right: "134px",
 
-              padding: '10px',
-              background: '$tangerine9',
-              borderRadius: '12px',
+              padding: "10px",
+              background: "$tangerine2",
+              borderRadius: "12px",
+
+              filter:
+                "drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))",
 
               zIndex: 2,
             }}
@@ -157,16 +183,16 @@ export function LastCall() {
 
           <Box
             css={{
-              position: 'absolute',
-              bottom: '-4px',
-              right: '152px',
+              position: "absolute",
+              bottom: "-5px",
+              right: "195px",
 
               zIndex: 2,
             }}
           >
             <Image src={becca} alt="Becca Travis" quality="100" />
           </Box>
-          <Box css={{ position: 'absolute', bottom: 0, right: 5 }}>
+          <Box css={{ position: "absolute", bottom: 0, right: 0 }}>
             <CirclesSvg className={S.SvgStyles()} />
           </Box>
         </div>

@@ -97,7 +97,7 @@ export const Testimonial = styled('div', {
   padding: '16px 16px 0 16px',
 
   background: 'rgba($colors$grayW8Rgb, 0.1)',
-  borderRadius: '8px',
+  borderRadius: '8px 8px 0 0',
 })
 
 export const TestimonialClientName = styled('span', {
@@ -136,7 +136,9 @@ export const Viewport = styled(ScrollAreaPrimitive.Viewport, {
   padding: '0 16px 16px 16px',
 
   background: 'rgba($colors$grayW8Rgb, 0.1)',
-  borderRadius: '8px',
+ 
+  borderRadius: '0 0 8px 8px',
+
 
   overscrollBehavior: 'contain',
 })
