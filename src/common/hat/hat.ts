@@ -12,4 +12,12 @@ export const Hat = styled('span', {
   fontSize: '14px',
   lineHeight: '24px',
   textTransform: 'uppercase',
+
+  variants: {
+    capitalize: {
+      true: {
+        textTransform: 'capitalize',
+      },
+    },
+  },
 })

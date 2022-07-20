@@ -4,9 +4,8 @@ export const Section = styled('section', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
 
-  padding: '72px 0 124px',
+  padding: '72px 0 120px',
 
   position: 'relative',
 })
@@ -14,17 +13,16 @@ export const Section = styled('section', {
 export const Background = styled('div', {
   backgroundColor: 'rgba($colors$tangerine5Rgb, 0.3)',
   width: '100%',
-  height: '482px',
+  height: '416px',
 
   position: 'absolute',
   top: 0,
 
-  zIndex: -1
+  zIndex: -1,
 })
 
-
 export const Title = styled('h1', {
-  marginBottom: '24px',
+  marginTop: 8,
 
   fontWeight: '500',
   fontSize: '36px',
@@ -33,10 +31,10 @@ export const Title = styled('h1', {
 })
 
 export const Description = styled('p', {
+  marginTop: 16,
+
   maxWidth: '476px',
   textAlign: 'center',
-
-  marginBottom: '44px',
 
   fontWeight: '400',
   fontSize: '16px',
@@ -44,22 +42,26 @@ export const Description = styled('p', {
   color: '$gray2',
 })
 
-export const LastPost = styled('a', {
-  display: 'flex',
-
-  width: '630px',
+export const LastPostLink = styled('a', {
+  marginTop: 32,
 
   background: '$offWhite2',
 
-  border: '1px solid $grayW8',
+  display: 'flex',
+
+  boxShadow: '0 0 0 1px $colors$grayW8',
   borderRadius: '8px',
-  overflow: "hidden",
 })
 
+export const PostDate = styled('span', {
+  fontWeight: '300',
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '$gray4',
+})
 
 export const PostTitle = styled('h3', {
-  maxWidth: '205px',
-  margin: '24px 0 16px',
+  margin: '20px 0',
 
   fontWeight: '500',
   fontSize: '24px',
@@ -68,18 +70,14 @@ export const PostTitle = styled('h3', {
 })
 
 export const PostDescription = styled('p', {
-  maxWidth: '368px',
-  marginBottom: '24px',
-
   fontWeight: '300',
   fontSize: '16px',
   lineHeight: '26px',
   color: '$gray2',
-})
 
-export const PostDate = styled('span', {
-  fontWeight: '300',
-  fontSize: '14px',
-  lineHeight: '20px',
-  color: '$gray4',
+  display: '-webkit-box',
+  WebkitLineClamp: '2',
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 })
