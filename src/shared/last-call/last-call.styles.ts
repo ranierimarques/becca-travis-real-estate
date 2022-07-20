@@ -30,7 +30,7 @@ export const Title = styled('h3', {
   color: '$gray1',
 })
 
-export const BeccaTravis = styled('h3', {
+export const BeccaTravis = styled('span', {
   fontWeight: '600',
   fontSize: '32px',
   lineHeight: '44px',
