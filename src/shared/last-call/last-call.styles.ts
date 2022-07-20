@@ -13,10 +13,10 @@ export const Container = styled('div', {
   position: 'relative',
 
   padding: '64px 0 64px 64px',
-  
+
   background: 'rgba($colors$tangerine10Rgb, 0.75)',
-  border: '1px solid rgba($colors$tangerine7Rgb, 0.15)',
-  boxShadow: '0px 14px 50px rgba($colors$blackRgb, 0.08)',
+  boxShadow:
+    '0px 14px 50px rgba($colors$blackRgb, 0.08), 0 0 0 1px rgba($colors$tangerine7Rgb, 0.15)',
   borderRadius: '24px',
 })
 
@@ -30,11 +30,11 @@ export const Title = styled('h3', {
   color: '$gray1',
 })
 
-export const BeccaTravis = styled('h3', {
+export const BeccaTravis = styled('span', {
   fontWeight: '600',
   fontSize: '32px',
   lineHeight: '44px',
-  color: '$magenta1'
+  color: '$magenta1',
 })
 
 export const Paragraph = styled('p', {

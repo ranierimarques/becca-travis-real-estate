@@ -40,6 +40,10 @@ export async function getStaticProps() {
       }
     `,
   })
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5a59be0ef963efc5446ba0a5def5084ccc2cd41d
   return {
     props: {
       posts,
