@@ -44,7 +44,7 @@ export const Description = styled('p', {
   color: '$gray2',
 })
 
-export const LastPost = styled('div', {
+export const LastPost = styled('a', {
   display: 'flex',
 
   width: '630px',

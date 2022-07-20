@@ -32,7 +32,7 @@ export async function getStaticProps() {
             url
           }
           postContent {
-            text
+            html
           }
           datePublished
           slug
@@ -40,7 +40,6 @@ export async function getStaticProps() {
       }
     `,
   })
-  console.log(posts)
   return {
     props: {
       posts,
