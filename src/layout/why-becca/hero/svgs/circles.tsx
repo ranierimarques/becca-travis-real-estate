@@ -1,0 +1,56 @@
+export default function Svg({ ...props }) {
+  return (
+    <svg
+      width="462"
+      height="462"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <mask
+        id="a"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="462"
+        height="462"
+      >
+        <circle
+          opacity=".1"
+          cx="231"
+          cy="231"
+          r="87.323"
+          stroke="#7F4124"
+          strokeWidth="2"
+        />
+        <circle
+          opacity=".1"
+          cx="231"
+          cy="231"
+          r="138.279"
+          stroke="#7F4124"
+          strokeWidth="2"
+        />
+        <circle
+          opacity=".1"
+          cx="231"
+          cy="231"
+          r="188.103"
+          stroke="#7F4124"
+          strokeWidth="2"
+        />
+        <circle
+          opacity=".1"
+          cx="231"
+          cy="231"
+          r="230"
+          stroke="#7F4124"
+          strokeWidth="2"
+        />
+      </mask>
+      <g mask="url(#a)">
+        <path opacity=".8" fill="#7F4124" d="M-29-23h520v429H-29z" />
+      </g>
+    </svg>
+  )
+}

@@ -191,7 +191,7 @@ export function NavigationMenu() {
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
-          <CustomLink href="/">
+          <CustomLink href="/why-becca">
             <S.Link>Why Becca?</S.Link>
           </CustomLink>
         </NavigationMenuPrimitive.Item>
