@@ -18,7 +18,7 @@ export const Hat = styled("span", {
   fontSize: "14px",
   lineHeight: "24px",
   letterSpacing: "0.03em",
-  color: "#9D446E",
+  color: "$magenta1",
 })
 
 export const Title = styled("h1", {
@@ -27,7 +27,7 @@ export const Title = styled("h1", {
   fontWeight: "500",
   fontSize: "24px",
   lineHeight: "36px",
-  color: "#58243C",
+  color: "$magenta6",
 })
 
 export const Paragraph = styled("p", {
@@ -35,7 +35,7 @@ export const Paragraph = styled("p", {
   fontWeight: "400",
   fontSize: "16px",
   lineHeight: "28px",
-  color: "#4E4B59",
+  color: "$gray2",
 })
 
 export const Becca = styled("div", {
@@ -75,4 +75,10 @@ export const Path2 = styled(PathSvg, {
 
   transform: "scaleX(-1)",
   zIndex: 1,
+})
+
+export const Line = styled("div", {
+  width: "16px",
+  height: "1px",
+  background: "$magenta1",
 })

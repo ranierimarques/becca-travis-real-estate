@@ -2,7 +2,6 @@ import { Box } from "@common"
 import Image from "next/image"
 import * as S from "./history.styles"
 import { becca, family, ourHistory } from "./images"
-import { PathSvg } from "./svgs"
 
 export function History() {
   return (
@@ -10,10 +9,7 @@ export function History() {
       <S.Becca>
         <Box>
           <S.Hat>
-            <Box
-              css={{ width: "18px", height: "1px", background: "#9D446E" }}
-            />{" "}
-            MEET HUNTSVILLE
+            <S.Line /> MEET HUNTSVILLE
           </S.Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
@@ -37,10 +33,7 @@ export function History() {
 
         <Box>
           <S.Hat>
-            <Box
-              css={{ width: "18px", height: "1px", background: "#9D446E" }}
-            />{" "}
-            MEET HUNTSVILLE
+            <S.Line /> MEET HUNTSVILLE
           </S.Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
@@ -57,10 +50,7 @@ export function History() {
       <S.Family>
         <Box>
           <S.Hat>
-            <Box
-              css={{ width: "18px", height: "1px", background: "#9D446E" }}
-            />{" "}
-            MEET HUNTSVILLE
+            <S.Line /> MEET HUNTSVILLE
           </S.Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
