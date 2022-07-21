@@ -1,9 +1,8 @@
-import { gql } from "@apollo/client"
-import client from "apolloClient"
-import type { NextPage } from "next"
-import Head from "next/head"
-
-import { Hero, Latest } from "@layout/blog"
+import { gql } from '@apollo/client'
+import { Hero, Latest } from '@layout/blog'
+import client from '@resources/services/apollo-client'
+import type { NextPage } from 'next'
+import Head from 'next/head'
 
 const Blog: NextPage = ({ posts }: any) => {
   return (
@@ -20,26 +19,23 @@ const Blog: NextPage = ({ posts }: any) => {
 
 export default Blog
 
-export async function getStaticProps() {
-  const { data: posts } = await client.query({
-    query: gql`
-      query {
-        posts {
-          id
-          title
-          postDescription
-          postBanner {
-            url
-          }
-          postContent {
-            html
-          }
-          datePublished
-          slug
-        }
+const query = gql`
+  query {
+    posts {
+      postTitle
+      postDescription
+      postBanner {
+        url
       }
-    `,
-  })
+      createdAt
+      slug
+    }
+  }
+`
+
+export async function getStaticProps() {
+  const { data: posts } = await client.query({ query })
+
   return {
     props: {
       posts,
