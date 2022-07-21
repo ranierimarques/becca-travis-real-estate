@@ -4,13 +4,6 @@ import { css, styled } from 'stitches.config'
 const sharedStyles = css({
   width: 'fit-content',
 
-  fontWeight: '300',
-  fontSize: '14px',
-  lineHeight: '21px',
-
-  padding: '10px 16px',
-  borderRadius: '6px',
-
   transition: 'all .15s cubic-bezier(.4,0,.2,1)',
 
   background: '$$primaryColor',
@@ -27,17 +20,29 @@ const sharedStyles = css({
   },
 
   variants: {
+    size: {
+      '1': {
+        padding: '10px 16px',
+        borderRadius: '5px',
+        fontSize: '14px',
+        lineHeight: '21px',
+        fontWeight: '300',
+      },
+      '2': {
+        padding: '12px 24px',
+        borderRadius: '5px',
+        fontSize: '14px',
+        lineHeight: '21px',
+        fontWeight: '400',
+      },
+    },
     color: {
       magenta: {
-        $$primaryColor: '$colors$magenta9',
-        $$secondaryColor: '$colors$offWhite1',
+        $$primaryColor: '$colors$magenta1',
+        $$secondaryColor: '$colors$white',
         '&:focus:not(&:active)': {
           boxShadow: '0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
         },
-      },
-      magentaLight: {
-        $$primaryColor: '$colors$magenta1',
-        $$secondaryColor: '$colors$white',
       },
     },
     outlined: {
@@ -62,6 +67,7 @@ const sharedStyles = css({
 
   defaultVariants: {
     color: 'magenta',
+    size: '1',
   },
 })
 
