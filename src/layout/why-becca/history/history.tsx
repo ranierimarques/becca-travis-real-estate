@@ -9,7 +9,12 @@ export function History() {
     <S.Section>
       <S.Becca>
         <Box>
-          <S.Hat>- MEET HUNTSVILLE</S.Hat>
+          <S.Hat>
+            <Box
+              css={{ width: "18px", height: "1px", background: "#9D446E" }}
+            />{" "}
+            MEET HUNTSVILLE
+          </S.Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             There are many reasons why Huntsville is a great place to live. The
@@ -23,17 +28,20 @@ export function History() {
         </Box>
       </S.Becca>
 
-      <Box>
-        <PathSvg />
-      </Box>
-
       <S.OurHistory>
+        <S.Path />
+
         <Box css={{ borderRadius: 8, overflow: "hidden" }}>
           <Image src={ourHistory} alt="Becca Travis" />
         </Box>
 
         <Box>
-          <S.Hat>- MEET HUNTSVILLE</S.Hat>
+          <S.Hat>
+            <Box
+              css={{ width: "18px", height: "1px", background: "#9D446E" }}
+            />{" "}
+            MEET HUNTSVILLE
+          </S.Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             Huntsville is home to a number of highly respected colleges and
@@ -42,15 +50,18 @@ export function History() {
             a well-rounded education.
           </S.Paragraph>
         </Box>
-      </S.OurHistory>
 
-      <Box css={{ transform: "scaleX(-1)" }}>
-        <PathSvg />
-      </Box>
+        <S.Path2 />
+      </S.OurHistory>
 
       <S.Family>
         <Box>
-          <S.Hat>- MEET HUNTSVILLE</S.Hat>
+          <S.Hat>
+            <Box
+              css={{ width: "18px", height: "1px", background: "#9D446E" }}
+            />{" "}
+            MEET HUNTSVILLE
+          </S.Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             The Huntsville area offers an excellent real estate market.
