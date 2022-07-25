@@ -1,16 +1,15 @@
 import {
   AboutHuntsville,
   Achievements,
-  ClientTestimonials,
   Hero,
   NewToMarket,
   OurCommunities,
   RentToOwn,
   Services,
-} from '@layout/index'
-import { LastCall } from '@shared'
-import type { NextPage } from 'next'
-import Head from 'next/head'
+} from "@layout/index"
+import { ClientTestimonials, LastCall } from "@shared"
+import type { NextPage } from "next"
+import Head from "next/head"
 
 const Page: NextPage = () => {
   return (
