@@ -1,31 +1,41 @@
-import { Box, Hat } from '@common'
+import { Box, Flex, Hat } from '@common'
+import getDate from '@resources/utils/get-date'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './hero.styles'
 
 interface HeroProps {
-  graphcms: any
+  newPost: {
+    id: string
+    slug: string
+    tag: string
+    postTitle: string
+    postDescription: string
+    postBanner: {
+      url: string
+    }
+    postBannerAlt: string
+    createdAt: string
+  }
 }
 
-export function Hero({ graphcms }: HeroProps) {
-  console.log(graphcms)
-
+export function Hero({ newPost }: HeroProps) {
   return (
     <S.Section>
       <S.Background />
 
-      <Hat>NEWS</Hat>
+      <Hat>News</Hat>
       <S.Title>Becca Travis Blog</S.Title>
       <S.Description>
         Stay up to date with the latest real estate news, insights and lifestyle updates
         about Huntsville &amp; North Alabama
       </S.Description>
 
-      <Link href={`/blog/${graphcms.posts[7].slug}`} passHref>
+      <Link href={`/blog/${newPost.slug}`} passHref>
         <S.LastPostLink>
           <Image
-            src={graphcms.posts[7].postBanner[0].url}
-            alt="image"
+            src={newPost.postBanner.url}
+            alt={newPost.postBannerAlt}
             width={272}
             height={272}
             style={{
@@ -35,20 +45,14 @@ export function Hero({ graphcms }: HeroProps) {
             }}
           />
           <Box css={{ padding: 32, width: 358, display: 'inline-block' }}>
-            <Box
-              css={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Hat capitalize>Huntsville</Hat>
+            <Flex align="center" justify="between">
+              <Hat capitalize>{newPost.tag}</Hat>
+              <S.PostDate>{getDate(newPost.createdAt, 'en-US', 'short')}</S.PostDate>
+            </Flex>
 
-              <S.PostDate>{graphcms.posts[7].datePublished}</S.PostDate>
-            </Box>
-            <S.PostTitle>{graphcms.posts[7].postTitle}</S.PostTitle>
-            <S.PostDescription title={graphcms.posts[7].postDescription}>
-              {graphcms.posts[7].postDescription}
+            <S.PostTitle>{newPost.postTitle}</S.PostTitle>
+            <S.PostDescription title={newPost.postDescription}>
+              {newPost.postDescription}
             </S.PostDescription>
           </Box>
         </S.LastPostLink>

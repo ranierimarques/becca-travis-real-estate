@@ -12,7 +12,7 @@ import { LastCall } from '@shared'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
   return (
     <main>
       <Head>
@@ -32,4 +32,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Page

@@ -1,4 +1,4 @@
-import { Box, Hat } from '@common'
+import { Box, Flex, Hat } from '@common'
 import getDate from '@resources/utils/get-date'
 import { LastCall } from '@shared'
 import Image from 'next/image'
@@ -63,7 +63,7 @@ function contentSwitch(type: string, post: any, index: number) {
 }
 
 export function Post({ data }: any) {
-  const article = data.posts[0]
+  const article = data.post
 
   return (
     <S.Section>
@@ -71,13 +71,13 @@ export function Post({ data }: any) {
       <S.Content>
         <S.Header>
           <Hat css={{ marginBottom: 8 }}>{article.tag}</Hat>
-          <S.PostTitle>{article.title}</S.PostTitle>
+          <S.PostTitle>{article.postTitle}</S.PostTitle>
           <S.PostDescription>{article.postDescription}</S.PostDescription>
           <div>
-            <Image src={article.postBanner[0].url} alt="test" width="888" height="340" />
+            <Image src={article.postBanner.url} alt="test" width="888" height="340" />
 
             <S.PostDetails>
-              <Box css={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <Flex align="center" css={{ gap: 16 }}>
                 <S.DatePublished>
                   {getDate(article.createdAt, 'en-US', 'long').replace(' ', ' - ')}
                 </S.DatePublished>
@@ -90,7 +90,7 @@ export function Post({ data }: any) {
                   }}
                 />
                 <S.TimeToRead>{data.readingTime}</S.TimeToRead>
-              </Box>
+              </Flex>
               <S.LastUpdate>
                 <ClockSvg />
                 Last updated on {getDate(article.updatedAt, 'en-US', 'short')}

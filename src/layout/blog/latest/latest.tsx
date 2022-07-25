@@ -1,141 +1,39 @@
-import { Box, Button, Hat } from "@common"
-import * as S from "./latest.styles"
-import { CirclesSvg, FilterSvg } from "./svgs"
+import { Flex } from '@common'
+import { Articles, Sidebar } from '.'
+import * as S from './latest.styles'
+import { LoupeSvg } from './svgs'
 
-const articles = [
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-  {
-    hat: "Huntsville",
-    title: "Need help selling your home?",
-    date: "Feb 17, 2022",
-    image: "",
-  },
-]
+interface PostsProps {
+  posts: {
+    id: string
+    slug: string
+    tag: string
+    postTitle: string
+    postDescription: string
+    postBanner: {
+      url: string
+    }
+    postBannerAlt: string
+    createdAt: string
+    readingTime: string
+  }[]
+}
 
-export function Latest() {
+export function Latest({ posts }: PostsProps) {
   return (
     <S.Section>
-      <Box
-        css={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: 64,
-        }}
-      >
-        <S.LatestArticle>Latest articles</S.LatestArticle>
-        <Button
-          css={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "10px 22px",
-            backgroundColor: "$magenta1",
-            fontWeight: "500",
-            fontSize: "14px",
-            lineHeight: "24px",
-            color: "$offWhite2",
-          }}
-        >
-          <FilterSvg />
-          Filter
-        </Button>
-      </Box>
-      <S.Articles>
-        {articles.map(article => {
-          return (
-            <S.Article key={article.title}>
-              <Box
-                css={{
-                  width: "336px",
-                  height: "224px",
-                  backgroundColor: "$gray1",
-                }}
-              />
-              <Box css={{ padding: "24px 0 32px 24px" }}>
-                <Box
-                  css={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 85,
-                    marginBottom: 32,
-                  }}
-                >
-                  <Hat>{article.hat}</Hat>
+      <Flex align="center" justify="between" css={{ mb: 64 }}>
+        <S.Title>Latest articles</S.Title>
+        <S.InputWrapper>
+          <S.SearchInput type="text" placeholder="What do you want to search?" />
+          <LoupeSvg />
+        </S.InputWrapper>
+      </Flex>
 
-                  <S.ArticleDate>{article.date}</S.ArticleDate>
-                </Box>
-                <S.ArticleTitle>{article.title}</S.ArticleTitle>
-              </Box>
-            </S.Article>
-          )
-        })}
-        <S.MissOut>
-          <Box css={{ position: "absolute", bottom: 0, zIndex: 0 }}>
-            <CirclesSvg />
-          </Box>
-          <S.MissTitle>Don&apos;t Miss Out</S.MissTitle>
-          <S.MissDescription>
-            New Homes are getting added all the time. Save Your Search and be
-            the first to know.
-          </S.MissDescription>
-          <Button
-            css={{
-              zIndex: 2,
-              padding: "12px 24px",
-              background: "$magenta1",
-              borderRadius: "5px",
-              fontWeight: "500",
-              fontSize: "14px",
-              lineHeight: "22px",
-              color: "$white",
-            }}
-          >
-            Get started
-          </Button>
-        </S.MissOut>
-      </S.Articles>
+      <Flex css={{ gap: 64 }}>
+        <Sidebar />
+        <Articles posts={posts} />
+      </Flex>
     </S.Section>
   )
 }

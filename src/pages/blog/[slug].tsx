@@ -25,31 +25,35 @@ export async function getStaticPaths() {
   return { paths, fallback: 'blocking' }
 }
 
+const query = gql`
+  query PostBySlug($slug: String!) {
+    post(where: { slug: $slug }) {
+      postTitle
+      postDescription
+      postBanner {
+        url
+      }
+      postContent {
+        raw
+        text
+      }
+      createdAt
+      updatedAt
+      slug
+      tag
+    }
+  }
+`
+
 export async function getStaticProps({ params }: any) {
   const { data } = await client.query({
-    query: gql`
-      query PostsBySlug($slug: String!) {
-        posts(where: { slug: $slug }) {
-          postTitle
-          postDescription
-          postBanner {
-            url
-          }
-          postContent {
-            raw
-            text
-          }
-          createdAt
-          updatedAt
-          slug
-          tag
-        }
-      }
-    `,
-    variables: { slug: params.slug },
+    query,
+    variables: {
+      slug: params.slug,
+    },
   })
 
-  const readingTime = getReadingTime(data.posts[0].postContent.text).text
+  const readingTime = getReadingTime(data.post.postContent.text).text
 
   return {
     props: {

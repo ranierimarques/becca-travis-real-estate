@@ -3,92 +3,44 @@ import { styled } from 'stitches.config'
 export const Section = styled('section', {
   margin: '0 auto',
   maxWidth: '1072px',
-  paddingBottom: 120
+  paddingBottom: 120,
 })
 
-export const LatestArticle = styled('h2', {
+export const Title = styled('h2', {
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '36px',
   color: '$magenta6',
 })
 
-export const Articles = styled('ul', {
+export const InputWrapper = styled('div', {
   display: 'flex',
-  alignItems: 'center',
-  flexWrap: 'wrap',
-  gap: 32,
-})
-
-export const Article = styled('li', {
-  maxWidth: '336px',
-
-  background: '$offWhite2',
-
-  border: '1px solid $grayW8',
-  borderRadius: '8px',
-  overflow: "hidden",
-})
-
-export const MissOut = styled('li', {
-  order: -10,
-
-  display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: 16,
 
-  width: '336px',
-  maxHeight: '404px',
+  padding: '8px 20px',
 
-  position: 'relative',
+  width: 332,
 
-  height: '409px',
-
-  background: '$offWhite2',
-
-  overflow: "hidden",
-
-  border: '1px solid $grayW8',
-  borderRadius: '8px',
+  background: '$grayW10',
+  borderRadius: 8,
+  boxShadow: '0 0 0 1px $colors$grayW9',
 })
 
-export const MissTitle = styled('h4', {
-  marginBottom: 16,
+// TODO: Interactive, font color and states...
+export const SearchInput = styled('input', {
+  flex: 1,
 
-  fontWeight: '500',
-  fontSize: '24px',
-  lineHeight: '36px',
-  color: '$gray1',
-
-  zIndex: 2
-})
-
-export const MissDescription = styled('p', {
-  marginBottom: 40,
-  maxWidth: '254px',
-
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '28px',
-  textAlign: 'center',
+  fontWeight: 600,
+  fontSize: 14,
+  lineHeight: '30px',
   color: '$gray5',
+  caretColor: '$magenta8',
+  letterSpacing: '-2%',
 
-  zIndex: 2
-})
-
-export const ArticleTitle = styled('h4', {
-  maxWidth: '171px',
-
-  fontWeight: '500',
-  fontSize: '20px',
-  lineHeight: '26px',
-  color: '$magenta1',
-})
-
-export const ArticleDate = styled('span', {
-  fontWeight: '300',
-  fontSize: '14px',
-  lineHeight: '20px',
-  color: '$gray4',
+  '&::placeholder': {
+    fontWeight: 500,
+    color: '$grayW5',
+  },
 })

@@ -23,12 +23,7 @@ export function Card({ data }: cardProps) {
         </Box>
         <S.Title>{data.title}</S.Title>
         <S.Description>{data.description}</S.Description>
-        <Button
-          as="span"
-          color="magentaLight"
-          outlined
-          css={{ margin: '24px auto 32px' }}
-        >
+        <Button as="span" outlined css={{ margin: '24px auto 32px' }}>
           {data.buttonText}
         </Button>
       </S.Link>

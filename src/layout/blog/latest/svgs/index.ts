@@ -1,3 +1,3 @@
-export { default as CirclesSvg } from './circles';
-export { default as FilterSvg } from './filter';
-
+export { default as ArrowDownSvg } from './arrow-down'
+export { default as CirclesSvg } from './circles'
+export { default as LoupeSvg } from './loupe'

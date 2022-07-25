@@ -43,7 +43,7 @@ export const InputWrapper = styled('div', {
 })
 
 export const SearchInput = styled('input', {
-  width: '100%',
+  flex: 1,
 
   fontWeight: 600,
   fontSize: 14,
