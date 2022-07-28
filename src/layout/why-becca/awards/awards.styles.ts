@@ -8,6 +8,7 @@ export const Section = styled("section", {
 })
 
 export const Title = styled("h2", {
+  margin: "8px 0 16px",
   fontWeight: "500",
   fontSize: "36px",
   lineHeight: "50px",
@@ -15,6 +16,8 @@ export const Title = styled("h2", {
 })
 
 export const Paragraph = styled("p", {
+  marginBottom: 48,
+
   maxWidth: "300px",
   fontWeight: "400",
   fontSize: "16px",

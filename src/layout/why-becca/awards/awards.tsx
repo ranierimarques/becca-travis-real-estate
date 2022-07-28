@@ -1,5 +1,6 @@
 import { Hat } from "@common"
 import * as S from "./awards.styles"
+import { Carousel } from "./carousel/carousel"
 
 export function Awards() {
   return (
@@ -9,6 +10,7 @@ export function Awards() {
       <S.Paragraph>
         We’re always ready to help by providing the best service for you
       </S.Paragraph>
+      <Carousel />
     </S.Section>
   )
 }
