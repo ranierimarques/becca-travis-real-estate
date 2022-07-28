@@ -107,7 +107,10 @@ export function NavigationMenu() {
               <ContentListItem href="/" title="Our featured listings">
                 New featured houses
               </ContentListItem>
-              <ContentListItem href="/" title="Buyers Resources">
+              <ContentListItem
+                href="/buyers-resources"
+                title="Buyers Resources"
+              >
                 All you need to buy your property
               </ContentListItem>
               <ContentListItem href="/" title="Huntsville school">
@@ -127,7 +130,10 @@ export function NavigationMenu() {
           <StyledTriggerWithCaret>Sellers</StyledTriggerWithCaret>
           <S.Content>
             <S.ContentList layout="two">
-              <ContentListItem href="/" title="Sellers Resources">
+              <ContentListItem
+                href="/sellers-resources"
+                title="Sellers Resources"
+              >
                 Properties for sale
               </ContentListItem>
               <ContentListItem href="/" title="Selling your home with us">
