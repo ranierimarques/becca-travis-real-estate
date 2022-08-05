@@ -10,6 +10,7 @@ const sharedStyles = css({
   color: '$$secondaryColor',
 
   userSelect: 'none',
+  whiteSpace: 'nowrap',
 
   '&:hover': {
     filter: 'brightness(0.9)',

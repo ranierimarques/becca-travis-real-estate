@@ -1,5 +1,5 @@
-import { NavigationMenu } from '@common'
 import Link from 'next/link'
+import { NavigationMenu, TalkToMe } from '../index'
 import { LogoSvg } from '../svgs'
 import * as S from './main-navbar.styles'
 
@@ -12,6 +12,7 @@ export function MainNavbar() {
         </a>
       </Link>
       <NavigationMenu />
+      <TalkToMe />
     </S.Nav>
   )
 }
