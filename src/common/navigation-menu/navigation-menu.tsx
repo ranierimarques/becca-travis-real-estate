@@ -14,6 +14,7 @@ import {
   meridianville,
 } from "./images"
 import * as S from "./navigation-menu.styles"
+import { TalkToMe } from "./talk-to-me/talk-to-me"
 
 type wrapperLinkProps = {
   onClick?: any
@@ -107,7 +108,10 @@ export function NavigationMenu() {
               <ContentListItem href="/" title="Our featured listings">
                 New featured houses
               </ContentListItem>
-              <ContentListItem href="/" title="Buyers Resources">
+              <ContentListItem
+                href="/buyers-resources"
+                title="Buyers Resources"
+              >
                 All you need to buy your property
               </ContentListItem>
               <ContentListItem href="/" title="Huntsville school">
@@ -127,7 +131,10 @@ export function NavigationMenu() {
           <StyledTriggerWithCaret>Sellers</StyledTriggerWithCaret>
           <S.Content>
             <S.ContentList layout="two">
-              <ContentListItem href="/" title="Sellers Resources">
+              <ContentListItem
+                href="/sellers-resources"
+                title="Sellers Resources"
+              >
                 Properties for sale
               </ContentListItem>
               <ContentListItem href="/" title="Selling your home with us">
@@ -203,11 +210,7 @@ export function NavigationMenu() {
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
-          <CustomLink href="/">
-            <Button as="a" css={{ marginLeft: 16 }}>
-              Talk to me
-            </Button>
-          </CustomLink>
+          <TalkToMe />
         </NavigationMenuPrimitive.Item>
 
         <StyledIndicatorWithArrow />

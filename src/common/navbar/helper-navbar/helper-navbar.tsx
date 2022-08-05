@@ -5,7 +5,7 @@ import * as S from "./helper-navbar.styles"
 
 const links = [
   { icon: <ShieldSvg />, text: "Local Guides", href: "/" },
-  { icon: <ChatSvg />, text: "Contact Us", href: "/" },
+  { icon: <ChatSvg />, text: "Contact Us", href: "/contact-us" },
   { icon: <UserSvg />, text: "My account", href: "/" },
 ]
 
