@@ -1,6 +1,7 @@
+import { motion } from "framer-motion"
 import { styled } from 'stitches.config'
 
-export const Link = styled('a', {
+export const Link = styled(motion.a, {
   boxShadow: 'inset 0 0 0 1px $colors$grayW9, 0px 8px 40px rgba($colors$blackRgb, 0.05)',
   borderRadius: '8px',
   overflow: 'hidden',
