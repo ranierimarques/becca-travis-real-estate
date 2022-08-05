@@ -14,6 +14,7 @@ import {
   meridianville,
 } from "./images"
 import * as S from "./navigation-menu.styles"
+import { TalkToMe } from "./talk-to-me/talk-to-me"
 
 type wrapperLinkProps = {
   onClick?: any
@@ -209,11 +210,7 @@ export function NavigationMenu() {
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
-          <CustomLink href="/">
-            <Button as="a" css={{ marginLeft: 16 }}>
-              Talk to me
-            </Button>
-          </CustomLink>
+          <TalkToMe />
         </NavigationMenuPrimitive.Item>
 
         <StyledIndicatorWithArrow />
