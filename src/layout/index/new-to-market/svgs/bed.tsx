@@ -10,14 +10,14 @@ export default function Svg({ ...props }) {
       <path
         clipRule="evenodd"
         d="M4 12h16a2 2 0 0 1 2 2v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4a2 2 0 0 1 2-2Z"
-        stroke="#C06D94"
+        stroke="#8C8A97"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M4 12V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v5"
-        stroke="#9D446E"
+        stroke="#8C8A97"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -28,14 +28,14 @@ export default function Svg({ ...props }) {
         width="10"
         height="4"
         rx="1.5"
-        stroke="#C06D94"
+        stroke="#8C8A97"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M21 19v2M3 19v2"
-        stroke="#9D446E"
+        stroke="#8C8A97"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

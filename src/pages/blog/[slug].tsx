@@ -1,28 +1,28 @@
-import { gql } from '@apollo/client'
-import { Post } from '@layout/blog'
-import client from '@resources/services/apollo-client'
-import getReadingTime from 'reading-time'
+import { Post } from "@layout/blog"
+import request, { gql } from "graphql-request"
+import getReadingTime from "reading-time"
 
 export default function PostPage({ data }: any) {
   return <Post data={data} />
 }
 
 export async function getStaticPaths() {
-  const { data } = await client.query({
-    query: gql`
+  const data = await request(
+    "https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master",
+    gql`
       query {
         posts {
           slug
         }
       }
-    `,
-  })
+    `
+  )
 
   const paths = data.posts.map((post: { slug: string }) => ({
     params: { slug: post.slug },
   }))
 
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: "blocking" }
 }
 
 const query = gql`
@@ -46,12 +46,13 @@ const query = gql`
 `
 
 export async function getStaticProps({ params }: any) {
-  const { data } = await client.query({
+  const data = await request(
+    "https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master",
     query,
-    variables: {
+    {
       slug: params.slug,
-    },
-  })
+    }
+  )
 
   const readingTime = getReadingTime(data.post.postContent.text).text
 
