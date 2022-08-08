@@ -147,7 +147,7 @@ export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   borderRadius: 8,
   overflow: 'hidden',
   boxShadow:
-    'hsl(206 22% 7% / 75%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+    'hsl(206 22% 7% / 40%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
   height: 'var(--radix-navigation-menu-viewport-height)',
 
   '@media only screen and (min-width: 600px)': {

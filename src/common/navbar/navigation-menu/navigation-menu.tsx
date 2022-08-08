@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import Image from 'next/image'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { forwardRef, ReactNode, Ref } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import {
   athens,
   decatur,
@@ -14,44 +14,21 @@ import {
 } from '../images'
 import * as S from './navigation-menu.styles'
 
-type wrapperLinkProps = {
-  onClick?: any
-  href?: string
-  children: ReactNode
-}
-
 type customLinkProps = {
   children: ReactNode
   href: string
 }
 
-const WrappedLink = forwardRef(
-  (
-    { onClick, href, children }: wrapperLinkProps,
-    forwardedRef: Ref<HTMLAnchorElement>
-  ) => {
-    const { pathname } = useRouter()
-    const isActive = Boolean(pathname === href)
+const CustomLink = ({ children, href, ...props }: customLinkProps) => {
+  const router = useRouter()
+  const isActive = router.asPath === href
 
-    return (
-      <NavigationMenuPrimitive.Link
-        active={isActive}
-        href={href}
-        onClick={onClick}
-        ref={forwardedRef}
-        asChild
-      >
+  return (
+    <NextLink href={href} passHref>
+      <NavigationMenuPrimitive.Link active={isActive} asChild {...props}>
         {children}
       </NavigationMenuPrimitive.Link>
-    )
-  }
-)
-
-const CustomLink = ({ children, href }: customLinkProps) => {
-  return (
-    <Link href={href} passHref>
-      <WrappedLink>{children}</WrappedLink>
-    </Link>
+    </NextLink>
   )
 }
 
