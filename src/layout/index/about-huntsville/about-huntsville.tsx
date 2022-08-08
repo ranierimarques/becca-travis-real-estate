@@ -19,7 +19,6 @@ export function AboutHuntsville() {
         </Button>
       </div>
       <S.ImageContainer>
-        <S.Svg />
         <Image src={huntsville} alt="Huntsville drone shoot" />
       </S.ImageContainer>
     </S.Section>
