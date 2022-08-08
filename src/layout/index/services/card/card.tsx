@@ -17,13 +17,7 @@ type cardProps = {
 export function Card({ data }: cardProps) {
   return (
     <Link href={data.href} passHref>
-      <S.Link
-        whileHover={{
-          scale: 1.05,
-          transition: { type: 'spring', stiffness: 100 },
-        }}
-        whileTap={{ scale: 0.9 }}
-      >
+      <S.Link>
         <Box css={{ position: 'relative', height: 189, '& > span': { zIndex: -1 } }}>
           <Image src={data.image} alt={data.alt} layout="fill" objectFit="cover" />
         </Box>
