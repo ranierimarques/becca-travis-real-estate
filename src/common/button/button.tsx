@@ -1,42 +1,55 @@
 /* eslint-disable react/display-name */
 import type * as Stitches from '@stitches/react'
 import Link from 'next/link'
-import { forwardRef, ReactNode, Ref } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import type { ButtonVariants } from './button.styles'
 import * as S from './button.styles'
 
+type ref = HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement
+
 type buttonProps = {
-  href?: string
   children: ReactNode
+  href?: string
   as?: 'span' | 'a'
   css?: Stitches.CSS
 } & ButtonVariants
 
-export const Button = forwardRef(
-  (
-    { href, children, as, ...props }: buttonProps,
-    forwardedRef: Ref<HTMLAnchorElement>
-  ) => {
+type anchorRef = React.ForwardedRef<HTMLAnchorElement>
+type buttonRef = React.ForwardedRef<HTMLButtonElement>
+type spanRef = React.ForwardedRef<HTMLSpanElement>
+
+export const Button = forwardRef<ref, buttonProps>(
+  ({ href, children, as, ...props }, forwardedRef) => {
     if (href && !as) {
       return (
         <Link href={href} passHref>
-          <S.Link {...props}>{children}</S.Link>
+          <S.Link {...props} ref={forwardedRef as anchorRef}>
+            {children}
+          </S.Link>
         </Link>
       )
     }
 
     if (as === 'a') {
       return (
-        <S.Link href={href} ref={forwardedRef} {...props}>
+        <S.Link {...props} href={href} ref={forwardedRef as anchorRef}>
           {children}
         </S.Link>
       )
     }
 
     if (as === 'span') {
-      return <S.Span {...props}>{children}</S.Span>
+      return (
+        <S.Span {...props} ref={forwardedRef as spanRef}>
+          {children}
+        </S.Span>
+      )
     }
 
-    return <S.Button {...props}>{children}</S.Button>
+    return (
+      <S.Button {...props} ref={forwardedRef as buttonRef}>
+        {children}
+      </S.Button>
+    )
   }
 )

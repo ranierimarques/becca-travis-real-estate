@@ -61,5 +61,6 @@ export const globalStyles = globalCss({
   },
   body: {
     background: '$white',
+    overflowY: 'overlay',
   },
 })
