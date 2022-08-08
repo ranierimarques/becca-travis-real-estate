@@ -1,14 +1,14 @@
-import { Box, Flex, Hat } from "@common"
+import { Box, Button, Flex, Hat } from "@common"
 import { useFetch } from "@resources/hooks/useFetch"
 import Image from "next/image"
 import Link from "next/link"
 import * as S from "./new-to-market.styles"
-import { BedSvg, ShowerSvg, SquareSvg } from "./svgs"
+import { BedSvg, FavoriteSvg, ShowerSvg, SquareSvg } from "./svgs"
 
-const url = `https://api.bridgedataoutput.com/api/v2/OData/valleymls/Property?access_token=c8c61ffc7e3cfcb91714551392eb82cd&$top=3&$orderby=ListingId desc&$filter=PropertyType eq 'Residential' and StandardStatus eq 'Active'`
+const url = `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active`
 
 interface House {
-  value: {
+  bundle: {
     ListingId: string
     BedroomsTotal: string
     BathroomsTotalInteger: string
@@ -49,20 +49,53 @@ export function NewToMarket() {
       </Flex>
 
       <S.Houses>
-        {data?.value.map(house => {
+        {data?.bundle.map(house => {
           console.log(house)
           return (
             <S.House key={house.ListingId}>
-              <Box css={{ position: "relative", lineHeight: 0 }}>
-                <Image
-                  src={house.Media[0].MediaURL}
-                  alt="house"
-                  width={336}
-                  height={189}
-                />
-                <S.New>New</S.New>
-                <S.HeartSvg />
-              </Box>
+              <Link href="#" passHref>
+                <a>
+                  <Box
+                    css={{ position: "relative", lineHeight: 0, maxWidth: 336 }}
+                  >
+                    <Image
+                      src={house.Media[0].MediaURL}
+                      alt="house"
+                      width={336}
+                      height={189}
+                    />
+                    <S.New>New</S.New>
+                  </Box>
+                </a>
+              </Link>
+
+              <Button
+                as="a"
+                css={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+
+                  padding: "4px 3px 2px",
+
+                  background: "$grayW3",
+                  opacity: "0.8",
+                  border: "1px solid $grayW2",
+                  boxShadow: "0px 0px 15px rgba($colors$blackRgb, 0.15)",
+                  borderRadius: 999,
+
+                  cursor: "pointer",
+
+                  zIndex: 10,
+                }}
+              >
+                <FavoriteSvg />
+              </Button>
+
               <S.HouseInfo>
                 <S.Status>
                   <Box css={{ w: 8, h: 8, bg: "#83CF77", br: 4 }} />
