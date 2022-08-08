@@ -5,9 +5,19 @@ import { CalendarSvg, CrossSvg, MailSvg, PhoneSvg } from '../svgs'
 import * as S from './talk-to-me.styles'
 
 const contacts = [
-  { text: 'Email', href: '#', svg: <MailSvg /> },
-  { text: 'Call', href: '#', svg: <PhoneSvg /> },
-  { text: 'Schedule', href: '#', svg: <CalendarSvg /> },
+  {
+    text: 'Email',
+    target: '_self',
+    href: 'mailto:becca@beccatravis.com',
+    svg: <MailSvg />,
+  },
+  { text: 'Call', target: '_self', href: 'tel:+1-256-318-9066', svg: <PhoneSvg /> },
+  {
+    text: 'Schedule',
+    target: '_blank',
+    href: 'https://calendly.com/beccatravis',
+    svg: <CalendarSvg />,
+  },
 ]
 
 export function TalkToMe() {
@@ -34,7 +44,7 @@ export function TalkToMe() {
               <li key={contact.text}>
                 <S.ContactLink
                   href={contact.href}
-                  target="_blank"
+                  target={contact.target}
                   rel="noreferrer noopener"
                 >
                   {contact.svg}

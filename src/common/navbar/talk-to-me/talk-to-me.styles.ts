@@ -63,6 +63,8 @@ export const IconButton = styled('button', {
   top: 10,
   right: 10,
 
+  cursor: 'pointer',
+
   '&:hover': { backgroundColor: 'rgba($colors$magenta2Rgb, 0.15)' },
   '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.4)' },
 })
