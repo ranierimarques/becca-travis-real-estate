@@ -3,7 +3,7 @@ import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef, ReactNode, useEffect, useRef, useState } from 'react'
 import {
   athens,
   decatur,
@@ -66,14 +66,35 @@ const communitiesListItems = [
 ]
 
 export function NavigationMenu() {
+  const navItemPreviousIdRef = useRef('')
+  const [navItemId, setNavItemId] = useState('')
+  const [navItemDimensions, setNavItemDimensions] = useState<DOMRect>()
+
+  const navItemHalfWidth = navItemDimensions ? navItemDimensions?.width / 2 : 0
+
+  function handleValueChange(value: string) {
+    if (navItemId !== '' || !value) navItemPreviousIdRef.current = value
+
+    setNavItemId(value)
+  }
+
+  useEffect(() => {
+    const element = document.getElementById(`radix-:Rd4m:-trigger-${navItemId}`)
+    const elementDimensions = element?.getBoundingClientRect()
+
+    if (elementDimensions) {
+      setNavItemDimensions(elementDimensions)
+    }
+  }, [navItemId])
+
   return (
-    <S.Root>
+    <S.Root onValueChange={handleValueChange}>
       <S.List>
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Buyers</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList layout="one">
-              <ContentListItem href="/" title="Search Houses">
+            <S.ContentList>
+              <ContentListItem href="/" title="Search Map View">
                 Properties for sale
               </ContentListItem>
               <ContentListItem href="/" title="Our featured listings">
@@ -98,7 +119,7 @@ export function NavigationMenu() {
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Sellers</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList layout="two">
+            <S.ContentList>
               <ContentListItem href="/sellers-resources" title="Sellers Resources">
                 Properties for sale
               </ContentListItem>
@@ -163,9 +184,23 @@ export function NavigationMenu() {
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
-          <CustomLink href="/why-becca">
-            <S.Link>Why Becca?</S.Link>
-          </CustomLink>
+          <StyledTriggerWithCaret>Why Becca</StyledTriggerWithCaret>
+          <S.Content>
+            <S.ContentList>
+              <ContentListItem href="/why-becca" title="Why Becca?">
+                Properties for sale
+              </ContentListItem>
+              <ContentListItem href="/" title="Awards and certifications">
+                All you need to sell your property
+              </ContentListItem>
+              <ContentListItem href="/" title="Client reviews">
+                All you need to sell your property
+              </ContentListItem>
+              <ContentListItem href="/" title="Referral">
+                All you need to sell your property
+              </ContentListItem>
+            </S.ContentList>
+          </S.Content>
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
@@ -177,7 +212,13 @@ export function NavigationMenu() {
         <StyledIndicatorWithArrow />
       </S.List>
 
-      <S.ViewportPosition>
+      <S.ViewportPosition
+        transition={Boolean(navItemPreviousIdRef.current)}
+        css={{
+          left: navItemDimensions?.left,
+          transform: `translateX(calc(-50% + ${navItemHalfWidth}px))`,
+        }}
+      >
         <S.Viewport />
       </S.ViewportPosition>
     </S.Root>

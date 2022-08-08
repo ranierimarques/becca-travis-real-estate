@@ -141,9 +141,11 @@ export const Arrow = styled('div', {
 export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   position: 'relative',
   transformOrigin: 'top center',
+
   marginTop: 10,
   width: '100%',
-  backgroundColor: '$white',
+
+  background: '$white',
   borderRadius: 8,
   overflow: 'hidden',
   boxShadow:
@@ -161,13 +163,20 @@ export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
 })
 
 export const ViewportPosition = styled('div', {
-  position: 'absolute',
-  display: 'flex',
-  justifyContent: 'center',
-  width: '100%',
-  top: '100%',
-  left: -5, // Edit this
+  position: 'fixed',
+  top: '94px',
   perspective: '2000px',
+  transform: 'translate(-50%)',
+
+  variants: {
+    transition: {
+      true: {
+        '@media (prefers-reduced-motion: no-preference)': {
+          transition: '300ms ease',
+        },
+      },
+    },
+  },
 })
 
 // App start here...
@@ -179,19 +188,8 @@ export const ContentList = styled('ul', {
 
   padding: 16,
 
-  variants: {
-    layout: {
-      one: {
-        '@media only screen and (min-width: 600px)': {
-          width: 337,
-        },
-      },
-      two: {
-        '@media only screen and (min-width: 600px)': {
-          width: 312,
-        },
-      },
-    },
+  '@media only screen and (min-width: 600px)': {
+    width: 337,
   },
 })
 
