@@ -1,5 +1,4 @@
 import { styled } from "stitches.config"
-import { FavoriteSvg } from "./svgs"
 
 export const Section = styled("section", {
   maxWidth: "1072px",
@@ -32,6 +31,8 @@ export const House = styled("li", {
   borderRadius: "8px",
   overflow: "hidden",
 
+  position: "relative",
+
   background: "$white",
 })
 
@@ -52,10 +53,22 @@ export const New = styled("span", {
   color: "$white",
 })
 
-export const HeartSvg = styled(FavoriteSvg, {
+export const HeartSvg = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
   position: "absolute",
   top: "8px",
   right: "8px",
+
+  padding: "4px 3px 2px",
+
+  background: "$grayW3",
+  opacity: "0.8",
+  border: "1px solid $grayW2",
+  boxShadow: "0px 0px 15px rgba($colors$blackRgb, 0.15)",
+  borderRadius: 999,
 })
 
 export const HouseInfo = styled("div", {
@@ -72,7 +85,7 @@ export const Status = styled("div", {
   fontWeight: "600",
   fontSize: "12px",
   lineHeight: "18px",
-  color: "#5BA341",
+  color: "$green3",
 })
 
 export const Value = styled("h4", {

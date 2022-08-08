@@ -7,7 +7,7 @@ export default function Svg({ ...props }) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g opacity=".5" stroke="#E8B7CE" strokeWidth="2">
+      <g opacity="1" stroke="#C57E59" strokeWidth="2">
         <circle opacity=".1" cx="476.5" cy="160.5" r="181.191" />
         <circle opacity=".1" cx="476.5" cy="160.5" r="286.301" />
         <circle opacity=".1" cx="476.5" cy="160.5" r="389.076" />

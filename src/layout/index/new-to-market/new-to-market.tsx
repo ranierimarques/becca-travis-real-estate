@@ -5,10 +5,10 @@ import Link from 'next/link'
 import * as S from './new-to-market.styles'
 import { BedSvg, ShowerSvg, SquareSvg } from './svgs'
 
-const url = `https://api.bridgedataoutput.com/api/v2/OData/valleymls/Property?access_token=c8c61ffc7e3cfcb91714551392eb82cd&$top=3&$orderby=ListingId desc&$filter=PropertyType eq 'Residential' and StandardStatus eq 'Active'`
+const url = `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active`
 
 interface House {
-  value: {
+  bundle: {
     ListingId: string
     BedroomsTotal: string
     BathroomsTotalInteger: string
@@ -49,7 +49,7 @@ export function NewToMarket() {
       </Flex>
 
       <S.Houses>
-        {data?.value.map(house => {
+        {data?.bundle.map(house => {
           console.log(house)
           return (
             <S.House key={house.ListingId}>
