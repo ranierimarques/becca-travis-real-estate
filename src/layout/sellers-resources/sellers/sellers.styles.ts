@@ -17,38 +17,47 @@ export const HomeWorth = styled("div", {
   width: "1072px",
   height: "320px",
 
-  background: "$magenta9",
-  borderRadius: "16px",
+  border: "1px solid rgba($colors$tangerine7Rgb, 0.15)",
+  boxShadow: "0px 14px 50px rgba($colors$blackRgb, 0.08)",
+
+  background: "rgba($colors$tangerine10Rgb, 0.75)",
+  borderRadius: "24px",
 })
 
 export const Title = styled("h3", {
   marginBottom: 8,
 
-  fontWeight: "400",
+  fontWeight: "500",
   fontSize: "24px",
   lineHeight: "48px",
-  color: "$white",
+  color: "$gray1",
+
+  zIndex: 1,
 })
 
 export const Paragraph = styled("p", {
-  marginBottom: 16,
+  marginBottom: 32,
 
   fontWeight: "400",
   fontSize: "16px",
-  lineHeight: "30px",
-  color: "$offWhite2",
+  lineHeight: "28px",
+  color: "$magenta1",
+
+  zIndex: 1,
 })
 
 export const SecuredData = styled("span", {
-  marginTop: 8,
+  marginTop: 24,
 
   fontWeight: "400",
   fontSize: "14px",
   lineHeight: "24px",
-  color: "$grayW9",
+  color: "$gray3",
+
+  zIndex: 1,
 })
 
-export const Background = styled(CirclesSvg, {
+export const BackgroundSvg = styled(CirclesSvg, {
   position: "absolute",
   top: 0,
 })
