@@ -116,7 +116,7 @@ export const Indicator = styled(NavigationMenuPrimitive.Indicator, {
   alignItems: 'flex-end',
   justifyContent: 'center',
   height: 10,
-  top: '100%',
+  top: 'calc(100% + 18px)',
   overflow: 'hidden',
   zIndex: 1,
 
@@ -132,18 +132,20 @@ export const Arrow = styled('div', {
   top: '70%',
   backgroundColor: '$white',
   width: 14,
-  height: 10,
+  height: 12,
   transform: 'rotate(45deg)',
   borderTopLeftRadius: 3,
-  boxShadow: `0px 0px 8px rgba($colors$blackRgb, 0.1)`,
+  boxShadow: '0px 0px 8px rgba($colors$blackRgb, 0.065)',
+  border: '1px solid rgba($colors$grayW8Rgb, 0.65)',
 })
 
 export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   position: 'relative',
   transformOrigin: 'top center',
 
-  marginTop: 10,
+  marginTop: 27,
   width: '100%',
+  border: '1px solid $grayW9',
 
   background: '$white',
   borderRadius: 8,
