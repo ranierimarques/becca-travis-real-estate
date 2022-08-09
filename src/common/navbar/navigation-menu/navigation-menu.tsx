@@ -79,7 +79,7 @@ export function NavigationMenu() {
   }
 
   useEffect(() => {
-    const element = document.getElementById(`radix-:Rd4m:-trigger-${navItemId}`)
+    const element = document.querySelector('nav li button[data-state="open"]')
     const elementDimensions = element?.getBoundingClientRect()
 
     if (elementDimensions) {
