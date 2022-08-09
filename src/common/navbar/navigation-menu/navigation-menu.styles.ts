@@ -131,21 +131,19 @@ export const Arrow = styled('div', {
   position: 'relative',
   top: '70%',
   backgroundColor: '$white',
-  width: 14,
+  width: 12,
   height: 12,
   transform: 'rotate(45deg)',
   borderTopLeftRadius: 3,
-  boxShadow: '0px 0px 8px rgba($colors$blackRgb, 0.065)',
-  border: '1px solid rgba($colors$grayW8Rgb, 0.65)',
+  boxShadow: '0px 0px 8px rgba($colors$blackRgb, 0.1)',
 })
 
 export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   position: 'relative',
   transformOrigin: 'top center',
 
-  marginTop: 27,
+  marginTop: 28,
   width: '100%',
-  border: '1px solid $grayW9',
 
   background: '$white',
   borderRadius: 8,
