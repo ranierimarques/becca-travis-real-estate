@@ -4,6 +4,8 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, ReactNode, useEffect, useRef, useState } from 'react'
+import { Box } from 'src/common/box/box'
+import { Flex } from 'src/common/flex/flex'
 import {
   athens,
   decatur,
@@ -12,6 +14,7 @@ import {
   huntsville,
   meridianville,
 } from '../images'
+import { BaggageSvg, CalculatorSvg, HouseSvg, PencilSvg } from '../svgs'
 import * as S from './navigation-menu.styles'
 
 type customLinkProps = {
@@ -63,6 +66,37 @@ const communitiesListItems = [
   { image: decatur, name: 'Decatur', href: '/' },
   { image: athens, name: 'Athens', href: '/' },
   { image: meridianville, name: 'Meridianville', href: '/' },
+]
+
+const aboutHuntsvilleListItems = [
+  {
+    id: 1,
+    icon: <HouseSvg className={S.SvgStyles()} />,
+    title: 'Huntsville',
+    href: '/',
+    description: 'Discover Huntsville!',
+  },
+  {
+    id: 2,
+    icon: <BaggageSvg className={S.SvgStyles()} />,
+    title: 'Relocation Information',
+    href: '/',
+    description: 'Discover Huntsville!',
+  },
+  {
+    id: 3,
+    icon: <PencilSvg className={S.SvgStyles()} />,
+    title: 'Huntsville school',
+    href: '/',
+    description: 'Discover Huntsville!',
+  },
+  {
+    id: 4,
+    icon: <CalculatorSvg className={S.SvgStyles()} />,
+    title: 'Calculator',
+    href: '/',
+    description: 'Discover Huntsville!',
+  },
 ]
 
 export function NavigationMenu() {
@@ -134,32 +168,42 @@ export function NavigationMenu() {
           <StyledTriggerWithCaret>Community guides</StyledTriggerWithCaret>
           <S.Content>
             <S.Communities>
-              <div>
+              <Box css={{ p: '24px 24px 32px' }}>
                 <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
-                <CustomLink href="/">
-                  <S.HuntsvilleLink>
-                    <S.HuntsvilleHeader>
-                      <S.HomeIcon />
-                      <S.HuntsvilleTitle>Huntsville</S.HuntsvilleTitle>
-                    </S.HuntsvilleHeader>
-                    <S.HuntsvilleDescription>
-                      Huntsville, the city where waves of history wash over you as soon as
-                      it rains...
-                    </S.HuntsvilleDescription>
-                  </S.HuntsvilleLink>
-                </CustomLink>
-              </div>
+                <Box
+                  css={{
+                    display: 'grid',
+                    width: 'fit-content',
+                    gridTemplateColumns: 'auto auto',
+                    gap: '24px 72px',
+                  }}
+                >
+                  {aboutHuntsvilleListItems.map(item => (
+                    <CustomLink href={item.href} key={item.id}>
+                      <S.HuntsvilleLink>
+                        {item.icon}
+                        <Box>
+                          <Flex align="center" css={{ gap: 4 }}>
+                            <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
+                            <S.ArrowRight />
+                          </Flex>
+                          <S.HuntsvilleDescription>
+                            {item.description}
+                          </S.HuntsvilleDescription>
+                        </Box>
+                      </S.HuntsvilleLink>
+                    </CustomLink>
+                  ))}
+                </Box>
+              </Box>
 
-              <S.Separator />
-
-              <div>
+              <Box css={{ bg: 'rgba($colors$tangerine10Rgb, 0.4)', p: '16px 24px 24px' }}>
                 <S.CommunitiesTitle>Our communities</S.CommunitiesTitle>
                 <S.OurCommunitiesList>
                   {communitiesListItems.map(item => (
                     <li key={item.name}>
                       <CustomLink href={item.href}>
                         <S.OurCommunitiesListLink>
-                          <S.OurCommunitiesImageOverlay />
                           <Image
                             style={{
                               userSelect: 'none',
@@ -170,6 +214,7 @@ export function NavigationMenu() {
                             alt={`${item.name} photo`}
                             layout="fill"
                           />
+                          <S.OurCommunitiesImageOverlay />
                           <S.OurCommunitiesImageName>
                             {item.name}, AL
                           </S.OurCommunitiesImageName>
@@ -178,7 +223,7 @@ export function NavigationMenu() {
                     </li>
                   ))}
                 </S.OurCommunitiesList>
-              </div>
+              </Box>
             </S.Communities>
           </S.Content>
         </NavigationMenuPrimitive.Item>

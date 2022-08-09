@@ -1,6 +1,6 @@
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
-import { keyframes, styled } from 'stitches.config'
-import { ArrowDownSvg, HomeSvg } from '../svgs'
+import { css, keyframes, styled } from 'stitches.config'
+import { ArrowDownSvg, ArrowRightSvg } from '../svgs'
 
 // Keyframes - Animation
 
@@ -221,10 +221,8 @@ export const LinkText = styled('p', {
 })
 
 export const Communities = styled('div', {
-  padding: 24,
-
   '@media only screen and (min-width: 600px)': {
-    width: 560,
+    width: 630,
   },
 })
 
@@ -239,65 +237,65 @@ export const CommunitiesTitle = styled('h3', {
 
 // About Huntsville
 
-export const HuntsvilleLink = styled('a', {
-  display: 'inline-block',
+export const ArrowRight = styled(ArrowRightSvg, {
+  opacity: 0,
+  transform: 'scale(0)',
+  transformOrigin: 'left',
 
-  padding: 16,
-
-  background: 'rgba($colors$gray3Rgb, 0.08)',
-  borderRadius: '8px',
-
-  '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)' },
-})
-
-export const HuntsvilleHeader = styled('header', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 8,
-})
-
-export const HomeIcon = styled(HomeSvg, {
-  boxSizing: 'content-box',
-  padding: 5,
-
-  background: '$tangerine2',
-  borderRadius: 5,
+  '@media (prefers-reduced-motion: no-preference)': {
+    transition: '300ms ease',
+  },
 })
 
 export const HuntsvilleTitle = styled('h4', {
   fontWeight: 500,
   fontSize: 12,
-  lineHeight: '22px',
-  color: '$magenta8',
+  lineHeight: '18px',
+  color: '$gray3',
 })
 
 export const HuntsvilleDescription = styled('p', {
-  marginTop: 16,
-
-  maxWidth: 200,
+  marginTop: 2,
 
   fontWeight: 400,
   fontSize: 10,
   lineHeight: '15px',
-  color: '$magenta9',
+  color: '$gray5',
 })
 
-export const Separator = styled('div', {
-  margin: '24px 0',
+export const HuntsvilleLink = styled('a', {
+  display: 'flex',
+  gap: 12,
 
-  width: '100%',
-  height: 1,
-  background: '$gray5',
-  opacity: 0.4,
-  borderRadius: 9999,
+  '&:focus': {
+    outline: '2px solid rgba($colors$magenta1Rgb, 0.2)',
+    outlineOffset: '2px',
+    [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
+    [`${HuntsvilleDescription}`]: { color: '$gray2' },
+    [`${HuntsvilleTitle}`]: { color: '$gray1' },
+  },
+
+  '&:hover': {
+    [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
+    [`${HuntsvilleDescription}`]: { color: '$gray2' },
+    [`${HuntsvilleTitle}`]: { color: '$gray1' },
+  },
+})
+
+export const SvgStyles = css({
+  padding: 8,
+  boxSizing: 'content-box',
+  background: 'rgba($colors$grayW9Rgb, 0.5)',
+  borderRadius: '5px',
 })
 
 // Our communities
 
 export const OurCommunitiesList = styled('ul', {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: 10,
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr',
+  gridAutoRows: 'auto',
+  gap: 12,
 })
 
 export const OurCommunitiesListLink = styled('a', {
@@ -305,8 +303,8 @@ export const OurCommunitiesListLink = styled('a', {
 
   position: 'relative',
 
-  width: '164px',
-  height: '80px',
+  width: '100%',
+  aspectRatio: '16 / 9',
 
   borderRadius: '4px',
 
@@ -318,11 +316,10 @@ export const OurCommunitiesListLink = styled('a', {
 
 export const OurCommunitiesImageOverlay = styled('div', {
   position: 'absolute',
-  width: '100%',
-  height: '100%',
-  zIndex: 1,
+  inset: 0,
+  borderRadius: '4px',
   background:
-    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.6) 100%)',
+    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.9) 100%)',
 })
 
 export const OurCommunitiesImageName = styled('span', {
@@ -330,8 +327,8 @@ export const OurCommunitiesImageName = styled('span', {
   bottom: 10,
   left: 10,
 
-  fontWeight: 600,
-  fontSize: 10,
+  fontWeight: 500,
+  fontSize: 12,
   lineHeight: '15px',
   color: '$white',
   zIndex: 2,
