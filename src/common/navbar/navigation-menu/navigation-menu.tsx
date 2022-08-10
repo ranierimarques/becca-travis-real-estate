@@ -3,7 +3,7 @@ import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { forwardRef, ReactNode, useEffect, useRef, useState } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { Box } from 'src/common/box/box'
 import { Flex } from 'src/common/flex/flex'
 import {
@@ -100,34 +100,13 @@ const aboutHuntsvilleListItems = [
 ]
 
 export function NavigationMenu() {
-  const navItemPreviousIdRef = useRef('')
-  const [navItemId, setNavItemId] = useState('')
-  const [navItemDimensions, setNavItemDimensions] = useState<DOMRect>()
-
-  const navItemHalfWidth = navItemDimensions ? navItemDimensions?.width / 2 : 0
-
-  function handleValueChange(value: string) {
-    if (navItemId !== '' || !value) navItemPreviousIdRef.current = value
-
-    setNavItemId(value)
-  }
-
-  useEffect(() => {
-    const element = document.querySelector('nav li button[data-state="open"]')
-    const elementDimensions = element?.getBoundingClientRect()
-
-    if (elementDimensions) {
-      setNavItemDimensions(elementDimensions)
-    }
-  }, [navItemId])
-
   return (
-    <S.Root onValueChange={handleValueChange}>
+    <S.Root>
       <S.List>
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Buyers</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList>
+            <S.ContentList layout="one">
               <ContentListItem href="/" title="Search Map View">
                 Properties for sale
               </ContentListItem>
@@ -153,7 +132,7 @@ export function NavigationMenu() {
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Sellers</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList>
+            <S.ContentList layout="two">
               <ContentListItem href="/sellers-resources" title="Sellers Resources">
                 Properties for sale
               </ContentListItem>
@@ -167,7 +146,7 @@ export function NavigationMenu() {
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Community guides</StyledTriggerWithCaret>
           <S.Content>
-            <S.Communities>
+            <div>
               <Box css={{ p: '24px 24px 32px' }}>
                 <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
                 <Box
@@ -224,14 +203,14 @@ export function NavigationMenu() {
                   ))}
                 </S.OurCommunitiesList>
               </Box>
-            </S.Communities>
+            </div>
           </S.Content>
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Why Becca</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList>
+            <S.ContentList layout="three">
               <ContentListItem href="/why-becca" title="Why Becca?">
                 Properties for sale
               </ContentListItem>
@@ -257,13 +236,7 @@ export function NavigationMenu() {
         <StyledIndicatorWithArrow />
       </S.List>
 
-      <S.ViewportPosition
-        transition={Boolean(navItemPreviousIdRef.current)}
-        css={{
-          left: navItemDimensions?.left,
-          transform: `translateX(calc(-50% + ${navItemHalfWidth}px))`,
-        }}
-      >
+      <S.ViewportPosition>
         <S.Viewport />
       </S.ViewportPosition>
     </S.Root>
