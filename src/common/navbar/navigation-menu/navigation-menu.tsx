@@ -163,7 +163,14 @@ export function NavigationMenu() {
                 >
                   {aboutHuntsvilleListItems.map(item => (
                     <CustomLink href={item.href} key={item.id}>
-                      <S.HuntsvilleLink css={{ color: `rgba(${item.color}Rgb, 0.2)` }}>
+                      <S.HuntsvilleLink
+                        css={{
+                          color: `rgba(${item.color}Rgb, 0.15)`,
+                          '&:focus': {
+                            outline: `2px solid rgba(${item.color}Rgb, 0.3)`,
+                          },
+                        }}
+                      >
                         {item.icon}
                         <Box>
                           <Flex align="center" css={{ gap: 4 }}>

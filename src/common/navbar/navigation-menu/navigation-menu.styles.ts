@@ -277,9 +277,11 @@ export const HuntsvilleLink = styled('a', {
   display: 'flex',
   gap: 12,
 
+  width: 'fit-content',
+  borderRadius: 2,
+
   '&:focus': {
-    outline: '2px solid currentColor',
-    outlineOffset: '2px',
+    outlineOffset: '8px',
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
     [`${HuntsvilleDescription}`]: { color: '$gray2' },
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
