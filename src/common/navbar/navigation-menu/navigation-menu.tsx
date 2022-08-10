@@ -9,7 +9,7 @@ import { Flex } from 'src/common/flex/flex'
 import {
   athens,
   decatur,
-  hamptonCove,
+  hamptomCove,
   harvest,
   huntsville,
   meridianville,
@@ -62,7 +62,7 @@ const ContentListItem = ({ children, title, href }: any) => (
 const communitiesListItems = [
   { image: harvest, name: 'Harvest', href: '/' },
   { image: huntsville, name: 'Huntsville', href: '/' },
-  { image: hamptonCove, name: 'Hamptom Cove', href: '/' },
+  { image: hamptomCove, name: 'Hamptom Cove', href: '/' },
   { image: decatur, name: 'Decatur', href: '/' },
   { image: athens, name: 'Athens', href: '/' },
   { image: meridianville, name: 'Meridianville', href: '/' },
@@ -75,6 +75,7 @@ const aboutHuntsvilleListItems = [
     title: 'Huntsville',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$green1',
   },
   {
     id: 2,
@@ -82,6 +83,7 @@ const aboutHuntsvilleListItems = [
     title: 'Relocation Information',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$red1',
   },
   {
     id: 3,
@@ -89,6 +91,7 @@ const aboutHuntsvilleListItems = [
     title: 'Huntsville school',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$blue2',
   },
   {
     id: 4,
@@ -96,6 +99,7 @@ const aboutHuntsvilleListItems = [
     title: 'Calculator',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$tangerine8',
   },
 ]
 
@@ -159,12 +163,12 @@ export function NavigationMenu() {
                 >
                   {aboutHuntsvilleListItems.map(item => (
                     <CustomLink href={item.href} key={item.id}>
-                      <S.HuntsvilleLink>
+                      <S.HuntsvilleLink css={{ color: `rgba(${item.color}Rgb, 0.2)` }}>
                         {item.icon}
                         <Box>
                           <Flex align="center" css={{ gap: 4 }}>
                             <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
-                            <S.ArrowRight />
+                            <S.ArrowRight css={{ color: item.color }} />
                           </Flex>
                           <S.HuntsvilleDescription>
                             {item.description}

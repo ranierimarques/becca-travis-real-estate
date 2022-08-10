@@ -246,7 +246,7 @@ export const ArrowRight = styled(ArrowRightSvg, {
   transformOrigin: 'left',
 
   '@media (prefers-reduced-motion: no-preference)': {
-    transition: '300ms ease',
+    transition: 'transform 300ms ease, opacity 300ms ease',
   },
 })
 
@@ -266,30 +266,32 @@ export const HuntsvilleDescription = styled('p', {
   color: '$gray5',
 })
 
+export const SvgStyles = css({
+  padding: 8,
+  boxSizing: 'content-box',
+  background: 'rgba($colors$grayW9Rgb, 0.5)',
+  borderRadius: '5px',
+})
+
 export const HuntsvilleLink = styled('a', {
   display: 'flex',
   gap: 12,
 
   '&:focus': {
-    outline: '2px solid rgba($colors$magenta1Rgb, 0.2)',
+    outline: '2px solid currentColor',
     outlineOffset: '2px',
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
     [`${HuntsvilleDescription}`]: { color: '$gray2' },
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
+    [`.${SvgStyles}`]: { background: 'currentColor' },
   },
 
   '&:hover': {
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
     [`${HuntsvilleDescription}`]: { color: '$gray2' },
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
+    [`.${SvgStyles}`]: { background: 'currentColor' },
   },
-})
-
-export const SvgStyles = css({
-  padding: 8,
-  boxSizing: 'content-box',
-  background: 'rgba($colors$grayW9Rgb, 0.5)',
-  borderRadius: '5px',
 })
 
 // Our communities
@@ -330,7 +332,7 @@ export const OurCommunitiesImageName = styled('span', {
   bottom: 10,
   left: 10,
 
-  fontWeight: 600,
+  fontWeight: 500,
   fontSize: 11,
   lineHeight: '15px',
   color: '$white',

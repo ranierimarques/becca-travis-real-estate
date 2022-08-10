@@ -38,6 +38,9 @@ const rgbColors = {
   red2: 'rgb(211, 93, 110)', // #D35D6E
   red3: 'rgb(189, 62, 89)', // #BD3E59
 
+  blue1: 'rgb(66, 160, 255)', // #42A0FF
+  blue2: 'rgb(58, 138, 217)', // #3A8AD9
+
   yellow1: 'rgb(237, 218, 90)', // #EDDA5A
   yellow2: 'rgb(217, 188, 58)', // #D9BC3A
   yellow3: 'rgb(179, 154, 32)', // #B39A20
