@@ -10,9 +10,9 @@ const slide = keyframes({
 })
 
 export const Container = styled("div", {
-  maxWidth: "1072px",
+  maxWidth: "1280px",
   margin: "0 auto",
-  height: "330px",
+  height: "280px",
   background: "$tangerine10",
 
   display: "flex",
@@ -23,13 +23,23 @@ export const Container = styled("div", {
   position: "relative",
 })
 
+export const AwardsWrapper = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  gap: 40,
+
+  animation: `${slide} 40s linear infinite reverse`,
+
+  padding: "0 20px",
+})
+
 export const Award = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 
-  width: "250px",
-  height: "250px",
+  width: "200px",
+  height: "200px",
 
   background: "$white",
   borderRadius: "16px",
@@ -44,14 +54,4 @@ export const AwardsBackground = styled("div", {
   top: 0,
 
   zIndex: 10,
-})
-
-export const AwardsWrapper = styled("div", {
-  display: "flex",
-  alignItems: "center",
-  gap: 40,
-
-  animation: `${slide} 40s linear infinite reverse`,
-
-  padding: "0 20px",
 })
