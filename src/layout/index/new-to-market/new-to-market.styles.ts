@@ -53,7 +53,7 @@ export const New = styled("span", {
   color: "$white",
 })
 
-export const HeartSvg = styled("div", {
+export const HeartSvg = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -69,6 +69,8 @@ export const HeartSvg = styled("div", {
   border: "1px solid $grayW2",
   boxShadow: "0px 0px 15px rgba($colors$blackRgb, 0.15)",
   borderRadius: 999,
+
+  cursor: "pointer",
 })
 
 export const HouseInfo = styled("div", {
