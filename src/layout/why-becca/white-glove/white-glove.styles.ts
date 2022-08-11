@@ -109,12 +109,12 @@ export const Trigger = styled(AccordionPrimitive.Trigger, {
     },
   },
   '&[data-state="open"]': {
-    color: "magenta9",
+    color: "$magenta9",
     "& .strokeWhiteGlove001": {
       stroke: "$magenta2",
     },
     "& .strokeWhiteGlove002": {
-      stroke: "magenta9",
+      stroke: "$magenta9",
     },
   },
 })

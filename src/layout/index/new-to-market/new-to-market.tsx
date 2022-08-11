@@ -1,9 +1,9 @@
-import { Box, Flex, Hat } from '@common'
-import { useFetch } from '@resources/hooks/useFetch'
-import Image from 'next/image'
-import Link from 'next/link'
-import * as S from './new-to-market.styles'
-import { BedSvg, ShowerSvg, SquareSvg } from './svgs'
+import { Box, Flex, Hat } from "@common"
+import { useFetch } from "@resources/hooks/useFetch"
+import Image from "next/image"
+import Link from "next/link"
+import * as S from "./new-to-market.styles"
+import { BedSvg, FavoriteSvg, ShowerSvg, SquareSvg } from "./svgs"
 
 const url = `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active`
 
@@ -25,9 +25,9 @@ export function NewToMarket() {
   const { data } = useFetch<House>(url)
 
   function formatToDollar(amount: number) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
       maximumFractionDigits: 0,
     }).format(amount)
   }
@@ -40,7 +40,7 @@ export function NewToMarket() {
     <S.Section>
       <Flex align="start" direction="column" css={{ gap: 8, mb: 40 }}>
         <Hat>NEW PROPERTIES</Hat>
-        <Flex align="center" justify="between" css={{ w: '100%' }}>
+        <Flex align="center" justify="between" css={{ w: "100%" }}>
           <S.Title>New to Market</S.Title>
           <Link href="#" passHref>
             <S.ViewAll>VIEW ALL</S.ViewAll>
@@ -53,7 +53,7 @@ export function NewToMarket() {
           console.log(house)
           return (
             <S.House key={house.ListingId}>
-              <Box css={{ position: 'relative', lineHeight: 0 }}>
+              <Box css={{ position: "relative", lineHeight: 0 }}>
                 <Image
                   src={house.Media[0].MediaURL}
                   alt="house"
@@ -61,11 +61,13 @@ export function NewToMarket() {
                   height={189}
                 />
                 <S.New>New</S.New>
-                <S.HeartSvg />
+                <S.HeartSvg>
+                  <FavoriteSvg />
+                </S.HeartSvg>
               </Box>
               <S.HouseInfo>
                 <S.Status>
-                  <Box css={{ w: 8, h: 8, bg: '#83CF77', br: 4 }} />
+                  <Box css={{ w: 8, h: 8, bg: "#83CF77", br: 4 }} />
                   For sale
                 </S.Status>
                 <S.Value>{formatToDollar(house.ListPrice)}</S.Value>
