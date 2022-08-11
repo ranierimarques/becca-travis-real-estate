@@ -16,7 +16,6 @@ import {
 import {
   BaggageSvg,
   CalculatorSvg,
-  CertificateSvg,
   GallerySvg,
   HeartShineSvg,
   HomePriceSvg,
@@ -35,10 +34,13 @@ type customLinkProps = {
 }
 
 type CardListItemProps = {
-  description: string
-  title: string
-  href: string
-  icon: JSX.Element
+  content: {
+    description: string
+    title: string
+    href: string
+    icon: JSX.Element
+    hasMarginBottom?: boolean
+  }
 }
 
 type MenuProps = {
@@ -51,6 +53,7 @@ type MenuProps = {
       title: string
       description: string
       href: string
+      hasMarginBottom?: boolean
     }[]
   }[]
 }
@@ -96,7 +99,7 @@ const aboutHuntsvilleListItems = [
     icon: <HouseSvg className={S.SvgStyles()} />,
     title: 'Huntsville',
     href: '/',
-    description: 'Discover Huntsville!',
+    description: 'Discover Huntsville',
     color: '$colors$green1Rgb',
   },
   {
@@ -104,7 +107,7 @@ const aboutHuntsvilleListItems = [
     icon: <BaggageSvg className={S.SvgStyles()} />,
     title: 'Relocation Information',
     href: '/',
-    description: 'Discover Huntsville!',
+    description: 'All you need to know about your Relocation',
     color: '$colors$red1Rgb',
   },
   {
@@ -112,16 +115,8 @@ const aboutHuntsvilleListItems = [
     icon: <PencilSvg className={S.SvgStyles()} />,
     title: 'Huntsville school',
     href: '/',
-    description: 'Discover Huntsville!',
+    description: 'Discover our schools',
     color: '$colors$blue2Rgb',
-  },
-  {
-    id: 4,
-    icon: <CalculatorSvg className={S.SvgStyles()} />,
-    title: 'Calculator',
-    href: '/',
-    description: 'Discover Huntsville!',
-    color: '$colors$tangerine8Rgb',
   },
 ]
 
@@ -136,14 +131,15 @@ const menus = {
           icon: <LocationSvg />,
           title: 'Search Map View',
           description: 'Properties for sale',
-          href: '/',
+          href: '/homes',
+          hasMarginBottom: true,
         },
         {
           id: 2,
           icon: <GallerySvg />,
           title: 'Search List View',
-          description: 'New featured houses',
-          href: '/',
+          description: 'Properties for sale',
+          href: '/homes',
         },
       ],
     },
@@ -155,8 +151,15 @@ const menus = {
           id: 1,
           icon: <OpenBookSvg />,
           title: 'Buyers Resources',
-          description: 'All you need to buy your property',
+          description: 'All you need to know to buy your property',
           href: '/buyers-resources',
+        },
+        {
+          id: 2,
+          icon: <CalculatorSvg />,
+          title: 'Mortgage Calculator',
+          description: 'Estimate your monthly mortgage payment',
+          href: '/mortgage-calculator',
         },
       ],
     },
@@ -164,14 +167,14 @@ const menus = {
   sellers: [
     {
       id: 1,
-      title: 'SELLERS TOOLS',
+      title: 'SELLERS',
       listItem: [
         {
           id: 1,
           icon: <HomePriceSvg />,
-          title: 'Selling your home with us',
-          description: 'All you need to sell your property',
-          href: '/sellers-resources',
+          title: 'Sell with us',
+          description: 'We can help you sell your home',
+          href: '/sell-with-us',
         },
       ],
     },
@@ -183,8 +186,8 @@ const menus = {
           id: 1,
           icon: <OpenBookSvg />,
           title: 'Sellers Resources',
-          description: 'Properties for sale',
-          href: '/',
+          description: 'All you need to sell your property',
+          href: '/sellers-resources',
         },
       ],
     },
@@ -192,41 +195,34 @@ const menus = {
   whyBecca: [
     {
       id: 1,
-      title: 'MOTIVATION',
-      listItem: [
-        {
-          id: 1,
-          icon: <HeartShineSvg />,
-          title: 'Why Becca?',
-          description: 'Properties for sale',
-          href: '/why-becca',
-        },
-        {
-          id: 2,
-          icon: <CertificateSvg />,
-          title: 'Awards and certifications',
-          description: 'New featured houses',
-          href: '/',
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'CLIENTS',
+      title: 'FEEDBACK',
       listItem: [
         {
           id: 1,
           icon: <MessageHeartSvg />,
           title: 'Client reviews',
-          description: 'All you need to sell your property',
-          href: '/',
+          description: 'See what our clients are telling about us',
+          href: '/reviews',
         },
         {
           id: 2,
           icon: <UserMessageChatSvg />,
           title: 'Referral',
-          description: 'All you need to sell your property',
-          href: '/',
+          description: 'See what our partners are telling about us',
+          href: '/referral',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'ABOUT ME',
+      listItem: [
+        {
+          id: 1,
+          icon: <HeartShineSvg />,
+          title: 'Why Becca?',
+          description: 'Why we are your best choice',
+          href: '/why-becca',
         },
       ],
     },
@@ -235,19 +231,22 @@ const menus = {
 
 function Menu({ menu }: MenuProps) {
   return (
-    <S.Content css={{ display: 'flex', p: 24, gap: 40 }}>
+    <S.Content
+      css={{
+        display: 'grid',
+        gridTemplateColumns: 'auto auto',
+        jc: 'space-between',
+        w: 470,
+        p: 24,
+        gap: 40,
+      }}
+    >
       {menu.map(category => (
         <div key={category.id}>
           <S.CategoryTitle>{category.title}</S.CategoryTitle>
           <ul>
             {category.listItem.map(item => (
-              <CardListItem
-                key={item.id}
-                icon={item.icon}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-              />
+              <CardListItem key={item.id} content={item} />
             ))}
           </ul>
         </div>
@@ -256,15 +255,15 @@ function Menu({ menu }: MenuProps) {
   )
 }
 
-function CardListItem({ description, title, icon, href }: CardListItemProps) {
+function CardListItem({ content }: CardListItemProps) {
   return (
-    <S.CardListItem>
-      <CustomLink href={href}>
+    <S.CardListItem marginBottom={content.hasMarginBottom}>
+      <CustomLink href={content.href}>
         <S.CardLink>
-          {icon}
+          <div>{content.icon}</div>
           <div>
-            <S.CardTitle>{title}</S.CardTitle>
-            <S.CardDescription>{description}</S.CardDescription>
+            <S.CardTitle>{content.title}</S.CardTitle>
+            <S.CardDescription>{content.description}</S.CardDescription>
           </div>
         </S.CardLink>
       </CustomLink>
@@ -278,28 +277,27 @@ function CommunityGuideMenu() {
       <div>
         <Box css={{ p: '24px 24px 32px' }}>
           <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
-          <Box
-            css={{
-              display: 'grid',
-              width: 'fit-content',
-              gridTemplateColumns: 'auto auto',
-              gap: '24px 72px',
-            }}
-          >
-            {aboutHuntsvilleListItems.map(item => (
-              <CustomLink href={item.href} key={item.id}>
-                <S.HuntsvilleLink css={{ $$color: item.color }}>
-                  {item.icon}
-                  <Box>
-                    <Flex align="center" css={{ gap: 4 }}>
-                      <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
-                      <S.ArrowRight />
-                    </Flex>
-                    <S.HuntsvilleDescription>{item.description}</S.HuntsvilleDescription>
-                  </Box>
-                </S.HuntsvilleLink>
-              </CustomLink>
-            ))}
+          <Box>
+            <S.CommunitiesList>
+              {aboutHuntsvilleListItems.map(item => (
+                <li key={item.id}>
+                  <CustomLink href={item.href}>
+                    <S.HuntsvilleLink css={{ $$color: item.color }}>
+                      {item.icon}
+                      <Box>
+                        <Flex align="center" css={{ gap: 4 }}>
+                          <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
+                          <S.ArrowRight />
+                        </Flex>
+                        <S.HuntsvilleDescription>
+                          {item.description}
+                        </S.HuntsvilleDescription>
+                      </Box>
+                    </S.HuntsvilleLink>
+                  </CustomLink>
+                </li>
+              ))}
+            </S.CommunitiesList>
           </Box>
         </Box>
 

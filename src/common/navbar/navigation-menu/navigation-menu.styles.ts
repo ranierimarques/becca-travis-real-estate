@@ -178,6 +178,14 @@ export const CardListItem = styled('li', {
   '& + &': {
     marginTop: 16,
   },
+
+  variants: {
+    marginBottom: {
+      true: {
+        marginBottom: 34,
+      },
+    },
+  },
 })
 
 export const CategoryTitle = styled('span', {
@@ -195,7 +203,7 @@ export const CardLink = styled('a', {
   display: 'flex',
   gap: 12,
 
-  width: 'max-content',
+  maxWidth: 192,
 
   padding: '8px 10px 8px 0',
   userSelect: 'none',
@@ -230,6 +238,13 @@ export const CommunitiesTitle = styled('h3', {
   fontSize: 14,
   lineHeight: '21px',
   color: '$magenta6',
+})
+
+export const CommunitiesList = styled('ul', {
+  display: 'grid',
+  width: 'fit-content',
+  gridTemplateColumns: 'auto auto',
+  gap: '24px 56px',
 })
 
 // About Huntsville
