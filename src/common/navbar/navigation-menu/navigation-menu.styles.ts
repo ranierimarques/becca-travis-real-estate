@@ -163,20 +163,13 @@ export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
 })
 
 export const ViewportPosition = styled('div', {
-  position: 'fixed',
-  top: '94px',
+  position: 'absolute',
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  top: '100%',
+  left: 70, // Edit this
   perspective: '2000px',
-  transform: 'translate(-50%)',
-
-  variants: {
-    transition: {
-      true: {
-        '@media (prefers-reduced-motion: no-preference)': {
-          transition: '300ms ease',
-        },
-      },
-    },
-  },
 })
 
 // App start here...
@@ -188,8 +181,24 @@ export const ContentList = styled('ul', {
 
   padding: 16,
 
-  '@media only screen and (min-width: 600px)': {
-    width: 337,
+  variants: {
+    layout: {
+      one: {
+        '@media only screen and (min-width: 600px)': {
+          width: 491,
+        },
+      },
+      two: {
+        '@media only screen and (min-width: 600px)': {
+          width: 470,
+        },
+      },
+      three: {
+        '@media only screen and (min-width: 600px)': {
+          width: 524,
+        },
+      },
+    },
   },
 })
 
@@ -220,12 +229,6 @@ export const LinkText = styled('p', {
   lineHeight: '18px',
 })
 
-export const Communities = styled('div', {
-  '@media only screen and (min-width: 600px)': {
-    width: 630,
-  },
-})
-
 export const CommunitiesTitle = styled('h3', {
   marginBottom: 16,
 
@@ -243,7 +246,7 @@ export const ArrowRight = styled(ArrowRightSvg, {
   transformOrigin: 'left',
 
   '@media (prefers-reduced-motion: no-preference)': {
-    transition: '300ms ease',
+    transition: 'transform 300ms ease, opacity 300ms ease',
   },
 })
 
@@ -263,30 +266,34 @@ export const HuntsvilleDescription = styled('p', {
   color: '$gray5',
 })
 
+export const SvgStyles = css({
+  padding: 8,
+  boxSizing: 'content-box',
+  background: 'rgba($colors$grayW9Rgb, 0.5)',
+  borderRadius: '5px',
+})
+
 export const HuntsvilleLink = styled('a', {
   display: 'flex',
   gap: 12,
 
+  width: 'fit-content',
+  borderRadius: 2,
+
   '&:focus': {
-    outline: '2px solid rgba($colors$magenta1Rgb, 0.2)',
-    outlineOffset: '2px',
+    outlineOffset: '8px',
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
     [`${HuntsvilleDescription}`]: { color: '$gray2' },
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
+    [`.${SvgStyles}`]: { background: 'currentColor' },
   },
 
   '&:hover': {
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
     [`${HuntsvilleDescription}`]: { color: '$gray2' },
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
+    [`.${SvgStyles}`]: { background: 'currentColor' },
   },
-})
-
-export const SvgStyles = css({
-  padding: 8,
-  boxSizing: 'content-box',
-  background: 'rgba($colors$grayW9Rgb, 0.5)',
-  borderRadius: '5px',
 })
 
 // Our communities
@@ -303,8 +310,8 @@ export const OurCommunitiesListLink = styled('a', {
 
   position: 'relative',
 
-  width: '100%',
-  aspectRatio: '16 / 9',
+  width: 154,
+  height: 88,
 
   borderRadius: '4px',
 
@@ -319,7 +326,7 @@ export const OurCommunitiesImageOverlay = styled('div', {
   inset: 0,
   borderRadius: '4px',
   background:
-    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.9) 100%)',
+    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.8) 100%)',
 })
 
 export const OurCommunitiesImageName = styled('span', {
@@ -328,7 +335,7 @@ export const OurCommunitiesImageName = styled('span', {
   left: 10,
 
   fontWeight: 500,
-  fontSize: 12,
+  fontSize: 11,
   lineHeight: '15px',
   color: '$white',
   zIndex: 2,

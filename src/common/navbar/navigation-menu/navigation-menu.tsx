@@ -3,13 +3,13 @@ import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { forwardRef, ReactNode, useEffect, useRef, useState } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { Box } from 'src/common/box/box'
 import { Flex } from 'src/common/flex/flex'
 import {
   athens,
   decatur,
-  hamptonCove,
+  hamptomCove,
   harvest,
   huntsville,
   meridianville,
@@ -62,7 +62,7 @@ const ContentListItem = ({ children, title, href }: any) => (
 const communitiesListItems = [
   { image: harvest, name: 'Harvest', href: '/' },
   { image: huntsville, name: 'Huntsville', href: '/' },
-  { image: hamptonCove, name: 'Hamptom Cove', href: '/' },
+  { image: hamptomCove, name: 'Hamptom Cove', href: '/' },
   { image: decatur, name: 'Decatur', href: '/' },
   { image: athens, name: 'Athens', href: '/' },
   { image: meridianville, name: 'Meridianville', href: '/' },
@@ -75,6 +75,7 @@ const aboutHuntsvilleListItems = [
     title: 'Huntsville',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$green1',
   },
   {
     id: 2,
@@ -82,6 +83,7 @@ const aboutHuntsvilleListItems = [
     title: 'Relocation Information',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$red1',
   },
   {
     id: 3,
@@ -89,6 +91,7 @@ const aboutHuntsvilleListItems = [
     title: 'Huntsville school',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$blue2',
   },
   {
     id: 4,
@@ -96,38 +99,18 @@ const aboutHuntsvilleListItems = [
     title: 'Calculator',
     href: '/',
     description: 'Discover Huntsville!',
+    color: '$tangerine8',
   },
 ]
 
 export function NavigationMenu() {
-  const navItemPreviousIdRef = useRef('')
-  const [navItemId, setNavItemId] = useState('')
-  const [navItemDimensions, setNavItemDimensions] = useState<DOMRect>()
-
-  const navItemHalfWidth = navItemDimensions ? navItemDimensions?.width / 2 : 0
-
-  function handleValueChange(value: string) {
-    if (navItemId !== '' || !value) navItemPreviousIdRef.current = value
-
-    setNavItemId(value)
-  }
-
-  useEffect(() => {
-    const element = document.querySelector('nav li button[data-state="open"]')
-    const elementDimensions = element?.getBoundingClientRect()
-
-    if (elementDimensions) {
-      setNavItemDimensions(elementDimensions)
-    }
-  }, [navItemId])
-
   return (
-    <S.Root onValueChange={handleValueChange}>
+    <S.Root>
       <S.List>
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Buyers</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList>
+            <S.ContentList layout="one">
               <ContentListItem href="/" title="Search Map View">
                 Properties for sale
               </ContentListItem>
@@ -153,7 +136,7 @@ export function NavigationMenu() {
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Sellers</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList>
+            <S.ContentList layout="two">
               <ContentListItem href="/sellers-resources" title="Sellers Resources">
                 Properties for sale
               </ContentListItem>
@@ -167,7 +150,7 @@ export function NavigationMenu() {
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Community guides</StyledTriggerWithCaret>
           <S.Content>
-            <S.Communities>
+            <div>
               <Box css={{ p: '24px 24px 32px' }}>
                 <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
                 <Box
@@ -180,12 +163,19 @@ export function NavigationMenu() {
                 >
                   {aboutHuntsvilleListItems.map(item => (
                     <CustomLink href={item.href} key={item.id}>
-                      <S.HuntsvilleLink>
+                      <S.HuntsvilleLink
+                        css={{
+                          color: `rgba(${item.color}Rgb, 0.15)`,
+                          '&:focus': {
+                            outline: `2px solid rgba(${item.color}Rgb, 0.3)`,
+                          },
+                        }}
+                      >
                         {item.icon}
                         <Box>
                           <Flex align="center" css={{ gap: 4 }}>
                             <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
-                            <S.ArrowRight />
+                            <S.ArrowRight css={{ color: item.color }} />
                           </Flex>
                           <S.HuntsvilleDescription>
                             {item.description}
@@ -224,14 +214,14 @@ export function NavigationMenu() {
                   ))}
                 </S.OurCommunitiesList>
               </Box>
-            </S.Communities>
+            </div>
           </S.Content>
         </NavigationMenuPrimitive.Item>
 
         <NavigationMenuPrimitive.Item>
           <StyledTriggerWithCaret>Why Becca</StyledTriggerWithCaret>
           <S.Content>
-            <S.ContentList>
+            <S.ContentList layout="three">
               <ContentListItem href="/why-becca" title="Why Becca?">
                 Properties for sale
               </ContentListItem>
@@ -257,13 +247,7 @@ export function NavigationMenu() {
         <StyledIndicatorWithArrow />
       </S.List>
 
-      <S.ViewportPosition
-        transition={Boolean(navItemPreviousIdRef.current)}
-        css={{
-          left: navItemDimensions?.left,
-          transform: `translateX(calc(-50% + ${navItemHalfWidth}px))`,
-        }}
-      >
+      <S.ViewportPosition>
         <S.Viewport />
       </S.ViewportPosition>
     </S.Root>
