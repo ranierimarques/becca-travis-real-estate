@@ -174,38 +174,30 @@ export const ViewportPosition = styled('div', {
 
 // App start here...
 
-export const ContentList = styled('ul', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 2,
-
-  padding: 16,
-
-  variants: {
-    layout: {
-      one: {
-        '@media only screen and (min-width: 600px)': {
-          width: 491,
-        },
-      },
-      two: {
-        '@media only screen and (min-width: 600px)': {
-          width: 470,
-        },
-      },
-      three: {
-        '@media only screen and (min-width: 600px)': {
-          width: 524,
-        },
-      },
-    },
+export const CardListItem = styled('li', {
+  '& + &': {
+    marginTop: 16,
   },
 })
 
-export const CardLink = styled('a', {
+export const CategoryTitle = styled('span', {
   display: 'block',
 
-  padding: 12,
+  fontWeight: 500,
+  fontSize: 12,
+  lineHeight: '18px',
+  color: '$grayW3',
+
+  marginBottom: 16,
+})
+
+export const CardLink = styled('a', {
+  display: 'flex',
+  gap: 12,
+
+  width: 'max-content',
+
+  padding: '8px 10px 8px 0',
   userSelect: 'none',
   borderRadius: 5,
 
@@ -213,7 +205,7 @@ export const CardLink = styled('a', {
   '&:hover': { backgroundColor: 'rgba($colors$magenta1Rgb, 0.04)' },
 })
 
-export const LinkTitle = styled('div', {
+export const CardTitle = styled('div', {
   color: '$grayW4',
   fontWeight: 500,
   fontSize: 14,
@@ -222,12 +214,14 @@ export const LinkTitle = styled('div', {
   marginBottom: 4,
 })
 
-export const LinkText = styled('p', {
+export const CardDescription = styled('p', {
   color: '$grayW5',
   fontWeight: 400,
   fontSize: 12,
   lineHeight: '18px',
 })
+
+// Community guides
 
 export const CommunitiesTitle = styled('h3', {
   marginBottom: 16,
@@ -240,14 +234,11 @@ export const CommunitiesTitle = styled('h3', {
 
 // About Huntsville
 
-export const ArrowRight = styled(ArrowRightSvg, {
-  opacity: 0,
-  transform: 'scale(0)',
-  transformOrigin: 'left',
-
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 300ms ease, opacity 300ms ease',
-  },
+export const SvgStyles = css({
+  padding: 8,
+  boxSizing: 'content-box',
+  background: 'rgba($colors$grayW9Rgb, 0.5)',
+  borderRadius: '5px',
 })
 
 export const HuntsvilleTitle = styled('h4', {
@@ -255,6 +246,18 @@ export const HuntsvilleTitle = styled('h4', {
   fontSize: 12,
   lineHeight: '18px',
   color: '$gray3',
+})
+
+export const ArrowRight = styled(ArrowRightSvg, {
+  opacity: 0,
+  transform: 'scale(0)',
+  transformOrigin: 'left',
+
+  color: 'rgba($$color, 1)', // Provides by HunstsvilleLink component
+
+  '@media (prefers-reduced-motion: no-preference)': {
+    transition: 'transform 300ms ease, opacity 300ms ease',
+  },
 })
 
 export const HuntsvilleDescription = styled('p', {
@@ -266,21 +269,17 @@ export const HuntsvilleDescription = styled('p', {
   color: '$gray5',
 })
 
-export const SvgStyles = css({
-  padding: 8,
-  boxSizing: 'content-box',
-  background: 'rgba($colors$grayW9Rgb, 0.5)',
-  borderRadius: '5px',
-})
-
 export const HuntsvilleLink = styled('a', {
   display: 'flex',
   gap: 12,
+
+  color: 'rgba($$color, 0.15)', // Locally scoped tokens provides dynamically
 
   width: 'fit-content',
   borderRadius: 2,
 
   '&:focus': {
+    outline: '2px solid rgba($$color, 0.3)',
     outlineOffset: '8px',
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
     [`${HuntsvilleDescription}`]: { color: '$gray2' },
