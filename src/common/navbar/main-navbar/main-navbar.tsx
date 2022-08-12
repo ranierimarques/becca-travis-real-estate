@@ -6,10 +6,10 @@ import * as S from './main-navbar.styles'
 export function MainNavbar() {
   return (
     <S.Nav>
-      <Link href="/">
-        <a>
+      <Link href="/" passHref>
+        <S.Link>
           <LogoSvg />
-        </a>
+        </S.Link>
       </Link>
       <NavigationMenu />
       <TalkToMe />
