@@ -174,20 +174,6 @@ export const ViewportPosition = styled('div', {
 
 // App start here...
 
-export const CardListItem = styled('li', {
-  '& + &': {
-    marginTop: 16,
-  },
-
-  variants: {
-    marginBottom: {
-      true: {
-        marginBottom: 34,
-      },
-    },
-  },
-})
-
 export const CategoryTitle = styled('span', {
   display: 'block',
 
@@ -199,11 +185,17 @@ export const CategoryTitle = styled('span', {
   marginBottom: 16,
 })
 
+export const CardListItem = styled('li', {
+  maxWidth: 190,
+
+  '& + &': {
+    marginTop: 16,
+  },
+})
+
 export const CardLink = styled('a', {
   display: 'flex',
   gap: 12,
-
-  maxWidth: 192,
 
   padding: '8px 10px 8px 0',
   userSelect: 'none',

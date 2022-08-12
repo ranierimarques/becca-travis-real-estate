@@ -39,7 +39,6 @@ type CardListItemProps = {
     title: string
     href: string
     icon: JSX.Element
-    hasMarginBottom?: boolean
   }
 }
 
@@ -53,7 +52,6 @@ type MenuProps = {
       title: string
       description: string
       href: string
-      hasMarginBottom?: boolean
     }[]
   }[]
 }
@@ -85,12 +83,12 @@ const IndicatorWithArrow = forwardRef(({ ...props }: any, forwardedRef) => (
 ))
 
 const communitiesListItems = [
-  { image: harvest, name: 'Harvest', href: '/' },
-  { image: huntsville, name: 'Huntsville', href: '/' },
-  { image: hamptomCove, name: 'Hamptom Cove', href: '/' },
-  { image: decatur, name: 'Decatur', href: '/' },
-  { image: athens, name: 'Athens', href: '/' },
-  { image: meridianville, name: 'Meridianville', href: '/' },
+  { image: harvest, name: 'Harvest', href: '/harvest' },
+  { image: huntsville, name: 'Huntsville', href: '/huntsville' },
+  { image: hamptomCove, name: 'Hamptom Cove', href: '/hamptom-cove' },
+  { image: decatur, name: 'Decatur', href: '/decatur' },
+  { image: athens, name: 'Athens', href: '/athens' },
+  { image: meridianville, name: 'Meridianville', href: '/meridianville' },
 ]
 
 const aboutHuntsvilleListItems = [
@@ -98,7 +96,7 @@ const aboutHuntsvilleListItems = [
     id: 1,
     icon: <HouseSvg className={S.SvgStyles()} />,
     title: 'Huntsville',
-    href: '/',
+    href: '/huntsville',
     description: 'Discover Huntsville',
     color: '$colors$green1Rgb',
   },
@@ -106,7 +104,7 @@ const aboutHuntsvilleListItems = [
     id: 2,
     icon: <BaggageSvg className={S.SvgStyles()} />,
     title: 'Relocation Information',
-    href: '/',
+    href: '/huntsville/relocation-information',
     description: 'All you need to know about your Relocation',
     color: '$colors$red1Rgb',
   },
@@ -114,7 +112,7 @@ const aboutHuntsvilleListItems = [
     id: 3,
     icon: <PencilSvg className={S.SvgStyles()} />,
     title: 'Huntsville school',
-    href: '/',
+    href: '/huntsville/school',
     description: 'Discover our schools',
     color: '$colors$blue2Rgb',
   },
@@ -124,21 +122,20 @@ const menus = {
   buyers: [
     {
       id: 1,
-      title: 'HOME SEARCH TOOLS',
+      title: 'SEARCH',
       listItem: [
         {
           id: 1,
           icon: <LocationSvg />,
           title: 'Search Map View',
-          description: 'Properties for sale',
+          description: 'View all properties for sale',
           href: '/homes',
-          hasMarginBottom: true,
         },
         {
           id: 2,
           icon: <GallerySvg />,
           title: 'Search List View',
-          description: 'Properties for sale',
+          description: 'View all properties for sale',
           href: '/homes',
         },
       ],
@@ -238,7 +235,6 @@ function Menu({ menu }: MenuProps) {
         jc: 'space-between',
         w: 470,
         p: 24,
-        gap: 40,
       }}
     >
       {menu.map(category => (
@@ -257,7 +253,7 @@ function Menu({ menu }: MenuProps) {
 
 function CardListItem({ content }: CardListItemProps) {
   return (
-    <S.CardListItem marginBottom={content.hasMarginBottom}>
+    <S.CardListItem>
       <CustomLink href={content.href}>
         <S.CardLink>
           <div>{content.icon}</div>
