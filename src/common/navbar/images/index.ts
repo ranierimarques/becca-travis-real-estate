@@ -1,5 +1,8 @@
 export { default as athens } from './athens.jpg'
+export { default as brFlag } from './br-flag.jpg'
 export { default as decatur } from './decatur.jpg'
+export { default as enFlag } from './en-flag.jpg'
+export { default as esFlag } from './es-flag.jpg'
 export { default as hamptomCove } from './hamptom-cove.jpg'
 export { default as harvest } from './harvest.jpg'
 export { default as huntsville } from './huntsville.jpg'

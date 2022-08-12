@@ -69,15 +69,11 @@ const linkStyles = {
   fontSize: 14,
   lineHeight: '21px',
 
-  '&:focus': {
-    position: 'relative',
-    boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)',
-  },
-  '&:hover': { backgroundColor: 'rgba($colors$magenta1Rgb, 0.04)' },
+  '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)' },
+  '&:hover': { background: 'rgba($colors$magenta1Rgb, 0.04)' },
 }
 
-export const Trigger = styled(NavigationMenuPrimitive.Trigger, {
-  ...linkStyles,
+export const Trigger = styled(NavigationMenuPrimitive.Trigger, linkStyles, {
   display: 'flex',
   alignItems: 'center',
   gap: 4,
@@ -90,8 +86,7 @@ export const Caret = styled(ArrowDownSvg, {
   },
 })
 
-export const Link = styled('a', {
-  ...linkStyles,
+export const Link = styled('a', linkStyles, {
   display: 'block',
 })
 
@@ -135,7 +130,7 @@ export const Arrow = styled('div', {
   height: 12,
   transform: 'rotate(45deg)',
   borderTopLeftRadius: 3,
-  boxShadow: '0px 0px 8px rgba($colors$blackRgb, 0.1)',
+  boxShadow: '0 0 8px rgba($colors$blackRgb, 0.1)',
 })
 
 export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
@@ -149,7 +144,7 @@ export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   borderRadius: 8,
   overflow: 'hidden',
   boxShadow:
-    'hsl(206 22% 7% / 40%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+    'hsl(206 22% 7% / 40%) 0 10px 38px -10px, hsl(206 22% 7% / 20%) 0 10px 20px -15px',
   height: 'var(--radix-navigation-menu-viewport-height)',
 
   '@media only screen and (min-width: 600px)': {

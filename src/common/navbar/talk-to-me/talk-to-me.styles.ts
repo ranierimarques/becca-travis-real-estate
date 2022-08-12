@@ -55,7 +55,7 @@ export const Description = styled(DialogPrimitive.Description, {
   color: '$grayW4',
 })
 
-export const IconButton = styled('button', {
+export const Close = styled(DialogPrimitive.Close, {
   lineHeight: '0',
   borderRadius: '999px',
   color: '$gray2',

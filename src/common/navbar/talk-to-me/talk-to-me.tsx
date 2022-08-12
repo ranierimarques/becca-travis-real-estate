@@ -54,11 +54,9 @@ export function TalkToMe() {
             ))}
           </S.ContactList>
 
-          <DialogPrimitive.Close asChild>
-            <S.IconButton aria-label="Close">
-              <CrossSvg />
-            </S.IconButton>
-          </DialogPrimitive.Close>
+          <S.Close aria-label="Close">
+            <CrossSvg />
+          </S.Close>
         </S.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
