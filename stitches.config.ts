@@ -172,5 +172,6 @@ export const { styled, getCssText, globalCss, css, keyframes } = createStitches(
       WebkitUserSelect: value,
       userSelect: value,
     }),
+    pos: (value: Stitches.PropertyValue<'position'>) => ({ position: value }),
   },
 })

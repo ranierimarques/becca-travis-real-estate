@@ -5,8 +5,8 @@ export default function Svg({ ...props }) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M3.857 14.303a7.5 7.5 0 1 1 1.84 1.839l-2.365.525.525-2.364Z"
-        fill="#9CA8B7"
-        stroke="#9CA8B7"
+        fill="currentColor"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

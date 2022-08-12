@@ -193,6 +193,36 @@ export const CardListItem = styled('li', {
   },
 })
 
+export const CardTitle = styled('div', {
+  color: '$grayW4',
+  fontWeight: 500,
+  fontSize: 14,
+  lineHeight: '18px',
+
+  transition: 'color 300ms ease',
+})
+
+export const CardDescription = styled('p', {
+  color: '$grayW5',
+  fontWeight: 400,
+  fontSize: 12,
+  lineHeight: '18px',
+
+  transition: 'color 300ms ease',
+})
+
+export const ArrowRight = styled(ArrowRightSvg, {
+  opacity: 0,
+  transform: 'scale(0)',
+  transformOrigin: 'left',
+
+  color: 'rgba($$color, 1)', // Provides by HunstsvilleLink component or currentColor
+
+  '@media (prefers-reduced-motion: no-preference)': {
+    transition: 'transform 300ms ease, opacity 300ms ease',
+  },
+})
+
 export const CardLink = styled('a', {
   display: 'flex',
   gap: 12,
@@ -201,24 +231,23 @@ export const CardLink = styled('a', {
   userSelect: 'none',
   borderRadius: 5,
 
-  '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.2)' },
-  '&:hover': { backgroundColor: 'rgba($colors$magenta1Rgb, 0.04)' },
-})
+  color: '$grayW6',
+  transition: 'color 300ms ease',
 
-export const CardTitle = styled('div', {
-  color: '$grayW4',
-  fontWeight: 500,
-  fontSize: 14,
-  lineHeight: '18px',
-
-  marginBottom: 4,
-})
-
-export const CardDescription = styled('p', {
-  color: '$grayW5',
-  fontWeight: 400,
-  fontSize: 12,
-  lineHeight: '18px',
+  '&:focus': {
+    outline: '2px solid rgba($colors$magenta1Rgb, 0.2)',
+    outlineOffset: '4px',
+    color: '$magenta1',
+    [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
+    [`${CardTitle}`]: { color: '$magenta1' },
+    [`${CardDescription}`]: { color: '$grayW3' },
+  },
+  '&:hover': {
+    color: '$magenta1',
+    [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
+    [`${CardTitle}`]: { color: '$magenta1' },
+    [`${CardDescription}`]: { color: '$grayW3' },
+  },
 })
 
 // Community guides
@@ -255,18 +284,6 @@ export const HuntsvilleTitle = styled('h4', {
   color: '$gray3',
 })
 
-export const ArrowRight = styled(ArrowRightSvg, {
-  opacity: 0,
-  transform: 'scale(0)',
-  transformOrigin: 'left',
-
-  color: 'rgba($$color, 1)', // Provides by HunstsvilleLink component
-
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 300ms ease, opacity 300ms ease',
-  },
-})
-
 export const HuntsvilleDescription = styled('p', {
   marginTop: 2,
 
@@ -284,6 +301,8 @@ export const HuntsvilleLink = styled('a', {
 
   width: 'fit-content',
   borderRadius: 2,
+
+  transition: 'all .15s cubic-bezier(.4,0,.2,1)',
 
   '&:focus': {
     outline: '2px solid rgba($$color, 0.3)',

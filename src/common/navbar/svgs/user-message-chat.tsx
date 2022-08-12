@@ -5,7 +5,7 @@ export default function Svg({ ...props }) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="m7.988 15.833 1.423 1.423a.833.833 0 0 0 1.178 0l1.423-1.423H15a2.5 2.5 0 0 0 2.5-2.5V5A2.5 2.5 0 0 0 15 2.5H5A2.5 2.5 0 0 0 2.5 5v8.333a2.5 2.5 0 0 0 2.5 2.5h2.988Z"
-        fill="#9CA8B7"
+        fill="currentColor"
       />
       <circle
         cx="7.917"

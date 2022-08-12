@@ -5,7 +5,7 @@ export default function Svg({ ...props }) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M10 17.5s-5.833-4.792-5.833-9.167a5.833 5.833 0 1 1 11.666 0C15.833 12.708 10 17.5 10 17.5Z"
-        fill="#9CA8B7"
+        fill="currentColor"
       />
       <path
         clipRule="evenodd"

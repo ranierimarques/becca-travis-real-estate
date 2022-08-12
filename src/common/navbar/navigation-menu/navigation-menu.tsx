@@ -258,7 +258,10 @@ function CardListItem({ content }: CardListItemProps) {
         <S.CardLink>
           <div>{content.icon}</div>
           <div>
-            <S.CardTitle>{content.title}</S.CardTitle>
+            <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>
+              <S.CardTitle>{content.title}</S.CardTitle>
+              <S.ArrowRight css={{ pos: 'absolute', right: -18 }} />
+            </Flex>
             <S.CardDescription>{content.description}</S.CardDescription>
           </div>
         </S.CardLink>
