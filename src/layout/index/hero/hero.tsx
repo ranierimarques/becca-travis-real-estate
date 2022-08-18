@@ -1,12 +1,11 @@
-import Image from 'next/image'
-import * as S from './hero.styles'
-import { downtownHuntsville } from './images'
-import { Loupe } from './svgs'
+import Image from "next/image"
+import * as S from "./hero.styles"
+import { downtownHuntsville } from "./images"
+import { Loupe } from "./svgs"
 
 export function Hero() {
   return (
     <S.Section>
-      <S.Hat>HEARTY WELCOME</S.Hat>
       <S.Title>
         Find your dream <br />
         home today
@@ -17,12 +16,14 @@ export function Hero() {
           type="text"
           placeholder="Search by address, neighborhood, city or ZIP code"
         />
-        <Loupe />
+        <S.SearchButton>
+          <Loupe />
+        </S.SearchButton>
       </S.InputWrapper>
 
       <S.HelperText>
-        We will make your dream home a reality. <br />
-        Find out more about the various homes we have available today.
+        If you have any questions about the properties <br />
+        listed on this page, please feel free to contact us.
       </S.HelperText>
 
       <S.ImageWrapper>
@@ -31,7 +32,7 @@ export function Hero() {
           alt="Downtown Hunstsville Lake"
           layout="fill"
           objectFit="cover"
-          objectPosition="50% 35%"
+          objectPosition="50% 50%"
           priority
         />
         <S.ImageOverlay />
