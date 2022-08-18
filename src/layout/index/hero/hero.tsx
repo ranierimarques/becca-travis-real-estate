@@ -32,7 +32,7 @@ export function Hero() {
           alt="Downtown Hunstsville Lake"
           layout="fill"
           objectFit="cover"
-          objectPosition="50% 50%"
+          objectPosition="50% 35%"
           priority
         />
         <S.ImageOverlay />
