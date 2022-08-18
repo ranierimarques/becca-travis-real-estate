@@ -18,7 +18,7 @@ export function RentToOwn() {
           home, lease it back to you and help you repair your credit so you can
           purchase it from us in 18 months or less.
         </S.Paragraph>
-        <Button href="#" css={{ padding: "12px 24px" }}>
+        <Button href="#" size="2">
           Learn more
         </Button>
       </div>

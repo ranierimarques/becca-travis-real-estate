@@ -14,7 +14,7 @@ export function AboutHuntsville() {
           Best Place to Retire, Best Place to Live in Alabama, Most Affordable
           Place to Live, Fastest-Growing Place.
         </S.Paragraph>
-        <Button href="#" css={{ padding: "12px 24px" }}>
+        <Button href="#" size="2">
           Learn more
         </Button>
       </div>
