@@ -1,7 +1,7 @@
-import { Box, Button } from '@common'
-import Image from 'next/image'
-import { becca } from './images'
-import * as S from './last-call.styles'
+import { Box, Button, Flex } from "@common"
+import Image from "next/image"
+import { becca } from "./images"
+import * as S from "./last-call.styles"
 import {
   CirclesSvg,
   HeartSvg,
@@ -10,177 +10,123 @@ import {
   MedalSvg,
   PinSvg,
   ShieldSvg,
-} from './svgs'
+} from "./svgs"
 
 export function LastCall() {
   return (
     <S.Section>
       <S.Container>
-        <Box css={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <Flex direction="column" align="start">
           <S.Title>
-            Get started with <S.BeccaTravis>Becca Travis</S.BeccaTravis>
+            Let&apos;s start a <S.Conversation>conversation</S.Conversation>
           </S.Title>
           <S.Paragraph>
-            Is there a problem finding your dream home? Just contact us
+            Schedule a time to chat with Becca Travis and learn more about how I
+            can help you.
           </S.Paragraph>
-          <Box
+          <Flex
+            align="center"
             css={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 24,
+              gap: 16,
 
-              color: '$magenta1',
-              fontWeight: '400',
-              fontSize: '16px',
-              lineHeight: '24px',
+              color: "$magenta1",
+              fontWeight: "400",
+              fontSize: "16px",
+              lineHeight: "24px",
             }}
           >
-            <Button
-              href="#"
-              css={{
-                color: '$white',
-                padding: '12px 20px',
-                fontWeight: '500',
-                fontSize: '14px',
-                lineHeight: '21px',
-              }}
-            >
+            <Button href="#" size="2">
               Schedule
             </Button>
             or
-            <Button
-              href="#"
-              css={{
-                color: '$magenta1',
-                padding: '12px 20px',
-                border: '1px solid $magenta1',
-                backgroundColor: 'transparent',
-                fontWeight: '500',
-                fontSize: '14px',
-                lineHeight: '21px',
-              }}
-            >
+            <Button href="#" outlined size="2">
               Call
             </Button>
-          </Box>
-        </Box>
+          </Flex>
+        </Flex>
 
         <div>
-          <Box
+          <S.IconContainer
             css={{
-              position: 'absolute',
-              top: '26px',
-              left: '471px',
+              top: "26px",
+              left: "471px",
 
-              padding: '10px',
-              background: '$tangerine1',
-              borderRadius: '16px',
-
-              filter: 'drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))',
-
-              zIndex: 2,
+              background: "$tangerine1",
+              borderRadius: "16px",
             }}
           >
             <HeartSvg className={S.SvgStyles()} />
-          </Box>
-          <Box
+          </S.IconContainer>
+          <S.IconContainer
             css={{
-              position: 'absolute',
-              bottom: '160px',
-              left: '384px',
+              bottom: "160px",
+              left: "449px",
 
-              padding: '10px',
-              background: '$tangerine1',
-              borderRadius: '12px',
-
-              filter: 'drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))',
-
-              zIndex: 2,
+              background: "$tangerine1",
+              borderRadius: "12px",
             }}
           >
             <ShieldSvg className={S.SvgStyles()} />
-          </Box>
-          <Box
+          </S.IconContainer>
+          <S.IconContainer
             css={{
-              position: 'absolute',
-              bottom: '36px',
-              left: '474px',
+              bottom: "36px",
+              left: "474px",
 
-              padding: '10px',
-              background: '$tangerine2',
-              borderRadius: '14px',
-
-              filter: 'drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))',
-
-              zIndex: 2,
+              background: "$tangerine2",
+              borderRadius: "14px",
             }}
           >
             <MedalSvg className={S.SvgStyles()} />
-          </Box>
-          <Box
+          </S.IconContainer>
+          <S.IconContainer
             css={{
-              position: 'absolute',
-              top: '23px',
-              right: '69px',
+              top: "23px",
+              right: "69px",
 
-              padding: '10px',
-              background: '$tangerine2',
-              borderRadius: '14px',
-
-              filter: 'drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))',
-
-              zIndex: 2,
+              background: "$tangerine2",
+              borderRadius: "14px",
             }}
           >
             <PinSvg className={S.SvgStyles()} />
-          </Box>
-          <Box
+          </S.IconContainer>
+          <S.IconContainer
             css={{
-              position: 'absolute',
-              top: '159px',
-              right: '32px',
+              top: "159px",
+              right: "32px",
 
-              padding: '10px',
-              background: '$tangerine1',
-              borderRadius: '16px',
-
-              filter: 'drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))',
-
-              zIndex: 2,
+              background: "$tangerine1",
+              borderRadius: "16px",
             }}
           >
             <HouseSvg className={S.SvgStyles()} />
-          </Box>
-          <Box
+          </S.IconContainer>
+          <S.IconContainer
             css={{
-              position: 'absolute',
-              bottom: '69px',
-              right: '134px',
+              bottom: "40px",
+              right: "80px",
 
-              padding: '10px',
-              background: '$tangerine2',
-              borderRadius: '12px',
-
-              filter: 'drop-shadow(0px 12px 15px rgba($colors$tangerine8Rgb, 0.2))',
-
-              zIndex: 2,
+              background: "$tangerine2",
+              borderRadius: "12px",
             }}
           >
             <LikeSvg className={S.SvgStyles()} />
-          </Box>
+          </S.IconContainer>
 
           <Box
             css={{
-              position: 'absolute',
-              bottom: '-5px',
-              right: '195px',
+              position: "absolute",
+              bottom: "-5px",
+              right: "195px",
 
               zIndex: 2,
             }}
           >
             <Image src={becca} alt="Becca Travis" quality="100" />
           </Box>
-          <Box css={{ position: 'absolute', bottom: 0, right: 0 }}>
+          <Box
+            css={{ position: "absolute", bottom: 0, right: 0, opacity: ".1" }}
+          >
             <CirclesSvg className={S.SvgStyles()} />
           </Box>
         </div>
