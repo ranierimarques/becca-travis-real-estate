@@ -1,7 +1,7 @@
-export { default as ChatSvg } from './chat';
-export { default as CupSvg } from './cup';
-export { default as HouseSvg } from './house';
-export { default as LineLeftSvg } from './line-left';
-export { default as LineRightSvg } from './line-right';
-export { default as UserSvg } from './user';
-
+export { default as ChipSvg } from "./chip"
+export { default as CupSvg } from "./cup"
+export { default as FlagSvg } from "./flag"
+export { default as LineSvg } from "./line"
+export { default as LineLeftSvg } from "./line-left"
+export { default as LineRightSvg } from "./line-right"
+export { default as RocketSvg } from "./rocket"
