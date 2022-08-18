@@ -1,10 +1,8 @@
 import { Box } from '@common'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { brFlag, enFlag, esFlag } from '../images'
-import { ChatSvg, EarthSvg, ShieldSvg, UserSvg } from '../svgs'
+import { BrFlag, ChatSvg, EarthSvg, EnFlag, EsFlag, ShieldSvg, UserSvg } from '../svgs'
 import * as S from './helper-navbar.styles'
 
 const links = [
@@ -27,21 +25,21 @@ export function HelperNavbar() {
           <S.Content align="start">
             <S.RadioGroup value={language} onValueChange={setLanguage}>
               <S.RadioItem value="en-US">
-                <Image src={enFlag} alt="United states's flag" width={20} height={15} />
+                <EnFlag />
                 <S.LanguageText>English</S.LanguageText>
                 <S.ItemIndicator>
                   <S.CheckMark />
                 </S.ItemIndicator>
               </S.RadioItem>
               <S.RadioItem value="pt-BR" disabled>
-                <Image src={brFlag} alt="Brazil's flag" width={20} height={15} />
+                <BrFlag />
                 <S.LanguageText>Portuguese</S.LanguageText>
                 <S.ItemIndicator>
                   <S.CheckMark />
                 </S.ItemIndicator>
               </S.RadioItem>
               <S.RadioItem value="en-BR" disabled>
-                <Image src={esFlag} alt="Spanish flag" width={20} height={15} />
+                <EsFlag />
                 <S.LanguageText>Spanish</S.LanguageText>
                 <S.ItemIndicator>
                   <S.CheckMark />
