@@ -9,10 +9,10 @@ export function AboutHuntsville() {
       <div>
         <S.Title>About Huntsville</S.Title>
         <S.Paragraph>
-          Huntsville, the city where waves of history wash over you as soon as
-          it rains. Whether you&apos;re moving across town or relocating from
-          another state there are plenty reasons to choose Huntsville: more than
-          any website can portray and all without leaving this place!
+          Huntsville is now Alabamas Largest City. US recently names Huntsville,
+          Al as the Place to Live, other notable mentions include: One Of The
+          Best Place to Retire, Best Place to Live in Alabama, Most Affordable
+          Place to Live, Fastest-Growing Place.
         </S.Paragraph>
         <Button href="#" css={{ padding: "12px 24px" }}>
           Learn more
