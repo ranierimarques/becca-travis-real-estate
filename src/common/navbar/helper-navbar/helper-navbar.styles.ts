@@ -41,7 +41,7 @@ const linkStyles = {
 
   padding: '6px 8px',
 
-  '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)' },
+  '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)', outlineOffset: 0 },
   '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
 }
 
