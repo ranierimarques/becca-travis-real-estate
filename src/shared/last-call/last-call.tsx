@@ -35,11 +35,22 @@ export function LastCall() {
               lineHeight: "24px",
             }}
           >
-            <Button href="#" size="2">
+            <Button
+              size="2"
+              href="https://calendly.com/beccatravis"
+              as="a"
+              target="_blank"
+            >
               Schedule
             </Button>
             or
-            <Button href="#" outlined size="2">
+            <Button
+              href="tel:+1-256-318-9066"
+              as="a"
+              target="_self"
+              outlined
+              size="2"
+            >
               Call
             </Button>
           </Flex>
