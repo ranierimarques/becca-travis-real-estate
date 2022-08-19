@@ -66,7 +66,7 @@ export function Achievements() {
           {badges.map((badge, i) => {
             return (
               <S.Badge key={i}>
-                <Flex align="center" css={{ gap: 12 }}>
+                <Flex align="start" css={{ gap: 12 }}>
                   {badge.svg}
                   <S.BadgeDescription>{badge.description}</S.BadgeDescription>
                 </Flex>
