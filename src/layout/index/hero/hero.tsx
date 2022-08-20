@@ -1,7 +1,7 @@
-import Image from "next/image"
-import * as S from "./hero.styles"
-import { downtownHuntsville } from "./images"
-import { Loupe } from "./svgs"
+import Image from 'next/image'
+import * as S from './hero.styles'
+import { downtownHuntsville } from './images'
+import { Loupe } from './svgs'
 
 export function Hero() {
   return (
@@ -31,11 +31,11 @@ export function Hero() {
           src={downtownHuntsville}
           alt="Downtown Hunstsville Lake"
           layout="fill"
-          objectFit="cover"
-          objectPosition="50% 35%"
+          objectFit="contain"
+          objectPosition="0% 35%"
           priority
         />
-        <S.ImageOverlay />
+        {/* <S.ImageOverlay /> */}
       </S.ImageWrapper>
 
       <S.ArrowDown />
