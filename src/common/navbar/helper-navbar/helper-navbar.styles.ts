@@ -1,26 +1,4 @@
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import { keyframes, styled } from 'stitches.config'
-import { CheckMarkSvg } from '../svgs'
-
-const slideUpAndFade = keyframes({
-  '0%': { opacity: 0, transform: 'translateY(2px)' },
-  '100%': { opacity: 1, transform: 'translateY(0)' },
-})
-
-const slideRightAndFade = keyframes({
-  '0%': { opacity: 0, transform: 'translateX(-2px)' },
-  '100%': { opacity: 1, transform: 'translateX(0)' },
-})
-
-const slideDownAndFade = keyframes({
-  '0%': { opacity: 0, transform: 'translateY(-2px)' },
-  '100%': { opacity: 1, transform: 'translateY(0)' },
-})
-
-const slideLeftAndFade = keyframes({
-  '0%': { opacity: 0, transform: 'translateX(2px)' },
-  '100%': { opacity: 1, transform: 'translateX(0)' },
-})
+import { styled } from 'stitches.config'
 
 export const Nav = styled('nav', {
   display: 'flex',
@@ -28,6 +6,12 @@ export const Nav = styled('nav', {
   justifyContent: 'space-between',
   maxWidth: 1072,
   margin: '0 auto',
+})
+
+export const OptionsList = styled('ul', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 16,
 })
 
 const linkStyles = {
@@ -45,81 +29,12 @@ const linkStyles = {
   '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
 }
 
-export const Trigger = styled(DropdownMenuPrimitive.Trigger, linkStyles, {
+export const Link = styled('a', linkStyles, {
+  gap: 8,
+})
+
+export const ButtonTrigger = styled('button', linkStyles, {
   gap: 6,
 
   cursor: 'pointer',
-})
-
-export const Content = styled(DropdownMenuPrimitive.Content, {
-  zIndex: 1,
-  borderRadius: 8,
-  padding: 8,
-  backgroundColor: '$white',
-  boxShadow:
-    'hsl(206 22% 7% / 40%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  '@media (prefers-reduced-motion: no-preference)': {
-    animationDuration: '300ms',
-    animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-    willChange: 'transform, opacity',
-    '&[data-state="open"]': {
-      '&[data-side="top"]': { animationName: slideDownAndFade },
-      '&[data-side="right"]': { animationName: slideLeftAndFade },
-      '&[data-side="bottom"]': { animationName: slideUpAndFade },
-      '&[data-side="left"]': { animationName: slideRightAndFade },
-    },
-  },
-})
-
-export const Arrow = styled(DropdownMenuPrimitive.Arrow, {
-  fill: '$white',
-})
-
-export const RadioGroup = styled(DropdownMenuPrimitive.RadioGroup, {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 6,
-})
-
-export const RadioItem = styled(DropdownMenuPrimitive.RadioItem, {
-  display: 'flex',
-  alignItems: 'center',
-
-  width: '100%',
-
-  borderRadius: 4,
-  padding: 8,
-
-  '&:focus': { outline: '1px solid $green1' },
-  '&:not([data-disabled])': { cursor: 'pointer' },
-  '&[data-disabled]': { opacity: 0.32, cursor: 'default' },
-  '&[data-state="checked"]': { background: 'rgba($colors$green1Rgb, 0.1)' },
-})
-
-export const LanguageText = styled('span', {
-  display: 'block',
-  marginLeft: 8,
-
-  fontWeight: '400',
-  fontSize: '12px',
-  lineHeight: '16px',
-  color: '$gray2',
-})
-
-export const ItemIndicator = styled(DropdownMenuPrimitive.ItemIndicator, {
-  fontSize: '0',
-})
-
-export const CheckMark = styled(CheckMarkSvg, {
-  marginLeft: 16,
-})
-
-export const OptionsList = styled('ul', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 16,
-})
-
-export const Link = styled('a', linkStyles, {
-  gap: 8,
 })
