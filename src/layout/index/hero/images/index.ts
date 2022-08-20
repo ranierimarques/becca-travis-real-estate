@@ -1,1 +1,1 @@
-export { default as downtownHuntsville } from './teste.jpg'
+export { default as downtownHuntsville } from './downtown-huntsville.jpg'
