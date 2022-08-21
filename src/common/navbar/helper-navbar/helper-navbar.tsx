@@ -1,24 +1,12 @@
-/* eslint-disable react/display-name */
 import { Box } from '@common'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { forwardRef, Suspense } from 'react'
-import { ChatSvg, EarthSvg, ShieldSvg, UserSvg } from '../svgs'
+import { ChatSvg, ShieldSvg, UserSvg } from '../svgs'
 import * as S from './helper-navbar.styles'
 
 const DropdownLanguage = dynamic<{}>(
-  () => import('../dropdown-language/dropdown-language'),
-  {
-    suspense: true,
-  }
+  () => import('../dropdown-language/dropdown-language')
 )
-
-export const Trigger = forwardRef<any>(({ ...props }, forwardedRef) => (
-  <S.ButtonTrigger {...props} ref={forwardedRef}>
-    <EarthSvg />
-    Language
-  </S.ButtonTrigger>
-))
 
 const links = [
   { id: 1, icon: <ShieldSvg />, text: 'Local Guides', href: '/local-guides' },
@@ -30,9 +18,7 @@ export function HelperNavbar() {
   return (
     <Box css={{ padding: '6px 0', background: '$tangerine10' }}>
       <S.Nav>
-        <Suspense fallback={<Trigger />}>
-          <DropdownLanguage />
-        </Suspense>
+        <DropdownLanguage />
 
         <S.OptionsList>
           {links.map(link => (

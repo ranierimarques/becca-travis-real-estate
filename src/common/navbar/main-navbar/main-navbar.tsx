@@ -1,7 +1,10 @@
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { NavigationMenu, TalkToMe } from '../index'
+import { TalkToMe } from '../index'
 import { LogoSvg } from '../svgs'
 import * as S from './main-navbar.styles'
+
+const NavigationMenu = dynamic<{}>(() => import('../navigation-menu/navigation-menu'))
 
 export function MainNavbar() {
   return (

@@ -1,7 +1,6 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import { useState } from 'react'
-import { Trigger } from '../helper-navbar/helper-navbar'
-import { BrFlag, EnFlag, EsFlag } from '../svgs'
+import { BrFlag, EarthSvg, EnFlag, EsFlag } from '../svgs'
 import * as S from './dropdown-language.styles'
 
 export default function DropdownLanguage() {
@@ -9,9 +8,10 @@ export default function DropdownLanguage() {
 
   return (
     <DropdownMenuPrimitive.Root>
-      <DropdownMenuPrimitive.Trigger asChild>
-        <Trigger />
-      </DropdownMenuPrimitive.Trigger>
+      <S.Trigger>
+        <EarthSvg />
+        Language
+      </S.Trigger>
       <S.Content align="start">
         <S.RadioGroup value={language} onValueChange={setLanguage}>
           <S.RadioItem value="en-US">

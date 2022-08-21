@@ -22,6 +22,24 @@ const slideLeftAndFade = keyframes({
   '100%': { opacity: 1, transform: 'translateX(0)' },
 })
 
+export const Trigger = styled(DropdownMenuPrimitive.Trigger, {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 6,
+
+  color: '$magenta1',
+  fontSize: 12,
+  lineHeight: '16px',
+  fontWeight: 400,
+
+  padding: '6px 8px',
+
+  cursor: 'pointer',
+
+  '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)', outlineOffset: 0 },
+  '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
+})
+
 export const Content = styled(DropdownMenuPrimitive.Content, {
   zIndex: 1,
   borderRadius: 8,

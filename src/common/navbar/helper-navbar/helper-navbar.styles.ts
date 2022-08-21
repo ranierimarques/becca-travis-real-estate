@@ -14,9 +14,10 @@ export const OptionsList = styled('ul', {
   gap: 16,
 })
 
-const linkStyles = {
+export const Link = styled('a', {
   display: 'flex',
   alignItems: 'center',
+  gap: 8,
 
   color: '$magenta1',
   fontSize: 12,
@@ -27,14 +28,4 @@ const linkStyles = {
 
   '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)', outlineOffset: 0 },
   '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
-}
-
-export const Link = styled('a', linkStyles, {
-  gap: 8,
-})
-
-export const ButtonTrigger = styled('button', linkStyles, {
-  gap: 6,
-
-  cursor: 'pointer',
 })
