@@ -1,7 +1,7 @@
-import { Box, Button, Flex } from "@common"
-import Image from "next/image"
-import { becca } from "./images"
-import * as S from "./last-call.styles"
+import { Box, Button, Flex } from '@common'
+import Image from 'next/image'
+import { becca } from './images'
+import * as S from './last-call.styles'
 import {
   CirclesSvg,
   HeartSvg,
@@ -10,7 +10,7 @@ import {
   MedalSvg,
   PinSvg,
   ShieldSvg,
-} from "./svgs"
+} from './svgs'
 
 export function LastCall() {
   return (
@@ -21,18 +21,18 @@ export function LastCall() {
             Let&apos;s start a <S.Conversation>conversation</S.Conversation>
           </S.Title>
           <S.Paragraph>
-            Schedule a time to chat with Becca Travis and learn more about how I
-            can help you.
+            Schedule a time to chat with Becca Travis and learn more about how I can help
+            you.
           </S.Paragraph>
           <Flex
             align="center"
             css={{
               gap: 16,
 
-              color: "$magenta1",
-              fontWeight: "400",
-              fontSize: "16px",
-              lineHeight: "24px",
+              color: '$magenta1',
+              fontWeight: '400',
+              fontSize: '16px',
+              lineHeight: '24px',
             }}
           >
             <Button
@@ -44,100 +44,36 @@ export function LastCall() {
               Schedule
             </Button>
             or
-            <Button
-              href="tel:+1-256-318-9066"
-              as="a"
-              target="_self"
-              outlined
-              size="2"
-            >
+            <Button href="tel:+1-256-318-9066" as="a" target="_self" outlined size="2">
               Call
             </Button>
           </Flex>
         </Flex>
 
         <div>
-          <S.IconContainer
-            css={{
-              top: "26px",
-              left: "471px",
-
-              background: "$tangerine1",
-              borderRadius: "16px",
-            }}
-          >
+          <S.IconContainer css={{ top: 26, left: 471, bg: '$tangerine1', br: 16 }}>
             <HeartSvg className={S.SvgStyles()} />
           </S.IconContainer>
-          <S.IconContainer
-            css={{
-              bottom: "160px",
-              left: "449px",
-
-              background: "$tangerine1",
-              borderRadius: "12px",
-            }}
-          >
+          <S.IconContainer css={{ bottom: 160, left: 449, bg: '$tangerine1', br: 12 }}>
             <ShieldSvg className={S.SvgStyles()} />
           </S.IconContainer>
-          <S.IconContainer
-            css={{
-              bottom: "36px",
-              left: "474px",
-
-              background: "$tangerine2",
-              borderRadius: "14px",
-            }}
-          >
+          <S.IconContainer css={{ bottom: 36, left: 474, bg: '$tangerine2', br: 14 }}>
             <MedalSvg className={S.SvgStyles()} />
           </S.IconContainer>
-          <S.IconContainer
-            css={{
-              top: "23px",
-              right: "69px",
-
-              background: "$tangerine2",
-              borderRadius: "14px",
-            }}
-          >
+          <S.IconContainer css={{ top: 23, right: 69, bg: '$tangerine2', br: 14 }}>
             <PinSvg className={S.SvgStyles()} />
           </S.IconContainer>
-          <S.IconContainer
-            css={{
-              top: "159px",
-              right: "32px",
-
-              background: "$tangerine1",
-              borderRadius: "16px",
-            }}
-          >
+          <S.IconContainer css={{ top: 159, right: 32, bg: '$tangerine1', br: 16 }}>
             <HouseSvg className={S.SvgStyles()} />
           </S.IconContainer>
-          <S.IconContainer
-            css={{
-              bottom: "40px",
-              right: "80px",
-
-              background: "$tangerine2",
-              borderRadius: "12px",
-            }}
-          >
+          <S.IconContainer css={{ bottom: 40, right: 80, bg: '$tangerine2', br: 12 }}>
             <LikeSvg className={S.SvgStyles()} />
           </S.IconContainer>
 
-          <Box
-            css={{
-              position: "absolute",
-              bottom: "-5px",
-              right: "195px",
-
-              zIndex: 2,
-            }}
-          >
+          <Box css={{ position: 'absolute', bottom: -5, right: 195, zIndex: 2 }}>
             <Image src={becca} alt="Becca Travis" quality="100" />
           </Box>
-          <Box
-            css={{ position: "absolute", bottom: 0, right: 0, opacity: ".1" }}
-          >
+          <Box css={{ position: 'absolute', bottom: 0, right: 0, opacity: '.1' }}>
             <CirclesSvg className={S.SvgStyles()} />
           </Box>
         </div>
