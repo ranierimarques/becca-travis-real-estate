@@ -26,11 +26,18 @@ export const MadeBy = styled('span', {
 export const Link = styled('a', {
   fontWeight: '400',
   fontSize: '14px',
-  lineHeight: '32px',
+  lineHeight: '20px',
   color: '$gray3',
 
   '&:hover': {
     textDecoration: 'underline',
+    textUnderlineOffset: '3px',
+    textDecorationColor: '$gray5',
+  },
+  '&:focus': {
+    textDecoration: 'none',
+    outline: '2px solid rgba($colors$gray5Rgb, 0.5)',
+    outlineOffset: 2,
   },
 })
 
@@ -51,7 +58,14 @@ export const Heart = styled(HeartSvg, {
 })
 
 export const LogoLink = styled('a', {
+  fontSize: '0',
   justifySelf: 'center',
+
+  '&:focus-visible': {
+    borderRadius: 1,
+    outline: '2px auto rgba($colors$magenta1Rgb, 0.2)',
+    outlineOffset: '6px',
+  },
 })
 
 export const Copyright = styled('span', {

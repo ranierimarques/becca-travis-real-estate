@@ -25,7 +25,13 @@ export function Copyrights() {
     >
       <S.MadeBy>
         Made with <S.Heart active={isHeartActive} onClick={handleToggleHeartActive} /> by
-        <S.Link href="http://octanestd.com/">Octane Studio</S.Link>
+        <S.Link
+          href="https://www.instagram.com/octane.std/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Octane Studio
+        </S.Link>
       </S.MadeBy>
 
       <Link href="/" passHref>

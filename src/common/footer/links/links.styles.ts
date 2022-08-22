@@ -9,6 +9,13 @@ export const Link = styled('a', {
   '&:hover': {
     color: '$magenta1',
     textDecoration: 'underline',
+    textUnderlineOffset: '3px',
+    textDecorationColor: '$magenta5',
+  },
+  '&:focus': {
+    textDecoration: 'none',
+    outline: '2px solid $colors$magenta4',
+    outlineOffset: 2,
   },
 })
 
@@ -41,6 +48,8 @@ export const ContactLink = styled('a', {
   alignItems: 'center',
   gap: 12,
 
+  width: 'fit-content',
+
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',
@@ -49,6 +58,13 @@ export const ContactLink = styled('a', {
   '&:hover': {
     color: '$magenta1',
     textDecoration: 'underline',
+    textUnderlineOffset: '3px',
+    textDecorationColor: '$magenta5',
+  },
+  '&:focus': {
+    textDecoration: 'none',
+    outline: '2px solid $colors$magenta4',
+    outlineOffset: 2,
   },
 })
 
@@ -62,5 +78,13 @@ export const SocialLink = styled('a', {
   '&:hover': {
     color: '$magenta1',
     filter: 'drop-shadow(0px 2px 8px rgba($colors$magenta1Rgb, 0.25))',
+  },
+  '&:focus': {
+    color: '$magenta1',
+    filter: 'drop-shadow(0px 2px 8px rgba($colors$magenta1Rgb, 0.25))',
+    borderRadius: '50%',
+    textDecoration: 'none',
+    outline: '2px solid rgba($colors$magenta5Rgb, 0.75)',
+    outlineOffset: 2,
   },
 })
