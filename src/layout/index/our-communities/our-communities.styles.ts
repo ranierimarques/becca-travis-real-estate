@@ -33,7 +33,7 @@ export const Description = styled('span', {
   color: '$white',
 
   '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 350ms ease',
+    transition: 'transform 250ms ease',
   },
 })
 
@@ -50,14 +50,16 @@ export const HoverSpan = styled('p', {
   fontSize: '16px',
   lineHeight: '24px',
   color: '$white',
-  textDecoration: 'underline',
+  textDecorationLine: 'underline',
+  textUnderlineOffset: '3px',
+  textDecorationColor: 'rgba($colors$whiteRgb, 0.75)',
 
   opacity: 0,
-  transform: 'scale(0.5)',
-  transformOrigin: 'left',
+  transform: 'translateY(75%)',
+  transformOrigin: 'bottom',
 
   '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 300ms ease, opacity 300ms ease',
+    transition: 'transform 250ms ease, opacity 250ms ease',
   },
 })
 
@@ -65,7 +67,7 @@ export const CommunityImage = styled(Image, {
   borderRadius: '8px',
 
   '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'filter 300ms ease',
+    transition: 'filter 250ms ease',
   },
 })
 
@@ -79,28 +81,20 @@ export const CommunityLink = styled('a', {
 
   borderRadius: 8,
 
+  overflow: 'hidden',
+
   '&:hover': {
-    [`& ${CommunityImage}`]: { filter: 'brightness(0.8)' },
-    [`& ${HoverSpan}`]: { transform: 'scale(1)', opacity: 1 },
-    [`& ${Description}`]: {
-      transform: 'translateY(-28px)',
-      '@media (prefers-reduced-motion: no-preference)': {
-        transition: 'transform 200ms ease',
-      },
-    },
+    [`& ${CommunityImage}`]: { filter: 'brightness(0.7)' },
+    [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
+    [`& ${Description}`]: { transform: 'translateY(-28px)' },
   },
   '&:focus-visible': {
     boxShadow: '0 0 0 4px $colors$magenta9',
-    [`& ${CommunityImage}`]: { filter: 'brightness(0.8)' },
-    [`& ${HoverSpan}`]: { transform: 'scale(1)', opacity: 1 },
-    [`& ${Description}`]: {
-      transform: 'translateY(-28px)',
-      '@media (prefers-reduced-motion: no-preference)': {
-        transition: 'transform 200ms ease',
-      },
-    },
+    [`& ${CommunityImage}`]: { filter: 'brightness(0.7)' },
+    [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
+    [`& ${Description}`]: { transform: 'translateY(-28px)' },
   },
-  '&:active': { [`& ${CommunityImage}`]: { filter: 'brightness(0.7)' } },
+  '&:active': { [`& ${CommunityImage}`]: { filter: 'brightness(0.6)' } },
 })
 
 export const ImageMask = styled('div', {
