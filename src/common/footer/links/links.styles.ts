@@ -83,7 +83,6 @@ export const SocialLink = styled('a', {
     color: '$magenta1',
     filter: 'drop-shadow(0px 2px 8px rgba($colors$magenta1Rgb, 0.25))',
     borderRadius: '50%',
-    textDecoration: 'none',
     outline: '2px solid rgba($colors$magenta5Rgb, 0.75)',
     outlineOffset: 2,
   },

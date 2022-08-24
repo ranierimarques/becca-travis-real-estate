@@ -83,6 +83,8 @@ export const CommunityLink = styled('a', {
 
   overflow: 'hidden',
 
+  boxShadow: '0 0 20px rgba($colors$blackRgb, 0.2)',
+
   '&:hover': {
     [`& ${CommunityImage}`]: { filter: 'brightness(0.7)' },
     [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
