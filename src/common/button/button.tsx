@@ -13,6 +13,7 @@ type buttonProps = {
   as?: 'span' | 'a'
   target?: '_blank' | '_self'
   css?: Stitches.CSS
+  onClick?: () => void
 } & ButtonVariants
 
 type anchorRef = React.ForwardedRef<HTMLAnchorElement>
