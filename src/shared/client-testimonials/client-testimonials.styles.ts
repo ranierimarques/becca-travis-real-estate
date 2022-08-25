@@ -1,5 +1,105 @@
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
-import { styled } from "stitches.config"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { keyframes, styled } from "stitches.config"
+import { LinkSvg, LogoSvg } from "./svgs"
+
+const overlayShow = keyframes({
+  "0%": { opacity: 0 },
+  "100%": { opacity: 1 },
+})
+
+const contentShow = keyframes({
+  "0%": { opacity: 0, transform: "translate(-50%, -48%) scale(.96)" },
+  "100%": { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
+})
+
+export const StyledOverlay = styled(DialogPrimitive.Overlay, {
+  backgroundColor: "rgba($colors$blackRgb, 0.4)",
+  position: "fixed",
+  inset: 0,
+  "@media (prefers-reduced-motion: no-preference)": {
+    animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
+  },
+})
+
+export const StyledContent = styled(DialogPrimitive.Content, {
+  backgroundColor: "white",
+  borderRadius: 6,
+  boxShadow:
+    "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "536px",
+  "@media (prefers-reduced-motion: no-preference)": {
+    animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
+  },
+  "&:focus": { outline: "none" },
+})
+
+export const IconButton = styled("button", {
+  all: "unset",
+  borderRadius: "100%",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "absolute",
+  top: 10,
+  right: 10,
+
+  "&:hover": {
+    background: "rgba(140, 138, 151, 0.15)",
+    cursor: "pointer",
+  },
+  "&:focus": { boxShadow: `0 0 0 2px rgba(122, 119, 134, 0.5)` },
+})
+
+export const ModalPhoto = styled("div", {
+  width: "48px",
+  padding: "12px 0",
+  background: "rgba($colors$magenta5Rgb, 0.5)",
+  borderRadius: "999px",
+
+  fontWeight: "600",
+  fontSize: "20px",
+  lineHeight: "24px",
+  textAlign: "center",
+  color: "$magenta1",
+})
+
+export const ModalName = styled("span", {
+  display: "block",
+  marginBottom: "4px",
+
+  fontWeight: "600",
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "$grayW1",
+})
+
+export const ModalSource = styled("span", {
+  fontWeight: "400",
+  fontSize: "14px",
+  lineHeight: "22px",
+  color: "$gray3",
+})
+
+export const ModalText = styled("p", {
+  padding: "24px 32px 32px",
+
+  fontWeight: "400",
+  fontSize: "14px",
+  lineHeight: "24px",
+  color: "$gray2",
+})
+
+export const ModalLogo = styled(LogoSvg, {
+  position: "absolute",
+  top: 0,
+  right: 36,
+})
+
+// =========== Radix ===========
 
 export const Section = styled("section", {
   paddingBottom: "120px",
@@ -19,7 +119,7 @@ export const Title = styled("h2", {
 })
 
 export const Description = styled("p", {
-  maxWidth: "295px",
+  maxWidth: "428px",
 
   fontWeight: "400",
   fontSize: "16px",
@@ -27,154 +127,106 @@ export const Description = styled("p", {
   color: "$gray2",
 })
 
-export const MoreTestimonials = styled("a", {
+export const ViewAll = styled("a", {
   fontWeight: "500",
   fontSize: "14px",
   lineHeight: "36px",
   color: "$magenta9",
 })
 
-// =========== Testimonials ===========
+// =========== Testimonial ===========
 
-// ======== Clients Buttons ========
+export const TestimonialsWrapper = styled("div", {
+  overflow: "hidden",
 
-export const Clients = styled("ul", {
+  "&.resize": {
+    overflow: "visible",
+  },
+})
+
+export const Testimonials = styled("div", {
   display: "flex",
-  flexDirection: "column",
-  gap: 24,
+  flexWrap: "wrap",
+  alignItems: "flex-start",
+  gap: 32,
+
+  position: "relative",
+
+  maxHeight: "629px",
+
+  "&.resize": {
+    maxHeight: "fit-content",
+  },
 })
 
-export const ImageWrapper = styled("span", {
-  opacity: "0.4",
+export const LinkSvgHover = styled(LinkSvg, {
+  opacity: "0",
 })
 
-export const ClientName = styled("span", {
-  alignSelf: "start",
-
-  fontWeight: "600",
-  fontSize: "14px",
-  lineHeight: "21px",
-  color: "$grayW7",
-})
-
-export const BeccaClient = styled("span", {
-  fontWeight: "400",
-  fontSize: "10px",
-  lineHeight: "15px",
-  color: "$grayW7",
-})
-
-export const Client = styled("button", {
-  display: "flex",
-  alignItems: "center",
-  gap: 16,
-  padding: "16px 0 18px 24px",
-
-  width: "336px",
-
+export const TestimonialCard = styled("div", {
+  padding: "24px",
+  maxWidth: "336px",
+  background: "$white",
+  boxShadow: "0px 0px 40px rgba(0, 0, 0, 0.08)",
   borderRadius: "8px",
-  cursor: "pointer",
 
-  variants: {
-    active: {
-      true: {
-        background: "$tangerine5",
-        [`${ImageWrapper}`]: { opacity: "1" },
-        [`${ClientName}`]: { color: "$magenta7" },
-        [`${BeccaClient}`]: { color: "$magenta9" },
-      },
+  "&:hover": {
+    cursor: "pointer",
+    [`${LinkSvgHover}`]: {
+      opacity: "1",
     },
   },
 })
 
-// ======== Client Message ========
+export const Photo = styled("div", {
+  width: "48px",
+  padding: "12px 0",
+  background: "$grayW8",
+  borderRadius: "999px",
 
-export const Testimonial = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
-
-  padding: "16px 16px 0 16px",
-
-  background: "rgba($colors$grayW8Rgb, 0.1)",
-  borderRadius: "8px 8px 0 0",
-})
-
-export const TestimonialClientName = styled("span", {
   fontWeight: "600",
-  fontSize: "24px",
-  lineHeight: "36px",
-  color: "$magenta7",
+  fontSize: "20px",
+  lineHeight: "24px",
+  textAlign: "center",
+  color: "$grayW2",
 })
 
-export const TestimonialBeccaClient = styled("span", {
-  marginBottom: 32,
+export const Name = styled("span", {
+  display: "block",
+  marginBottom: "4px",
 
-  fontWeight: "400",
-  fontSize: "10px",
-  lineHeight: "15px",
-  color: "$magenta9",
+  fontWeight: "600",
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "$grayW1",
 })
 
-export const Message = styled("p", {
-  maxWidth: "612px",
-
+export const Source = styled("span", {
   fontWeight: "400",
   fontSize: "14px",
-  lineHeight: "30px",
+  lineHeight: "22px",
+  color: "$gray3",
+})
+
+export const Text = styled("p", {
+  fontWeight: "400",
+  fontSize: "14px",
+  lineHeight: "24px",
   color: "$gray2",
 })
 
-//  ========== Radix ===============
-
-export const ScrollArea = styled(ScrollAreaPrimitive.Root, {
-  overflow: "hidden",
-})
-
-export const Viewport = styled(ScrollAreaPrimitive.Viewport, {
-  maxHeight: "242px",
-  padding: "0 16px 16px 16px",
-
-  background: "rgba($colors$grayW8Rgb, 0.1)",
-
-  borderRadius: "0 0 8px 8px",
-
-  overscrollBehavior: "contain",
-})
-
-export const Scrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
+export const TestimonialsOverlay = styled("div", {
   display: "flex",
-  userSelect: "none",
-  touchAction: "none",
-  padding: 2,
-  marginRight: 2,
+  alignItems: "center",
+  justifyContent: "center",
 
-  '&[data-orientation="vertical"]': { width: 8 },
-  '&[data-orientation="horizontal"]': {
-    flexDirection: "column",
-    height: 10,
-  },
-})
+  padding: "237px 0px 64px",
 
-export const Thumb = styled(ScrollAreaPrimitive.Thumb, {
-  flex: 1,
-  background: "rgba($colors$gray5Rgb, 0.2)",
-  borderRadius: 10,
-  position: "relative",
+  position: "absolute",
+  bottom: "0px",
+  width: "100%",
+  background:
+    "linear-gradient(180deg, rgba(255, 255, 255, 0) 47.4%, rgba(255, 255, 255, 0.7) 75.52%, rgba(255, 255, 255, 0.7) 100%)",
 
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    height: "100%",
-    minWidth: 44,
-    minHeight: 44,
-  },
-})
-
-export const Corner = styled(ScrollAreaPrimitive.Corner, {
-  background: "$black",
+  pointerEvents: "none",
 })
