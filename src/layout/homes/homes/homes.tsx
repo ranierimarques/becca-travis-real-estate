@@ -1,29 +1,10 @@
-import { Box, Flex, Hat } from "@common"
-import { useFetch } from "@resources/hooks/useFetch"
+import { Box, Flex } from "@common"
 import Image from "next/image"
 import Link from "next/link"
-import * as S from "./new-to-market.styles"
+import * as S from "./homes.styles"
 import { BedSvg, FavoriteSvg, ShowerSvg, SquareSvg } from "./svgs"
 
-const url = `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active`
-
-interface House {
-  bundle: {
-    ListingId: string
-    BedroomsTotal: string
-    BathroomsTotalInteger: string
-    LivingArea: number
-    UnparsedAddress: string
-    ListPrice: number
-    Media: {
-      MediaURL: string
-    }[]
-  }[]
-}
-
-export function NewToMarket() {
-  const { data } = useFetch<House>(url)
-
+export function Homes({ data }: any) {
   function formatToDollar(amount: number) {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -37,20 +18,9 @@ export function NewToMarket() {
   }
 
   return (
-    <S.Section>
-      <Flex align="start" direction="column" css={{ gap: 8, mb: 40 }}>
-        <Hat>NEW PROPERTIES</Hat>
-        <Flex align="center" justify="between" css={{ w: "100%" }}>
-          <S.Title>New to Market</S.Title>
-          <Link href="#" passHref>
-            <S.ViewAll>VIEW ALL</S.ViewAll>
-          </Link>
-        </Flex>
-      </Flex>
-
+    <S.Container>
       <S.Houses>
-        {data?.bundle.map(house => {
-          console.log(house)
+        {data.map((house: any) => {
           return (
             <S.House key={house.ListingId}>
               <Link href={`/homes/${house.ListingId}`} passHref>
@@ -94,6 +64,6 @@ export function NewToMarket() {
           )
         })}
       </S.Houses>
-    </S.Section>
+    </S.Container>
   )
 }

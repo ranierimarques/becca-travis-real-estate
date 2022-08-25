@@ -1,0 +1,8 @@
+export { default as BathroomSvg } from "./bathroom"
+export { default as BedroomSvg } from "./bedroom"
+export { default as HeartSvg } from "./heart"
+export { default as InformationSvg } from "./information"
+export { default as PriceSvg } from "./price"
+export { default as ShareSvg } from "./share"
+export { default as SquareFeetSvg } from "./square-feet"
+export { default as TipSvg } from "./tip"
