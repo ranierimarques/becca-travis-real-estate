@@ -1,4 +1,9 @@
-import { Sellers } from "@layout/sellers-resources"
+import {
+  Hero,
+  Sellers,
+  SellingWithUs,
+  WhyARealtor,
+} from "@layout/sellers-resources"
 import { LastCall } from "@shared"
 import type { NextPage } from "next"
 import Head from "next/head"
@@ -10,7 +15,10 @@ const Home: NextPage = () => {
         <title>Becca Travis</title>
       </Head>
 
+      <Hero />
+      <WhyARealtor />
       <Sellers />
+      <SellingWithUs />
       <LastCall />
     </main>
   )

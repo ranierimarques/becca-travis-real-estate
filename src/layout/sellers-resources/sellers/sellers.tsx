@@ -1,6 +1,7 @@
 import Script from "next/script"
 import { useLayoutEffect } from "react"
 import * as S from "./sellers.styles"
+import { HomebotSvg } from "./svgs"
 
 const style = `
   /* Div */
@@ -115,6 +116,11 @@ export function Sellers() {
       icon.setAttribute("src", "/loupe.svg")
       homebotButton.setAttribute("style", "font-size: 0")
       homebotButton.appendChild(icon)
+
+      const homebotPoweredBy = homebotShadow?.querySelector(
+        ".__hblgw--logo-message_small"
+      )
+      homebotPoweredBy?.remove()
     }
 
     if (homebot !== null) {
@@ -132,7 +138,11 @@ export function Sellers() {
         }}
       />
       <S.HomeWorth>
-        <S.BackgroundSvg />
+        <S.BackgroundPoweredBy />
+        <S.PoweredBy>
+          <HomebotSvg />
+          Powered by Homebot
+        </S.PoweredBy>
         <S.Title>What&apos;s your home worth?</S.Title>
         <S.Paragraph>
           Enter your address and find out how much your property is worth
@@ -142,6 +152,7 @@ export function Sellers() {
           Don&apos;t worry, your data is protected by our security system.
         </S.SecuredData>
       </S.HomeWorth>
+      <S.BackgroundSvg />
     </S.Container>
   )
 }

@@ -1,9 +1,35 @@
 import { styled } from "stitches.config"
-import { CirclesSvg } from "./svgs"
+import { CirclesSvg, HomebotBackgroundSvg } from "./svgs"
 
 export const Container = styled("div", {
   maxWidth: "1072px",
   margin: "0 auto",
+  position: "relative",
+})
+
+export const PoweredBy = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  gap: 6,
+
+  padding: "8px 8px 14px 8px",
+
+  position: "absolute",
+  top: 0,
+  left: 44,
+
+  fontWeight: "500",
+  fontSize: "12px",
+  lineHeight: "23px",
+  color: "$white",
+
+  zIndex: 1,
+})
+
+export const BackgroundPoweredBy = styled(HomebotBackgroundSvg, {
+  position: "absolute",
+  top: 0,
+  left: 44,
 })
 
 export const HomeWorth = styled("div", {
@@ -11,8 +37,6 @@ export const HomeWorth = styled("div", {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-
-  position: "relative",
 
   width: "1072px",
   height: "320px",
@@ -31,7 +55,6 @@ export const Title = styled("h3", {
   fontSize: "24px",
   lineHeight: "48px",
   color: "$gray1",
-
   zIndex: 1,
 })
 
@@ -42,7 +65,6 @@ export const Paragraph = styled("p", {
   fontSize: "16px",
   lineHeight: "28px",
   color: "$magenta1",
-
   zIndex: 1,
 })
 
@@ -53,11 +75,11 @@ export const SecuredData = styled("span", {
   fontSize: "14px",
   lineHeight: "24px",
   color: "$gray3",
-
   zIndex: 1,
 })
 
 export const BackgroundSvg = styled(CirclesSvg, {
   position: "absolute",
   top: 0,
+  left: 59,
 })
