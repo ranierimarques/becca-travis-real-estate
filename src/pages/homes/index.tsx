@@ -1,5 +1,5 @@
-import { Homes } from "@layout/homes"
-import Head from "next/head"
+import { Homes } from '@layout/homes'
+import Head from 'next/head'
 
 export default function PostPage({ bundle }: any) {
   return (

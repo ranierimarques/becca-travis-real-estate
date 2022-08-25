@@ -1,3 +1,3 @@
-export { default as find } from './find.jpg'
-export { default as purchase } from './purchase.jpg'
-export { default as sell } from './sell.jpg'
+export { default as find } from './find.png'
+export { default as purchase } from './purchase.png'
+export { default as sell } from './sell.png'

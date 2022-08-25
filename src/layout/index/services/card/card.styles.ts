@@ -1,7 +1,32 @@
 import { styled } from 'stitches.config'
+import { Circles as CirclesSvg } from '../svgs'
+
+export const TopWrapper = styled('div', {
+  position: 'relative',
+  fontSize: 0,
+  background: 'rgba($colors$magenta5Rgb, 0.2)',
+  overflow: 'hidden',
+
+  padding: '20px 28px 0',
+  maxHeight: '257px',
+
+  '@media (prefers-reduced-motion: no-preference)': {
+    transition: 'background 300ms ease',
+  },
+})
+
+export const ImageWrapper = styled('div', {
+  position: 'relative',
+  width: '100%',
+  top: 8,
+
+  '@media (prefers-reduced-motion: no-preference)': {
+    transition: 'transform 300ms ease',
+  },
+})
 
 export const Link = styled('a', {
-  boxShadow: 'inset 0 0 0 1px $colors$grayW9, 0px 8px 40px rgba($colors$blackRgb, 0.05)',
+  boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
   borderRadius: '8px',
   overflow: 'hidden',
   flexGrow: 1,
@@ -10,30 +35,46 @@ export const Link = styled('a', {
   display: 'flex',
   flexDirection: 'column',
 
-  '&:hover span': {
-    background: '$$primaryColor',
-    color: '$$secondaryColor',
+  span: {
+    transition: 'all 300ms ease',
+  },
 
-    filter: 'none',
+  '&:hover': {
+    [`& ${ImageWrapper}`]: { transform: 'translateY(-8px)' },
+    [`& ${TopWrapper}`]: { background: 'rgba($colors$magenta5Rgb, 0.6)' },
+    span: { background: '$$primaryColor', color: '$$secondaryColor' },
   },
 })
 
-export const Title = styled('h3', {
-  marginTop: '20px',
+export const Circles = styled(CirclesSvg, {
+  position: 'absolute',
+  inset: 0,
+})
 
+export const BottomWrapper = styled('div', {
+  background: '$white',
+  filter: 'drop-shadow(0px -8px 15px rgba(0, 0, 0, 0.1))',
+  padding: '24px',
+
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  flex: 1,
+})
+
+export const Title = styled('h3', {
   fontWeight: '500',
   fontSize: '18px',
-  lineHeight: '27px',
-  color: '$gray1',
+  lineHeight: '24px',
+  color: '$gray2',
 })
 
 export const Description = styled('p', {
-  marginTop: '12px',
-  padding: '0 32px',
+  marginTop: '8px',
 
   fontWeight: '400',
-  fontSize: '14px',
-  lineHeight: '22px',
+  fontSize: '12px',
+  lineHeight: '20px',
   color: '$gray4',
 
   flex: 1,

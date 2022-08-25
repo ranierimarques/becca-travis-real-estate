@@ -17,15 +17,26 @@ type cardProps = {
 export function Card({ data }: cardProps) {
   return (
     <Link href={data.href} passHref>
-      <S.Link>
-        <Box css={{ position: 'relative', height: 189, '& > span': { zIndex: -1 } }}>
-          <Image src={data.image} alt={data.alt} layout="fill" objectFit="cover" />
-        </Box>
-        <S.Title>{data.title}</S.Title>
-        <S.Description>{data.description}</S.Description>
-        <Button as="span" outlined css={{ margin: '24px auto 32px' }}>
-          {data.buttonText}
-        </Button>
+      <S.Link draggable="false">
+        <S.TopWrapper>
+          <S.Circles />
+          <S.ImageWrapper>
+            <Image
+              src={data.image}
+              alt={data.alt}
+              objectFit="fill"
+              quality="100"
+              style={{ pointerEvents: 'none' }}
+            />
+          </S.ImageWrapper>
+        </S.TopWrapper>
+        <S.BottomWrapper>
+          <S.Title>{data.title}</S.Title>
+          <S.Description>{data.description}</S.Description>
+          <Button as="span" outlined size="2" css={{ mt: 16, pointerEvents: 'none' }}>
+            {data.buttonText}
+          </Button>
+        </S.BottomWrapper>
       </S.Link>
     </Link>
   )
