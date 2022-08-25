@@ -20,7 +20,7 @@ const contacts = [
   },
 ]
 
-export function TalkToMe() {
+export default function TalkToMe() {
   const contentRef = useRef<HTMLDivElement>(null)
 
   function onOpenAutoFocus(event: Event) {

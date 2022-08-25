@@ -358,5 +358,4 @@ export const OurCommunitiesImageName = styled('span', {
   fontSize: 11,
   lineHeight: '15px',
   color: '$white',
-  zIndex: 2,
 })

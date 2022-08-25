@@ -6,18 +6,18 @@ import { ColdwellBanker, Facebook, Instagram, Linkedin, Mail, Phone } from '../s
 import * as S from './links.styles'
 
 const siteMapLinks = [
-  { href: '/', text: 'Search for homes' },
-  { href: '/', text: 'Buying' },
-  { href: '/', text: 'Selling' },
-  { href: '/', text: 'About huntsville' },
-  { href: '/', text: 'Communities' },
-  { href: '/', text: 'Blog' },
+  { href: '/homes', text: 'Purchase a home' },
+  { href: '/sell-with-us', text: 'Sell your home' },
+  { href: '/huntsville', text: 'About Huntsville' },
+  { href: '/mortgage-calculator', text: 'Mortgage calculator' },
+  { href: '/why-becca', text: 'Why Becca?' },
+  { href: '/reviews', text: 'Client reviews' },
 ]
 
 const resourcesLinks = [
-  { href: '/', text: 'Purchase a home' },
-  { href: '/', text: 'Sell your home' },
-  { href: '/', text: 'Blog' },
+  { href: '/buyers-resources', text: 'Buyers resources' },
+  { href: '/sellers-resources', text: 'Sellers resources' },
+  { href: '/blog', text: 'Blog' },
 ]
 
 const utilsLinks = [
@@ -88,7 +88,7 @@ export function Links() {
           <S.LinkList>
             <li>
               <S.ContactLink
-                href="mailto:octane@contato.com"
+                href="mailto:becca@beccatravis.com"
                 target="_self"
                 rel="noreferrer noopener"
               >
@@ -97,11 +97,11 @@ export function Links() {
             </li>
             <li>
               <S.ContactLink
-                href="tel:+55-85-3482-6566"
+                href="tel:+1-256-318-9066"
                 target="_self"
                 rel="noreferrer noopener"
               >
-                <Phone /> +1 408 000 0000
+                <Phone /> +1 (256) 318-9066
               </S.ContactLink>
             </li>
           </S.LinkList>
@@ -114,30 +114,33 @@ export function Links() {
           <S.LinkList css={{ flexDirection: 'row', gap: 8 }}>
             <li>
               <S.SocialLink
-                href="#"
+                href="https://www.facebook.com/beccatravisrealestate/"
                 target="_blank"
                 rel="noreferrer noopener"
                 title="Facebook"
+                aria-label="Follow us on Facebook"
               >
                 <Facebook />
               </S.SocialLink>
             </li>
             <li>
               <S.SocialLink
-                href="#"
+                href="https://www.linkedin.com/in/beccatravis/"
                 target="_blank"
                 rel="noreferrer noopener"
                 title="LinkedIn"
+                aria-label="Follow us on LinkedIn"
               >
                 <Linkedin />
               </S.SocialLink>
             </li>
             <li>
               <S.SocialLink
-                href="#"
+                href="https://www.instagram.com/beccatravisrealestate/"
                 target="_blank"
                 rel="noreferrer noopener"
                 title="Instagram"
+                aria-label="Follow us on Instagram"
               >
                 <Instagram />
               </S.SocialLink>

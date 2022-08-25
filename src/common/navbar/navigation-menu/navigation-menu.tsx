@@ -330,7 +330,7 @@ function CommunityGuideMenu() {
   )
 }
 
-export function NavigationMenu() {
+export default function NavigationMenu() {
   return (
     <S.Root>
       <S.List>

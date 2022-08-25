@@ -1,17 +1,17 @@
 /* eslint-disable react/display-name */
-import type * as Stitches from "@stitches/react"
-import Link from "next/link"
-import { forwardRef, ReactNode } from "react"
-import type { ButtonVariants } from "./button.styles"
-import * as S from "./button.styles"
+import type * as Stitches from '@stitches/react'
+import Link from 'next/link'
+import { forwardRef, ReactNode } from 'react'
+import type { ButtonVariants } from './button.styles'
+import * as S from './button.styles'
 
 type ref = HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement
 
 type buttonProps = {
   children: ReactNode
   href?: string
-  as?: "span" | "a"
-  target?: "_blank" | "_self"
+  as?: 'span' | 'a'
+  target?: '_blank' | '_self'
   css?: Stitches.CSS
 } & ButtonVariants
 
@@ -31,12 +31,13 @@ export const Button = forwardRef<ref, buttonProps>(
       )
     }
 
-    if (as === "a") {
+    if (as === 'a') {
       return (
         <S.Link
           {...props}
           href={href}
           target={target}
+          rel="noreferrer noopener"
           ref={forwardedRef as anchorRef}
         >
           {children}
@@ -44,7 +45,7 @@ export const Button = forwardRef<ref, buttonProps>(
       )
     }
 
-    if (as === "span") {
+    if (as === 'span') {
       return (
         <S.Span {...props} ref={forwardedRef as spanRef}>
           {children}
