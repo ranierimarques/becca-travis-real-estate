@@ -1,4 +1,4 @@
-import { Box, Button } from '@common'
+import { Button } from '@common'
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import * as S from './card.styles'
