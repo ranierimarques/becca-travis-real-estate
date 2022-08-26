@@ -51,6 +51,9 @@ export function LastCall() {
         </Flex>
 
         <div>
+          <Box css={{ position: 'absolute', bottom: 0, right: 0, opacity: '.1' }}>
+            <CirclesSvg className={S.SvgStyles()} />
+          </Box>
           <S.IconContainer css={{ top: 26, left: 471, bg: '$tangerine1', br: 16 }}>
             <HeartSvg className={S.SvgStyles()} />
           </S.IconContainer>
@@ -70,11 +73,8 @@ export function LastCall() {
             <LikeSvg className={S.SvgStyles()} />
           </S.IconContainer>
 
-          <Box css={{ position: 'absolute', bottom: -5, right: 195, zIndex: 2 }}>
+          <Box css={{ position: 'absolute', bottom: -5, right: 195 }}>
             <Image src={becca} alt="Becca Travis" quality="100" />
-          </Box>
-          <Box css={{ position: 'absolute', bottom: 0, right: 0, opacity: '.1' }}>
-            <CirclesSvg className={S.SvgStyles()} />
           </Box>
         </div>
       </S.Container>
