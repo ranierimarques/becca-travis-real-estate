@@ -8,7 +8,7 @@ export const TopWrapper = styled('div', {
   overflow: 'hidden',
 
   padding: '20px 28px 0',
-  maxHeight: '257px',
+  maxHeight: '231px',
 
   '@media (prefers-reduced-motion: no-preference)': {
     transition: 'background 300ms ease',
@@ -40,6 +40,13 @@ export const Link = styled('a', {
   },
 
   '&:hover': {
+    [`& ${ImageWrapper}`]: { transform: 'translateY(-8px)' },
+    [`& ${TopWrapper}`]: { background: 'rgba($colors$magenta5Rgb, 0.6)' },
+    span: { background: '$$primaryColor', color: '$$secondaryColor' },
+  },
+  '&:focus-visible': {
+    outline: '4px solid $colors$magenta2',
+    outlineOffset: 4,
     [`& ${ImageWrapper}`]: { transform: 'translateY(-8px)' },
     [`& ${TopWrapper}`]: { background: 'rgba($colors$magenta5Rgb, 0.6)' },
     span: { background: '$$primaryColor', color: '$$secondaryColor' },
