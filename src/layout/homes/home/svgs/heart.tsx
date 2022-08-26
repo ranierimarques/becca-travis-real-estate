@@ -1,16 +1,16 @@
 export default function Svg({ ...props }) {
   return (
     <svg
-      width="20"
-      height="20"
+      width="24"
+      height="24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
         clipRule="evenodd"
-        d="m10.424 4.979-.424.43-.424-.43a4.115 4.115 0 0 0-5.866 0v0a4.27 4.27 0 0 0 0 5.956l4.494 4.563a2.52 2.52 0 0 0 3.592 0l4.494-4.563a4.27 4.27 0 0 0 0-5.957v0a4.116 4.116 0 0 0-5.866 0Z"
-        stroke="#fff"
+        d="m12.51 5.974-.51.517-.51-.517a4.938 4.938 0 0 0-7.038 0v0a5.124 5.124 0 0 0 0 7.147l5.392 5.476a3.025 3.025 0 0 0 4.312 0l5.392-5.475a5.124 5.124 0 0 0 0-7.148v0a4.939 4.939 0 0 0-7.039 0Z"
+        stroke="#9D446E"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

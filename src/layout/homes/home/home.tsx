@@ -1,10 +1,10 @@
-import { Flex } from "@common"
+import { Box, Flex } from "@common"
 import { LastCall } from "@shared"
 import { Slider } from "../"
 import { AskAQuestion } from "./ask-a-question/ask-a-question"
 import * as S from "./home.styles"
 import { PropertyDetails } from "./property-details/property-details"
-import { HeartSvg, PriceSvg, ShareSvg } from "./svgs"
+import { HeartSvg, ShareSvg } from "./svgs"
 
 // endereço - UnparsedAddress
 // preço - ListPrice
@@ -44,52 +44,56 @@ export function Home({ data }: any) {
   return (
     <S.Section>
       <div>
-        <Flex align="center" justify="between" css={{ mb: 16 }}>
-          <S.HouseName>{data.UnparsedAddress}</S.HouseName>
-          <S.ShareAndSave>
-            <S.ShareButton>
-              <ShareSvg />
-            </S.ShareButton>
-            <S.SaveButton>
-              <HeartSvg />
-            </S.SaveButton>
-          </S.ShareAndSave>
-        </Flex>
+        <S.Header>
+          <Flex align="center" justify="between" css={{ mb: 16 }}>
+            <S.HouseName>{data.UnparsedAddress}</S.HouseName>
+            <S.ShareAndSave>
+              <S.Button>
+                <ShareSvg />
+              </S.Button>
 
-        <Flex css={{ mb: 30 }}>
-          <S.HousePrice>
-            <PriceSvg />
-            <span>{formatToDollar(data.ListPrice)}</span>
-          </S.HousePrice>
-          <Flex align="center" css={{ gap: 46 }}>
+              <S.Button>
+                <HeartSvg />
+              </S.Button>
+            </S.ShareAndSave>
+          </Flex>
+
+          <Flex align="center" css={{ gap: 16 }}>
+            <S.HousePrice>{formatToDollar(data.ListPrice)}</S.HousePrice>
+            <Box
+              css={{ h: 16, w: 2, background: "rgba($colors$gray5Rgb, .5)" }}
+            />
             <S.HouseStatus>
-              Status:
+              Status: {""}
               <S.Status>{data.StandardStatus}</S.Status>
             </S.HouseStatus>
-            <S.HouseOnSite>
-              On site:
-              <S.Status>{data.DaysOnMarket}</S.Status>
-            </S.HouseOnSite>
-            <S.HouseId>
-              MLS#:
-              <S.Status>{data.ListOfficeMlsId}</S.Status>
-            </S.HouseId>
-            <S.HouseUpdated>
-              Updated:
-              <S.Status>{data.BridgeModificationTimestamp}</S.Status>
-            </S.HouseUpdated>
-          </Flex>
-        </Flex>
 
-        <Flex justify="between">
+            <S.Dot />
+
+            <S.HouseStatus>
+              On site: {""}
+              <S.Status>
+                {data.DaysOnMarket}
+                10 days
+              </S.Status>
+            </S.HouseStatus>
+
+            <S.Dot />
+
+            <S.HouseStatus>
+              Updated: {""}
+              <S.Status>{data.BridgeModificationTimestamp}</S.Status>
+            </S.HouseStatus>
+          </Flex>
+        </S.Header>
+
+        <Flex justify="between" css={{ mb: 32 }}>
           <Slider data={data} />
           <PropertyDetails data={data} />
         </Flex>
-
-        <AskAQuestion />
-
-        <div></div>
       </div>
+
+      <AskAQuestion />
 
       <LastCall />
     </S.Section>

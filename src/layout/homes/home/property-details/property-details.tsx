@@ -3,6 +3,7 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 import {
   BathroomSvg,
   BedroomSvg,
+  ClockSvg,
   InformationSvg,
   PriceSvg,
   SquareFeetSvg,
@@ -82,7 +83,9 @@ export function PropertyDetails({ data }: PropertyDetailsProps) {
 
   return (
     <S.PropertyDetails>
-      <S.Title>Property details</S.Title>
+      <S.Title>
+        Property details <ClockSvg />
+      </S.Title>
 
       <S.Hr />
 
