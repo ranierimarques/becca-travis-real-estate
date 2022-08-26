@@ -54,7 +54,7 @@ export function Slider({ data }: SliderProps) {
                 src={media.MediaURL}
                 alt="house image"
                 width={704}
-                height={400}
+                height={411}
               />
             </Box>
           )

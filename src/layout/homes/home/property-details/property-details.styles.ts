@@ -27,15 +27,21 @@ export const PropertyDetails = styled("div", {
   flexDirection: "column",
   alignItems: "flex-start",
 
-  padding: "20px 0 25px",
+  padding: "20px 0 23px",
 
   borderRadius: "8px",
 
   background: "$offWhite2",
 })
 
-export const Title = styled("h3", {
-  paddingLeft: "20px",
+export const Title = styled("div", {
+  width: "100%",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+
+  padding: "0 20px",
 
   fontWeight: "500",
   fontSize: "16px",

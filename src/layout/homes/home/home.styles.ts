@@ -4,31 +4,36 @@ export const Section = styled("section", {
   maxWidth: "1072px",
   margin: "0 auto",
 
-  paddingTop: 40,
+  paddingTop: 32,
+})
+
+export const Header = styled("div", {
+  marginBottom: "24px",
+  background: "rgba($colors$gray5Rgb, .03)",
+  borderRadius: 8,
+  padding: "16px 20px 16px 16px",
+})
+
+export const Dot = styled("div", {
+  width: "5px",
+  height: "5px",
+  background: "#8C8A97",
+  opacity: "0.5",
+  borderRadius: 999,
 })
 
 export const HouseName = styled("h1", {
   fontWeight: "500",
   fontSize: "22px",
-  lineHeight: "40px",
-  color: "#58243C",
+  lineHeight: "32px",
+  color: "#33303E",
 })
 
-export const HousePrice = styled("div", {
-  display: "flex",
-  alignItems: "center",
-  gap: 8,
-
-  marginRight: 30,
-
-  padding: "6px 10px",
-  background: "rgba(157, 68, 110, 0.1)",
-  borderRadius: "4px",
-
+export const HousePrice = styled("span", {
   fontWeight: "500",
-  fontSize: "18px",
+  fontSize: "22px",
   lineHeight: "24px",
-  color: "#8C3C62",
+  color: "#5BA341",
 })
 
 export const HouseStatus = styled("div", {
@@ -38,36 +43,30 @@ export const HouseStatus = styled("div", {
   color: "#33303E",
 })
 
-export const HouseOnSite = styled("div", {})
-
-export const HouseId = styled("div", {})
-
-export const HouseUpdated = styled("div", {})
-
-export const Status = styled("span", {})
+export const Status = styled("span", {
+  fontWeight: "bold",
+  fontSize: "14px",
+  lineHeight: "20px",
+  color: "#33303E",
+})
 
 export const ShareAndSave = styled("div", {
   display: "flex",
   alignItems: "center",
-  gap: 16,
+  gap: 12,
 })
 
-export const ShareButton = styled("button", {
+export const Button = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 
-  padding: "10px",
-  background: "#9D446E",
-  borderRadius: "8px",
-})
+  padding: "6px",
+  border: "1px solid #9D446E",
+  borderRadius: "5px",
 
-export const SaveButton = styled("button", {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-
-  padding: "10px",
-  background: "#9D446E",
-  borderRadius: "8px",
+  "&:hover": {
+    backgroundColor: "rgba(232, 183, 206, 0.2)",
+    cursor: "pointer",
+  },
 })
