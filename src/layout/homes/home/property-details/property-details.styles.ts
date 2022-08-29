@@ -54,7 +54,7 @@ export const Hr = styled("div", {
   height: "1px",
   backgroundColor: "$grayW9",
 
-  margin: "20px 0 20px",
+  margin: "20px 0 19px",
 })
 
 export const DetailItem = styled("div", {
@@ -97,6 +97,10 @@ export const TooltipContent = styled(TooltipPrimitive.Content, {
       '&[data-side="left"]': { animationName: slideRightAndFade },
     },
   },
+})
+
+export const TooltipButton = styled("button", {
+  lineHeight: 0,
 })
 
 export const Tip = styled(TipSvg, {

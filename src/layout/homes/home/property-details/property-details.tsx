@@ -105,9 +105,9 @@ export function PropertyDetails({ data }: PropertyDetailsProps) {
               <TooltipPrimitive.Provider>
                 <TooltipPrimitive.Root delayDuration={400}>
                   <TooltipPrimitive.Trigger asChild>
-                    <button>
+                    <S.TooltipButton>
                       <InformationSvg />
-                    </button>
+                    </S.TooltipButton>
                   </TooltipPrimitive.Trigger>
                   <Content sideOffset={10}>{detail.tooltip}</Content>
                 </TooltipPrimitive.Root>
