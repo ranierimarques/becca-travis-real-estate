@@ -6,31 +6,6 @@ import * as S from "./home.styles"
 import { PropertyDetails } from "./property-details/property-details"
 import { HeartSvg, ShareSvg } from "./svgs"
 
-// endereço - UnparsedAddress
-// preço - ListPrice
-// status - StandardStatus
-// onSite - DaysOnMarket
-// MLSId - ListingId - ListOfficeMlsId
-// last updated - BridgeModificationTimestamp
-// quartos - BedroomsTotal
-// banheiros - BathroomsTotalInteger
-// family total - PropertySubType
-// metros quadrados - LotSizeSquareFeet
-// description - LotFeatures - InteriorFeatures - ExteriorFeatures-
-// foundation details - FoundationDetails
-// levels - Levels
-// building total area - BuildingAreaTotal
-// city limits - *
-// mobile home allowed - *
-// new construction - NewConstructionYN
-// property condition - PropertyCondition
-// property sub type - PropertyType
-// sewer - Sewer
-// water source - WaterSource
-// elementary school - ElementarySchool
-// middle school - MiddleOrJuniorSchool
-// high school - HighSchool
-
 export function Home({ data }: any) {
   function formatToDollar(amount: number) {
     return new Intl.NumberFormat("en-US", {
@@ -40,7 +15,6 @@ export function Home({ data }: any) {
     }).format(amount)
   }
 
-  console.log(data)
   return (
     <S.Section>
       <div>
@@ -50,10 +24,12 @@ export function Home({ data }: any) {
             <S.ShareAndSave>
               <S.Button>
                 <ShareSvg />
+                Share
               </S.Button>
 
               <S.Button>
                 <HeartSvg />
+                Favorite
               </S.Button>
             </S.ShareAndSave>
           </Flex>
