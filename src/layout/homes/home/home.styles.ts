@@ -60,10 +60,16 @@ export const Button = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  gap: 6,
 
   padding: "6px",
   border: "1px solid #9D446E",
   borderRadius: "5px",
+
+  fontWeight: "500",
+  fontSize: "14px",
+  lineHeight: "21px",
+  color: "#9D446E",
 
   "&:hover": {
     backgroundColor: "rgba(232, 183, 206, 0.2)",
