@@ -33,7 +33,7 @@ interface HouseCardProps {
 export function HouseCard({ house }: HouseCardProps) {
   return (
     <li>
-      <Link href="/" passHref>
+      <Link href={`/homes/${house.ListingId}`} passHref>
         <S.Link draggable="false">
           <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
             <Image
