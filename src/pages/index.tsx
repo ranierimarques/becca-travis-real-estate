@@ -8,12 +8,10 @@ import {
   Services,
 } from '@layout/index'
 import { ClientTestimonials, LastCall } from '@shared'
-import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
-const Page: NextPage = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Page: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       <Head>
@@ -35,9 +33,16 @@ const Page: NextPage = ({
 
 export default Page
 
-export const getServerSideProps: GetServerSideProps = async () => {
+const baseURL = 'https://api.bridgedataoutput.com/api/v2'
+const options = {
+  method: 'GET',
+  headers: { Authorization: 'Bearer c8c61ffc7e3cfcb91714551392eb82cd' },
+}
+
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    'https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active'
+    `${baseURL}/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1`,
+    options
   )
   const data = await res.json()
 
@@ -45,5 +50,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       data,
     },
+    revalidate: 60 * 30, // 30 minutes
   }
 }
