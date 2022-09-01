@@ -1,6 +1,6 @@
-import { ContactUs } from "@layout/contact-us"
-import type { NextPage } from "next"
-import Head from "next/head"
+import { ContactUs } from '@layout/contact-us'
+import type { NextPage } from 'next'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (
