@@ -21,9 +21,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+const options = {
+  method: 'GET',
+  headers: { Authorization: 'Bearer c8c61ffc7e3cfcb91714551392eb82cd' },
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(
-    `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&ListingId=${params?.id}`
+    `https://api.bridgedataoutput.com/api/v2/valleymls/listings?ListingId=${params?.id}`,
+    options
   )
   const data = await res.json()
 
