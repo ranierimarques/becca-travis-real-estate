@@ -4,6 +4,18 @@ import Link from 'next/link'
 import * as S from './house-card.styles'
 import { BedSvg, ShowerSvg, SquareSvg } from './svgs'
 
+function formatToDollar(amount: number) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(amount)
+}
+
+function convertSquareFeets(size: number) {
+  return new Intl.NumberFormat().format(size)
+}
+
 interface HouseCardProps {
   house: {
     ListingId: string
@@ -19,22 +31,12 @@ interface HouseCardProps {
 }
 
 export function HouseCard({ house }: HouseCardProps) {
-  function formatToDollar(amount: number) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0,
-    }).format(amount)
-  }
-
-  function convertSquareFeets(size: number) {
-    return new Intl.NumberFormat().format(size)
-  }
+  return <div> {JSON.stringify(house, null, 2)}</div>
 
   return (
     <li>
-      <Link href="/">
-        <a>
+      <Link href={`/homes/${house.ListingId}`} passHref>
+        <S.Link draggable="false">
           <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
             <Image
               src={house.Media[0].MediaURL}
@@ -74,7 +76,7 @@ export function HouseCard({ house }: HouseCardProps) {
             </Flex>
             <S.VAMLS>2022 VAMLS, Inc.</S.VAMLS>
           </S.HouseInfo>
-        </a>
+        </S.Link>
       </Link>
     </li>
   )
