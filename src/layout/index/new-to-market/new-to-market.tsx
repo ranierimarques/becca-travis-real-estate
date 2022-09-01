@@ -31,10 +31,9 @@ export function NewToMarket({ data }: House) {
       </Flex>
 
       <S.Houses>
-        {JSON.stringify(data, null, 2)}
-        {/* {data.bundle.map(house => (
-            <HouseCard key={house.ListingId} house={house} />
-          ))} */}
+        {data?.bundle.map((house, index) => (
+          <HouseCard key={index} house={house} />
+        ))}
       </S.Houses>
     </S.Section>
   )
