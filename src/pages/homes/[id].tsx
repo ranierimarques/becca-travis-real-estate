@@ -15,8 +15,6 @@ export default function HomePage({ bundle }: any) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
   return {
     paths: [],
     fallback: 'blocking',
@@ -28,6 +26,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&ListingId=${params?.id}`
   )
   const data = await res.json()
+
+  if (data.total === 0) {
+    return { notFound: true }
+  }
 
   return { props: { bundle: data.bundle[0] } }
 }
