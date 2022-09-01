@@ -43,13 +43,13 @@ export function HouseCard({ house }: HouseCardProps) {
               style={{ pointerEvents: 'none' }}
             />
             <S.New>New</S.New>
-            {/* <S.FavoriteButton
+            <S.FavoriteButton
               disabled
               aria-label="Favorite house"
               onClick={event => event.preventDefault()}
             >
               <S.Favorite />
-            </S.FavoriteButton> */}
+            </S.FavoriteButton>
           </Box>
           <S.HouseInfo>
             <S.Status>

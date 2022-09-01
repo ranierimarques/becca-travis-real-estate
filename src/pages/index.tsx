@@ -2,7 +2,6 @@ import {
   AboutHuntsville,
   Achievements,
   Hero,
-  NewToMarket,
   OurCommunities,
   RentToOwn,
   Services,
@@ -21,7 +20,6 @@ const Page: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>
       <Hero />
       <Services />
       <Achievements />
-      <NewToMarket data={data} />
       <RentToOwn />
       <AboutHuntsville />
       <OurCommunities />
