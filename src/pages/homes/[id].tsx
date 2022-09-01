@@ -1,7 +1,6 @@
 import { Home } from '@layout/homes'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
-import { Suspense } from 'react'
 
 export default function HomePage({ bundle }: any) {
   return (
@@ -10,14 +9,13 @@ export default function HomePage({ bundle }: any) {
         <title>Becca Travis</title>
       </Head>
 
-      <Suspense fallback={null}>
-        <Home data={bundle} />
-      </Suspense>
+      {/* <Home data={bundle} /> */}
+      {JSON.stringify(bundle, null, 2)}
     </main>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
     fallback: 'blocking',
