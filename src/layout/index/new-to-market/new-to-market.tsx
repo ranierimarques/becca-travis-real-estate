@@ -1,7 +1,6 @@
 import { Flex, Hat } from '@common'
 import { HouseCard } from '@shared'
 import Link from 'next/link'
-import { Suspense } from 'react'
 import * as S from './new-to-market.styles'
 
 interface House {
@@ -32,11 +31,10 @@ export function NewToMarket({ data }: House) {
       </Flex>
 
       <S.Houses>
-        <Suspense fallback={null}>
-          {data.bundle.map(house => (
+        {JSON.stringify(data, null, 2)}
+        {/* {data.bundle.map(house => (
             <HouseCard key={house.ListingId} house={house} />
-          ))}
-        </Suspense>
+          ))} */}
       </S.Houses>
     </S.Section>
   )
