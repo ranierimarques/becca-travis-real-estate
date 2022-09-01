@@ -51,12 +51,12 @@ export function HouseCard({ house }: HouseCardProps) {
               <S.Favorite />
             </S.FavoriteButton>
           </Box>
-          {/* <S.HouseInfo>
+          <S.HouseInfo>
             <S.Status>
               <Box css={{ w: 8, h: 8, bg: '$green1', br: 4 }} />
               For sale
             </S.Status>
-            <S.Value>{formatToDollar(house.ListPrice)}</S.Value>
+            <S.Value>{house.ListPrice}</S.Value>
             <S.Address>{house.UnparsedAddress}</S.Address>
             <Flex align="center" css={{ gap: '8px 12px', mb: 12, flexWrap: 'wrap' }}>
               <S.Details>
@@ -69,11 +69,11 @@ export function HouseCard({ house }: HouseCardProps) {
               </S.Details>
               <S.Details>
                 <SquareSvg />
-                {convertSquareFeets(house.LivingArea)} sqft
+                {house.LivingArea} sqft
               </S.Details>
             </Flex>
             <S.VAMLS>2022 VAMLS, Inc.</S.VAMLS>
-          </S.HouseInfo> */}
+          </S.HouseInfo>
         </S.Link>
       </Link>
     </li>
