@@ -50,12 +50,13 @@ export const getStaticProps: GetStaticProps = async () => {
     'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1',
     options
   )
-  const data = await res.json()
+  const data1 = await res.json()
+
+  const data = data1.bundle.map((a: any) => formatToDollar(a.ListPrice))
 
   return {
     props: {
       data,
-      money: formatToDollar(data.bundle.ListPrice),
     },
     revalidate: 1800, // 30 minutes
   }
