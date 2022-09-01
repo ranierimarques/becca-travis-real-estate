@@ -4,18 +4,6 @@ import Link from 'next/link'
 import * as S from './house-card.styles'
 import { BedSvg, ShowerSvg, SquareSvg } from './svgs'
 
-function formatToDollar(amount: number) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(amount)
-}
-
-function convertSquareFeets(size: number) {
-  return new Intl.NumberFormat().format(size)
-}
-
 interface HouseCardProps {
   house: {
     ListingId: string
@@ -31,6 +19,18 @@ interface HouseCardProps {
 }
 
 export function HouseCard({ house }: HouseCardProps) {
+  function formatToDollar(amount: number) {
+    return Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+    }).format(amount)
+  }
+
+  function convertSquareFeets(size: number) {
+    return Intl.NumberFormat().format(size)
+  }
+
   return (
     <li>
       <Link href={`/homes/${house.ListingId}`} passHref>
@@ -56,7 +56,7 @@ export function HouseCard({ house }: HouseCardProps) {
               <Box css={{ w: 8, h: 8, bg: '$green1', br: 4 }} />
               For sale
             </S.Status>
-            <S.Value>{house.ListPrice}</S.Value>
+            <S.Value>{formatToDollar(house.ListPrice)}</S.Value>
             <S.Address>{house.UnparsedAddress}</S.Address>
             <Flex align="center" css={{ gap: '8px 12px', mb: 12, flexWrap: 'wrap' }}>
               <S.Details>
@@ -69,7 +69,7 @@ export function HouseCard({ house }: HouseCardProps) {
               </S.Details>
               <S.Details>
                 <SquareSvg />
-                {house.LivingArea} sqft
+                {convertSquareFeets(house.LivingArea)} sqft
               </S.Details>
             </Flex>
             <S.VAMLS>2022 VAMLS, Inc.</S.VAMLS>
