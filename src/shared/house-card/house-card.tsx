@@ -4,6 +4,18 @@ import Link from 'next/link'
 import * as S from './house-card.styles'
 import { BedSvg, ShowerSvg, SquareSvg } from './svgs'
 
+function formatToDollar(amount: number) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(amount)
+}
+
+function convertSquareFeets(size: number) {
+  return new Intl.NumberFormat().format(size)
+}
+
 interface HouseCardProps {
   house: {
     ListingId: string
@@ -19,18 +31,6 @@ interface HouseCardProps {
 }
 
 export function HouseCard({ house }: HouseCardProps) {
-  function formatToDollar(amount: number) {
-    return Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0,
-    }).format(amount)
-  }
-
-  function convertSquareFeets(size: number) {
-    return Intl.NumberFormat().format(size)
-  }
-
   return (
     <li>
       <Link href={`/homes/${house.ListingId}`} passHref>

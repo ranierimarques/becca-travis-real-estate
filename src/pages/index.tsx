@@ -21,7 +21,8 @@ const Page: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>
       <Hero />
       <Services />
       <Achievements />
-      <NewToMarket data={data} />
+      {/* <NewToMarket data={data} /> */}
+      {JSON.stringify(data, null, 2)}
       <RentToOwn />
       <AboutHuntsville />
       <OurCommunities />
@@ -36,6 +37,14 @@ const options = {
   headers: { Authorization: 'Bearer c8c61ffc7e3cfcb91714551392eb82cd' },
 }
 
+function formatToDollar(amount: number) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(amount)
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
     'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1',
@@ -46,6 +55,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       data,
+      money: formatToDollar(data.bundle.ListPrice),
     },
     revalidate: 1800, // 30 minutes
   }
