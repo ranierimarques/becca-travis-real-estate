@@ -50,7 +50,7 @@ export function HouseCard({ house }: HouseCardProps) {
             >
               <S.Favorite />
             </S.FavoriteButton>
-          </Box>
+          </Box> */}
           <S.HouseInfo>
             <S.Status>
               <Box css={{ w: 8, h: 8, bg: '$green1', br: 4 }} />
@@ -73,7 +73,7 @@ export function HouseCard({ house }: HouseCardProps) {
               </S.Details>
             </Flex>
             <S.VAMLS>2022 VAMLS, Inc.</S.VAMLS>
-          </S.HouseInfo> */}
+          </S.HouseInfo>
         </S.Link>
       </Link>
     </li>
