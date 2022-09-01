@@ -31,8 +31,8 @@ export function NewToMarket({ data }: House) {
       </Flex>
 
       <S.Houses>
-        {data?.bundle.map((house, index) => (
-          <HouseCard key={index} house={house} />
+        {data?.bundle.map(house => (
+          <HouseCard key={house.ListingId} house={house} />
         ))}
       </S.Houses>
     </S.Section>
