@@ -33,7 +33,7 @@ export function HouseCard({ house }: HouseCardProps) {
 
   return (
     <li>
-      <Link href={`/homes/${house.ListingId}`}>
+      <Link href="/">
         <a>
           <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
             <Image
