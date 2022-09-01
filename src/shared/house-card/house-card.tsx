@@ -35,7 +35,7 @@ export function HouseCard({ house }: HouseCardProps) {
     <li>
       <Link href={`/homes/${house.ListingId}`} passHref>
         <S.Link draggable="false">
-          {/* <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
+          <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
             <Image
               src={house.Media[0].MediaURL}
               alt="house"
@@ -50,8 +50,8 @@ export function HouseCard({ house }: HouseCardProps) {
             >
               <S.Favorite />
             </S.FavoriteButton>
-          </Box> */}
-          <S.HouseInfo>
+          </Box>
+          {/* <S.HouseInfo>
             <S.Status>
               <Box css={{ w: 8, h: 8, bg: '$green1', br: 4 }} />
               For sale
@@ -73,7 +73,7 @@ export function HouseCard({ house }: HouseCardProps) {
               </S.Details>
             </Flex>
             <S.VAMLS>2022 VAMLS, Inc.</S.VAMLS>
-          </S.HouseInfo>
+          </S.HouseInfo> */}
         </S.Link>
       </Link>
     </li>
