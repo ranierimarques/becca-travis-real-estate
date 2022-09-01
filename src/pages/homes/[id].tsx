@@ -1,4 +1,5 @@
 import { Home } from '@layout/homes'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 
 export default function HomePage({ bundle }: any) {
@@ -13,7 +14,7 @@ export default function HomePage({ bundle }: any) {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
   return {
@@ -22,12 +23,11 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }: any) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(
-    `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&ListingId=${params.id}`
+    `https://api.bridgedataoutput.com/api/v2/valleymls/listings?access_token=c8c61ffc7e3cfcb91714551392eb82cd&ListingId=${params?.id}`
   )
   const data = await res.json()
-  const bundle = data.bundle[0]
 
-  return { props: { bundle } }
+  return { props: { bundle: data.bundle[0] } }
 }

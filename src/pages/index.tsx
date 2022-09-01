@@ -31,9 +31,6 @@ const Page: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>
   )
 }
 
-export default Page
-
-const baseURL = 'https://api.bridgedataoutput.com/api/v2'
 const options = {
   method: 'GET',
   headers: { Authorization: 'Bearer c8c61ffc7e3cfcb91714551392eb82cd' },
@@ -41,7 +38,7 @@ const options = {
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    `${baseURL}/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1`,
+    'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1',
     options
   )
   const data = await res.json()
@@ -53,3 +50,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 30, // 30 minutes
   }
 }
+
+export default Page
