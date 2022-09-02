@@ -3,23 +3,19 @@ import { HouseCard } from '@shared'
 import Link from 'next/link'
 import * as S from './new-to-market.styles'
 
-interface House {
-  data: {
-    bundle: {
-      ListingId: string
-      BedroomsTotal: string
-      BathroomsTotalInteger: string
-      LivingArea: number
-      UnparsedAddress: string
-      ListPrice: number
-      Media: {
-        MediaURL: string
-      }[]
-    }[]
-  }
+interface Listings {
+  listings: {
+    id: string
+    media: string
+    price: string
+    address: string
+    bedroomsTotal: number
+    bathroomsTotal: number
+    livingArea: string
+  }[]
 }
 
-export function NewToMarket({ data }: House) {
+export function NewToMarket({ listings }: Listings) {
   return (
     <S.Section>
       <Hat>NEW PROPERTIES</Hat>
@@ -31,8 +27,8 @@ export function NewToMarket({ data }: House) {
       </Flex>
 
       <S.Houses>
-        {data?.bundle.map(house => (
-          <HouseCard key={house.ListingId} house={house} />
+        {listings.map(listing => (
+          <HouseCard key={listing.id} listing={listing} />
         ))}
       </S.Houses>
     </S.Section>
