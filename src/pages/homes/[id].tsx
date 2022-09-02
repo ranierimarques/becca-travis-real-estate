@@ -20,7 +20,7 @@ const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({ listing }) 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: true,
   }
 }
 
