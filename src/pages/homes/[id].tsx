@@ -20,7 +20,7 @@ const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({ listing }) 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: true,
+    fallback: 'blocking',
   }
 }
 
@@ -100,6 +100,7 @@ export const getStaticProps = async ({ params }: Params) => {
     props: {
       listing,
     },
+    revalidate: false,
   }
 }
 
