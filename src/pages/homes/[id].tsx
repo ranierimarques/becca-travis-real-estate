@@ -82,14 +82,14 @@ export const getStaticProps = async ({ params }: Params) => {
   if (!data.success) return { notFound: true }
 
   const listing = {
-    price: data.bundle.ListPrice,
+    price: formatToDollar(data.bundle.ListPrice),
     address: data.bundle.UnparsedAddress,
     status: data.bundle.MlsStatus,
     lastUpdated: data.bundle.BridgeModificationTimestamp,
     media: data.bundle.Media.map(media => media.MediaURL),
     bathroomsTotal: data.bundle.BathroomsTotalInteger,
     bedroomsTotal: data.bundle.BedroomsTotal,
-    lotSizeSquareFeet: data.bundle.LotSizeSquareFeet,
+    lotSizeSquareFeet: convertSquareFeets(data.bundle.LotSizeSquareFeet),
     subdivisionName: data.bundle.SubdivisionName,
     propertySubType: data.bundle.PropertySubType,
     countyOrParish: data.bundle.CountyOrParish,

@@ -7,22 +7,20 @@ import { PropertyDetails } from './property-details/property-details'
 import { HeartSvg, ShareSvg } from './svgs'
 
 interface Listing {
-  listing:
-    | {
-        price: string
-        address: string
-        status: string
-        lastUpdated: string
-        media: string[]
-        bedroomsTotal: number
-        bathroomsTotal: number
-        lotSizeSquareFeet: string
-        subdivisionName: string
-        propertySubType: string
-        countyOrParish: string
-        cityRegion: string | null
-      }
-    | any
+  listing: {
+    price: string
+    address: string
+    status: string
+    lastUpdated: string
+    media: string[]
+    bedroomsTotal: number
+    bathroomsTotal: number
+    lotSizeSquareFeet: string
+    subdivisionName: string
+    propertySubType: string
+    countyOrParish: string
+    cityRegion: string | null
+  }
 }
 
 export function Home({ listing }: Listing) {
