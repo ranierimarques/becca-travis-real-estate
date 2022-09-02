@@ -18,18 +18,8 @@ const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({ listing }) 
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(
-    `https://api.bridgedataoutput.com/api/v2/valleymls/listings/replication?access_token=c8c61ffc7e3cfcb91714551392eb82cd&limit=5&PropertyType=Residential&StandardStatus=Active&fields=ListingId`
-  )
-  const data = await res.json()
-
-  // Get the paths we want to pre-render based on posts
-  const paths = data.bundle.map((house: { ListingId: number }) => ({
-    params: { id: house.ListingId },
-  }))
-
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   }
 }
