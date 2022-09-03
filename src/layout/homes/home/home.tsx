@@ -20,7 +20,6 @@ interface Listing {
     propertySubType: string
     countyOrParish: string
     cityRegion: string | null
-    onSiteDate: string
   }
 }
 
@@ -56,7 +55,7 @@ export function Home({ listing }: Listing) {
 
             <S.HouseStatus>
               On site:
-              <S.Status>{listing.onSiteDate}</S.Status>
+              <S.Status>10 days</S.Status>
             </S.HouseStatus>
 
             <S.Dot />

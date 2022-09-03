@@ -75,8 +75,6 @@ const options = {
   headers: { Authorization: 'Bearer c8c61ffc7e3cfcb91714551392eb82cd' },
 } as RequestInit
 
-const date = new Date()
-
 export const getStaticProps = async ({ params }: Params) => {
   const response = await fetch(endpoint + params.id, options)
   const data = (await response.json()) as FetchTypes
@@ -96,14 +94,13 @@ export const getStaticProps = async ({ params }: Params) => {
     propertySubType: data.bundle.PropertySubType,
     countyOrParish: data.bundle.CountyOrParish,
     cityRegion: data.bundle.CityRegion,
-    onSiteDate: String(date),
   }
 
   return {
     props: {
       listing,
-      revalidate: 60 * 5, // 5 minutes
     },
+    revalidate: false,
   }
 }
 
