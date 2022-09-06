@@ -1,5 +1,5 @@
-import { Flex } from "@common"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import { Flex } from '@common'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import {
   BathroomSvg,
   BedroomSvg,
@@ -7,79 +7,66 @@ import {
   InformationSvg,
   PriceSvg,
   SquareFeetSvg,
-} from "../svgs"
-import * as S from "./property-details.styles"
+} from '../svgs'
+import * as S from './property-details.styles'
 
-interface PropertyDetailsProps {
-  data: {
-    ListPrice: number
-    BedroomsTotal: number
-    BathroomsTotalInteger: number
-    LotSizeSquareFeet: number
-    SubdivisionName: string
-    PropertySubType: string
-    CountyOrParish: string
-    CityRegion: string | null
+interface ListingDetails {
+  listing: {
+    price: string
+    bedroomsTotal: number
+    bathroomsTotal: number
+    lotSizeSquareFeet: string
+    subdivisionName: string
+    propertySubType: string
+    countyOrParish: string
+    cityRegion: string | null
   }
 }
 
-export function PropertyDetails({ data }: PropertyDetailsProps) {
+export function PropertyDetails({ listing }: ListingDetails) {
   const details = [
     {
       svg: <PriceSvg />,
-      text: formatToDollar(data.ListPrice),
-      tooltip: "Home value",
+      text: listing.price,
+      tooltip: 'Home value',
     },
     {
       svg: <BedroomSvg />,
-      text: `${data.BedroomsTotal} Bedrooms`,
-      tooltip: "Total bedrooms",
+      text: `${listing.bedroomsTotal} Bedrooms`,
+      tooltip: 'Total bedrooms',
     },
     {
       svg: <BathroomSvg />,
-      text: `${data.BathroomsTotalInteger} Bathrooms`,
-      tooltip: "Total bathrooms",
+      text: `${listing.bathroomsTotal} Bathrooms`,
+      tooltip: 'Total bathrooms',
     },
     {
       svg: <SquareFeetSvg />,
-      text: `${convertSquareFeets(data.LotSizeSquareFeet)} Sq.Ft`,
-      tooltip: "Total meters",
+      text: `${listing.lotSizeSquareFeet} Sq.Ft`,
+      tooltip: 'Total meters',
     },
   ]
 
   const moreDetails = [
     {
-      title: "Neighborhood",
-      information: data.SubdivisionName,
+      title: 'Neighborhood',
+      information: listing.subdivisionName,
     },
     {
-      title: "Type",
-      information: data.PropertySubType,
+      title: 'Type',
+      information: listing.propertySubType,
     },
     {
-      title: "County",
-      information: data.CountyOrParish.toLowerCase().replace(
-        /^\w/,
-        (char: string) => char.toUpperCase()
-      ),
+      title: 'County',
+      information: listing.countyOrParish
+        .toLowerCase()
+        .replace(/^\w/, (char: string) => char.toUpperCase()),
     },
     {
-      title: "Area",
-      information: data.CityRegion === null ? "Not defined" : data.CityRegion,
+      title: 'Area',
+      information: listing.cityRegion === null ? 'Not defined' : listing.cityRegion,
     },
   ]
-
-  function formatToDollar(amount: number) {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    }).format(amount)
-  }
-
-  function convertSquareFeets(size: number) {
-    return new Intl.NumberFormat().format(size)
-  }
 
   return (
     <S.PropertyDetails>
@@ -93,7 +80,7 @@ export function PropertyDetails({ data }: PropertyDetailsProps) {
         direction="column"
         align="center"
         justify="between"
-        css={{ w: "100%", gap: 16, padding: "0px 20px" }}
+        css={{ w: '100%', gap: 16, padding: '0px 20px' }}
       >
         {details.map(detail => {
           return (
@@ -123,7 +110,7 @@ export function PropertyDetails({ data }: PropertyDetailsProps) {
         direction="column"
         align="center"
         justify="between"
-        css={{ w: "100%", gap: 16, padding: "0px 20px" }}
+        css={{ w: '100%', gap: 16, padding: '0px 20px' }}
       >
         {moreDetails.map(detail => {
           return (

@@ -1,12 +1,24 @@
 import { HouseCard } from '@shared'
 import * as S from './homes.styles'
 
-export function Homes({ data }: any) {
+interface Listings {
+  listings: {
+    id: string
+    media: string
+    price: string
+    address: string
+    bedroomsTotal: number
+    bathroomsTotal: number
+    livingArea: string
+  }[]
+}
+
+export function Homes({ listings }: Listings) {
   return (
     <S.Container>
       <S.Houses>
-        {data.map((house: any) => (
-          <HouseCard key={house.ListingId} house={house} />
+        {listings.map(listing => (
+          <HouseCard key={listing.id} listing={listing} />
         ))}
       </S.Houses>
     </S.Container>
