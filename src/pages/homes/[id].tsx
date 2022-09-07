@@ -1,4 +1,4 @@
-import { Home } from '@layout/homes'
+import { Home } from '@layout/homes-id'
 import convertSquareFeets from '@resources/utils/convert-square-feets'
 import formatToDollar from '@resources/utils/format-to-dollar'
 import InferNextPropsType from 'infer-next-props-type'
