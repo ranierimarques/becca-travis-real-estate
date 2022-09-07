@@ -1,4 +1,5 @@
 import { HouseCard } from '@shared'
+import { Map } from '../'
 import * as S from './homes.styles'
 
 interface Listings {
@@ -17,6 +18,7 @@ export function Homes({ listings }: Listings) {
   return (
     <S.Container>
       <S.Houses>
+        <Map />
         {listings.map(listing => (
           <HouseCard key={listing.id} listing={listing} />
         ))}
