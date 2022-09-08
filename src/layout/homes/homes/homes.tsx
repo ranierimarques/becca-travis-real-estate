@@ -18,11 +18,11 @@ export function Homes({ listings }: Listings) {
   return (
     <S.Container>
       <S.Houses>
-        <Map />
         {listings.map(listing => (
           <HouseCard key={listing.id} listing={listing} />
         ))}
       </S.Houses>
+      <Map />
     </S.Container>
   )
 }

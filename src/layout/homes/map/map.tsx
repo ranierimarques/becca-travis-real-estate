@@ -1,10 +1,16 @@
 /* eslint-disable react/display-name */
+import { Box } from '@common'
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'
 import { memo } from 'react'
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '100%',
+  // height: 'auto',
+}
+
+const center = {
+  lat: 34.7503416,
+  lng: -86.6350868,
 }
 
 export const Map = memo(() => {
@@ -13,12 +19,7 @@ export const Map = memo(() => {
   })
 
   if (!isLoaded) {
-    return <div>Loading...</div>
-  }
-
-  const center = {
-    lat: 34.7503416,
-    lng: -86.6350868,
+    return <Box css={containerStyle}>Loading...</Box>
   }
 
   return (

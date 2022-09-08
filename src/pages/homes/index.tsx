@@ -38,7 +38,7 @@ type FetchTypes = {
 }
 
 const endpoint =
-  'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=25&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1'
+  'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=20&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1'
 
 const options = {
   method: 'GET',
