@@ -5,7 +5,7 @@ import { memo } from 'react'
 
 const containerStyle = {
   width: '100%',
-  // height: 'auto',
+  height: 'calc(100vh - 110px)',
 }
 
 const center = {
