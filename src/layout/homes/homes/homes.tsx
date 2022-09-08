@@ -1,5 +1,4 @@
-import { HouseCard } from '@shared'
-import { Map } from '../'
+import { Houses, Map } from '.'
 import * as S from './homes.styles'
 
 interface Listings {
@@ -17,11 +16,7 @@ interface Listings {
 export function Homes({ listings }: Listings) {
   return (
     <S.Container>
-      <S.Houses>
-        {listings.map(listing => (
-          <HouseCard key={listing.id} listing={listing} />
-        ))}
-      </S.Houses>
+      <Houses listings={listings} />
       <Map />
     </S.Container>
   )
