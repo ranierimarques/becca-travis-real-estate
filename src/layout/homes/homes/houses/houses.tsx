@@ -15,10 +15,17 @@ interface Listings {
 
 export function Houses({ listings }: Listings) {
   return (
-    <S.Houses>
-      {listings.map(listing => (
-        <HouseCard key={listing.id} listing={listing} />
-      ))}
-    </S.Houses>
+    <S.Root scrollHideDelay={0}>
+      <S.Viewport>
+        <S.Houses>
+          {listings.map(listing => (
+            <HouseCard key={listing.id} listing={listing} />
+          ))}
+        </S.Houses>
+      </S.Viewport>
+      <S.Scrollbar orientation="vertical">
+        <S.Thumb />
+      </S.Scrollbar>
+    </S.Root>
   )
 }
