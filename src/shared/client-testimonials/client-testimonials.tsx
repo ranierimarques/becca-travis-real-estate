@@ -73,7 +73,7 @@ export function ClientTestimonials() {
   return (
     <S.Section>
       <div>
-        <Hat css={{ marginBottom: 8 }}>CUSTOMERS STORIES</Hat>
+        <Hat css={{ mb: 8 }}>CUSTOMERS STORIES</Hat>
         <S.Title>Client stories</S.Title>
         <Box
           css={{
@@ -93,68 +93,66 @@ export function ClientTestimonials() {
         </Box>
       </div>
 
-      <S.TestimonialsWrapper className={resize ? 'resize' : ''}>
-        <S.Testimonials className={resize ? 'resize' : ''}>
-          {testimonials.map(testimonial => {
-            return (
-              <DialogPrimitive.Root key={testimonial.name}>
-                <DialogPrimitive.Trigger asChild>
-                  <S.TestimonialCard>
-                    <Flex align="start" justify="between">
-                      <Flex align="center" css={{ gap: 16, mb: 16 }}>
-                        <S.Photo>{testimonial.name.substring(0, 1)}</S.Photo>
-                        <div>
-                          <S.Name>{testimonial.name}</S.Name>
-                          <S.Source>{testimonial.source}</S.Source>
-                        </div>
-                      </Flex>
-                      <S.LinkSvgHover />
-                    </Flex>
-
-                    <S.Text>&quot;{testimonial.text}&quot;</S.Text>
-                  </S.TestimonialCard>
-                </DialogPrimitive.Trigger>
-
-                <DialogPrimitive.Portal>
-                  <S.StyledOverlay />
-                  <S.StyledContent onOpenAutoFocus={onOpenAutoFocus}>
-                    <Flex
-                      align="center"
-                      css={{
-                        position: 'relative',
-                        padding: '32px 32px 24px 32px',
-                        background: 'rgba(232, 183, 206, 0.2)',
-                        borderBottom: '2px solid rgba(232, 183, 206, 0.5)',
-                        gap: 16,
-                      }}
-                    >
-                      <S.ModalPhoto>{testimonial.name.substring(0, 1)}</S.ModalPhoto>
+      <S.Testimonials className={resize ? 'resize' : ''}>
+        <S.TestimonialsOverlay>
+          <Button size="2" css={{ pointerEvents: 'auto' }} onClick={onResize}>
+            {resize ? 'Show less' : 'Show more...'}
+          </Button>
+        </S.TestimonialsOverlay>
+        {testimonials.map(testimonial => {
+          return (
+            <DialogPrimitive.Root key={testimonial.name}>
+              <DialogPrimitive.Trigger asChild>
+                <S.TestimonialCard>
+                  <Flex align="start" justify="between">
+                    <Flex align="center" css={{ gap: 16, mb: 16 }}>
+                      <S.Photo>{testimonial.name.substring(0, 1)}</S.Photo>
                       <div>
-                        <S.ModalName>{testimonial.name}</S.ModalName>
-                        <S.ModalSource>{testimonial.source}</S.ModalSource>
+                        <S.Name>{testimonial.name}</S.Name>
+                        <S.Source>{testimonial.source}</S.Source>
                       </div>
-                      <S.ModalLogo />
                     </Flex>
-                    <S.ModalText>{testimonial.text}</S.ModalText>
+                    <S.LinkSvgHover />
+                  </Flex>
 
-                    <Flex css={{ marginTop: 25, justifyContent: 'flex-end' }}></Flex>
-                    <DialogPrimitive.Close asChild>
-                      <S.IconButton aria-label="Close">
-                        <CloseSvg />
-                      </S.IconButton>
-                    </DialogPrimitive.Close>
-                  </S.StyledContent>
-                </DialogPrimitive.Portal>
-              </DialogPrimitive.Root>
-            )
-          })}
-          <S.TestimonialsOverlay>
-            <Button size="2" css={{ pointerEvents: 'auto' }} onClick={onResize}>
-              {resize ? 'Show less' : 'Show more...'}
-            </Button>
-          </S.TestimonialsOverlay>
-        </S.Testimonials>
-      </S.TestimonialsWrapper>
+                  <S.Text>&quot;{testimonial.text}&quot;</S.Text>
+                </S.TestimonialCard>
+              </DialogPrimitive.Trigger>
+
+              <DialogPrimitive.Portal>
+                <S.StyledOverlay />
+                <S.StyledContent onOpenAutoFocus={onOpenAutoFocus}>
+                  <Flex
+                    align="center"
+                    css={{
+                      position: 'relative',
+                      padding: '32px 32px 24px 32px',
+                      background: 'rgba(232, 183, 206, 0.2)',
+                      borderBottom: '2px solid rgba(232, 183, 206, 0.5)',
+                      gap: 16,
+                    }}
+                  >
+                    <S.ModalPhoto>{testimonial.name.substring(0, 1)}</S.ModalPhoto>
+                    <div>
+                      <S.ModalName>{testimonial.name}</S.ModalName>
+                      <S.ModalSource>{testimonial.source}</S.ModalSource>
+                    </div>
+                    <S.ModalLogo />
+                  </Flex>
+                  <S.ModalText>{testimonial.text}</S.ModalText>
+
+                  <Flex css={{ marginTop: 25, justifyContent: 'flex-end' }}></Flex>
+                  <DialogPrimitive.Close asChild>
+                    <S.IconButton aria-label="Close">
+                      <CloseSvg />
+                    </S.IconButton>
+                  </DialogPrimitive.Close>
+                </S.StyledContent>
+              </DialogPrimitive.Portal>
+            </DialogPrimitive.Root>
+          )
+        })}
+      </S.Testimonials>
     </S.Section>
   )
 }

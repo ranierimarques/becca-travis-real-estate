@@ -1,7 +1,7 @@
-import { Box, Button, Flex } from "@common"
-import Image from "next/image"
-import * as S from "./ask-a-question.styles"
-import { contactFaster } from "./images"
+import { Box, Button, Flex } from '@common'
+import Image from 'next/image'
+import { contactFaster } from '../images'
+import * as S from './ask-a-question.styles'
 
 export function AskAQuestion() {
   return (
@@ -31,7 +31,7 @@ export function AskAQuestion() {
             <S.TextArea rows={6} cols={80} />
           </S.Label>
 
-          <Flex align="center" css={{ gap: 32, marginLeft: "auto" }}>
+          <Flex align="center" css={{ gap: 32, marginLeft: 'auto' }}>
             <S.Checkbox>
               <input type="checkbox" />I agree to the privacy policy
             </S.Checkbox>
@@ -40,18 +40,15 @@ export function AskAQuestion() {
         </S.Form>
 
         <S.FasterContact>
-          <Box css={{ lineHeight: "0", br: 8, overflow: "hidden" }}>
+          <Box css={{ lineHeight: '0', br: 8, overflow: 'hidden' }}>
             <Image src={contactFaster} alt="" quality={100} />
           </Box>
 
-          <S.FasterContactTitle>
-            Do you need a faster contact?
-          </S.FasterContactTitle>
+          <S.FasterContactTitle>Do you need a faster contact?</S.FasterContactTitle>
           <S.FasterContactParagraph>
-            I&apos;m ready to help you and take all your questions, get in
-            touch!
+            I&apos;m ready to help you and take all your questions, get in touch!
           </S.FasterContactParagraph>
-          <Button outlined size={2} css={{ w: "100%" }}>
+          <Button outlined size={2} css={{ w: '100%' }}>
             Contact Becca Travis
           </Button>
         </S.FasterContact>

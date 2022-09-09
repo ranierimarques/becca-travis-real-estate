@@ -3,8 +3,8 @@ import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import Image from 'next/image'
 import { useState } from 'react'
+import { ChevronLeftSvg, ChevronRightSvg } from '../svgs'
 import * as S from './slider.styles'
-import { ChevronLeftSvg, ChevronRightSvg } from './svgs'
 
 interface ListingMedia {
   media: string[]

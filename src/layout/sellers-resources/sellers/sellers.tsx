@@ -1,7 +1,6 @@
-import Script from "next/script"
-import { useLayoutEffect } from "react"
-import * as S from "./sellers.styles"
-import { HomebotSvg } from "./svgs"
+import { useLayoutEffect } from 'react'
+import * as S from './sellers.styles'
+import { HomebotSvg } from './svgs'
 
 const style = `
   /* Div */
@@ -88,10 +87,13 @@ const style = `
     }
 `
 
+const homebotScript = `(function (h,b) { var w = window, d = document, s = 'script', x, y; w['__hb_namespace'] = h; w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; y = d.createElement(s); x = d.getElementsByTagName(s)[0]; y.async = 1; y.src = b; x.parentNode.insertBefore(y,x) })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); Homebot('#homebot_homeowner', 'f99d4fae1f736bdf7a150206671f876b4d8a7148254ef90e', {'size':'compact'})`
+
 export function Sellers() {
   useLayoutEffect(() => {
-    const homebot: HTMLElement | null =
-      document.getElementById("homebot_homeowner")
+    new Function(homebotScript)()
+
+    const homebot: HTMLElement | null = document.getElementById('homebot_homeowner')
 
     function callback(e: { contentRect: { height: number } }[]) {
       const loaded = e[0].contentRect.height !== 0
@@ -100,25 +102,23 @@ export function Sellers() {
 
       const homebotShadow = homebot?.shadowRoot
 
-      const styleSheet = document.createElement("style")
+      const styleSheet = document.createElement('style')
       styleSheet.innerHTML = style
       homebotShadow?.appendChild(styleSheet)
 
-      const homebotInput = homebotShadow?.querySelector(".__hblgw--input-input")
-      homebotInput?.setAttribute("placeholder", "Enter an address or Zip Code")
+      const homebotInput = homebotShadow?.querySelector('.__hblgw--input-input')
+      homebotInput?.setAttribute('placeholder', 'Enter an address or Zip Code')
 
-      const homebotButton = homebotShadow?.querySelector(
-        ".__hblgw--button-container"
-      )
+      const homebotButton = homebotShadow?.querySelector('.__hblgw--button-container')
       if (!homebotButton) return
-      homebotButton.innerHTML = ""
-      const icon = document.createElement("img")
-      icon.setAttribute("src", "/loupe.svg")
-      homebotButton.setAttribute("style", "font-size: 0")
+      homebotButton.innerHTML = ''
+      const icon = document.createElement('img')
+      icon.setAttribute('src', '/loupe.svg')
+      homebotButton.setAttribute('style', 'font-size: 0')
       homebotButton.appendChild(icon)
 
       const homebotPoweredBy = homebotShadow?.querySelector(
-        ".__hblgw--logo-message_small"
+        '.__hblgw--logo-message_small'
       )
       homebotPoweredBy?.remove()
     }
@@ -130,13 +130,6 @@ export function Sellers() {
 
   return (
     <S.Container>
-      <Script
-        id="homebot"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `(function (h,b) { var w = window, d = document, s = 'script', x, y; w['__hb_namespace'] = h; w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; y = d.createElement(s); x = d.getElementsByTagName(s)[0]; y.async = 1; y.src = b; x.parentNode.insertBefore(y,x) })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); Homebot('#homebot_homeowner', 'f99d4fae1f736bdf7a150206671f876b4d8a7148254ef90e', {'size':'compact'})`,
-        }}
-      />
       <S.HomeWorth>
         <S.BackgroundPoweredBy />
         <S.PoweredBy>

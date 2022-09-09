@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // Disabled for make Maps markers works in dev environments
+  // reactStrictMode: true,
   images: {
     domains: [
       'media.graphassets.com',

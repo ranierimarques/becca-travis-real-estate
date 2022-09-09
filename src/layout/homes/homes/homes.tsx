@@ -1,4 +1,5 @@
-import { HouseCard } from '@shared'
+import { Flex } from '@common'
+import { Houses, Map, Search } from '.'
 import * as S from './homes.styles'
 
 interface Listings {
@@ -16,11 +17,11 @@ interface Listings {
 export function Homes({ listings }: Listings) {
   return (
     <S.Container>
-      <S.Houses>
-        {listings.map(listing => (
-          <HouseCard key={listing.id} listing={listing} />
-        ))}
-      </S.Houses>
+      <Flex direction="column" css={{ maxWidth: '45%', height: 'calc(100vh - 110px)' }}>
+        <Search />
+        <Houses listings={listings} />
+      </Flex>
+      <Map />
     </S.Container>
   )
 }

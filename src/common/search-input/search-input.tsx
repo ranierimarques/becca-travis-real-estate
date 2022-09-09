@@ -33,7 +33,7 @@ export function SearchInput() {
     navigator.geolocation.getCurrentPosition(
       async position => {
         const { latitude, longitude } = position.coords
-        const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyCVaTtpBS5SweU8_yF0aL2Wm-58g8PTix8`
+        const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
         const response = await fetch(endpoint)
         const data = await response.json()
         console.log(data)

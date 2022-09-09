@@ -1,5 +1,6 @@
-import { Box, Button, Flex } from '@common'
+import { Box, Flex } from '@common'
 import getDate from '@resources/utils/get-date'
+import { MissOutCard } from '@shared'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './articles.styles'
@@ -51,15 +52,7 @@ export function Articles({ posts }: PostsProps) {
         </li>
       ))}
 
-      <S.MissOut>
-        <S.Circles />
-        <S.MissTitle>Don&apos;t Miss Out</S.MissTitle>
-        <S.MissDescription>
-          New Homes are getting added all the time. Save Your Search and be the first to
-          know.
-        </S.MissDescription>
-        <Button size="2">Get started</Button>
-      </S.MissOut>
+      <MissOutCard />
     </S.Articles>
   )
 }

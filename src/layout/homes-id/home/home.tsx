@@ -1,6 +1,6 @@
 import { Box, Flex } from '@common'
 import { LastCall } from '@shared'
-import { Slider } from '../'
+import { Slider } from '.'
 import { AskAQuestion } from './ask-a-question/ask-a-question'
 import * as S from './home.styles'
 import { PropertyDetails } from './property-details/property-details'
