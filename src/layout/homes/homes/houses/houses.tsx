@@ -1,4 +1,4 @@
-import { HouseCard } from '@shared'
+import { HouseCard, MissOutCard } from '@shared'
 import * as S from './houses.styles'
 
 interface Listings {
@@ -18,6 +18,7 @@ export function Houses({ listings }: Listings) {
     <S.Root scrollHideDelay={0}>
       <S.Viewport>
         <S.Houses>
+          <MissOutCard />
           {listings.map(listing => (
             <HouseCard key={listing.id} listing={listing} />
           ))}
