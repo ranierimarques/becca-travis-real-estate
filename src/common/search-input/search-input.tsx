@@ -1,15 +1,32 @@
-import { useFetch } from '@resources/hooks/useFetch'
 import { FormEvent, useState } from 'react'
 import * as S from './search-input.styles'
-import { Loupe } from './svgs'
+import { Gps } from './svgs'
 
 export function SearchInput() {
-  const [value, setValue] = useState('')
+  const [search, setSearch] = useState('')
+  const [suggestions, setSuggestions] = useState([{ street_line: '' }])
 
-  const data = useFetch(
-    `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=134363983004847383&search=29073&include_only_cities=HUNSTVILLE&include_only_states=AL`
-  )
-  console.log(data)
+  async function handleInputSearch(event: {
+    preventDefault: () => void
+    target: { value: string }
+  }) {
+    event.preventDefault()
+    const { value } = event.target
+    setSearch(value)
+    console.log(value)
+
+    if (value.length > 0) {
+      const parameters = value.trim().replaceAll(' ', '%20')
+      console.log(parameters)
+      const response = await fetch(
+        `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=134363983004847383&search=${parameters}&include_only_cities=HUNSTVILLE&include_only_states=AL&max_results=6`
+      )
+      const data = await response.json()
+      console.log(data)
+
+      setSuggestions(data.suggestions)
+    }
+  }
 
   function handleMyLocation(event: FormEvent) {
     event.preventDefault()
@@ -35,13 +52,28 @@ export function SearchInput() {
         <S.SearchInput
           type="text"
           placeholder="Search by address, neighborhood, city or ZIP code"
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={handleInputSearch}
         />
         <S.SearchButton>
-          <Loupe />
+          <S.LoupeSvg />
         </S.SearchButton>
-        <button onClick={handleMyLocation}>My location</button>
+
+        <S.Suggestions className={search.length > 0 ? 'suggestions' : 'current'}>
+          {search.length > 0 ? (
+            suggestions.map(suggestion => {
+              return (
+                <S.Suggestion key={suggestion.street_line}>
+                  {suggestion.street_line}
+                </S.Suggestion>
+              )
+            })
+          ) : (
+            <S.CurrentLocation onClick={handleMyLocation}>
+              <Gps />
+              Current Location
+            </S.CurrentLocation>
+          )}
+        </S.Suggestions>
       </S.InputWrapper>
     </>
   )
