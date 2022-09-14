@@ -1,6 +1,6 @@
 import { Button, Flex, Hat } from '@common'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import * as S from './client-testimonials.styles'
 import { Testimonial } from './testimonial/testimonial'
 
@@ -78,12 +78,12 @@ const testimonials = [
 ]
 
 export function ClientTestimonials() {
+  const testimonialsContainerRef = useRef<HTMLDivElement>(null)
   const [resize, setResize] = useState(false)
 
   function onResize() {
     if (resize) {
-      const element = document.querySelector('.resize')
-      element?.scrollIntoView()
+      testimonialsContainerRef.current?.scrollIntoView()
     }
 
     setResize(!resize)
@@ -105,7 +105,7 @@ export function ClientTestimonials() {
         </Flex>
       </div>
 
-      <S.Testimonials className={resize ? 'resize' : ''}>
+      <S.Testimonials ref={testimonialsContainerRef} className={resize ? 'resize' : ''}>
         <S.TestimonialsOverlay>
           <Button size="2" css={{ pointerEvents: 'auto' }} onClick={onResize}>
             {resize ? 'Show less' : 'Show more...'}

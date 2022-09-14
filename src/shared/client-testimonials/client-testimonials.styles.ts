@@ -39,6 +39,8 @@ export const Testimonials = styled('div', {
 
   position: 'relative',
 
+  scrollMarginTop: 32,
+
   '&:not(&.resize) > button:nth-child(n+8)': {
     display: 'none',
   },
