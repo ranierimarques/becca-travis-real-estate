@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './search-input.styles'
 import { Gps } from './svgs'
 
@@ -6,20 +6,21 @@ export function SearchInput() {
   const [search, setSearch] = useState('')
   const [suggestions, setSuggestions] = useState([{ street_line: '' }])
 
-  async function handleInputSearch(event: {
-    preventDefault: () => void
-    target: { value: string }
-  }) {
-    event.preventDefault()
+  async function handleInputSearch(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target
-    setSearch(value)
     console.log(value)
+    setSearch(value)
 
-    if (value.length > 0) {
+    if (value.length === 0) {
+      setSuggestions([{ street_line: '' }])
+    }
+
+    if (value.trim().length > 0) {
       const parameters = value.trim().replaceAll(' ', '%20')
       console.log(parameters)
+
       const response = await fetch(
-        `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=134363983004847383&search=${parameters}&include_only_cities=HUNSTVILLE&include_only_states=AL&max_results=6`
+        `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_AUTOCOMPLETE_API_KEY}&search=${parameters}&include_only_states=AL&max_results=6`
       )
       const data = await response.json()
       console.log(data)
@@ -58,7 +59,7 @@ export function SearchInput() {
           <S.LoupeSvg />
         </S.SearchButton>
 
-        <S.Suggestions className={search.length > 0 ? 'suggestions' : 'current'}>
+        <S.Suggestions>
           {search.length > 0 ? (
             suggestions.map(suggestion => {
               return (
