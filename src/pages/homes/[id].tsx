@@ -72,7 +72,7 @@ const endpoint = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings/'
 
 const options = {
   method: 'GET',
-  headers: { Authorization: 'Bearer c8c61ffc7e3cfcb91714551392eb82cd' },
+  headers: { Authorization: `Bearer ${process.env.BRIDGE_APY_KEY}` },
 } as RequestInit
 
 export const getStaticProps = async ({ params }: Params) => {
