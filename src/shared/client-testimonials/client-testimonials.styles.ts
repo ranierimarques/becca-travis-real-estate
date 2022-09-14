@@ -31,23 +31,29 @@ export const ViewAll = styled('a', {
   color: '$magenta9',
 })
 
-export const Testimonials = styled('div', {
+export const Testimonials = styled('ul', {
   display: 'flex',
-  flexWrap: 'wrap',
-  alignItems: 'flex-start',
+  flexDirection: 'column',
+  alignItems: 'center',
   gap: 32,
 
-  position: 'relative',
-
-  scrollMarginTop: 32,
-
-  '&:not(&.resize) > button:nth-child(n+8)': {
+  '&:not(&.resize) > li:nth-child(n+3)': {
     display: 'none',
   },
 
   '&.resize': {
     maxHeight: 'fit-content',
   },
+})
+
+export const TestimonialsContainer = styled('div', {
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: 32,
+
+  position: 'relative',
+
+  scrollMarginTop: 32,
 })
 
 export const TestimonialsOverlay = styled('div', {
