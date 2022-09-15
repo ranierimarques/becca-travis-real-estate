@@ -27,8 +27,18 @@ export const Description = styled('p', {
 export const ViewAll = styled('a', {
   fontWeight: '500',
   fontSize: '14px',
-  lineHeight: '36px',
+  lineHeight: '20px',
   color: '$magenta9',
+
+  '&:hover': {
+    textDecorationLine: 'underline',
+    textUnderlineOffset: '3px',
+  },
+  '&:focus': {
+    textDecoration: 'none',
+    outline: '2px solid rgba($colors$magenta9Rgb, 0.5)',
+    outlineOffset: 2,
+  },
 })
 
 export const TestimonialsContainer = styled('div', {
