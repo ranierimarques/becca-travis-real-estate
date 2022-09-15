@@ -112,11 +112,6 @@ export function ClientTestimonials() {
       </div>
 
       <S.TestimonialsContainer ref={testimonialsContainerRef} resize={resize}>
-        <S.TestimonialsOverlay>
-          <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto' }}>
-            {resize ? 'Show less' : 'Show more...'}
-          </Button>
-        </S.TestimonialsOverlay>
         {testimonials.map((column, index) => (
           <S.Testimonials key={index}>
             {column.map(testimonial => (
@@ -124,6 +119,11 @@ export function ClientTestimonials() {
             ))}
           </S.Testimonials>
         ))}
+        <S.TestimonialsOverlay>
+          <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto' }}>
+            {resize ? 'Show less' : 'Show more...'}
+          </Button>
+        </S.TestimonialsOverlay>
       </S.TestimonialsContainer>
     </S.Section>
   )
