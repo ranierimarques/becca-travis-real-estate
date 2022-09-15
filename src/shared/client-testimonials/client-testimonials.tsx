@@ -7,6 +7,32 @@ import { Testimonial } from './testimonial/testimonial'
 const reviews = [
   [
     {
+      name: 'Kristin B.',
+      source: 'Zillow',
+      text: `Becca is the best! She goes so far above and beyond. She is quick to respond
+     and get information from other agents. She is dream to work with. I couldn't imagine
+     working with anyone else. We live out of the area and she made the home buying
+     process easy.`,
+    },
+    {
+      name: 'Lisa Vernon',
+      source: 'Google reviews',
+      text: `We are incredibly fortunate to have a top real estate professional like Becca
+     Travis as our agent! She listened carefully to our needs, gave outstanding advice,
+      and worked tirelessly to find the perfect home for us. We truly would have been lost
+       without her guidance`,
+    },
+    {
+      name: 'Randell P.',
+      source: 'Zillow',
+      text: `Love her tenacity on the details of our transaction. Becca Travis is an all
+     -star player in my book. She knows her market and understands her client's needs very
+      well. If you need someone you can trust and who deeply understands the dynamics of
+      the real estate process`,
+    },
+  ],
+  [
+    {
       name: 'Hayden Walcott',
       source: 'Zillow',
       text: (
@@ -91,32 +117,6 @@ const reviews = [
           <S.ReviewSpan>Hayden Walcott</S.ReviewSpan>
         </>
       ),
-    },
-    {
-      name: 'Lisa Vernon',
-      source: 'Google reviews',
-      text: `We are incredibly fortunate to have a top real estate professional like Becca
-     Travis as our agent! She listened carefully to our needs, gave outstanding advice,
-      and worked tirelessly to find the perfect home for us. We truly would have been lost
-       without her guidance`,
-    },
-    {
-      name: 'Randell P.',
-      source: 'Zillow',
-      text: `Love her tenacity on the details of our transaction. Becca Travis is an all
-     -star player in my book. She knows her market and understands her client's needs very
-      well. If you need someone you can trust and who deeply understands the dynamics of
-      the real estate process`,
-    },
-  ],
-  [
-    {
-      name: 'Kristin B.',
-      source: 'Zillow',
-      text: `Becca is the best! She goes so far above and beyond. She is quick to respond
-     and get information from other agents. She is dream to work with. I couldn't imagine
-     working with anyone else. We live out of the area and she made the home buying
-     process easy.`,
     },
     {
       name: 'Jen V.',

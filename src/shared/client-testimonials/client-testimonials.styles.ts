@@ -58,9 +58,6 @@ export const TestimonialsContainer = styled('div', {
 
   variants: {
     resize: {
-      true: {
-        height: 'fit-content',
-      },
       false: {
         '& ul > li:nth-child(n+3)': {
           display: 'none',
