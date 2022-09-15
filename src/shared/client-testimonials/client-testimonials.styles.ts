@@ -64,7 +64,7 @@ export const TestimonialsContainer = styled('div', {
   },
 })
 
-export const TestimonialsOverlay = styled('div', {
+export const OverlayWrapper = styled('div', {
   display: 'flex',
   justifyContent: 'center',
 
@@ -84,7 +84,7 @@ export const TestimonialsOverlay = styled('div', {
   pointerEvents: 'none',
 })
 
-export const Testimonials = styled('ul', {
+export const TestimonialsList = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

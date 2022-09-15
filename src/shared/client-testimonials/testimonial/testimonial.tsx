@@ -5,14 +5,14 @@ import { CloseSvg } from '../svgs'
 import * as S from './testimonial.styles'
 
 interface TestimonialProps {
-  testimonial: {
+  review: {
     name: string
     source: string
     text: string
   }
 }
 
-export function Testimonial({ testimonial }: TestimonialProps) {
+export function Testimonial({ review }: TestimonialProps) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   function onOpenAutoFocus(event: Event) {
@@ -26,17 +26,17 @@ export function Testimonial({ testimonial }: TestimonialProps) {
         <S.TestimonialCard>
           <Flex align="start" justify="between">
             <Flex align="center" css={{ gap: 16, mb: 16 }}>
-              <S.Photo>{testimonial.name.substring(0, 1)}</S.Photo>
+              <S.Photo>{review.name.substring(0, 1)}</S.Photo>
               <Flex direction="column" align="start">
-                <S.Name>{testimonial.name}</S.Name>
-                <S.Source>{testimonial.source}</S.Source>
+                <S.Name>{review.name}</S.Name>
+                <S.Source>{review.source}</S.Source>
               </Flex>
             </Flex>
             <S.LinkSvgHover />
           </Flex>
 
           <blockquote>
-            <S.Text>&quot;{testimonial.text + '...'}&quot;</S.Text>
+            <S.Text>&quot;{review.text + '...'}&quot;</S.Text>
           </blockquote>
         </S.TestimonialCard>
 
@@ -44,15 +44,15 @@ export function Testimonial({ testimonial }: TestimonialProps) {
           <S.Overlay />
           <S.Content onOpenAutoFocus={onOpenAutoFocus}>
             <S.ContentHeader>
-              <S.ModalPhoto>{testimonial.name.substring(0, 1)}</S.ModalPhoto>
+              <S.ModalPhoto>{review.name.substring(0, 1)}</S.ModalPhoto>
               <div>
-                <S.ModalName>{testimonial.name}</S.ModalName>
-                <S.ModalSource>{testimonial.source}</S.ModalSource>
+                <S.ModalName>{review.name}</S.ModalName>
+                <S.ModalSource>{review.source}</S.ModalSource>
               </div>
               <S.ModalLogo />
             </S.ContentHeader>
 
-            <S.ModalText>{testimonial.text}</S.ModalText>
+            <S.ModalText>{review.text}</S.ModalText>
 
             <DialogPrimitive.Close asChild>
               <S.IconButton aria-label="Close">

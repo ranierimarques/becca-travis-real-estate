@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import * as S from './client-testimonials.styles'
 import { Testimonial } from './testimonial/testimonial'
 
-const testimonials = [
+const reviews = [
   [
     {
       name: 'Spencer B.',
@@ -112,18 +112,18 @@ export function ClientTestimonials() {
       </div>
 
       <S.TestimonialsContainer ref={testimonialsContainerRef} resize={resize}>
-        {testimonials.map((column, index) => (
-          <S.Testimonials key={index}>
-            {column.map(testimonial => (
-              <Testimonial testimonial={testimonial} key={testimonial.name} />
+        {reviews.map((reviewsColumn, index) => (
+          <S.TestimonialsList key={index}>
+            {reviewsColumn.map(review => (
+              <Testimonial key={review.name} review={review} />
             ))}
-          </S.Testimonials>
+          </S.TestimonialsList>
         ))}
-        <S.TestimonialsOverlay>
+        <S.OverlayWrapper>
           <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto' }}>
             {resize ? 'Show less' : 'Show more...'}
           </Button>
-        </S.TestimonialsOverlay>
+        </S.OverlayWrapper>
       </S.TestimonialsContainer>
     </S.Section>
   )
