@@ -120,7 +120,7 @@ export function ClientTestimonials() {
           </S.TestimonialsList>
         ))}
         <S.OverlayWrapper>
-          <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto' }}>
+          <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto', zIndex: 1 }}>
             {resize ? 'Show less' : 'Show more...'}
           </Button>
         </S.OverlayWrapper>

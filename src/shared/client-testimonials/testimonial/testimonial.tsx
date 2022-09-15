@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { CloseSvg } from '../svgs'
 import * as S from './testimonial.styles'
 
-interface TestimonialProps {
+interface ReviewProps {
   review: {
     name: string
     source: string
@@ -12,7 +12,7 @@ interface TestimonialProps {
   }
 }
 
-export function Testimonial({ review }: TestimonialProps) {
+export function Testimonial({ review }: ReviewProps) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   function onOpenAutoFocus(event: Event) {
@@ -21,9 +21,9 @@ export function Testimonial({ review }: TestimonialProps) {
   }
 
   return (
-    <li>
+    <S.TestimonialItem>
       <DialogPrimitive.Root>
-        <S.TestimonialCard>
+        <S.Trigger>
           <Flex align="start" justify="between">
             <Flex align="center" css={{ gap: 16, mb: 16 }}>
               <S.Photo>{review.name.substring(0, 1)}</S.Photo>
@@ -38,11 +38,11 @@ export function Testimonial({ review }: TestimonialProps) {
           <blockquote>
             <S.Text>&quot;{review.text + '...'}&quot;</S.Text>
           </blockquote>
-        </S.TestimonialCard>
+        </S.Trigger>
 
         <DialogPrimitive.Portal>
           <S.Overlay />
-          <S.Content onOpenAutoFocus={onOpenAutoFocus}>
+          <S.Content onOpenAutoFocus={onOpenAutoFocus} ref={contentRef}>
             <S.ContentHeader>
               <S.ModalPhoto>{review.name.substring(0, 1)}</S.ModalPhoto>
               <div>
@@ -54,14 +54,12 @@ export function Testimonial({ review }: TestimonialProps) {
 
             <S.ModalText>{review.text}</S.ModalText>
 
-            <DialogPrimitive.Close asChild>
-              <S.IconButton aria-label="Close">
-                <CloseSvg />
-              </S.IconButton>
-            </DialogPrimitive.Close>
+            <S.Close aria-label="Close">
+              <CloseSvg />
+            </S.Close>
           </S.Content>
         </DialogPrimitive.Portal>
       </DialogPrimitive.Root>
-    </li>
+    </S.TestimonialItem>
   )
 }
