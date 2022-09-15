@@ -1,5 +1,12 @@
 import { styled } from 'stitches.config'
 
+export const ReviewSpan = styled('span', {
+  display: 'block',
+  '& + &': {
+    marginTop: 16,
+  },
+})
+
 export const Section = styled('section', {
   margin: '0 auto',
   maxWidth: '1072px',

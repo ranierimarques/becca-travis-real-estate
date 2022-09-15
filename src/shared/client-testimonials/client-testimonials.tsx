@@ -7,12 +7,90 @@ import { Testimonial } from './testimonial/testimonial'
 const reviews = [
   [
     {
-      name: 'Spencer B.',
+      name: 'Hayden Walcott',
       source: 'Zillow',
-      text: `Becca Travis is an amazing Realtor!! Becca is very knowledgeable
-    about the field. Most importantly she loves to help others which shows
-    in her work. She is very reliable, efficient, customer centered and
-    will make sure you are taken care of`,
+      text: (
+        <>
+          <S.ReviewSpan>
+            &quot;Why Trust Your Future Home Purchase To Just Any Real Estate Agent?
+            Discover Becca Travis - An Agent That Treats You Like Family And Not Just As A
+            Transaction
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            Looking for a new home? First time home buyer or seasoned investor?
+          </S.ReviewSpan>
+          <S.ReviewSpan>Well, it doesn’t matter.</S.ReviewSpan>
+          <S.ReviewSpan>
+            You will be treated with the same courtesy, respect and professionalism when
+            you put the search of your future home or next investment in the hands of
+            Becca Travis.
+          </S.ReviewSpan>
+          <S.ReviewSpan>How do I know this?</S.ReviewSpan>
+          <S.ReviewSpan>Because I am now one happy home owner.</S.ReviewSpan>
+          <S.ReviewSpan>
+            Frankly speaking, most reviews about anything these days are either paid for
+            or fakes.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            Rarely will you find honest feedback and reviews about companies, products,
+            services or professionals in their field.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            But I didn’t need to get paid to write this - my fingers were all over the
+            keyboard when asked to write this review - it’s looking more like an article
+            now actually.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            The secret to success in business or your profession is to help people first -
+            solve their problems, don’t sell and up-sell - that’s a turnoff.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            You want to show your clients, you have their best interest at heart. You want
+            them to feel happy with their purchase without second thoughts or regrets.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            After all, buying a house is a life changing decision. You want to work with
+            someone who understands this and is not just after the big commission.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            Becca puts her client first, and with patience and some love will review as
+            many houses as needed to make sure you are buying exactly what makes you happy
+            and within your budget.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            And she’ll guide you through the process with expert advice and
+            recommendations.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            Did you know that some real estate agents will not work with clients if their
+            target purchase price is under a certain amount?
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            That’s right! Some agents for example are not interest in clients with
+            purchases under $300000.00
+          </S.ReviewSpan>
+          <S.ReviewSpan>Why?</S.ReviewSpan>
+          <S.ReviewSpan>
+            Because the commission is not big enough! Becca is not that kind of agent.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            But what the $300000.00 and above agents don’t understand is that small home
+            buyers can recommend big clients - if they are treated right - and small
+            commissions add up.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            What’s more, when you treat your clients with respect and kindness, you don’t
+            have to advertise as much, because people love to tell their friends, families
+            and co-workers about a good thing.
+          </S.ReviewSpan>
+          <S.ReviewSpan>
+            Don’t entrust your home buying experience to just anyone. Work with an
+            experienced professional that knows the business and put her clients first.
+          </S.ReviewSpan>
+          <S.ReviewSpan>Happy hunting.</S.ReviewSpan>
+          <S.ReviewSpan>Hayden Walcott</S.ReviewSpan>
+        </>
+      ),
     },
     {
       name: 'Lisa Vernon',

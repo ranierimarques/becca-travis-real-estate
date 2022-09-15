@@ -1,6 +1,6 @@
 import { Flex } from '@common'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { CloseSvg } from '../svgs'
 import * as S from './testimonial.styles'
 
@@ -8,7 +8,7 @@ interface ReviewProps {
   review: {
     name: string
     source: string
-    text: string
+    text: ReactNode | string
   }
 }
 
@@ -35,9 +35,7 @@ export function Testimonial({ review }: ReviewProps) {
             <S.LinkSvgHover />
           </Flex>
 
-          <blockquote>
-            <S.Text>&quot;{review.text + '...'}&quot;</S.Text>
-          </blockquote>
+          <S.Text>{review.text}&quot;...</S.Text>
         </S.Trigger>
 
         <DialogPrimitive.Portal>

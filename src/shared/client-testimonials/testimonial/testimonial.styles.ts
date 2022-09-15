@@ -73,13 +73,26 @@ export const Source = styled('span', {
   color: '$gray3',
 })
 
-export const Text = styled('p', {
+export const Text = styled('blockquote', {
   textAlign: 'left',
 
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '24px',
   color: '$gray2',
+
+  '& > span:nth-child(n+4)': {
+    display: 'none',
+  },
+
+  '& > span:nth-child(3)': {
+    display: 'inline-block',
+  },
+
+  display: '-webkit-box',
+  WebkitLineClamp: '10',
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
 })
 
 // Modal
@@ -99,16 +112,25 @@ export const Content = styled(DialogPrimitive.Content, {
   borderRadius: 6,
   boxShadow:
     'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+
   position: 'fixed',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '536px',
+
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   },
   '&:focus': { outline: 'none' },
   zIndex: 1,
+
+  display: 'flex',
+  flexDirection: 'column',
+
+  overflow: 'hidden',
+
+  width: '536px',
+  maxHeight: '90vh',
 })
 
 export const ContentHeader = styled('div', {
@@ -165,6 +187,8 @@ export const ModalText = styled('p', {
   fontSize: '14px',
   lineHeight: '24px',
   color: '$gray2',
+
+  overflowY: 'auto',
 })
 
 export const Close = styled(DialogPrimitive.Close, {
