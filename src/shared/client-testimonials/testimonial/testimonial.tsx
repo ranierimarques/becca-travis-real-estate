@@ -1,18 +1,18 @@
 import { Flex } from '@common'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { CloseSvg } from '../svgs'
 import * as S from './testimonial.styles'
 
-interface TestimonialProps {
-  testimonial: {
+interface ReviewProps {
+  review: {
     name: string
     source: string
-    text: string
+    text: ReactNode | string
   }
 }
 
-export function Testimonial({ testimonial }: TestimonialProps) {
+export function Testimonial({ review }: ReviewProps) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   function onOpenAutoFocus(event: Event) {
@@ -21,47 +21,43 @@ export function Testimonial({ testimonial }: TestimonialProps) {
   }
 
   return (
-    <li>
+    <S.TestimonialItem>
       <DialogPrimitive.Root>
-        <S.TestimonialCard>
+        <S.Trigger>
           <Flex align="start" justify="between">
             <Flex align="center" css={{ gap: 16, mb: 16 }}>
-              <S.Photo>{testimonial.name.substring(0, 1)}</S.Photo>
+              <S.Photo>{review.name.substring(0, 1)}</S.Photo>
               <Flex direction="column" align="start">
-                <S.Name>{testimonial.name}</S.Name>
-                <S.Source>{testimonial.source}</S.Source>
+                <S.Name>{review.name}</S.Name>
+                <S.Source>{review.source}</S.Source>
               </Flex>
             </Flex>
             <S.LinkSvgHover />
           </Flex>
 
-          <blockquote>
-            <S.Text>&quot;{testimonial.text + '...'}&quot;</S.Text>
-          </blockquote>
-        </S.TestimonialCard>
+          <S.Text>{review.text}&quot;...</S.Text>
+        </S.Trigger>
 
         <DialogPrimitive.Portal>
           <S.Overlay />
-          <S.Content onOpenAutoFocus={onOpenAutoFocus}>
+          <S.Content onOpenAutoFocus={onOpenAutoFocus} ref={contentRef}>
             <S.ContentHeader>
-              <S.ModalPhoto>{testimonial.name.substring(0, 1)}</S.ModalPhoto>
+              <S.ModalPhoto>{review.name.substring(0, 1)}</S.ModalPhoto>
               <div>
-                <S.ModalName>{testimonial.name}</S.ModalName>
-                <S.ModalSource>{testimonial.source}</S.ModalSource>
+                <S.ModalName>{review.name}</S.ModalName>
+                <S.ModalSource>{review.source}</S.ModalSource>
               </div>
               <S.ModalLogo />
             </S.ContentHeader>
 
-            <S.ModalText>{testimonial.text}</S.ModalText>
+            <S.ModalText>{review.text}</S.ModalText>
 
-            <DialogPrimitive.Close asChild>
-              <S.IconButton aria-label="Close">
-                <CloseSvg />
-              </S.IconButton>
-            </DialogPrimitive.Close>
+            <S.Close aria-label="Close">
+              <CloseSvg />
+            </S.Close>
           </S.Content>
         </DialogPrimitive.Portal>
       </DialogPrimitive.Root>
-    </li>
+    </S.TestimonialItem>
   )
 }
