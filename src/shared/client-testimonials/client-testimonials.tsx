@@ -15,12 +15,12 @@ const testimonials = [
     will make sure you are taken care of`,
     },
     {
-      name: 'Nick R.',
+      name: 'Lisa Vernon',
       source: 'Google reviews',
-      text: `If you need a realtor in Huntsville, Becca is your go-to AGENT! she goes above
-      and beyond for you and has many outside referrals and connections to make your life
-      EASIER! she is awesome and we will continue to use her as we continue to buy more
-      rentals! thanks again!`,
+      text: `We are incredibly fortunate to have a top real estate professional like Becca
+     Travis as our agent! She listened carefully to our needs, gave outstanding advice,
+      and worked tirelessly to find the perfect home for us. We truly would have been lost
+       without her guidance`,
     },
     {
       name: 'Randell P.',
@@ -48,21 +48,21 @@ const testimonials = [
      could get an agent to show us around, despite we are not buying at the current time`,
     },
     {
+      name: 'Nick R.',
+      source: 'Google reviews',
+      text: `If you need a realtor in Huntsville, Becca is your go-to AGENT! she goes above
+      and beyond for you and has many outside referrals and connections to make your life
+      EASIER! she is awesome and we will continue to use her as we continue to buy more
+      rentals! thanks again!`,
+    },
+  ],
+  [
+    {
       name: 'Mike B.',
       source: 'Zillow',
       text: `Becca was amazing and really went above and beyond! She overcame obstacles that
      no one else could, fought to get me the right home for me, and held my hand/explained
      all the complicated aspects about the home buying process when I needed it`,
-    },
-  ],
-  [
-    {
-      name: 'Lisa Vernon',
-      source: 'Google reviews',
-      text: `We are incredibly fortunate to have a top real estate professional like Becca
-     Travis as our agent! She listened carefully to our needs, gave outstanding advice,
-      and worked tirelessly to find the perfect home for us. We truly would have been lost
-       without her guidance`,
     },
     {
       name: 'Kristin Bourne',
@@ -111,21 +111,19 @@ export function ClientTestimonials() {
         </Flex>
       </div>
 
-      <S.TestimonialsContainer ref={testimonialsContainerRef}>
+      <S.TestimonialsContainer ref={testimonialsContainerRef} resize={resize}>
         <S.TestimonialsOverlay>
-          <Button size="2" css={{ pointerEvents: 'auto' }} onClick={onResize}>
+          <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto' }}>
             {resize ? 'Show less' : 'Show more...'}
           </Button>
         </S.TestimonialsOverlay>
-        {testimonials.map((testimonialArray, index) => {
-          return (
-            <S.Testimonials className={resize ? 'resize' : ''} key={index}>
-              {testimonialArray.map(testimonial => {
-                return <Testimonial testimonial={testimonial} key={testimonial.name} />
-              })}
-            </S.Testimonials>
-          )
-        })}
+        {testimonials.map((column, index) => (
+          <S.Testimonials key={index}>
+            {column.map(testimonial => (
+              <Testimonial testimonial={testimonial} key={testimonial.name} />
+            ))}
+          </S.Testimonials>
+        ))}
       </S.TestimonialsContainer>
     </S.Section>
   )

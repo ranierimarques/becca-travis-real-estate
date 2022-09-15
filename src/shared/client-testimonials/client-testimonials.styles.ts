@@ -31,21 +31,6 @@ export const ViewAll = styled('a', {
   color: '$magenta9',
 })
 
-export const Testimonials = styled('ul', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: 32,
-
-  '&:not(&.resize) > li:nth-child(n+3)': {
-    display: 'none',
-  },
-
-  '&.resize': {
-    maxHeight: 'fit-content',
-  },
-})
-
 export const TestimonialsContainer = styled('div', {
   display: 'flex',
   alignItems: 'flex-start',
@@ -54,20 +39,44 @@ export const TestimonialsContainer = styled('div', {
   position: 'relative',
 
   scrollMarginTop: 32,
+
+  variants: {
+    resize: {
+      true: {
+        height: 'fit-content',
+      },
+      false: {
+        '& ul > li:nth-child(n+3)': {
+          display: 'none',
+        },
+      },
+    },
+  },
 })
 
 export const TestimonialsOverlay = styled('div', {
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
 
-  padding: '237px 0px 64px',
+  width: '100%',
+
+  padding: '197px 0px 112px',
 
   position: 'absolute',
-  bottom: '0px',
-  width: '100%',
-  background:
-    'linear-gradient(180deg, rgba(255, 255, 255, 0) 47.4%, rgba(255, 255, 255, 0.7) 75.52%, rgba(255, 255, 255, 0.7) 100%)',
+  bottom: '-48px', // Testimonial Box Shadow Spread + 8px for safe zone
+
+  background: `linear-gradient(180deg, 
+    rgba(255, 255, 255, 0) 47.4%, 
+    rgba(255, 255, 255, 0.7) 75.52%,
+    rgba(255, 255, 255, 1) 90%, 
+    rgba(255, 255, 255, 1) 100%)`,
 
   pointerEvents: 'none',
+})
+
+export const Testimonials = styled('ul', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: 32,
 })
