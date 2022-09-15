@@ -1,7 +1,6 @@
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
-  paddingBottom: '120px',
   margin: '0 auto',
   maxWidth: '1072px',
 })
