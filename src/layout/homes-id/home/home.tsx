@@ -2,6 +2,7 @@ import { Box, Flex } from '@common'
 import { LastCall } from '@shared'
 import { Slider } from '.'
 import { AskAQuestion } from './ask-a-question/ask-a-question'
+import { FasterContact } from './faster-contact/faster-contact'
 import * as S from './home.styles'
 import { PropertyDetails } from './property-details/property-details'
 import { HeartSvg, ShareSvg } from './svgs'
@@ -73,7 +74,10 @@ export function Home({ listing }: Listing) {
         </Flex>
       </div>
 
-      <AskAQuestion />
+      <Flex align="start">
+        <AskAQuestion />
+        <FasterContact />
+      </Flex>
 
       <LastCall />
     </S.Section>

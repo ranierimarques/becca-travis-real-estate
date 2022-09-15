@@ -1,6 +1,4 @@
-import { Box, Button, Flex } from '@common'
-import Image from 'next/image'
-import { contactFaster } from '../images'
+import { Button, Flex } from '@common'
 import * as S from './ask-a-question.styles'
 
 export function AskAQuestion() {
@@ -38,20 +36,6 @@ export function AskAQuestion() {
             <Button size="2">Send your message</Button>
           </Flex>
         </S.Form>
-
-        <S.FasterContact>
-          <Box css={{ lineHeight: '0', br: 8, overflow: 'hidden' }}>
-            <Image src={contactFaster} alt="" quality={100} />
-          </Box>
-
-          <S.FasterContactTitle>Do you need a faster contact?</S.FasterContactTitle>
-          <S.FasterContactParagraph>
-            I&apos;m ready to help you and take all your questions, get in touch!
-          </S.FasterContactParagraph>
-          <Button outlined size={2} css={{ w: '100%' }}>
-            Contact Becca Travis
-          </Button>
-        </S.FasterContact>
       </Flex>
     </S.Section>
   )
