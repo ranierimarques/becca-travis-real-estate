@@ -2,6 +2,28 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './search-input.styles'
 import { Gps } from './svgs'
 
+async function fetchSuggestions(parameters: string) {
+  const response = await fetch(
+    `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_AUTOCOMPLETE_API_KEY}&search=${parameters}&include_only_states=AL&max_results=6`
+  )
+  const autoComplete = await response.json()
+  return autoComplete.suggestions
+}
+
+async function getLocationSuccess(position: GeolocationPosition) {
+  const { latitude, longitude } = position.coords
+  const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_GEOLOCATION_API_KEY}`
+  const response = await fetch(endpoint)
+  const data = await response.json()
+  console.log(data)
+}
+
+function getLocationError(err: GeolocationPositionError) {
+  alert(
+    'There is no location support on this device or it is disabled. Please check your settings.'
+  )
+}
+
 export function SearchInput() {
   const [search, setSearch] = useState('')
   const [suggestions, setSuggestions] = useState([{ street_line: '' }])
@@ -19,32 +41,15 @@ export function SearchInput() {
       const parameters = value.trim().replaceAll(' ', '%20')
       console.log(parameters)
 
-      const response = await fetch(
-        `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_AUTOCOMPLETE_API_KEY}&search=${parameters}&include_only_states=AL&max_results=6`
-      )
-      const data = await response.json()
-      console.log(data)
+      const suggestions = await fetchSuggestions(parameters)
 
-      setSuggestions(data.suggestions)
+      setSuggestions(suggestions)
     }
   }
 
   function handleMyLocation(event: FormEvent) {
     event.preventDefault()
-    navigator.geolocation.getCurrentPosition(
-      async position => {
-        const { latitude, longitude } = position.coords
-        const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
-        const response = await fetch(endpoint)
-        const data = await response.json()
-        console.log(data)
-      },
-      err => {
-        window.alert(
-          'There is no location support on this device or it is disabled. Please check your settings.'
-        )
-      }
-    )
+    navigator.geolocation.getCurrentPosition(getLocationSuccess, getLocationError)
   }
 
   return (
