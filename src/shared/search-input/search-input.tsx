@@ -12,8 +12,7 @@ async function fetchSuggestions(parameters: string) {
 
 async function getLocationSuccess(position: GeolocationPosition) {
   const { latitude, longitude } = position.coords
-  const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_GEOLOCATION_API_KEY}`
-  const response = await fetch(endpoint)
+  const response = await fetch(`/api/location?lat=${latitude}&lng=${longitude}`)
   const data = await response.json()
   console.log(data)
 }
