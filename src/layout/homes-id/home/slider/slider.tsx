@@ -21,6 +21,7 @@ export function Slider({ media }: ListingMedia) {
     created() {
       setLoaded(true)
     },
+    rubberband: false,
   })
   const isFirstPhoto = currentSlide === 0
   const isLastPhoto =
@@ -29,6 +30,7 @@ export function Slider({ media }: ListingMedia) {
   function handlePreviousPhoto() {
     instanceRef.current?.prev()
   }
+
   function handleNextPhoto() {
     instanceRef.current?.next()
   }
@@ -43,7 +45,13 @@ export function Slider({ media }: ListingMedia) {
               key={index}
               css={{ w: 'fit-content', br: 8, lineHeight: 0, overflow: 'hidden' }}
             >
-              <Image src={url} alt="house image" width={704} height={395} />
+              <Image
+                src={url}
+                alt="house image"
+                width={704}
+                height={395}
+                priority={index === 0}
+              />
             </Box>
           )
         })}
