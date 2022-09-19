@@ -37,13 +37,23 @@ export function Slider({ media }: ListingMedia) {
     <S.NavigationWrapper>
       <div className="keen-slider" ref={sliderRef}>
         {media.map((url, index) => {
+          // Instant load first 3 images
+          // Load (next + 3) image in array when navigate to next image in slider
+          const loadPreviousAndCurrentImages = currentSlide + 2 >= index
+
           return (
             <Box
               className="keen-slider__slide"
               key={index}
               css={{ w: 'fit-content', br: 8, lineHeight: 0, overflow: 'hidden' }}
             >
-              <Image src={url} alt="house image" width={704} height={395} />
+              <Image
+                src={url}
+                alt="house image"
+                width={704}
+                height={395}
+                priority={loadPreviousAndCurrentImages}
+              />
             </Box>
           )
         })}
