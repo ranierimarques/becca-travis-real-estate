@@ -21,15 +21,29 @@ async function fetchSuggestions(value: string) {
   return data.suggestions
 }
 
-export async function getSuggestions(value: string) {
+async function getAddresses(value: string) {
+  const suggestions = await fetchSuggestions(value)
+  return suggestions.map(suggestion => suggestion.street_line)
+}
+
+export async function getSuggestions(
+  value: string,
+  timeoutID: ReturnType<typeof setTimeout> | null,
+  milliseconds: number
+) {
   const isEmpty = value.length === 0
 
+  if (timeoutID) clearTimeout(timeoutID)
   if (isEmpty) return []
 
-  const suggestions = await fetchSuggestions(value)
-  const addresses = suggestions.map(suggestion => ({
-    address: suggestion.street_line,
-  }))
+  let addresses = ['']
+
+  await new Promise<void>(resolve => {
+    timeoutID = setTimeout(async () => {
+      addresses = await getAddresses(value)
+      resolve()
+    }, milliseconds)
+  })
 
   return addresses
 }

@@ -1,7 +1,7 @@
 import { styled } from 'stitches.config'
 import { Loupe } from './svgs'
 
-export const Suggestions = styled('div', {
+export const Suggestions = styled('ul', {
   position: 'absolute',
 
   left: '0px',
@@ -135,5 +135,14 @@ export const Suggestion = styled('button', {
     background: 'rgba($colors$gray3Rgb, 0.2)',
     borderRadius: '4px',
     cursor: 'pointer',
+  },
+
+  variants: {
+    active: {
+      true: {
+        outline: '2px solid blue',
+        borderRadius: '4px',
+      },
+    },
   },
 })
