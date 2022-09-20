@@ -21,6 +21,7 @@ export function Slider({ media }: ListingMedia) {
     created() {
       setLoaded(true)
     },
+    rubberband: false,
   })
   const isFirstPhoto = currentSlide === 0
   const isLastPhoto =
@@ -29,6 +30,7 @@ export function Slider({ media }: ListingMedia) {
   function handlePreviousPhoto() {
     instanceRef.current?.prev()
   }
+
   function handleNextPhoto() {
     instanceRef.current?.next()
   }

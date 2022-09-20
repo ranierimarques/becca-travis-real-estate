@@ -1,5 +1,5 @@
 import { Button, Flex, Hat } from '@common'
-import Link from 'next/link'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { useRef, useState } from 'react'
 import * as S from './client-testimonials.styles'
 import { Testimonial } from './testimonial/testimonial'
@@ -178,14 +178,22 @@ export function ClientTestimonials() {
       <div>
         <Hat css={{ mb: 8 }}>CUSTOMERS STORIES</Hat>
         <S.Title>Client stories</S.Title>
-        <Flex align="center" justify="between" css={{ mb: 48 }}>
+        <Flex align="end" justify="between" css={{ mb: 48 }}>
           <S.Description>
             I work with my heart and the best part about my job is guiding each of home. I
             am grateful for each of my clients, here are just a few of their stories…
           </S.Description>
-          <Link href="/reviews" passHref>
-            <S.ViewAll>VIEW ALL</S.ViewAll>
-          </Link>
+          <TooltipPrimitive.Provider>
+            <TooltipPrimitive.Root delayDuration={300}>
+              <TooltipPrimitive.Trigger asChild>
+                <S.ViewAll>VIEW ALL</S.ViewAll>
+              </TooltipPrimitive.Trigger>
+              <S.TooltipContent sideOffset={5}>
+                Coming soon
+                <S.TooltipArrow width={16} height={8} />
+              </S.TooltipContent>
+            </TooltipPrimitive.Root>
+          </TooltipPrimitive.Provider>
         </Flex>
       </div>
 

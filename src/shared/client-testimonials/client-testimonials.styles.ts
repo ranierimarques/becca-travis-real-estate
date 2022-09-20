@@ -1,4 +1,25 @@
-import { styled } from 'stitches.config'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { keyframes, styled } from 'stitches.config'
+
+const slideUpAndFade = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(2px)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+})
+
+const slideRightAndFade = keyframes({
+  '0%': { opacity: 0, transform: 'translateX(-2px)' },
+  '100%': { opacity: 1, transform: 'translateX(0)' },
+})
+
+const slideDownAndFade = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(-2px)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+})
+
+const slideLeftAndFade = keyframes({
+  '0%': { opacity: 0, transform: 'translateX(2px)' },
+  '100%': { opacity: 1, transform: 'translateX(0)' },
+})
 
 export const ReviewSpan = styled('span', {
   display: 'block',
@@ -30,21 +51,43 @@ export const Description = styled('p', {
   color: '$gray2',
 })
 
-export const ViewAll = styled('a', {
+export const TooltipContent = styled(TooltipPrimitive.Content, {
+  position: 'relative',
+
+  padding: '8px 16px',
+
+  fontWeight: '600',
+  fontSize: '12px',
+  lineHeight: '18px',
+  color: '$magenta2',
+
+  background: 'rgba($colors$magenta1Rgb, 0.12)',
+  borderRadius: '999px',
+
+  '@media (prefers-reduced-motion: no-preference)': {
+    animationDuration: '400ms',
+    animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    willChange: 'transform, opacity',
+    '&[data-state="delayed-open"]': {
+      '&[data-side="top"]': { animationName: slideDownAndFade },
+      '&[data-side="right"]': { animationName: slideLeftAndFade },
+      '&[data-side="bottom"]': { animationName: slideUpAndFade },
+      '&[data-side="left"]': { animationName: slideRightAndFade },
+    },
+  },
+})
+
+export const TooltipArrow = styled(TooltipPrimitive.Arrow, {
+  fill: 'rgba($colors$magenta1Rgb, 0.12)',
+})
+
+export const ViewAll = styled('span', {
   fontWeight: '500',
   fontSize: '14px',
   lineHeight: '20px',
-  color: '$magenta9',
+  color: 'rgba($colors$magenta9Rgb, .5)',
 
-  '&:hover': {
-    textDecorationLine: 'underline',
-    textUnderlineOffset: '3px',
-  },
-  '&:focus': {
-    textDecoration: 'none',
-    outline: '2px solid rgba($colors$magenta9Rgb, 0.5)',
-    outlineOffset: 2,
-  },
+  cursor: 'default',
 })
 
 export const TestimonialsContainer = styled('div', {
