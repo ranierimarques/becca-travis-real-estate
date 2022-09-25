@@ -140,7 +140,7 @@ export const Suggestion = styled('button', {
   variants: {
     active: {
       true: {
-        outline: '2px solid blue',
+        boxShadow: '0 0 0 2px $colors$magenta2',
         borderRadius: '4px',
       },
     },

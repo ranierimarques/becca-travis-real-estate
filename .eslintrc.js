@@ -9,6 +9,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'next/core-web-vitals',
     'plugin:prettier/recommended',
+    'plugin:sonarjs/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -18,7 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'sonarjs'],
   rules: {
     'prettier/prettier': [
       'error',
