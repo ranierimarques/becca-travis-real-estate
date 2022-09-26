@@ -1,1 +1,1 @@
-export { default as house } from "./house.jpg"
+export { default as house } from './house.jpg'

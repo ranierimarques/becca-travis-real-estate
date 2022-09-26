@@ -1,7 +1,7 @@
-import { Button } from "@common"
-import Image from "next/image"
-import * as S from "./about-huntsville.styles"
-import { huntsville } from "./images"
+import { Button } from '@common'
+import Image from 'next/image'
+import * as S from './about-huntsville.styles'
+import { huntsville } from './images'
 
 export function AboutHuntsville() {
   return (
@@ -9,10 +9,10 @@ export function AboutHuntsville() {
       <div>
         <S.Title>About Huntsville</S.Title>
         <S.Paragraph>
-          Huntsville is now Alabamas Largest City. US recently names Huntsville,
-          Al as the Place to Live, other notable mentions include: One Of The
-          Best Place to Retire, Best Place to Live in Alabama, Most Affordable
-          Place to Live, Fastest-Growing Place.
+          Huntsville is now Alabamas Largest City. US recently names Huntsville, Al as the
+          Place to Live, other notable mentions include: One Of The Best Place to Retire,
+          Best Place to Live in Alabama, Most Affordable Place to Live, Fastest-Growing
+          Place.
         </S.Paragraph>
         <Button href="/huntsville" size="2">
           Learn more

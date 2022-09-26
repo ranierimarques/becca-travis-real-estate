@@ -1,2 +1,1 @@
-export { default as ArrowLeftSvg } from './arrow-left';
-
+export { default as ArrowLeftSvg } from './arrow-left'

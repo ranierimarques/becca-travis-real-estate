@@ -1,8 +1,8 @@
-import { Hero, Latest } from "@layout/blog"
-import request, { gql } from "graphql-request"
-import type { NextPage } from "next"
-import Head from "next/head"
-import getReadingTime from "reading-time"
+import { Hero, Latest } from '@layout/blog'
+import request, { gql } from 'graphql-request'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import getReadingTime from 'reading-time'
 
 interface PostsProps {
   posts: {
@@ -73,7 +73,7 @@ const query = gql`
 
 export async function getStaticProps() {
   const data: PostsQuery = await request(
-    "https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master",
+    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
     query
   )
 

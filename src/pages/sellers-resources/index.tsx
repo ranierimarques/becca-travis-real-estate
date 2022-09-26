@@ -1,12 +1,7 @@
-import {
-  Hero,
-  Sellers,
-  SellingWithUs,
-  WhyARealtor,
-} from "@layout/sellers-resources"
-import { LastCall } from "@shared"
-import type { NextPage } from "next"
-import Head from "next/head"
+import { Hero, Sellers, SellingWithUs, WhyARealtor } from '@layout/sellers-resources'
+import { LastCall } from '@shared'
+import type { NextPage } from 'next'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (

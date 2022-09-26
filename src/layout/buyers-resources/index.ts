@@ -1,1 +1,1 @@
-export { HuntsvilleInformation } from "./huntsville-information/huntsville-information"
+export { HuntsvilleInformation } from './huntsville-information/huntsville-information'
