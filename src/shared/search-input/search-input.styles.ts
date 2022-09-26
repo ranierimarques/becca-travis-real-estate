@@ -16,7 +16,7 @@ export const Suggestions = styled('ul', {
   background: '$offWhite2',
   borderRadius: '8px',
 
-  display: 'none',
+  // display: 'none',
 
   zIndex: 1,
 })
@@ -112,6 +112,15 @@ export const CurrentLocation = styled('button', {
     background: 'rgba($colors$gray3Rgb, 0.2)',
     borderRadius: '4px',
     cursor: 'pointer',
+  },
+
+  variants: {
+    active: {
+      true: {
+        boxShadow: '0 0 0 2px $colors$magenta2',
+        borderRadius: '4px',
+      },
+    },
   },
 })
 

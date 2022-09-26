@@ -1,17 +1,18 @@
 import useDebounce from '@resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as S from './search-input.styles'
 import { Gps } from './svgs'
-import { getSuggestions, setAddressUsingGeoLocation } from './utils'
+import { fetchBingSuggestions, setAddressUsingGeoLocation } from './utils'
+
+const LOCATION_VALUE = 'Current Location'
 
 export function SearchInput() {
   const skipFetch = useRef(false)
   const [searchValue, setSearchValue] = useState('')
-  const [suggestions, setSuggestions] = useState<string[]>([])
-  const debouncedValue = useDebounce<string>(searchValue, 1000)
+  const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
+  const debouncedValue = useDebounce<string>(searchValue, 500)
   const {
-    // isOpen,
     getMenuProps,
     getInputProps,
     getComboboxProps,
@@ -21,29 +22,41 @@ export function SearchInput() {
     id: 'houses-search',
     items: suggestions,
     inputValue: searchValue,
-    onInputValueChange: ({ inputValue: newValue = '' }) => {
-      skipFetch.current = searchValue.trim() === newValue.trim()
-      setSearchValue(newValue)
+    selectedItem: searchValue,
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (!selectedItem) return
+      if (selectedItem === LOCATION_VALUE) {
+        skipFetch.current = true
+        setAddressUsingGeoLocation(setSearchValue)
+        return
+      }
+
+      skipFetch.current = true
+      setSearchValue(selectedItem)
     },
   })
-
-  function handleMyLocation(event: FormEvent) {
-    event.preventDefault()
-
-    skipFetch.current = true
-    setAddressUsingGeoLocation(setSearchValue)
-  }
 
   useEffect(() => {
     if (skipFetch.current) return
 
-    async function fetchData() {
-      const addresses = await getSuggestions(debouncedValue)
+    async function fetchSuggestions() {
+      const addresses = await fetchBingSuggestions(debouncedValue)
       setSuggestions(addresses)
     }
 
-    fetchData()
+    fetchSuggestions()
   }, [debouncedValue])
+
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
+    const newValue = event.target.value
+
+    skipFetch.current = searchValue.trim() === newValue.trim()
+    if (newValue.trim().length === 0) {
+      skipFetch.current = true
+      setSuggestions(['Current Location'])
+    }
+    setSearchValue(newValue)
+  }
 
   return (
     <>
@@ -52,7 +65,7 @@ export function SearchInput() {
           <S.SearchInput
             type="text"
             placeholder="Search by address, neighborhood, city or ZIP code"
-            {...getInputProps()}
+            {...getInputProps({ onChange })}
           />
         </div>
         <S.SearchButton>
@@ -60,17 +73,20 @@ export function SearchInput() {
         </S.SearchButton>
 
         <S.Suggestions {...getMenuProps()}>
-          {!searchValue.trim() && !suggestions.length && (
-            <S.CurrentLocation onClick={handleMyLocation}>
-              <Gps />
-              Current Location
-            </S.CurrentLocation>
-          )}
-          {suggestions.map((item, index) => (
-            <li key={`${item}${index}`} {...getItemProps({ item, index })}>
-              <S.Suggestion active={highlightedIndex === index}>{item}</S.Suggestion>
-            </li>
-          ))}
+          {suggestions.map((item, index) => {
+            return (
+              <li key={`${item}${index}`} {...getItemProps({ item, index })}>
+                {item === LOCATION_VALUE ? (
+                  <S.CurrentLocation active={highlightedIndex === index}>
+                    <Gps />
+                    Current Location
+                  </S.CurrentLocation>
+                ) : (
+                  <S.Suggestion active={highlightedIndex === index}>{item}</S.Suggestion>
+                )}
+              </li>
+            )
+          })}
         </S.Suggestions>
       </S.InputWrapper>
     </>
