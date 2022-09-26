@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'sonarjs'],
   rules: {
+    'sonarjs/no-duplicate-string': ['error', 10],
     'prettier/prettier': [
       'error',
       {

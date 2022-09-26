@@ -4,9 +4,7 @@ import Link from 'next/link'
 import { ChatSvg, ShieldSvg, UserSvg } from '../svgs'
 import * as S from './helper-navbar.styles'
 
-const DropdownLanguage = dynamic<{}>(
-  () => import('../dropdown-language/dropdown-language')
-)
+const DropdownLanguage = dynamic(() => import('../dropdown-language/dropdown-language'))
 
 const links = [
   { id: 1, icon: <ShieldSvg />, text: 'Local Guides', href: '/local-guides' },
