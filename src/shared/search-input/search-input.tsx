@@ -3,12 +3,12 @@ import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as S from './search-input.styles'
 import { Gps } from './svgs'
-import { fetchBingSuggestions, setAddressUsingGeoLocation } from './utils'
+import { setAddressUsingGeoLocation, setBingSuggestions } from './utils'
 
 const LOCATION_VALUE = 'Current Location'
 
 export function SearchInput() {
-  const skipFetch = useRef(false)
+  const skipFetch = useRef(true)
   const [searchValue, setSearchValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
   const debouncedValue = useDebounce<string>(searchValue, 500)
@@ -25,13 +25,14 @@ export function SearchInput() {
     selectedItem: searchValue,
     onSelectedItemChange: ({ selectedItem }) => {
       if (!selectedItem) return
+
+      skipFetch.current = true
+
       if (selectedItem === LOCATION_VALUE) {
-        skipFetch.current = true
         setAddressUsingGeoLocation(setSearchValue)
         return
       }
 
-      skipFetch.current = true
       setSearchValue(selectedItem)
     },
   })
@@ -39,43 +40,42 @@ export function SearchInput() {
   useEffect(() => {
     if (skipFetch.current) return
 
-    async function fetchSuggestions() {
-      const addresses = await fetchBingSuggestions(debouncedValue)
-      setSuggestions(addresses)
-    }
-
-    fetchSuggestions()
+    setBingSuggestions(debouncedValue, setSuggestions)
   }, [debouncedValue])
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value
 
     skipFetch.current = searchValue.trim() === newValue.trim()
+    setSearchValue(newValue)
+
     if (newValue.trim().length === 0) {
       skipFetch.current = true
       setSuggestions(['Current Location'])
     }
-    setSearchValue(newValue)
   }
 
   return (
     <>
-      <S.InputWrapper>
-        <div {...getComboboxProps()}>
-          <S.SearchInput
+      <S.Container>
+        <S.InputWrapper {...getComboboxProps()}>
+          <S.Input
             type="text"
             placeholder="Search by address, neighborhood, city or ZIP code"
             {...getInputProps({ onChange })}
           />
-        </div>
-        <S.SearchButton>
-          <S.LoupeSvg />
-        </S.SearchButton>
+          <S.SearchButton aria-label="Search">
+            <S.LoupeSvg />
+          </S.SearchButton>
+        </S.InputWrapper>
 
         <S.Suggestions {...getMenuProps()}>
           {suggestions.map((item, index) => {
             return (
-              <li key={`${item}${index}`} {...getItemProps({ item, index })}>
+              <S.SuggestionListItem
+                key={`${item}${index}`}
+                {...getItemProps({ item, index })}
+              >
                 {item === LOCATION_VALUE ? (
                   <S.CurrentLocation active={highlightedIndex === index}>
                     <Gps />
@@ -84,11 +84,11 @@ export function SearchInput() {
                 ) : (
                   <S.Suggestion active={highlightedIndex === index}>{item}</S.Suggestion>
                 )}
-              </li>
+              </S.SuggestionListItem>
             )
           })}
         </S.Suggestions>
-      </S.InputWrapper>
+      </S.Container>
     </>
   )
 }

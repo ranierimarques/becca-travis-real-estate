@@ -1,40 +1,3 @@
-function getSearchQuery(value: string) {
-  return value.trim().replaceAll(' ', '%20')
-}
-
-// type SmartySuggestion = {
-//   street_line: string
-//   secondary: string
-//   city: string
-//   state: string
-//   zipcode: string
-//   entries: number
-// }
-
-// type SmartySuggestions = {
-//   suggestions: SmartySuggestion[]
-// }
-
-// function smartyBuildAddress(suggestion: SmartySuggestion) {
-//   const { city, entries, secondary, state, street_line, zipcode } = suggestion
-//   let secondaryAndEntries = ''
-//   let whiteSpace = ''
-
-//   if (secondary) whiteSpace = ' '
-//   if (secondary && entries > 1) secondaryAndEntries = `${secondary} (${entries} entries)`
-
-//   return `${street_line}${whiteSpace}${secondaryAndEntries} ${city}, ${state} ${zipcode}`
-// }
-
-// async function fetchSmartySuggestions(value: string) {
-//   const searchQuery = getSearchQuery(value)
-//   const response = await fetch(
-//     `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_AUTOCOMPLETE_API_KEY}&search=${searchQuery}&max_results=6`
-//   )
-//   const data = (await response.json()) as SmartySuggestions
-//   return data.suggestions.map(suggestion => smartyBuildAddress(suggestion))
-// }
-
 type BingSuggestions = {
   resourceSets: {
     resources: {
@@ -47,15 +10,30 @@ type BingSuggestions = {
   }[]
 }
 
-export async function fetchBingSuggestions(value: string) {
-  const searchQuery = getSearchQuery(value)
-  const response = await fetch(
-    `https://dev.virtualearth.net/REST/v1/Autosuggest?key=${process.env.NEXT_PUBLIC_BING_AUTOCOMPLETE_API_KEY}&query=${searchQuery}&countryFilter=US`
-  )
-  const data = (await response.json()) as BingSuggestions
-  return data.resourceSets[0].resources[0].value.map(
-    suggestion => suggestion.address.formattedAddress
-  )
+export function setBingSuggestions(
+  value: string,
+  setState: (suggestions: string[]) => void
+) {
+  function getSearchQuery() {
+    return value.trim().replaceAll(' ', '%20')
+  }
+
+  async function fetchBingSuggestions() {
+    const query = getSearchQuery()
+    const response = await fetch(
+      `https://dev.virtualearth.net/REST/v1/Autosuggest?key=${process.env.NEXT_PUBLIC_BING_AUTOCOMPLETE_API_KEY}&query=${query}&countryFilter=US`
+    )
+    const data = (await response.json()) as BingSuggestions
+    const suggestions = data.resourceSets[0].resources[0].value
+    return suggestions.map(suggestion => suggestion.address.formattedAddress)
+  }
+
+  async function setSuggestions() {
+    const addresses = await fetchBingSuggestions()
+    setState(addresses)
+  }
+
+  setSuggestions()
 }
 
 type Callback = (address: string) => void
