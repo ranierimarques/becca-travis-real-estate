@@ -2,10 +2,8 @@ import useDebounce from '@resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as S from './search-input.styles'
-import { Gps } from './svgs'
-import { setAddressUsingGeoLocation, setBingSuggestions } from './utils'
-
-const LOCATION_VALUE = 'Current Location'
+import { Gps, Loupe } from './svgs'
+import { LOCATION_VALUE, setAddressUsingGeoLocation, setBingSuggestions } from './utils'
 
 export function SearchInput() {
   const skipFetch = useRef(true)
@@ -18,6 +16,9 @@ export function SearchInput() {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    openMenu,
+    closeMenu,
+    isOpen,
   } = useCombobox({
     id: 'houses-search',
     items: suggestions,
@@ -38,9 +39,7 @@ export function SearchInput() {
   })
 
   useEffect(() => {
-    if (skipFetch.current) return
-
-    setBingSuggestions(debouncedValue, setSuggestions)
+    setBingSuggestions(debouncedValue, setSuggestions, skipFetch)
   }, [debouncedValue])
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -55,38 +54,53 @@ export function SearchInput() {
     }
   }
 
+  const hasSuggestions = suggestions.length > 0
+  const hasLocationSuggestion = suggestions[0] === LOCATION_VALUE
+
   return (
     <>
       <S.Container>
-        <S.InputWrapper {...getComboboxProps()}>
+        <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
           <S.Input
             type="text"
             placeholder="Search by address, neighborhood, city or ZIP code"
             {...getInputProps({ onChange })}
           />
           <S.SearchButton aria-label="Search">
-            <S.LoupeSvg />
+            <Loupe />
           </S.SearchButton>
         </S.InputWrapper>
 
-        <S.Suggestions {...getMenuProps()}>
-          {suggestions.map((item, index) => {
-            return (
-              <S.SuggestionListItem
-                key={`${item}${index}`}
-                {...getItemProps({ item, index })}
-              >
-                {item === LOCATION_VALUE ? (
-                  <S.CurrentLocation active={highlightedIndex === index}>
-                    <Gps />
-                    Current Location
-                  </S.CurrentLocation>
-                ) : (
-                  <S.Suggestion active={highlightedIndex === index}>{item}</S.Suggestion>
-                )}
-              </S.SuggestionListItem>
-            )
-          })}
+        <S.Suggestions open={isOpen} {...getMenuProps()}>
+          {isOpen && (
+            <>
+              {!hasSuggestions && <S.Empty>No results found.</S.Empty>}
+
+              {hasLocationSuggestion && (
+                <S.Suggestion
+                  key={`${LOCATION_VALUE}${0}`}
+                  active={highlightedIndex === 0}
+                  {...getItemProps({ item: LOCATION_VALUE, index: 0 })}
+                >
+                  <Gps />
+                  Current Location
+                </S.Suggestion>
+              )}
+
+              {!hasLocationSuggestion &&
+                suggestions.map((item, index) => {
+                  return (
+                    <S.Suggestion
+                      key={`${item}${index}`}
+                      active={highlightedIndex === index}
+                      {...getItemProps({ item, index })}
+                    >
+                      {item}
+                    </S.Suggestion>
+                  )
+                })}
+            </>
+          )}
         </S.Suggestions>
       </S.Container>
     </>

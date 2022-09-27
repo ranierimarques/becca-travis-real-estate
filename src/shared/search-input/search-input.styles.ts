@@ -1,67 +1,4 @@
 import { styled } from 'stitches.config'
-import { Loupe } from './svgs'
-
-export const LoupeSvg = styled(Loupe, {})
-
-export const SearchButton = styled('button', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  background: '$grayW9',
-  borderRadius: '0px 8px 8px 0px',
-
-  padding: '20px 15px',
-
-  cursor: 'pointer',
-
-  transition: 'all 150ms ease',
-
-  [`& ${LoupeSvg}`]: {
-    color: '$grayW5',
-    transition: 'all 150ms ease',
-  },
-
-  '&:hover': {
-    background: 'rgba($colors$grayW8Rgb, 0.8)',
-    [`& ${LoupeSvg}`]: { color: '$grayW4' },
-  },
-  '&:focus-visible': {
-    background: 'rgba($colors$magenta2Rgb, 0.1)',
-    boxShadow: '-1px 0 0 $colors$magenta2',
-
-    [`& ${LoupeSvg}`]: { color: '$magenta3' },
-  },
-  '&:active': {
-    background: 'rgba($colors$magenta2Rgb, 0.1)',
-
-    [`& ${LoupeSvg}`]: { color: '$magenta3' },
-  },
-})
-
-export const Suggestions = styled('ul', {
-  position: 'absolute',
-
-  top: '100%',
-  marginTop: 8,
-  width: '100%',
-  padding: '12px',
-
-  background: '$offWhite2',
-  borderRadius: '8px',
-
-  // display: 'none',
-
-  zIndex: 1,
-
-  boxShadow: '0 0 25px rgba($colors$blackRgb, 0.2)',
-})
-
-export const SuggestionListItem = styled('li', {
-  '& + &': {
-    marginTop: '4px',
-  },
-})
 
 export const Container = styled('div', {
   position: 'relative',
@@ -110,7 +47,61 @@ export const Input = styled('input', {
   },
 })
 
-export const CurrentLocation = styled('button', {
+export const SearchButton = styled('button', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  background: '$grayW9',
+  borderRadius: '0px 8px 8px 0px',
+
+  padding: '20px 15px',
+
+  cursor: 'pointer',
+
+  transition: 'all 150ms ease',
+
+  color: '$grayW5',
+
+  '&:hover': {
+    background: 'rgba($colors$grayW8Rgb, 0.8)',
+    color: '$grayW4',
+  },
+  '&:focus-visible': {
+    background: 'rgba($colors$magenta2Rgb, 0.1)',
+    boxShadow: '-1px 0 0 $colors$magenta2',
+    color: '$magenta3',
+  },
+  '&:active': {
+    background: 'rgba($colors$magenta2Rgb, 0.1)',
+    color: '$magenta3',
+  },
+})
+
+export const Suggestions = styled('ul', {
+  position: 'absolute',
+
+  top: '100%',
+  marginTop: 8,
+  width: '100%',
+
+  background: '$offWhite2',
+  borderRadius: '8px',
+
+  zIndex: 1,
+
+  boxShadow: '0 0 25px rgba($colors$blackRgb, 0.2)',
+
+  variants: {
+    open: {
+      true: {
+        padding: '12px',
+      },
+    },
+  },
+})
+
+export const Suggestion = styled('li', {
   display: 'flex',
   alignItems: 'center',
   gap: 8,
@@ -120,41 +111,37 @@ export const CurrentLocation = styled('button', {
   lineHeight: '18px',
   color: '$gray2',
 
-  width: '100%',
+  borderRadius: '4px',
 
-  padding: '8px 0px 8px 8px',
+  padding: '8px',
 
   cursor: 'pointer',
+
+  '& + &': {
+    marginTop: '4px',
+  },
 
   variants: {
     active: {
       true: {
         background: 'rgba($colors$grayW7Rgb, 0.15)',
-        borderRadius: '4px',
+
+        '&:active': {
+          background: 'rgba($colors$grayW7Rgb, 0.35)',
+        },
       },
     },
   },
 })
 
-export const Suggestion = styled('button', {
-  fontWeight: '400',
+export const Empty = styled('li', {
+  fontWeight: '500',
   fontSize: '14px',
   lineHeight: '18px',
   color: '$gray2',
-  textAlign: 'left',
+  textAlign: 'center',
 
-  width: '100%',
+  padding: '8px',
 
-  padding: '8px 0px 8px 8px',
-
-  cursor: 'pointer',
-
-  variants: {
-    active: {
-      true: {
-        background: 'rgba($colors$grayW7Rgb, 0.15)',
-        borderRadius: '4px',
-      },
-    },
-  },
+  cursor: 'default',
 })

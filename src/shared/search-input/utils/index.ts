@@ -1,3 +1,7 @@
+import { Dispatch, MutableRefObject, SetStateAction } from 'react'
+
+export const LOCATION_VALUE = 'Current Location'
+
 type BingSuggestions = {
   resourceSets: {
     resources: {
@@ -12,7 +16,8 @@ type BingSuggestions = {
 
 export function setBingSuggestions(
   value: string,
-  setState: (suggestions: string[]) => void
+  setState: Dispatch<SetStateAction<string[]>>,
+  skipFetch: MutableRefObject<boolean>
 ) {
   function getSearchQuery() {
     return value.trim().replaceAll(' ', '%20')
@@ -30,8 +35,11 @@ export function setBingSuggestions(
 
   async function setSuggestions() {
     const addresses = await fetchBingSuggestions()
+    if (skipFetch.current) return // Prevent set Addresses concurrency
     setState(addresses)
   }
+
+  if (skipFetch.current) return
 
   setSuggestions()
 }
