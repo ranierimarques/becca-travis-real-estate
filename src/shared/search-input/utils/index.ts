@@ -63,3 +63,7 @@ export function setAddressUsingGeoLocation(callback: Callback) {
 
   navigator.geolocation.getCurrentPosition(success, error)
 }
+
+export function removeWhiteSpaces(string: string) {
+  return string.replace(/\s+/g, '')
+}

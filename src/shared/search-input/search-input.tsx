@@ -3,7 +3,12 @@ import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as S from './search-input.styles'
 import { Gps, Loupe } from './svgs'
-import { LOCATION_VALUE, setAddressUsingGeoLocation, setBingSuggestions } from './utils'
+import {
+  LOCATION_VALUE,
+  removeWhiteSpaces,
+  setAddressUsingGeoLocation,
+  setBingSuggestions,
+} from './utils'
 
 export function SearchInput() {
   const skipFetch = useRef(true)
@@ -45,7 +50,7 @@ export function SearchInput() {
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value
 
-    skipFetch.current = searchValue.trim() === newValue.trim()
+    skipFetch.current = removeWhiteSpaces(searchValue) === removeWhiteSpaces(newValue)
     setSearchValue(newValue)
 
     if (newValue.trim().length === 0) {
