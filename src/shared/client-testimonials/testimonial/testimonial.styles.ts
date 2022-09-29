@@ -191,6 +191,23 @@ export const ModalText = styled('p', {
   color: '$gray2',
 
   overflowY: 'auto',
+
+  '&::-webkit-scrollbar': {
+    width: '12px',
+  },
+
+  '&::-webkit-scrollbar-track': {
+    background: 'rgba($colors$blackRgb, 0.08)',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    background: '$grayW8',
+    borderRadius: '6px',
+  },
+
+  '&::-webkit-scrollbar-thumb:hover': {
+    background: 'rgba($colors$grayW7Rgb, 0.8)',
+  },
 })
 
 export const Close = styled(DialogPrimitive.Close, {
