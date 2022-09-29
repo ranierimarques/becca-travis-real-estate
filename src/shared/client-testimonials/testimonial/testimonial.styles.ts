@@ -13,7 +13,9 @@ const contentShow = keyframes({
 })
 
 export const LinkSvgHover = styled(LinkSvg, {
+  transition: 'all 250ms ease',
   opacity: '0',
+  transform: 'scale(0.5)',
 })
 
 export const Trigger = styled(DialogPrimitive.Trigger, {
@@ -23,19 +25,19 @@ export const Trigger = styled(DialogPrimitive.Trigger, {
   boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.08)',
   borderRadius: '8px',
 
+  transition: 'box-shadow 250ms ease',
+  cursor: 'pointer',
+
   '&:hover': {
-    cursor: 'pointer',
-    [`${LinkSvgHover}`]: {
-      opacity: '1',
-    },
+    boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.15)',
+    [`${LinkSvgHover}`]: { transform: 'scale(1)', opacity: '1' },
   },
 
   '&:focus-visible': {
     outline: '4px solid $colors$magenta2',
     outlineOffset: 4,
-    [`${LinkSvgHover}`]: {
-      opacity: '1',
-    },
+    boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.15)',
+    [`${LinkSvgHover}`]: { transform: 'scale(1)', opacity: '1' },
   },
 })
 
