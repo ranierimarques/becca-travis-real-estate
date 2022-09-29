@@ -51,7 +51,7 @@ export const Root = styled(NavigationMenuPrimitive.Root, {
   display: 'flex',
   justifyContent: 'flex-end',
   width: '100vw',
-  zIndex: 1,
+  zIndex: 10,
 })
 
 export const List = styled(NavigationMenuPrimitive.List, {
@@ -113,7 +113,7 @@ export const Indicator = styled(NavigationMenuPrimitive.Indicator, {
   height: 10,
   top: 'calc(100% + 18px)',
   overflow: 'hidden',
-  zIndex: 1,
+  zIndex: 10,
 
   '@media (prefers-reduced-motion: no-preference)': {
     transition: 'width, transform 250ms ease',
