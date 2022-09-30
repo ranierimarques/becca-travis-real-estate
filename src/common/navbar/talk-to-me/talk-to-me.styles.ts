@@ -15,7 +15,6 @@ export const Overlay = styled(DialogPrimitive.Overlay, {
   backgroundColor: 'rgba($colors$blackRgb, 0.6)',
   position: 'fixed',
   inset: 0,
-  zIndex: 10,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   },
@@ -33,7 +32,6 @@ export const Content = styled(DialogPrimitive.Content, {
   maxWidth: '450px',
   maxHeight: '85vh',
   padding: 32,
-  zIndex: 10,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   },
