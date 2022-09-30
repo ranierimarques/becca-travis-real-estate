@@ -35,7 +35,7 @@ export function SearchInput() {
       skipFetch.current = true
 
       if (selectedItem === LOCATION_VALUE) {
-        setAddressUsingGeoLocation(setSearchValue)
+        setAddressUsingGeoLocation(address => setSearchValue(address))
         return
       }
 
@@ -44,7 +44,13 @@ export function SearchInput() {
   })
 
   useEffect(() => {
-    setBingSuggestions(debouncedValue, setSuggestions, skipFetch)
+    if (skipFetch.current) return
+
+    setBingSuggestions(addresses => {
+      if (skipFetch.current) return
+
+      setSuggestions(addresses)
+    }, debouncedValue)
   }, [debouncedValue])
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {

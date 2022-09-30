@@ -1,5 +1,3 @@
-import { Dispatch, MutableRefObject, SetStateAction } from 'react'
-
 export const LOCATION_VALUE = 'Current Location'
 
 type BingSuggestions = {
@@ -15,9 +13,8 @@ type BingSuggestions = {
 }
 
 export function setBingSuggestions(
-  value: string,
-  setState: Dispatch<SetStateAction<string[]>>,
-  skipFetch: MutableRefObject<boolean>
+  callback: (addresses: string[]) => void,
+  value: string
 ) {
   function getSearchQuery() {
     return value.trim().replaceAll(' ', '%20')
@@ -35,18 +32,13 @@ export function setBingSuggestions(
 
   async function setSuggestions() {
     const addresses = await fetchBingSuggestions()
-    if (skipFetch.current) return // Prevent set Addresses concurrency
-    setState(addresses)
+    callback(addresses)
   }
-
-  if (skipFetch.current) return
 
   setSuggestions()
 }
 
-type Callback = (address: string) => void
-
-export function setAddressUsingGeoLocation(callback: Callback) {
+export function setAddressUsingGeoLocation(callback: (address: string) => void) {
   function error(err: GeolocationPositionError) {
     console.log(err)
     alert(
