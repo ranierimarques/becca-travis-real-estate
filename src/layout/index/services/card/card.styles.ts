@@ -10,9 +10,7 @@ export const TopWrapper = styled('div', {
   padding: '20px 28px 0',
   maxHeight: '231px',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'background 300ms ease',
-  },
+  transition: 'background 300ms ease',
 })
 
 export const ImageWrapper = styled('div', {
@@ -20,9 +18,7 @@ export const ImageWrapper = styled('div', {
   width: '100%',
   top: 8,
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 300ms ease',
-  },
+  transition: 'transform 300ms ease',
 })
 
 export const Link = styled('a', {

@@ -23,13 +23,12 @@ export const SkipOverlay = styled('div', {
   background:
     'linear-gradient(90deg, rgba($colors$blackRgb, 0) 0%, rgba($colors$blackRgb, 0.4) 88.02%)',
 
+  cursor: 'pointer',
+
+  transition: 'opacity 300ms ease',
+
   '&:hover': {
     opacity: '1',
-    cursor: 'pointer',
-  },
-
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'opacity 300ms ease',
   },
 
   variants: {
@@ -51,8 +50,6 @@ export const Skip = styled('button', {
   transform: 'translateY(-50%)',
 
   width: 'fit-content',
-
-  cursor: 'pointer',
 
   zIndex: '1',
 

@@ -57,8 +57,6 @@ export const SearchButton = styled('button', {
 
   padding: '20px 15px',
 
-  cursor: 'pointer',
-
   transition: 'all 150ms ease',
 
   color: '$grayW5',

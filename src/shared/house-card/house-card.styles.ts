@@ -24,9 +24,7 @@ const scaleOut = keyframes({
 })
 
 const sharedAnimation = {
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${scaleIn} 250ms ease forwards`,
-  },
+  animation: `${scaleIn} 250ms ease forwards`,
 }
 
 export const Link = styled('a', {
@@ -41,9 +39,7 @@ export const Link = styled('a', {
   borderRadius: '8px',
   boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${scaleOut} 250ms ease forwards`,
-  },
+  animation: `${scaleOut} 250ms ease forwards`,
 
   '&:hover': { ...sharedAnimation },
   '&:focus-within:not(:focus)': { ...sharedAnimation },
@@ -99,16 +95,13 @@ export const FavoriteButton = styled('button', {
 
   fontSize: 0,
   borderRadius: '50%',
-  cursor: 'pointer',
 
   color: 'rgba($whiteRgb, 0.8)',
   background: 'rgba($colors$grayW3Rgb, 0.8)',
   boxShadow:
     'inset 0 0 0 1px rgba($colors$grayW2Rgb, 0.8), 0 0 15px rgba($colors$blackRgb, 0.15)',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'color 250ms ease, background 250ms ease, box-shadow 250ms ease',
-  },
+  transition: 'color 250ms ease, background 250ms ease, box-shadow 250ms ease',
 
   variants: {
     favorite: {

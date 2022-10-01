@@ -95,8 +95,6 @@ export const Link = styled('a', {
   lineHeight: '21px',
   color: '#C06D94',
 
-  cursor: 'pointer',
-
   '&:hover': {
     textDecoration: 'underline',
     textUnderlineOffset: '4px',

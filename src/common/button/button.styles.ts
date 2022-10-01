@@ -82,8 +82,6 @@ export const Span = styled('span', sharedStyles, {
   display: 'inline-block',
 })
 
-export const Button = styled('button', sharedStyles, {
-  cursor: 'pointer',
-})
+export const Button = styled('button', sharedStyles)
 
 export type ButtonVariants = Stitches.VariantProps<typeof sharedStyles>

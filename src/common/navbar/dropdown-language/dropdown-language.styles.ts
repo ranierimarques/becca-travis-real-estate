@@ -34,8 +34,6 @@ export const Trigger = styled(DropdownMenuPrimitive.Trigger, {
 
   padding: '6px 8px',
 
-  cursor: 'pointer',
-
   '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)', outlineOffset: 0 },
   '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
 })
@@ -47,16 +45,15 @@ export const Content = styled(DropdownMenuPrimitive.Content, {
   backgroundColor: '$white',
   boxShadow:
     'hsl(206 22% 7% / 40%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  '@media (prefers-reduced-motion: no-preference)': {
-    animationDuration: '300ms',
-    animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-    willChange: 'transform, opacity',
-    '&[data-state="open"]': {
-      '&[data-side="top"]': { animationName: slideDownAndFade },
-      '&[data-side="right"]': { animationName: slideLeftAndFade },
-      '&[data-side="bottom"]': { animationName: slideUpAndFade },
-      '&[data-side="left"]': { animationName: slideRightAndFade },
-    },
+
+  animationDuration: '300ms',
+  animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  willChange: 'transform, opacity',
+  '&[data-state="open"]': {
+    '&[data-side="top"]': { animationName: slideDownAndFade },
+    '&[data-side="right"]': { animationName: slideLeftAndFade },
+    '&[data-side="bottom"]': { animationName: slideUpAndFade },
+    '&[data-side="left"]': { animationName: slideRightAndFade },
   },
 })
 

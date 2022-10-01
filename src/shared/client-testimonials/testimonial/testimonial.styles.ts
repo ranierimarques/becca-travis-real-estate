@@ -26,7 +26,6 @@ export const Trigger = styled(DialogPrimitive.Trigger, {
   borderRadius: '8px',
 
   transition: 'box-shadow 250ms ease',
-  cursor: 'pointer',
 
   '&:hover': {
     boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.15)',
@@ -103,9 +102,7 @@ export const Overlay = styled(DialogPrimitive.Overlay, {
   backgroundColor: 'rgba($colors$blackRgb, 0.55)',
   position: 'fixed',
   inset: 0,
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  },
+  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
 })
 
 export const Content = styled(DialogPrimitive.Content, {
@@ -119,9 +116,7 @@ export const Content = styled(DialogPrimitive.Content, {
   left: '50%',
   transform: 'translate(-50%, -50%)',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  },
+  animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   '&:focus': { outline: 'none' },
 
   display: 'flex',
@@ -209,13 +204,10 @@ export const ModalText = styled('p', {
 })
 
 export const Close = styled(DialogPrimitive.Close, {
-  lineHeight: '0',
   borderRadius: '999px',
   position: 'absolute',
   top: 10,
   right: 10,
-
-  cursor: 'pointer',
 
   '&:hover': { background: 'rgba($colors$gray5Rgb, 0.15)' },
   '&:focus': { boxShadow: '0 0 0 2px rgba($colors$gray4Rgb, 0.5)' },

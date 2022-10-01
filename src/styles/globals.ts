@@ -53,13 +53,6 @@ export const globalStyles = globalCss({
   '*': {
     margin: 0,
     '-webkit-tap-highlight-color': 'transparent',
-
-    padding: 0,
-    background: 'none',
-    border: 0,
-    outline: 'none',
-    listStyle: 'none',
-    textDecoration: 'none',
   },
 
   'html, body, #__next': {
@@ -80,6 +73,20 @@ export const globalStyles = globalCss({
     isolation: 'isolate',
   },
 
+  a: {
+    outline: 'none',
+    textDecoration: 'none',
+  },
+
+  button: {
+    cursor: 'pointer',
+  },
+
+  'ol, ul, menu': {
+    padding: 0,
+    listStyle: 'none',
+  },
+
   'img, picture, video, canvas, svg': {
     display: 'block',
     maxWidth: '100%',
@@ -87,9 +94,22 @@ export const globalStyles = globalCss({
 
   'input, button, textarea, select': {
     font: 'inherit',
+    padding: 0,
+    background: 'none',
+    border: 0,
+    outline: 'none',
   },
 
   'p, h1, h2, h3, h4, h5, h6': {
     overflowWrap: 'break-word',
+  },
+
+  '@media (prefers-reduced-motion)': {
+    '*, *::before, *::after': {
+      animationDuration: '0.01ms !important',
+      animationIterationCount: '1 !important',
+      transitionDuration: '0.01ms !important',
+      scrollBehavior: 'auto !important',
+    },
   },
 })

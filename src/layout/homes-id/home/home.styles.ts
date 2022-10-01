@@ -73,6 +73,5 @@ export const Button = styled('button', {
 
   '&:hover': {
     backgroundColor: 'rgba(232, 183, 206, 0.2)',
-    cursor: 'pointer',
   },
 })
