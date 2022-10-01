@@ -256,7 +256,7 @@ function CardListItem({ content }: CardListItemProps) {
     <S.CardListItem>
       <CustomLink href={content.href}>
         <S.CardLink>
-          <div>{content.icon}</div>
+          <Box css={{ flexShrink: 0 }}>{content.icon}</Box>
           <div>
             <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>
               <S.CardTitle>{content.title}</S.CardTitle>

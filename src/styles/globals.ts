@@ -46,26 +46,50 @@ export const globalStyles = globalCss({
     },
   ],
 
+  '*, *::before, *::after': {
+    boxSizing: 'border-box',
+  },
+
   '*': {
     margin: 0,
+    '-webkit-tap-highlight-color': 'transparent',
+
     padding: 0,
-    boxSizing: 'border-box',
     background: 'none',
     border: 0,
     outline: 'none',
     listStyle: 'none',
     textDecoration: 'none',
-    textRendering: 'optimizeLegibility',
-    '-webkit-font-smoothing': 'antialiased',
-    '-webkit-tap-highlight-color': 'transparent',
-    fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
+  },
+
+  'html, body, #__next': {
+    height: '100%',
+  },
+
+  'html:focus-within': {
+    scrollBehavior: 'smooth',
   },
 
   body: {
-    background: '$white',
+    lineHeight: '1.5',
+    '-webkit-font-smoothing': 'antialiased',
+    fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
   },
 
   '#__next': {
     isolation: 'isolate',
+  },
+
+  'img, picture, video, canvas, svg': {
+    display: 'block',
+    maxWidth: '100%',
+  },
+
+  'input, button, textarea, select': {
+    font: 'inherit',
+  },
+
+  'p, h1, h2, h3, h4, h5, h6': {
+    overflowWrap: 'break-word',
   },
 })

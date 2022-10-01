@@ -58,7 +58,6 @@ export const Heart = styled(HeartSvg, {
 })
 
 export const LogoLink = styled('a', {
-  fontSize: '0',
   justifySelf: 'center',
 
   '&:focus-visible': {
