@@ -93,4 +93,5 @@ export const LinkDescription = styled('div', {
 
 export const House = styled(HouseSvg, {
   overflow: 'visible',
+  transform: 'scale(1.15)',
 })

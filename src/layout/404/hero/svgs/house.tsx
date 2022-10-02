@@ -3,6 +3,7 @@ export default function Svg({ ...props }) {
     <svg
       width="780"
       height="405"
+      viewBox="0 0 780 405"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

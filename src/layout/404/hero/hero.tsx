@@ -51,7 +51,7 @@ export function Hero() {
         </S.List>
       </div>
 
-      <Box css={{ position: 'relative', top: 50 }}>
+      <Box css={{ position: 'relative', top: 50, right: -40 }}>
         <S.House />
       </Box>
     </S.Section>
