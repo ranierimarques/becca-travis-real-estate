@@ -64,6 +64,7 @@ export const globalStyles = globalCss({
   },
 
   body: {
+    overflowX: 'hidden',
     lineHeight: '1.5',
     '-webkit-font-smoothing': 'antialiased',
     fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
@@ -87,9 +88,14 @@ export const globalStyles = globalCss({
     listStyle: 'none',
   },
 
-  'img, picture, video, canvas, svg': {
+  'img, picture, video, canvas': {
     display: 'block',
     maxWidth: '100%',
+  },
+
+  svg: {
+    display: 'block',
+    minWidth: 'fit-content',
   },
 
   'input, button, textarea, select': {

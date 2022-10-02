@@ -77,6 +77,8 @@ export const Trigger = styled(NavigationMenuPrimitive.Trigger, linkStyles, {
   display: 'flex',
   alignItems: 'center',
   gap: 4,
+
+  cursor: 'default',
 })
 
 export const Caret = styled(ArrowDownSvg, {
