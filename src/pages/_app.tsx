@@ -1,5 +1,5 @@
 import { Footer, Navbar } from '@common'
-import { globalStyles } from '@styles/globals'
+import { globalStyles } from '@styles/global'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
