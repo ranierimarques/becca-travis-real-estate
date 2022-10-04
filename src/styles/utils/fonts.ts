@@ -19,7 +19,7 @@ export type Fonts = {
   fontFamily: string
   fontWeight: {
     style: 'italic' | 'normal'
-    weights: (number | string)[]
+    weights: (100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | string)[]
   }[]
   fontDisplay: AtRule.FontDisplay
 }[]
