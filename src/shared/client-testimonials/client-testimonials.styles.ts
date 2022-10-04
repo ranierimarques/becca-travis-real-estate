@@ -119,13 +119,21 @@ export const OverlayWrapper = styled('div', {
   position: 'absolute',
   bottom: '-48px', // Testimonial Box Shadow Spread + 8px for safe zone
 
-  background: `linear-gradient(180deg, 
-    rgba(255, 255, 255, 0) 47.4%, 
-    rgba(255, 255, 255, 0.7) 75.52%,
-    rgba(255, 255, 255, 1) 90%, 
-    rgba(255, 255, 255, 1) 100%)`,
-
   pointerEvents: 'none',
+})
+
+export const Overlay = styled('div', {
+  width: '100vw',
+  height: '100%',
+
+  position: 'absolute',
+  top: 0,
+
+  background: `linear-gradient(180deg,
+    rgba(255, 255, 255, 0) 47.4%,
+    rgba(255, 255, 255, 0.7) 75.52%,
+    rgba(255, 255, 255, 1) 90%,
+    rgba(255, 255, 255, 1) 100%)`,
 })
 
 export const TestimonialsList = styled('ul', {

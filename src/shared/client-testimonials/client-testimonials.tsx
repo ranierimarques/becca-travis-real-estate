@@ -167,7 +167,9 @@ export function ClientTestimonials() {
 
   function onResize() {
     if (resize) {
+      document.documentElement.style.scrollBehavior = 'auto'
       testimonialsContainerRef.current?.scrollIntoView()
+      document.documentElement.style.scrollBehavior = ''
     }
 
     setResize(!resize)
@@ -206,6 +208,7 @@ export function ClientTestimonials() {
           </S.TestimonialsList>
         ))}
         <S.OverlayWrapper>
+          <S.Overlay />
           <Button onClick={onResize} size="2" css={{ pointerEvents: 'auto', zIndex: 1 }}>
             {resize ? 'Show less' : 'Show more...'}
           </Button>
