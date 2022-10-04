@@ -1,4 +1,4 @@
-import { Fonts, processFonts } from './utils/fonts'
+import { processFonts, type Fonts } from './utils/fonts'
 
 // Add/edit fonts here ↓
 export const fonts: Fonts = [
