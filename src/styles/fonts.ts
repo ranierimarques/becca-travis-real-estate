@@ -1,7 +1,7 @@
 import { processFonts, type Fonts } from './utils/fonts'
 
 // Add/edit fonts here ↓
-export const fonts: Fonts = [
+const fonts: Fonts = [
   {
     fontFamily: 'IBM Plex Serif',
     fontWeight: [
