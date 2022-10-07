@@ -14,6 +14,7 @@ type buttonProps = {
   target?: '_blank' | '_self'
   css?: Stitches.CSS
   onClick?: () => void
+  disabled?: boolean
 } & ButtonVariants
 
 type anchorRef = React.ForwardedRef<HTMLAnchorElement>

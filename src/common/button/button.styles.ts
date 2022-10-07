@@ -1,8 +1,11 @@
 import type * as Stitches from '@stitches/react'
 import { css, styled } from 'stitches.config'
+import { LoaderSvg } from '../loader/loader.styles'
 
 const sharedStyles = css({
   width: 'fit-content',
+
+  position: 'relative',
 
   transition: 'all .15s cubic-bezier(.4,0,.2,1)',
 
@@ -12,12 +15,28 @@ const sharedStyles = css({
   userSelect: 'none',
   whiteSpace: 'nowrap',
 
-  '&:hover': {
-    filter: 'brightness(0.9)',
+  '&:disabled': {
+    $$primaryColor: 'rgba($colors$magenta1Rgb, 0.33)',
+    $$secondaryColor: 'transparent',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
-  '&:active': {
-    filter: 'brightness(0.8)',
+  '&:not(:disabled)': {
+    '&:hover': {
+      filter: 'brightness(0.9)',
+    },
+
+    '&:active': {
+      filter: 'brightness(0.8)',
+    },
+  },
+
+  [`& ${LoaderSvg}`]: {
+    height: '21px',
+    display: 'block',
+    position: 'absolute',
   },
 
   variants: {
