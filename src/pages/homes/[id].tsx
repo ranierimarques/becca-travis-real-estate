@@ -64,6 +64,17 @@ type FetchTypes = {
     CountyOrParish: string
     SubdivisionName: string
     CityRegion: string | null
+    FoundationDetails: string
+    Levels: string
+    BuildingAreaTotal: string
+    NewConstructionYN: string
+    PropertyCondition: string
+    PropertyType: string
+    Sewer: string
+    WaterSource: string
+    ElementarySchool: string
+    MiddleOrJuniorSchool: string
+    HighSchool: string
     url: string
   }
 }
@@ -94,6 +105,17 @@ export const getStaticProps = async ({ params }: Params) => {
     propertySubType: data.bundle.PropertySubType,
     countyOrParish: data.bundle.CountyOrParish,
     cityRegion: data.bundle.CityRegion,
+    foundationDetails: data.bundle.FoundationDetails,
+    levels: data.bundle.Levels,
+    buildingTotalArea: data.bundle.BuildingAreaTotal,
+    newConstruction: data.bundle.NewConstructionYN,
+    propertyCondition: data.bundle.PropertyCondition,
+    propertyType: data.bundle.PropertyType,
+    sewer: data.bundle.Sewer,
+    waterSource: data.bundle.WaterSource,
+    elementarySchool: data.bundle.ElementarySchool,
+    middleSchool: data.bundle.MiddleOrJuniorSchool,
+    highSchool: data.bundle.HighSchool
   }
 
   return {
