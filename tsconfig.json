@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@common": ["src/common"],
+      "@common": ["src/components/common"],
       "@shared": ["src/shared"],
       "@styles/*": ["src/styles/*"],
       "@layout/*": ["src/layout/*"],
