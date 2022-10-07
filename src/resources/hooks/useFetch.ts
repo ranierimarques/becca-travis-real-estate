@@ -1,4 +1,4 @@
-import useSWR from "swr"
+import useSWR from 'swr'
 
 export function useFetch<Data = any>(url: string) {
   const { data, error } = useSWR<Data>(url, async fetchURL => {

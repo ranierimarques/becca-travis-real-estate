@@ -34,7 +34,7 @@ export function Services() {
   return (
     <S.Section>
       <Hat>MAIN SERVICES</Hat>
-      <S.Title>How can we help you now?</S.Title>
+      <S.Title>How can we help you?</S.Title>
       <S.Description>
         Experience matters. As one of Huntsvilles, Al top agents I know how to deliver top
         results. <br />

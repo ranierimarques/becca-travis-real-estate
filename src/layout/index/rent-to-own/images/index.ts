@@ -1,2 +1,1 @@
-export { default as family } from './family.jpg';
-
+export { default as family } from './family.jpg'

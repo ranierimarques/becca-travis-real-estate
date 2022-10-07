@@ -1,7 +1,7 @@
-import { Box, Flex, Hat } from "@common"
-import Image from "next/image"
-import * as S from "./achievements.styles"
-import { becca } from "./images"
+import { Box, Flex, Hat } from '@common'
+import Image from 'next/image'
+import * as S from './achievements.styles'
+import { becca } from './images'
 import {
   ChipSvg,
   CupSvg,
@@ -10,7 +10,7 @@ import {
   LineRightSvg,
   LineSvg,
   RocketSvg,
-} from "./svgs"
+} from './svgs'
 
 const badges = [
   {
@@ -20,15 +20,15 @@ const badges = [
   },
   {
     svg: <CupSvg />,
-    description: "Alabamas Top Real State Agent",
+    description: 'Alabamas Top Real State Agent',
   },
   {
     svg: <FlagSvg />,
-    description: "12+ Years of Experience",
+    description: '12+ Years of Experience',
   },
   {
     svg: <RocketSvg />,
-    description: "Huntsville Top Real State Agent",
+    description: 'Huntsville Top Real State Agent',
   },
 ]
 
@@ -39,25 +39,24 @@ export function Achievements() {
         <Hat>Becca Travis Real State Group</Hat>
         <S.Line />
         <S.Title>
-          Enjoy the freedom that comes with having one of Alabama&apos;s top
-          real estate agent&apos;s in your corner.
+          Enjoy the freedom that comes with having one of Alabama&apos;s top real estate
+          agent&apos;s in your corner.
         </S.Title>
       </Flex>
 
-      <Flex align="start" css={{ gap: "70px" }}>
+      <Flex align="start" css={{ gap: '70px' }}>
         <S.Paragraph>
-          We thrive on satisfied customers and individuals who seek us out
-          because they know that when you come here what matters most is getting
-          results and when it comes to real estate, we want to exceed your
-          expectations.
+          We thrive on satisfied customers and individuals who seek us out because they
+          know that when you come here what matters most is getting results and when it
+          comes to real estate, we want to exceed your expectations.
         </S.Paragraph>
 
-        <Box css={{ position: "relative", top: "-53px" }}>
+        <Box css={{ position: 'relative', top: '-53px' }}>
           <Image src={becca} alt="Becca Travis" quality={100} />
-          <Box css={{ position: "absolute", bottom: 66, left: -219 }}>
+          <Box css={{ position: 'absolute', bottom: 66, left: -219 }}>
             <LineLeftSvg />
           </Box>
-          <Box css={{ position: "absolute", bottom: 66, right: -219 }}>
+          <Box css={{ position: 'absolute', bottom: 66, right: -219 }}>
             <LineRightSvg />
           </Box>
         </Box>

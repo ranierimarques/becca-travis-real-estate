@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "eslint": "npx eslint --fix src"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",
@@ -21,11 +22,11 @@
     "@radix-ui/react-tooltip": "^1.0.0",
     "@react-google-maps/api": "^2.12.2",
     "@stitches/react": "^1.2.8",
-    "downshift": "^6.1.11",
+    "downshift": "^6.1.12",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
     "keen-slider": "^6.7.0",
-    "next": "12.3.0",
+    "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.36.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@svgr/webpack": "^6.4.0",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",

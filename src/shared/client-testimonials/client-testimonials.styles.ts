@@ -64,16 +64,14 @@ export const TooltipContent = styled(TooltipPrimitive.Content, {
   background: 'rgba($colors$magenta1Rgb, 0.12)',
   borderRadius: '999px',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    animationDuration: '400ms',
-    animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-    willChange: 'transform, opacity',
-    '&[data-state="delayed-open"]': {
-      '&[data-side="top"]': { animationName: slideDownAndFade },
-      '&[data-side="right"]': { animationName: slideLeftAndFade },
-      '&[data-side="bottom"]': { animationName: slideUpAndFade },
-      '&[data-side="left"]': { animationName: slideRightAndFade },
-    },
+  animationDuration: '400ms',
+  animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  willChange: 'transform, opacity',
+  '&[data-state="delayed-open"]': {
+    '&[data-side="top"]': { animationName: slideDownAndFade },
+    '&[data-side="right"]': { animationName: slideLeftAndFade },
+    '&[data-side="bottom"]': { animationName: slideUpAndFade },
+    '&[data-side="left"]': { animationName: slideRightAndFade },
   },
 })
 
@@ -121,13 +119,21 @@ export const OverlayWrapper = styled('div', {
   position: 'absolute',
   bottom: '-48px', // Testimonial Box Shadow Spread + 8px for safe zone
 
-  background: `linear-gradient(180deg, 
-    rgba(255, 255, 255, 0) 47.4%, 
-    rgba(255, 255, 255, 0.7) 75.52%,
-    rgba(255, 255, 255, 1) 90%, 
-    rgba(255, 255, 255, 1) 100%)`,
-
   pointerEvents: 'none',
+})
+
+export const Overlay = styled('div', {
+  width: '100vw',
+  height: '100%',
+
+  position: 'absolute',
+  top: 0,
+
+  background: `linear-gradient(180deg,
+    rgba(255, 255, 255, 0) 47.4%,
+    rgba(255, 255, 255, 0.7) 75.52%,
+    rgba(255, 255, 255, 1) 90%,
+    rgba(255, 255, 255, 1) 100%)`,
 })
 
 export const TestimonialsList = styled('ul', {

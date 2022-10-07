@@ -1,10 +1,10 @@
-import { Box, Button, Hat } from "@common"
-import Image from "next/image"
-import * as S from "./hero.styles"
-import { becca, house } from "./images"
-import { CheckmarkSvg } from "./svgs"
+import { Box, Button, Hat } from '@common'
+import Image from 'next/image'
+import * as S from './hero.styles'
+import { becca, house } from './images'
+import { CheckmarkSvg } from './svgs'
 
-const skills = ["Experience", "Professionalism", "Efficiency"]
+const skills = ['Experience', 'Professionalism', 'Efficiency']
 
 export function Hero() {
   return (
@@ -17,7 +17,7 @@ export function Hero() {
             {skills.map(skill => {
               return (
                 <S.Skill key={skill}>
-                  <CheckmarkSvg /> {skill}{" "}
+                  <CheckmarkSvg /> {skill}{' '}
                 </S.Skill>
               )
             })}
@@ -31,12 +31,12 @@ export function Hero() {
           <Box
             css={{
               br: 8,
-              overflow: "hidden",
+              overflow: 'hidden',
             }}
           >
             <Image src={house} alt="house" width={520} height={419} />
           </Box>
-          <Box css={{ position: "absolute", top: 15, left: -146 }}>
+          <Box css={{ position: 'absolute', top: 15, left: -146 }}>
             <Image src={becca} alt="Becca Travis" width={422} height={533} />
           </Box>
           <S.ImageDescription>Image by Becca Travis</S.ImageDescription>

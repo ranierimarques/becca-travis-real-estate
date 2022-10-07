@@ -10,8 +10,6 @@ export const Nav = styled('nav', {
 })
 
 export const Link = styled('a', {
-  fontSize: 0,
-
   '&:focus-visible': {
     borderRadius: 1,
     outline: '2px auto rgba($colors$magenta1Rgb, 0.2)',

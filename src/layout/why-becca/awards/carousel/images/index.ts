@@ -1,6 +1,6 @@
-export { default as diamondSociety } from "./diamond-society.png"
-export { default as homeSnap } from "./home-snap.jpg"
-export { default as luxuryHomeMarketing } from "./luxury-home-marketing.png"
-export { default as luxuryHome } from "./luxury-home.png"
-export { default as prominentAgent } from "./prominent-agent.jpg"
-export { default as realogy } from "./realogy.png"
+export { default as diamondSociety } from './diamond-society.png'
+export { default as homeSnap } from './home-snap.jpg'
+export { default as luxuryHomeMarketing } from './luxury-home-marketing.png'
+export { default as luxuryHome } from './luxury-home.png'
+export { default as prominentAgent } from './prominent-agent.jpg'
+export { default as realogy } from './realogy.png'

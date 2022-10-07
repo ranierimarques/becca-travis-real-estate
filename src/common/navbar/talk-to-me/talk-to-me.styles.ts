@@ -15,10 +15,7 @@ export const Overlay = styled(DialogPrimitive.Overlay, {
   backgroundColor: 'rgba($colors$blackRgb, 0.6)',
   position: 'fixed',
   inset: 0,
-  zIndex: 2,
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  },
+  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
 })
 
 export const Content = styled(DialogPrimitive.Content, {
@@ -33,10 +30,7 @@ export const Content = styled(DialogPrimitive.Content, {
   maxWidth: '450px',
   maxHeight: '85vh',
   padding: 32,
-  zIndex: 2,
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  },
+  animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   '&:focus': { outline: 'none' },
 })
 
@@ -56,14 +50,11 @@ export const Description = styled(DialogPrimitive.Description, {
 })
 
 export const Close = styled(DialogPrimitive.Close, {
-  lineHeight: '0',
   borderRadius: '999px',
   color: '$gray2',
   position: 'absolute',
   top: 10,
   right: 10,
-
-  cursor: 'pointer',
 
   '&:hover': { backgroundColor: 'rgba($colors$magenta2Rgb, 0.15)' },
   '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.4)' },

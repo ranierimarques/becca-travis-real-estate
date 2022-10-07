@@ -1,12 +1,6 @@
 export default function Svg({ ...props }) {
   return (
-    <svg
-      width="20"
-      height="20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="M10 7.5v.673M8.333 9.52A1.532 1.532 0 0 1 10 8.173M10 14.167v-.674M11.667 12.147A1.532 1.532 0 0 1 10 13.493M11.624 9.226A1.626 1.626 0 0 0 10 8.173M8.376 12.44c.25.67.91 1.098 1.624 1.053M8.333 9.52v0c0 .57.403 1.06.962 1.172l1.41.283c.56.111.962.602.962 1.172v0"
         stroke="#7A7786"

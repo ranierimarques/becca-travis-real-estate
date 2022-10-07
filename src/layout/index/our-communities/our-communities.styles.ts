@@ -32,9 +32,7 @@ export const Description = styled('span', {
   lineHeight: '30px',
   color: '$white',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 250ms ease',
-  },
+  transition: 'transform 250ms ease',
 })
 
 export const HoverSpan = styled('p', {
@@ -58,17 +56,13 @@ export const HoverSpan = styled('p', {
   transform: 'translateY(75%)',
   transformOrigin: 'bottom',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 250ms ease, opacity 250ms ease',
-  },
+  transition: 'transform 250ms ease, opacity 250ms ease',
 })
 
 export const CommunityImage = styled(Image, {
   borderRadius: '8px',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'filter 250ms ease',
-  },
+  transition: 'filter 250ms ease',
 })
 
 export const CommunityLink = styled('a', {

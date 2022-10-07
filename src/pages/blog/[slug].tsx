@@ -1,6 +1,6 @@
-import { Post } from "@layout/blog"
-import request, { gql } from "graphql-request"
-import getReadingTime from "reading-time"
+import { Post } from '@layout/blog'
+import request, { gql } from 'graphql-request'
+import getReadingTime from 'reading-time'
 
 export default function PostPage({ data }: any) {
   return <Post data={data} />
@@ -8,7 +8,7 @@ export default function PostPage({ data }: any) {
 
 export async function getStaticPaths() {
   const data = await request(
-    "https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master",
+    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
     gql`
       query {
         posts {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
     params: { slug: post.slug },
   }))
 
-  return { paths, fallback: "blocking" }
+  return { paths, fallback: 'blocking' }
 }
 
 const query = gql`
@@ -47,7 +47,7 @@ const query = gql`
 
 export async function getStaticProps({ params }: any) {
   const data = await request(
-    "https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master",
+    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
     query,
     {
       slug: params.slug,

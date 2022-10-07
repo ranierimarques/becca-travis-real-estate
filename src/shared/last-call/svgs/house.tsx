@@ -1,12 +1,6 @@
 export default function Svg({ ...props }) {
   return (
-    <svg
-      width="40"
-      height="40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="m4.994 19.492 13.23-11.34a2.728 2.728 0 0 1 3.552 0l13.23 11.34"
         stroke="#fff"

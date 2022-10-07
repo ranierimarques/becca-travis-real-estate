@@ -1,12 +1,6 @@
 export default function Svg({ ...props }) {
   return (
-    <svg
-      width="24"
-      height="24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         clipRule="evenodd"
         d="M6.944 19H5.056A1.056 1.056 0 0 1 4 17.944v-7.388C4 9.973 4.473 9.5 5.056 9.5h1.888C7.527 9.5 8 9.973 8 10.556v7.388C8 18.527 7.527 19 6.944 19v0Z"

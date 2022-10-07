@@ -1,12 +1,6 @@
 export default function Svg({ ...props }) {
   return (
-    <svg
-      width="24"
-      height="24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         className="strokeWhiteGlove001"
         d="M2.996 15.752h2.335c.354 0 .693-.14.943-.39v0c.25-.25.39-.59.39-.944V9.082c0-.354-.14-.693-.39-.943v0c-.25-.25-.59-.39-.943-.39H3.003M20.997 7.748h-2.328c-.353 0-.693.14-.943.39v0c-.25.25-.39.59-.39.944v5.336c0 .354.14.693.39.944v0c.25.25.59.39.944.39h2.326"

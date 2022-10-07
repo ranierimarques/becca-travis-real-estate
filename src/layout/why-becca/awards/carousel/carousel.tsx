@@ -1,5 +1,5 @@
-import Image from "next/image"
-import * as S from "./carousel.styles"
+import Image from 'next/image'
+import * as S from './carousel.styles'
 import {
   diamondSociety,
   homeSnap,
@@ -7,32 +7,32 @@ import {
   luxuryHomeMarketing,
   prominentAgent,
   realogy,
-} from "./images"
+} from './images'
 
 const awards = [
   {
     src: homeSnap,
-    alt: "",
+    alt: '',
   },
   {
     src: diamondSociety,
-    alt: "",
+    alt: '',
   },
   {
     src: luxuryHome,
-    alt: "",
+    alt: '',
   },
   {
     src: luxuryHomeMarketing,
-    alt: "",
+    alt: '',
   },
   {
     src: prominentAgent,
-    alt: "",
+    alt: '',
   },
   {
     src: realogy,
-    alt: "",
+    alt: '',
   },
 ]
 

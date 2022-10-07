@@ -1,78 +1,119 @@
 import useDebounce from '@resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as S from './search-input.styles'
-import { Gps } from './svgs'
-import { getSuggestions, setAddressUsingGeoLocation } from './utils'
+import { Gps, Loupe } from './svgs'
+import {
+  LOCATION_VALUE,
+  removeWhiteSpaces,
+  setAddressUsingGeoLocation,
+  setBingSuggestions,
+} from './utils'
 
 export function SearchInput() {
-  const skipFetch = useRef(false)
+  const skipFetch = useRef(true)
   const [searchValue, setSearchValue] = useState('')
-  const [suggestions, setSuggestions] = useState<string[]>([])
-  const debouncedValue = useDebounce<string>(searchValue, 1000)
+  const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
+  const debouncedValue = useDebounce<string>(searchValue, 500)
   const {
-    // isOpen,
     getMenuProps,
     getInputProps,
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    openMenu,
+    closeMenu,
+    isOpen,
   } = useCombobox({
     id: 'houses-search',
     items: suggestions,
     inputValue: searchValue,
-    onInputValueChange: ({ inputValue: newValue = '' }) => {
-      skipFetch.current = searchValue.trim() === newValue.trim()
-      setSearchValue(newValue)
+    selectedItem: searchValue,
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (!selectedItem) return
+
+      skipFetch.current = true
+
+      if (selectedItem === LOCATION_VALUE) {
+        setAddressUsingGeoLocation(address => setSearchValue(address))
+        return
+      }
+
+      setSearchValue(selectedItem)
     },
   })
-
-  function handleMyLocation(event: FormEvent) {
-    event.preventDefault()
-
-    skipFetch.current = true
-    setAddressUsingGeoLocation(setSearchValue)
-  }
 
   useEffect(() => {
     if (skipFetch.current) return
 
-    async function fetchData() {
-      const addresses = await getSuggestions(debouncedValue)
-      setSuggestions(addresses)
-    }
+    setBingSuggestions(addresses => {
+      if (skipFetch.current) return
 
-    fetchData()
+      setSuggestions(addresses)
+    }, debouncedValue)
   }, [debouncedValue])
+
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
+    const newValue = event.target.value
+
+    skipFetch.current = removeWhiteSpaces(searchValue) === removeWhiteSpaces(newValue)
+    setSearchValue(newValue)
+
+    if (newValue.trim().length === 0) {
+      skipFetch.current = true
+      setSuggestions(['Current Location'])
+    }
+  }
+
+  const hasSuggestions = suggestions.length > 0
+  const hasLocationSuggestion = suggestions[0] === LOCATION_VALUE
 
   return (
     <>
-      <S.InputWrapper>
-        <div {...getComboboxProps()}>
-          <S.SearchInput
+      <S.Container>
+        <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
+          <S.Input
             type="text"
             placeholder="Search by address, neighborhood, city or ZIP code"
-            {...getInputProps()}
+            {...getInputProps({ onChange })}
           />
-        </div>
-        <S.SearchButton>
-          <S.LoupeSvg />
-        </S.SearchButton>
+          <S.SearchButton aria-label="Search">
+            <Loupe />
+          </S.SearchButton>
+        </S.InputWrapper>
 
-        <S.Suggestions {...getMenuProps()}>
-          {!searchValue.trim() && !suggestions.length && (
-            <S.CurrentLocation onClick={handleMyLocation}>
-              <Gps />
-              Current Location
-            </S.CurrentLocation>
+        <S.Suggestions open={isOpen} {...getMenuProps()}>
+          {isOpen && (
+            <>
+              {!hasSuggestions && <S.Empty>No results found.</S.Empty>}
+
+              {hasLocationSuggestion && (
+                <S.Suggestion
+                  key={`${LOCATION_VALUE}${0}`}
+                  active={highlightedIndex === 0}
+                  {...getItemProps({ item: LOCATION_VALUE, index: 0 })}
+                >
+                  <Gps />
+                  Current Location
+                </S.Suggestion>
+              )}
+
+              {!hasLocationSuggestion &&
+                suggestions.map((item, index) => {
+                  return (
+                    <S.Suggestion
+                      key={`${item}${index}`}
+                      active={highlightedIndex === index}
+                      {...getItemProps({ item, index })}
+                    >
+                      {item}
+                    </S.Suggestion>
+                  )
+                })}
+            </>
           )}
-          {suggestions.map((item, index) => (
-            <li key={`${item}${index}`} {...getItemProps({ item, index })}>
-              <S.Suggestion active={highlightedIndex === index}>{item}</S.Suggestion>
-            </li>
-          ))}
         </S.Suggestions>
-      </S.InputWrapper>
+      </S.Container>
     </>
   )
 }

@@ -51,7 +51,7 @@ export const Root = styled(NavigationMenuPrimitive.Root, {
   display: 'flex',
   justifyContent: 'flex-end',
   width: '100vw',
-  zIndex: 1,
+  zIndex: 5,
 })
 
 export const List = styled(NavigationMenuPrimitive.List, {
@@ -77,13 +77,13 @@ export const Trigger = styled(NavigationMenuPrimitive.Trigger, linkStyles, {
   display: 'flex',
   alignItems: 'center',
   gap: 4,
+
+  cursor: 'default',
 })
 
 export const Caret = styled(ArrowDownSvg, {
   '[data-state=open] &': { transform: 'rotate(-180deg)' },
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 250ms ease',
-  },
+  transition: 'transform 250ms ease',
 })
 
 export const Link = styled('a', linkStyles, {
@@ -96,14 +96,12 @@ export const Content = styled(NavigationMenuPrimitive.Content, {
   left: 0,
   width: '100%',
   '@media only screen and (min-width: 600px)': { width: 'auto' },
-  '@media (prefers-reduced-motion: no-preference)': {
-    animationDuration: '250ms',
-    animationTimingFunction: 'ease',
-    '&[data-motion="from-start"]': { animationName: enterFromLeft },
-    '&[data-motion="from-end"]': { animationName: enterFromRight },
-    '&[data-motion="to-start"]': { animationName: exitToLeft },
-    '&[data-motion="to-end"]': { animationName: exitToRight },
-  },
+  animationDuration: '250ms',
+  animationTimingFunction: 'ease',
+  '&[data-motion="from-start"]': { animationName: enterFromLeft },
+  '&[data-motion="from-end"]': { animationName: enterFromRight },
+  '&[data-motion="to-start"]': { animationName: exitToLeft },
+  '&[data-motion="to-end"]': { animationName: exitToRight },
 })
 
 export const Indicator = styled(NavigationMenuPrimitive.Indicator, {
@@ -113,13 +111,11 @@ export const Indicator = styled(NavigationMenuPrimitive.Indicator, {
   height: 10,
   top: 'calc(100% + 18px)',
   overflow: 'hidden',
-  zIndex: 1,
+  zIndex: 5,
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'width, transform 250ms ease',
-    '&[data-state="visible"]': { animation: `${fadeIn} 200ms ease` },
-    '&[data-state="hidden"]': { animation: `${fadeOut} 200ms ease` },
-  },
+  transition: 'width, transform 250ms ease',
+  '&[data-state="visible"]': { animation: `${fadeIn} 200ms ease` },
+  '&[data-state="hidden"]': { animation: `${fadeOut} 200ms ease` },
 })
 
 export const Arrow = styled('div', {
@@ -150,11 +146,9 @@ export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
   '@media only screen and (min-width: 600px)': {
     width: 'var(--radix-navigation-menu-viewport-width)',
   },
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'width, height, 300ms ease',
-    '&[data-state="open"]': { animation: `${scaleIn} 200ms ease` },
-    '&[data-state="closed"]': { animation: `${scaleOut} 200ms ease` },
-  },
+  transition: 'width, height, 300ms ease',
+  '&[data-state="open"]': { animation: `${scaleIn} 200ms ease` },
+  '&[data-state="closed"]': { animation: `${scaleOut} 200ms ease` },
 })
 
 export const ViewportPosition = styled('div', {
@@ -213,9 +207,7 @@ export const ArrowRight = styled(ArrowRightSvg, {
 
   color: 'rgba($$color, 1)', // Provides by HunstsvilleLink component or currentColor
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    transition: 'transform 300ms ease, opacity 300ms ease',
-  },
+  transition: 'transform 300ms ease, opacity 300ms ease',
 })
 
 export const CardLink = styled('a', {

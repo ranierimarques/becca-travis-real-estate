@@ -13,7 +13,9 @@ const contentShow = keyframes({
 })
 
 export const LinkSvgHover = styled(LinkSvg, {
+  transition: 'all 250ms ease',
   opacity: '0',
+  transform: 'scale(0.5)',
 })
 
 export const Trigger = styled(DialogPrimitive.Trigger, {
@@ -23,19 +25,18 @@ export const Trigger = styled(DialogPrimitive.Trigger, {
   boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.08)',
   borderRadius: '8px',
 
+  transition: 'box-shadow 250ms ease',
+
   '&:hover': {
-    cursor: 'pointer',
-    [`${LinkSvgHover}`]: {
-      opacity: '1',
-    },
+    boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.15)',
+    [`${LinkSvgHover}`]: { transform: 'scale(1)', opacity: '1' },
   },
 
   '&:focus-visible': {
     outline: '4px solid $colors$magenta2',
     outlineOffset: 4,
-    [`${LinkSvgHover}`]: {
-      opacity: '1',
-    },
+    boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.15)',
+    [`${LinkSvgHover}`]: { transform: 'scale(1)', opacity: '1' },
   },
 })
 
@@ -101,10 +102,7 @@ export const Overlay = styled(DialogPrimitive.Overlay, {
   backgroundColor: 'rgba($colors$blackRgb, 0.55)',
   position: 'fixed',
   inset: 0,
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  },
-  zIndex: 1,
+  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
 })
 
 export const Content = styled(DialogPrimitive.Content, {
@@ -118,11 +116,8 @@ export const Content = styled(DialogPrimitive.Content, {
   left: '50%',
   transform: 'translate(-50%, -50%)',
 
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  },
+  animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   '&:focus': { outline: 'none' },
-  zIndex: 1,
 
   display: 'flex',
   flexDirection: 'column',
@@ -189,16 +184,30 @@ export const ModalText = styled('p', {
   color: '$gray2',
 
   overflowY: 'auto',
+
+  '&::-webkit-scrollbar': {
+    width: '12px',
+  },
+
+  '&::-webkit-scrollbar-track': {
+    background: 'rgba($colors$blackRgb, 0.08)',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    background: '$grayW8',
+    borderRadius: '6px',
+  },
+
+  '&::-webkit-scrollbar-thumb:hover': {
+    background: 'rgba($colors$grayW7Rgb, 0.8)',
+  },
 })
 
 export const Close = styled(DialogPrimitive.Close, {
-  lineHeight: '0',
   borderRadius: '999px',
   position: 'absolute',
   top: 10,
   right: 10,
-
-  cursor: 'pointer',
 
   '&:hover': { background: 'rgba($colors$gray5Rgb, 0.15)' },
   '&:focus': { boxShadow: '0 0 0 2px rgba($colors$gray4Rgb, 0.5)' },

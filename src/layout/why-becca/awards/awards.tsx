@@ -1,6 +1,6 @@
-import { Hat } from "@common"
-import * as S from "./awards.styles"
-import { Carousel } from "./carousel/carousel"
+import { Hat } from '@common'
+import * as S from './awards.styles'
+import { Carousel } from './carousel/carousel'
 
 export function Awards() {
   return (
