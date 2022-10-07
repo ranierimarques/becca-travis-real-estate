@@ -1,6 +1,6 @@
 import { Box, Flex, Hat } from '@common'
-import getDate from '@resources/utils/get-date'
 import { LastCall } from '@shared'
+import { getDate } from '@utils/date'
 import Image from 'next/image'
 import { Fragment } from 'react'
 import * as S from './post.styles'

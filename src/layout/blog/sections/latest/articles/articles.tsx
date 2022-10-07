@@ -1,6 +1,6 @@
 import { Box, Flex } from '@common'
-import getDate from '@resources/utils/get-date'
 import { MissOutCard } from '@shared'
+import { getDate } from '@utils/date'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './articles.styles'

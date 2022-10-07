@@ -1,5 +1,5 @@
 import { Box, Flex, Hat } from '@common'
-import getDate from '@resources/utils/get-date'
+import { getDate } from '@utils/date'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './hero.styles'

@@ -8,7 +8,7 @@ const variantOptions = {
   long: { year: 'numeric', month: 'long', day: 'numeric' },
 } as variantOptionsType
 
-function getDate(
+export function getDate(
   ISOString: string,
   locale: Intl.LocalesArgument,
   options: Intl.DateTimeFormatOptions | 'short' | 'long'
@@ -17,5 +17,3 @@ function getDate(
 
   return new Date(ISOString).toLocaleDateString(locale, dateOptions)
 }
-
-export default getDate

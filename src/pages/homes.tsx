@@ -1,6 +1,6 @@
 import { Homes } from '@layout/homes/sections'
-import convertSquareFeets from '@resources/utils/convert-square-feets'
-import formatToDollar from '@resources/utils/format-to-dollar'
+import { convertSquareFeets } from '@utils/convert'
+import { formatToDollar } from '@utils/currency'
 import { InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
