@@ -1,4 +1,4 @@
-import { Hero, Latest } from '@layout/blog'
+import { Hero, Latest } from '@layout/blog/sections'
 import request, { gql } from 'graphql-request'
 import type { NextPage } from 'next'
 import Head from 'next/head'

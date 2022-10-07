@@ -6,7 +6,7 @@ import {
   OurCommunities,
   RentToOwn,
   Services,
-} from '@layout/index'
+} from '@layout/index/sections'
 import convertSquareFeets from '@resources/utils/convert-square-feets'
 import formatToDollar from '@resources/utils/format-to-dollar'
 import { ClientTestimonials, LastCall } from '@shared'

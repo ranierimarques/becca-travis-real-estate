@@ -1,4 +1,4 @@
-import { ContactUs } from '@layout/contact-us'
+import { Hero } from '@layout/contact-us/sections'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
@@ -9,7 +9,7 @@ const Home: NextPage = () => {
         <title>Becca Travis</title>
       </Head>
 
-      <ContactUs />
+      <Hero />
     </main>
   )
 }

@@ -1,8 +1,8 @@
 import { Box, Button, Hat } from '@common'
-import * as S from './contact-us.styles'
+import * as S from './hero.styles'
 import { MailSvg, PhoneSvg } from './svgs'
 
-export function ContactUs() {
+export function Hero() {
   return (
     <S.Section>
       <S.Container>
