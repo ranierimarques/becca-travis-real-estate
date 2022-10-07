@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@common": ["src/components/common"],
-      "@shared": ["src/shared"],
+      "@shared": ["src/components/shared"],
       "@styles/*": ["src/styles/*"],
       "@layout/*": ["src/layout/*"],
       "@resources/*": ["src/resources/*"]
