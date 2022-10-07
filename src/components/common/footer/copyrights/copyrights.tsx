@@ -1,6 +1,6 @@
+import { Box } from '@common'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Box } from 'src/common/box/box'
 import { Logo } from '../svgs'
 import * as S from './copyrights.styles'
 

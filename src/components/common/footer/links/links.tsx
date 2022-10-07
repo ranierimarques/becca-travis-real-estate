@@ -1,6 +1,6 @@
+import { Box } from '@common'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Box } from 'src/common/box/box'
 import { EqualHousing, Mls, Realtor } from '../images'
 import { ColdwellBanker, Facebook, Instagram, Linkedin, Mail, Phone } from '../svgs'
 import * as S from './links.styles'

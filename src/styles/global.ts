@@ -70,9 +70,9 @@ export const globalStyles = globalCss({
 
   '@media (prefers-reduced-motion)': {
     '*, *::before, *::after': {
-      animationDuration: '0.01ms !important',
+      animationDuration: '0.001ms !important',
       animationIterationCount: '1 !important',
-      transitionDuration: '0.01ms !important',
+      transitionDuration: '0.001ms !important',
       scrollBehavior: 'auto !important',
     },
   },
