@@ -35,7 +35,6 @@ const sharedStyles = css({
 
   [`& ${LoaderSvg}`]: {
     height: '21px',
-    display: 'block',
     position: 'absolute',
   },
 
