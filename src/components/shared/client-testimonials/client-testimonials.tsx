@@ -1,5 +1,6 @@
-import { Button, Flex, Hat } from '@common'
+import { Button, Flex } from '@common'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { Hat } from '@shared'
 import { useRef, useState } from 'react'
 import * as S from './client-testimonials.styles'
 import { Testimonial } from './testimonial/testimonial'

@@ -1,4 +1,5 @@
 import { Box } from '@common'
+import { Hat } from '@shared'
 import { HandshakeSvg, HomeSvg, LikeSvg } from './svgs'
 import * as S from './white-glove.styles'
 
@@ -6,10 +7,7 @@ export function WhiteGlove() {
   return (
     <S.Section>
       <div>
-        <S.Hat>
-          <Box css={{ w: 16, h: 1, background: '$magenta1' }} />
-          meet huntsville
-        </S.Hat>
+        <Hat variant="2">Meet Huntsville</Hat>
         <S.Title>White glove moving</S.Title>
         <S.Paragraph>
           There are many reasons to use a buyers agent when purchasing a home. Here are

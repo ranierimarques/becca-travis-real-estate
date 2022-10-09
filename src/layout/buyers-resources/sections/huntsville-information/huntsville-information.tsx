@@ -1,3 +1,4 @@
+import { Hat } from '@shared'
 import Image from 'next/image'
 import * as S from './huntsville-information.styles'
 import { image1, image2, image3 } from './images'
@@ -8,9 +9,7 @@ export function HuntsvilleInformation() {
     <S.Section>
       <S.Tour>
         <div>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             There are many reasons why Huntsville is a great place to live. The economy is
@@ -46,9 +45,7 @@ export function HuntsvilleInformation() {
         </S.ImageContainer>
 
         <div>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             Huntsville is home to a number of highly respected colleges and universities.
@@ -66,9 +63,7 @@ export function HuntsvilleInformation() {
 
       <S.Relocation>
         <div>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             The Huntsville area offers an excellent real estate market. You&apos;ll find

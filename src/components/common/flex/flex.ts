@@ -61,10 +61,4 @@ export const Flex = styled('div', {
       },
     },
   },
-  defaultVariants: {
-    direction: 'row',
-    align: 'stretch',
-    justify: 'start',
-    wrap: 'noWrap',
-  },
 })

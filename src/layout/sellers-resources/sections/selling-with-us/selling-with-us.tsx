@@ -1,4 +1,5 @@
 import { Box, Button } from '@common'
+import { Hat } from '@shared'
 import Image from 'next/image'
 import { house } from './images'
 import * as S from './selling-with-us.styles'
@@ -8,9 +9,7 @@ export function SellingWithUs() {
     <S.Section>
       <S.Container>
         <div>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Selling your home with us</S.Title>
           <S.Paragraph>
             Huntsville is a great place to live for many reasons. The people are friendly

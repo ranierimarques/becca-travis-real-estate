@@ -18,19 +18,6 @@ export const Title = styled('h2', {
   color: '$magenta6',
 })
 
-export const Hat = styled('span', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 8,
-
-  fontWeight: '500',
-  fontSize: '14px',
-  lineHeight: '24px',
-  letterSpacing: '0.03em',
-  textTransform: 'uppercase',
-  color: '$magenta1',
-})
-
 export const Paragraph = styled('p', {
   marginBottom: 48,
   maxWidth: '458px',

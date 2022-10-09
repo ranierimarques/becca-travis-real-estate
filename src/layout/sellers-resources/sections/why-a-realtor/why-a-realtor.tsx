@@ -1,4 +1,5 @@
 import { Box, Button, Flex } from '@common'
+import { Hat } from '@shared'
 import { CertifiedSvg, ContractSvg, SearchSvg } from './svgs'
 import * as S from './why-a-realtor.styles'
 
@@ -26,9 +27,7 @@ export function WhyARealtor() {
     <S.Section>
       <S.Container>
         <S.Content>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Why you need a Realtor</S.Title>
           <S.Paragraph>
             While it is possible to sell a home without the help of a realtor, there are

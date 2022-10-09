@@ -1,4 +1,5 @@
-import { Box, Hat } from '@common'
+import { Box } from '@common'
+import { Hat } from '@shared'
 import Link from 'next/link'
 import * as S from './hero.styles'
 

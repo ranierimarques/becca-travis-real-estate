@@ -1,4 +1,4 @@
-import { Hat } from '@common'
+import { Hat } from '@shared'
 import Link from 'next/link'
 import {
   athens,

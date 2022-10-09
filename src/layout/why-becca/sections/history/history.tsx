@@ -1,4 +1,5 @@
 import { Box } from '@common'
+import { Hat } from '@shared'
 import Image from 'next/image'
 import * as S from './history.styles'
 import { becca, family, ourHistory } from './images'
@@ -8,9 +9,7 @@ export function History() {
     <S.Section>
       <S.Becca>
         <Box>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             There are many reasons why Huntsville is a great place to live. The economy is
@@ -32,9 +31,7 @@ export function History() {
         </Box>
 
         <Box>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             Huntsville is home to a number of highly respected colleges and universities.
@@ -48,9 +45,7 @@ export function History() {
 
       <S.Family>
         <Box>
-          <S.Hat>
-            <S.Line /> MEET HUNTSVILLE
-          </S.Hat>
+          <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
             The Huntsville area offers an excellent real estate market. You&apos;ll find

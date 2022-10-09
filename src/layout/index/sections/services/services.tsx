@@ -1,4 +1,4 @@
-import { Hat } from '@common'
+import { Hat } from '@shared'
 import { Card } from '.'
 import { find, purchase, sell } from './images'
 import * as S from './services.styles'

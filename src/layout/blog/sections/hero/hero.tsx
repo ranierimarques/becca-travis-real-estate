@@ -1,4 +1,5 @@
-import { Box, Flex, Hat } from '@common'
+import { Box, Flex } from '@common'
+import { Hat } from '@shared'
 import { getDate } from '@utils/date'
 import Image from 'next/image'
 import Link from 'next/link'

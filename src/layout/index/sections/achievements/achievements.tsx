@@ -1,4 +1,5 @@
-import { Box, Flex, Hat } from '@common'
+import { Box, Flex } from '@common'
+import { Hat } from '@shared'
 import Image from 'next/image'
 import * as S from './achievements.styles'
 import { becca } from './images'

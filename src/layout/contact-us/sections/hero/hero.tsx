@@ -1,4 +1,5 @@
-import { Box, Button, Hat } from '@common'
+import { Box, Button } from '@common'
+import { Hat } from '@shared'
 import * as S from './hero.styles'
 import { MailSvg, PhoneSvg } from './svgs'
 

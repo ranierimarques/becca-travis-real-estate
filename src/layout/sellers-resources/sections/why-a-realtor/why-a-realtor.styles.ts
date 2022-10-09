@@ -17,26 +17,6 @@ export const Content = styled('div', {
   height: 'fit-content',
 })
 
-export const Hat = styled('span', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 8,
-
-  marginBottom: 8,
-
-  fontWeight: '500',
-  fontSize: '14px',
-  lineHeight: '24px',
-  letterSpacing: '0.03em',
-  color: '$magenta1',
-})
-
-export const Line = styled('div', {
-  width: '16px',
-  height: '1px',
-  background: '$magenta1',
-})
-
 export const Title = styled('h1', {
   marginBottom: 16,
 
