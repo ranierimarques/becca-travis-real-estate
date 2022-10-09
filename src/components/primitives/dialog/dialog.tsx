@@ -6,7 +6,7 @@ import { Cross } from './svgs'
 
 type RootProps = React.ComponentProps<typeof DialogPrimitive.Root>
 
-export function Root({ children, ...props }: RootProps) {
+export const Root = ({ children, ...props }: RootProps) => {
   return <DialogPrimitive.Root {...props}>{children}</DialogPrimitive.Root>
 }
 
@@ -18,13 +18,14 @@ type ContentProps = React.ComponentProps<typeof S.Content> & {
   description: string | undefined
 }
 
-export function Content({
+export const Content = ({
   children,
   overlay = true,
   title,
   description,
   ...props
-}: ContentProps) {
+}: ContentProps) => {
+  const { variant } = props
   const contentRef = useRef<HTMLDivElement>(null)
 
   function onOpenAutoFocus(event: Event) {
@@ -54,7 +55,7 @@ export function Content({
 
         {children}
 
-        <S.Close aria-label="Close">
+        <S.Close variant={variant} aria-label="Close">
           <Cross />
         </S.Close>
       </S.Content>
