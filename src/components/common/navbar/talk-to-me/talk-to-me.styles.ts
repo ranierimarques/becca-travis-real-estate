@@ -1,47 +1,17 @@
-import { Dialog } from '@primitives'
-import { keyframes, styled } from 'stitches.config'
+import { styled } from 'stitches.config'
 
-export const overlayShow = keyframes({
-  '0%': { opacity: 0 },
-  '100%': { opacity: 1 },
-})
+export const Title = styled('span', {
+  display: 'block',
 
-export const contentShow = keyframes({
-  '0%': { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
-  '100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
-})
-
-export const Overlay = styled(Dialog.Overlay, {
-  backgroundColor: 'rgba($colors$blackRgb, 0.6)',
-  position: 'fixed',
-  inset: 0,
-  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-})
-
-export const Content = styled(Dialog.Content, {
-  backgroundColor: '$white',
-  borderRadius: '8px',
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  maxWidth: '450px',
-  maxHeight: '85vh',
-  padding: 32,
-  animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  '&:focus': { outline: 'none' },
-})
-
-export const Title = styled(Dialog.Title, {
   fontWeight: '600',
   fontSize: '24px',
   lineHeight: '36px',
   color: '$magenta1',
 })
 
-export const Description = styled(Dialog.Description, {
+export const Description = styled('span', {
+  display: 'block',
+
   margin: '8px 0 24px',
   fontWeight: '400',
   fontSize: '16px',
@@ -49,24 +19,13 @@ export const Description = styled(Dialog.Description, {
   color: '$grayW4',
 })
 
-export const Close = styled(Dialog.Close, {
-  borderRadius: '999px',
-  color: '$gray2',
-  position: 'absolute',
-  top: 10,
-  right: 10,
-
-  '&:hover': { backgroundColor: 'rgba($colors$magenta2Rgb, 0.15)' },
-  '&:focus': { boxShadow: '0 0 0 2px rgba($colors$magenta1Rgb, 0.4)' },
-})
-
-export const ContactList = styled('ul', {
+export const List = styled('ul', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   gap: 8,
 })
 
-export const ContactLink = styled('a', {
+export const Link = styled('a', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -93,7 +52,7 @@ export const ContactLink = styled('a', {
   },
 })
 
-export const ContactText = styled('span', {
+export const Text = styled('span', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '24px',

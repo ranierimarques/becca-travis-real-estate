@@ -1,6 +1,6 @@
 import { Button } from '@common'
 import { Dialog } from '@primitives'
-import { CalendarSvg, CrossSvg, MailSvg, PhoneSvg } from '../svgs'
+import { CalendarSvg, MailSvg, PhoneSvg } from '../svgs'
 import * as S from './talk-to-me.styles'
 
 const contacts = [
@@ -25,32 +25,25 @@ export default function TalkToMe() {
       <Dialog.Trigger asChild>
         <Button css={{ marginLeft: 16 }}>Talk to me</Button>
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <S.Overlay />
-        <S.Content>
-          <S.Title>Talk to me</S.Title>
-          <S.Description>You can reach me at:</S.Description>
+      <Dialog.Content title="Talk to me" description="You can reach me at:">
+        <S.Title>Talk to me</S.Title>
+        <S.Description>You can reach me at:</S.Description>
 
-          <S.ContactList>
-            {contacts.map(contact => (
-              <li key={contact.text}>
-                <S.ContactLink
-                  href={contact.href}
-                  target={contact.target}
-                  rel="noreferrer noopener"
-                >
-                  {contact.svg}
-                  <S.ContactText>{contact.text}</S.ContactText>
-                </S.ContactLink>
-              </li>
-            ))}
-          </S.ContactList>
-
-          <S.Close aria-label="Close">
-            <CrossSvg />
-          </S.Close>
-        </S.Content>
-      </Dialog.Portal>
+        <S.List>
+          {contacts.map(contact => (
+            <li key={contact.text}>
+              <S.Link
+                href={contact.href}
+                target={contact.target}
+                rel="noreferrer noopener"
+              >
+                {contact.svg}
+                <S.Text>{contact.text}</S.Text>
+              </S.Link>
+            </li>
+          ))}
+        </S.List>
+      </Dialog.Content>
     </Dialog.Root>
   )
 }

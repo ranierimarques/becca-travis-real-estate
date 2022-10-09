@@ -1,7 +1,30 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { forwardRef, useRef } from 'react'
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
+import React, { useRef } from 'react'
+import * as S from './dialog.styles'
+import { Cross } from './svgs'
 
-export const Content = forwardRef(({ children, ...props }: any, forwardedRef) => {
+type RootProps = React.ComponentProps<typeof DialogPrimitive.Root>
+
+export function Root({ children, ...props }: RootProps) {
+  return <DialogPrimitive.Root {...props}>{children}</DialogPrimitive.Root>
+}
+
+export const Trigger = DialogPrimitive.Trigger
+
+type ContentProps = React.ComponentProps<typeof S.Content> & {
+  overlay?: boolean
+  title: string
+  description: string | undefined
+}
+
+export function Content({
+  children,
+  overlay = true,
+  title,
+  description,
+  ...props
+}: ContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   function onOpenAutoFocus(event: Event) {
@@ -9,21 +32,32 @@ export const Content = forwardRef(({ children, ...props }: any, forwardedRef) =>
     contentRef.current?.focus()
   }
 
-  return (
-    <DialogPrimitive.Content
-      onOpenAutoFocus={onOpenAutoFocus}
-      {...props}
-      ref={contentRef}
-    >
-      {children}
-    </DialogPrimitive.Content>
-  )
-})
+  const ariaDescribedby = !description ? { 'aria-describedby': undefined } : {}
 
-export const Root = DialogPrimitive.Root
-export const Trigger = DialogPrimitive.Trigger
-export const Portal = DialogPrimitive.Portal
-export const Overlay = DialogPrimitive.Overlay
-export const Title = DialogPrimitive.Title
-export const Description = DialogPrimitive.Description
-export const Close = DialogPrimitive.Close
+  return (
+    <DialogPrimitive.Portal>
+      {overlay && <S.Overlay />}
+      <S.Content
+        onOpenAutoFocus={onOpenAutoFocus}
+        ref={contentRef}
+        {...ariaDescribedby}
+        {...props}
+      >
+        <VisuallyHidden.Root asChild>
+          <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
+        </VisuallyHidden.Root>
+        {description && (
+          <VisuallyHidden.Root asChild>
+            <DialogPrimitive.Description>{description}</DialogPrimitive.Description>
+          </VisuallyHidden.Root>
+        )}
+
+        {children}
+
+        <S.Close aria-label="Close">
+          <Cross />
+        </S.Close>
+      </S.Content>
+    </DialogPrimitive.Portal>
+  )
+}
