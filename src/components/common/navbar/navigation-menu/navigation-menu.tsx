@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { Box, Flex } from '@common'
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import Image from 'next/image'

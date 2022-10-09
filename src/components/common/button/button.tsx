@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import type * as Stitches from '@stitches/react'
 import Link from 'next/link'
 import { forwardRef, ReactNode } from 'react'

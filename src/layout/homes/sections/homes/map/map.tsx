@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { Box } from '@common'
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'
 import { memo } from 'react'
