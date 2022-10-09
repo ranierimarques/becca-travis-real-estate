@@ -1,4 +1,4 @@
-import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
+import { NavigationMenu } from '@primitives'
 import { css, keyframes, styled } from 'stitches.config'
 import { ArrowDownSvg, ArrowRightSvg } from '../svgs'
 
@@ -46,7 +46,7 @@ const fadeOut = keyframes({
 
 // Components
 
-export const Root = styled(NavigationMenuPrimitive.Root, {
+export const Root = styled(NavigationMenu.Root, {
   position: 'relative',
   display: 'flex',
   justifyContent: 'flex-end',
@@ -54,7 +54,7 @@ export const Root = styled(NavigationMenuPrimitive.Root, {
   zIndex: 5,
 })
 
-export const List = styled(NavigationMenuPrimitive.List, {
+export const List = styled(NavigationMenu.List, {
   display: 'flex',
   alignItems: 'center',
 })
@@ -73,7 +73,7 @@ const linkStyles = {
   '&:hover': { background: 'rgba($colors$magenta1Rgb, 0.04)' },
 }
 
-export const Trigger = styled(NavigationMenuPrimitive.Trigger, linkStyles, {
+export const Trigger = styled(NavigationMenu.Trigger, linkStyles, {
   display: 'flex',
   alignItems: 'center',
   gap: 4,
@@ -90,7 +90,7 @@ export const Link = styled('a', linkStyles, {
   display: 'block',
 })
 
-export const Content = styled(NavigationMenuPrimitive.Content, {
+export const Content = styled(NavigationMenu.Content, {
   position: 'absolute',
   top: 0,
   left: 0,
@@ -104,7 +104,7 @@ export const Content = styled(NavigationMenuPrimitive.Content, {
   '&[data-motion="to-end"]': { animationName: exitToRight },
 })
 
-export const Indicator = styled(NavigationMenuPrimitive.Indicator, {
+export const Indicator = styled(NavigationMenu.Indicator, {
   display: 'flex',
   alignItems: 'flex-end',
   justifyContent: 'center',
@@ -129,7 +129,7 @@ export const Arrow = styled('div', {
   boxShadow: '0 0 8px rgba($colors$blackRgb, 0.1)',
 })
 
-export const Viewport = styled(NavigationMenuPrimitive.Viewport, {
+export const Viewport = styled(NavigationMenu.Viewport, {
   position: 'relative',
   transformOrigin: 'top center',
 

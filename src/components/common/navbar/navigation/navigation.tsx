@@ -1,5 +1,5 @@
 import { Box, Flex } from '@common'
-import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
+import { NavigationMenu } from '@primitives'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -25,7 +25,7 @@ import {
   PencilSvg,
   UserMessageChatSvg,
 } from '../svgs'
-import * as S from './navigation-menu.styles'
+import * as S from './navigation.styles'
 
 type customLinkProps = {
   children: ReactNode
@@ -61,9 +61,9 @@ function CustomLink({ children, href, ...props }: customLinkProps) {
 
   return (
     <NextLink href={href} passHref>
-      <NavigationMenuPrimitive.Link active={isActive} asChild {...props}>
+      <NavigationMenu.Link active={isActive} asChild {...props}>
         {children}
-      </NavigationMenuPrimitive.Link>
+      </NavigationMenu.Link>
     </NextLink>
   )
 }
@@ -329,35 +329,35 @@ function CommunityGuideMenu() {
   )
 }
 
-export default function NavigationMenu() {
+export default function Navigation() {
   return (
     <S.Root>
       <S.List>
-        <NavigationMenuPrimitive.Item>
+        <NavigationMenu.Item>
           <TriggerWithCaret>Buyers</TriggerWithCaret>
           <Menu menu={menus.buyers} />
-        </NavigationMenuPrimitive.Item>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Item>
+        <NavigationMenu.Item>
           <TriggerWithCaret>Sellers</TriggerWithCaret>
           <Menu menu={menus.sellers} />
-        </NavigationMenuPrimitive.Item>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Item>
+        <NavigationMenu.Item>
           <TriggerWithCaret>Community guides</TriggerWithCaret>
           <CommunityGuideMenu />
-        </NavigationMenuPrimitive.Item>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Item>
+        <NavigationMenu.Item>
           <TriggerWithCaret>Why Becca</TriggerWithCaret>
           <Menu menu={menus.whyBecca} />
-        </NavigationMenuPrimitive.Item>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Item>
+        <NavigationMenu.Item>
           <CustomLink href="/blog">
             <S.Link>Blog</S.Link>
           </CustomLink>
-        </NavigationMenuPrimitive.Item>
+        </NavigationMenu.Item>
 
         <IndicatorWithArrow />
       </S.List>

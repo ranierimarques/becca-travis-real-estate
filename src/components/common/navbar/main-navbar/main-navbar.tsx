@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { LogoSvg } from '../svgs'
 import * as S from './main-navbar.styles'
 
-const NavigationMenu = dynamic(() => import('../navigation-menu/navigation-menu'))
+const Navigation = dynamic(() => import('../navigation/navigation'))
 const TalkToMe = dynamic(() => import('../talk-to-me/talk-to-me'))
 
 export function MainNavbar() {
@@ -14,7 +14,7 @@ export function MainNavbar() {
           <LogoSvg />
         </S.Link>
       </Link>
-      <NavigationMenu />
+      <Navigation />
       <TalkToMe />
     </S.Nav>
   )
