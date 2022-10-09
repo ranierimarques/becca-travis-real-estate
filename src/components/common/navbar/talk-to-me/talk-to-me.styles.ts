@@ -1,4 +1,4 @@
-import * as DialogPrimitive from '@radix-ui/react-dialog'
+import { Dialog } from '@primitives'
 import { keyframes, styled } from 'stitches.config'
 
 export const overlayShow = keyframes({
@@ -11,14 +11,14 @@ export const contentShow = keyframes({
   '100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
 })
 
-export const Overlay = styled(DialogPrimitive.Overlay, {
+export const Overlay = styled(Dialog.Overlay, {
   backgroundColor: 'rgba($colors$blackRgb, 0.6)',
   position: 'fixed',
   inset: 0,
   animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
 })
 
-export const Content = styled(DialogPrimitive.Content, {
+export const Content = styled(Dialog.Content, {
   backgroundColor: '$white',
   borderRadius: '8px',
   boxShadow:
@@ -34,14 +34,14 @@ export const Content = styled(DialogPrimitive.Content, {
   '&:focus': { outline: 'none' },
 })
 
-export const Title = styled(DialogPrimitive.Title, {
+export const Title = styled(Dialog.Title, {
   fontWeight: '600',
   fontSize: '24px',
   lineHeight: '36px',
   color: '$magenta1',
 })
 
-export const Description = styled(DialogPrimitive.Description, {
+export const Description = styled(Dialog.Description, {
   margin: '8px 0 24px',
   fontWeight: '400',
   fontSize: '16px',
@@ -49,7 +49,7 @@ export const Description = styled(DialogPrimitive.Description, {
   color: '$grayW4',
 })
 
-export const Close = styled(DialogPrimitive.Close, {
+export const Close = styled(Dialog.Close, {
   borderRadius: '999px',
   color: '$gray2',
   position: 'absolute',

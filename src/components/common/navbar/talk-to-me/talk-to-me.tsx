@@ -1,6 +1,5 @@
 import { Button } from '@common'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { useRef } from 'react'
+import { Dialog } from '@primitives'
 import { CalendarSvg, CrossSvg, MailSvg, PhoneSvg } from '../svgs'
 import * as S from './talk-to-me.styles'
 
@@ -21,21 +20,14 @@ const contacts = [
 ]
 
 export default function TalkToMe() {
-  const contentRef = useRef<HTMLDivElement>(null)
-
-  function onOpenAutoFocus(event: Event) {
-    event.preventDefault()
-    contentRef.current?.focus()
-  }
-
   return (
-    <DialogPrimitive.Root>
-      <DialogPrimitive.Trigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <Button css={{ marginLeft: 16 }}>Talk to me</Button>
-      </DialogPrimitive.Trigger>
-      <DialogPrimitive.Portal>
+      </Dialog.Trigger>
+      <Dialog.Portal>
         <S.Overlay />
-        <S.Content onOpenAutoFocus={onOpenAutoFocus} ref={contentRef}>
+        <S.Content>
           <S.Title>Talk to me</S.Title>
           <S.Description>You can reach me at:</S.Description>
 
@@ -58,7 +50,7 @@ export default function TalkToMe() {
             <CrossSvg />
           </S.Close>
         </S.Content>
-      </DialogPrimitive.Portal>
-    </DialogPrimitive.Root>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 }
