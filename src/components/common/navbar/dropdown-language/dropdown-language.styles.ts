@@ -1,4 +1,4 @@
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
+import { DropdownMenu } from '@primitives'
 import { keyframes, styled } from 'stitches.config'
 import { CheckMarkSvg } from '../svgs'
 
@@ -22,7 +22,7 @@ const slideLeftAndFade = keyframes({
   '100%': { opacity: 1, transform: 'translateX(0)' },
 })
 
-export const Trigger = styled(DropdownMenuPrimitive.Trigger, {
+export const Trigger = styled(DropdownMenu.Trigger, {
   display: 'flex',
   alignItems: 'center',
   gap: 6,
@@ -38,11 +38,10 @@ export const Trigger = styled(DropdownMenuPrimitive.Trigger, {
   '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
 })
 
-export const Content = styled(DropdownMenuPrimitive.Content, {
-  zIndex: 1,
+export const Content = styled(DropdownMenu.Content, {
   borderRadius: 8,
   padding: 8,
-  backgroundColor: '$white',
+  background: '$white',
   boxShadow:
     'hsl(206 22% 7% / 40%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
 
@@ -57,17 +56,13 @@ export const Content = styled(DropdownMenuPrimitive.Content, {
   },
 })
 
-export const Arrow = styled(DropdownMenuPrimitive.Arrow, {
-  fill: '$white',
-})
-
-export const RadioGroup = styled(DropdownMenuPrimitive.RadioGroup, {
+export const RadioGroup = styled(DropdownMenu.RadioGroup, {
   display: 'flex',
   flexDirection: 'column',
   gap: 6,
 })
 
-export const RadioItem = styled(DropdownMenuPrimitive.RadioItem, {
+export const RadioItem = styled(DropdownMenu.RadioItem, {
   display: 'flex',
   alignItems: 'center',
 
@@ -92,10 +87,10 @@ export const LanguageText = styled('span', {
   color: '$gray2',
 })
 
-export const ItemIndicator = styled(DropdownMenuPrimitive.ItemIndicator, {
-  fontSize: '0',
-})
-
 export const CheckMark = styled(CheckMarkSvg, {
   marginLeft: 16,
+})
+
+export const Arrow = styled(DropdownMenu.Arrow, {
+  fill: '$white',
 })
