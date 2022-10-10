@@ -1,14 +1,9 @@
-import type * as Stitches from '@stitches/react'
-import { ReactNode } from 'react'
+import React from 'react'
 import * as S from './hat.styles'
 
-interface HatTypes {
-  children: ReactNode
-  variant?: '1' | '2'
-  css?: Stitches.CSS
-}
+type HatProps = React.ComponentProps<typeof S.Hat>
 
-export function Hat({ variant, children, ...props }: HatTypes) {
+export function Hat({ variant, children, ...props }: HatProps) {
   if (variant === '2') {
     return (
       <S.Hat variant="2" {...props}>
