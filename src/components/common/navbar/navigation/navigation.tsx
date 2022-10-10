@@ -149,6 +149,34 @@ const menus = {
   ],
 }
 
+type CardListItemProps = {
+  content: {
+    description: string
+    title: string
+    href: string
+    icon: JSX.Element
+  }
+}
+
+function CardListItem({ content }: CardListItemProps) {
+  return (
+    <S.CardListItem>
+      <NavigationMenu.CustomLink href={content.href}>
+        <S.CardLink>
+          {content.icon}
+          <div>
+            <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>
+              <S.CardTitle>{content.title}</S.CardTitle>
+              <S.ArrowRight css={{ pos: 'absolute', right: -18 }} />
+            </Flex>
+            <S.CardDescription>{content.description}</S.CardDescription>
+          </div>
+        </S.CardLink>
+      </NavigationMenu.CustomLink>
+    </S.CardListItem>
+  )
+}
+
 type MenuProps = {
   menu: {
     id: number
@@ -185,34 +213,6 @@ function Menu({ menu }: MenuProps) {
         </div>
       ))}
     </NavigationMenu.Content>
-  )
-}
-
-type CardListItemProps = {
-  content: {
-    description: string
-    title: string
-    href: string
-    icon: JSX.Element
-  }
-}
-
-function CardListItem({ content }: CardListItemProps) {
-  return (
-    <S.CardListItem>
-      <NavigationMenu.CustomLink href={content.href}>
-        <S.CardLink>
-          {content.icon}
-          <div>
-            <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>
-              <S.CardTitle>{content.title}</S.CardTitle>
-              <S.ArrowRight css={{ pos: 'absolute', right: -18 }} />
-            </Flex>
-            <S.CardDescription>{content.description}</S.CardDescription>
-          </div>
-        </S.CardLink>
-      </NavigationMenu.CustomLink>
-    </S.CardListItem>
   )
 }
 
