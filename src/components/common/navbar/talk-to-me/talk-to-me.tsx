@@ -1,6 +1,6 @@
 import { Button } from '@common'
 import { Dialog } from '@primitives'
-import { CalendarSvg, MailSvg, PhoneSvg } from '../svgs'
+import * as Svg from '../svgs'
 import * as S from './talk-to-me.styles'
 
 const contacts = [
@@ -8,14 +8,14 @@ const contacts = [
     text: 'Email',
     target: '_self',
     href: 'mailto:becca@beccatravis.com',
-    svg: <MailSvg />,
+    svg: <Svg.Mail />,
   },
-  { text: 'Call', target: '_self', href: 'tel:+1-256-318-9066', svg: <PhoneSvg /> },
+  { text: 'Call', target: '_self', href: 'tel:+1-256-318-9066', svg: <Svg.Phone /> },
   {
     text: 'Schedule',
     target: '_blank',
     href: 'https://calendly.com/beccatravis',
-    svg: <CalendarSvg />,
+    svg: <Svg.Calendar />,
   },
 ]
 

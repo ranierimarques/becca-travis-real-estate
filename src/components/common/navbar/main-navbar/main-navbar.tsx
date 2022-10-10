@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { LogoSvg } from '../svgs'
+import * as Svg from '../svgs'
 import * as S from './main-navbar.styles'
 
 const Navigation = dynamic(() => import('../navigation/navigation'))
@@ -11,7 +11,7 @@ export function MainNavbar() {
     <S.Nav>
       <Link href="/" passHref>
         <S.Link>
-          <LogoSvg />
+          <Svg.Logo />
         </S.Link>
       </Link>
       <Navigation />

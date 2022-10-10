@@ -1,44 +1,152 @@
 import { Box, Flex } from '@common'
 import { NavigationMenu } from '@primitives'
 import Image from 'next/image'
-import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import { forwardRef, ReactNode } from 'react'
-import {
-  athens,
-  decatur,
-  hamptomCove,
-  harvest,
-  huntsville,
-  meridianville,
-} from '../images'
-import {
-  BaggageSvg,
-  CalculatorSvg,
-  GallerySvg,
-  HeartShineSvg,
-  HomePriceSvg,
-  HouseSvg,
-  LocationSvg,
-  MessageHeartSvg,
-  OpenBookSvg,
-  PencilSvg,
-  UserMessageChatSvg,
-} from '../svgs'
+import * as Img from '../images'
+import * as Svg from '../svgs'
 import * as S from './navigation.styles'
 
-type customLinkProps = {
-  children: ReactNode
-  href: string
-}
+const communitiesListItems = [
+  { image: Img.harvest, name: 'Harvest', href: '/harvest' },
+  { image: Img.huntsville, name: 'Huntsville', href: '/huntsville' },
+  { image: Img.hamptomCove, name: 'Hamptom Cove', href: '/hamptom-cove' },
+  { image: Img.decatur, name: 'Decatur', href: '/decatur' },
+  { image: Img.athens, name: 'Athens', href: '/athens' },
+  { image: Img.meridianville, name: 'Meridianville', href: '/meridianville' },
+]
 
-type CardListItemProps = {
-  content: {
-    description: string
-    title: string
-    href: string
-    icon: JSX.Element
-  }
+const aboutHuntsvilleListItems = [
+  {
+    id: 1,
+    icon: <Svg.House className={S.SvgStyles()} />,
+    title: 'Huntsville',
+    href: '/huntsville',
+    description: 'Discover Huntsville',
+    color: '$colors$green1Rgb',
+  },
+  {
+    id: 2,
+    icon: <Svg.Baggage className={S.SvgStyles()} />,
+    title: 'Relocation Information',
+    href: '/huntsville/relocation-information',
+    description: 'All you need to know about your Relocation',
+    color: '$colors$red1Rgb',
+  },
+  {
+    id: 3,
+    icon: <Svg.Pencil className={S.SvgStyles()} />,
+    title: 'Huntsville school',
+    href: '/huntsville/school',
+    description: 'Discover our schools',
+    color: '$colors$blue2Rgb',
+  },
+]
+
+const menus = {
+  buyers: [
+    {
+      id: 1,
+      title: 'SEARCH',
+      listItem: [
+        {
+          id: 1,
+          icon: <Svg.Location />,
+          title: 'Search Map View',
+          description: 'View all properties for sale',
+          href: '/homes',
+        },
+        {
+          id: 2,
+          icon: <Svg.Gallery />,
+          title: 'Search List View',
+          description: 'View all properties for sale',
+          href: '/homes',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'RESOURCES',
+      listItem: [
+        {
+          id: 1,
+          icon: <Svg.OpenBook />,
+          title: 'Buyers Resources',
+          description: 'All you need to know to buy your property',
+          href: '/buyers-resources',
+        },
+        {
+          id: 2,
+          icon: <Svg.Calculator />,
+          title: 'Mortgage Calculator',
+          description: 'Estimate your monthly mortgage payment',
+          href: '/mortgage-calculator',
+        },
+      ],
+    },
+  ],
+  sellers: [
+    {
+      id: 1,
+      title: 'SELLERS',
+      listItem: [
+        {
+          id: 1,
+          icon: <Svg.HomePrice />,
+          title: 'Sell with us',
+          description: 'We can help you sell your home',
+          href: '/sell-with-us',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'RESOURCES',
+      listItem: [
+        {
+          id: 1,
+          icon: <Svg.OpenBook />,
+          title: 'Sellers Resources',
+          description: 'All you need to sell your property',
+          href: '/sellers-resources',
+        },
+      ],
+    },
+  ],
+  whyBecca: [
+    {
+      id: 1,
+      title: 'FEEDBACK',
+      listItem: [
+        {
+          id: 1,
+          icon: <Svg.MessageHeart />,
+          title: 'Client reviews',
+          description: 'See what our clients are telling about us',
+          href: '/reviews',
+        },
+        {
+          id: 2,
+          icon: <Svg.UserMessageChat />,
+          title: 'Referral',
+          description: 'See what our partners are telling about us',
+          href: '/referral',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'ABOUT ME',
+      listItem: [
+        {
+          id: 1,
+          icon: <Svg.HeartShine />,
+          title: 'Why Becca?',
+          description: 'Why we are your best choice',
+          href: '/why-becca',
+        },
+      ],
+    },
+  ],
 }
 
 type MenuProps = {
@@ -55,179 +163,9 @@ type MenuProps = {
   }[]
 }
 
-function CustomLink({ children, href, ...props }: customLinkProps) {
-  const router = useRouter()
-  const isActive = router.asPath === href
-
-  return (
-    <NextLink href={href} passHref>
-      <NavigationMenu.Link active={isActive} asChild {...props}>
-        {children}
-      </NavigationMenu.Link>
-    </NextLink>
-  )
-}
-
-const TriggerWithCaret = forwardRef(({ children, ...props }: any, forwardedRef) => (
-  <S.Trigger {...props} ref={forwardedRef}>
-    {children}
-    <S.Caret aria-hidden />
-  </S.Trigger>
-))
-
-const IndicatorWithArrow = forwardRef(({ ...props }: any, forwardedRef) => (
-  <S.Indicator {...props} ref={forwardedRef}>
-    <S.Arrow />
-  </S.Indicator>
-))
-
-const communitiesListItems = [
-  { image: harvest, name: 'Harvest', href: '/harvest' },
-  { image: huntsville, name: 'Huntsville', href: '/huntsville' },
-  { image: hamptomCove, name: 'Hamptom Cove', href: '/hamptom-cove' },
-  { image: decatur, name: 'Decatur', href: '/decatur' },
-  { image: athens, name: 'Athens', href: '/athens' },
-  { image: meridianville, name: 'Meridianville', href: '/meridianville' },
-]
-
-const aboutHuntsvilleListItems = [
-  {
-    id: 1,
-    icon: <HouseSvg className={S.SvgStyles()} />,
-    title: 'Huntsville',
-    href: '/huntsville',
-    description: 'Discover Huntsville',
-    color: '$colors$green1Rgb',
-  },
-  {
-    id: 2,
-    icon: <BaggageSvg className={S.SvgStyles()} />,
-    title: 'Relocation Information',
-    href: '/huntsville/relocation-information',
-    description: 'All you need to know about your Relocation',
-    color: '$colors$red1Rgb',
-  },
-  {
-    id: 3,
-    icon: <PencilSvg className={S.SvgStyles()} />,
-    title: 'Huntsville school',
-    href: '/huntsville/school',
-    description: 'Discover our schools',
-    color: '$colors$blue2Rgb',
-  },
-]
-
-const menus = {
-  buyers: [
-    {
-      id: 1,
-      title: 'SEARCH',
-      listItem: [
-        {
-          id: 1,
-          icon: <LocationSvg />,
-          title: 'Search Map View',
-          description: 'View all properties for sale',
-          href: '/homes',
-        },
-        {
-          id: 2,
-          icon: <GallerySvg />,
-          title: 'Search List View',
-          description: 'View all properties for sale',
-          href: '/homes',
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'RESOURCES',
-      listItem: [
-        {
-          id: 1,
-          icon: <OpenBookSvg />,
-          title: 'Buyers Resources',
-          description: 'All you need to know to buy your property',
-          href: '/buyers-resources',
-        },
-        {
-          id: 2,
-          icon: <CalculatorSvg />,
-          title: 'Mortgage Calculator',
-          description: 'Estimate your monthly mortgage payment',
-          href: '/mortgage-calculator',
-        },
-      ],
-    },
-  ],
-  sellers: [
-    {
-      id: 1,
-      title: 'SELLERS',
-      listItem: [
-        {
-          id: 1,
-          icon: <HomePriceSvg />,
-          title: 'Sell with us',
-          description: 'We can help you sell your home',
-          href: '/sell-with-us',
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'RESOURCES',
-      listItem: [
-        {
-          id: 1,
-          icon: <OpenBookSvg />,
-          title: 'Sellers Resources',
-          description: 'All you need to sell your property',
-          href: '/sellers-resources',
-        },
-      ],
-    },
-  ],
-  whyBecca: [
-    {
-      id: 1,
-      title: 'FEEDBACK',
-      listItem: [
-        {
-          id: 1,
-          icon: <MessageHeartSvg />,
-          title: 'Client reviews',
-          description: 'See what our clients are telling about us',
-          href: '/reviews',
-        },
-        {
-          id: 2,
-          icon: <UserMessageChatSvg />,
-          title: 'Referral',
-          description: 'See what our partners are telling about us',
-          href: '/referral',
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'ABOUT ME',
-      listItem: [
-        {
-          id: 1,
-          icon: <HeartShineSvg />,
-          title: 'Why Becca?',
-          description: 'Why we are your best choice',
-          href: '/why-becca',
-        },
-      ],
-    },
-  ],
-}
-
 function Menu({ menu }: MenuProps) {
   return (
-    <S.Content
+    <NavigationMenu.Content
       css={{
         display: 'grid',
         gridTemplateColumns: 'auto auto',
@@ -246,14 +184,23 @@ function Menu({ menu }: MenuProps) {
           </ul>
         </div>
       ))}
-    </S.Content>
+    </NavigationMenu.Content>
   )
+}
+
+type CardListItemProps = {
+  content: {
+    description: string
+    title: string
+    href: string
+    icon: JSX.Element
+  }
 }
 
 function CardListItem({ content }: CardListItemProps) {
   return (
     <S.CardListItem>
-      <CustomLink href={content.href}>
+      <NavigationMenu.CustomLink href={content.href}>
         <S.CardLink>
           {content.icon}
           <div>
@@ -264,14 +211,14 @@ function CardListItem({ content }: CardListItemProps) {
             <S.CardDescription>{content.description}</S.CardDescription>
           </div>
         </S.CardLink>
-      </CustomLink>
+      </NavigationMenu.CustomLink>
     </S.CardListItem>
   )
 }
 
 function CommunityGuideMenu() {
   return (
-    <S.Content>
+    <NavigationMenu.Content>
       <div>
         <Box css={{ p: '24px 24px 32px' }}>
           <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
@@ -279,7 +226,7 @@ function CommunityGuideMenu() {
             <S.CommunitiesList>
               {aboutHuntsvilleListItems.map(item => (
                 <li key={item.id}>
-                  <CustomLink href={item.href}>
+                  <NavigationMenu.CustomLink href={item.href}>
                     <S.HuntsvilleLink css={{ $$color: item.color }}>
                       {item.icon}
                       <Box>
@@ -292,7 +239,7 @@ function CommunityGuideMenu() {
                         </S.HuntsvilleDescription>
                       </Box>
                     </S.HuntsvilleLink>
-                  </CustomLink>
+                  </NavigationMenu.CustomLink>
                 </li>
               ))}
             </S.CommunitiesList>
@@ -304,7 +251,7 @@ function CommunityGuideMenu() {
           <S.OurCommunitiesList>
             {communitiesListItems.map(item => (
               <li key={item.name}>
-                <CustomLink href={item.href}>
+                <NavigationMenu.CustomLink href={item.href}>
                   <S.OurCommunitiesListLink>
                     <Image
                       style={{
@@ -319,52 +266,54 @@ function CommunityGuideMenu() {
                     <S.OurCommunitiesImageOverlay />
                     <S.OurCommunitiesImageName>{item.name}, AL</S.OurCommunitiesImageName>
                   </S.OurCommunitiesListLink>
-                </CustomLink>
+                </NavigationMenu.CustomLink>
               </li>
             ))}
           </S.OurCommunitiesList>
         </Box>
       </div>
-    </S.Content>
+    </NavigationMenu.Content>
   )
 }
 
 export default function Navigation() {
   return (
-    <S.Root>
-      <S.List>
+    <NavigationMenu.Root>
+      <NavigationMenu.List>
         <NavigationMenu.Item>
-          <TriggerWithCaret>Buyers</TriggerWithCaret>
+          <NavigationMenu.TriggerWithCaret>Buyers</NavigationMenu.TriggerWithCaret>
           <Menu menu={menus.buyers} />
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <TriggerWithCaret>Sellers</TriggerWithCaret>
+          <NavigationMenu.TriggerWithCaret>Sellers</NavigationMenu.TriggerWithCaret>
           <Menu menu={menus.sellers} />
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <TriggerWithCaret>Community guides</TriggerWithCaret>
+          <NavigationMenu.TriggerWithCaret>
+            Community guides
+          </NavigationMenu.TriggerWithCaret>
           <CommunityGuideMenu />
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <TriggerWithCaret>Why Becca</TriggerWithCaret>
+          <NavigationMenu.TriggerWithCaret>Why Becca</NavigationMenu.TriggerWithCaret>
           <Menu menu={menus.whyBecca} />
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <CustomLink href="/blog">
-            <S.Link>Blog</S.Link>
-          </CustomLink>
+          <NavigationMenu.CustomLink href="/blog">
+            <NavigationMenu.Link>Blog</NavigationMenu.Link>
+          </NavigationMenu.CustomLink>
         </NavigationMenu.Item>
 
-        <IndicatorWithArrow />
-      </S.List>
+        <NavigationMenu.IndicatorWithArrow />
+      </NavigationMenu.List>
 
-      <S.ViewportPosition>
-        <S.Viewport />
-      </S.ViewportPosition>
-    </S.Root>
+      <NavigationMenu.ViewportPosition>
+        <NavigationMenu.Viewport />
+      </NavigationMenu.ViewportPosition>
+    </NavigationMenu.Root>
   )
 }

@@ -1,6 +1,6 @@
 import { DropdownMenu } from '@primitives'
 import { keyframes, styled } from 'stitches.config'
-import { CheckMarkSvg } from '../svgs'
+import * as Svg from '../svgs'
 
 const slideUpAndFade = keyframes({
   '0%': { opacity: 0, transform: 'translateY(2px)' },
@@ -87,7 +87,7 @@ export const LanguageText = styled('span', {
   color: '$gray2',
 })
 
-export const CheckMark = styled(CheckMarkSvg, {
+export const CheckMark = styled(Svg.CheckMark, {
   marginLeft: 16,
 })
 

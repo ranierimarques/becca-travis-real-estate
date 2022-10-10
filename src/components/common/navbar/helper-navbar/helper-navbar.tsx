@@ -1,15 +1,15 @@
 import { Box } from '@common'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { ChatSvg, ShieldSvg, UserSvg } from '../svgs'
+import * as Svg from '../svgs'
 import * as S from './helper-navbar.styles'
 
 const DropdownLanguage = dynamic(() => import('../dropdown-language/dropdown-language'))
 
 const links = [
-  { id: 1, icon: <ShieldSvg />, text: 'Local Guides', href: '/local-guides' },
-  { id: 2, icon: <ChatSvg />, text: 'Contact Us', href: '/contact-us' },
-  { id: 3, icon: <UserSvg />, text: 'My account', href: '/profile' },
+  { id: 1, icon: <Svg.Shield />, text: 'Local Guides', href: '/local-guides' },
+  { id: 2, icon: <Svg.Chat />, text: 'Contact Us', href: '/contact-us' },
+  { id: 3, icon: <Svg.User />, text: 'My account', href: '/profile' },
 ]
 
 export function HelperNavbar() {
