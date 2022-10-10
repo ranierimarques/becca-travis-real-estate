@@ -8,27 +8,27 @@ export default function DropdownLanguage() {
 
   return (
     <DropdownMenu.Root>
-      <S.Trigger>
+      <DropdownMenu.Trigger>
         <Svg.Earth />
         Language
-      </S.Trigger>
-      <S.Content align="start">
-        <S.RadioGroup value={language} onValueChange={setLanguage}>
-          <S.RadioItem value="en-US" icon={<S.CheckMark />}>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="start">
+        <DropdownMenu.RadioGroup value={language} onValueChange={setLanguage}>
+          <DropdownMenu.RadioItem value="en-US">
             <Svg.EnFlag />
             <S.LanguageText>English</S.LanguageText>
-          </S.RadioItem>
-          <S.RadioItem value="pt-BR" icon={<S.CheckMark />} disabled>
+          </DropdownMenu.RadioItem>
+          <DropdownMenu.RadioItem value="pt-BR" disabled>
             <Svg.BrFlag />
             <S.LanguageText>Portuguese</S.LanguageText>
-          </S.RadioItem>
-          <S.RadioItem value="en-BR" icon={<S.CheckMark />} disabled>
+          </DropdownMenu.RadioItem>
+          <DropdownMenu.RadioItem value="en-BR" disabled>
             <Svg.EsFlag />
             <S.LanguageText>Spanish</S.LanguageText>
-          </S.RadioItem>
-        </S.RadioGroup>
-        <S.Arrow />
-      </S.Content>
+          </DropdownMenu.RadioItem>
+        </DropdownMenu.RadioGroup>
+        <DropdownMenu.Arrow />
+      </DropdownMenu.Content>
     </DropdownMenu.Root>
   )
 }

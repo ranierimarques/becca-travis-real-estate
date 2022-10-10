@@ -1,6 +1,6 @@
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import { css, keyframes, styled } from 'stitches.config'
-import { ArrowDownSvg } from './svgs'
+import * as Svg from './svgs'
 
 // Keyframes - Animation
 
@@ -81,7 +81,7 @@ export const Trigger = styled(NavigationMenuPrimitive.Trigger, linkStyles, {
   cursor: 'default',
 })
 
-export const Caret = styled(ArrowDownSvg, {
+export const Caret = styled(Svg.ArrowDown, {
   '[data-state=open] &': { transform: 'rotate(-180deg)' },
   transition: 'transform 250ms ease',
 })
