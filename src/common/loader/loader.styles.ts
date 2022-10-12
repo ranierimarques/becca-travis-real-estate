@@ -1,38 +1,56 @@
 import { keyframes, styled } from 'stitches.config'
 
-const rotator = keyframes({
-  '0%': {
-    transform: 'rotate(0deg)',
+const bblFadInOut = keyframes({
+  '0%, 80%, 100%': {
+    boxShadow: '0 2.5em 0 -1.3em',
   },
-  '100%': {
-    transform: 'rotate(270deg)',
+
+  '40%': {
+    boxShadow: '0 2.5em 0 0',
   },
 })
 
-const dash = keyframes({
-  '0%': {
-    strokeDashoffset: '187',
-  },
-  '50%': {
-    strokeDashoffset: '46.75',
-    transform: 'rotate(135deg)',
-  },
-  '100%': {
-    strokeDashoffset: '187',
-    transform: 'rotate(450deg)',
-  },
-})
+export const Loader = styled('span', {
+  borderRadius: '50%',
+  width: '2em',
+  height: '2em',
 
-export const LoaderSvg = styled('svg', {
-  animation: `${rotator} 1.4s linear infinite`,
-  width: '100%',
-  height: '100%',
-})
+  color: '#FFF',
+  fontSize: '5px',
+  position: 'relative',
+  textIndent: '-9999em',
+  transform: 'translateZ(0)',
 
-export const Circle = styled('circle', {
-  strokeDasharray: '187',
-  strokeDashoffset: '0',
-  transformOrigin: 'center',
-  animation: `${dash} 1.4s ease-in-out infinite`,
-  stroke: 'white',
+  animation: `-0.16s ${bblFadInOut} 1.5s infinite ease-in-out`,
+  animationFillMode: 'both',
+
+  '&::before': {
+    content: '',
+    position: 'absolute',
+    top: '0',
+
+    left: '-3.5em',
+
+    borderRadius: '50%',
+    width: '2em',
+    height: '2em',
+
+    animation: `-0.32s ${bblFadInOut} 1.5s infinite ease-in-out`,
+    animationFillMode: 'both',
+  },
+
+  '&::after': {
+    content: '',
+    position: 'absolute',
+    top: '0',
+
+    left: '3.5em',
+
+    borderRadius: '50%',
+    width: '2em',
+    height: '2em',
+
+    animation: `${bblFadInOut} 1.5s infinite ease-in-out`,
+    animationFillMode: 'both',
+  },
 })

@@ -1,4 +1,4 @@
-import { Hat } from '@common'
+import { Box, Hat } from '@common'
 import { Form } from '@shared'
 import { useState } from 'react'
 import { ContactInformation } from './contact-information/contact-information'
@@ -21,7 +21,9 @@ export function ContactUs() {
 
         <S.FormContainer>
           <ContactInformation openToast={openToast} onOpenToast={setOpenToast} />
-          <Form onOpenToast={setOpenToast} />
+          <Box css={{ m: '24px 0' }}>
+            <Form onOpenToast={setOpenToast} />
+          </Box>
         </S.FormContainer>
       </S.Container>
     </S.Section>

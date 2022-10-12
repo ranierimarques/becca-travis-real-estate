@@ -10,13 +10,13 @@ export const hide = keyframes({
 })
 
 export const slideIn = keyframes({
-  from: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
-  to: { transform: 'translateX(0)' },
+  from: { transform: `translateY(calc(100% + ${VIEWPORT_PADDING}px))` },
+  to: { transform: 'translateY(0)' },
 })
 
 export const swipeOut = keyframes({
-  from: { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
-  to: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
+  from: { transform: 'translateY(var(--radix-toast-swipe-end-y))' },
+  to: { transform: `translateY(calc(100% + ${VIEWPORT_PADDING}px))` },
 })
 
 export const Viewport = styled(ToastPrimitive.Viewport, {
@@ -53,16 +53,18 @@ export const Toast = styled(ToastPrimitive.Root, {
       animation: `${hide} 100ms ease-in`,
     },
     '&[data-swipe="move"]': {
-      transform: 'translateX(var(--radix-toast-swipe-move-x))',
+      transform: 'translateY(var(--radix-toast-swipe-move-y))',
     },
     '&[data-swipe="cancel"]': {
-      transform: 'translateX(0)',
+      transform: 'translateY(0)',
       transition: 'transform 200ms ease-out',
     },
     '&[data-swipe="end"]': {
       animation: `${swipeOut} 100ms ease-out`,
     },
   },
+
+  '&:focus-visible': { outline: 'none' },
 })
 
 export const ToastTitle = styled(ToastPrimitive.Title, {
@@ -105,14 +107,15 @@ export const CloseButton = styled('button', {
   '&:focus': { boxShadow: '0 0 0 2px rgba($colors$gray4Rgb, 0.5)' },
 })
 
-// ************************
+// ************************ End of Toast styles ************************
 
 export const Card = styled('div', {
   position: 'relative',
 
-  width: '366px',
+  minWidth: '366px',
 
-  boxShadow: '0 0 0 1px $colors$grayW8',
+  boxShadow: '0 0 0 1px rgba(227, 229, 232, 1)',
+
   borderRadius: '8px',
 
   overflow: 'hidden',

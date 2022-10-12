@@ -1,6 +1,7 @@
 import { Box, Flex } from '@common'
 import * as Toast from '@radix-ui/react-toast'
-import { CheckSvg, CloseSvg, MailSvg, PhoneSvg } from '../svgs'
+import Rive from '@rive-app/react-canvas'
+import { CloseSvg, MailSvg, PhoneSvg } from '../svgs'
 import * as S from './contact-information.styles'
 
 interface ContactInformationProps {
@@ -25,7 +26,7 @@ export function ContactInformation({ openToast, onOpenToast }: ContactInformatio
 
             <Flex direction="column" align="start" css={{ gap: 4 }}>
               <S.ContactTitle>Email</S.ContactTitle>
-              <S.ContactInfo>contact@designroom.com</S.ContactInfo>
+              <S.ContactInfo>becca@beccatravis.com</S.ContactInfo>
             </Flex>
           </S.Contact>
 
@@ -44,10 +45,12 @@ export function ContactInformation({ openToast, onOpenToast }: ContactInformatio
         <S.Svg />
       </Box>
 
-      <Toast.Provider>
+      <Toast.Provider duration={10000}>
         <S.Toast open={openToast} onOpenChange={onOpenToast}>
           <S.ToastTitle>
-            <CheckSvg />
+            <Box css={{ w: 24, h: 24 }}>
+              <Rive src="check.riv" />
+            </Box>
             Information sent successfully
           </S.ToastTitle>
           <S.ToastDescription>i will contact you soon!</S.ToastDescription>

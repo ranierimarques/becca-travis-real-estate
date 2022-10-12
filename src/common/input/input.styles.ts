@@ -7,6 +7,8 @@ export const Label = styled('label', {
   flexDirection: 'column',
   gap: 4,
 
+  flexGrow: 1,
+
   fontWeight: '400',
   fontSize: '12px',
   lineHeight: '16px',
@@ -32,57 +34,11 @@ export const Asterisk = styled('span', {
   color: '$red3',
 })
 
-export const InputWrapper = styled('div', {
-  boxShadow: '0 0 0 1px $colors$grayW7',
-  borderRadius: '4px',
-  width: '288px',
-  height: '40px',
-
-  position: 'relative',
-
-  overflow: 'hidden',
-
-  '&:hover': {
-    boxShadow: '0 0 0 1px $colors$gray5',
-
-    cursor: 'text',
-  },
-
-  '&:focus-within': {
-    boxShadow: '0 0 0 2px $colors$gray5',
-  },
-
-  variants: {
-    showError: {
-      true: {
-        boxShadow: '0 0 0 1px $colors$red3',
-        '&:hover': {
-          boxShadow: '0 0 0 1px $colors$red3',
-
-          cursor: 'text',
-        },
-
-        '&:focus-within': {
-          boxShadow: '0 0 0 2px $colors$red3',
-        },
-      },
-    },
-    textArea: {
-      true: {
-        padding: '10px 0 0 16px',
-        width: '608px',
-        height: '155px',
-        cursor: 'text',
-      },
-    },
-  },
-})
-
 export const Input = styled('input', {
   width: '100%',
   height: '100%',
 
-  padding: '0 32px 0 16px',
+  paddingLeft: '16px',
 
   fontWeight: '400',
   fontSize: '16px',
@@ -120,6 +76,64 @@ export const TextArea = styled('textarea', {
 
   '&::placeholder': {
     color: '$grayW6',
+  },
+})
+
+export const InputWrapper = styled('div', {
+  boxShadow: '0 0 0 1px $colors$grayW7',
+  borderRadius: '4px',
+  width: '100%',
+  height: '40px',
+
+  position: 'relative',
+
+  overflow: 'hidden',
+
+  '&:hover': {
+    boxShadow: '0 0 0 1px $colors$gray5, inset 0px 0px 5px rgba(0, 0, 0, 0.1)',
+
+    cursor: 'text',
+  },
+
+  '&:focus-within': {
+    boxShadow: '0 0 0 2px $colors$gray5',
+  },
+
+  variants: {
+    showError: {
+      true: {
+        boxShadow: '0 0 0 1px $colors$red3',
+        '&:hover': {
+          boxShadow: '0 0 0 1px $colors$red3',
+
+          cursor: 'text',
+        },
+
+        '&:focus-within': {
+          boxShadow: '0 0 0 2px $colors$red3',
+        },
+
+        [`& ${Input}`]: {
+          padding: '0 32px 0 16px',
+        },
+
+        [`& ${TelInput}`]: {
+          padding: '0 32px 0 16px',
+        },
+
+        [`& ${TextArea}`]: {
+          paddingRight: '32px',
+        },
+      },
+    },
+    textArea: {
+      true: {
+        padding: '10px 0 0 16px',
+        width: '100%',
+        height: '155px',
+        cursor: 'text',
+      },
+    },
   },
 })
 

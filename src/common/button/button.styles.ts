@@ -1,6 +1,6 @@
 import type * as Stitches from '@stitches/react'
 import { css, styled } from 'stitches.config'
-import { LoaderSvg } from '../loader/loader.styles'
+import { Loader } from '../loader/loader.styles'
 
 const sharedStyles = css({
   width: 'fit-content',
@@ -18,9 +18,6 @@ const sharedStyles = css({
   '&:disabled': {
     $$primaryColor: 'rgba($colors$magenta1Rgb, 0.33)',
     $$secondaryColor: 'transparent',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   '&:not(:disabled)': {
@@ -33,10 +30,13 @@ const sharedStyles = css({
     },
   },
 
-  [`& ${LoaderSvg}`]: {
-    height: '21px',
+  [`& ${Loader}`]: {
     display: 'block',
+
     position: 'absolute',
+    top: '12px',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
 
   variants: {
