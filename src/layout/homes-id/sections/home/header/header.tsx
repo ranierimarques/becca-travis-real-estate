@@ -1,5 +1,5 @@
 import { Box, Flex } from '@common'
-import { HeartSvg, ShareSvg } from '../svgs'
+import * as Svg from '../svgs'
 import * as S from './header.styles'
 
 interface Listing {
@@ -53,12 +53,12 @@ export function Header({ listing }: Listing) {
         <S.HouseName>{listing.address}</S.HouseName>
         <S.ShareAndSave>
           <S.Button>
-            <ShareSvg />
+            <Svg.Share />
             Share
           </S.Button>
 
           <S.Button>
-            <HeartSvg />
+            <Svg.Heart />
             Favorite
           </S.Button>
         </S.ShareAndSave>

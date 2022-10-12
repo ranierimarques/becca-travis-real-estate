@@ -1,20 +1,12 @@
-import { Hat } from '@common'
-import { Form } from '@shared'
+import { Box } from '@common'
+import { Form, Hat } from '@shared'
 import { useState } from 'react'
-import { ContactInformation } from './contact-information/contact-information'
-import * as S from './contact-us.styles'
-
-export function ContactUs() {
-  const [openToast, setOpenToast] = useState(false)
-
-=======
-import { Box, Button } from '@common'
-import { Hat } from '@shared'
+import { ContactInformation } from '.'
 import * as S from './hero.styles'
-import { MailSvg, PhoneSvg } from './svgs'
 
 export function Hero() {
->>>>>>> new-architecture:src/layout/contact-us/sections/hero/hero.tsx
+  const [openToast, setOpenToast] = useState(false)
+
   return (
     <S.Section>
       <S.Background />
