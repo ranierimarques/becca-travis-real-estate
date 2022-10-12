@@ -1,9 +1,9 @@
 import { Button, Flex } from '@common'
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { Tooltip } from '@primitives'
 import { Hat } from '@shared'
 import { useRef, useState } from 'react'
+import { Testimonial } from '.'
 import * as S from './client-testimonials.styles'
-import { Testimonial } from './testimonial/testimonial'
 
 const reviews = [
   [
@@ -186,17 +186,9 @@ export function ClientTestimonials() {
             I work with my heart and the best part about my job is guiding each of home. I
             am grateful for each of my clients, here are just a few of their stories…
           </S.Description>
-          <TooltipPrimitive.Provider>
-            <TooltipPrimitive.Root delayDuration={300}>
-              <TooltipPrimitive.Trigger asChild>
-                <S.ViewAll>VIEW ALL</S.ViewAll>
-              </TooltipPrimitive.Trigger>
-              <S.TooltipContent sideOffset={5}>
-                Coming soon
-                <S.TooltipArrow width={16} height={8} />
-              </S.TooltipContent>
-            </TooltipPrimitive.Root>
-          </TooltipPrimitive.Provider>
+          <Tooltip content="Coming soon">
+            <S.ViewAll>VIEW ALL</S.ViewAll>
+          </Tooltip>
         </Flex>
       </div>
 
