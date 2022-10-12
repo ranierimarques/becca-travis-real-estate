@@ -114,7 +114,7 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
       }),
     })
 
-    if (result.status === 200) {
+    if (result.status === 200 && onOpenToast) {
       onOpenToast(true)
     }
   }
