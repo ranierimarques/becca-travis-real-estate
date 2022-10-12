@@ -16,11 +16,15 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@common": ["src/common"],
-      "@shared": ["src/shared"],
-      "@styles/*": ["src/styles/*"],
+      "@common": ["src/components/common"],
+      "@primitives": ["src/components/primitives"],
+      "@shared": ["src/components/shared"],
+      "@template": ["src/components/template"],
       "@layout/*": ["src/layout/*"],
-      "@resources/*": ["src/resources/*"]
+      "@resources/*": ["src/resources/*"],
+      "@utils/*": ["src/resources/utils/*"],
+      "@services/*": ["src/services/*"],
+      "@styles/*": ["src/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

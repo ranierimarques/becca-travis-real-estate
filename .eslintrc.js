@@ -33,5 +33,6 @@ module.exports = {
         printWidth: 90,
       },
     ],
+    'react/display-name': 0,
   },
 }

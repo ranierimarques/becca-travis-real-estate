@@ -1,4 +1,4 @@
-import { Hero } from '@layout/404'
+import { Hero } from '@layout/404/sections'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 

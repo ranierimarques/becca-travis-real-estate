@@ -6,10 +6,10 @@ import {
   OurCommunities,
   RentToOwn,
   Services,
-} from '@layout/index'
-import convertSquareFeets from '@resources/utils/convert-square-feets'
-import formatToDollar from '@resources/utils/format-to-dollar'
+} from '@layout/index/sections'
 import { ClientTestimonials, LastCall } from '@shared'
+import { convertSquareFeets } from '@utils/convert'
+import { formatToDollar } from '@utils/currency'
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
