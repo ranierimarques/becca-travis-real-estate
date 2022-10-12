@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/layout/contact-us/contact-us.tsx
 import { Hat } from '@common'
 import { Form } from '@shared'
 import { useState } from 'react'
@@ -30,7 +29,9 @@ export function Hero() {
 
         <S.FormContainer>
           <ContactInformation openToast={openToast} onOpenToast={setOpenToast} />
-          <Form onOpenToast={setOpenToast} />
+          <Box css={{ m: '24px 0' }}>
+            <Form onOpenToast={setOpenToast} />
+          </Box>
         </S.FormContainer>
       </S.Container>
     </S.Section>

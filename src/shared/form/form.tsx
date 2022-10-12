@@ -38,7 +38,8 @@ const formSchema = z.object({
 type formSchemaType = z.infer<typeof formSchema>
 
 interface FormProps {
-  onOpenToast: (value: boolean) => void
+  onOpenToast?: (value: boolean) => void
+  noTitle?: boolean
 }
 
 const inputs = [
@@ -85,7 +86,7 @@ const inputs = [
   required: boolean
 }[]
 
-export function Form({ onOpenToast }: FormProps) {
+export function Form({ onOpenToast, noTitle }: FormProps) {
   const {
     register,
     handleSubmit,
@@ -108,7 +109,7 @@ export function Form({ onOpenToast }: FormProps) {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        access_key: 'd86e28ae-38a3-4c56-9850-71f06e323d76',
+        access_key: '5f1d1f1b-d96c-49ef-9b5d-b6d95e42e337',
         ...values,
       }),
     })
@@ -120,8 +121,8 @@ export function Form({ onOpenToast }: FormProps) {
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <S.FormTitle>Send me a message</S.FormTitle>
-      <Flex wrap="wrap" css={{ gap: 32, m: '24px 0 56px', w: '608px' }}>
+      {!noTitle && <S.FormTitle>Send me a message</S.FormTitle>}
+      <Flex wrap="wrap" css={{ gap: 32, mb: 56 }}>
         {inputs.map(({ name, ...input }) => {
           return (
             <Input
@@ -137,7 +138,7 @@ export function Form({ onOpenToast }: FormProps) {
         })}
       </Flex>
 
-      <Flex align="center" justify="between" css={{ mb: 24 }}>
+      <Flex align="center" justify="between">
         <S.DisclaimerText>
           <S.Disclaimer>Disclaimer:</S.Disclaimer> By entering your information and
           submitting this form, you agree to our Terms of Use and Privacy Policy and that

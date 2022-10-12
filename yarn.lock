@@ -1801,6 +1801,18 @@
   resolved "https://registry.npmjs.org/@react-google-maps/marker-clusterer/-/marker-clusterer-2.11.8.tgz#9b830b405cc203b305ac6f771da2e307ad30515e"
   integrity sha512-OEcdbTXEgPwdpGvVuSrhIhjcZPhlzPz2TvaKCBLraf1PKiDyLOPhlTVRlbIziLiu0xN89pJcill1w9UVIVFF+Q==
 
+"@rive-app/canvas@1.0.88":
+  version "1.0.88"
+  resolved "https://registry.yarnpkg.com/@rive-app/canvas/-/canvas-1.0.88.tgz#d9eda583f3eabf805516d446a9b74b100d15209c"
+  integrity sha512-xIk2oIwLaWsqJ2dVRLjiycP0iDGWOdJX7e8he6FmXyzYYiYOan3czQytpvon0k+eULQ2yqJikK/GhOeNyVDGZA==
+
+"@rive-app/react-canvas@^3.0.27":
+  version "3.0.27"
+  resolved "https://registry.yarnpkg.com/@rive-app/react-canvas/-/react-canvas-3.0.27.tgz#3d2b7b25176d111f16631d6630cdfdc7f7f90400"
+  integrity sha512-Fl/PoE3fHMkcvZ1kSSBFHP/lgvPRf+q8FxyIwoPtHbRcrM6CiV2pThXBTzptH7CCVwQGsGFCV+w1WAnQMdYCHg==
+  dependencies:
+    "@rive-app/canvas" "1.0.88"
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.1.4"
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz"

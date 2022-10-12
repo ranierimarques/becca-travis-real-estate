@@ -1,7 +1,7 @@
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
-  padding: '72px 0',
+  padding: '72px 0 160px',
 
   position: 'relative',
 })
@@ -27,7 +27,7 @@ export const Header = styled('div', {
 })
 
 export const FormContainer = styled('div', {
-  padding: '16px 42px 16px 16px',
+  padding: '16px 40px 16px 16px',
 
   display: 'flex',
   alignItems: 'stretch',
