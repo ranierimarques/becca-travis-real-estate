@@ -1,13 +1,6 @@
 import { Flex } from '@common'
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import {
-  BathroomSvg,
-  BedroomSvg,
-  ClockSvg,
-  InformationSvg,
-  PriceSvg,
-  SquareFeetSvg,
-} from '../svgs'
+import { Tooltip } from '@primitives'
+import * as Svg from '../svgs'
 import * as S from './property-details.styles'
 
 interface ListingDetails {
@@ -26,22 +19,22 @@ interface ListingDetails {
 export function PropertyDetails({ listing }: ListingDetails) {
   const details = [
     {
-      svg: <PriceSvg />,
+      svg: <Svg.Price />,
       text: listing.price,
       tooltip: 'Home value',
     },
     {
-      svg: <BedroomSvg />,
+      svg: <Svg.Bedroom />,
       text: `${listing.bedroomsTotal} Bedrooms`,
       tooltip: 'Total bedrooms',
     },
     {
-      svg: <BathroomSvg />,
+      svg: <Svg.Bathroom />,
       text: `${listing.bathroomsTotal} Bathrooms`,
       tooltip: 'Total bathrooms',
     },
     {
-      svg: <SquareFeetSvg />,
+      svg: <Svg.SquareFeet />,
       text: `${listing.lotSizeSquareFeet} Sq.Ft`,
       tooltip: 'Total meters',
     },
@@ -71,7 +64,7 @@ export function PropertyDetails({ listing }: ListingDetails) {
   return (
     <S.PropertyDetails>
       <S.Title>
-        Property details <ClockSvg />
+        Property details <Svg.Clock />
       </S.Title>
 
       <S.Hr />
@@ -89,16 +82,11 @@ export function PropertyDetails({ listing }: ListingDetails) {
                 {detail.svg}
                 <S.DetailText>{detail.text}</S.DetailText>
               </Flex>
-              <TooltipPrimitive.Provider>
-                <TooltipPrimitive.Root delayDuration={400}>
-                  <TooltipPrimitive.Trigger asChild>
-                    <S.TooltipButton>
-                      <InformationSvg />
-                    </S.TooltipButton>
-                  </TooltipPrimitive.Trigger>
-                  <Content sideOffset={10}>{detail.tooltip}</Content>
-                </TooltipPrimitive.Root>
-              </TooltipPrimitive.Provider>
+              <Tooltip content={detail.tooltip} variant="2">
+                <S.TooltipButton>
+                  <Svg.Information />
+                </S.TooltipButton>
+              </Tooltip>
             </S.DetailItem>
           )
         })}
@@ -122,16 +110,5 @@ export function PropertyDetails({ listing }: ListingDetails) {
         })}
       </Flex>
     </S.PropertyDetails>
-  )
-}
-
-function Content({ children, ...props }: any) {
-  return (
-    <TooltipPrimitive.Portal>
-      <S.TooltipContent {...props}>
-        {children}
-        <S.Tip />
-      </S.TooltipContent>
-    </TooltipPrimitive.Portal>
   )
 }

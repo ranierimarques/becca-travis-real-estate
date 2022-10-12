@@ -22,18 +22,6 @@ const slideLeftAndFade = keyframes({
 })
 
 export const Content = styled(TooltipPrimitive.Content, {
-  position: 'relative',
-
-  padding: '8px 16px',
-
-  fontWeight: '600',
-  fontSize: '12px',
-  lineHeight: '18px',
-  color: '$magenta2',
-
-  background: 'rgba($colors$magenta1Rgb, 0.12)',
-  borderRadius: '999px',
-
   animationDuration: '400ms',
   animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
   willChange: 'transform, opacity',
@@ -43,8 +31,52 @@ export const Content = styled(TooltipPrimitive.Content, {
     '&[data-side="bottom"]': { animationName: slideUpAndFade },
     '&[data-side="left"]': { animationName: slideRightAndFade },
   },
+
+  variants: {
+    variant: {
+      '1': {
+        padding: '8px 16px',
+
+        fontWeight: '600',
+        fontSize: '12px',
+        lineHeight: '18px',
+        color: '$magenta2',
+
+        background: 'rgba($colors$magenta1Rgb, 0.12)',
+        borderRadius: '999px',
+      },
+      '2': {
+        padding: '4px 14px',
+
+        fontWeight: '500',
+        fontSize: '12px',
+        lineHeight: '22px',
+        color: '$offWhite2',
+
+        background: '$gray3',
+        borderRadius: '5px',
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: '1',
+  },
 })
 
 export const Arrow = styled(TooltipPrimitive.Arrow, {
-  fill: 'rgba($colors$magenta1Rgb, 0.12)',
+  variants: {
+    variant: {
+      '1': {
+        fill: 'rgba($colors$magenta1Rgb, 0.12)',
+      },
+      '2': {
+        fill: '$colors$gray3',
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: '1',
+  },
 })

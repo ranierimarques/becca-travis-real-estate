@@ -3,7 +3,7 @@ import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { ChevronLeftSvg, ChevronRightSvg } from '../svgs'
+import * as Svg from '../svgs'
 import * as S from './slider.styles'
 
 interface ListingMedia {
@@ -66,12 +66,12 @@ export function Slider({ media }: ListingMedia) {
               onClick={handlePreviousPhoto}
               disabled={isFirstPhoto}
             >
-              <ChevronLeftSvg />
+              <Svg.ChevronLeft />
             </S.Skip>
             <S.SkipOverlay direction="left" onClick={handlePreviousPhoto} />
 
             <S.Skip direction="right" onClick={handleNextPhoto} disabled={isLastPhoto}>
-              <ChevronRightSvg />
+              <Svg.ChevronRight />
             </S.Skip>
             <S.SkipOverlay direction="right" onClick={handleNextPhoto} />
             <S.Index>

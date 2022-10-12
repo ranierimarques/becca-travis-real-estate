@@ -1,11 +1,8 @@
 import { Box, Flex } from '@common'
 import { LastCall } from '@shared'
-import { Slider } from '.'
-import { AskAQuestion } from './ask-a-question/ask-a-question'
-import { FasterContact } from './faster-contact/faster-contact'
+import { AskAQuestion, FasterContact, PropertyDetails, Slider } from '.'
 import * as S from './home.styles'
-import { PropertyDetails } from './property-details/property-details'
-import { HeartSvg, ShareSvg } from './svgs'
+import * as Svg from './svgs'
 
 interface Listing {
   listing: {
@@ -33,12 +30,12 @@ export function Home({ listing }: Listing) {
             <S.HouseName>{listing.address}</S.HouseName>
             <S.ShareAndSave>
               <S.Button>
-                <ShareSvg />
+                <Svg.Share />
                 Share
               </S.Button>
 
               <S.Button>
-                <HeartSvg />
+                <Svg.Heart />
                 Favorite
               </S.Button>
             </S.ShareAndSave>
