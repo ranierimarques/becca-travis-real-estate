@@ -115,7 +115,7 @@ export const getStaticProps = async ({ params }: Params) => {
     waterSource: data.bundle.WaterSource,
     elementarySchool: data.bundle.ElementarySchool,
     middleSchool: data.bundle.MiddleOrJuniorSchool,
-    highSchool: data.bundle.HighSchool
+    highSchool: data.bundle.HighSchool,
   }
 
   return {
