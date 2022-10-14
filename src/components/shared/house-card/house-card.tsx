@@ -2,7 +2,7 @@ import { Box, Flex } from '@common'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './house-card.styles'
-import { BedSvg, ShowerSvg, SquareSvg } from './svgs'
+import * as Svg from './svgs'
 
 interface Listing {
   listing: {
@@ -14,13 +14,15 @@ interface Listing {
     bathroomsTotal: number
     livingArea: string
   }
+  variant?: 'small'
+  badge?: string
 }
 
-export function HouseCard({ listing }: Listing) {
+export function HouseCard({ listing, variant, badge }: Listing) {
   return (
     <li>
       <Link href={`/homes/${listing.id}`} passHref>
-        <S.Link draggable="false">
+        <S.Link draggable="false" variant={variant}>
           <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
             <Image
               src={listing.media}
@@ -28,7 +30,7 @@ export function HouseCard({ listing }: Listing) {
               layout="fill"
               style={{ pointerEvents: 'none' }}
             />
-            <S.New>New</S.New>
+            {badge && <S.Badge>{badge}</S.Badge>}
             <S.FavoriteButton
               disabled
               aria-label="Favorite house"
@@ -46,15 +48,15 @@ export function HouseCard({ listing }: Listing) {
             <S.Address>{listing.address}</S.Address>
             <Flex align="center" css={{ gap: '8px 12px', mb: 12, flexWrap: 'wrap' }}>
               <S.Details>
-                <BedSvg />
+                <Svg.Bed />
                 {listing.bedroomsTotal} beds
               </S.Details>
               <S.Details>
-                <ShowerSvg />
+                <Svg.Shower />
                 {listing.bathroomsTotal} baths
               </S.Details>
               <S.Details>
-                <SquareSvg />
+                <Svg.Square />
                 {listing.livingArea} sqft
               </S.Details>
             </Flex>

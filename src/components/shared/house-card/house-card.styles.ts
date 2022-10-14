@@ -1,5 +1,5 @@
 import { keyframes, styled } from 'stitches.config'
-import { FavoriteSvg } from './svgs'
+import * as Svg from './svgs'
 
 const scaleIn = keyframes({
   from: {
@@ -27,30 +27,7 @@ const sharedAnimation = {
   animation: `${scaleIn} 250ms ease forwards`,
 }
 
-export const Link = styled('a', {
-  display: 'block',
-  position: 'relative',
-
-  overflow: 'hidden',
-  background: '$white',
-
-  height: '100%',
-
-  borderRadius: '8px',
-  boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
-
-  animation: `${scaleOut} 250ms ease forwards`,
-
-  '&:hover': { ...sharedAnimation },
-  '&:focus-within:not(:focus)': { ...sharedAnimation },
-  '&:focus-visible': {
-    outline: '4px solid $colors$magenta2',
-    outlineOffset: 4,
-    ...sharedAnimation,
-  },
-})
-
-export const New = styled('span', {
+export const Badge = styled('span', {
   display: 'block',
   padding: '2px 8px',
 
@@ -82,7 +59,7 @@ const favoriteTrue = {
     'inset 0 0 0 1px rgba($colors$magenta5Rgb, 0.4), 0 0 15px 5px rgba($colors$blackRgb, 0.2)',
 }
 
-export const Favorite = styled(FavoriteSvg, {
+export const Favorite = styled(Svg.Favorite, {
   boxSizing: 'content-box',
   padding: '4px 3px 2px',
   borderRadius: 'inherit',
@@ -193,4 +170,56 @@ export const VAMLS = styled('span', {
   lineHeight: '14px',
   color: '$gray4',
   opacity: '0.8',
+})
+
+export const Link = styled('a', {
+  display: 'block',
+  position: 'relative',
+
+  overflow: 'hidden',
+  background: '$white',
+  zIndex: 1,
+
+  height: '100%',
+
+  borderRadius: '8px',
+  boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
+
+  animation: `${scaleOut} 250ms ease forwards`,
+
+  '&:hover': { ...sharedAnimation },
+  '&:focus-within:not(:focus)': { ...sharedAnimation },
+  '&:focus-visible': {
+    outline: '4px solid $colors$magenta2',
+    outlineOffset: 4,
+    ...sharedAnimation,
+  },
+
+  variants: {
+    variant: {
+      small: {
+        [`& ${Details}`]: {
+          fontSize: '12px',
+          lineHeight: '14px',
+
+          '> svg': {
+            width: 14,
+            height: 14,
+          },
+        },
+        [`& ${Address}`]: {
+          fontSize: '12px',
+          lineHeight: '20px',
+        },
+        [`& ${Value}`]: {
+          fontSize: '18px',
+          lineHeight: '27px',
+        },
+        [`& ${Status}`]: {
+          fontSize: '10px',
+          lineHeight: '16px',
+        },
+      },
+    },
+  },
 })

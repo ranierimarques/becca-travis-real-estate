@@ -1,5 +1,5 @@
 import { ScrollArea } from '@primitives'
-import { HouseCard, MissOutCard } from '@shared'
+import { HouseCard } from '@shared'
 import * as S from './houses.styles'
 
 interface Listings {
@@ -18,9 +18,9 @@ export function Houses({ listings }: Listings) {
   return (
     <ScrollArea>
       <S.Houses>
-        <MissOutCard />
+        {/* <MissOutCard /> */}
         {listings.map(listing => (
-          <HouseCard key={listing.id} listing={listing} />
+          <HouseCard key={listing.id} listing={listing} variant="small" />
         ))}
       </S.Houses>
     </ScrollArea>
