@@ -1,7 +1,7 @@
 import { Button } from '@common'
 import { Dialog } from '@primitives'
 import * as Svg from '../svgs'
-import * as S from './talk-to-me.styles'
+import * as S from './contact.styles'
 
 const contacts = [
   {
@@ -19,11 +19,11 @@ const contacts = [
   },
 ]
 
-export default function TalkToMe() {
+export default function Contact() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <Button css={{ marginLeft: 16 }}>Talk to me</Button>
+        <Button css={{ marginLeft: 16 }}>Let&apos;s chat</Button>
       </Dialog.Trigger>
       <Dialog.Content title="Talk to me" description="You can reach me at:">
         <S.Title>Talk to me</S.Title>
