@@ -1,6 +1,7 @@
-import { Flex } from '@common'
+import { Box, Flex } from '@common'
 import { Dialog } from '@primitives'
 import { ReactNode } from 'react'
+import * as Svg from '../svgs'
 import * as S from './testimonial.styles'
 
 interface ReviewProps {
@@ -19,10 +20,19 @@ export function Testimonial({ review }: ReviewProps) {
           <S.Testimonial>
             <Flex align="start" justify="between">
               <Flex align="center" css={{ gap: 16, mb: 16 }}>
-                <S.Photo>{review.name.substring(0, 1)}</S.Photo>
                 <Flex direction="column" align="start">
                   <S.Name>{review.name}</S.Name>
-                  <S.Source>{review.source}</S.Source>
+                  <Flex align="center" css={{ gap: 6 }}>
+                    <S.Source>{review.source}</S.Source>
+                    <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
+                    <Flex css={{ gap: 2 }}>
+                      <Svg.Star />
+                      <Svg.Star />
+                      <Svg.Star />
+                      <Svg.Star />
+                      <Svg.Star />
+                    </Flex>
+                  </Flex>
                 </Flex>
               </Flex>
               <S.LinkSvgHover />

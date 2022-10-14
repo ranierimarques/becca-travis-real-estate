@@ -34,19 +34,6 @@ export const TestimonialItem = styled('li', {
   '@supports not selector(:has(a))': { '&:focus-within': { zIndex: '1' } },
 })
 
-export const Photo = styled('div', {
-  width: '48px',
-  padding: '12px 0',
-  background: 'rgba($colors$grayW8Rgb, .3)',
-  borderRadius: '999px',
-
-  fontWeight: '600',
-  fontSize: '20px',
-  lineHeight: '24px',
-  textAlign: 'center',
-  color: '$grayW2',
-})
-
 export const Name = styled('span', {
   marginBottom: '4px',
 
