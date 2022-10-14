@@ -1,4 +1,5 @@
 export * as Dialog from './dialog/dialog'
 export * as DropdownMenu from './dropdown-menu/dropdown-menu'
 export * as NavigationMenu from './navigation-menu/navigation-menu'
+export { ScrollArea } from './scroll-area/scroll-area'
 export { Tooltip } from './tooltip/tooltip'
