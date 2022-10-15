@@ -61,6 +61,7 @@ export function Testimonial({ review }: ReviewProps) {
                   <Svg.Star />
                 </Flex>
               </Flex>
+              <S.ModalLogo />
             </Flex>
           </S.ContentHeader>
 
