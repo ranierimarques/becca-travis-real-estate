@@ -85,19 +85,6 @@ export const ContentHeader = styled('div', {
   gap: 16,
 })
 
-export const ModalPhoto = styled('div', {
-  width: '48px',
-  padding: '12px 0',
-  background: 'rgba($colors$magenta5Rgb, 0.3)',
-  borderRadius: '999px',
-
-  fontWeight: '600',
-  fontSize: '20px',
-  lineHeight: '24px',
-  textAlign: 'center',
-  color: '$magenta1',
-})
-
 export const ModalName = styled('span', {
   display: 'block',
   marginBottom: '4px',

@@ -48,12 +48,20 @@ export function Testimonial({ review }: ReviewProps) {
           variant="2"
         >
           <S.ContentHeader>
-            <S.ModalPhoto>{review.name.substring(0, 1)}</S.ModalPhoto>
-            <div>
-              <S.ModalName>{review.name}</S.ModalName>
-              <S.ModalSource>{review.source}</S.ModalSource>
-            </div>
-            <S.ModalLogo />
+            <Flex direction="column" align="start">
+              <S.Name>{review.name}</S.Name>
+              <Flex align="center" css={{ gap: 6 }}>
+                <S.Source>{review.source}</S.Source>
+                <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
+                <Flex css={{ gap: 2 }}>
+                  <Svg.Star />
+                  <Svg.Star />
+                  <Svg.Star />
+                  <Svg.Star />
+                  <Svg.Star />
+                </Flex>
+              </Flex>
+            </Flex>
           </S.ContentHeader>
 
           <S.ModalText>{review.text}</S.ModalText>
