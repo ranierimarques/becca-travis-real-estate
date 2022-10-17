@@ -30,7 +30,7 @@ export function Latest({ posts }: PostsProps) {
         </S.InputWrapper>
       </Flex>
 
-      <Flex css={{ gap: 64 }}>
+      <Flex css={{ gap: 40 }}>
         <Sidebar />
         <Articles posts={posts} />
       </Flex>
