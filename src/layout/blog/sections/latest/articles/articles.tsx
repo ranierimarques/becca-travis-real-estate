@@ -1,5 +1,4 @@
 import { Box, Flex } from '@common'
-import { MissOutCard } from '@shared'
 import { getDate } from '@utils/date'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -51,8 +50,6 @@ export function Articles({ posts }: PostsProps) {
           </Link>
         </li>
       ))}
-
-      <MissOutCard />
     </S.Articles>
   )
 }
