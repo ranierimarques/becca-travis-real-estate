@@ -1,9 +1,10 @@
 import { Box, Flex } from '@common'
 import { Hat } from '@shared'
 import { getDate } from '@utils/date'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import Link from 'next/link'
 import * as S from './hero.styles'
+import * as Svg from './svgs'
 
 interface HeroProps {
   newPost: {
@@ -17,47 +18,71 @@ interface HeroProps {
     }
     postBannerAlt: string
     createdAt: string
+    readingTime: string
   }
 }
 
 export function Hero({ newPost }: HeroProps) {
   return (
     <S.Section>
-      <S.Background />
+      <S.Wrapper>
+        <div>
+          <Hat>News</Hat>
+          <S.Title>Becca Travis Blog</S.Title>
+          <S.Description>
+            Be &quot;in the know&quot; of what&apos;s current and news <br />
+            worthy in Huntsville & North Alabama.
+          </S.Description>
+          <S.KeepExploring>
+            <Svg.CircleArrow /> Keep exploring
+          </S.KeepExploring>
+        </div>
 
-      <Hat>News</Hat>
-      <S.Title>Becca Travis Blog</S.Title>
-      <S.Description>
-        Stay up to date with the latest real estate news, insights and lifestyle updates
-        about Huntsville &amp; North Alabama
-      </S.Description>
-
-      <Link href={`/blog/${newPost.slug}`} passHref>
-        <S.LastPostLink>
-          <Image
-            src={newPost.postBanner.url}
-            alt={newPost.postBannerAlt}
-            width={272}
-            height={272}
-            style={{
-              borderRadius: '8px 0 0 8px',
-              userSelect: 'none',
-              pointerEvents: 'none',
-            }}
-          />
-          <Box css={{ padding: 32, width: 358, display: 'inline-block' }}>
-            <Flex align="center" justify="between">
-              <Hat capitalize>{newPost.tag}</Hat>
-              <S.PostDate>{getDate(newPost.createdAt, 'en-US', 'short')}</S.PostDate>
+        <Link href={`/blog/${newPost.slug}`} passHref>
+          <S.LastPostLink>
+            <Image
+              src={newPost.postBanner.url}
+              alt={newPost.postBannerAlt}
+              width={612}
+              height={344}
+              priority
+              style={{
+                borderRadius: '8px',
+                userSelect: 'none',
+                pointerEvents: 'none',
+              }}
+            />
+            <Box
+              css={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                background:
+                  'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)',
+                borderRadius: '8px',
+              }}
+            />
+            <Flex
+              direction="column"
+              align="start"
+              css={{ position: 'absolute', bottom: 24, left: 24, gap: 8 }}
+            >
+              <Hat variant="3" capitalize>
+                {newPost.tag}
+              </Hat>
+              <S.PostTitle>{newPost.postTitle}</S.PostTitle>
+              <S.PostDescription title={newPost.postDescription}>
+                {newPost.postDescription}
+              </S.PostDescription>
+              <Flex align="center" css={{ gap: 20 }}>
+                <S.PostDate>{getDate(newPost.createdAt, 'en-US', 'short')}</S.PostDate>
+                <S.ReadingTime>{newPost.readingTime}</S.ReadingTime>
+              </Flex>
             </Flex>
-
-            <S.PostTitle>{newPost.postTitle}</S.PostTitle>
-            <S.PostDescription title={newPost.postDescription}>
-              {newPost.postDescription}
-            </S.PostDescription>
-          </Box>
-        </S.LastPostLink>
-      </Link>
+          </S.LastPostLink>
+        </Link>
+      </S.Wrapper>
     </S.Section>
   )
 }

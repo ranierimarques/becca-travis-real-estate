@@ -1,24 +1,20 @@
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-
-  padding: '72px 0 120px',
+  background: 'rgba($colors$tangerine5Rgb, 0.3)',
+  padding: '80px 0',
 
   position: 'relative',
+  marginBottom: 40,
 })
 
-export const Background = styled('div', {
-  backgroundColor: 'rgba($colors$tangerine5Rgb, 0.3)',
-  width: '100%',
-  height: '416px',
+export const Wrapper = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 
-  position: 'absolute',
-  top: 0,
-
-  zIndex: -1,
+  margin: '0 auto',
+  maxWidth: '1072px',
 })
 
 export const Title = styled('h1', {
@@ -33,51 +29,80 @@ export const Title = styled('h1', {
 export const Description = styled('p', {
   marginTop: 16,
 
-  maxWidth: '476px',
-  textAlign: 'center',
-
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
 })
 
-export const LastPostLink = styled('a', {
-  marginTop: 32,
-
-  background: '$offWhite2',
+export const KeepExploring = styled('div', {
+  marginTop: 24,
 
   display: 'flex',
+  alignItems: 'center',
+  gap: 8,
 
-  boxShadow: '0 0 0 1px $colors$grayW8',
-  borderRadius: '8px',
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '24px',
+  color: '$magenta6',
+
+  opacity: '60%',
 })
 
-export const PostDate = styled('span', {
-  fontWeight: '300',
-  fontSize: '14px',
-  lineHeight: '20px',
-  color: '$gray4',
+export const LastPostLink = styled('a', {
+  position: 'relative',
 })
 
 export const PostTitle = styled('h3', {
-  margin: '20px 0',
-
-  fontWeight: '500',
-  fontSize: '24px',
-  lineHeight: '36px',
-  color: '$magenta1',
+  fontWeight: '600',
+  fontSize: '20px',
+  lineHeight: '30px',
+  color: '$white',
 })
 
 export const PostDescription = styled('p', {
   fontWeight: '300',
-  fontSize: '16px',
-  lineHeight: '26px',
-  color: '$gray2',
+  fontSize: '14px',
+  lineHeight: '23px',
+  color: '$grayW9',
+
+  maxWidth: '400px',
 
   display: '-webkit-box',
-  WebkitLineClamp: '2',
+  WebkitLineClamp: '3',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+})
+
+export const PostDate = styled('span', {
+  fontWeight: '300',
+  fontSize: '12px',
+  lineHeight: '20px',
+  color: '$grayW9',
+})
+
+export const ReadingTime = styled('span', {
+  fontWeight: '300',
+  fontSize: '12px',
+  lineHeight: '20px',
+  color: '$grayW9',
+
+  position: 'relative',
+
+  '&::before': {
+    content: '',
+    position: 'absolute',
+    top: '50%',
+    left: '-12px',
+
+    width: '4px',
+    height: '4px',
+
+    borderRadius: '999px',
+    background: '$grayW9',
+
+    transform: 'translateY(-50%)',
+  },
 })
