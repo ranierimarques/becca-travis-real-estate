@@ -25,7 +25,7 @@ export function Articles({ posts }: PostsProps) {
     <S.Articles>
       {posts.map(post => (
         <li key={post.id}>
-          <Link href={`/blog/${post.slug}`} passHref>
+          <Link href={`/post/${post.slug}`} passHref>
             <S.Link>
               <Box css={{ w: '100%', aspectRatio: '16 / 9', position: 'relative' }}>
                 <Image

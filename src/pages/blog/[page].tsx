@@ -1,6 +1,6 @@
 import { Hero, Latest } from '@layout/blog/sections'
 import request, { gql } from 'graphql-request'
-import type { NextPage } from 'next'
+import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
 import getReadingTime from 'reading-time'
 
@@ -78,8 +78,8 @@ const Page: NextPage<PostsProps> = ({ posts, newPost, currentPage, totalItems })
 }
 
 const query = gql`
-  query {
-    posts(first: 6, orderBy: createdAt_DESC) {
+  query PostByPagination($skip: Int!) {
+    posts(first: 6, skip: $skip, orderBy: createdAt_DESC) {
       id
       slug
       tag
@@ -125,10 +125,14 @@ const query3 = gql`
   }
 `
 
-export async function getStaticProps() {
+export async function getStaticProps({ params }: GetStaticPropsContext) {
+  const page = Number(params?.page) || 1
   const data: PostsQuery = await request(
     'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
-    query
+    query,
+    {
+      skip: (page - 1) * 6,
+    }
   )
   const totalPosts: TotalPostsQuery = await request(
     'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
@@ -149,13 +153,32 @@ export async function getStaticProps() {
     readingTime: getReadingTime(post.postContent.text).text,
   }))
 
+  if (page === 1) {
+    return {
+      redirect: {
+        destination: '/blog',
+        permanent: false,
+      },
+    }
+  }
+
   return {
     props: {
       newPost: newPostData[0],
       posts: postsData,
       totalItems: totalPosts.posts.length,
-      currentPage: 1,
+      currentPage: page,
     },
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    // Prerender the next 5 pages after the first page, which is handled by the index page.
+    // Other pages will be prerendered at runtime.
+    paths: Array.from({ length: 5 }).map((_, i) => `/blog/${i + 2}`),
+    // Block the request for non-generated pages and cache them in the background
+    fallback: 'blocking',
   }
 }
 

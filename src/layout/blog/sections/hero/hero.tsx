@@ -38,7 +38,7 @@ export function Hero({ newPost }: HeroProps) {
           </S.KeepExploring>
         </div>
 
-        <Link href={`/blog/${newPost.slug}`} passHref>
+        <Link href={`/post/${newPost.slug}`} passHref>
           <S.LastPostLink>
             <Image
               src={newPost.postBanner.url}

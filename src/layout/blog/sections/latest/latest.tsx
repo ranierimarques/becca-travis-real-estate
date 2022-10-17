@@ -1,4 +1,4 @@
-import { Flex } from '@common'
+import { Flex, Pagination } from '@common'
 import { Articles, Sidebar } from '.'
 import * as S from './latest.styles'
 import { LoupeSvg } from './svgs'
@@ -17,9 +17,12 @@ interface PostsProps {
     createdAt: string
     readingTime: string
   }[]
+  currentPage: number
+  totalItems: number
+  perPage: number
 }
 
-export function Latest({ posts }: PostsProps) {
+export function Latest({ posts, currentPage, totalItems, perPage }: PostsProps) {
   return (
     <S.Section>
       <Flex align="center" justify="between" css={{ mb: 64 }}>
@@ -32,7 +35,15 @@ export function Latest({ posts }: PostsProps) {
 
       <Flex css={{ gap: 40 }}>
         <Sidebar />
-        <Articles posts={posts} />
+        <Flex direction="column" align="center" css={{ gap: 40 }}>
+          <Articles posts={posts} />
+          <Pagination
+            totalItems={totalItems}
+            currentPage={currentPage}
+            itemsPerPage={perPage}
+            renderPageLink={page => `/blog/${page}`}
+          />
+        </Flex>
       </Flex>
     </S.Section>
   )
