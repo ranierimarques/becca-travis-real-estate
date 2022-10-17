@@ -33,3 +33,19 @@ export const Paragraph = styled('p', {
   lineHeight: '28px',
   color: '$gray2',
 })
+
+export const KeepExploring = styled('button', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  gap: 8,
+
+  padding: 0,
+
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '20px',
+  color: 'rgba($colors$magenta6Rgb, 0.5)',
+
+  backgroundColor: 'transparent',
+})
