@@ -1,51 +1,50 @@
-import Image from 'next/image'
-import { graphic } from '../images'
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
+import { useState } from 'react'
+import { Doughnut } from 'react-chartjs-2'
+import { Calculator } from '.'
 import * as S from './payment-calculator.styles'
 
-const inputs = [
-  {
-    name: 'property_price',
-    label: 'Property Price',
-    placeholder: '$320,000.00',
-    type: 'number',
-    required: false,
-  },
-  {
-    name: 'down_payment',
-    label: 'Down payment',
-    placeholder: '$64,000.00',
-    type: 'number',
-    required: false,
-  },
-  {
-    name: 'length_of_mortgage',
-    label: 'Length of Mortgage',
-    placeholder: '30 Years',
-    type: 'number',
-    required: false,
-  },
-  {
-    name: 'annual_interest_rate',
-    label: 'Annual Interest Rate',
-    placeholder: '4%',
-    type: 'number',
-    required: false,
-  },
-]
+ChartJS.register(ArcElement, Tooltip, Legend)
 
-export function PaymentCalculator() {
+const data = {
+  labels: ['Principal', 'Interest'],
+  datasets: [
+    {
+      data: [12, 19],
+      backgroundColor: ['#D9BC3A', 'rgba(66, 160, 255, 1)'],
+      cutout: '80%',
+    },
+  ],
+}
+
+const options = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+}
+
+interface ListingDetails {
+  listing: {
+    price: string
+  }
+}
+
+export function PaymentCalculator({ listing }: ListingDetails) {
+  const [value, setValue] = useState(0)
+
   return (
     <S.Container>
       <S.Title>Payment calculator</S.Title>
-      <Image src={graphic} alt="graphic" />
-
-      <S.Form action="">
-        {inputs.map((input, index) => (
-          <S.InputWrapper key={index}>
-            <S.Input {...input} />
-          </S.InputWrapper>
-        ))}
-      </S.Form>
+      <S.Graphic>
+        <S.CenterText>
+          <S.Value>${value}</S.Value>
+          <S.Divisor>month</S.Divisor>
+        </S.CenterText>
+        <Doughnut data={data} options={options} />
+      </S.Graphic>
+      <Calculator price={listing.price} onValue={setValue} />
     </S.Container>
   )
 }

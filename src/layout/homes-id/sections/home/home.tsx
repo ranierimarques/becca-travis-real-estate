@@ -83,7 +83,7 @@ export function Home({ listing }: Listing) {
 
           <FasterContact />
 
-          <PaymentCalculator />
+          <PaymentCalculator listing={listing} />
         </Flex>
       </Flex>
 
