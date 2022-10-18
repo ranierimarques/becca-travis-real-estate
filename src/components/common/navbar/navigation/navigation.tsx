@@ -303,7 +303,7 @@ export default function Navigation() {
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.CustomLink href="/blog">
+          <NavigationMenu.CustomLink href="/blog/1">
             <NavigationMenu.Link>Blog</NavigationMenu.Link>
           </NavigationMenu.CustomLink>
         </NavigationMenu.Item>
