@@ -1,9 +1,18 @@
 import { Post } from '@layout/post-slug/sections'
 import request, { gql } from 'graphql-request'
+import Head from 'next/head'
 import getReadingTime from 'reading-time'
 
 export default function PostPage({ data }: any) {
-  return <Post data={data} />
+  return (
+    <main>
+      <Head>
+        <title>Becca Travis</title>
+      </Head>
+
+      <Post data={data} />
+    </main>
+  )
 }
 
 export async function getStaticPaths() {
