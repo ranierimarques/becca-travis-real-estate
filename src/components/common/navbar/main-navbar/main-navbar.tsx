@@ -4,7 +4,7 @@ import * as Svg from '../svgs'
 import * as S from './main-navbar.styles'
 
 const Navigation = dynamic(() => import('../navigation/navigation'))
-const TalkToMe = dynamic(() => import('../talk-to-me/talk-to-me'))
+const TalkToMe = dynamic(() => import('../contact/contact'))
 
 export function MainNavbar() {
   return (

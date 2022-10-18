@@ -32,6 +32,17 @@ export const Hat = styled('span', {
         letterSpacing: '0.03em',
         color: '$magenta1',
       },
+      '3': {
+        display: 'inline-block',
+
+        background: '$magenta2',
+        padding: '4px 6px',
+        borderRadius: '4px',
+
+        fontSize: '12px',
+        lineHeight: '20px',
+        color: '$white',
+      },
     },
   },
 

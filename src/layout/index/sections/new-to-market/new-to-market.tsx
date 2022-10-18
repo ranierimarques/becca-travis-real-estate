@@ -28,7 +28,7 @@ export function NewToMarket({ listings }: Listings) {
 
       <S.Houses>
         {listings.map(listing => (
-          <HouseCard key={listing.id} listing={listing} />
+          <HouseCard key={listing.id} listing={listing} badge="New" />
         ))}
       </S.Houses>
     </S.Section>

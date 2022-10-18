@@ -1,4 +1,4 @@
-export { default as BedSvg } from './bed'
-export { default as FavoriteSvg } from './favorite'
-export { default as ShowerSvg } from './shower'
-export { default as SquareSvg } from './square'
+export { default as Bed } from './bed'
+export { default as Favorite } from './favorite'
+export { default as Shower } from './shower'
+export { default as Square } from './square'

@@ -1,4 +1,7 @@
 export { default as BedSvg } from './bed'
 export { default as FavoriteSvg } from './favorite'
+export { default as Filter } from './filter.svg'
+export { default as Gallery } from './gallery.svg'
+export { default as Location } from './location.svg'
 export { default as ShowerSvg } from './shower'
 export { default as SquareSvg } from './square'

@@ -17,7 +17,7 @@ const reviews = [
     },
     {
       name: 'Lisa Vernon',
-      source: 'Google reviews',
+      source: 'Google',
       text: `We are incredibly fortunate to have a top real estate professional like Becca
      Travis as our agent! She listened carefully to our needs, gave outstanding advice,
       and worked tirelessly to find the perfect home for us. We truly would have been lost
@@ -121,14 +121,14 @@ const reviews = [
     },
     {
       name: 'Jen V.',
-      source: 'Google reviews',
+      source: 'Google',
       text: `My husband and I are planning on moving to Huntsville in the next year. We had
      planned a trip to go out to Huntsville to check out the area and we're hoping we
      could get an agent to show us around, despite we are not buying at the current time`,
     },
     {
       name: 'Nick R.',
-      source: 'Google reviews',
+      source: 'Google',
       text: `If you need a realtor in Huntsville, Becca is your go-to AGENT! she goes above
       and beyond for you and has many outside referrals and connections to make your life
       EASIER! she is awesome and we will continue to use her as we continue to buy more
@@ -145,7 +145,7 @@ const reviews = [
     },
     {
       name: 'Kristin Bourne',
-      source: 'Google reviews',
+      source: 'Google',
       text: `Becca is the best! She goes so far above and beyond. She is quick to respond
      and get information from other agents. She is dream to work with. I couldn't imagine
       working with anyone else. We live out of the area and she made the home buying
@@ -153,7 +153,7 @@ const reviews = [
     },
     {
       name: 'C. Hill',
-      source: 'Google reviews',
+      source: 'Google',
       text: `My wife, our kids and myself were looking for a place to purchase in the
      Huntsville area and were living in Seattle WA.  We needed a realtor we could trust
       and it had to be someone we could meet over the phone and trust that would work for

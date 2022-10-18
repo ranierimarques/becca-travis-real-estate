@@ -1,5 +1,4 @@
 import { Box, Flex } from '@common'
-import { MissOutCard } from '@shared'
 import { getDate } from '@utils/date'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,7 +25,7 @@ export function Articles({ posts }: PostsProps) {
     <S.Articles>
       {posts.map(post => (
         <li key={post.id}>
-          <Link href={`/blog/${post.slug}`} passHref>
+          <Link href={`/post/${post.slug}`} passHref>
             <S.Link>
               <Box css={{ w: '100%', aspectRatio: '16 / 9', position: 'relative' }}>
                 <Image
@@ -51,8 +50,6 @@ export function Articles({ posts }: PostsProps) {
           </Link>
         </li>
       ))}
-
-      <MissOutCard />
     </S.Articles>
   )
 }

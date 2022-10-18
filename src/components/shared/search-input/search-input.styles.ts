@@ -1,12 +1,6 @@
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {
-  position: 'relative',
-})
-
 export const InputWrapper = styled('div', {
-  marginTop: 32,
-
   background: '$offWhite2',
 
   display: 'flex',
@@ -86,7 +80,7 @@ export const Suggestions = styled('ul', {
   background: '$offWhite2',
   borderRadius: '8px',
 
-  zIndex: 1,
+  zIndex: 2,
 
   boxShadow: '0 0 25px rgba($colors$blackRgb, 0.2)',
 
@@ -142,4 +136,29 @@ export const Empty = styled('li', {
   padding: '8px',
 
   cursor: 'default',
+})
+
+export const Container = styled('div', {
+  position: 'relative',
+  marginTop: 32,
+
+  variants: {
+    variant: {
+      houses: {
+        marginTop: 16,
+
+        [`${InputWrapper}`]: {
+          boxShadow: 'none',
+          background: '$grayW10',
+        },
+        [`${Input}`]: {
+          height: 48,
+          padding: '0 16px 0 20px',
+        },
+        [`${SearchButton}`]: {
+          padding: '12px 15px',
+        },
+      },
+    },
+  },
 })

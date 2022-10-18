@@ -74,7 +74,13 @@ export function Post({ data }: any) {
           <S.PostTitle>{article.postTitle}</S.PostTitle>
           <S.PostDescription>{article.postDescription}</S.PostDescription>
           <div>
-            <Image src={article.postBanner.url} alt="test" width="888" height="340" />
+            <Image
+              src={article.postBanner.url}
+              alt="test"
+              width="888"
+              height="340"
+              priority
+            />
 
             <S.PostDetails>
               <Flex align="center" css={{ gap: 16 }}>
