@@ -35,7 +35,7 @@ export function Latest({ posts, currentPage, totalItems, perPage }: PostsProps) 
 
       <Flex css={{ gap: 40 }}>
         <Sidebar />
-        <Flex direction="column" align="center" css={{ gap: 40 }}>
+        <Flex direction="column" align="center" css={{ gap: 40, width: '100%' }}>
           <Articles posts={posts} />
           <Pagination
             totalItems={totalItems}

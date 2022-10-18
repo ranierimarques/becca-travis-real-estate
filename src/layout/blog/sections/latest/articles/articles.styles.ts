@@ -5,6 +5,8 @@ export const Articles = styled('ul', {
   gridTemplateColumns: '1fr 1fr',
   gridAutoRows: 'auto',
   gap: 32,
+
+  width: '100%',
 })
 
 export const Link = styled('a', {
