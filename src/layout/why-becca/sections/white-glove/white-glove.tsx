@@ -72,7 +72,7 @@ export function WhiteGlove() {
         css={{
           width: '520px',
           height: '552px',
-          background: '$magenta5',
+          background: '$grayW10',
           borderRadius: '8px',
         }}
       ></Box>

@@ -21,7 +21,7 @@ export function Hero() {
 
         <S.FormContainer>
           <ContactInformation openToast={openToast} onOpenToast={setOpenToast} />
-          <Box css={{ m: '24px 0' }}>
+          <Box css={{ m: '24px 0', width: '100%' }}>
             <Form onOpenToast={setOpenToast} />
           </Box>
         </S.FormContainer>

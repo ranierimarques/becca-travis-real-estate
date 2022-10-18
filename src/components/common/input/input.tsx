@@ -60,7 +60,7 @@ export function Input({
 
   if (type === 'textarea') {
     return (
-      <S.Label>
+      <S.Label css={{ gridColumn: 'span 2' }}>
         <S.LabelWrapper showError={hasError}>
           {label} {props.required && <S.Asterisk>*</S.Asterisk>}
         </S.LabelWrapper>

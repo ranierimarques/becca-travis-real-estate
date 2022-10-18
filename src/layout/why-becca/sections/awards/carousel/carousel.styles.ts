@@ -10,8 +10,6 @@ const slide = keyframes({
 })
 
 export const Container = styled('div', {
-  maxWidth: '1280px',
-  margin: '0 auto',
   height: '280px',
   background: '$tangerine10',
 
@@ -26,7 +24,7 @@ export const Container = styled('div', {
 export const AwardsWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: 40,
+  gap: 64,
 
   animation: `${slide} 40s linear infinite reverse`,
 
@@ -48,7 +46,7 @@ export const Award = styled('div', {
 export const AwardsBackground = styled('div', {
   width: '100%',
   height: '100%',
-  background: `linear-gradient(90deg, #F5DED0 -15.59%, rgba(245, 222, 208, 0) 16.76%, rgba(245, 222, 208, 0) 50.45%, rgba(245, 222, 208, 0) 82.12%, #F5DED0 113.79%)`,
+  background: `linear-gradient(90deg, #F5DED0 -15.59%, #F5DED0 -0.13%, rgba(245, 222, 208, 0) 50.45%, #F5DED0 100.33%, #F5DED0 113.79%)`,
 
   position: 'absolute',
   top: 0,

@@ -18,4 +18,5 @@ export const Container = styled('div', {
   boxShadow: '0 0 0 1px $colors$grayW8',
   borderRadius: '8px',
   padding: '32px',
+  position: 'relative',
 })

@@ -1,11 +1,15 @@
-import { Box, Button } from '@common'
+import { Button, Flex } from '@common'
 import { Hat } from '@shared'
 import Image from 'next/image'
 import * as S from './hero.styles'
-import { background, becca } from './images'
-import { ArrowDownSvg, CirclesSvg } from './svgs'
+import { becca } from './images'
+import { ArrowDownSvg } from './svgs'
 
 export function Hero() {
+  function scrollTo() {
+    window.scrollTo(0, 700)
+  }
+
   return (
     <S.Section>
       <S.Container>
@@ -16,74 +20,17 @@ export function Hero() {
             From finding you your dream home to negotiating on behalf of clients, we have
             every aspect covered and more!
           </S.Paragraph>
-          <Box css={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-            <Button
-              css={{
-                padding: '12px 24px',
-                borderRadius: '6px',
-
-                fontWeight: '500',
-                fontSize: '14px',
-                lineHeight: '22px',
-                color: '$white',
-              }}
-            >
+          <Flex css={{ gap: 24 }}>
+            <Button size="2" href="/contact-us">
               Contact Becca Travis
             </Button>
-            <Button
-              css={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                gap: 8,
-
-                padding: 0,
-
-                fontWeight: '400',
-                fontSize: '16px',
-                lineHeight: '20px',
-                color: 'rgba($colors$magenta6Rgb, 0.5)',
-
-                backgroundColor: 'transparent',
-              }}
-            >
+            <S.KeepExploring onClick={scrollTo}>
               <ArrowDownSvg /> Keep exploring
-            </Button>
-          </Box>
+            </S.KeepExploring>
+          </Flex>
         </div>
 
-        <Box
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-
-            position: 'relative',
-            width: '520px',
-            height: '100%',
-          }}
-        >
-          <Image src={becca} alt="Becca Travis" quality={100} />
-          <Box
-            css={{
-              position: 'absolute',
-              bottom: '-4px',
-              zIndex: '-2',
-              borderRadius: '8px',
-            }}
-          >
-            <Image src={background} alt="background" quality={100} />
-          </Box>
-          <Box
-            css={{
-              position: 'absolute',
-              top: 13,
-              zIndex: '0',
-            }}
-          >
-            <CirclesSvg />
-          </Box>
-        </Box>
+        <Image src={becca} quality={100} alt="Becca Travis photo" />
       </S.Container>
     </S.Section>
   )
