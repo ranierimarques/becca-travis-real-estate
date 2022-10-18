@@ -125,23 +125,13 @@ const query3 = gql`
   }
 `
 
+const baseURL = 'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master'
+
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const page = Number(params?.page) || 1
-  const data: PostsQuery = await request(
-    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
-    query,
-    {
-      skip: (page - 1) * 6,
-    }
-  )
-  const totalPosts: TotalPostsQuery = await request(
-    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
-    query2
-  )
-  const newPost: PostsQuery = await request(
-    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
-    query3
-  )
+  const data: PostsQuery = await request(baseURL, query, { skip: (page - 1) * 6 })
+  const totalPosts: TotalPostsQuery = await request(baseURL, query2)
+  const newPost: PostsQuery = await request(baseURL, query3)
 
   const postsData = data.posts.map(post => ({
     ...post,
@@ -173,11 +163,14 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const totalPosts: TotalPostsQuery = await request(baseURL, query2)
+
   return {
     // Prerender the next 5 pages after the first page, which is handled by the index page.
     // Other pages will be prerendered at runtime.
-    // paths: Array.from({ length: 5 }).map((_, i) => `/blog/${i + 2}`),
-    paths: [],
+    paths: Array.from({ length: Math.ceil(totalPosts.posts.length / 6) }).map(
+      (_, i) => `/blog/${i + 1}`
+    ),
     // Block the request for non-generated pages and cache them in the background
     fallback: 'blocking',
   }
