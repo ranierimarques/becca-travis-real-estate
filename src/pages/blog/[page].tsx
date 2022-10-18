@@ -153,10 +153,10 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     readingTime: getReadingTime(post.postContent.text).text,
   }))
 
-  if (page === 1 || postsData.length === 0) {
+  if (postsData.length === 0) {
     return {
       redirect: {
-        destination: '/blog',
+        destination: '/blog/1',
         permanent: false,
       },
     }

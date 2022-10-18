@@ -42,6 +42,14 @@ const nextConfig = {
 
     return config
   },
+  async rewrites() {
+    return [
+      {
+        source: '/blog',
+        destination: '/blog/1',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
