@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Loader } from '@common'
+import { Box, Button, Flex, Input, Loader } from '@common'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -92,14 +92,17 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState,
+    formState: { errors, isSubmitting },
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
 
   useEffect(() => {
-    reset()
-  }, [isSubmitSuccessful])
+    if (formState.isSubmitSuccessful) {
+      reset()
+    }
+  }, [formState, reset])
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
     const result = await fetch('https://api.web3forms.com/submit', {
@@ -109,7 +112,7 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        access_key: '5f1d1f1b-d96c-49ef-9b5d-b6d95e42e337',
+        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
         ...values,
       }),
     })
@@ -122,7 +125,15 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
       {!noTitle && <S.FormTitle>Send me a message</S.FormTitle>}
-      <Flex wrap="wrap" css={{ gap: 32, mb: 56 }}>
+      <Box
+        css={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 32,
+          marginBottom: 56,
+          width: '100%',
+        }}
+      >
         {inputs.map(({ name, ...input }) => {
           return (
             <Input
@@ -136,7 +147,7 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
             />
           )
         })}
-      </Flex>
+      </Box>
 
       <Flex align="center" justify="between">
         <S.DisclaimerText>

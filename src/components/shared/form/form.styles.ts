@@ -1,8 +1,7 @@
 import { styled } from 'stitches.config'
 
 export const Form = styled('form', {
-  display: 'flex',
-  flexDirection: 'column',
+  width: '100%',
 })
 
 export const FormTitle = styled('h4', {
@@ -27,7 +26,7 @@ export const TextInput = styled('input', {
   lineHeight: '24px',
 
   '&::placeholder': {
-    color: '#9CA8B7',
+    color: '$grayW6',
   },
 })
 
@@ -42,6 +41,6 @@ export const DisclaimerText = styled('span', {
 
 export const Disclaimer = styled('strong', {
   fontSize: '10px',
-  lineHeight: '16px',
+  lineHeight: '18px',
   color: '$gray1',
 })

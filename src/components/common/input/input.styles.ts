@@ -1,13 +1,11 @@
 import PhoneInput from 'react-phone-number-input/input'
 import { styled } from 'stitches.config'
-import { WarningSvg } from './svgs'
+import * as Svg from './svgs'
 
 export const Label = styled('label', {
   display: 'flex',
   flexDirection: 'column',
   gap: 4,
-
-  flexGrow: 1,
 
   fontWeight: '400',
   fontSize: '12px',
@@ -16,11 +14,6 @@ export const Label = styled('label', {
 })
 
 export const LabelWrapper = styled('div', {
-  fontWeight: '400',
-  fontSize: '12px',
-  lineHeight: '16px',
-  color: '$gray2',
-
   variants: {
     showError: {
       true: {
@@ -129,7 +122,6 @@ export const InputWrapper = styled('div', {
     textArea: {
       true: {
         padding: '10px 0 0 16px',
-        width: '100%',
         height: '155px',
         cursor: 'text',
       },
@@ -137,7 +129,7 @@ export const InputWrapper = styled('div', {
   },
 })
 
-export const Warning = styled(WarningSvg, {
+export const Warning = styled(Svg.Warning, {
   position: 'absolute',
   right: 0,
   top: '50%',
@@ -149,7 +141,6 @@ export const Warning = styled(WarningSvg, {
     showError: {
       true: {
         display: 'block',
-        paddingLeft: 1,
       },
     },
     textArea: {

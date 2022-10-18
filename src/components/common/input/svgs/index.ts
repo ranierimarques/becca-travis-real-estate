@@ -1,1 +1,1 @@
-export { default as WarningSvg } from './warning'
+export { default as Warning } from './warning.svg'
