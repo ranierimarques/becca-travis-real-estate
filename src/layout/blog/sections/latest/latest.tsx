@@ -20,9 +20,18 @@ interface PostsProps {
   currentPage: number
   totalItems: number
   perPage: number
+  uniqueTags: string[]
+  mostPopularTags: string[]
 }
 
-export function Latest({ posts, currentPage, totalItems, perPage }: PostsProps) {
+export function Latest({
+  uniqueTags,
+  mostPopularTags,
+  posts,
+  currentPage,
+  totalItems,
+  perPage,
+}: PostsProps) {
   return (
     <S.Section>
       <Flex align="center" justify="between" css={{ mb: 64 }}>
@@ -34,7 +43,7 @@ export function Latest({ posts, currentPage, totalItems, perPage }: PostsProps) 
       </Flex>
 
       <Flex css={{ gap: 40 }}>
-        <Sidebar />
+        <Sidebar uniqueTags={uniqueTags} mostPopularTags={mostPopularTags} />
         <Flex direction="column" align="center" css={{ gap: 40, width: '100%' }}>
           <Articles posts={posts} />
           <Pagination

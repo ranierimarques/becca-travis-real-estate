@@ -3,17 +3,12 @@ import { useState } from 'react'
 import { ArrowDownSvg } from '../svgs'
 import * as S from './sidebar.styles'
 
-const categories = [
-  'View all',
-  'Huntsville',
-  'Athens',
-  'Decatur',
-  'Harvest',
-  'Haptom Cove',
-  'Meridianville',
-]
+interface SidebarProps {
+  uniqueTags: string[]
+  mostPopularTags: string[]
+}
 
-export function Sidebar() {
+export function Sidebar({ uniqueTags, mostPopularTags }: SidebarProps) {
   const [activeCategory, setActiveCategory] = useState('View all')
 
   return (
@@ -29,7 +24,15 @@ export function Sidebar() {
       <Box css={{ mt: 32 }}>
         <S.Title>Most popular</S.Title>
         <ul>
-          {categories.map(category => (
+          <S.List>
+            <S.CategoryButton
+              onClick={() => setActiveCategory('View all')}
+              active={activeCategory === 'View all'}
+            >
+              View all
+            </S.CategoryButton>
+          </S.List>
+          {mostPopularTags.map(category => (
             <S.List key={category}>
               <S.CategoryButton
                 onClick={() => setActiveCategory(category)}

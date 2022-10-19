@@ -4,6 +4,8 @@ import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
 import getReadingTime from 'reading-time'
 
+const baseURL = 'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master'
+
 interface PostsProps {
   posts: {
     id: string
@@ -33,6 +35,8 @@ interface PostsProps {
     createdAt: string
     readingTime: string
   }
+  uniqueTags: string[]
+  mostPopularTags: string[]
 }
 
 interface PostsQuery {
@@ -59,7 +63,20 @@ interface TotalPostsQuery {
   }[]
 }
 
-const Page: NextPage<PostsProps> = ({ posts, newPost, currentPage, totalItems }) => {
+interface AllPostsTagsQuery {
+  posts: {
+    tag: string
+  }[]
+}
+
+const Page: NextPage<PostsProps> = ({
+  uniqueTags,
+  mostPopularTags,
+  posts,
+  newPost,
+  currentPage,
+  totalItems,
+}) => {
   return (
     <main>
       <Head>
@@ -68,6 +85,8 @@ const Page: NextPage<PostsProps> = ({ posts, newPost, currentPage, totalItems })
 
       <Hero newPost={newPost} />
       <Latest
+        uniqueTags={uniqueTags}
+        mostPopularTags={mostPopularTags}
         posts={posts}
         currentPage={currentPage}
         totalItems={totalItems}
@@ -125,13 +144,31 @@ const query3 = gql`
   }
 `
 
-const baseURL = 'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master'
+const query4 = gql`
+  query {
+    posts {
+      tag
+    }
+  }
+`
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const page = Number(params?.page) || 1
   const data: PostsQuery = await request(baseURL, query, { skip: (page - 1) * 6 })
   const totalPosts: TotalPostsQuery = await request(baseURL, query2)
   const newPost: PostsQuery = await request(baseURL, query3)
+  const allPostsTags: AllPostsTagsQuery = await request(baseURL, query4)
+
+  const onlyPostsTags = allPostsTags.posts.map(post => post.tag)
+
+  const uniqueTags = [...new Set(onlyPostsTags)]
+  const countedTags = onlyPostsTags.reduce((accumulator: any, value) => {
+    return { ...accumulator, [value]: (accumulator[value] || 0) + 1 }
+  }, {})
+
+  const mostPopularTags = Object.keys(countedTags).sort(
+    (a, b) => countedTags[b] - countedTags[a]
+  )
 
   const postsData = data.posts.map(post => ({
     ...post,
@@ -154,6 +191,8 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 
   return {
     props: {
+      uniqueTags,
+      mostPopularTags,
       newPost: newPostData[0],
       posts: postsData,
       totalItems: totalPosts.posts.length,
@@ -166,12 +205,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const totalPosts: TotalPostsQuery = await request(baseURL, query2)
 
   return {
-    // Prerender the next 5 pages after the first page, which is handled by the index page.
-    // Other pages will be prerendered at runtime.
     paths: Array.from({ length: Math.ceil(totalPosts.posts.length / 6) }).map(
       (_, i) => `/blog/${i + 1}`
     ),
-    // Block the request for non-generated pages and cache them in the background
     fallback: 'blocking',
   }
 }
