@@ -1,4 +1,4 @@
-import { Box, Flex } from '@common'
+import { Flex } from '@common'
 import { Hat } from '@shared'
 import { getDate } from '@utils/date'
 import Image from 'next/future/image'
@@ -52,17 +52,7 @@ export function Hero({ newPost }: HeroProps) {
                 pointerEvents: 'none',
               }}
             />
-            <Box
-              css={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                background:
-                  'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)',
-                borderRadius: '8px',
-              }}
-            />
+            <S.Overlay />
             <Flex
               direction="column"
               align="start"

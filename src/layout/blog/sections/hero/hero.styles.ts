@@ -50,8 +50,27 @@ export const KeepExploring = styled('div', {
   opacity: '60%',
 })
 
+export const Overlay = styled('div', {
+  transition: 'all 250ms ease',
+
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+  background:
+    'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.6) 100%)',
+  borderRadius: '8px',
+})
+
 export const LastPostLink = styled('a', {
   position: 'relative',
+
+  '&:hover': {
+    [`& ${Overlay}`]: {
+      boxShadow:
+        'inset 0 0 60px 20px rgba($colors$blackRgb, 0.2), 0 0 40px rgba($colors$blackRgb, 0.2)',
+    },
+  },
 })
 
 export const PostTitle = styled('h3', {
