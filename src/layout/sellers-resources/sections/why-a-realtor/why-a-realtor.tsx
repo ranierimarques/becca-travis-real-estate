@@ -34,7 +34,9 @@ export function WhyARealtor() {
             several reasons why working with an experienced professional can be
             advantageous. Here are three of the most important ones:
           </S.Paragraph>
-          <Button size="2">Contact Becca Travis</Button>
+          <Button size="2" href="/contact-us">
+            Contact Becca Travis
+          </Button>
         </S.Content>
         <Flex direction="column" css={{ gap: 104 }}>
           {reasons.map(reason => {

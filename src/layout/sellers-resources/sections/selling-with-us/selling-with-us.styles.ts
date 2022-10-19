@@ -3,7 +3,7 @@ import { styled } from 'stitches.config'
 export const Section = styled('section', {
   maxWidth: '1072px',
   margin: '0 auto',
-  padding: '120px 0 120px',
+  padding: '120px 0 40px',
 })
 
 export const Container = styled('div', {
@@ -32,20 +32,15 @@ export const Paragraph = styled('p', {
 })
 
 export const ImageContainer = styled('div', {
-  position: 'relative',
-
-  lineHeight: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 8,
 })
 
 export const ImageDescription = styled('div', {
-  position: 'relative',
-  bottom: '-8px',
-
   fontWeight: '400',
   fontSize: '12px',
   lineHeight: '18px',
-
   textAlign: 'right',
-
   color: '#4E4B59',
 })
