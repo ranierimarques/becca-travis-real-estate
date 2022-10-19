@@ -15,11 +15,13 @@ export function SellingWithUs() {
             Huntsville is a great place to live for many reasons. The people are friendly
             and welcoming, the city is clean and safe.
           </S.Paragraph>
-          <Button size="2">Contact Becca Travis</Button>
+          <Button size="2" href="/contact-us">
+            Contact Becca Travis
+          </Button>
         </div>
 
         <S.ImageContainer>
-          <Box css={{ overflow: 'hidden', borderRadius: 8 }}>
+          <Box css={{ overflow: 'hidden', borderRadius: 8, lineHeight: 0 }}>
             <Image src={house} alt="House" />
           </Box>
           <S.ImageDescription>Image by Becca Travis</S.ImageDescription>

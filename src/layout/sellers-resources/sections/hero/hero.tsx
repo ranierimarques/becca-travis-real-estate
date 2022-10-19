@@ -23,7 +23,9 @@ export function Hero() {
               )
             })}
           </S.Skills>
-          <Button size="2">Contact Becca Travis</Button>
+          <Button size="2" href="/contact-us">
+            Contact Becca Travis
+          </Button>
           <S.Span>
             We’re always ready to help by providing the best service for you
           </S.Span>
