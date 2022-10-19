@@ -10,7 +10,7 @@ export const Header = styled('div', {
 export const Dot = styled('div', {
   width: '5px',
   height: '5px',
-  background: '#8C8A97',
+  background: '$gray5',
   opacity: '0.5',
   borderRadius: 999,
 })
@@ -19,53 +19,55 @@ export const HouseName = styled('h1', {
   fontWeight: '500',
   fontSize: '22px',
   lineHeight: '32px',
-  color: '#33303E',
+  color: '$gray1',
 })
 
 export const HousePrice = styled('span', {
   fontWeight: '500',
   fontSize: '22px',
   lineHeight: '24px',
-  color: '#5BA341',
+  color: '$green3',
 })
 
 export const HouseStatus = styled('div', {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '20px',
-  color: '#33303E',
+  color: '$gray1',
 })
 
 export const Status = styled('span', {
   fontWeight: 'bold',
   fontSize: '14px',
   lineHeight: '20px',
-  color: '#33303E',
+  color: '$gray1',
 })
 
 export const ShareAndSave = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: 12,
+  gap: 16,
 })
 
 export const Button = styled('button', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: 6,
+  gap: 8,
 
-  padding: '6px',
-  border: '1px solid #9D446E',
+  padding: '8px 10px',
+
+  boxShadow: '0 0 0 1px $colors$magenta1',
+
   borderRadius: '5px',
 
   fontWeight: '500',
   fontSize: '14px',
   lineHeight: '21px',
-  color: '#9D446E',
+  color: '$magenta1',
 
   '&:hover': {
-    backgroundColor: 'rgba(232, 183, 206, 0.2)',
+    backgroundColor: 'rgba($colors$magenta5Rgb, 0.2)',
     cursor: 'pointer',
   },
 })
