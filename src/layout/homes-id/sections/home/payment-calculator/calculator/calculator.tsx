@@ -74,7 +74,7 @@ export function Calculator({ price, onValue }: CalculatorProps) {
                   <S.Input
                     {...input.complementaryInput}
                     onChange={onChange}
-                    value={values[input.complementaryInput.name]}
+                    value={values[input.complementaryInput?.name as never]}
                   />
                 </S.InputWrapper>
               </Flex>
@@ -85,7 +85,11 @@ export function Calculator({ price, onValue }: CalculatorProps) {
             <S.Label key={index}>
               {input.label}
               <S.InputWrapper>
-                <S.Input {...input} onChange={onChange} value={values[input.name]} />
+                <S.Input
+                  {...input}
+                  onChange={onChange}
+                  value={values[input.name as never]}
+                />
               </S.InputWrapper>
             </S.Label>
           )
