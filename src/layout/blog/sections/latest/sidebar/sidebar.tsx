@@ -1,16 +1,21 @@
 import { Box } from '@common'
-import { useState } from 'react'
+import { SetStateAction } from 'react'
 import { ArrowDownSvg } from '../svgs'
 import * as S from './sidebar.styles'
 
 interface SidebarProps {
   uniqueTags: string[]
   mostPopularTags: string[]
+  activeCategory: string
+  setActiveCategory: React.Dispatch<SetStateAction<string>>
 }
 
-export function Sidebar({ uniqueTags, mostPopularTags }: SidebarProps) {
-  const [activeCategory, setActiveCategory] = useState('View all')
-
+export function Sidebar({
+  activeCategory,
+  setActiveCategory,
+  uniqueTags,
+  mostPopularTags,
+}: SidebarProps) {
   return (
     <div>
       <div>
