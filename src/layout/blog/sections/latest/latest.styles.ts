@@ -25,10 +25,10 @@ export const InputWrapper = styled('div', {
   transition: 'box-shadow 150ms ease',
 
   '&:hover': {
-    boxShadow: '0 0 0 1px $colors$magenta6, 0 0 0px 4px rgba($colors$magenta2Rgb, 0.5)',
+    boxShadow: '0 0 0 1px $colors$grayW9, 0 0 0px 4px rgba($colors$magenta2Rgb, 0.5)',
   },
   '&:focus-within': {
-    boxShadow: '0 0 0 1px $colors$magenta6, 0 0 0 4px $colors$magenta2',
+    boxShadow: '0 0 0 1px $colors$grayW9, 0 0 0 4px $colors$magenta2',
   },
 })
 
