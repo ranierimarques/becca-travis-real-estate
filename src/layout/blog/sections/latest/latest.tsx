@@ -1,10 +1,15 @@
 import { Flex, Pagination } from '@common'
+import useDebounce from '@resources/hooks/useDebounce'
 import request, { gql } from 'graphql-request'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import getReadingTime from 'reading-time'
 import { Articles, Sidebar } from '.'
 import * as S from './latest.styles'
-import { LoupeSvg } from './svgs'
+import * as Svg from './svgs'
+
+function removeWhiteSpaces(string: string) {
+  return string.replace(/\s+/g, '')
+}
 
 const baseURL = 'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master'
 
@@ -62,8 +67,28 @@ interface LatestProps {
 }
 
 const query = gql`
-  query PostByPagination($tag: String!) {
+  query ($tag: String!) {
     posts(where: { tag: $tag }) {
+      id
+      slug
+      tag
+      postTitle
+      postDescription
+      postBanner {
+        url
+      }
+      postBannerAlt
+      postContent {
+        text
+      }
+      createdAt
+    }
+  }
+`
+
+const query2 = gql`
+  query ($search: String!) {
+    posts(where: { _search: $search }) {
       id
       slug
       tag
@@ -91,10 +116,16 @@ export function Latest({
   totalItems,
   perPage,
 }: LatestProps) {
+  const skipFetch = useRef(true)
   const [activeCategory, setActiveCategory] = useState(viewAll)
   const [filteredPosts, setFilteredPosts] = useState<PostsProps>([])
+  const [searchValue, setSearchValue] = useState('')
+  const [hasResults, setHasResults] = useState(true)
+  const debouncedValue = useDebounce<string>(searchValue, 500)
 
   useEffect(() => {
+    if (activeCategory === searchValue) return
+
     async function fetchData() {
       const data: PostsQuery = await request(baseURL, query, { tag: activeCategory })
 
@@ -104,23 +135,67 @@ export function Latest({
       }))
 
       setFilteredPosts(postsData)
+      setHasResults(true)
     }
 
     // Clean filteredPosts
     if (activeCategory === viewAll) {
       setFilteredPosts([])
+      setHasResults(true)
     } else {
       fetchData()
     }
-  }, [activeCategory])
+  }, [activeCategory, searchValue])
+
+  useEffect(() => {
+    if (skipFetch.current) return
+
+    async function fetchData() {
+      const data: PostsQuery = await request(baseURL, query2, { search: debouncedValue })
+
+      const postsData = data.posts.map(post => ({
+        ...post,
+        readingTime: getReadingTime(post.postContent.text).text,
+      }))
+
+      if (skipFetch.current) return
+      if (postsData.length === 0) setHasResults(false)
+
+      setFilteredPosts(postsData)
+    }
+
+    fetchData()
+  }, [debouncedValue])
+
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
+    const newValue = event.target.value
+
+    skipFetch.current = removeWhiteSpaces(searchValue) === removeWhiteSpaces(newValue)
+    setSearchValue(newValue)
+    setActiveCategory(newValue)
+
+    if (newValue.trim().length === 0) {
+      skipFetch.current = true
+      setFilteredPosts([])
+      setActiveCategory(viewAll)
+      setHasResults(true)
+    }
+  }
 
   return (
     <S.Section>
       <Flex align="center" justify="between" css={{ mb: 64 }}>
         <S.Title>Latest articles</S.Title>
         <S.InputWrapper>
-          <S.SearchInput type="text" placeholder="What do you want to search?" />
-          <LoupeSvg />
+          <S.Input
+            type="text"
+            placeholder="What do you want to search?"
+            value={searchValue}
+            onChange={onChange}
+          />
+          <S.SearchButton aria-label="Search">
+            <Svg.Loupe />
+          </S.SearchButton>
         </S.InputWrapper>
       </Flex>
 
@@ -132,8 +207,12 @@ export function Latest({
           setActiveCategory={setActiveCategory}
         />
         <Flex direction="column" align="center" css={{ gap: 40, width: '100%' }}>
-          <Articles posts={filteredPosts.length > 0 ? filteredPosts : posts} />
-          {activeCategory === viewAll && (
+          <Articles
+            searchValue={searchValue}
+            hasResults={hasResults}
+            posts={filteredPosts.length > 0 ? filteredPosts : posts}
+          />
+          {activeCategory === viewAll && hasResults && (
             <Pagination
               totalItems={totalItems}
               currentPage={currentPage}
