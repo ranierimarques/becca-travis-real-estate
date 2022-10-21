@@ -1,2 +1,2 @@
 export { default as ArrowDownSvg } from './arrow-down'
-export { default as LoupeSvg } from './loupe'
+export { default as Loupe } from './loupe'

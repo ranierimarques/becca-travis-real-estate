@@ -1,6 +1,6 @@
 import { Box } from '@common'
+import { Select } from '@primitives'
 import { SetStateAction } from 'react'
-import { ArrowDownSvg } from '../svgs'
 import * as S from './sidebar.styles'
 
 interface SidebarProps {
@@ -17,13 +17,17 @@ export function Sidebar({
   mostPopularTags,
 }: SidebarProps) {
   return (
-    <div>
+    <Box css={{ minWidth: 280 }}>
       <div>
         <S.Title>Blog categories</S.Title>
-        <S.DropdownWrapper>
-          <S.DropdownInput type="text" placeholder="Select category" readOnly />
-          <ArrowDownSvg />
-        </S.DropdownWrapper>
+        <Select.Root onValueChange={value => setActiveCategory(value)}>
+          <Select.Item value="View all">View all</Select.Item>
+          {uniqueTags.map((tag, index) => (
+            <Select.Item key={index} value={tag}>
+              {tag}
+            </Select.Item>
+          ))}
+        </Select.Root>
       </div>
 
       <Box css={{ mt: 32 }}>
@@ -49,6 +53,6 @@ export function Sidebar({
           ))}
         </ul>
       </Box>
-    </div>
+    </Box>
   )
 }

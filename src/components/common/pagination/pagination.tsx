@@ -43,7 +43,7 @@ export function Pagination({
     <S.Container>
       {pages.map((pageNumber, i) =>
         pageNumber === dotts ? (
-          <span key={i}>{pageNumber}</span>
+          <S.Dotts key={i}>{pageNumber}</S.Dotts>
         ) : (
           <Link key={i} href={renderPageLink(pageNumber as number)} passHref>
             <S.Link active={pageNumber === currentPage}>{pageNumber}</S.Link>

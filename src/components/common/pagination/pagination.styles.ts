@@ -1,8 +1,19 @@
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {})
+export const Container = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+})
 
-export const Dotts = styled('span', {})
+export const Dotts = styled('span', {
+  fontWeight: '500',
+  fontSize: '16px',
+  lineHeight: '24px',
+  color: '$gray4',
+
+  padding: '0px 8px',
+})
 
 export const Link = styled('a', {
   display: 'inline-block',

@@ -9,6 +9,37 @@ export const Articles = styled('ul', {
   width: '100%',
 })
 
+export const NoResults = styled('div', {
+  gridColumn: 'span 2',
+  justifySelf: 'center',
+
+  display: 'flex',
+  justifyContent: 'center',
+  flexWrap: 'wrap',
+  gap: 4,
+
+  fontWeight: '500',
+  fontSize: '16px',
+  lineHeight: '24px',
+  color: '$gray3',
+
+  padding: '0 48px',
+
+  '& > span': {
+    display: 'flex',
+    overflowWrap: 'anywhere',
+    fontWeight: '700',
+    color: '$black',
+
+    '& > span': {
+      display: '-webkit-box',
+      WebkitLineClamp: '1',
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
+    },
+  },
+})
+
 export const Link = styled('a', {
   display: 'block',
 })
