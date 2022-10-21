@@ -31,12 +31,6 @@ export function Calculator({ price, onValue }: CalculatorProps) {
       type: 'text',
       required: false,
       value: price,
-      complementaryInput: {
-        name: 'downPaymentPercentage',
-        placeholder: '20%',
-        type: 'text',
-        required: false,
-      },
     },
     {
       name: 'lengthOfMortgage',
@@ -72,9 +66,11 @@ export function Calculator({ price, onValue }: CalculatorProps) {
                 </S.InputWrapper>
                 <S.InputWrapper css={{ w: 100 }}>
                   <S.Input
-                    {...input.complementaryInput}
+                    name="downPaymentPercentage"
+                    placeholder="20%"
+                    type="text"
                     onChange={onChange}
-                    value={values[input.complementaryInput?.name as never]}
+                    value={values.downPaymentPercentage}
                   />
                 </S.InputWrapper>
               </Flex>
