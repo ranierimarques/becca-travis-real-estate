@@ -76,10 +76,15 @@ export function Post({ data }: any) {
           <div>
             <Image
               src={article.postBanner.url}
-              alt="test"
+              alt={article.postBannerAlt}
               width="888"
               height="340"
               priority
+              style={{
+                borderRadius: '8px',
+                userSelect: 'none',
+                pointerEvents: 'none',
+              }}
             />
 
             <S.PostDetails>
