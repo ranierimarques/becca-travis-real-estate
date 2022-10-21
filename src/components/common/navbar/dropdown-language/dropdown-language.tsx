@@ -8,7 +8,7 @@ export default function DropdownLanguage() {
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
+      <DropdownMenu.Trigger variant={1}>
         <Svg.Earth />
         Language
       </DropdownMenu.Trigger>

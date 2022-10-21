@@ -1,5 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { keyframes, styled } from 'stitches.config'
+import * as Svg from './svgs'
 
 const VIEWPORT_PADDING = 16
 
@@ -20,8 +21,7 @@ export const swipeOut = keyframes({
 
 export const Viewport = styled(ToastPrimitive.Viewport, {
   position: 'absolute',
-  bottom: 0,
-  left: 0,
+
   display: 'flex',
   flexDirection: 'column',
   padding: VIEWPORT_PADDING,
@@ -31,12 +31,26 @@ export const Viewport = styled(ToastPrimitive.Viewport, {
   listStyle: 'none',
   zIndex: 2147483647,
   outline: 'none',
+
+  variants: {
+    variant: {
+      1: {
+        top: -43,
+        left: -44,
+        padding: 0,
+      },
+      2: {
+        bottom: 0,
+        left: 0,
+      },
+    },
+  },
 })
 
 export const Root = styled(ToastPrimitive.Root, {
   backgroundColor: '$white',
   border: '1px solid rgba($colors$green1Rgb, 0.5)',
-  borderRadius: '8px',
+  borderRadius: 8,
 
   padding: 12,
   height: 69,
@@ -64,6 +78,38 @@ export const Root = styled(ToastPrimitive.Root, {
   },
 
   '&:focus-visible': { outline: 'none' },
+
+  variants: {
+    variant: {
+      1: {
+        position: 'relative',
+
+        padding: '4px 12px 4px 10px',
+        backgroundColor: '$green3',
+        borderRadius: 5,
+        width: '182px',
+        height: '100%',
+
+        '@media (prefers-reduced-motion: no-preference)': {
+          '&[data-state="open"]': {
+            animation: 'none',
+          },
+          '&[data-state="closed"]': {
+            animation: 'none',
+          },
+          '&[data-swipe="move"]': {
+            transform: 'none',
+          },
+          '&[data-swipe="cancel"]': {
+            transform: 'none',
+          },
+          '&[data-swipe="end"]': {
+            animation: 'none',
+          },
+        },
+      },
+    },
+  },
 })
 
 export const ToastTitle = styled(ToastPrimitive.Title, {
@@ -77,6 +123,25 @@ export const ToastTitle = styled(ToastPrimitive.Title, {
   fontSize: '14px',
   lineHeight: '21px',
   color: '$gray2',
+
+  variants: {
+    variant: {
+      1: {
+        gap: 4,
+        marginBottom: 0,
+
+        width: '100%',
+      },
+    },
+  },
+})
+
+export const SpanToastTitle = styled('span', {
+  minWidth: 140,
+  fontWeight: '500',
+  fontSize: '12px',
+  lineHeight: '22px',
+  color: '#F6F6F8',
 })
 
 export const ToastDescription = styled(ToastPrimitive.Description, {
@@ -104,4 +169,11 @@ export const CloseButton = styled('button', {
 
   '&:hover': { backgroundColor: 'rgba($colors$gray5Rgb, 0.15)' },
   '&:focus': { boxShadow: '0 0 0 2px rgba($colors$gray4Rgb, 0.5)' },
+})
+
+export const ArrowSvg = styled(Svg.Arrow, {
+  position: 'absolute',
+  bottom: -13,
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
 })

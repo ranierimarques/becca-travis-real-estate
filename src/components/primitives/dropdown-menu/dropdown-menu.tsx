@@ -4,6 +4,8 @@ import * as S from './dropdown-menu.styles'
 
 export const Root = DropdownMenuPrimitive.Root
 export const Trigger = S.Trigger
+export const Group = S.Group
+export const Item = S.Item
 
 type ContentProps = React.ComponentProps<typeof S.Content>
 

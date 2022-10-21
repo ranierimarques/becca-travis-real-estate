@@ -25,17 +25,46 @@ const slideLeftAndFade = keyframes({
 export const Trigger = styled(DropdownMenuPrimitive.Trigger, {
   display: 'flex',
   alignItems: 'center',
-  gap: 6,
 
-  color: '$magenta1',
-  fontSize: 12,
-  lineHeight: '16px',
-  fontWeight: 400,
+  variants: {
+    variant: {
+      1: {
+        gap: 6,
 
-  padding: '6px 8px',
+        padding: '6px 8px',
 
-  '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)', outlineOffset: 0 },
-  '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
+        color: '$magenta1',
+        fontSize: 12,
+        lineHeight: '16px',
+        fontWeight: 400,
+
+        '&:focus': {
+          outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)',
+          outlineOffset: 0,
+        },
+        '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
+      },
+      2: {
+        gap: 8,
+
+        padding: '8px 10px',
+
+        boxShadow: '0 0 0 1px $colors$magenta1',
+
+        borderRadius: '5px',
+
+        fontWeight: '500',
+        fontSize: '14px',
+        lineHeight: '21px',
+        color: '$magenta1',
+
+        '&:hover': {
+          backgroundColor: 'rgba($colors$magenta5Rgb, 0.2)',
+          cursor: 'pointer',
+        },
+      },
+    },
+  },
 })
 
 export const Content = styled(DropdownMenuPrimitive.Content, {
@@ -54,6 +83,34 @@ export const Content = styled(DropdownMenuPrimitive.Content, {
     '&[data-side="bottom"]': { animationName: slideUpAndFade },
     '&[data-side="left"]': { animationName: slideRightAndFade },
   },
+})
+
+export const Group = styled(DropdownMenuPrimitive.Group, {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 6,
+})
+
+export const Item = styled(DropdownMenuPrimitive.Item, {
+  display: 'flex',
+  alignItems: 'center',
+
+  width: '100%',
+
+  borderRadius: 4,
+  padding: '10px 8px',
+
+  '&:hover': {
+    background: 'rgba(246, 246, 248, 0.8)',
+    outline: 'none',
+  },
+
+  '&:active': {
+    boxShadow: '0 0 0 1px #A6AEB8',
+  },
+
+  '&:not([data-disabled])': { cursor: 'pointer' },
+  '&[data-disabled]': { opacity: 0.32, cursor: 'default' },
 })
 
 export const RadioGroup = styled(DropdownMenuPrimitive.RadioGroup, {

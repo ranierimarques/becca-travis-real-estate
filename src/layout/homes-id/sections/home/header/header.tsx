@@ -1,4 +1,7 @@
 import { Box, Flex } from '@common'
+import { DropdownMenu, Toast } from '@primitives'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import * as Svg from '../svgs'
 import * as S from './header.styles'
 
@@ -46,22 +49,56 @@ export function Header({ listing }: Listing) {
       status: listing.lastUpdated,
     },
   ]
+  const router = useRouter()
+  const [openToast, setOpenToast] = useState(false)
+
+  async function copyToClipboard() {
+    navigator.clipboard.writeText(`https://beccatravis.com${router.asPath}`)
+    setOpenToast(true)
+  }
 
   return (
     <S.Header>
       <Flex align="center" justify="between" css={{ mb: 16 }}>
         <S.HouseName>{listing.address}</S.HouseName>
-        <S.ShareAndSave>
-          <S.Button>
-            <Svg.Share />
-            Share
-          </S.Button>
-
-          <S.Button>
-            <Svg.Heart />
-            Favorite
-          </S.Button>
-        </S.ShareAndSave>
+        <Box css={{ position: 'relative' }}>
+          <Toast openToast={openToast} onOpenToast={setOpenToast} form />
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger variant={2}>
+              <Svg.Share />
+              Share
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content align="center" sideOffset={8}>
+              <DropdownMenu.Group>
+                <DropdownMenu.Item asChild>
+                  <S.Share
+                    href={`https://www.facebook.com/dialog/share?app_id=657185652633943&display=popup&href=https%3A%2F%2Fdev.beccatravis.com%2Fhomes%2F1812215`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Svg.Facebook />
+                    <S.ShareOption>Share on Facebook</S.ShareOption>
+                  </S.Share>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item asChild>
+                  <S.Share
+                    href={`mailto:?body=https://beccatravis.com${router.asPath} `}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <Svg.Email />
+                    <S.ShareOption>Share via Email</S.ShareOption>
+                  </S.Share>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item onClick={copyToClipboard}>
+                  <Svg.AttachmentLink />
+                  <S.ShareOption>Copy property link</S.ShareOption>
+                </DropdownMenu.Item>
+              </DropdownMenu.Group>
+              <DropdownMenu.Arrow />
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+        </Box>
       </Flex>
 
       <Flex align="center" css={{ gap: 16 }}>

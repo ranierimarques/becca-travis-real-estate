@@ -52,7 +52,6 @@ export const ShareAndSave = styled('div', {
 export const Button = styled('button', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
   gap: 8,
 
   padding: '8px 10px',
@@ -66,8 +65,43 @@ export const Button = styled('button', {
   lineHeight: '21px',
   color: '$magenta1',
 
+  '&:not(:disabled)': {
+    '&:hover': {
+      backgroundColor: 'rgba($colors$magenta5Rgb, 0.2)',
+      cursor: 'pointer',
+    },
+  },
+
+  '&:disabled': {
+    opacity: 0.5,
+  },
+})
+
+export const ShareOption = styled('span', {
+  display: 'block',
+  marginLeft: 12,
+
+  fontWeight: '400',
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '#4E4B59',
+})
+
+export const Share = styled('a', {
+  display: 'flex',
+  alignItems: 'center',
+
+  width: '100%',
+
+  borderRadius: 4,
+  padding: '10px 8px',
+
   '&:hover': {
-    backgroundColor: 'rgba($colors$magenta5Rgb, 0.2)',
-    cursor: 'pointer',
+    background: 'rgba(246, 246, 248, 0.8)',
+    outline: 'none',
+  },
+
+  '&:active': {
+    boxShadow: '0 0 0 1px #A6AEB8',
   },
 })
