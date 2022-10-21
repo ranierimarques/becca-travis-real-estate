@@ -5,17 +5,17 @@ import * as S from './contact.styles'
 
 const contacts = [
   {
+    text: 'Text',
+    target: '_self',
+    href: 'sms:+1-256-318-9066',
+    svg: <Svg.MessageChat />,
+  },
+  { text: 'Call', target: '_self', href: 'tel:+1-256-318-9066', svg: <Svg.Phone /> },
+  {
     text: 'Email',
     target: '_self',
     href: 'mailto:becca@beccatravis.com',
     svg: <Svg.Mail />,
-  },
-  { text: 'Call', target: '_self', href: 'tel:+1-256-318-9066', svg: <Svg.Phone /> },
-  {
-    text: 'Schedule',
-    target: '_blank',
-    href: 'https://calendly.com/beccatravis',
-    svg: <Svg.Calendar />,
   },
 ]
 
