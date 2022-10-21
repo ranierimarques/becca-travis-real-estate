@@ -100,16 +100,11 @@ export const Item = styled(DropdownMenuPrimitive.Item, {
   borderRadius: 4,
   padding: '10px 8px',
 
-  '&:hover': {
+  outline: 'none',
+
+  '&[data-highlighted]': {
     background: 'rgba(246, 246, 248, 0.8)',
-    outline: 'none',
   },
-
-  '&:active': {
-    boxShadow: '0 0 0 1px #A6AEB8',
-  },
-
-  '&:focus': { boxShadow: '0 0 0 1px $colors$magenta1', outline: 'none' },
 
   '&:not([data-disabled])': { cursor: 'pointer' },
   '&[data-disabled]': { opacity: 0.32, cursor: 'default' },
