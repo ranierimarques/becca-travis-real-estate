@@ -43,7 +43,7 @@ export function ContactInformation({ openToast, onOpenToast }: ContactInformatio
 
         <S.Svg />
       </Box>
-      <Toast openToast={openToast} onOpenToast={onOpenToast} />
+      <Toast openToast={openToast} onOpenToast={onOpenToast} form />
     </S.Card>
   )
 }

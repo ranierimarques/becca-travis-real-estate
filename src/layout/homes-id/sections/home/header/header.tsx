@@ -62,7 +62,7 @@ export function Header({ listing }: Listing) {
       <Flex align="center" justify="between" css={{ mb: 16 }}>
         <S.HouseName>{listing.address}</S.HouseName>
         <Box css={{ position: 'relative' }}>
-          <Toast openToast={openToast} onOpenToast={setOpenToast} form />
+          <Toast openToast={openToast} onOpenToast={setOpenToast} />
           <DropdownMenu.Root>
             <DropdownMenu.Trigger variant={2}>
               <Svg.Share />

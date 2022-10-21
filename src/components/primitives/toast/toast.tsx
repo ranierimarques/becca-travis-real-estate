@@ -7,11 +7,11 @@ import * as S from './toast.styles'
 interface ContactInformationProps {
   openToast: boolean
   onOpenToast: (open: boolean) => void
-  form: boolean
+  form?: boolean
 }
 
 export function Toast({ openToast, onOpenToast, form }: ContactInformationProps) {
-  if (!form) {
+  if (form) {
     return (
       <ToastPrimitive.Provider duration={10000}>
         <S.Root open={openToast} onOpenChange={onOpenToast}>

@@ -13,7 +13,7 @@ export function AskAQuestion() {
       <S.Container>
         <Form noTitle onOpenToast={setOpenToast} />
         <Box css={{ position: 'absolute', left: 16, bottom: 16 }}>
-          <Toast openToast={openToast} onOpenToast={setOpenToast} />
+          <Toast openToast={openToast} onOpenToast={setOpenToast} form />
         </Box>
       </S.Container>
     </S.Section>
