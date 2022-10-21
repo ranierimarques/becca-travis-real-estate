@@ -25,8 +25,8 @@ export default function Contact() {
       <Dialog.Trigger asChild>
         <Button css={{ marginLeft: 16 }}>Let&apos;s chat</Button>
       </Dialog.Trigger>
-      <Dialog.Content title="Talk to me" description="You can reach me at:">
-        <S.Title>Talk to me</S.Title>
+      <Dialog.Content title="Let's chat" description="You can reach me at:">
+        <S.Title>Let&apos;s chat</S.Title>
         <S.Description>You can reach me at:</S.Description>
 
         <S.List>
