@@ -86,22 +86,3 @@ export const ShareOption = styled('span', {
   lineHeight: '20px',
   color: '#4E4B59',
 })
-
-export const Share = styled('a', {
-  display: 'flex',
-  alignItems: 'center',
-
-  width: '100%',
-
-  borderRadius: 4,
-  padding: '10px 8px',
-
-  '&:hover': {
-    background: 'rgba(246, 246, 248, 0.8)',
-    outline: 'none',
-  },
-
-  '&:active': {
-    boxShadow: '0 0 0 1px #A6AEB8',
-  },
-})

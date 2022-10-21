@@ -71,24 +71,24 @@ export function Header({ listing }: Listing) {
             <DropdownMenu.Content align="center" sideOffset={8}>
               <DropdownMenu.Group>
                 <DropdownMenu.Item asChild>
-                  <S.Share
+                  <a
                     href={`https://www.facebook.com/dialog/share?app_id=657185652633943&display=popup&href=https%3A%2F%2Fdev.beccatravis.com%2Fhomes%2F1812215`}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <Svg.Facebook />
                     <S.ShareOption>Share on Facebook</S.ShareOption>
-                  </S.Share>
+                  </a>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item asChild>
-                  <S.Share
+                  <a
                     href={`mailto:?body=https://beccatravis.com${router.asPath} `}
                     target="_blank"
                     rel="noreferrer noopener"
                   >
                     <Svg.Email />
                     <S.ShareOption>Share via Email</S.ShareOption>
-                  </S.Share>
+                  </a>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item onClick={copyToClipboard}>
                   <Svg.AttachmentLink />

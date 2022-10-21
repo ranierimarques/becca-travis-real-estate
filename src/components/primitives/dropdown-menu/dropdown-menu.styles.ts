@@ -109,6 +109,8 @@ export const Item = styled(DropdownMenuPrimitive.Item, {
     boxShadow: '0 0 0 1px #A6AEB8',
   },
 
+  '&:focus': { boxShadow: '0 0 0 1px $colors$magenta1', outline: 'none' },
+
   '&:not([data-disabled])': { cursor: 'pointer' },
   '&[data-disabled]': { opacity: 0.32, cursor: 'default' },
 })
