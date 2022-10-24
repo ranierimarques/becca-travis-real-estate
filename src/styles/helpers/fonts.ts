@@ -15,7 +15,7 @@ const weightsNames: WeightsName = {
   900: 'black',
 }
 
-export type Fonts = {
+type Fonts = {
   fontFamily: string
   fontWeight: {
     style: 'italic' | 'normal'
@@ -52,5 +52,8 @@ export function processFonts(fonts: Fonts) {
     })
   })
 
-  return { declarations, paths }
+  return {
+    fontFace: { '@font-face': declarations },
+    fontPaths: paths,
+  }
 }
