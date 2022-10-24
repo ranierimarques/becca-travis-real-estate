@@ -30,7 +30,7 @@ export function Hero() {
           </Flex>
         </div>
 
-        <Image src={becca} quality={100} alt="Becca Travis photo" />
+        <Image src={becca} quality={100} alt="Becca Travis photo" priority />
       </S.Container>
     </S.Section>
   )

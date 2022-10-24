@@ -31,7 +31,7 @@ export const Link = styled('a', {
   alignItems: 'center',
   gap: 8,
 
-  padding: '12px 16px',
+  padding: '12px 28px',
 
   background: '$grayW10',
   boxShadow: '0 0 0 1px $colors$grayW9',
