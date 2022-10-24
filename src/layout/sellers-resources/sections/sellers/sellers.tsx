@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 import * as S from './sellers.styles'
 import { HomebotSvg } from './svgs'
 
@@ -90,7 +90,7 @@ const style = `
 const homebotScript = `(function (h,b) { var w = window, d = document, s = 'script', x, y; w['__hb_namespace'] = h; w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; y = d.createElement(s); x = d.getElementsByTagName(s)[0]; y.async = 1; y.src = b; x.parentNode.insertBefore(y,x) })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); Homebot('#homebot_homeowner', 'f99d4fae1f736bdf7a150206671f876b4d8a7148254ef90e', {'size':'compact'})`
 
 export function Sellers() {
-  useLayoutEffect(() => {
+  useEffect(() => {
     new Function(homebotScript)()
 
     const homebot: HTMLElement | null = document.getElementById('homebot_homeowner')
