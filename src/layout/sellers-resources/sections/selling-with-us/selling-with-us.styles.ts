@@ -3,7 +3,7 @@ import { styled } from 'stitches.config'
 export const Section = styled('section', {
   maxWidth: '1072px',
   margin: '0 auto',
-  padding: '120px 0 40px',
+  paddingTop: '120px',
 })
 
 export const Container = styled('div', {
