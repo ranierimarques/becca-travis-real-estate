@@ -5,14 +5,17 @@ import InferNextPropsType from 'infer-next-props-type'
 import { GetStaticPaths, NextPage } from 'next'
 import Head from 'next/head'
 
-const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({ listing }) => {
+const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({
+  listing,
+  relatedProperties,
+}) => {
   return (
     <main>
       <Head>
         <title>Becca Travis</title>
       </Head>
 
-      <Home listing={listing} />
+      <Home listing={listing} relatedProperties={relatedProperties} />
     </main>
   )
 }
@@ -75,8 +78,27 @@ type FetchTypes = {
     ElementarySchool: string
     MiddleOrJuniorSchool: string
     HighSchool: string
+    Coordinates: string[]
     url: string
   }
+}
+
+type RelatedPropertiesFetchTypes = {
+  bundle: {
+    LivingArea: number
+    BedroomsTotal: number
+    BridgeModificationTimestamp: string
+    Media: {
+      MediaURL: string
+    }[]
+    ListingId: string
+    ListPrice: number
+    BathroomsTotalInteger: number
+    UnparsedAddress: string
+    ListingKey: string
+    FeedTypes: []
+    url: string
+  }[]
 }
 
 const endpoint = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings/'
@@ -116,11 +138,29 @@ export const getStaticProps = async ({ params }: Params) => {
     elementarySchool: data.bundle.ElementarySchool,
     middleSchool: data.bundle.MiddleOrJuniorSchool,
     highSchool: data.bundle.HighSchool,
+    coords: data.bundle.Coordinates,
   }
+
+  const relatedPropertiesEndpoint = `https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1&near=${listing.coords[0]},${listing.coords[1]}&ListingId.ne=${params.id}`
+
+  const relatedPropertiesResponse = await fetch(relatedPropertiesEndpoint, options)
+  const relatedPropertiesData =
+    (await relatedPropertiesResponse.json()) as RelatedPropertiesFetchTypes
+
+  const relatedProperties = relatedPropertiesData.bundle.map(listing => ({
+    id: listing.ListingId,
+    media: listing.Media[0].MediaURL,
+    price: formatToDollar(listing.ListPrice),
+    address: listing.UnparsedAddress,
+    bedroomsTotal: listing.BedroomsTotal,
+    bathroomsTotal: listing.BathroomsTotalInteger,
+    livingArea: convertSquareFeets(listing.LivingArea),
+  }))
 
   return {
     props: {
       listing,
+      relatedProperties,
     },
     revalidate: false,
   }

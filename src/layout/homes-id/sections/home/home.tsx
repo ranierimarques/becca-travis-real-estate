@@ -8,6 +8,7 @@ import {
   Header,
   PaymentCalculator,
   PropertyDetails,
+  RelatedProperties,
   Slider,
 } from '.'
 import * as S from './home.styles'
@@ -39,6 +40,15 @@ interface Listing {
     middleSchool: string
     highSchool: string
   }
+  relatedProperties: {
+    livingArea: string
+    bedroomsTotal: number
+    media: string
+    id: string
+    price: string
+    bathroomsTotal: number
+    address: string
+  }[]
 }
 
 const pageIndex = [
@@ -60,7 +70,7 @@ const pageIndex = [
   },
 ]
 
-export function Home({ listing }: Listing) {
+export function Home({ listing, relatedProperties }: Listing) {
   return (
     <S.Section>
       <Header listing={listing} />
@@ -87,7 +97,12 @@ export function Home({ listing }: Listing) {
         </Flex>
       </Flex>
 
+      <RelatedProperties listings={relatedProperties} />
+
       <LastCall />
     </S.Section>
   )
 }
+
+// Lat: -86.737568
+// Long: 34.595169
