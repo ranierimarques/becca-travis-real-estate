@@ -1,10 +1,10 @@
 import { Box } from '@common'
-import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'
+import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api'
 import { memo } from 'react'
 
 const containerStyle = {
   width: '100%',
-  height: 'calc(100vh - 110px)',
+  // height: 'calc(100vh - 110px)',
 }
 
 const center = {
@@ -24,7 +24,7 @@ export const Map = memo(() => {
   return (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
       {/* Child components, such as markers, info windows, etc. */}
-      <Marker position={center} />
+      <MarkerF position={center} />
     </GoogleMap>
   )
 })

@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disabled for make Maps markers works in dev environments
-  // reactStrictMode: true,
+  reactStrictMode: true,
   images: {
     domains: [
       'media.graphassets.com',
@@ -38,6 +37,11 @@ const nextConfig = {
           },
         },
       ],
+    })
+
+    config.module.rules.push({
+      test: /\.wasm$/,
+      use: ['url-loader'],
     })
 
     return config

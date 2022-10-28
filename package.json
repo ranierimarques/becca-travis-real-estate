@@ -22,7 +22,7 @@
     "@radix-ui/react-toast": "^1.0.0",
     "@radix-ui/react-tooltip": "^1.0.0",
     "@radix-ui/react-visually-hidden": "^1.0.0",
-    "@react-google-maps/api": "^2.12.2",
+    "@react-google-maps/api": "^2.13.1",
     "@stitches/react": "^1.2.8",
     "chart.js": "^3.9.1",
     "downshift": "^6.1.12",
@@ -62,7 +62,8 @@
     "infer-next-props-type": "^0.0.4",
     "prettier": "^2.7.1",
     "reading-time": "^1.5.0",
-    "typescript": "4.8.2"
+    "typescript": "4.8.2",
+    "url-loader": "^4.1.1"
   },
   "config": {
     "commitizen": {
