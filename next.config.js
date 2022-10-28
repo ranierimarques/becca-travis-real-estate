@@ -39,11 +39,6 @@ const nextConfig = {
       ],
     })
 
-    config.module.rules.push({
-      test: /\.wasm$/,
-      use: ['url-loader'],
-    })
-
     return config
   },
   async rewrites() {

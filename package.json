@@ -23,6 +23,7 @@
     "@radix-ui/react-tooltip": "^1.0.0",
     "@radix-ui/react-visually-hidden": "^1.0.0",
     "@react-google-maps/api": "^2.13.1",
+    "@rive-app/react-canvas": "^3.0.32",
     "@stitches/react": "^1.2.8",
     "chart.js": "^3.9.1",
     "downshift": "^6.1.12",
@@ -42,7 +43,6 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@rive-app/react-canvas": "^3.0.27",
     "@svgr/webpack": "^6.4.0",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
@@ -62,8 +62,7 @@
     "infer-next-props-type": "^0.0.4",
     "prettier": "^2.7.1",
     "reading-time": "^1.5.0",
-    "typescript": "4.8.2",
-    "url-loader": "^4.1.1"
+    "typescript": "4.8.2"
   },
   "config": {
     "commitizen": {

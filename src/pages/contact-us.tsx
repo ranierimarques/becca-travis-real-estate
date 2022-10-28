@@ -1,8 +1,9 @@
 import { Hero } from '@layout/contact-us/sections'
-import riveWasmUrl from '@rive-app/canvas/rive.wasm'
 import { RuntimeLoader } from '@rive-app/react-canvas'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+
+const riveWasmUrl = 'https://unpkg.com/@rive-app/canvas/rive.wasm'
 
 RuntimeLoader.setWasmUrl(riveWasmUrl)
 
