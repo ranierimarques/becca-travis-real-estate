@@ -1,25 +1,16 @@
+import { useHouse } from '@layout/homes/store/houses'
 import { ScrollArea } from '@primitives'
 import { HouseCard } from '@shared'
 import * as S from './houses.styles'
 
-interface Listings {
-  listings: {
-    id: string
-    media: string
-    price: string
-    address: string
-    bedroomsTotal: number
-    bathroomsTotal: number
-    livingArea: string
-  }[]
-}
+export function Houses() {
+  const { listings } = useHouse()
 
-export function Houses({ listings }: Listings) {
   return (
     <ScrollArea>
       <S.Houses>
         {/* <MissOutCard /> */}
-        {listings.map(listing => (
+        {listings?.map(listing => (
           <HouseCard key={listing.id} listing={listing} variant="small" />
         ))}
       </S.Houses>
