@@ -52,3 +52,7 @@ export const Button = styled('button', {
     },
   },
 })
+
+export const Space = styled('span', {
+  letterSpacing: '2px',
+})

@@ -1,14 +1,25 @@
 import { Flex } from '@common'
+import { useHouse } from '@layout/homes/hooks/useHouse'
 import { SearchInput } from '@shared'
 import * as Svg from '../svgs'
 import * as S from './search.styles'
 
 export function Search() {
+  const { house, isLoading } = useHouse()
+
   return (
     <S.Container>
       <Flex justify="between">
-        <S.HomesForSale>3208 Homes for sale</S.HomesForSale>
-        <S.LastUpdate>Last update: 30 minutes ago</S.LastUpdate>
+        <S.HomesForSale>{isLoading ? '---' : house.total} Homes for sale</S.HomesForSale>
+        <S.LastUpdate>
+          Last update:{' '}
+          {isLoading && (
+            <>
+              <S.Space>------- --, ----</S.Space> at <S.Space>--:-- --</S.Space>
+            </>
+          )}
+          {house.listings?.[0] ? house.listings?.[0]?.lastModification : '--'}
+        </S.LastUpdate>
       </Flex>
       <SearchInput variant="houses" />
       <Flex justify="between" css={{ mt: 16 }}>

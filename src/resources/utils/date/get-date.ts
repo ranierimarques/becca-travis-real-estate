@@ -1,17 +1,25 @@
 type variantOptionsType = {
   short: Intl.DateTimeFormatOptions
   long: Intl.DateTimeFormatOptions
+  full: Intl.DateTimeFormatOptions
 }
 
-const variantOptions = {
+const variantOptions: variantOptionsType = {
   short: { year: 'numeric', month: 'short', day: 'numeric' },
   long: { year: 'numeric', month: 'long', day: 'numeric' },
-} as variantOptionsType
+  full: {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  },
+}
 
 export function getDate(
   ISOString: string,
   locale: Intl.LocalesArgument,
-  options: Intl.DateTimeFormatOptions | 'short' | 'long'
+  options: Intl.DateTimeFormatOptions | 'short' | 'long' | 'full'
 ) {
   const dateOptions = typeof options === 'string' ? variantOptions[options] : options
 

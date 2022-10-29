@@ -38,6 +38,7 @@
     "svgs",
     "valleymls",
     "VAMLS",
-    "zipcode"
+    "zipcode",
+    "zustand"
   ]
 }
