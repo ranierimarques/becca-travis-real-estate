@@ -1,14 +1,16 @@
 import { useHouse } from '@layout/homes/hooks/useHouse'
+import { useVisualizationStore } from '@layout/homes/store/visualization'
 import { ScrollArea } from '@primitives'
 import { HouseCard } from '@shared'
 import * as S from './houses.styles'
 
 export function Houses() {
   const { house, isLoading } = useHouse()
+  const visualization = useVisualizationStore(state => state.visualization)
 
   return (
     <ScrollArea>
-      <S.Houses>
+      <S.Houses visualization={visualization}>
         {isLoading && (
           <>
             <S.SkeletonCard />
@@ -23,7 +25,11 @@ export function Houses() {
           </>
         )}
         {house.listings?.map(listing => (
-          <HouseCard key={listing.id} listing={listing} variant="small" />
+          <HouseCard
+            key={listing.id}
+            listing={listing}
+            variant={visualization === 'map' ? 'small' : undefined}
+          />
         ))}
       </S.Houses>
     </ScrollArea>

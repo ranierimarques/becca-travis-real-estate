@@ -11,11 +11,9 @@ import {
   setBingSuggestions,
 } from './utils'
 
-type SearchProps = {
-  variant?: 'houses'
-}
+type SearchProps = React.ComponentProps<typeof S.Container>
 
-export function SearchInput({ variant }: SearchProps) {
+export function SearchInput({ ...props }: SearchProps) {
   const skipFetch = useRef(true)
   const setAddress = useAddressStore(state => state.setAddress)
   const [searchValue, setSearchValue] = useState('')
@@ -82,7 +80,7 @@ export function SearchInput({ variant }: SearchProps) {
 
   return (
     <>
-      <S.Container variant={variant}>
+      <S.Container {...props}>
         <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
           <S.Input
             type="text"

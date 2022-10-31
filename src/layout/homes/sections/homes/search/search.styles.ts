@@ -1,7 +1,8 @@
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {
-  margin: '20px 16px',
+export const HeaderInfos = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
 })
 
 export const HomesForSale = styled('div', {
@@ -10,6 +11,29 @@ export const HomesForSale = styled('div', {
   lineHeight: '24px',
   letterSpacing: '-0.02em',
   color: '$magenta6',
+
+  variants: {
+    variant: {
+      1: {
+        fontSize: '14px',
+        lineHeight: '24px',
+        letterSpacing: '-0.02em',
+        color: '$magenta6',
+      },
+      2: {
+        fontSize: '24px',
+        lineHeight: '36px',
+        color: '$black',
+        textAlign: 'center',
+
+        marginBottom: '12px',
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: '1',
+  },
 })
 
 export const LastUpdate = styled('div', {
@@ -18,6 +42,41 @@ export const LastUpdate = styled('div', {
   lineHeight: '24px',
   letterSpacing: '-0.02em',
   color: '$grayW5',
+})
+
+export const Options = styled('div', {
+  display: 'flex',
+})
+
+export const Container = styled('div', {
+  variants: {
+    visualization: {
+      map: {
+        margin: '20px 16px',
+
+        [`> ${Options}`]: {
+          justifyContent: 'space-between',
+          marginTop: 16,
+        },
+        [`+ ${HomesForSale}`]: {
+          display: 'none',
+        },
+      },
+      gallery: {
+        display: 'flex',
+        gap: 48,
+
+        margin: '32px 16px 20px',
+
+        [`> ${Options}`]: {
+          gap: 32,
+        },
+        [`> ${HeaderInfos}`]: {
+          display: 'none',
+        },
+      },
+    },
+  },
 })
 
 export const Button = styled('button', {

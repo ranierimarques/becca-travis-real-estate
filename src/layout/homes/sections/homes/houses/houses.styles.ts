@@ -16,9 +16,20 @@ export const Houses = styled('ul', {
 
   padding: '28px 16px 48px',
 
-  '& > li': {
-    flex: '1 1 255px',
-    // maxWidth: '336px',
+  variants: {
+    visualization: {
+      map: {
+        '& > li': {
+          flex: '1 1 255px',
+          // maxWidth: '336px',
+        },
+      },
+      gallery: {
+        '& > li': {
+          flex: '1 1 336px',
+        },
+      },
+    },
   },
 })
 

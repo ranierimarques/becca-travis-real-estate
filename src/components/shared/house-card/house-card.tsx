@@ -29,6 +29,7 @@ export function HouseCard({ listing, variant, badge }: Listing) {
               alt="House"
               layout="fill"
               style={{ pointerEvents: 'none' }}
+              quality={100}
             />
             {badge && <S.Badge>{badge}</S.Badge>}
             <S.FavoriteButton

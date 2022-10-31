@@ -1,18 +1,17 @@
-import { Flex } from '@common'
+import { useVisualizationStore } from '@layout/homes/store/visualization'
 import { Houses, Map, Search } from '.'
 import * as S from './homes.styles'
 
 export function Homes() {
+  const visualization = useVisualizationStore(state => state.visualization)
+
   return (
-    <S.Container>
-      <Flex
-        direction="column"
-        css={{ maxWidth: '45%', minWidth: '45%', height: 'calc(100vh - 110px)' }}
-      >
+    <S.Section visualization={visualization}>
+      <S.Wrapper>
         <Search />
         <Houses />
-      </Flex>
-      <Map />
-    </S.Container>
+      </S.Wrapper>
+      {visualization === 'map' && <Map />}
+    </S.Section>
   )
 }

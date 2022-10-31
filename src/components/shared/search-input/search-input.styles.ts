@@ -145,8 +145,6 @@ export const Container = styled('div', {
   variants: {
     variant: {
       houses: {
-        marginTop: 16,
-
         [`${InputWrapper}`]: {
           boxShadow: 'none',
           background: '$grayW10',
@@ -158,6 +156,15 @@ export const Container = styled('div', {
         [`${SearchButton}`]: {
           padding: '12px 15px',
         },
+      },
+    },
+    visualization: {
+      map: {
+        marginTop: 16,
+      },
+      gallery: {
+        marginTop: 0,
+        flex: 1,
       },
     },
   },
