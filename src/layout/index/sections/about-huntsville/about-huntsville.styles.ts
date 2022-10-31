@@ -31,6 +31,7 @@ export const Paragraph = styled('p', {
 
 export const ImageContainer = styled('div', {
   position: 'relative',
+  width: 520,
 
   '&::before': {
     content: `''`,

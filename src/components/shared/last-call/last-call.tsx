@@ -73,8 +73,19 @@ export function LastCall() {
             <LikeSvg className={S.SvgStyles()} />
           </S.IconContainer>
 
-          <Box css={{ position: 'absolute', bottom: -5, right: 195 }}>
-            <Image src={becca} alt="Becca Travis" quality="100" />
+          <Box
+            css={{
+              position: 'absolute',
+              bottom: 0,
+              right: 195,
+              width: 291,
+              height: 410,
+
+              br: '28px 28px 0 0',
+              overflow: 'hidden',
+            }}
+          >
+            <Image src={becca} alt="Becca Travis" quality="100" placeholder="blur" />
           </Box>
         </div>
       </S.Container>

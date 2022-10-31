@@ -24,7 +24,6 @@ export function Card({ data }: cardProps) {
             <Image
               src={data.image}
               alt={data.alt}
-              objectFit="fill"
               quality="100"
               style={{ pointerEvents: 'none' }}
             />

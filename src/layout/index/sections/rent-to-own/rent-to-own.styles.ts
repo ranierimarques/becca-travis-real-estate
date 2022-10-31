@@ -12,6 +12,7 @@ export const Section = styled('section', {
 
 export const ImageContainer = styled('div', {
   position: 'relative',
+  width: 520,
 
   '&::before': {
     content: `''`,

@@ -16,8 +16,7 @@ import {
 const badges = [
   {
     svg: <ChipSvg />,
-    description: `Coldwell Banker International 
-    Diamond Recipient`,
+    description: `Coldwell Banker International Diamond Recipient`,
   },
   {
     svg: <CupSvg />,
@@ -53,7 +52,9 @@ export function Achievements() {
         </S.Paragraph>
 
         <Box css={{ position: 'relative', top: '-53px' }}>
-          <Image src={becca} alt="Becca Travis" quality={100} />
+          <Box css={{ br: '28px', overflow: 'hidden', width: 336, height: 453 }}>
+            <Image src={becca} alt="Becca Travis" quality={100} placeholder="blur" />
+          </Box>
           <Box css={{ position: 'absolute', bottom: 66, left: -219 }}>
             <LineLeftSvg />
           </Box>

@@ -1,1 +1,1 @@
-export { default as becca } from './becca.png'
+export { default as becca } from './becca.jpg'

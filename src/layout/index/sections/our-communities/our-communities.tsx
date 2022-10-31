@@ -35,6 +35,7 @@ export function OurCommunities() {
                     src={community.image}
                     alt={`${community.name} ${community.alt}`}
                     layout="fill"
+                    objectFit="cover"
                   />
                   <S.ImageMask />
                   <S.Description>{community.name}, AL</S.Description>
