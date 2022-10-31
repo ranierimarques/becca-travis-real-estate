@@ -28,6 +28,7 @@ export function HouseCard({ listing, variant, badge }: Listing) {
               src={listing.media}
               alt="House"
               layout="fill"
+              objectFit="cover"
               style={{ pointerEvents: 'none' }}
             />
             {badge && <S.Badge>{badge}</S.Badge>}
