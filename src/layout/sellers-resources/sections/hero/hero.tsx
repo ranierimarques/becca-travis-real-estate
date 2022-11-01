@@ -13,7 +13,7 @@ export function Hero() {
       <S.Container>
         <div>
           <Hat>Seller Resources</Hat>
-          <S.Title>Need help selling your home? We can help you!</S.Title>
+          <S.Title>Schedule your no-pressure selling consult with Becca </S.Title>
           <S.Skills>
             {skills.map(skill => {
               return (
@@ -27,7 +27,7 @@ export function Hero() {
             Contact Becca Travis
           </Button>
           <S.Span>
-            We’re always ready to help by providing the best service for you
+            Learn how I work and ensure your goals are my goals every step of the way.
           </S.Span>
         </div>
         <S.ImageContainer>
@@ -39,8 +39,8 @@ export function Hero() {
           >
             <Image src={house} alt="house" width={520} height={419} />
           </Box>
-          <Box css={{ position: 'absolute', top: 15, left: -146 }}>
-            <Image src={becca} alt="Becca Travis" width={422} height={533} />
+          <Box css={{ position: 'absolute', bottom: -130, left: -146 }}>
+            <Image src={becca} alt="Becca Travis" />
           </Box>
           <S.ImageDescription>Image by Becca Travis</S.ImageDescription>
         </S.ImageContainer>

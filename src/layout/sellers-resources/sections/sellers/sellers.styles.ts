@@ -44,7 +44,7 @@ export const HomeWorth = styled('div', {
   border: '1px solid rgba($colors$tangerine7Rgb, 0.15)',
   boxShadow: '0px 14px 50px rgba($colors$blackRgb, 0.08)',
 
-  background: 'rgba($colors$tangerine10Rgb, 0.75)',
+  background: '$tangerine10',
   borderRadius: '24px',
 })
 

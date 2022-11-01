@@ -44,7 +44,7 @@ export const Reasons = styled('div', {
   padding: '150px 32px 32px 32px',
 
   border: '1px solid rgba($colors$magenta2Rgb, 0.3)',
-  boxShadow: '0px 40px 80px -20px rgba(81, 92, 107, 0.12)',
+  boxShadow: '0px 40px 80px -20px rgba($grayW3, 0.12)',
   borderRadius: '8px',
 })
 
@@ -54,7 +54,7 @@ export const ReasonTitle = styled('h3', {
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '36px',
-  color: '#9D446E',
+  color: '$magenta1',
 })
 
 export const ReasonParagraph = styled('p', {
@@ -63,7 +63,7 @@ export const ReasonParagraph = styled('p', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '30px',
-  color: '#5F5C6B',
+  color: '$gray3',
 })
 
 export const Svg = styled(CirclesSvg, {

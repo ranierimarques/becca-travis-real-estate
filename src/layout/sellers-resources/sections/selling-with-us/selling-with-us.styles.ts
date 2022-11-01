@@ -31,16 +31,10 @@ export const Paragraph = styled('p', {
   color: '$gray2',
 })
 
-export const ImageContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 8,
-})
-
 export const ImageDescription = styled('div', {
   fontWeight: '400',
   fontSize: '12px',
   lineHeight: '18px',
   textAlign: 'right',
-  color: '#4E4B59',
+  color: '$gray2',
 })

@@ -1,7 +1,5 @@
 import { Box, Button } from '@common'
 import { Hat } from '@shared'
-import Image from 'next/image'
-import { house } from './images'
 import * as S from './selling-with-us.styles'
 
 export function SellingWithUs() {
@@ -20,12 +18,17 @@ export function SellingWithUs() {
           </Button>
         </div>
 
-        <S.ImageContainer>
-          <Box css={{ overflow: 'hidden', borderRadius: 8, lineHeight: 0 }}>
-            <Image src={house} alt="House" />
-          </Box>
-          <S.ImageDescription>Image by Becca Travis</S.ImageDescription>
-        </S.ImageContainer>
+        <Box
+          css={{
+            overflow: 'hidden',
+            br: 8,
+            h: '100%',
+            lineHeight: 0,
+            maxWidth: '535px',
+          }}
+        >
+          <video src="/dream-home.mp4" controls />
+        </Box>
       </S.Container>
     </S.Section>
   )

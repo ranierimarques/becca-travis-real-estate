@@ -33,6 +33,7 @@ const style = `
    /* Input */
 
    #hb-lgw-input {
+    padding-left: 20px;
     height: 48px !important;
     border-radius: 8px;
     background: #F6F6F8;
