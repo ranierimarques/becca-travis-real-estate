@@ -1,5 +1,4 @@
-import { Box, Flex } from '@common'
-import Image from 'next/image'
+import { Box, Flex, Image } from '@common'
 import Link from 'next/link'
 import * as S from './house-card.styles'
 import * as Svg from './svgs'
@@ -27,9 +26,8 @@ export function HouseCard({ listing, variant, badge }: Listing) {
             <Image
               src={listing.media}
               alt="House"
-              layout="fill"
-              objectFit="cover"
-              style={{ pointerEvents: 'none' }}
+              fill
+              css={{ objectFit: 'cover', pointerEvents: 'none' }}
             />
             {badge && <S.Badge>{badge}</S.Badge>}
             <S.FavoriteButton

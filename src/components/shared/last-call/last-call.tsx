@@ -1,5 +1,4 @@
-import { Box, Button, Flex } from '@common'
-import Image from 'next/image'
+import { Box, Button, Flex, Image } from '@common'
 import { becca } from './images'
 import * as S from './last-call.styles'
 import {
@@ -78,6 +77,7 @@ export function LastCall() {
               position: 'absolute',
               bottom: 0,
               right: 195,
+
               width: 291,
               height: 410,
 
@@ -85,7 +85,13 @@ export function LastCall() {
               overflow: 'hidden',
             }}
           >
-            <Image src={becca} alt="Becca Travis" quality="100" placeholder="blur" />
+            <Image
+              src={becca}
+              alt="Becca Travis"
+              quality="100"
+              fill
+              skeletonBackground="rgba($colors$tangerine10Rgb)"
+            />
           </Box>
         </div>
       </S.Container>

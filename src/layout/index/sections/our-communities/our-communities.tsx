@@ -1,3 +1,4 @@
+import { Image } from '@common'
 import { Hat } from '@shared'
 import Link from 'next/link'
 import {
@@ -31,11 +32,16 @@ export function OurCommunities() {
             <li key={community.name}>
               <Link href={community.href} passHref>
                 <S.CommunityLink>
-                  <S.CommunityImage
+                  <Image
                     src={community.image}
                     alt={`${community.name} ${community.alt}`}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    css={{
+                      borderRadius: '8px',
+
+                      transition: 'opacity 150ms ease, filter 250ms ease',
+                      objectFit: 'cover',
+                    }}
                   />
                   <S.ImageMask />
                   <S.Description>{community.name}, AL</S.Description>

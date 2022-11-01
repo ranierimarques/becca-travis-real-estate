@@ -18,6 +18,8 @@ export const ImageWrapper = styled('div', {
   top: 8,
 
   transition: 'transform 300ms ease',
+
+  borderRadius: '8px 8px 0 0',
 })
 
 export const Link = styled('a', {

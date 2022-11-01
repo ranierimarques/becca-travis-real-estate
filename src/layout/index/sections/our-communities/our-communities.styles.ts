@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
@@ -59,12 +58,6 @@ export const HoverSpan = styled('p', {
   transition: 'transform 250ms ease, opacity 250ms ease',
 })
 
-export const CommunityImage = styled(Image, {
-  borderRadius: '8px',
-
-  transition: 'filter 250ms ease',
-})
-
 export const CommunityLink = styled('a', {
   display: 'block',
 
@@ -80,17 +73,17 @@ export const CommunityLink = styled('a', {
   boxShadow: '0 0 20px rgba($colors$blackRgb, 0.2)',
 
   '&:hover': {
-    [`& ${CommunityImage}`]: { filter: 'brightness(0.7)' },
+    [`& img`]: { filter: 'brightness(0.7)' },
     [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
     [`& ${Description}`]: { transform: 'translateY(-28px)' },
   },
   '&:focus-visible': {
     boxShadow: '0 0 0 4px $colors$magenta9',
-    [`& ${CommunityImage}`]: { filter: 'brightness(0.7)' },
+    [`& img`]: { filter: 'brightness(0.7)' },
     [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
     [`& ${Description}`]: { transform: 'translateY(-28px)' },
   },
-  '&:active': { [`& ${CommunityImage}`]: { filter: 'brightness(0.6)' } },
+  '&:active': { [`& img`]: { filter: 'brightness(0.6)' } },
 })
 
 export const ImageMask = styled('div', {

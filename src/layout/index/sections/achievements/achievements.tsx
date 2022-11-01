@@ -1,33 +1,24 @@
-import { Box, Flex } from '@common'
+import { Box, Flex, Image } from '@common'
 import { Hat } from '@shared'
-import Image from 'next/image'
 import * as S from './achievements.styles'
 import { becca } from './images'
-import {
-  ChipSvg,
-  CupSvg,
-  FlagSvg,
-  LineLeftSvg,
-  LineRightSvg,
-  LineSvg,
-  RocketSvg,
-} from './svgs'
+import * as Svg from './svgs'
 
 const badges = [
   {
-    svg: <ChipSvg />,
+    svg: <Svg.Chip />,
     description: `Coldwell Banker International Diamond Recipient`,
   },
   {
-    svg: <CupSvg />,
+    svg: <Svg.Cup />,
     description: 'Alabamas Top Real State Agent',
   },
   {
-    svg: <FlagSvg />,
+    svg: <Svg.Flag />,
     description: '12+ Years of Experience',
   },
   {
-    svg: <RocketSvg />,
+    svg: <Svg.Rocket />,
     description: 'Huntsville Top Real State Agent',
   },
 ]
@@ -52,14 +43,20 @@ export function Achievements() {
         </S.Paragraph>
 
         <Box css={{ position: 'relative', top: '-53px' }}>
-          <Box css={{ br: '28px', overflow: 'hidden', width: 336, height: 453 }}>
-            <Image src={becca} alt="Becca Travis" quality={100} placeholder="blur" />
+          <Box css={{ br: '28px' }}>
+            <Image
+              src={becca}
+              alt="Becca Travis"
+              quality={100}
+              width={336}
+              height={453}
+            />
           </Box>
           <Box css={{ position: 'absolute', bottom: 66, left: -219 }}>
-            <LineLeftSvg />
+            <Svg.LineLeft />
           </Box>
           <Box css={{ position: 'absolute', bottom: 66, right: -219 }}>
-            <LineRightSvg />
+            <Svg.LineRight />
           </Box>
         </Box>
 
@@ -71,7 +68,7 @@ export function Achievements() {
                   {badge.svg}
                   <S.BadgeDescription>{badge.description}</S.BadgeDescription>
                 </Flex>
-                {i !== badges.length - 1 && <LineSvg />}
+                {i !== badges.length - 1 && <Svg.Line />}
               </S.Badge>
             )
           })}

@@ -1,5 +1,4 @@
-import { Button } from '@common'
-import Image from 'next/image'
+import { Button, Image } from '@common'
 import * as S from './about-huntsville.styles'
 import { huntsville } from './images'
 
@@ -19,7 +18,7 @@ export function AboutHuntsville() {
         </Button>
       </div>
       <S.ImageContainer>
-        <Image src={huntsville} alt="Huntsville drone shoot" />
+        <Image src={huntsville} alt="Huntsville drone shoot" fill />
       </S.ImageContainer>
     </S.Section>
   )
