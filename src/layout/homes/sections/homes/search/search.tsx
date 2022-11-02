@@ -1,16 +1,20 @@
 import { Flex } from '@common'
 import { useHouse } from '@layout/homes/hooks/useHouse'
 import { useVisualizationStore } from '@layout/homes/store/visualization'
+import useRelativeDate from '@resources/hooks/useRelativeDate'
+import { getDate } from '@resources/utils/date'
 import { SearchInput } from '@shared'
 import * as Svg from '../svgs'
 import * as S from './search.styles'
 
-function LastUpdateLoading() {
-  return (
-    <>
-      <S.Space>------- --, ----</S.Space> at <S.Space>--:-- --</S.Space>
-    </>
-  )
+type LastUpdateProps = {
+  timestamp: string
+}
+
+function LastUpdate({ timestamp }: LastUpdateProps) {
+  const relativeDate = useRelativeDate(timestamp)
+
+  return <span title={getDate(timestamp, 'en-US', 'full')}>{relativeDate}</span>
 }
 
 export function Search() {
@@ -19,6 +23,7 @@ export function Search() {
   const visualization = useVisualizationStore(state => state.visualization)
 
   const hasListing = house.listings?.[0]
+  const timestamp = house.listings?.[0]?.lastModificationTimestamp ?? ''
 
   return (
     <>
@@ -28,8 +33,8 @@ export function Search() {
             {isLoading ? '---' : house.total} Homes for sale
           </S.HomesForSale>
           <S.LastUpdate>
-            Last update: {isLoading && <LastUpdateLoading />}
-            {hasListing ? house.listings?.[0]?.lastModification : '--'}
+            Last update: {isLoading && <S.Space>- ------- ---</S.Space>}
+            {hasListing ? <LastUpdate timestamp={timestamp} /> : '--'}
           </S.LastUpdate>
         </S.HeaderInfos>
 

@@ -1,6 +1,5 @@
 import { convertSquareFeets } from '@resources/utils/convert'
 import { formatToDollar } from '@resources/utils/currency'
-import { getDate } from '@resources/utils/date'
 import useSWR, { Fetcher } from 'swr'
 import { useAddressStore } from '../store/address'
 
@@ -65,7 +64,7 @@ export function useHouse() {
         bedroomsTotal: listing.BedroomsTotal,
         bathroomsTotal: listing.BathroomsTotalInteger,
         livingArea: convertSquareFeets(listing.LivingArea),
-        lastModification: getDate(listing.BridgeModificationTimestamp, 'en-US', 'full'),
+        lastModificationTimestamp: listing.BridgeModificationTimestamp,
       })),
       total: data?.total,
     },

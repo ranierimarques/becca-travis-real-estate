@@ -26,6 +26,7 @@
     "@rive-app/react-canvas": "^3.0.32",
     "@stitches/react": "^1.2.8",
     "chart.js": "^3.9.1",
+    "dayjs": "^1.11.6",
     "downshift": "^6.1.12",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",

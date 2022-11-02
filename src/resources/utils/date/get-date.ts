@@ -13,6 +13,7 @@ const variantOptions: variantOptionsType = {
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
+    second: '2-digit',
   },
 }
 

@@ -1,4 +1,5 @@
 import { Home } from '@layout/homes-id/sections'
+import { getDate } from '@resources/utils/date'
 import { convertSquareFeets } from '@utils/convert'
 import { formatToDollar } from '@utils/currency'
 import InferNextPropsType from 'infer-next-props-type'
@@ -97,6 +98,7 @@ export const getStaticProps = async ({ params }: Params) => {
     address: data.bundle.UnparsedAddress,
     status: data.bundle.MlsStatus,
     lastUpdated: data.bundle.BridgeModificationTimestamp,
+    lastUpdatedTitle: getDate(data.bundle.BridgeModificationTimestamp, 'en-US', 'full'),
     media: data.bundle.Media.map(media => media.MediaURL),
     bathroomsTotal: data.bundle.BathroomsTotalInteger,
     bedroomsTotal: data.bundle.BedroomsTotal,
