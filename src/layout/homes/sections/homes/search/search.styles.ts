@@ -3,6 +3,15 @@ import { styled } from 'stitches.config'
 export const HeaderInfos = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
+
+  variants: {
+    variant: {
+      2: {
+        margin: '0 16px 12px',
+        alignItems: 'flex-end',
+      },
+    },
+  },
 })
 
 export const HomesForSale = styled('div', {
@@ -24,9 +33,6 @@ export const HomesForSale = styled('div', {
         fontSize: '24px',
         lineHeight: '36px',
         color: '$black',
-        textAlign: 'center',
-
-        marginBottom: '12px',
       },
     },
   },
@@ -58,15 +64,16 @@ export const Container = styled('div', {
           justifyContent: 'space-between',
           marginTop: 16,
         },
-        [`+ ${HomesForSale}`]: {
+        [`+ ${HeaderInfos}`]: {
           display: 'none',
         },
       },
       gallery: {
         display: 'flex',
+        flexWrap: 'wrap',
         gap: 48,
 
-        margin: '32px 16px 20px',
+        margin: '32px 16px',
 
         [`> ${Options}`]: {
           gap: 32,
