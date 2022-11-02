@@ -1,7 +1,6 @@
 import { Box, Flex } from '@common'
 import { DropdownMenu, Toast } from '@primitives'
 import useRelativeDate from '@resources/hooks/useRelativeDate'
-import { getDate } from '@resources/utils/date'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as Svg from '../svgs'
