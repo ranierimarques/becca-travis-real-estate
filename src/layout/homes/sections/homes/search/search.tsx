@@ -68,7 +68,7 @@ export function Search() {
         <S.HomesForSale variant="2">
           {isLoading ? '---' : house.total} Homes for sale
         </S.HomesForSale>
-        <S.LastUpdate>
+        <S.LastUpdate variant="2">
           Last update: {isLoading && <S.Space>- ------- ---</S.Space>}
           {hasListing ? <LastUpdate timestamp={timestamp} /> : '--'}
         </S.LastUpdate>

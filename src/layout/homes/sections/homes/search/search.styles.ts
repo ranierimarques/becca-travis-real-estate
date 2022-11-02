@@ -7,8 +7,11 @@ export const HeaderInfos = styled('div', {
   variants: {
     variant: {
       2: {
+        position: 'relative',
         margin: '0 16px 12px',
         alignItems: 'flex-end',
+
+        justifyContent: 'center',
       },
     },
   },
@@ -16,10 +19,6 @@ export const HeaderInfos = styled('div', {
 
 export const HomesForSale = styled('div', {
   fontWeight: '400',
-  fontSize: '14px',
-  lineHeight: '24px',
-  letterSpacing: '-0.02em',
-  color: '$magenta6',
 
   variants: {
     variant: {
@@ -48,6 +47,17 @@ export const LastUpdate = styled('div', {
   lineHeight: '24px',
   letterSpacing: '-0.02em',
   color: '$grayW5',
+
+  variants: {
+    variant: {
+      2: {
+        position: 'absolute',
+        right: '0',
+        // margin: '0 16px 12px',
+        // alignItems: 'flex-end',
+      },
+    },
+  },
 })
 
 export const Options = styled('div', {
