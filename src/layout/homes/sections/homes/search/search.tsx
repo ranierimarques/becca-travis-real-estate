@@ -4,6 +4,7 @@ import { useVisualizationStore } from '@layout/homes/store/visualization'
 import useRelativeDate from '@resources/hooks/useRelativeDate'
 import { getDate } from '@resources/utils/date'
 import { SearchInput } from '@shared'
+import { useRouter } from 'next/router'
 import * as Svg from '../svgs'
 import * as S from './search.styles'
 
@@ -18,8 +19,8 @@ function LastUpdate({ timestamp }: LastUpdateProps) {
 }
 
 export function Search() {
+  const router = useRouter()
   const { house, isLoading } = useHouse()
-  const setVisualization = useVisualizationStore(state => state.setVisualization)
   const visualization = useVisualizationStore(state => state.visualization)
 
   const hasListing = house.listings?.[0]
@@ -43,14 +44,14 @@ export function Search() {
         <S.Options>
           <Flex>
             <S.Button
-              onClick={() => setVisualization('map')}
+              onClick={() => router.replace('?view=map')}
               active={visualization === 'map'}
               borderDirection="left"
             >
               <Svg.Location /> Map
             </S.Button>
             <S.Button
-              onClick={() => setVisualization('gallery')}
+              onClick={() => router.replace('?view=gallery')}
               active={visualization === 'gallery'}
               borderDirection="right"
             >
