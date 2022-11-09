@@ -23,6 +23,7 @@ const sharedStyles = css({
   '&:not(:disabled)': {
     '&:hover': {
       filter: 'brightness(0.9)',
+      cursor: 'pointer',
     },
 
     '&:active': {
