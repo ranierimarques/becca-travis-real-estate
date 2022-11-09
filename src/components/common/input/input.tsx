@@ -8,17 +8,43 @@ interface InputProps {
     first_name: string
     last_name: string
     message: string
+    timeframe: string
+    selling_price: string
+    street_address: string
+    state: string
+    city: string
+    zipcode: string
+    additional_information: string
   }>
-  control: Control<{
+  control?: Control<{
     number: string
     message: string
     first_name: string
     last_name: string
     email: string
+    street_address: string
+    state: string
+    city: string
+    zipcode: string
+    additional_information: string
+    timeframe: string
+    selling_price: string
   }>
   error: undefined | string
   disabled: boolean
-  name: 'number' | 'email' | 'first_name' | 'last_name' | 'message'
+  name:
+    | 'number'
+    | 'email'
+    | 'first_name'
+    | 'last_name'
+    | 'message'
+    | 'street_address'
+    | 'state'
+    | 'city'
+    | 'zipcode'
+    | 'additional_information'
+    | 'timeframe'
+    | 'selling_price'
   type: string
   placeholder: string
   label: string

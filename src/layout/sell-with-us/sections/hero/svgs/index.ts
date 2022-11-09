@@ -1,0 +1,5 @@
+export { default as Background } from './background.svg'
+export { default as Checkmark } from './checkmark.svg'
+export { default as Content } from './content.svg'
+export { default as House } from './house.svg'
+export { default as User } from './user.svg'
