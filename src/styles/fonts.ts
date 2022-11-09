@@ -1,7 +1,6 @@
-import { processFonts, type Fonts } from './helpers/fonts'
+import { processFonts } from './helpers/fonts'
 
-// Add/edit fonts here ↓
-const fonts: Fonts = [
+export const { fontFace, fontPaths } = processFonts([
   {
     fontFamily: 'IBM Plex Serif',
     fontWeight: [
@@ -10,9 +9,4 @@ const fonts: Fonts = [
     ],
     fontDisplay: 'fallback',
   },
-]
-
-const { declarations, paths } = processFonts(fonts)
-
-export const fontFace = { '@font-face': declarations }
-export const fontPaths = paths
+])

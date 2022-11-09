@@ -1,5 +1,4 @@
-import { Button } from '@common'
-import Image from 'next/image'
+import { Button, Image } from '@common'
 import { family } from './images'
 import * as S from './rent-to-own.styles'
 
@@ -7,7 +6,7 @@ export function RentToOwn() {
   return (
     <S.Section>
       <S.ImageContainer>
-        <Image src={family} alt="Happy family" />
+        <Image src={family} alt="Happy family" fill />
       </S.ImageContainer>
       <div>
         <S.Title>Rent to Own</S.Title>

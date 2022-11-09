@@ -3,7 +3,6 @@ import { Circles as CirclesSvg } from '../svgs'
 
 export const TopWrapper = styled('div', {
   position: 'relative',
-  fontSize: 0,
   background: 'rgba($colors$magenta5Rgb, 0.2)',
   overflow: 'hidden',
 
@@ -19,6 +18,8 @@ export const ImageWrapper = styled('div', {
   top: 8,
 
   transition: 'transform 300ms ease',
+
+  borderRadius: '8px 8px 0 0',
 })
 
 export const Link = styled('a', {

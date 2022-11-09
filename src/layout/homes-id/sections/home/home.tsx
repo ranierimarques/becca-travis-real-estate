@@ -19,6 +19,7 @@ interface Listing {
     address: string
     status: string
     lastUpdated: string
+    lastUpdatedTitle: string
     media: string[]
     bedroomsTotal: number
     bathroomsTotal: number

@@ -1,4 +1,9 @@
-import { styled } from 'stitches.config'
+import { keyframes, styled } from 'stitches.config'
+
+const backgroundPulse = keyframes({
+  '0%': { background: 'rgba($grayW9Rgb, 0.75)' },
+  '100%': { background: 'rgba($grayW9Rgb, 0.4)' },
+})
 
 export const Houses = styled('ul', {
   // display: 'grid',
@@ -11,8 +16,25 @@ export const Houses = styled('ul', {
 
   padding: '28px 16px 48px',
 
-  '& > li': {
-    flex: '1 1 255px',
-    // maxWidth: '336px',
+  variants: {
+    visualization: {
+      map: {
+        '& > li': {
+          flex: '1 1 255px',
+          // maxWidth: '336px',
+        },
+      },
+      gallery: {
+        '& > li': {
+          flex: '1 1 336px',
+        },
+      },
+    },
   },
+})
+
+export const SkeletonCard = styled('li', {
+  animation: `${backgroundPulse} 1s linear infinite alternate`,
+  borderRadius: 8,
+  height: '300px',
 })

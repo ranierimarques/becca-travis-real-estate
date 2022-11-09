@@ -70,8 +70,6 @@ const sharedStyles = css({
         fontWeight: '500',
         color: '$$primaryColor',
 
-        padding: '10px 20px',
-
         background: 'transparent',
         boxShadow: 'inset 0 0 0 1px $$primaryColor',
 

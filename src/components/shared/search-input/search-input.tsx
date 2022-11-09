@@ -1,3 +1,4 @@
+import { useAddressStore } from '@layout/homes/store/address'
 import useDebounce from '@resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
@@ -10,12 +11,11 @@ import {
   setBingSuggestions,
 } from './utils'
 
-type SearchProps = {
-  variant?: 'houses'
-}
+type SearchProps = React.ComponentProps<typeof S.Container>
 
-export function SearchInput({ variant }: SearchProps) {
+export function SearchInput({ ...props }: SearchProps) {
   const skipFetch = useRef(true)
+  const setAddress = useAddressStore(state => state.setAddress)
   const [searchValue, setSearchValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
   const debouncedValue = useDebounce<string>(searchValue, 500)
@@ -39,11 +39,15 @@ export function SearchInput({ variant }: SearchProps) {
       skipFetch.current = true
 
       if (selectedItem === LOCATION_VALUE) {
-        setAddressUsingGeoLocation(address => setSearchValue(address))
+        setAddressUsingGeoLocation(address => {
+          setSearchValue(address)
+          setAddress(address)
+        })
         return
       }
 
       setSearchValue(selectedItem)
+      setAddress(selectedItem)
     },
   })
 
@@ -54,8 +58,9 @@ export function SearchInput({ variant }: SearchProps) {
       if (skipFetch.current) return
 
       setSuggestions(addresses)
+      setAddress(debouncedValue)
     }, debouncedValue)
-  }, [debouncedValue])
+  }, [debouncedValue, setAddress])
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value
@@ -66,6 +71,7 @@ export function SearchInput({ variant }: SearchProps) {
     if (newValue.trim().length === 0) {
       skipFetch.current = true
       setSuggestions(['Current Location'])
+      setAddress('')
     }
   }
 
@@ -74,7 +80,7 @@ export function SearchInput({ variant }: SearchProps) {
 
   return (
     <>
-      <S.Container variant={variant}>
+      <S.Container {...props}>
         <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
           <S.Input
             type="text"

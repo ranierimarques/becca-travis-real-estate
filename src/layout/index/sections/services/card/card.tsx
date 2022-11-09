@@ -1,5 +1,5 @@
-import { Button } from '@common'
-import Image, { StaticImageData } from 'next/image'
+import { Button, Image } from '@common'
+import { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import * as S from './card.styles'
 
@@ -24,9 +24,9 @@ export function Card({ data }: cardProps) {
             <Image
               src={data.image}
               alt={data.alt}
-              objectFit="fill"
               quality="100"
-              style={{ pointerEvents: 'none' }}
+              css={{ pointerEvents: 'none', objectFit: 'contain', objectPosition: 'top' }}
+              skeletonBackground="rgba($colors$magenta5Rgb, 0.4)"
             />
           </S.ImageWrapper>
         </S.TopWrapper>

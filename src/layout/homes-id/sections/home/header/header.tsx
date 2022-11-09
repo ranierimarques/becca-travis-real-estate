@@ -1,5 +1,6 @@
 import { Box, Flex } from '@common'
 import { DropdownMenu, Toast } from '@primitives'
+import useRelativeDate from '@resources/hooks/useRelativeDate'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as Svg from '../svgs'
@@ -11,6 +12,7 @@ interface Listing {
     address: string
     status: string
     lastUpdated: string
+    lastUpdatedTitle: string
     media: string[]
     bedroomsTotal: number
     bathroomsTotal: number
@@ -35,6 +37,8 @@ interface Listing {
 }
 
 export function Header({ listing }: Listing) {
+  const relativeDate = useRelativeDate(listing.lastUpdated)
+
   const titleDetails = [
     {
       title: 'Status:',
@@ -46,7 +50,8 @@ export function Header({ listing }: Listing) {
     },
     {
       title: 'Updated:',
-      status: listing.lastUpdated,
+      status: relativeDate,
+      alt: listing.lastUpdatedTitle,
     },
   ]
   const router = useRouter()
@@ -109,7 +114,7 @@ export function Header({ listing }: Listing) {
             <Flex align="center" css={{ gap: 16 }} key={titleDetail.title}>
               <S.HouseStatus>
                 {titleDetail.title}
-                <S.Status> {titleDetail.status}</S.Status>
+                <S.Status title={titleDetail.alt}> {titleDetail.status}</S.Status>
               </S.HouseStatus>
               {index + 1 < titleDetails.length && <S.Dot />}
             </Flex>

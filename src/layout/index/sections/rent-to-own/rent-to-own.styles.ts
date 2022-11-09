@@ -12,16 +12,20 @@ export const Section = styled('section', {
 
 export const ImageContainer = styled('div', {
   position: 'relative',
+  width: 520,
+  height: 341,
+
+  borderRadius: '8px',
 
   '&::before': {
     content: `''`,
     position: 'absolute',
-    top: '12px',
+    top: '16px',
     right: '16px',
     width: '100%',
     height: '100%',
     border: '2px solid $magenta3',
-    borderRadius: '8px',
+    borderRadius: 'inherit',
     zIndex: -1,
   },
 })
