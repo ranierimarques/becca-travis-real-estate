@@ -83,6 +83,7 @@ export function Hero() {
     formState: { errors, isSubmitting },
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
+    mode: 'onChange',
   })
   const [formStep, setFormStep] = useState<number>(1)
   const [openToast, setOpenToast] = useState(false)
@@ -95,7 +96,9 @@ export function Hero() {
   }
 
   function previousForm() {
-    setFormStep(currentStep => currentStep - 1)
+    if (!isSubmitting) {
+      setFormStep(currentStep => currentStep - 1)
+    }
   }
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
