@@ -59,7 +59,7 @@ export function Search() {
             </S.Button>
           </Flex>
 
-          <S.Button>
+          <S.Button active={false}>
             <Svg.Filter /> Filter
           </S.Button>
         </S.Options>

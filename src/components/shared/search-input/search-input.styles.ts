@@ -13,7 +13,7 @@ export const InputWrapper = styled('div', {
 
   '&:hover': {
     boxShadow:
-      '0 0 0 1px $colors$magenta6, 0 0 0px 4px rgba($colors$magenta2Rgb, 0.5), 0 0 25px rgba($colors$blackRgb, 0.4)',
+      '0 0 0 1px $colors$magenta6, 0 0 0 4px rgba($colors$magenta2Rgb, 0.5), 0 0 25px rgba($colors$blackRgb, 0.4)',
   },
   '&:focus-within': {
     boxShadow:
@@ -148,6 +148,13 @@ export const Container = styled('div', {
         [`${InputWrapper}`]: {
           boxShadow: 'none',
           background: '$grayW10',
+
+          '&:hover': {
+            boxShadow: '0 0 0 1px $colors$grayW6',
+          },
+          '&:focus-within': {
+            boxShadow: '0 0 0 2px $colors$magenta3',
+          },
         },
         [`${Input}`]: {
           height: 48,

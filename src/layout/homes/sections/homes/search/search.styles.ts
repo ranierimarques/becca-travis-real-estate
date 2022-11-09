@@ -110,12 +110,28 @@ export const Button = styled('button', {
   padding: '10px 16px',
   boxShadow: 'inset 0 0 0 1px $colors$grayW4',
 
+  transition: 'filter 150ms ease, box-shadow 150ms ease',
+
+  '&:focus': {
+    zIndex: 2,
+    boxShadow: 'inset 0 0 0 1px $colors$magenta3, 0 0 0 1px $colors$magenta3',
+  },
+
   variants: {
     active: {
       true: {
         background: '$grayW3',
         boxShadow: 'inset 0 0 0 1px $colors$grayW3',
         color: '$white',
+
+        '&:hover': {
+          filter: 'brightness(0.85)',
+        },
+      },
+      false: {
+        '&:hover': {
+          background: 'rgba($grayW9Rgb, 0.5)',
+        },
       },
     },
     borderDirection: {
