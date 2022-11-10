@@ -2,7 +2,7 @@ import * as S from './description.styles'
 
 export function Description() {
   return (
-    <div>
+    <div id="description">
       <S.Title>Description</S.Title>
       <S.Description>
         Perfect, hard to find investment opportunity in a prime location. 2 story full

@@ -15,7 +15,7 @@ interface RelatedPropertiesProps {
 
 export function RelatedProperties({ listings }: RelatedPropertiesProps) {
   return (
-    <S.Container>
+    <S.Container id="related-properties">
       <S.Title>Related Properties</S.Title>
       <S.Properties>
         {listings.map((listing, index) => {
