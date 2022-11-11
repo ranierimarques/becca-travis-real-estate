@@ -22,7 +22,7 @@ const pageIndex = [
 ]
 
 function useActiveId(itemIds: string[]) {
-  const [activeId, setActiveId] = useState(`test`)
+  const [activeId, setActiveId] = useState(`initial`)
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -48,18 +48,39 @@ function useActiveId(itemIds: string[]) {
 
 export function TableOfContents() {
   const items = ['description', 'features', 'ask-a-question', 'related-properties']
-
   const activeItems = useActiveId(items)
-  console.log(activeItems)
+
   return (
     <S.Container>
       <S.PageIndex>
         {pageIndex.map(section => (
           <S.Li key={section.name}>
             <Link href={`#${section.href}`} passHref>
-              <S.Content active={section.href === activeItems}>{section.name}</S.Content>
+              <S.Content
+                onClick={e => {
+                  e.preventDefault()
+                  ;(document.querySelector(`#${section.href}`) as Element).scrollIntoView(
+                    {
+                      behavior: 'smooth',
+                    }
+                  )
+                }}
+                active={
+                  activeItems === 'initial'
+                    ? section.href === 'description'
+                    : section.href === activeItems
+                }
+              >
+                {section.name}
+              </S.Content>
             </Link>
-            <S.ActiveHr active={section.href === activeItems} />
+            <S.ActiveHr
+              active={
+                activeItems === 'initial'
+                  ? section.href === 'description'
+                  : section.href === activeItems
+              }
+            />
           </S.Li>
         ))}
       </S.PageIndex>

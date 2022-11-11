@@ -23,7 +23,6 @@ export const PageIndex = styled('ul', {
 export const ActiveHr = styled('div', {
   width: '10px',
   height: '3px',
-  boxShadow: '0 0 0 1px $gray5',
   backgroundColor: '$gray5',
   borderRadius: '999px',
 
@@ -39,7 +38,6 @@ export const ActiveHr = styled('div', {
     active: {
       true: {
         width: '88px',
-        boxShadow: '0 0 0 1px $magenta1',
         backgroundColor: '$magenta1',
 
         display: 'block',
