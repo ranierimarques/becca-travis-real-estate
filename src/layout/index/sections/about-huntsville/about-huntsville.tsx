@@ -1,4 +1,4 @@
-import { Button, Image } from '@common'
+import { Button, Image } from '@/common'
 import * as S from './about-huntsville.styles'
 import { huntsville } from './images'
 

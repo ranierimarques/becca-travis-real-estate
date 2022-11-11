@@ -1,28 +1,8 @@
-import { convertSquareFeets } from '@resources/utils/convert'
-import { formatToDollar } from '@resources/utils/currency'
+import { convertSquareFeets } from '@/resources/utils/convert'
+import { formatToDollar } from '@/resources/utils/currency'
+import { HouseCard } from '@/types/houses'
 import useSWR, { Fetcher } from 'swr'
 import { useAddressStore } from '../store/address'
-
-type Houses = {
-  success: boolean
-  status: number
-  bundle: {
-    LivingArea: number
-    BedroomsTotal: number
-    BridgeModificationTimestamp: string
-    Media: {
-      MediaURL: string
-    }[]
-    ListingId: string
-    ListPrice: number
-    BathroomsTotalInteger: number
-    UnparsedAddress: string
-    ListingKey: string
-    FeedTypes: []
-    url: string
-  }[]
-  total: number
-}
 
 const options: RequestInit = {
   method: 'GET',
@@ -31,7 +11,7 @@ const options: RequestInit = {
 
 const baseURL = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings?'
 
-const fetcher: Fetcher<Houses, [string, string]> = (...[, address]) => {
+const fetcher: Fetcher<HouseCard, [string, string]> = async (...[, address]) => {
   const params = {
     limit: '20',
     PropertyType: 'Residential',
@@ -47,7 +27,8 @@ const fetcher: Fetcher<Houses, [string, string]> = (...[, address]) => {
   }
 
   const endpoint = baseURL + new URLSearchParams(params)
-  return fetch(endpoint, options).then(res => res.json())
+  const res = await fetch(endpoint, options)
+  return res.json()
 }
 
 export function useHouse() {

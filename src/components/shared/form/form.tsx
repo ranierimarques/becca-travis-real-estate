@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Loader } from '@common'
+import { Box, Button, Flex, Input, Loader } from '@/common'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'

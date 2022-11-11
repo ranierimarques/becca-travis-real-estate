@@ -1,4 +1,4 @@
-import { Hat } from '@shared'
+import { Hat } from '@/shared'
 import * as S from './awards.styles'
 import { Carousel } from './carousel/carousel'
 

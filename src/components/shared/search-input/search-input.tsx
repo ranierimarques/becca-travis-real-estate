@@ -1,5 +1,5 @@
-import { useAddressStore } from '@layout/homes/store/address'
-import useDebounce from '@resources/hooks/useDebounce'
+import { useAddressStore } from '@/layout/homes/store/address'
+import useDebounce from '@/resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as S from './search-input.styles'

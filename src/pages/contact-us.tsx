@@ -1,4 +1,4 @@
-import { Hero } from '@layout/contact-us/sections'
+import { Hero } from '@/layout/contact-us/sections'
 import { RuntimeLoader } from '@rive-app/react-canvas'
 import type { NextPage } from 'next'
 import Head from 'next/head'

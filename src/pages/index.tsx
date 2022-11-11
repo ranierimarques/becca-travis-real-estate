@@ -6,10 +6,11 @@ import {
   OurCommunities,
   RentToOwn,
   Services,
-} from '@layout/index/sections'
-import { ClientTestimonials, LastCall } from '@shared'
-import { convertSquareFeets } from '@utils/convert'
-import { formatToDollar } from '@utils/currency'
+} from '@/layout/index/sections'
+import { ClientTestimonials, LastCall } from '@/shared'
+import { HouseCard } from '@/types/houses'
+import { convertSquareFeets } from '@/utils/convert'
+import { formatToDollar } from '@/utils/currency'
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
@@ -33,27 +34,6 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
   )
 }
 
-type FetchTypes = {
-  success: boolean
-  status: number
-  bundle: {
-    LivingArea: number
-    BedroomsTotal: number
-    BridgeModificationTimestamp: string
-    Media: {
-      MediaURL: string
-    }[]
-    ListingId: string
-    ListPrice: number
-    BathroomsTotalInteger: number
-    UnparsedAddress: string
-    ListingKey: string
-    FeedTypes: []
-    url: string
-  }[]
-  total: number
-}
-
 const endpoint =
   'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1'
 
@@ -64,7 +44,7 @@ const options = {
 
 export const getStaticProps = async () => {
   const response = await fetch(endpoint, options)
-  const data = (await response.json()) as FetchTypes
+  const data = (await response.json()) as HouseCard
 
   const listings = data.bundle.map(listing => ({
     id: listing.ListingId,

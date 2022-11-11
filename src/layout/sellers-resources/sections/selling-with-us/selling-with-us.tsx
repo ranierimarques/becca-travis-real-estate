@@ -1,5 +1,5 @@
-import { Box, Button } from '@common'
-import { Hat } from '@shared'
+import { Box, Button } from '@/common'
+import { Hat } from '@/shared'
 import * as S from './selling-with-us.styles'
 
 export function SellingWithUs() {

@@ -1,4 +1,4 @@
-import { HouseCard } from '@shared'
+import { HouseCard } from '@/shared'
 import * as S from './related-properties.styles'
 
 interface RelatedPropertiesProps {

@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@common'
+import { Box, Flex, Image } from '@/common'
 import Link from 'next/link'
 import * as S from './house-card.styles'
 import * as Svg from './svgs'

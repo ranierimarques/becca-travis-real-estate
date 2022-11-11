@@ -1,4 +1,4 @@
-import { Button, Flex } from '@common'
+import { Button, Flex } from '@/common'
 import * as S from './faster-contact.styles'
 
 export function FasterContact() {

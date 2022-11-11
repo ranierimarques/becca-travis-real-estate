@@ -1,4 +1,4 @@
-import { HuntsvilleInformation } from '@layout/buyers-resources/sections'
+import { HuntsvilleInformation } from '@/layout/buyers-resources/sections'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 

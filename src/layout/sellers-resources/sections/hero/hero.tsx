@@ -1,5 +1,5 @@
-import { Box, Button } from '@common'
-import { Hat } from '@shared'
+import { Box, Button } from '@/common'
+import { Hat } from '@/shared'
 import Image from 'next/image'
 import * as S from './hero.styles'
 import { becca, house } from './images'

@@ -1,4 +1,4 @@
-import { Flex } from '@common'
+import { Flex } from '@/common'
 import { useState } from 'react'
 import * as S from './calculator.styles'
 

@@ -1,5 +1,5 @@
-import { Box } from '@common'
-import { Form, Hat } from '@shared'
+import { Box } from '@/common'
+import { Form, Hat } from '@/shared'
 import { useState } from 'react'
 import { ContactInformation } from '.'
 import * as S from './hero.styles'

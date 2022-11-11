@@ -1,5 +1,5 @@
-import { Awards, Hero, History, WhiteGlove } from '@layout/why-becca/sections'
-import { ClientTestimonials, LastCall } from '@shared'
+import { Awards, Hero, History, WhiteGlove } from '@/layout/why-becca/sections'
+import { ClientTestimonials, LastCall } from '@/shared'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 

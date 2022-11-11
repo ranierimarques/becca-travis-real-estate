@@ -3,8 +3,8 @@ import {
   Sellers,
   SellingWithUs,
   WhyARealtor,
-} from '@layout/sellers-resources/sections'
-import { LastCall } from '@shared'
+} from '@/layout/sellers-resources/sections'
+import { LastCall } from '@/shared'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 

@@ -1,4 +1,4 @@
-import { Box } from '@common'
+import { Box } from '@/common'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EqualHousing, Mls, Realtor } from '../images'

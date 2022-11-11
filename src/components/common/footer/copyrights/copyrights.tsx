@@ -1,4 +1,4 @@
-import { Box } from '@common'
+import { Box } from '@/common'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Logo } from '../svgs'

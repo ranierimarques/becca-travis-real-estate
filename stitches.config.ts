@@ -1,6 +1,6 @@
+import { colors, colorsRgb } from '@/styles/colors'
 import type * as Stitches from '@stitches/react'
 import { createStitches } from '@stitches/react'
-import { colors, colorsRgb } from '@styles/colors'
 
 export const { styled, getCssText, globalCss, css, keyframes } = createStitches({
   theme: {

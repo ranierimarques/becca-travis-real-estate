@@ -1,5 +1,5 @@
-import { Flex } from '@common'
-import { Tooltip } from '@primitives'
+import { Flex } from '@/common'
+import { Tooltip } from '@/primitives'
 import * as Svg from '../svgs'
 import * as S from './property-details.styles'
 

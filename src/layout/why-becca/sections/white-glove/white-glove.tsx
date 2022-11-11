@@ -1,5 +1,5 @@
-import { Box } from '@common'
-import { Hat } from '@shared'
+import { Box } from '@/common'
+import { Hat } from '@/shared'
 import { HandshakeSvg, HomeSvg, LikeSvg } from './svgs'
 import * as S from './white-glove.styles'
 

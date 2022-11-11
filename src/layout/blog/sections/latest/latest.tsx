@@ -1,5 +1,5 @@
-import { Flex, Pagination } from '@common'
-import useDebounce from '@resources/hooks/useDebounce'
+import { Flex, Pagination } from '@/common'
+import useDebounce from '@/resources/hooks/useDebounce'
 import request, { gql } from 'graphql-request'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import getReadingTime from 'reading-time'

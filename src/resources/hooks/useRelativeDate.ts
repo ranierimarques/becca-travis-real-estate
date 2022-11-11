@@ -1,4 +1,4 @@
-import { getRelativeDate } from '@resources/utils/date'
+import { getRelativeDate } from '@/resources/utils/date'
 import { useEffect, useState } from 'react'
 
 function useRelativeDate(timestamp: string): string {

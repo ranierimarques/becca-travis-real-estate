@@ -1,5 +1,5 @@
-import { Box, Flex } from '@common'
-import { Toast } from '@primitives'
+import { Box, Flex } from '@/common'
+import { Toast } from '@/primitives'
 import { MailSvg, PhoneSvg } from '../svgs'
 import * as S from './contact-information.styles'
 

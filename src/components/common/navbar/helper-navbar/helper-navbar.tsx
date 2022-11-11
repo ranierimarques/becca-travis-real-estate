@@ -1,4 +1,4 @@
-import { Box } from '@common'
+import { Box } from '@/common'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import * as Svg from '../svgs'

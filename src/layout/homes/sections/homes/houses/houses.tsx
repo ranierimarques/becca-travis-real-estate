@@ -1,7 +1,7 @@
-import { useHouse } from '@layout/homes/hooks/useHouse'
-import { useVisualizationStore } from '@layout/homes/store/visualization'
-import { ScrollArea } from '@primitives'
-import { HouseCard } from '@shared'
+import { useHouse } from '@/layout/homes/hooks/useHouse'
+import { useVisualizationStore } from '@/layout/homes/store/visualization'
+import { ScrollArea } from '@/primitives'
+import { HouseCard } from '@/shared'
 import * as S from './houses.styles'
 
 export function Houses() {

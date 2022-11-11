@@ -1,6 +1,6 @@
-import { Button, Flex, Loader } from '@common'
+import { Button, Flex, Loader } from '@/common'
+import { Hat } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Hat } from '@shared'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'

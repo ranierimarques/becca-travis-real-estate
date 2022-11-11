@@ -1,4 +1,4 @@
-import { DropdownMenu } from '@primitives'
+import { DropdownMenu } from '@/primitives'
 import { useState } from 'react'
 import * as Svg from '../svgs'
 import * as S from './dropdown-language.styles'

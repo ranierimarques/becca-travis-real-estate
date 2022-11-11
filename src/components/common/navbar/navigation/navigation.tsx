@@ -1,5 +1,5 @@
-import { Box, Flex } from '@common'
-import { NavigationMenu } from '@primitives'
+import { Box, Flex } from '@/common'
+import { NavigationMenu } from '@/primitives'
 import Image from 'next/image'
 import * as Img from '../images'
 import * as Svg from '../svgs'
