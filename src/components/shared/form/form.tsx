@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Input, Loader } from '@common'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
@@ -92,17 +91,10 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
     handleSubmit,
     control,
     reset,
-    formState,
     formState: { errors, isSubmitting },
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
-
-  useEffect(() => {
-    if (formState.isSubmitSuccessful) {
-      reset()
-    }
-  }, [formState, reset])
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
     const result = await fetch('https://api.web3forms.com/submit', {
@@ -119,11 +111,14 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
 
     if (result.status === 200 && onOpenToast) {
       onOpenToast(true)
+      reset()
     }
   }
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <input type="hidden" name="from_name" value="Becca Travis Website" />
+      <input type="hidden" name="subject" value="New submission from Contact Us" />
       {!noTitle && <S.FormTitle>Send me a message</S.FormTitle>}
       <Box
         css={{
