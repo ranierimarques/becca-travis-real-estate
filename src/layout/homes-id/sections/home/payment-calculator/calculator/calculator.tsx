@@ -1,5 +1,5 @@
 import { Flex } from '@common'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import * as S from './calculator.styles'
 
 interface CalculatorProps {
@@ -8,9 +8,12 @@ interface CalculatorProps {
 }
 
 export function Calculator({ price, onValue }: CalculatorProps) {
+  const priceNumber = price.substring(1, price.length - 1)
+  console.log(parseFloat(priceNumber.replace(/,/g, '')))
+
   const [values, setValues] = useState({
     propertyPrice: price,
-    downPayment: price,
+    downPayment: `$${(parseInt(priceNumber.replace(/,/g, ''), 10) / 100) * 20}`,
     downPaymentPercentage: '20%',
     lengthOfMortgage: '30 years',
     annualInterestRate: '6%',
@@ -48,13 +51,13 @@ export function Calculator({ price, onValue }: CalculatorProps) {
     },
   ]
 
-  const onChange = (e: any) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-    console.log(values)
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [event.target.name]: event.target.value })
+    console.log(parseFloat(priceNumber))
   }
 
   return (
-    <S.Form action="">
+    <S.Form>
       {inputs.map((input, index) => {
         if (input.name === 'downPayment') {
           return (
