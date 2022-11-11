@@ -1,5 +1,5 @@
-import { Flex } from '@common'
-import { Hat, HouseCard } from '@shared'
+import { Flex } from '@/common'
+import { Hat, HouseCard } from '@/shared'
 import Link from 'next/link'
 import * as S from './new-to-market.styles'
 

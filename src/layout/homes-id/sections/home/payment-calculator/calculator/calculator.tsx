@@ -1,5 +1,5 @@
-import { Flex } from '@common'
-import { ChangeEvent, useState } from 'react'
+import { Flex } from '@/common'
+import { useState } from 'react'
 import * as S from './calculator.styles'
 
 interface CalculatorProps {

@@ -1,4 +1,4 @@
-import { Button, Image } from '@common'
+import { Button, Image } from '@/common'
 import { family } from './images'
 import * as S from './rent-to-own.styles'
 

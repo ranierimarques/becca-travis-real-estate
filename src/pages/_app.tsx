@@ -1,6 +1,6 @@
-import { Footer, Navbar } from '@common'
-import { fontPaths } from '@styles/fonts'
-import { globalStyles } from '@styles/global'
+import { Footer, Navbar } from '@/common'
+import { fontPaths } from '@/styles/fonts'
+import { globalStyles } from '@/styles/global'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 

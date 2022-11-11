@@ -1,4 +1,4 @@
-import { Button } from '@common'
+import { Button } from '@/common'
 import * as S from './miss-out-card.styles'
 
 export function MissOutCard() {

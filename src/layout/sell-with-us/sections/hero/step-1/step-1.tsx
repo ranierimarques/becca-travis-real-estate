@@ -1,4 +1,4 @@
-import { Box, Input } from '@common'
+import { Box, Input } from '@/common'
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form'
 
 import * as S from './step-1.styles'

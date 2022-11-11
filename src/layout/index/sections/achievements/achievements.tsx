@@ -1,5 +1,5 @@
-import { Box, Flex, Image } from '@common'
-import { Hat } from '@shared'
+import { Box, Flex, Image } from '@/common'
+import { Hat } from '@/shared'
 import * as S from './achievements.styles'
 import { becca } from './images'
 import * as Svg from './svgs'

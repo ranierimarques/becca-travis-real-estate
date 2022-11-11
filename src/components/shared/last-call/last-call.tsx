@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image } from '@common'
+import { Box, Button, Flex, Image } from '@/common'
 import { becca } from './images'
 import * as S from './last-call.styles'
 import {

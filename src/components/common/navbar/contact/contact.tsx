@@ -1,5 +1,5 @@
-import { Button } from '@common'
-import { Dialog } from '@primitives'
+import { Button } from '@/common'
+import { Dialog } from '@/primitives'
 import * as Svg from '../svgs'
 import * as S from './contact.styles'
 

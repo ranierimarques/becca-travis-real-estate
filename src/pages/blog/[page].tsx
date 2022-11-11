@@ -1,4 +1,4 @@
-import { Hero, Latest } from '@layout/blog/sections'
+import { Hero, Latest } from '@/layout/blog/sections'
 import request, { gql } from 'graphql-request'
 import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'

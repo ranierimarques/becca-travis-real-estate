@@ -1,4 +1,4 @@
-import { Post } from '@layout/post-slug/sections'
+import { Post } from '@/layout/post-slug/sections'
 import request, { gql } from 'graphql-request'
 import Head from 'next/head'
 import getReadingTime from 'reading-time'

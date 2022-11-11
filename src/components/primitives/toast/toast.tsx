@@ -1,4 +1,4 @@
-import { Box } from '@common'
+import { Box } from '@/common'
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import Rive from '@rive-app/react-canvas'
 import * as Svg from './svgs'

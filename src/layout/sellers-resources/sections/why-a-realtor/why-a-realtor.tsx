@@ -1,5 +1,5 @@
-import { Box, Button, Flex } from '@common'
-import { Hat } from '@shared'
+import { Box, Button, Flex } from '@/common'
+import { Hat } from '@/shared'
 import { CertifiedSvg, ContractSvg, SearchSvg } from './svgs'
 import * as S from './why-a-realtor.styles'
 

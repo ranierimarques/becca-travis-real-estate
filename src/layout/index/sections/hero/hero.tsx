@@ -1,4 +1,4 @@
-import { SearchInput } from '@shared'
+import { SearchInput } from '@/shared'
 import Image from 'next/image'
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'

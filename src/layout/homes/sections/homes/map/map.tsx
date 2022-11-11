@@ -1,4 +1,4 @@
-import { Box } from '@common'
+import { Box } from '@/common'
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api'
 import { memo } from 'react'
 import { css, keyframes } from 'stitches.config'

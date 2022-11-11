@@ -1,5 +1,5 @@
-import { Flex } from '@common'
-import { LastCall } from '@shared'
+import { Flex } from '@/common'
+import { LastCall } from '@/shared'
 import {
   AskAQuestion,
   Description,

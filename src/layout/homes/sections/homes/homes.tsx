@@ -1,4 +1,4 @@
-import { useVisualizationStore } from '@layout/homes/store/visualization'
+import { useVisualizationStore } from '@/layout/homes/store/visualization'
 import { Houses, Map, Search } from '.'
 import * as S from './homes.styles'
 

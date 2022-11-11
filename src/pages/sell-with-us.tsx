@@ -1,4 +1,4 @@
-import { Hero } from '@layout/sell-with-us/sections'
+import { Hero } from '@/layout/sell-with-us/sections'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 

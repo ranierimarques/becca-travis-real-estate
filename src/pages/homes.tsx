@@ -1,5 +1,5 @@
-import { Homes } from '@layout/homes/sections'
-import { useVisualizationStore } from '@layout/homes/store/visualization'
+import { Homes } from '@/layout/homes/sections'
+import { useVisualizationStore } from '@/layout/homes/store/visualization'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'

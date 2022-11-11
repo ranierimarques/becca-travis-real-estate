@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Loader } from '@common'
+import { Box, Button, Flex, Input, Loader } from '@/common'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'

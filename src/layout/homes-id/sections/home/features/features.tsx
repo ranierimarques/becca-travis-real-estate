@@ -1,4 +1,4 @@
-import { Flex } from '@common'
+import { Flex } from '@/common'
 import * as S from './features.styles'
 
 interface Listing {

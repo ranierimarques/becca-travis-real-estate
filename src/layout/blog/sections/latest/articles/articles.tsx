@@ -1,5 +1,5 @@
-import { Box, Flex } from '@common'
-import { getDate } from '@utils/date'
+import { Box, Flex } from '@/common'
+import { getDate } from '@/utils/date'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './articles.styles'
