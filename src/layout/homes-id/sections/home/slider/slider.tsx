@@ -47,14 +47,14 @@ export function Slider({ media }: ListingMedia) {
             <Box
               className="keen-slider__slide"
               key={index}
-              css={{ w: 'fit-content', lineHeight: 0, overflow: 'hidden' }}
+              css={{ w: 704, h: 395, lineHeight: 0, overflow: 'hidden' }}
             >
               <Image
                 src={url}
                 alt="house image"
-                width={704}
-                height={395}
                 priority={loadPreviousAndCurrentImages}
+                layout="fill"
+                objectFit="cover"
               />
             </Box>
           )

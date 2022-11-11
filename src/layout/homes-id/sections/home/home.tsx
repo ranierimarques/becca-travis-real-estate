@@ -10,6 +10,7 @@ import {
   PropertyDetails,
   RelatedProperties,
   Slider,
+  TableOfContents,
 } from '.'
 import * as S from './home.styles'
 
@@ -52,25 +53,6 @@ interface Listing {
   }[]
 }
 
-const pageIndex = [
-  {
-    name: 'Description',
-    href: '',
-  },
-  {
-    name: 'Features',
-    href: '',
-  },
-  {
-    name: 'Ask a Question',
-    href: '',
-  },
-  {
-    name: 'Related Properties',
-    href: '',
-  },
-]
-
 export function Home({ listing, relatedProperties }: Listing) {
   return (
     <S.Section>
@@ -79,11 +61,7 @@ export function Home({ listing, relatedProperties }: Listing) {
       <Flex css={{ gap: 32 }}>
         <div>
           <Slider media={listing.media} />
-          <S.PageIndex>
-            {pageIndex.map(section => (
-              <li key={section.name}>{section.name}</li>
-            ))}
-          </S.PageIndex>
+          <TableOfContents />
           <Description />
           <Features listing={listing} />
           <AskAQuestion />
@@ -104,6 +82,3 @@ export function Home({ listing, relatedProperties }: Listing) {
     </S.Section>
   )
 }
-
-// Lat: -86.737568
-// Long: 34.595169

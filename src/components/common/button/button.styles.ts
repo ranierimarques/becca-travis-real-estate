@@ -23,7 +23,6 @@ const sharedStyles = css({
   '&:not(:disabled)': {
     '&:hover': {
       filter: 'brightness(0.9)',
-      cursor: 'pointer',
     },
 
     '&:active': {
@@ -98,6 +97,24 @@ export const Link = styled('a', sharedStyles, {
 
 export const Span = styled('span', sharedStyles, {
   display: 'inline-block',
+
+  cursor: 'pointer',
+
+  variants: {
+    disabled: {
+      true: {
+        opacity: '.33',
+
+        '&:hover': {
+          cursor: 'default',
+          background: 'transparent',
+        },
+        '&:active': {
+          background: 'transparent',
+        },
+      },
+    },
+  },
 })
 
 export const Button = styled('button', sharedStyles)

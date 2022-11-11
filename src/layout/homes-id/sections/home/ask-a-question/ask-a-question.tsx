@@ -7,7 +7,7 @@ import * as S from './ask-a-question.styles'
 export function AskAQuestion() {
   const [openToast, setOpenToast] = useState(false)
   return (
-    <S.Section>
+    <S.Section id="ask-a-question">
       <S.Title>Ask a Question</S.Title>
 
       <S.Container>

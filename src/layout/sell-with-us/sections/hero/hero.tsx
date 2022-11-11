@@ -167,7 +167,13 @@ export function Hero() {
 
               <Flex css={{ gap: 18 }}>
                 {formStep > 1 && (
-                  <Button as="span" outlined onClick={previousForm} size="2">
+                  <Button
+                    as="span"
+                    outlined
+                    disabled={isSubmitting}
+                    onClick={previousForm}
+                    size="2"
+                  >
                     Previous
                   </Button>
                 )}

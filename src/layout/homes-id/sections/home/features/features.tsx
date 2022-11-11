@@ -107,7 +107,7 @@ export function Features({ listing }: Listing) {
   ]
 
   return (
-    <S.Container>
+    <S.Container id="features">
       {features.map((feature, index) => {
         return (
           <div key={index}>
