@@ -7,6 +7,8 @@ export const NavigationWrapper = styled('div', {
   borderRadius: '8px',
   cursor: 'grab',
 
+  flex: 1,
+
   '&:active': {
     cursor: 'grabbing',
   },

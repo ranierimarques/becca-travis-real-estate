@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import * as S from './table-of-contents.styles'
 
 const pageIndex = [
@@ -37,11 +37,7 @@ function useActiveId(itemIds: string[]) {
     itemIds.forEach(id => {
       observer.observe(document.getElementById(id) as Element)
     })
-    return () => {
-      itemIds.forEach(id => {
-        observer.unobserve(document.getElementById(id) as Element)
-      })
-    }
+    return () => observer.disconnect()
   }, [itemIds])
   return activeId
 }
@@ -50,6 +46,13 @@ export function TableOfContents() {
   const items = ['description', 'features', 'ask-a-question', 'related-properties']
   const activeItems = useActiveId(items)
 
+  function scrollTo(event: MouseEvent, href: string) {
+    event.preventDefault()
+    const element = document.querySelector(`#${href}`) as Element
+    const dims = element.getBoundingClientRect()
+    window.scrollTo(window.scrollX, dims.top - 100 + window.scrollY)
+  }
+
   return (
     <S.Container>
       <S.PageIndex>
@@ -57,14 +60,7 @@ export function TableOfContents() {
           <S.Li key={section.name}>
             <Link href={`#${section.href}`} passHref>
               <S.Content
-                onClick={e => {
-                  e.preventDefault()
-                  ;(document.querySelector(`#${section.href}`) as Element).scrollIntoView(
-                    {
-                      behavior: 'smooth',
-                    }
-                  )
-                }}
+                onClick={event => scrollTo(event, section.href)}
                 active={
                   activeItems === 'initial'
                     ? section.href === 'description'
@@ -84,7 +80,6 @@ export function TableOfContents() {
           </S.Li>
         ))}
       </S.PageIndex>
-      <hr />
     </S.Container>
   )
 }

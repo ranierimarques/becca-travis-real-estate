@@ -1,7 +1,7 @@
 import { styled } from 'stitches.config'
 
 export const Title = styled('h4', {
-  marginBottom: 8,
+  margin: '32px 0 8px',
 
   fontWeight: '500',
   fontSize: '24px',

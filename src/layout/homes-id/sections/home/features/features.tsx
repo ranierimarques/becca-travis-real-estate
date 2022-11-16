@@ -107,11 +107,13 @@ export function Features({ listing }: Listing) {
   ]
 
   return (
-    <S.Container id="features">
+    <S.Container>
       {features.map((feature, index) => {
         return (
           <div key={index}>
-            <S.Title>{feature.title}</S.Title>
+            <S.Title id={feature.title === 'Exterior Features' ? 'features' : ''}>
+              {feature.title}
+            </S.Title>
             <Flex direction="column" align="start" css={{ gap: 16 }}>
               {feature.feats.map((info, i) => (
                 <Flex

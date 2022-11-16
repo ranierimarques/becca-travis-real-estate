@@ -1,10 +1,5 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  maxWidth: '1072px',
-  margin: '0 auto',
-})
-
 export const Title = styled('h2', {
   marginBottom: '16px',
 

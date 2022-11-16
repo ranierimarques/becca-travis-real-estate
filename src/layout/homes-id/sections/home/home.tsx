@@ -59,24 +59,28 @@ export function Home({ listing, relatedProperties }: Listing) {
       <Header listing={listing} />
 
       <Flex css={{ gap: 32 }}>
-        <div>
-          <Slider media={listing.media} />
-          <TableOfContents />
-          <Description />
-          <Features listing={listing} />
-          <AskAQuestion />
-        </div>
-
-        <Flex direction="column" css={{ gap: 32 }}>
-          <PropertyDetails listing={listing} />
-
-          <FasterContact />
-
-          <PaymentCalculator listing={listing} />
-        </Flex>
+        <Slider media={listing.media} />
+        <PropertyDetails listing={listing} />
       </Flex>
 
-      <RelatedProperties listings={relatedProperties} />
+      <div>
+        <TableOfContents />
+
+        <Flex css={{ gap: 32 }}>
+          <div>
+            <Description />
+            <Features listing={listing} />
+            <AskAQuestion />
+          </div>
+          <Flex direction="column" css={{ gap: 32, mt: 32 }}>
+            <FasterContact />
+
+            <PaymentCalculator listing={listing} />
+          </Flex>
+        </Flex>
+
+        <RelatedProperties listings={relatedProperties} />
+      </div>
 
       <LastCall />
     </S.Section>

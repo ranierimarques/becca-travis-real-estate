@@ -2,8 +2,8 @@ import * as S from './description.styles'
 
 export function Description() {
   return (
-    <div id="description">
-      <S.Title>Description</S.Title>
+    <div>
+      <S.Title id="description">Description</S.Title>
       <S.Description>
         Perfect, hard to find investment opportunity in a prime location. 2 story full
         brick building, concrete and steel construction. 11,000 square feet. Can be Retail
