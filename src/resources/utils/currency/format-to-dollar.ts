@@ -1,7 +1,7 @@
-export function formatToDollar(amount: number) {
+export function formatToDollar(amount: number, cents = 0) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumFractionDigits: 0,
+    maximumFractionDigits: cents,
   }).format(amount)
 }
