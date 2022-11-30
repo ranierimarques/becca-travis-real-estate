@@ -1,5 +1,9 @@
 import { Flex } from '@/common'
-import { useState } from 'react'
+import { formatToDollar } from '@/resources/utils/currency'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import * as S from './calculator.styles'
 
 interface CalculatorProps {
@@ -7,73 +11,122 @@ interface CalculatorProps {
   onValue: (value: number) => void
 }
 
-export function Calculator({ price, onValue }: CalculatorProps) {
-  const priceNumber = price.substring(1, price.length - 1)
-  console.log(parseFloat(priceNumber.replace(/,/g, '')))
+const currencyRegExp = /^\$?(\d{1,3}(,\d{3})*|(\d+))(\.\d{2})?$/
 
-  const [values, setValues] = useState({
-    propertyPrice: price,
-    downPayment: `$${(parseInt(priceNumber.replace(/,/g, ''), 10) / 100) * 20}`,
-    downPaymentPercentage: '20%',
-    lengthOfMortgage: '30 years',
-    annualInterestRate: '6%',
+const formSchema = z.object({
+  property_price: z
+    .string()
+    .min(1)
+    .refine(value => currencyRegExp.test(value)),
+  down_payment: z
+    .string()
+    .min(1)
+    .refine(value => currencyRegExp.test(value)),
+  down_payment_percentage: z.string(),
+  length_of_mortgage: z.string(),
+  annual_interest_rate: z.string(),
+})
+
+type formSchemaType = z.infer<typeof formSchema>
+
+export function Calculator({ price, onValue }: CalculatorProps) {
+  const priceNumber = Number(price.replace(/[^0-9.-]+/g, ''))
+
+  const {
+    register,
+    reset,
+    getFieldState,
+    watch,
+    formState,
+    formState: { isValidating, isValid, touchedFields },
+  } = useForm<formSchemaType>({
+    resolver: zodResolver(formSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      property_price: formatToDollar(priceNumber, 2),
+      down_payment: formatToDollar(priceNumber * (20 / 100), 2),
+      down_payment_percentage: '20%',
+      length_of_mortgage: '30 Years',
+      annual_interest_rate: '6%',
+    },
   })
+
+  const fieldState = getFieldState('property_price')
+  console.log(fieldState)
+  const data = watch()
+
+  useEffect(() => {
+    if (!isValid && !isValidating) {
+      console.log(isValid)
+      console.log(isValidating)
+      reset({
+        property_price: formatToDollar(priceNumber, 2),
+        down_payment: formatToDollar(priceNumber * (20 / 100), 2),
+        down_payment_percentage: '0%',
+        length_of_mortgage: '1 Year',
+        annual_interest_rate: '0%',
+      })
+    }
+  }, [formState, data, isValidating, isValid, reset, priceNumber])
 
   const inputs = [
     {
-      name: 'propertyPrice',
+      name: 'property_price',
       label: 'Property Price',
       placeholder: '$320,000.00',
       type: 'text',
       required: false,
     },
     {
-      name: 'downPayment',
+      name: 'down_payment',
       label: 'Down payment',
       placeholder: '$64,000.00',
       type: 'text',
       required: false,
-      value: price,
     },
     {
-      name: 'lengthOfMortgage',
+      name: 'length_of_mortgage',
       label: 'Length of Mortgage',
       placeholder: '30 Years',
       type: 'text',
       required: false,
     },
     {
-      name: 'annualInterestRate',
+      name: 'annual_interest_rate',
       label: 'Annual Interest Rate',
       placeholder: '4%',
       type: 'text',
       required: false,
     },
-  ]
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [event.target.name]: event.target.value })
-    console.log(parseFloat(priceNumber))
-  }
+  ] as {
+    name:
+      | 'property_price'
+      | 'down_payment'
+      | 'length_of_mortgage'
+      | 'annual_interest_rate'
+    type: string
+    placeholder: string
+    label: string
+    required: boolean
+    defaultValue: string
+  }[]
 
   return (
     <S.Form>
       {inputs.map((input, index) => {
-        if (input.name === 'downPayment') {
+        if (input.name === 'down_payment') {
           return (
             <S.Label key={index}>
               {input.label}
               <Flex css={{ gap: 16 }}>
                 <S.InputWrapper css={{ w: 172 }}>
-                  <S.Input {...input} onChange={onChange} value={values[input.name]} />
+                  <S.Input {...input} {...register(input.name)} />
                 </S.InputWrapper>
                 <S.InputWrapper css={{ w: 100 }}>
                   <S.Input
-                    name="downPaymentPercentage"
+                    {...register('down_payment_percentage')}
                     placeholder="20%"
                     type="text"
-                    onChange={onChange}
-                    value={values.downPaymentPercentage}
                   />
                 </S.InputWrapper>
               </Flex>
@@ -84,11 +137,7 @@ export function Calculator({ price, onValue }: CalculatorProps) {
             <S.Label key={index}>
               {input.label}
               <S.InputWrapper>
-                <S.Input
-                  {...input}
-                  onChange={onChange}
-                  value={values[input.name as never]}
-                />
+                <S.Input {...input} {...register(input.name)} />
               </S.InputWrapper>
             </S.Label>
           )
