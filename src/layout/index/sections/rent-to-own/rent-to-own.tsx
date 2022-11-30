@@ -8,7 +8,6 @@ export function RentToOwn() {
       <S.ImageContainer>
         <Image src={family} alt="Happy family" fill />
       </S.ImageContainer>
-
       <div>
         <S.Title>Rent to Own</S.Title>
         <S.Paragraph>
