@@ -5,7 +5,9 @@ export const Container = styled('div', {
   flexWrap: 'wrap',
   gap: 60,
 
-  margin: '64px 0 120px',
+  marginBottom: 120,
+
+  scrollMarginTop: 100,
 })
 
 export const Title = styled('h3', {

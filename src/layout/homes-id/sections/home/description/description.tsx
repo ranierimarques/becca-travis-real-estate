@@ -1,9 +1,14 @@
+import { Box } from '@/common'
 import * as S from './description.styles'
 
 export function Description() {
   return (
-    <div>
-      <S.Title id="description">Description</S.Title>
+    <Box
+      id="description"
+      data-tab-container
+      css={{ scrollMarginTop: 100, marginBottom: 64 }}
+    >
+      <S.Title>Description</S.Title>
       <S.Description>
         Perfect, hard to find investment opportunity in a prime location. 2 story full
         brick building, concrete and steel construction. 11,000 square feet. Can be Retail
@@ -12,6 +17,6 @@ export function Description() {
         Super Center, Parkway Place Mall, Whole Foods/The Shops at Merchants Walk, and
         more.
       </S.Description>
-    </div>
+    </Box>
   )
 }

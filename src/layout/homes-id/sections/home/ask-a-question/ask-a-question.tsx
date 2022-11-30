@@ -7,8 +7,8 @@ import * as S from './ask-a-question.styles'
 export function AskAQuestion() {
   const [openToast, setOpenToast] = useState(false)
   return (
-    <div>
-      <S.Title id="ask-a-question">Ask a Question</S.Title>
+    <Box id="ask-a-question" data-tab-container css={{ scrollMarginTop: 100 }}>
+      <S.Title>Ask a Question</S.Title>
 
       <S.Container>
         <Form noTitle onOpenToast={setOpenToast} />
@@ -16,6 +16,6 @@ export function AskAQuestion() {
           <Toast openToast={openToast} onOpenToast={setOpenToast} form />
         </Box>
       </S.Container>
-    </div>
+    </Box>
   )
 }

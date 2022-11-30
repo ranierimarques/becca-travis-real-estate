@@ -1,6 +1,71 @@
 import Link from 'next/link'
-import { MouseEvent, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as S from './table-of-contents.styles'
+
+const TOP_OFFSET = 110
+
+export function getTabContainers(): NodeListOf<Element> {
+  return document.querySelectorAll('[data-tab-container]')
+}
+
+export function useTocHighlight() {
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const timeoutRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    function updateActiveLink() {
+      const pageHeight = document.body.scrollHeight
+      const scrollPosition = window.scrollY + window.innerHeight
+      const tabContainers = getTabContainers()
+
+      if (scrollPosition >= 0 && pageHeight - scrollPosition <= TOP_OFFSET) {
+        // Scrolled to bottom of page.
+        setCurrentIndex(tabContainers.length - 1)
+        return
+      }
+
+      let index = -1
+      while (index < tabContainers.length - 1) {
+        const tabContainer = tabContainers[index + 1]
+        const { top } = tabContainer.getBoundingClientRect()
+
+        if (top >= TOP_OFFSET) {
+          break
+        }
+        index += 1
+      }
+
+      setCurrentIndex(Math.max(index, 0))
+    }
+
+    function throttledUpdateActiveLink() {
+      if (timeoutRef.current === null) {
+        timeoutRef.current = window.setTimeout(() => {
+          timeoutRef.current = null
+          updateActiveLink()
+        }, 100)
+      }
+    }
+
+    document.addEventListener('scroll', throttledUpdateActiveLink)
+    document.addEventListener('resize', throttledUpdateActiveLink)
+
+    updateActiveLink()
+
+    return () => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+      document.removeEventListener('scroll', throttledUpdateActiveLink)
+      document.removeEventListener('resize', throttledUpdateActiveLink)
+    }
+  }, [])
+
+  return {
+    currentIndex,
+  }
+}
 
 const pageIndex = [
   {
@@ -21,62 +86,18 @@ const pageIndex = [
   },
 ]
 
-function useActiveId(itemIds: string[]) {
-  const [activeId, setActiveId] = useState(`initial`)
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: `0% 0% -80% 0%` }
-    )
-    itemIds.forEach(id => {
-      observer.observe(document.getElementById(id) as Element)
-    })
-    return () => observer.disconnect()
-  }, [itemIds])
-  return activeId
-}
-
 export function TableOfContents() {
-  const items = ['description', 'features', 'ask-a-question', 'related-properties']
-  const activeItems = useActiveId(items)
-
-  function scrollTo(event: MouseEvent, href: string) {
-    event.preventDefault()
-    const element = document.querySelector(`#${href}`) as Element
-    const dims = element.getBoundingClientRect()
-    window.scrollTo(window.scrollX, dims.top - 100 + window.scrollY)
-  }
+  const { currentIndex } = useTocHighlight()
 
   return (
     <S.Container>
       <S.PageIndex>
-        {pageIndex.map(section => (
-          <S.Li key={section.name}>
-            <Link href={`#${section.href}`} passHref>
-              <S.Content
-                onClick={event => scrollTo(event, section.href)}
-                active={
-                  activeItems === 'initial'
-                    ? section.href === 'description'
-                    : section.href === activeItems
-                }
-              >
-                {section.name}
-              </S.Content>
+        {pageIndex.map((section, index) => (
+          <S.Li key={section.name} active={index === currentIndex}>
+            <Link href={`#${section.href}`} passHref replace scroll={false}>
+              <S.Content>{section.name}</S.Content>
             </Link>
-            <S.ActiveHr
-              active={
-                activeItems === 'initial'
-                  ? section.href === 'description'
-                  : section.href === activeItems
-              }
-            />
+            <S.ActiveHr />
           </S.Li>
         ))}
       </S.PageIndex>

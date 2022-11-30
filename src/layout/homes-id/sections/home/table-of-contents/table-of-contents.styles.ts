@@ -32,8 +32,6 @@ export const PageIndex = styled('ul', {
   alignItems: 'center',
   gap: 32,
 
-  paddingBottom: 24,
-
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '26px',
@@ -45,41 +43,18 @@ export const PageIndex = styled('ul', {
 })
 
 export const ActiveHr = styled('div', {
-  width: '10px',
+  width: '25%',
   height: '3px',
-  backgroundColor: '$gray5',
+  background: '$gray5',
   borderRadius: '999px',
 
   position: 'absolute',
-  bottom: 0,
+  bottom: -2,
 
-  display: 'none',
+  opacity: 0,
+  pointerEvents: 'none',
 
-  animationTimingFunction: 'linear',
-  animationDuration: '300ms',
-
-  variants: {
-    active: {
-      true: {
-        width: '88px',
-        backgroundColor: '$magenta1',
-
-        display: 'block',
-      },
-    },
-  },
-})
-
-export const Li = styled('li', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-
-  '&:hover': {
-    [`& ${ActiveHr}`]: {
-      display: 'block',
-    },
-  },
+  transition: '150ms ease-out',
 })
 
 export const Content = styled('a', {
@@ -88,10 +63,36 @@ export const Content = styled('a', {
   lineHeight: '26px',
   color: '$gray5',
 
+  paddingBottom: 24,
+
+  transition: '150ms ease-out',
+})
+
+export const Li = styled('li', {
+  position: 'relative',
+
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
+  '&:hover': {
+    [`& ${ActiveHr}`]: {
+      opacity: 1,
+    },
+  },
+
   variants: {
     active: {
       true: {
-        color: '$magenta1',
+        [`& ${ActiveHr}`]: {
+          width: '100%',
+          background: '$magenta1',
+
+          opacity: 1,
+        },
+        [`& ${Content}`]: {
+          color: '$magenta1',
+        },
       },
     },
   },

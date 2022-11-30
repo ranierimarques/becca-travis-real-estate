@@ -6,6 +6,8 @@ export const Container = styled('div', {
   gap: 16,
 
   marginTop: 120,
+
+  scrollMarginTop: 100,
 })
 
 export const Title = styled('h3', {
