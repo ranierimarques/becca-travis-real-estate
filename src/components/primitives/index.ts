@@ -1,6 +1,7 @@
 export * as Dialog from './dialog/dialog'
 export * as DropdownMenu from './dropdown-menu/dropdown-menu'
 export * as NavigationMenu from './navigation-menu/navigation-menu'
+export * as Checkbox from './checkbox/checkbox'
 export { ScrollArea } from './scroll-area/scroll-area'
 export * as Select from './select/select'
 export { Toast } from './toast/toast'

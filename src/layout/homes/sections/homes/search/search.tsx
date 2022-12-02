@@ -7,6 +7,7 @@ import { SearchInput } from '@/shared'
 import { useRouter } from 'next/router'
 import * as Svg from '../svgs'
 import * as S from './search.styles'
+import Filters from '../filters/filters'
 
 type LastUpdateProps = {
   timestamp: string
@@ -58,10 +59,7 @@ export function Search() {
               <Svg.Gallery /> Gallery
             </S.Button>
           </Flex>
-
-          <S.Button active={false}>
-            <Svg.Filter /> Filter
-          </S.Button>
+          <Filters />
         </S.Options>
       </S.Container>
 

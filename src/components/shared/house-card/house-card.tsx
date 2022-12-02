@@ -15,11 +15,22 @@ interface Listing {
   }
   variant?: 'small'
   badge?: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export function HouseCard({ listing, variant, badge }: Listing) {
+export function HouseCard({
+  listing,
+  variant,
+  badge,
+  onMouseEnter,
+  onMouseLeave,
+}: Listing) {
   return (
-    <li>
+    <li
+      onMouseEnter={onMouseEnter ? onMouseEnter : undefined}
+      onMouseLeave={onMouseLeave ? onMouseLeave : undefined}
+    >
       <Link href={`/homes/${listing.id}`} passHref>
         <S.Link draggable="false" variant={variant}>
           <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
