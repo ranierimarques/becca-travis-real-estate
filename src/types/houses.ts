@@ -15,6 +15,8 @@ export type HouseCard = {
     ListingKey: string
     FeedTypes: []
     url: string
+    Latitude: number
+    Longitude: number
   }[]
   total: number
 }

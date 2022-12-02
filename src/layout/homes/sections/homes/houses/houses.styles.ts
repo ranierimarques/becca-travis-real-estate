@@ -20,7 +20,7 @@ export const Houses = styled('ul', {
     visualization: {
       map: {
         '& > li': {
-          flex: '1 1 255px',
+          flex: '1 1 155px',
           // maxWidth: '336px',
         },
       },
