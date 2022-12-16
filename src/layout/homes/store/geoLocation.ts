@@ -2,8 +2,8 @@ import create from 'zustand'
 
 interface GeoLocation {
   address?: string
-  bounds: number[]
-  filter: {
+  bounds?: number[]
+  filter?: {
     BedroomsTotal?: {
       gte: number
       lte: number
