@@ -1,6 +1,6 @@
 import { getHouseListing } from '@/services/house-listings'
 import useSWR from 'swr'
-import { useGeolocationStore, type GeoLocationState } from '../store/geoLocation'
+import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
 
 const fetcher = async (
   _endpoint: string,

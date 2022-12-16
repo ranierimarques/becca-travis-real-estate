@@ -1,16 +1,9 @@
+import { FormattedHouseCard } from '@/services/house-listings/types'
 import { HouseCard } from '@/shared'
 import * as S from './related-properties.styles'
 
 interface RelatedPropertiesProps {
-  listings: {
-    livingArea: string
-    bedroomsTotal: number
-    media: string
-    id: string
-    price: string
-    bathroomsTotal: number
-    address: string
-  }[]
+  listings: FormattedHouseCard[]
 }
 
 export function RelatedProperties({ listings }: RelatedPropertiesProps) {

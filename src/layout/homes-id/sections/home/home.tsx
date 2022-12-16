@@ -1,4 +1,5 @@
 import { Flex } from '@/common'
+import { FormattedHouseCard } from '@/services/house-listings/types'
 import { LastCall } from '@/shared'
 import {
   AskAQuestion,
@@ -42,15 +43,7 @@ interface Listing {
     middleSchool: string
     highSchool: string
   }
-  relatedProperties: {
-    livingArea: string
-    bedroomsTotal: number
-    media: string
-    id: string
-    price: string
-    bathroomsTotal: number
-    address: string
-  }[]
+  relatedProperties: FormattedHouseCard[]
 }
 
 export function Home({ listing, relatedProperties }: Listing) {
