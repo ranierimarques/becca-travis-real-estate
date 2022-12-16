@@ -18,7 +18,11 @@ export function HouseCard({
   badge,
   onMouseEnter,
   onMouseLeave,
+<<<<<<< HEAD
 }: HouseCardProps) {
+=======
+}: Listing) {
+>>>>>>> 2f3df9d22c2d914895baff2b8053202c0d3a3923
   return (
     <li
       onMouseEnter={onMouseEnter ? onMouseEnter : undefined}
