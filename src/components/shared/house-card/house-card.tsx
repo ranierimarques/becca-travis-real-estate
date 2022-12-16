@@ -1,23 +1,16 @@
 import { Box, Flex, Image } from '@/common'
+import { FormattedHouseCard } from '@/types/houses'
 import Link from 'next/link'
 import * as S from './house-card.styles'
 import * as Svg from './svgs'
 
-interface Listing {
-  listing: {
-    id: string
-    media: string
-    price: string
-    address: string
-    bedroomsTotal: number
-    bathroomsTotal: number
-    livingArea: string
-  }
+interface HouseCardProps {
+  listing: FormattedHouseCard
   variant?: 'small'
   badge?: string
 }
 
-export function HouseCard({ listing, variant, badge }: Listing) {
+export function HouseCard({ listing, variant, badge }: HouseCardProps) {
   return (
     <li>
       <Link href={`/homes/${listing.id}`} passHref>

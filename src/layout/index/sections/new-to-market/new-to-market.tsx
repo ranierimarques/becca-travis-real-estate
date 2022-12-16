@@ -1,21 +1,14 @@
 import { Flex } from '@/common'
 import { Hat, HouseCard } from '@/shared'
+import { FormattedHouseCards } from '@/types/houses'
 import Link from 'next/link'
 import * as S from './new-to-market.styles'
 
-interface Listings {
-  listings: {
-    id: string
-    media: string
-    price: string
-    address: string
-    bedroomsTotal: number
-    bathroomsTotal: number
-    livingArea: string
-  }[]
+interface NewToMarketProps {
+  listings: FormattedHouseCards
 }
 
-export function NewToMarket({ listings }: Listings) {
+export function NewToMarket({ listings }: NewToMarketProps) {
   return (
     <S.Section>
       <Hat>NEW PROPERTIES</Hat>

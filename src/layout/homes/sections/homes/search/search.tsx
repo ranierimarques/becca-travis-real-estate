@@ -24,7 +24,7 @@ export function Search() {
   const visualization = useVisualizationStore(state => state.visualization)
 
   const hasListing = house.listings?.[0]
-  const timestamp = house.listings?.[0]?.lastModificationTimestamp ?? ''
+  const timestamp = house.timestamp ?? ''
 
   return (
     <>
