@@ -1,4 +1,4 @@
-import { useAddressStore } from '@/layout/homes/store/address'
+import { useGeolocationStore } from '@/layout/homes/store/geoLocation'
 import useDebounce from '@/resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
@@ -15,7 +15,7 @@ type SearchProps = React.ComponentProps<typeof S.Container>
 
 export function SearchInput({ ...props }: SearchProps) {
   const skipFetch = useRef(true)
-  const setAddress = useAddressStore(state => state.setAddress)
+  const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
   const [searchValue, setSearchValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
   const debouncedValue = useDebounce<string>(searchValue, 500)
@@ -41,13 +41,13 @@ export function SearchInput({ ...props }: SearchProps) {
       if (selectedItem === LOCATION_VALUE) {
         setAddressUsingGeoLocation(address => {
           setSearchValue(address)
-          setAddress(address)
+          setGeoLocation({ address })
         })
         return
       }
 
       setSearchValue(selectedItem)
-      setAddress(selectedItem)
+      setGeoLocation({ address: selectedItem })
     },
   })
 
@@ -58,9 +58,9 @@ export function SearchInput({ ...props }: SearchProps) {
       if (skipFetch.current) return
 
       setSuggestions(addresses)
-      setAddress(debouncedValue)
+      setGeoLocation({ address: debouncedValue })
     }, debouncedValue)
-  }, [debouncedValue, setAddress])
+  }, [debouncedValue, setGeoLocation])
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value
@@ -71,7 +71,7 @@ export function SearchInput({ ...props }: SearchProps) {
     if (newValue.trim().length === 0) {
       skipFetch.current = true
       setSuggestions(['Current Location'])
-      setAddress('')
+      setGeoLocation({ address: '' })
     }
   }
 

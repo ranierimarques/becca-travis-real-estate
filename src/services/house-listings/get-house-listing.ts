@@ -91,8 +91,6 @@ export async function getHouseListing<T extends Type>({
   const response = await fetch(endpoint, authorization)
   const house: HouseCard = await response.json()
 
-  console.log('a', response)
-
   const listings = house.bundle.map(listing => ({
     id: listing.ListingId,
     media: listing.Media[0].MediaURL,
@@ -101,6 +99,10 @@ export async function getHouseListing<T extends Type>({
     bedroomsTotal: listing.BedroomsTotal,
     bathroomsTotal: listing.BathroomsTotalInteger,
     livingArea: convertSquareFeets(listing.LivingArea),
+    coordinates: {
+      latitude: listing.Latitude,
+      longitude: listing.Longitude,
+    },
   }))
 
   if (type === 'card') {

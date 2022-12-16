@@ -15,6 +15,8 @@ export type HouseCard = {
     BathroomsTotalInteger: number
     UnparsedAddress: string
     ListingKey: string
+    Latitude: number
+    Longitude: number
     FeedTypes: []
     url: string
   }[]
@@ -29,6 +31,10 @@ export type FormattedHouseCard = {
   bedroomsTotal: number
   bathroomsTotal: number
   livingArea: string
+  coordinates: {
+    latitude: number
+    longitude: number
+  }
 }
 
 type FormattedHouseCardsWithAdditionalInfo = {
@@ -147,6 +153,9 @@ export type GetHouseListing<T> = {
     order?: string
     near?: string
     'ListingId.ne'?: string
+    'BedroomsTotal.gte'?: string
+    'BedroomsTotal.lte'?: string
+    box?: string
   }
   fetchOn?: 'browser' | 'server'
   toURL?: string

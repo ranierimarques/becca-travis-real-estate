@@ -1,5 +1,5 @@
 import { Box, Flex, Image } from '@/common'
-import { FormattedHouseCard } from '@/types/houses'
+import { FormattedHouseCard } from '@/services/house-listings/types'
 import Link from 'next/link'
 import * as S from './house-card.styles'
 import * as Svg from './svgs'
@@ -8,11 +8,22 @@ interface HouseCardProps {
   listing: FormattedHouseCard
   variant?: 'small'
   badge?: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export function HouseCard({ listing, variant, badge }: HouseCardProps) {
+export function HouseCard({
+  listing,
+  variant,
+  badge,
+  onMouseEnter,
+  onMouseLeave,
+}: HouseCardProps) {
   return (
-    <li>
+    <li
+      onMouseEnter={onMouseEnter ? onMouseEnter : undefined}
+      onMouseLeave={onMouseLeave ? onMouseLeave : undefined}
+    >
       <Link href={`/homes/${listing.id}`} passHref>
         <S.Link draggable="false" variant={variant}>
           <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
