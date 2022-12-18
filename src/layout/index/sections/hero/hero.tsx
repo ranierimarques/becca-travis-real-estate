@@ -1,5 +1,5 @@
 import { SearchInput } from '@/shared'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'
 

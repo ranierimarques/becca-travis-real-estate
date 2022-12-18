@@ -1,7 +1,7 @@
 import { Box } from '@/common'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { useState } from 'react'
 import * as Svg from '../svgs'
 import * as S from './slider.styles'

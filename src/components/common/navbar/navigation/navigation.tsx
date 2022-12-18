@@ -1,6 +1,6 @@
 import { Box, Flex } from '@/common'
 import { NavigationMenu } from '@/primitives'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import * as Img from '../images'
 import * as Svg from '../svgs'
 import * as S from './navigation.styles'

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import * as S from './carousel.styles'
 import {
   diamondSociety,

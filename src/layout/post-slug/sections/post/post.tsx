@@ -1,7 +1,7 @@
 import { Box, Flex } from '@/common'
 import { Hat, LastCall } from '@/shared'
 import { getDate } from '@/utils/date'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { Fragment } from 'react'
 import * as S from './post.styles'
 import { ClockSvg, DividerSvg } from './svgs'
