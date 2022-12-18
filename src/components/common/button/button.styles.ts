@@ -1,4 +1,5 @@
 import type * as Stitches from '@stitches/react'
+import NextLinkUnstyled from 'next/link'
 import { css, styled } from 'stitches.config'
 import { Loader } from '../loader/loader.styles'
 
@@ -89,6 +90,10 @@ const sharedStyles = css({
     color: 'magenta',
     size: '1',
   },
+})
+
+export const NextLink = styled(NextLinkUnstyled, sharedStyles, {
+  display: 'inline-block',
 })
 
 export const Link = styled('a', sharedStyles, {

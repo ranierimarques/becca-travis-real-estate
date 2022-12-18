@@ -1,5 +1,4 @@
 import type * as Stitches from '@stitches/react'
-import Link from 'next/link'
 import { forwardRef, ReactNode } from 'react'
 import type { ButtonVariants } from './button.styles'
 import * as S from './button.styles'
@@ -24,11 +23,9 @@ export const Button = forwardRef<ref, buttonProps>(
   ({ href, children, as, target, ...props }, forwardedRef) => {
     if (href && !as) {
       return (
-        <Link href={href} passHref>
-          <S.Link {...props} ref={forwardedRef as anchorRef}>
-            {children}
-          </S.Link>
-        </Link>
+        <S.NextLink {...props} href={href} ref={forwardedRef as anchorRef}>
+          {children}
+        </S.NextLink>
       )
     }
 

@@ -27,7 +27,7 @@ export const CustomLink = ({ children, href, ...props }: customLinkProps) => {
   const isActive = router.asPath === href
 
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} passHref legacyBehavior>
       <NavigationMenuPrimitive.Link active={isActive} asChild {...props}>
         {children}
       </NavigationMenuPrimitive.Link>

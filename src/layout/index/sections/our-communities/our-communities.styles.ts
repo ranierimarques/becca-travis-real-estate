@@ -1,3 +1,5 @@
+import { Image as ImageUnstyled } from '@/common'
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
@@ -58,7 +60,7 @@ export const HoverSpan = styled('p', {
   transition: 'transform 250ms ease, opacity 250ms ease',
 })
 
-export const CommunityLink = styled('a', {
+export const CommunityLink = styled(NextLink, {
   display: 'block',
 
   position: 'relative',
@@ -84,6 +86,13 @@ export const CommunityLink = styled('a', {
     [`& ${Description}`]: { transform: 'translateY(-28px)' },
   },
   '&:active': { [`& img`]: { filter: 'brightness(0.6)' } },
+})
+
+export const Image = styled(ImageUnstyled, {
+  borderRadius: '8px',
+
+  transition: 'opacity 150ms ease, filter 250ms ease',
+  objectFit: 'cover',
 })
 
 export const ImageMask = styled('div', {

@@ -1,5 +1,5 @@
 import { SearchInput } from '@/shared'
-import Image from "next/legacy/image";
+import Image from 'next/image'
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'
 
@@ -22,9 +22,8 @@ export function Hero() {
         <Image
           src={downtownHuntsville}
           alt="Downtown Hunstsville Lake"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="50% 35%"
+          style={{ objectFit: 'cover', objectPosition: '50% 35%' }}
+          fill
           priority
         />
         <S.ImageOverlay />

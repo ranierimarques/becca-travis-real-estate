@@ -1,7 +1,6 @@
 import { Flex } from '@/common'
 import { Hat, HouseCard } from '@/shared'
 import { FormattedHouseCards } from '@/types/houses'
-import Link from 'next/link'
 import * as S from './new-to-market.styles'
 
 interface NewToMarketProps {
@@ -14,9 +13,7 @@ export function NewToMarket({ listings }: NewToMarketProps) {
       <Hat>NEW PROPERTIES</Hat>
       <Flex align="center" justify="between" css={{ w: '100%', margin: '8px 0 48px' }}>
         <S.Title>New to Market</S.Title>
-        <Link href="/homes" passHref>
-          <S.ViewAll>VIEW ALL</S.ViewAll>
-        </Link>
+        <S.ViewAll href="/homes">VIEW ALL</S.ViewAll>
       </Flex>
 
       <S.Houses>

@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 import { Circles as CirclesSvg } from '../svgs'
 
@@ -22,7 +23,7 @@ export const ImageWrapper = styled('div', {
   borderRadius: '8px 8px 0 0',
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
   borderRadius: '8px',
   overflow: 'hidden',

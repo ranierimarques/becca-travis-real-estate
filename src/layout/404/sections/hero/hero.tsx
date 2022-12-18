@@ -1,6 +1,5 @@
 import { Box } from '@/common'
 import { Hat } from '@/shared'
-import Link from 'next/link'
 import * as S from './hero.styles'
 
 const links = [
@@ -38,15 +37,13 @@ export function Hero() {
         <S.List>
           {links.map(link => (
             <li key={link.id}>
-              <Link href={link.href} passHref>
-                <S.Link>
-                  <S.LinkHeader>
-                    {link.title}
-                    <S.Arrow />
-                  </S.LinkHeader>
-                  <S.LinkDescription>{link.description}</S.LinkDescription>
-                </S.Link>
-              </Link>
+              <S.Link href={link.href}>
+                <S.LinkHeader>
+                  {link.title}
+                  <S.Arrow />
+                </S.LinkHeader>
+                <S.LinkDescription>{link.description}</S.LinkDescription>
+              </S.Link>
             </li>
           ))}
         </S.List>

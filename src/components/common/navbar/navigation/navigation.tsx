@@ -1,6 +1,6 @@
 import { Box, Flex } from '@/common'
 import { NavigationMenu } from '@/primitives'
-import Image from "next/legacy/image";
+import Image from 'next/image'
 import * as Img from '../images'
 import * as Svg from '../svgs'
 import * as S from './navigation.styles'
@@ -261,7 +261,7 @@ function CommunityGuideMenu() {
                       }}
                       src={item.image}
                       alt={`${item.name} photo`}
-                      layout="fill"
+                      fill
                     />
                     <S.OurCommunitiesImageOverlay />
                     <S.OurCommunitiesImageName>{item.name}, AL</S.OurCommunitiesImageName>

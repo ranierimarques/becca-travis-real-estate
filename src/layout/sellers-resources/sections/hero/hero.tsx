@@ -1,6 +1,6 @@
 import { Box, Button } from '@/common'
 import { Hat } from '@/shared'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import * as S from './hero.styles'
 import { becca, house } from './images'
 import { CheckmarkSvg } from './svgs'

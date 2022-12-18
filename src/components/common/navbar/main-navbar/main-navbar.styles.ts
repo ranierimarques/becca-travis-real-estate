@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Nav = styled('nav', {
@@ -9,7 +10,7 @@ export const Nav = styled('nav', {
   margin: '0 auto',
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   '&:focus-visible': {
     borderRadius: 1,
     outline: '2px auto rgba($colors$magenta1Rgb, 0.2)',

@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Nav = styled('nav', {
@@ -14,7 +15,7 @@ export const OptionsList = styled('ul', {
   gap: 16,
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   display: 'flex',
   alignItems: 'center',
   gap: 8,

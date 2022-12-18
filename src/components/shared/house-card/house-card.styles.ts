@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { keyframes, styled } from 'stitches.config'
 import * as Svg from './svgs'
 
@@ -172,7 +173,7 @@ export const VAMLS = styled('span', {
   opacity: '0.8',
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   display: 'block',
   position: 'relative',
 

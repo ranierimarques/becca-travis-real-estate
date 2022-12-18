@@ -1,6 +1,5 @@
 import { Box } from '@/common'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import * as Svg from '../svgs'
 import * as S from './helper-navbar.styles'
 
@@ -21,11 +20,9 @@ export function HelperNavbar() {
         <S.OptionsList>
           {links.map(link => (
             <li key={link.id}>
-              <Link href={link.href} passHref>
-                <S.Link>
-                  {link.icon} {link.text}
-                </S.Link>
-              </Link>
+              <S.Link href={link.href}>
+                {link.icon} {link.text}
+              </S.Link>
             </li>
           ))}
         </S.OptionsList>

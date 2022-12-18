@@ -1,5 +1,4 @@
 import { Box } from '@/common'
-import Link from 'next/link'
 import { useState } from 'react'
 import { Logo } from '../svgs'
 import * as S from './copyrights.styles'
@@ -34,11 +33,9 @@ export function Copyrights() {
         </S.Link>
       </S.MadeBy>
 
-      <Link href="/" passHref>
-        <S.LogoLink>
-          <Logo />
-        </S.LogoLink>
-      </Link>
+      <S.LogoLink href="/">
+        <Logo />
+      </S.LogoLink>
 
       <S.Copyright>© 2022 — All rights reserved.</S.Copyright>
     </Box>

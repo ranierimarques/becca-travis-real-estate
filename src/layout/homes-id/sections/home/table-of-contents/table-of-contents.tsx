@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import * as S from './table-of-contents.styles'
 
@@ -94,9 +93,9 @@ export function TableOfContents() {
       <S.PageIndex>
         {pageIndex.map((section, index) => (
           <S.Li key={section.name} active={index === currentIndex}>
-            <Link href={`#${section.href}`} passHref replace scroll={false}>
-              <S.Content>{section.name}</S.Content>
-            </Link>
+            <S.Content href={`#${section.href}`} replace scroll={false}>
+              {section.name}
+            </S.Content>
             <S.ActiveHr />
           </S.Li>
         ))}

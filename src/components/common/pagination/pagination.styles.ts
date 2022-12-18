@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
@@ -15,7 +16,7 @@ export const Dotts = styled('span', {
   padding: '0px 8px',
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   display: 'inline-block',
 
   padding: '4px 8px',

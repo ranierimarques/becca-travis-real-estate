@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import * as S from './pagination.styles'
 
 const getPages = (length: number, inc = 1) => Array.from({ length }, (_, i) => i + inc)
@@ -45,9 +44,13 @@ export function Pagination({
         pageNumber === dotts ? (
           <S.Dotts key={i}>{pageNumber}</S.Dotts>
         ) : (
-          <Link key={i} href={renderPageLink(pageNumber as number)} passHref>
-            <S.Link active={pageNumber === currentPage}>{pageNumber}</S.Link>
-          </Link>
+          <S.Link
+            key={i}
+            href={renderPageLink(pageNumber as number)}
+            active={pageNumber === currentPage}
+          >
+            {pageNumber}
+          </S.Link>
         )
       )}
     </S.Container>

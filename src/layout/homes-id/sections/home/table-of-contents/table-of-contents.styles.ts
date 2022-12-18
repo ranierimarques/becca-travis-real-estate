@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
@@ -57,7 +58,7 @@ export const ActiveHr = styled('div', {
   transition: '150ms ease-out',
 })
 
-export const Content = styled('a', {
+export const Content = styled(NextLink, {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '26px',
