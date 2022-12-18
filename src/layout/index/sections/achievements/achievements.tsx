@@ -31,7 +31,7 @@ export function Achievements() {
         <S.Line />
         <S.Title>
           Enjoy the freedom that comes with having one of Alabama&apos;s top real estate
-          agent&apos;s in your corner.
+          agent&apos;s in your corner
         </S.Title>
       </Flex>
 

@@ -1,9 +1,6 @@
 import { globalCss } from 'stitches.config'
-import { fontFace } from './fonts'
 
 export const globalStyles = globalCss({
-  ...fontFace,
-
   '*, *::before, *::after': {
     boxSizing: 'border-box',
   },
@@ -25,7 +22,7 @@ export const globalStyles = globalCss({
     overflowX: 'hidden',
     lineHeight: '1.5',
     '-webkit-font-smoothing': 'antialiased',
-    fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
+    // fontFamily: `'IBM Plex Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;`,
   },
 
   '#__next': {
