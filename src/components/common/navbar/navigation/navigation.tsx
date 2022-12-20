@@ -276,7 +276,7 @@ function CommunityGuideMenu() {
   )
 }
 
-export default function Navigation() {
+export function Navigation() {
   return (
     <NavigationMenu.Root>
       <NavigationMenu.List>

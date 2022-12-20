@@ -19,7 +19,7 @@ const contacts = [
   },
 ]
 
-export default function Contact() {
+export function Contact() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
