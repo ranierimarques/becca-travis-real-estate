@@ -44,6 +44,7 @@ export const getStaticProps = async () => {
         '/home/houses': listings,
       },
     },
+    revalidate: 60 * 30, // 30 minutes
   }
 }
 

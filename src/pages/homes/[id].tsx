@@ -49,6 +49,7 @@ export const getStaticProps = async ({ params }: Params) => {
         '/homes/related-properties': relatedProperties,
       },
     },
+    revalidate: 60 * 30, // 30 minutes
   }
 }
 
