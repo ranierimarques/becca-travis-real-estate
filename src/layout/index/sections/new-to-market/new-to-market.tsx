@@ -1,13 +1,14 @@
 import { Flex } from '@/common'
+import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
-import { FormattedHouseCards } from '@/types/houses'
+import useSWR from 'swr'
 import * as S from './new-to-market.styles'
 
-interface NewToMarketProps {
-  listings: FormattedHouseCards
-}
+export function NewToMarket() {
+  const { data: listings } = useSWR('/home/houses', async () =>
+    getHouseListing({ type: 'card', fetchOn: 'browser' })
+  )
 
-export function NewToMarket({ listings }: NewToMarketProps) {
   return (
     <S.Section>
       <Hat>NEW PROPERTIES</Hat>
@@ -17,7 +18,7 @@ export function NewToMarket({ listings }: NewToMarketProps) {
       </Flex>
 
       <S.Houses>
-        {listings.map(listing => (
+        {listings?.map(listing => (
           <HouseCard key={listing.id} listing={listing} badge="New" />
         ))}
       </S.Houses>

@@ -4,17 +4,14 @@ import InferNextPropsType from 'infer-next-props-type'
 import { GetStaticPaths, NextPage } from 'next'
 import Head from 'next/head'
 
-const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({
-  listing,
-  relatedProperties,
-}) => {
+const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({ listing }) => {
   return (
     <main>
       <Head>
         <title>Becca Travis</title>
       </Head>
 
-      <Home listing={listing} relatedProperties={relatedProperties} />
+      <Home listing={listing} />
     </main>
   )
 }
@@ -41,16 +38,17 @@ export const getStaticProps = async ({ params }: Params) => {
     type: 'card',
     params: {
       near: `${house.listing.coords[0]},${house.listing.coords[1]}`,
-      'ListingId.ne': params.id,
+      'ListingId.ne': house.listing.id,
     },
   })
 
   return {
     props: {
       listing: house.listing,
-      relatedProperties,
+      fallback: {
+        '/homes/related-properties': relatedProperties,
+      },
     },
-    revalidate: false,
   }
 }
 

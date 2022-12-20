@@ -48,6 +48,7 @@ export async function getHouseListing<T extends Type>({
     const house: House = await response.json()
 
     const listing = {
+      id: house.bundle.ListingId,
       price: formatToDollar(house.bundle.ListPrice),
       address: house.bundle.UnparsedAddress,
       status: house.bundle.MlsStatus,

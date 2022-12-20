@@ -93,9 +93,10 @@ export type House = {
   }
 }
 
-type FormattedHouse = {
+export type FormattedHouse = {
   success: boolean
   listing: {
+    id: string
     price: string
     address: string
     status:
