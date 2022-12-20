@@ -1,11 +1,10 @@
 import { getHouseListing } from '@/services/house-listings'
-import useSWR from 'swr'
+import useSWR, { preload } from 'swr'
 import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
 
-const fetcher = async (
-  _endpoint: string,
-  geoLocation: GeoLocationState['geoLocation']
-) => {
+type Fetcher = [string, GeoLocationState['geoLocation']]
+
+const fetcher = async ([, geoLocation]: Fetcher) => {
   const BedroomsTotal = geoLocation.filter?.BedroomsTotal
 
   const params = {
@@ -19,7 +18,7 @@ const fetcher = async (
   } as Record<string, string>
 
   if (geoLocation.address) {
-    params['UnparsedAddress.in'] = 'huntsville'
+    params['UnparsedAddress.in'] = geoLocation.address
   }
 
   if (geoLocation?.bounds && geoLocation.bounds.length >= 3) {
@@ -34,11 +33,13 @@ const fetcher = async (
   return getHouseListing({ type: 'card-full-info', params, fetchOn: 'browser' })
 }
 
+preload(['houses', ''], fetcher)
+
 export function useHouse() {
   const geoLocation = useGeolocationStore(state => state.geoLocation)
-  const { data, error } = useSWR(['houses', geoLocation], fetcher)
-
-  console.log(data)
+  const { data, error } = useSWR(['houses', geoLocation], fetcher, {
+    keepPreviousData: true,
+  })
 
   return {
     house: {
