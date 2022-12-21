@@ -1,4 +1,5 @@
 import { Hat } from '@/shared'
+import { Section } from '@/template'
 import {
   athens,
   decatur,
@@ -21,7 +22,7 @@ const communitiesData = [
 
 export function OurCommunities() {
   return (
-    <S.Section>
+    <Section padding="5" hasMaxWidth>
       <Hat css={{ mb: 8 }}>Meet our communities</Hat>
       <S.Title>Our communities</S.Title>
       <S.CommunitiesList>
@@ -45,6 +46,6 @@ export function OurCommunities() {
           )
         })}
       </S.CommunitiesList>
-    </S.Section>
+    </Section>
   )
 }

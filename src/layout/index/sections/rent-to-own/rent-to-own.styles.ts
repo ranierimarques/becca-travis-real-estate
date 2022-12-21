@@ -1,15 +1,5 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  maxWidth: '1072px',
-  margin: '0 auto',
-  paddingBottom: '116px',
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
-
 export const ImageContainer = styled('div', {
   position: 'relative',
   width: 520,

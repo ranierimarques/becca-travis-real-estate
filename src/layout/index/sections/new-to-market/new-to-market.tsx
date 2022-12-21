@@ -1,6 +1,7 @@
 import { Flex } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
+import { Section } from '@/template'
 import useSWR from 'swr'
 import * as S from './new-to-market.styles'
 
@@ -10,7 +11,7 @@ export function NewToMarket() {
   )
 
   return (
-    <S.Section>
+    <Section hasMaxWidth padding="2">
       <Hat>NEW PROPERTIES</Hat>
       <Flex align="center" justify="between" css={{ w: '100%', margin: '8px 0 48px' }}>
         <S.Title>New to Market</S.Title>
@@ -22,6 +23,6 @@ export function NewToMarket() {
           <HouseCard key={listing.id} listing={listing} badge="New" />
         ))}
       </S.Houses>
-    </S.Section>
+    </Section>
   )
 }

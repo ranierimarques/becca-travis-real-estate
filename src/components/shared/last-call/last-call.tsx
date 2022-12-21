@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Image } from '@/common'
+import { Section } from '@/template'
 import { becca } from './images'
 import * as S from './last-call.styles'
 import {
@@ -13,7 +14,7 @@ import {
 
 export function LastCall() {
   return (
-    <S.Section>
+    <Section hasMaxWidth padding="6">
       <S.Container>
         <Flex direction="column" align="start">
           <S.Title>
@@ -95,6 +96,6 @@ export function LastCall() {
           </Box>
         </div>
       </S.Container>
-    </S.Section>
+    </Section>
   )
 }
