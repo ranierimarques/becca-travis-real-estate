@@ -1,10 +1,9 @@
 import { Home } from '@/layout/homes-id/sections'
 import { getHouseListing } from '@/services/house-listings'
-import InferNextPropsType from 'infer-next-props-type'
-import { GetStaticPaths, NextPage } from 'next'
+import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
-const Page: NextPage<InferNextPropsType<typeof getStaticProps>> = ({ listing }) => {
+const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listing }) => {
   return (
     <main>
       <Head>
