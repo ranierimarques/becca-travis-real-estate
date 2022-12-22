@@ -1,10 +1,11 @@
 import { Button, Image } from '@/common'
+import { Section } from '@/template'
 import * as S from './about-huntsville.styles'
 import { huntsville } from './images'
 
 export function AboutHuntsville() {
   return (
-    <S.Section>
+    <Section direction="horizontal" hasMaxWidth>
       <div>
         <S.Title>About Huntsville</S.Title>
         <S.Paragraph>
@@ -20,6 +21,6 @@ export function AboutHuntsville() {
       <S.ImageContainer>
         <Image src={huntsville} alt="Huntsville drone shoot" fill />
       </S.ImageContainer>
-    </S.Section>
+    </Section>
   )
 }

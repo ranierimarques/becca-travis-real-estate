@@ -1,4 +1,4 @@
-import { useGeolocationStore } from '@/layout/homes/store/geoLocation'
+import { useGeolocationStore } from '@/layout/homes/store/geolocation'
 import useDebounce from '@/resources/hooks/useDebounce'
 import { useCombobox } from 'downshift'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'

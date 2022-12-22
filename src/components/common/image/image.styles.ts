@@ -1,4 +1,4 @@
-import NextImage from 'next/future/image'
+import NextImage from 'next/image'
 import { keyframes, styled } from 'stitches.config'
 
 const shimmer = keyframes({

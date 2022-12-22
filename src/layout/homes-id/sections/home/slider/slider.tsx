@@ -53,8 +53,8 @@ export function Slider({ media }: ListingMedia) {
                 src={url}
                 alt="house image"
                 priority={loadPreviousAndCurrentImages}
-                layout="fill"
-                objectFit="cover"
+                style={{ objectFit: 'cover' }}
+                fill
               />
             </Box>
           )

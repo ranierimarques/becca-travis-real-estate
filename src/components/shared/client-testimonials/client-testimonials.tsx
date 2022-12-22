@@ -1,6 +1,7 @@
 import { Button, Flex } from '@/common'
 import { Tooltip } from '@/primitives'
 import { Hat } from '@/shared'
+import { Section } from '@/template'
 import { useRef, useState } from 'react'
 import { Testimonial } from '.'
 import * as S from './client-testimonials.styles'
@@ -177,7 +178,7 @@ export function ClientTestimonials() {
   }
 
   return (
-    <S.Section>
+    <Section hasMaxWidth>
       <div>
         <Hat css={{ mb: 8 }}>CUSTOMERS STORIES</Hat>
         <S.Title>Client stories</S.Title>
@@ -207,6 +208,6 @@ export function ClientTestimonials() {
           </Button>
         </S.OverlayWrapper>
       </S.TestimonialsContainer>
-    </S.Section>
+    </Section>
   )
 }

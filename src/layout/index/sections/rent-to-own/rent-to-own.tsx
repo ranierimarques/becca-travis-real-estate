@@ -1,10 +1,11 @@
 import { Button, Image } from '@/common'
+import { Section } from '@/template'
 import { family } from './images'
 import * as S from './rent-to-own.styles'
 
 export function RentToOwn() {
   return (
-    <S.Section>
+    <Section direction="horizontal" padding="4" hasMaxWidth>
       <S.ImageContainer>
         <Image src={family} alt="Happy family" fill />
       </S.ImageContainer>
@@ -21,6 +22,6 @@ export function RentToOwn() {
           Learn more
         </Button>
       </div>
-    </S.Section>
+    </Section>
   )
 }

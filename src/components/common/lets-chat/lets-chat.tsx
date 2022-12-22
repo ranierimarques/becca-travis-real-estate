@@ -1,12 +1,7 @@
 import { Button } from '@/common'
 import { Dialog } from '@/primitives'
-import { ReactNode } from 'react'
-import * as S from './lets-chat.styles'
-import * as Svg from './svgs'
-
-interface LetsChatProps {
-  children?: ReactNode
-}
+import * as Svg from '../svgs'
+import * as S from './contact.styles'
 
 const contacts = [
   {
@@ -24,11 +19,11 @@ const contacts = [
   },
 ]
 
-export function LetsChat({ children }: LetsChatProps) {
+export default function Contact() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        {children ? children : <Button css={{ marginLeft: 16 }}>Let&apos;s chat</Button>}
+        <Button css={{ marginLeft: 16 }}>Let&apos;s chat</Button>
       </Dialog.Trigger>
       <Dialog.Content title="Let's chat" description="You can reach me at:">
         <S.Title>Let&apos;s chat</S.Title>

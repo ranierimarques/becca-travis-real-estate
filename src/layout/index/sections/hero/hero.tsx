@@ -1,11 +1,12 @@
 import { SearchInput } from '@/shared'
+import { Section } from '@/template'
 import Image from 'next/image'
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'
 
 export function Hero() {
   return (
-    <S.Section>
+    <Section direction="vertical">
       <S.Title>
         Find your dream <br />
         home today
@@ -22,15 +23,14 @@ export function Hero() {
         <Image
           src={downtownHuntsville}
           alt="Downtown Hunstsville Lake"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="50% 35%"
+          style={{ objectFit: 'cover', objectPosition: '50% 35%' }}
+          fill
           priority
         />
         <S.ImageOverlay />
       </S.ImageWrapper>
 
       <S.ArrowDown />
-    </S.Section>
+    </Section>
   )
 }

@@ -1,10 +1,9 @@
-import { Image } from '@/common'
 import { Hat } from '@/shared'
-import Link from 'next/link'
+import { Section } from '@/template'
 import {
   athens,
   decatur,
-  hamptonCover,
+  hamptomCove,
   harvest,
   huntsville,
   meridianville,
@@ -15,7 +14,7 @@ import { ArrowLeftSvg } from './svgs'
 const communitiesData = [
   { image: harvest, alt: 'Harvest road', name: 'Harvest', href: '/harvest' },
   { image: huntsville, alt: 'forest', name: 'Huntsville', href: '/huntsville' },
-  { image: hamptonCover, alt: 'lake', name: 'Hamptom Cove', href: '/hamptom-cove' },
+  { image: hamptomCove, alt: 'lake', name: 'Hamptom Cove', href: '/hamptom-cove' },
   { image: decatur, alt: 'home', name: 'Decatur', href: '/decatur' },
   { image: athens, alt: 'river', name: 'Athens', href: '/athens' },
   { image: meridianville, alt: 'house', name: 'Meridianville', href: '/meridianville' },
@@ -23,38 +22,30 @@ const communitiesData = [
 
 export function OurCommunities() {
   return (
-    <S.Section>
+    <Section padding="5" hasMaxWidth>
       <Hat css={{ mb: 8 }}>Meet our communities</Hat>
       <S.Title>Our communities</S.Title>
       <S.CommunitiesList>
         {communitiesData.map(community => {
           return (
             <li key={community.name}>
-              <Link href={community.href} passHref>
-                <S.CommunityLink>
-                  <Image
-                    src={community.image}
-                    alt={`${community.name} ${community.alt}`}
-                    fill
-                    css={{
-                      borderRadius: '8px',
-
-                      transition: 'opacity 150ms ease, filter 250ms ease',
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <S.ImageMask />
-                  <S.Description>{community.name}, AL</S.Description>
-                  <S.HoverSpan>
-                    Read more
-                    <ArrowLeftSvg />
-                  </S.HoverSpan>
-                </S.CommunityLink>
-              </Link>
+              <S.CommunityLink href={community.href}>
+                <S.Image
+                  src={community.image}
+                  alt={`${community.name} ${community.alt}`}
+                  fill
+                />
+                <S.ImageMask />
+                <S.Description>{community.name}, AL</S.Description>
+                <S.HoverSpan>
+                  Read more
+                  <ArrowLeftSvg />
+                </S.HoverSpan>
+              </S.CommunityLink>
             </li>
           )
         })}
       </S.CommunitiesList>
-    </S.Section>
+    </Section>
   )
 }

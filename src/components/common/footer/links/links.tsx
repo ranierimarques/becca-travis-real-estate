@@ -1,6 +1,5 @@
 import { Box } from '@/common'
 import Image from 'next/image'
-import Link from 'next/link'
 import { EqualHousing, Mls, Realtor } from '../images'
 import { ColdwellBanker, Facebook, Instagram, Linkedin, Mail, Phone } from '../svgs'
 import * as S from './links.styles'
@@ -40,9 +39,7 @@ function GetLinks({ links }: linksProps) {
     <>
       {links.map(link => (
         <li key={link.text}>
-          <Link href={link.href} passHref>
-            <S.Link>{link.text}</S.Link>
-          </Link>
+          <S.Link href={link.href}>{link.text}</S.Link>
         </li>
       ))}
     </>

@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { keyframes, styled } from 'stitches.config'
 import { Heart as HeartSvg } from '../svgs'
 
@@ -57,7 +58,7 @@ export const Heart = styled(HeartSvg, {
   },
 })
 
-export const LogoLink = styled('a', {
+export const LogoLink = styled(NextLink, {
   justifySelf: 'center',
 
   '&:focus-visible': {

@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 import { Arrow as ArrowSvg, House as HouseSvg } from './svgs'
 
@@ -61,7 +62,7 @@ export const LinkHeader = styled('div', {
   transition: 'all 250ms ease',
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   display: 'inline-block',
 
   borderRadius: 5,

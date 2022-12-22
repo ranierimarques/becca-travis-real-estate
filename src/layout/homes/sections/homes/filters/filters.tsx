@@ -1,8 +1,8 @@
+import { useGeolocationStore } from '@/layout/homes/store/geolocation'
 import { Dialog } from '@/primitives'
-import * as S from './filters.styles'
+import { useState } from 'react'
 import * as Svg from '../svgs'
-import { useState, useEffect } from 'react'
-import { useGeolocationStore } from '@/layout/homes/store/geoLocation'
+import * as S from './filters.styles'
 
 export default function Contact() {
   const [bedroomLte, setBedroomLte] = useState('')

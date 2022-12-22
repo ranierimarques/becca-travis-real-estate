@@ -1,36 +1,28 @@
 import { Flex } from '@/common'
+import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
-import Link from 'next/link'
+import { Section } from '@/template'
+import useSWR from 'swr'
 import * as S from './new-to-market.styles'
 
-interface Listings {
-  listings: {
-    id: string
-    media: string
-    price: string
-    address: string
-    bedroomsTotal: number
-    bathroomsTotal: number
-    livingArea: string
-  }[]
-}
+export function NewToMarket() {
+  const { data: listings } = useSWR('/home/houses', async () =>
+    getHouseListing({ type: 'card', fetchOn: 'browser' })
+  )
 
-export function NewToMarket({ listings }: Listings) {
   return (
-    <S.Section>
+    <Section hasMaxWidth padding="2">
       <Hat>NEW PROPERTIES</Hat>
       <Flex align="center" justify="between" css={{ w: '100%', margin: '8px 0 48px' }}>
         <S.Title>New to Market</S.Title>
-        <Link href="/homes" passHref>
-          <S.ViewAll>VIEW ALL</S.ViewAll>
-        </Link>
+        <S.ViewAll href="/homes">VIEW ALL</S.ViewAll>
       </Flex>
 
       <S.Houses>
-        {listings.map(listing => (
+        {listings?.map(listing => (
           <HouseCard key={listing.id} listing={listing} badge="New" />
         ))}
       </S.Houses>
-    </S.Section>
+    </Section>
   )
 }

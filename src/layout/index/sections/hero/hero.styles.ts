@@ -1,14 +1,6 @@
 import { styled } from 'stitches.config'
 import { ArrowDown as ArrowDownSvg } from './svgs'
 
-export const Section = styled('section', {
-  position: 'relative',
-
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-})
-
 export const Title = styled('h1', {
   marginTop: 120,
 

@@ -1,11 +1,5 @@
 import { css, styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  margin: '0 auto',
-  maxWidth: '1072px',
-  padding: '159px 0 120px',
-})
-
 export const Container = styled('div', {
   display: 'flex',
   alignItems: 'center',

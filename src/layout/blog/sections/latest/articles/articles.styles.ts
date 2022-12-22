@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Articles = styled('ul', {
@@ -40,7 +41,7 @@ export const NoResults = styled('div', {
   },
 })
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   display: 'block',
 })
 

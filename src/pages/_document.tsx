@@ -27,6 +27,7 @@ export default function Document() {
       </Head>
       <body>
         <Main />
+        <div id="navbarMobile" />
         <NextScript />
       </body>
     </Html>

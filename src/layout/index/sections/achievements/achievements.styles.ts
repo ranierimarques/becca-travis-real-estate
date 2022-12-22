@@ -1,17 +1,5 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-
-  position: 'relative',
-
-  padding: '95px 0 105px',
-
-  background: `rgba($colors$grayW8Rgb, 0.1)`,
-})
-
 export const Line = styled('div', {
   width: '40px',
   height: '2px',

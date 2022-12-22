@@ -23,6 +23,7 @@ export const List = styled('ul', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   gap: 8,
+  width: 'max-content',
 })
 
 export const Link = styled('a', {
@@ -49,6 +50,14 @@ export const Link = styled('a', {
     '&:hover': {
       boxShadow: '0 0 0 1px $colors$magenta1, 0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
     },
+  },
+
+  '@bp2': {
+    padding: '12px 20px',
+  },
+
+  '@bp1': {
+    padding: '12px 16px',
   },
 })
 

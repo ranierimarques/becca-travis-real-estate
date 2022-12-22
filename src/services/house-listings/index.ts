@@ -1,1 +1,1 @@
-export { houseListings } from './house-listings'
+export { getHouseListing } from './get-house-listing'

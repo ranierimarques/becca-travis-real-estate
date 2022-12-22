@@ -1,4 +1,5 @@
 import { Flex } from '@/common'
+import { FormattedHouse } from '@/services/house-listings/types'
 import { LastCall } from '@/shared'
 import {
   AskAQuestion,
@@ -15,47 +16,10 @@ import {
 import * as S from './home.styles'
 
 interface Listing {
-  listing: {
-    price: string
-    priceNumber: number
-    address: string
-    status: string
-    lastUpdated: string
-    lastUpdatedTitle: string
-    media: string[]
-    bedroomsTotal: number
-    bathroomsTotal: number
-    lotSizeSquareFeet: string
-    subdivisionName: string
-    propertySubType: string
-    countyOrParish: string
-    cityRegion: string | null
-
-    foundationDetails: string
-    levels: string
-    buildingTotalArea: string
-    newConstruction: string
-    propertyCondition: string
-    propertyType: string
-    sewer: string
-    waterSource: string
-    elementarySchool: string
-    middleSchool: string
-    highSchool: string
-    publicRemarks: string
-  }
-  relatedProperties: {
-    livingArea: string
-    bedroomsTotal: number
-    media: string
-    id: string
-    price: string
-    bathroomsTotal: number
-    address: string
-  }[]
+  listing: FormattedHouse['listing']
 }
 
-export function Home({ listing, relatedProperties }: Listing) {
+export function Home({ listing }: Listing) {
   return (
     <S.Section>
       <Header listing={listing} />
@@ -81,7 +45,7 @@ export function Home({ listing, relatedProperties }: Listing) {
           </Flex>
         </Flex>
 
-        <RelatedProperties listings={relatedProperties} />
+        <RelatedProperties id={listing.id} coords={listing.coords} />
       </div>
 
       <LastCall />

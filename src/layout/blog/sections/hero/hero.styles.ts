@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
@@ -62,7 +63,7 @@ export const Overlay = styled('div', {
   borderRadius: '8px',
 })
 
-export const LastPostLink = styled('a', {
+export const LastPostLink = styled(NextLink, {
   position: 'relative',
 
   '&:hover': {

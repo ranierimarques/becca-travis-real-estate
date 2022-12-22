@@ -1,6 +1,7 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
-export const Link = styled('a', {
+export const Link = styled(NextLink, {
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '21px',

@@ -1,10 +1,5 @@
+import NextLink from 'next/link'
 import { styled } from 'stitches.config'
-
-export const Section = styled('section', {
-  maxWidth: '1072px',
-  margin: '0 auto',
-  padding: '120px 0',
-})
 
 export const Title = styled('h2', {
   fontWeight: '500',
@@ -13,7 +8,7 @@ export const Title = styled('h2', {
   color: '$magenta6',
 })
 
-export const ViewAll = styled('a', {
+export const ViewAll = styled(NextLink, {
   fontWeight: '500',
   fontSize: '14px',
   lineHeight: '20px',
