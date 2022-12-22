@@ -1,4 +1,4 @@
-import { Button, Flex } from '@/common'
+import { Button, Flex, LetsChat } from '@/common'
 import * as S from './faster-contact.styles'
 
 export function FasterContact() {
@@ -10,12 +10,20 @@ export function FasterContact() {
       </S.Paragraph>
 
       <Flex direction="column" css={{ gap: 8 }}>
-        <Button size={2} css={{ w: '100%' }}>
+        <Button
+          as="a"
+          href="https://calendly.com/beccatravis"
+          target="_blank"
+          size={2}
+          css={{ w: '100%', textAlign: 'center' }}
+        >
           Request a tour
         </Button>
-        <Button outlined size={2} css={{ w: '100%' }}>
-          Contact Becca Travis
-        </Button>
+        <LetsChat>
+          <Button outlined size={2} css={{ w: '100%' }}>
+            Contact Becca Travis
+          </Button>
+        </LetsChat>
       </Flex>
     </S.Container>
   )
