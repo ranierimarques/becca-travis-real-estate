@@ -3,7 +3,7 @@ import { Section } from '@/template'
 import {
   athens,
   decatur,
-  hamptonCover,
+  hamptomCove,
   harvest,
   huntsville,
   meridianville,
@@ -14,7 +14,7 @@ import { ArrowLeftSvg } from './svgs'
 const communitiesData = [
   { image: harvest, alt: 'Harvest road', name: 'Harvest', href: '/harvest' },
   { image: huntsville, alt: 'forest', name: 'Huntsville', href: '/huntsville' },
-  { image: hamptonCover, alt: 'lake', name: 'Hamptom Cove', href: '/hamptom-cove' },
+  { image: hamptomCove, alt: 'lake', name: 'Hamptom Cove', href: '/hamptom-cove' },
   { image: decatur, alt: 'home', name: 'Decatur', href: '/decatur' },
   { image: athens, alt: 'river', name: 'Athens', href: '/athens' },
   { image: meridianville, alt: 'house', name: 'Meridianville', href: '/meridianville' },

@@ -5,8 +5,10 @@ export const Nav = styled('nav', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  maxWidth: 1072,
+
+  maxWidth: '1200px',
   margin: '0 auto',
+  padding: '0 64px',
 })
 
 export const OptionsList = styled('ul', {

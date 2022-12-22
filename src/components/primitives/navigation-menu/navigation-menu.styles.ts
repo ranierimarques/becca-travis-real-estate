@@ -50,7 +50,6 @@ export const Root = styled(NavigationMenuPrimitive.Root, {
   position: 'relative',
   display: 'flex',
   justifyContent: 'flex-end',
-  width: '100vw',
   zIndex: 5,
 })
 
@@ -157,6 +156,6 @@ export const ViewportPosition = styled('div', {
   justifyContent: 'center',
   width: '100%',
   top: '100%',
-  left: 70, // Edit this
+  right: '8%', // Edit this
   perspective: '2000px',
 })

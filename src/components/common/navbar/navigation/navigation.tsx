@@ -5,7 +5,7 @@ import * as Img from '../images'
 import * as Svg from '../svgs'
 import * as S from './navigation.styles'
 
-const communitiesListItems = [
+export const communitiesListItems = [
   { image: Img.harvest, name: 'Harvest', href: '/harvest' },
   { image: Img.huntsville, name: 'Huntsville', href: '/huntsville' },
   { image: Img.hamptomCove, name: 'Hamptom Cove', href: '/hamptom-cove' },
@@ -14,7 +14,7 @@ const communitiesListItems = [
   { image: Img.meridianville, name: 'Meridianville', href: '/meridianville' },
 ]
 
-const aboutHuntsvilleListItems = [
+export const aboutHuntsvilleListItems = [
   {
     id: 1,
     icon: <Svg.House className={S.SvgStyles()} />,
@@ -41,7 +41,7 @@ const aboutHuntsvilleListItems = [
   },
 ]
 
-const menus = {
+export const menus = {
   buyers: [
     {
       id: 1,
@@ -149,7 +149,7 @@ const menus = {
   ],
 }
 
-type CardListItemProps = {
+export type CardListItemProps = {
   content: {
     description: string
     title: string
@@ -177,7 +177,7 @@ function CardListItem({ content }: CardListItemProps) {
   )
 }
 
-type MenuProps = {
+export type MenuProps = {
   menu: {
     id: number
     title: string

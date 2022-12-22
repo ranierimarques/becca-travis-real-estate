@@ -16,7 +16,15 @@ const links = [
 
 export function HelperNavbar() {
   return (
-    <Box css={{ padding: '6px 0', background: '$tangerine10' }}>
+    <Box
+      css={{
+        padding: '6px 0',
+        background: '$tangerine10',
+        '@bp4': {
+          display: 'none',
+        },
+      }}
+    >
       <S.Nav>
         <DropdownLanguage />
 

@@ -56,6 +56,13 @@ const sharedStyles = css({
         lineHeight: '21px',
         fontWeight: '400',
       },
+      '3': {
+        padding: '14px 24px',
+        borderRadius: '5px',
+        fontSize: '14px',
+        lineHeight: '21px',
+        fontWeight: '400',
+      },
     },
     color: {
       magenta: {
