@@ -9,10 +9,10 @@ const Navigation = dynamic(
   () => import('../navigation/navigation').then(module => module.Navigation),
   { ssr: false, loading: () => <div /> }
 )
-const TalkToMe = dynamic(
-  () => import('../contact/contact').then(module => module.Contact),
-  { ssr: false, loading: () => <div /> }
-)
+const TalkToMe = dynamic(() => import('@/shared').then(module => module.Contact), {
+  ssr: false,
+  loading: () => <div />,
+})
 const DropdownLanguage = dynamic(() => import('../dropdown-language/dropdown-language'), {
   ssr: false,
   loading: () => <div />,

@@ -1,4 +1,5 @@
-import { Button, Flex, LetsChat } from '@/common'
+import { Button, Flex } from '@/common'
+import { Contact } from '@/shared'
 import * as S from './faster-contact.styles'
 
 export function FasterContact() {
@@ -19,11 +20,11 @@ export function FasterContact() {
         >
           Request a tour
         </Button>
-        <LetsChat>
+        <Contact>
           <Button outlined size={2} css={{ w: '100%' }}>
             Contact Becca Travis
           </Button>
-        </LetsChat>
+        </Contact>
       </Flex>
     </S.Container>
   )

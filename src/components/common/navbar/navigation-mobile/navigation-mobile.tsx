@@ -10,10 +10,10 @@ import {
 } from '../navigation/navigation'
 import * as S from './navigation-mobile.styles'
 
-const TalkToMe = dynamic(
-  () => import('../contact/contact').then(module => module.Contact),
-  { ssr: false, loading: () => <div /> }
-)
+const TalkToMe = dynamic(() => import('@/shared').then(module => module.Contact), {
+  ssr: false,
+  loading: () => <div />,
+})
 
 type Props = {
   isOpen: boolean

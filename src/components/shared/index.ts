@@ -1,4 +1,5 @@
 export { ClientTestimonials } from './client-testimonials/client-testimonials'
+export { Contact } from './contact/contact'
 export { Form } from './form/form'
 export { Hat } from './hat/hat'
 export { HouseCard } from './house-card/house-card'
