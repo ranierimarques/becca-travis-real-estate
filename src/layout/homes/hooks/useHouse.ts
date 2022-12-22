@@ -8,7 +8,7 @@ const fetcher = async ([, geoLocation]: Fetcher) => {
   const BedroomsTotal = geoLocation.filter?.BedroomsTotal
 
   const params = {
-    limit: '20',
+    limit: '50',
     PropertyType: 'Residential',
     StandardStatus: 'Active',
     'PhotosCount.gte': '1', // There must be at least 1 photo

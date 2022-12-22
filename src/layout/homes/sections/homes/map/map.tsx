@@ -4,8 +4,10 @@ import { useGeolocationStore } from '@/layout/homes/store/geolocation'
 import useDebounce from '@/resources/hooks/useDebounce'
 import { HouseCard } from '@/shared'
 import { GoogleMap, InfoWindowF, MarkerF, useLoadScript } from '@react-google-maps/api'
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useState, useRef } from 'react'
 import { css, keyframes } from 'stitches.config'
+
+const customMarker = new URL('../svgs/mark.png', import.meta.url).href
 
 const containerStyle = css({
   width: '100%',
@@ -61,12 +63,25 @@ export const Map = memo(() => {
   const [activeMarker, setActiveMarker] = useState(null as number | null)
   const [onHoverInfoWindow, setOnHoverInfoWindow] = useState(false)
   const [onHoverMarker, setOnHoverMarker] = useState(false)
+  const onHoverInfoWindowRef = useRef(onHoverInfoWindow)
+  const onHoverMarkerRef = useRef(onHoverMarker)
 
   useEffect(() => {
-    if (!onHoverMarker && !onHoverInfoWindow) {
-      setActiveMarker(null)
+    const timeOut = setTimeout(() => {
+      if (!onHoverInfoWindowRef.current && !onHoverMarkerRef.current) {
+        setActiveMarker(null)
+      }
+    }, 500)
+
+    return () => {
+      clearTimeout(timeOut)
     }
-  }, [onHoverMarker, onHoverInfoWindow])
+  }, [onHoverInfoWindow, onHoverMarker])
+
+  useEffect(() => {
+    onHoverInfoWindowRef.current = onHoverInfoWindow
+    onHoverMarkerRef.current = onHoverMarker
+  }, [onHoverInfoWindow, onHoverMarker])
 
   if (!isLoaded) {
     return (
@@ -75,6 +90,39 @@ export const Map = memo(() => {
         css={{ animation: `${backgroundPulse} 1s linear infinite alternate` }}
       />
     )
+  }
+
+  const getPixelFromLatLng = (latLng: google.maps.LatLngLiteral | google.maps.LatLng) => {
+    const projection = map.current.getProjection()
+    return projection?.fromLatLngToPoint(latLng)
+  }
+
+  const getInfowindowOffset = (
+    map: google.maps.Map,
+    markerLatLng: google.maps.LatLngLiteral
+  ) => {
+    const center = getPixelFromLatLng(
+      map.getCenter() as google.maps.LatLng
+    ) as google.maps.Point
+    const point = getPixelFromLatLng(markerLatLng) as google.maps.Point
+
+    let quadrant = ''
+    let offset
+
+    quadrant += point.y > center.y ? 'b' : 't'
+    quadrant += point.x < center.x ? 'l' : 'r'
+
+    if (quadrant == 'tr') {
+      offset = new google.maps.Size(-140, 370)
+    } else if (quadrant == 'tl') {
+      offset = new google.maps.Size(140, 370)
+    } else if (quadrant == 'br') {
+      offset = new google.maps.Size(-140, 40)
+    } else if (quadrant == 'bl') {
+      offset = new google.maps.Size(140, 40)
+    }
+
+    return offset
   }
 
   return (
@@ -87,6 +135,10 @@ export const Map = memo(() => {
     >
       {house.listings?.map((listing, index) => (
         <MarkerF
+          icon={{
+            url: customMarker,
+            scaledSize: new google.maps.Size(40, 40),
+          }}
           position={{
             lat: listing.coordinates.latitude,
             lng: listing.coordinates.longitude,
@@ -97,9 +149,7 @@ export const Map = memo(() => {
             setOnHoverMarker(true)
           }}
           onMouseOut={() => {
-            setTimeout(() => {
-              setOnHoverMarker(false)
-            }, 1000)
+            setOnHoverMarker(false)
           }}
         >
           {activeMarker === index ? (
@@ -111,17 +161,22 @@ export const Map = memo(() => {
               options={{
                 disableAutoPan: true,
                 maxWidth: 250,
+                pixelOffset: getInfowindowOffset(map.current, {
+                  lat: listing.coordinates.latitude,
+                  lng: listing.coordinates.longitude,
+                }),
               }}
             >
               <HouseCard
                 key={index}
                 listing={listing}
                 variant="small"
-                onMouseEnter={() => setOnHoverInfoWindow(true)}
+                onMouseEnter={() => {
+                  setActiveMarker(index)
+                  setOnHoverInfoWindow(true)
+                }}
                 onMouseLeave={() => {
-                  setTimeout(() => {
-                    setOnHoverInfoWindow(false)
-                  }, 500)
+                  setOnHoverInfoWindow(false)
                 }}
               />
             </InfoWindowF>

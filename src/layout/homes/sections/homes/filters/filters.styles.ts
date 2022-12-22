@@ -110,8 +110,12 @@ export const Button = styled('button', {
 export const Input = styled('input', {
   flex: 1,
 
-  width: 280,
-  height: 48,
+  boxShadow: '0 0 0 1px $colors$grayW7',
+  borderRadius: '4px',
+  width: '100%',
+  height: '40px',
+
+  overflow: 'hidden',
 
   padding: '0 16px 0 20px',
 
@@ -124,5 +128,14 @@ export const Input = styled('input', {
   '&::placeholder': {
     fontWeight: 400,
     color: '$gray3',
+  },
+  '&:hover': {
+    boxShadow: '0 0 0 1px $colors$gray5, inset 0px 0px 5px rgba(0, 0, 0, 0.1)',
+
+    cursor: 'text',
+  },
+
+  '&:focus-within': {
+    boxShadow: '0 0 0 2px $colors$gray5',
   },
 })

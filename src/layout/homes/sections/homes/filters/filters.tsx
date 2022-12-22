@@ -7,6 +7,8 @@ import * as S from './filters.styles'
 export default function Contact() {
   const [bedroomLte, setBedroomLte] = useState('')
   const [bedroomGte, setBedroomGte] = useState('')
+  const [bathroomLte, setBathroomLte] = useState('')
+  const [bathroomGte, setBathroomGte] = useState('')
 
   const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
 
@@ -16,6 +18,10 @@ export default function Contact() {
         BedroomsTotal: {
           lte: Number(bedroomLte),
           gte: Number(bedroomGte),
+        },
+        BathroomsTotal: {
+          lte: Number(bathroomLte),
+          gte: Number(bathroomGte),
         },
       },
     })
@@ -32,7 +38,7 @@ export default function Contact() {
         BEDROOMS
         <S.Input
           type="number"
-          placeholder="Bedrooms"
+          placeholder="Min"
           value={bedroomGte}
           onChange={e => setBedroomGte(e.target.value)}
           style={{ maxWidth: 100 }}
@@ -40,9 +46,25 @@ export default function Contact() {
         to
         <S.Input
           type="number"
-          placeholder="Bedrooms"
+          placeholder="Max"
           value={bedroomLte}
           onChange={e => setBedroomLte(e.target.value)}
+          style={{ maxWidth: 100 }}
+        />
+        BATHROOMS
+        <S.Input
+          type="number"
+          placeholder="Min"
+          value={bathroomGte}
+          onChange={e => setBathroomGte(e.target.value)}
+          style={{ maxWidth: 100 }}
+        />
+        to
+        <S.Input
+          type="number"
+          placeholder="Max"
+          value={bathroomLte}
+          onChange={e => setBathroomLte(e.target.value)}
           style={{ maxWidth: 100 }}
         />
         <S.Button css={{ marginLeft: 16 }} onClick={searchGeolocation}>

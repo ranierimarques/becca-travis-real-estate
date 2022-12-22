@@ -5,6 +5,11 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box',
   },
 
+  '.gm-style .gm-style-iw-tc::after': {
+    background: 'none',
+    boxShadow: 'none',
+  },
+
   '*': {
     margin: 0,
     '-webkit-tap-highlight-color': 'transparent',
