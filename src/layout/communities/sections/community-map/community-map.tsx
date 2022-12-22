@@ -9,7 +9,7 @@ export function CommunityMap({ communityName }: CommunityMapProps) {
   return (
     <S.Section>
       <S.Title>{communityName} map</S.Title>
-      <Map />
+      <Map variant={1} />
     </S.Section>
   )
 }
