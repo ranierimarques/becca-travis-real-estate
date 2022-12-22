@@ -20,23 +20,32 @@ type CategoriesName = 'dining' | 'active' | 'beauty' | 'nightlife'
 
 const RESULTS_LIMIT = 6
 
+const businessRatingImage: Record<number, StaticImageData> = {
+  0: Img.rating0,
+  1: Img.rating1,
+  1.5: Img.rating1_5,
+  2: Img.rating2,
+  2.5: Img.rating2_5,
+  3: Img.rating3,
+  3.5: Img.rating3_5,
+  4: Img.rating4,
+  4.5: Img.rating4_5,
+  5: Img.rating5,
+}
+
+type buttonOptionsType = { id: number; category: CategoriesName }[]
+
+const buttonOptions: buttonOptionsType = [
+  { id: 1, category: 'dining' },
+  { id: 2, category: 'active' },
+  { id: 3, category: 'nightlife' },
+  { id: 4, category: 'beauty' },
+]
+
 export function Yelp({ data, communityName }: YelpProps) {
   const [yelpData, setYelpData] = useState(data)
   const [activeCategory, setActiveCategory] = useState<CategoriesName>('dining')
   const [activeIndex, setActiveIndex] = useState(1)
-
-  const businessRatingImage: Record<number, StaticImageData> = {
-    0: Img.rating0,
-    1: Img.rating1,
-    1.5: Img.rating1_5,
-    2: Img.rating2,
-    2.5: Img.rating2_5,
-    3: Img.rating3,
-    3.5: Img.rating3_5,
-    4: Img.rating4,
-    4.5: Img.rating4_5,
-    5: Img.rating5,
-  }
 
   async function handleRequestNewData(category: CategoriesName) {
     if (category === activeCategory) return
@@ -68,34 +77,16 @@ export function Yelp({ data, communityName }: YelpProps) {
           Explore the best restaurants, businesses, and activities near Athens.
         </S.Description>
         <S.Options>
-          <Button
-            outlined={activeCategory !== 'dining'}
-            size="2"
-            onClick={() => handleRequestNewData('dining')}
-          >
-            Dining
-          </Button>
-          <Button
-            size="2"
-            outlined={activeCategory !== 'active'}
-            onClick={() => handleRequestNewData('active')}
-          >
-            Active
-          </Button>
-          <Button
-            outlined={activeCategory !== 'nightlife'}
-            size="2"
-            onClick={() => handleRequestNewData('nightlife')}
-          >
-            Nightlife
-          </Button>
-          <Button
-            outlined={activeCategory !== 'beauty'}
-            size="2"
-            onClick={() => handleRequestNewData('beauty')}
-          >
-            Beauty
-          </Button>
+          {buttonOptions.map(option => (
+            <Button
+              key={option.id}
+              size="2"
+              outlined={activeCategory !== option.category}
+              onClick={() => handleRequestNewData(option.category)}
+            >
+              {option.category}
+            </Button>
+          ))}
         </S.Options>
       </Flex>
       <Flex direction="column" align="center" css={{ gap: 48 }}>
@@ -103,7 +94,7 @@ export function Yelp({ data, communityName }: YelpProps) {
           <S.YelpLogo />
           {yelpData.map(business => (
             <S.Card key={business.id}>
-              <a href={business.url}>
+              <a href={business.url} target="_blank" rel="noreferrer noopener">
                 <Box
                   css={{
                     h: '100%',
@@ -112,8 +103,8 @@ export function Yelp({ data, communityName }: YelpProps) {
                   <Image
                     src={business.image_url}
                     alt={business.name}
-                    fill
                     style={{ objectFit: 'cover' }}
+                    fill
                   />
                 </Box>
                 <Box

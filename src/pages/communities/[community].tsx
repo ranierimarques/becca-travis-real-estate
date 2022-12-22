@@ -10,11 +10,13 @@ import {
 } from '@/layout/communities/sections'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
-import type { GetStaticPaths, NextPage } from 'next'
+import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
-const Page: NextPage = ({ data, listings, community }: any) => {
-  const capitalizedCommunityName = community.charAt(0).toUpperCase() + community.slice(1)
+type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
+
+const Page: PageWithStaticProps = ({ data, listings, community }) => {
+  const capitalizedCommunityName = community[0].toUpperCase() + community.slice(1)
 
   return (
     <main>
@@ -35,6 +37,20 @@ const Page: NextPage = ({ data, listings, community }: any) => {
   )
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { community: 'huntsville' } },
+      { params: { community: 'athens' } },
+      { params: { community: 'harvest' } },
+      { params: { community: 'hamptom-cove' } },
+      { params: { community: 'decatur' } },
+      { params: { community: 'meridianville' } },
+    ],
+    fallback: false,
+  }
+}
+
 export interface FetchTypes {
   businesses: {
     id: string
@@ -52,7 +68,7 @@ export interface FetchTypes {
     phone: string
     display_phone: string
     distance: number
-  }
+  }[]
 }
 
 export interface Category {
@@ -103,20 +119,6 @@ export async function getStaticProps({ params }: Params) {
       data: data.businesses,
       listings,
     },
-  }
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { community: 'huntsville' } },
-      { params: { community: 'athens' } },
-      { params: { community: 'harvest' } },
-      { params: { community: 'hamptom-cove' } },
-      { params: { community: 'decatur' } },
-      { params: { community: 'meridianville' } },
-    ],
-    fallback: false,
   }
 }
 
