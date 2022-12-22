@@ -1,7 +1,9 @@
 import { formatToDollar } from '@/resources/utils/currency'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
-import { useState } from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { Calculator } from '.'
 import * as S from './payment-calculator.styles'
 
@@ -15,61 +17,119 @@ const options = {
   },
 }
 
-interface ListingDetails {
-  listing: {
-    price: string
-  }
+interface ListingPrice {
+  price: number
 }
 
-export function PaymentCalculator({ listing }: ListingDetails) {
-  const [value, setValue] = useState<number>(0)
+const currencyRegExp = /^\$?(\d{1,3}(,\d{3})*|(\d+))(\.\d{2})?$/
 
-  const price = listing.price
-  const priceNumber = price.substring(1, price.length)
+const formSchema = z.object({
+  propertyPrice: z.number().min(1),
+  // .transform(value => `$${value}`)
+  // .refine(value => currencyRegExp.test(value)),
+  downPayment: z.number().min(1),
+  // .refine(value => currencyRegExp.test(value)),
+  downPaymentPercentage: z.string().transform(value => Number(value)),
+  lengthOfMortgageInYears: z.number(),
+  annualInterestRateInPercentage: z.number(),
+})
+
+type formSchemaType = z.infer<typeof formSchema>
+
+// export type ValuesKeys =
+//   | 'annual_interest_rate'
+//   | 'down_payment'
+//   | 'down_payment_percentage'
+//   | 'length_of_mortgage'
+//   | 'property_price'
+
+export function PaymentCalculator({ price }: ListingPrice) {
+  const {
+    register,
+    setValue,
+    getFieldState,
+    getValues,
+    formState: { isValidating, isValid },
+  } = useForm<formSchemaType>({
+    resolver: zodResolver(formSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      propertyPrice: price,
+      downPayment: price * (20 / 100),
+      downPaymentPercentage: 20,
+      lengthOfMortgageInYears: 30,
+      annualInterestRateInPercentage: 6,
+    },
+  })
+
+  const value = getValues()
+  console.log(value)
+
+  const downPaymentState = getFieldState('downPayment')
+  const downPaymentPercentageState = getFieldState('downPaymentPercentage')
+
+  console.log(downPaymentState)
+  console.log(downPaymentPercentageState)
+
+  // if (downPaymentState.isTouched && !downPaymentState.error) {
+  //   setValue('downPaymentPercentage', value.propertyPrice / value.downPayment)
+  // }
+
+  // if (downPaymentPercentageState.isTouched && !downPaymentPercentageState.error) {
+  //   setValue('downPayment', value.propertyPrice * (value.downPaymentPercentage / 100))
+  // }
+
+  if (
+    (downPaymentState.isTouched && !downPaymentState.error) ||
+    (downPaymentPercentageState.isTouched && !downPaymentPercentageState.error)
+  ) {
+    if (downPaymentPercentageState.isTouched && !downPaymentState.isTouched) {
+      setValue('downPayment', value.propertyPrice * (value.downPaymentPercentage / 100))
+    } else {
+      setValue('downPaymentPercentage', value.propertyPrice / value.downPayment)
+    }
+  }
+
+  const principalLoan: number =
+    value.propertyPrice - (value.propertyPrice / 100) * value.downPaymentPercentage
+  const monthlyInterestRate: number = value.annualInterestRateInPercentage / 100 / 12
+  const numberOfPayments: number = value.lengthOfMortgageInYears * 12
+
+  const total: number =
+    principalLoan *
+    ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
+      ((1 + monthlyInterestRate) ** numberOfPayments - 1))
+
+  const principal: number = total - (principalLoan / 100) * 0.5
+  const interest: number = (principalLoan / 100) * 0.5
 
   const data = {
     labels: ['Principal', 'Interest'],
     datasets: [
       {
-        data: [12, 19],
+        data: [principal, interest],
         backgroundColor: ['#D9BC3A', '#42A0FF'],
         cutout: '80%',
       },
     ],
   }
 
-  const values = {
-    propertyPrice: price,
-    downPayment: `$${(parseFloat(priceNumber.replace(/,/g, '')) / 100) * 20}`,
-    downPaymentPercentage: '20%',
-    lengthOfMortgage: '30 years',
-    annualInterestRate: '6%',
-  }
-
-  const principalLoan: number =
-    Number.parseInt(priceNumber.replace(/,/g, ''), 10) -
-    Number.parseInt(values.downPayment.substring(1, values.downPayment.length), 10)
-
-  const r: number =
-    Number.parseInt(values.annualInterestRate.substring(0, 1), 10) / 100 / 12
-
-  const n: number = Number.parseInt(values.lengthOfMortgage.substring(0, 2), 10) * 12
-
-  const total = principalLoan * ((r * (1 + r) ** n) / ((1 + r) ** n - 1))
+  // function changeValue(key: ValuesKeys, value: number): void {
+  //   setValue(oldValues => ({ ...oldValues, [key]: value }))
+  // }
 
   return (
     <S.Container>
       <S.Title>Payment calculator</S.Title>
       <S.Graphic>
         <S.CenterText>
-          <S.Value>
-            {value !== 0 ? formatToDollar(value, 2) : formatToDollar(total, 2)}
-          </S.Value>
+          <S.Value>{formatToDollar(total, 2)}</S.Value>
           <S.Divisor>month</S.Divisor>
         </S.CenterText>
         <Doughnut data={data} options={options} />
       </S.Graphic>
-      <Calculator price={listing.price} onValue={setValue} />
+
+      <Calculator register={register} />
     </S.Container>
   )
 }
