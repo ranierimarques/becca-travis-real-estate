@@ -81,6 +81,7 @@ type FetchTypes = {
     HighSchool: string
     Coordinates: string[]
     url: string
+    PublicRemarks: string
   }
 }
 
@@ -117,6 +118,7 @@ export const getStaticProps = async ({ params }: Params) => {
 
   const listing = {
     price: formatToDollar(data.bundle.ListPrice),
+    priceNumber: data.bundle.ListPrice,
     address: data.bundle.UnparsedAddress,
     status: data.bundle.MlsStatus,
     lastUpdated: data.bundle.BridgeModificationTimestamp,
@@ -141,6 +143,7 @@ export const getStaticProps = async ({ params }: Params) => {
     middleSchool: data.bundle.MiddleOrJuniorSchool,
     highSchool: data.bundle.HighSchool,
     coords: data.bundle.Coordinates,
+    publicRemarks: data.bundle.PublicRemarks,
   }
 
   const relatedPropertiesEndpoint = `https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=3&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1&near=${listing.coords[0]},${listing.coords[1]}&ListingId.ne=${params.id}`

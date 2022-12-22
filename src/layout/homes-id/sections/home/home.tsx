@@ -17,6 +17,7 @@ import * as S from './home.styles'
 interface Listing {
   listing: {
     price: string
+    priceNumber: number
     address: string
     status: string
     lastUpdated: string
@@ -41,6 +42,7 @@ interface Listing {
     elementarySchool: string
     middleSchool: string
     highSchool: string
+    publicRemarks: string
   }
   relatedProperties: {
     livingArea: string
@@ -68,14 +70,14 @@ export function Home({ listing, relatedProperties }: Listing) {
 
         <Flex css={{ gap: 32 }}>
           <div>
-            <Description />
+            <Description publicRemarks={listing.publicRemarks} />
             <Features listing={listing} />
             <AskAQuestion />
           </div>
           <Flex direction="column" css={{ gap: 32, mt: 32 }}>
             <FasterContact />
 
-            <PaymentCalculator listing={listing} />
+            <PaymentCalculator price={listing.priceNumber} />
           </Flex>
         </Flex>
 
