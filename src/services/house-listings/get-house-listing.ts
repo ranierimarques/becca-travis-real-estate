@@ -40,7 +40,7 @@ export async function getHouseListing<T extends Type>({
   if (type === 'house') {
     const newParams = {
       fields:
-        'Media.MediaURL,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,MlsStatus,LotSizeSquareFeet,SubdivisionName,PropertySubType,CountyOrParish,CityRegion,FoundationDetails,Levels,BuildingAreaTotal,NewConstructionYN,PropertyCondition,PropertyType,Sewer,WaterSource,ElementarySchool,MiddleOrJuniorSchool,HighSchool,Coordinates',
+        'Media.MediaURL,PublicRemarks,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,MlsStatus,LotSizeSquareFeet,SubdivisionName,PropertySubType,CountyOrParish,CityRegion,FoundationDetails,Levels,BuildingAreaTotal,NewConstructionYN,PropertyCondition,PropertyType,Sewer,WaterSource,ElementarySchool,MiddleOrJuniorSchool,HighSchool,Coordinates',
     }
     const endpoint = baseURL + toURL + '?' + new URLSearchParams(newParams)
 
@@ -50,6 +50,7 @@ export async function getHouseListing<T extends Type>({
     const listing = {
       id: house.bundle.ListingId,
       price: formatToDollar(house.bundle.ListPrice),
+      priceNumber: house.bundle.ListPrice,
       address: house.bundle.UnparsedAddress,
       status: house.bundle.MlsStatus,
       lastUpdated: house.bundle.BridgeModificationTimestamp,
@@ -77,6 +78,7 @@ export async function getHouseListing<T extends Type>({
       elementarySchool: house.bundle.ElementarySchool,
       middleSchool: house.bundle.MiddleOrJuniorSchool,
       highSchool: house.bundle.HighSchool,
+      publicRemarks: house.bundle.PublicRemarks,
       coords: house.bundle.Coordinates,
     }
 

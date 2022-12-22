@@ -8,11 +8,9 @@ import {
   Schools,
   Yelp,
 } from '@/layout/communities/sections'
-import { convertSquareFeets } from '@/resources/utils/convert'
-import { formatToDollar } from '@/resources/utils/currency'
+import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
-import { HouseCard } from '@/types/houses'
-import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
+import type { GetStaticPaths, NextPage } from 'next'
 import Head from 'next/head'
 
 const Page: NextPage = ({ data, listings, community }: any) => {
@@ -48,7 +46,6 @@ export interface FetchTypes {
     review_count: number
     categories: Category[]
     rating: number
-    coordinates: Coordinates
     transactions: string[]
     price: string
     location: Location
@@ -61,11 +58,6 @@ export interface FetchTypes {
 export interface Category {
   alias: string
   title: string
-}
-
-export interface Coordinates {
-  latitude: number
-  longitude: number
 }
 
 export interface Location {
@@ -81,43 +73,33 @@ export interface Location {
 
 const endpoint = 'https://api.yelp.com/v3/businesses'
 
-const bridgeEndpoint =
-  'https://api.bridgedataoutput.com/api/v2/valleymls/listings?limit=6&sortBy=BridgeModificationTimestamp&order=desc&PropertyType=Residential&StandardStatus=Active&fields=Media.MediaURL%2CListPrice%2CUnparsedAddress%2CLivingArea%2CBathroomsTotalInteger%2CBedroomsTotal%2CListingId&PhotosCount.gte=1&ListPrice.gt=1&City=Huntsville'
-
-const bridgeOptions = {
-  method: 'GET',
-  headers: { Authorization: `Bearer ${process.env.BRIDGE_API_KEY}` },
-} as RequestInit
-
 const options = {
   method: 'GET',
   headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_YELP_API_KEY}` },
 } as RequestInit
 
-export async function getStaticProps({ params }: GetStaticPropsContext) {
+type Params = {
+  params: {
+    community: string
+  }
+}
+
+export async function getStaticProps({ params }: Params) {
   const response = await fetch(
-    endpoint + `/search?location=${params?.community}&sort_by=review_count&limit=6`,
+    endpoint + `/search?location=${params.community}&sort_by=review_count&limit=6`,
     options
   )
 
   const data = (await response.json()) as FetchTypes
 
-  const bridgeResponse = await fetch(bridgeEndpoint, bridgeOptions)
-  const bridgeData = (await bridgeResponse.json()) as HouseCard
-
-  const listings = bridgeData.bundle.map(listing => ({
-    id: listing.ListingId,
-    media: listing.Media[0].MediaURL,
-    price: formatToDollar(listing.ListPrice),
-    address: listing.UnparsedAddress,
-    bedroomsTotal: listing.BedroomsTotal,
-    bathroomsTotal: listing.BathroomsTotalInteger,
-    livingArea: convertSquareFeets(listing.LivingArea),
-  }))
+  const listings = await getHouseListing({
+    type: 'card',
+    params: { City: params.community, limit: '6' },
+  })
 
   return {
     props: {
-      community: params?.community,
+      community: params.community,
       data: data.businesses,
       listings,
     },

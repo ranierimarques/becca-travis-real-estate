@@ -87,6 +87,7 @@ export type House = {
     WaterSource: string
     ElementarySchool: string
     MiddleOrJuniorSchool: string
+    PublicRemarks: string
     HighSchool: string
     Coordinates: string[]
     url: string
@@ -134,6 +135,8 @@ export type FormattedHouse = {
     elementarySchool: string
     middleSchool: string
     highSchool: string
+    publicRemarks: string
+    priceNumber: number
     coords: string[]
   }
 }
@@ -150,6 +153,7 @@ export type GetHouseListing<T> = {
     'PhotosCount.gte'?: string
     'ListPrice.gt'?: string
     'UnparsedAddress.in'?: string
+    City?: string
     sortBy?: string
     order?: string
     near?: string
