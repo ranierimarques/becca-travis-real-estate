@@ -34,14 +34,14 @@ export function Home({ listing }: Listing) {
 
         <Flex css={{ gap: 32 }}>
           <div>
-            <Description />
+            <Description publicRemarks={listing.publicRemarks} />
             <Features listing={listing} />
             <AskAQuestion />
           </div>
           <Flex direction="column" css={{ gap: 32, mt: 32 }}>
             <FasterContact />
 
-            <PaymentCalculator listing={listing} />
+            <PaymentCalculator price={listing.priceNumber} />
           </Flex>
         </Flex>
 

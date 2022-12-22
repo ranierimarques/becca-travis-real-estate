@@ -1,0 +1,8 @@
+export { About } from './about/about'
+export { CommunityMap } from './community-map/community-map'
+export { Demographics } from './demographics/demographics'
+export { Hero } from './hero/hero'
+export { Homes } from './homes/homes'
+export { MarketTrends } from './market-trends/market-trends'
+export { Schools } from './schools/schools'
+export { Yelp } from './yelp/yelp'

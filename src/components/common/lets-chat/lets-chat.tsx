@@ -1,6 +1,5 @@
 import { Button } from '@/common'
 import { Dialog } from '@/primitives'
-import type * as Stitches from '@stitches/react'
 import * as Svg from '../svgs'
 import * as S from './contact.styles'
 
@@ -20,20 +19,11 @@ const contacts = [
   },
 ]
 
-type ButtonProps = React.ComponentProps<typeof Button>
-
-type Props = {
-  css?: Stitches.CSS
-  size?: ButtonProps['size']
-}
-
-export function Contact({ ...props }: Props) {
+export default function Contact() {
   return (
-    <Dialog.Root
-      onOpenChange={open => (document.body.dataset['overflow'] = String(!open))}
-    >
+    <Dialog.Root>
       <Dialog.Trigger asChild>
-        <Button {...props}>Let&apos;s chat</Button>
+        <Button css={{ marginLeft: 16 }}>Let&apos;s chat</Button>
       </Dialog.Trigger>
       <Dialog.Content title="Let's chat" description="You can reach me at:">
         <S.Title>Let&apos;s chat</S.Title>
