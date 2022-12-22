@@ -11,7 +11,9 @@ export default function DropdownLanguage({ children }: Props) {
   const [language, setLanguage] = useState('en-US')
 
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root
+      onOpenChange={open => (document.body.dataset['overflow'] = String(!open))}
+    >
       <DropdownMenu.Trigger variant={children ? undefined : 1}>
         {children ? (
           children
