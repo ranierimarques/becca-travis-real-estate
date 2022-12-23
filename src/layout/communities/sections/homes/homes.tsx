@@ -1,4 +1,5 @@
-import { Button } from '@/common'
+import { Button, Loader } from '@/common'
+import { getHouseListing } from '@/services/house-listings'
 import { HouseCard } from '@/shared'
 import { FormattedHouseCards } from '@/types/houses'
 import { useState } from 'react'
@@ -11,6 +12,21 @@ interface HomesProps {
 
 export function Homes({ listings, communityName }: HomesProps) {
   const [listingData, setListingData] = useState(listings)
+  const [activeIndex, setActiveIndex] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
+
+  async function handleRequestNewListings() {
+    if (isLoading) return
+    setIsLoading(true)
+    const newListing = await getHouseListing({
+      type: 'card',
+      params: { City: communityName, limit: '6', offset: `${6 * activeIndex}` },
+      fetchOn: 'browser',
+    })
+    setActiveIndex(oldValue => oldValue + 1)
+    setListingData([...listingData, ...newListing])
+    setIsLoading(false)
+  }
 
   return (
     <S.Section>
@@ -23,8 +39,13 @@ export function Homes({ listings, communityName }: HomesProps) {
         </S.Houses>
         <S.OverlayWrapper>
           <S.Overlay />
-          <Button size="2" css={{ pointerEvents: 'auto', zIndex: 1 }}>
-            Show more...
+          <Button
+            size="2"
+            css={{ pointerEvents: 'auto', zIndex: 1 }}
+            onClick={handleRequestNewListings}
+            loading={isLoading}
+          >
+            {isLoading && <Loader />} Show more...
           </Button>
         </S.OverlayWrapper>
       </S.Container>

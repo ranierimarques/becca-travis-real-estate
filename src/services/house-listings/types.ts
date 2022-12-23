@@ -154,6 +154,7 @@ export type GetHouseListing<T> = {
     'ListPrice.gt'?: string
     'UnparsedAddress.in'?: string
     City?: string
+    offset?: string
     sortBy?: string
     order?: string
     near?: string

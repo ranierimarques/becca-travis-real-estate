@@ -91,6 +91,11 @@ const sharedStyles = css({
         },
       },
     },
+    loading: {
+      true: {
+        $$secondaryColor: 'transparent',
+      },
+    },
   },
 
   defaultVariants: {
