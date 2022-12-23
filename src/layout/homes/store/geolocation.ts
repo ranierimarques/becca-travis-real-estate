@@ -38,14 +38,18 @@ enum City {
 }
 interface GeoLocation {
   address?: string
+  limit?: number
+  offset?: number
+  keepPreviousHouses?: boolean
   bounds?: number[]
+  box?: string
   filter?: {
     BedroomsTotal?: {
       // BEDROOMS
       gte: number
       lte: number
     }
-    BathroomsTotal?: {
+    BathroomsTotalInteger?: {
       // BATHROOMS
       gte: number
       lte: number
@@ -70,22 +74,10 @@ interface GeoLocation {
       gte: number
       lte: number
     }
-    ElementarySchool?: {
-      // ELEMENTARY SCHOOL
-      in: string
-    }
-    MiddleOrJuniorSchool?: {
-      // MIDDLE SCHOOL
-      in: string
-    }
-    HighSchool?: {
-      // HIGH SCHOOL
-      in: string
-    }
-    PostalCode?: {
-      // ZIP CODE
-      in: string
-    }
+    ElementarySchool?: string
+    MiddleOrJuniorSchool?: string
+    HighSchool?: string
+    PostalCode?: string
     PropertyType?: PropertyType
     PropertySubType?: PropertySubType
     StandardStatus?: StandardStatus

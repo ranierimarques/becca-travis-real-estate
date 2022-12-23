@@ -12,6 +12,18 @@ export default function Contact() {
 
   const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
 
+  const currentGeoLocation = useGeolocationStore(state => state.geoLocation)
+
+  const removeFiltersInGeolocation = async () => {
+    const newGeoLocation = { ...currentGeoLocation }
+    delete newGeoLocation.filter
+    setBedroomLte('')
+    setBedroomGte('')
+    setBathroomLte('')
+    setBathroomGte('')
+    setGeoLocation(newGeoLocation)
+  }
+
   const searchGeolocation = async () => {
     setGeoLocation({
       filter: {
@@ -19,7 +31,7 @@ export default function Contact() {
           lte: Number(bedroomLte),
           gte: Number(bedroomGte),
         },
-        BathroomsTotal: {
+        BathroomsTotalInteger: {
           lte: Number(bathroomLte),
           gte: Number(bathroomGte),
         },
@@ -67,8 +79,11 @@ export default function Contact() {
           onChange={e => setBathroomLte(e.target.value)}
           style={{ maxWidth: 100 }}
         />
+        <S.Button css={{ marginLeft: 16 }} onClick={removeFiltersInGeolocation}>
+          Clear filters
+        </S.Button>
         <S.Button css={{ marginLeft: 16 }} onClick={searchGeolocation}>
-          Search
+          Save filters
         </S.Button>
       </Dialog.Content>
     </Dialog.Root>

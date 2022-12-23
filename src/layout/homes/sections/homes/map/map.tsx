@@ -24,6 +24,43 @@ const center = {
   lng: -86.6350868,
 }
 
+const getPixelFromLatLng = (
+  map: google.maps.Map,
+  latLng: google.maps.LatLngLiteral | google.maps.LatLng
+) => {
+  const projection = map.getProjection()
+  return projection?.fromLatLngToPoint(latLng)
+}
+
+const getInfowindowOffset = (
+  map: google.maps.Map,
+  markerLatLng: google.maps.LatLngLiteral
+) => {
+  const center = getPixelFromLatLng(
+    map,
+    map.getCenter() as google.maps.LatLng
+  ) as google.maps.Point
+  const point = getPixelFromLatLng(map, markerLatLng) as google.maps.Point
+
+  let quadrant = ''
+  let offset
+
+  quadrant += point.y > center.y ? 'b' : 't'
+  quadrant += point.x < center.x ? 'l' : 'r'
+
+  if (quadrant == 'tr') {
+    offset = new google.maps.Size(-140, 370)
+  } else if (quadrant == 'tl') {
+    offset = new google.maps.Size(140, 370)
+  } else if (quadrant == 'br') {
+    offset = new google.maps.Size(-140, 40)
+  } else if (quadrant == 'bl') {
+    offset = new google.maps.Size(140, 40)
+  }
+
+  return offset
+}
+
 export const Map = memo(() => {
   const { house } = useHouse()
 
@@ -52,9 +89,11 @@ export const Map = memo(() => {
   }, [])
 
   const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
+  const geoLocationCurrent = useGeolocationStore(state => state.geoLocation)
 
   useEffect(() => {
     setGeoLocation({
+      ...geoLocationCurrent,
       bounds: debouncedCurrentBounds,
     })
     setActiveMarker(null)
@@ -90,39 +129,6 @@ export const Map = memo(() => {
         css={{ animation: `${backgroundPulse} 1s linear infinite alternate` }}
       />
     )
-  }
-
-  const getPixelFromLatLng = (latLng: google.maps.LatLngLiteral | google.maps.LatLng) => {
-    const projection = map.current.getProjection()
-    return projection?.fromLatLngToPoint(latLng)
-  }
-
-  const getInfowindowOffset = (
-    map: google.maps.Map,
-    markerLatLng: google.maps.LatLngLiteral
-  ) => {
-    const center = getPixelFromLatLng(
-      map.getCenter() as google.maps.LatLng
-    ) as google.maps.Point
-    const point = getPixelFromLatLng(markerLatLng) as google.maps.Point
-
-    let quadrant = ''
-    let offset
-
-    quadrant += point.y > center.y ? 'b' : 't'
-    quadrant += point.x < center.x ? 'l' : 'r'
-
-    if (quadrant == 'tr') {
-      offset = new google.maps.Size(-140, 370)
-    } else if (quadrant == 'tl') {
-      offset = new google.maps.Size(140, 370)
-    } else if (quadrant == 'br') {
-      offset = new google.maps.Size(-140, 40)
-    } else if (quadrant == 'bl') {
-      offset = new google.maps.Size(140, 40)
-    }
-
-    return offset
   }
 
   return (
