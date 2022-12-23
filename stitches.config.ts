@@ -3,6 +3,12 @@ import type * as Stitches from '@stitches/react'
 import { createStitches } from '@stitches/react'
 
 export const { styled, getCssText, globalCss, css, keyframes } = createStitches({
+  media: {
+    bp1: '(max-width: 374px)',
+    bp2: '(max-width: 639px)',
+    bp3: '(max-width: 767px)',
+    bp4: '(max-width: 1023px)',
+  },
   theme: {
     colors: {
       ...colors,

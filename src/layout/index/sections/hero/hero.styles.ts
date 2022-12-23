@@ -1,32 +1,50 @@
 import { styled } from 'stitches.config'
 import { ArrowDown as ArrowDownSvg } from './svgs'
 
-export const Section = styled('section', {
-  position: 'relative',
-
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-})
-
 export const Title = styled('h1', {
-  marginTop: 120,
-
   fontWeight: 500,
   fontSize: 40,
   lineHeight: '56px',
   textAlign: 'center',
   color: '$grayW10',
+
+  '@bp4': {
+    lineHeight: '48px',
+  },
+  '@bp2': {
+    fontSize: 30,
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: 28,
+    lineHeight: '40px',
+  },
 })
 
 export const HelperText = styled('span', {
-  margin: '24px 0 116px',
+  margin: '24px 0 0',
 
-  fontWeight: 400,
   fontSize: 14,
+  fontWeight: 400,
   lineHeight: '26px',
   textAlign: 'center',
   color: '$grayW10',
+
+  '@bp4': {
+    fontSize: 16,
+    fontWeight: 300,
+  },
+  '@bp2': {
+    fontSize: 14,
+  },
+  '@bp1': {
+    lineHeight: '24px',
+    margin: '24px 16px 0',
+
+    '& > br': {
+      display: 'none',
+    },
+  },
 })
 
 export const ImageWrapper = styled('div', {

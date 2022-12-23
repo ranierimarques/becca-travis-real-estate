@@ -7,11 +7,6 @@ export const ReviewSpan = styled('span', {
   },
 })
 
-export const Section = styled('section', {
-  margin: '0 auto',
-  maxWidth: '1072px',
-})
-
 export const Title = styled('h2', {
   marginBottom: 16,
 

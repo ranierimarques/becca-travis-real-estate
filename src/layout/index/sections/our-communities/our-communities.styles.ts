@@ -2,12 +2,6 @@ import { Image as ImageUnstyled } from '@/common'
 import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  maxWidth: 1072,
-  margin: '0 auto',
-  padding: '160px 0',
-})
-
 export const Title = styled('h2', {
   marginBottom: 48,
 

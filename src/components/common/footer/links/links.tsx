@@ -7,7 +7,7 @@ import * as S from './links.styles'
 const siteMapLinks = [
   { href: '/homes', text: 'Purchase a home' },
   { href: '/sell-with-us', text: 'Sell your home' },
-  { href: '/huntsville', text: 'About Huntsville' },
+  { href: '/communities/huntsville#about-huntsville', text: 'About Huntsville' },
   { href: '/mortgage-calculator', text: 'Mortgage calculator' },
   { href: '/why-becca', text: 'Why Becca?' },
   { href: '/reviews', text: 'Client reviews' },
@@ -54,21 +54,42 @@ export function Links() {
         justifyContent: 'space-between',
 
         padding: '64px 0',
-        maxWidth: 1072,
-        margin: '0 auto',
+
+        '@bp4': {
+          display: 'block',
+          columnCount: '3',
+
+          padding: '56px 0 64px',
+        },
+        '@bp3': {
+          padding: '32px 0',
+        },
+        '@bp2': {
+          columnCount: '1',
+        },
       }}
     >
       {/* Resources */}
-      <div>
+      <Box css={{ breakInside: 'avoid' }}>
         <S.Title>Resources</S.Title>
         <S.Separator />
         <S.LinkList>
           <GetLinks links={resourcesLinks} />
         </S.LinkList>
-      </div>
+      </Box>
 
       {/* Site map */}
-      <Box>
+      <Box
+        css={{
+          breakInside: 'avoid',
+          '@bp4': {
+            marginTop: 32,
+          },
+          '@bp1': {
+            marginTop: 24,
+          },
+        }}
+      >
         <S.Title>Site map</S.Title>
         <S.Separator />
         <S.LinkList>
@@ -77,7 +98,17 @@ export function Links() {
       </Box>
 
       {/* Contact and Get Social */}
-      <div>
+      <Box
+        css={{
+          breakInside: 'avoid',
+          '@bp2': {
+            marginTop: 32,
+          },
+          '@bp1': {
+            marginTop: 24,
+          },
+        }}
+      >
         {/* Contact */}
         <div>
           <S.Title>Contact</S.Title>
@@ -105,7 +136,14 @@ export function Links() {
         </div>
 
         {/* Get social */}
-        <Box css={{ marginTop: 32 }}>
+        <Box
+          css={{
+            marginTop: 32,
+            '@bp1': {
+              marginTop: 24,
+            },
+          }}
+        >
           <S.Title>Get social</S.Title>
           <S.Separator />
           <S.LinkList css={{ flexDirection: 'row', gap: 8 }}>
@@ -144,16 +182,26 @@ export function Links() {
             </li>
           </S.LinkList>
         </Box>
-      </div>
+      </Box>
 
       {/* Utils */}
-      <div>
+      <Box
+        css={{
+          breakInside: 'avoid',
+          '@bp4': {
+            paddingTop: 32,
+          },
+          '@bp1': {
+            paddingTop: 24,
+          },
+        }}
+      >
         <S.Title>Utils</S.Title>
         <S.Separator />
         <S.LinkList>
           <GetLinks links={utilsLinks} />
         </S.LinkList>
-      </div>
+      </Box>
 
       {/* Images */}
       <Box
@@ -165,12 +213,22 @@ export function Links() {
 
           userSelect: 'none',
           pointerEvents: 'none',
+          breakInside: 'avoid',
+
+          '@bp2': {
+            marginTop: 32,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          },
+          '@bp1': {
+            marginTop: 24,
+          },
         }}
       >
-        <Image src={Mls} alt="MLS logo" />
+        <Image src={Mls} alt="MLS logo" quality={100} />
         <ColdwellBanker />
-        <Image src={Realtor} alt="Realtor logo" />
-        <Image src={EqualHousing} alt="Equal Housing logo" />
+        <Image src={Realtor} alt="Realtor logo" quality={100} />
+        <Image src={EqualHousing} alt="Equal Housing logo" quality={100} />
       </Box>
     </Box>
   )

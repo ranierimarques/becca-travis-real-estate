@@ -4,8 +4,10 @@ import * as S from './footer.styles'
 export function Footer() {
   return (
     <S.Footer>
-      <Links />
-      <Copyrights />
+      <S.Wrapper>
+        <Links />
+        <Copyrights />
+      </S.Wrapper>
     </S.Footer>
   )
 }

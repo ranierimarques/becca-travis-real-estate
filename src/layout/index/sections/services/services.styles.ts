@@ -1,13 +1,5 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  padding: '112px 0 120px',
-  margin: '0 auto',
-
-  maxWidth: '1072px',
-  textAlign: 'center',
-})
-
 export const Title = styled('h2', {
   marginTop: '8px',
 
@@ -15,6 +7,15 @@ export const Title = styled('h2', {
   fontSize: '36px',
   lineHeight: '50px',
   color: '$magenta6',
+
+  '@bp3': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Description = styled('p', {
@@ -24,6 +25,21 @@ export const Description = styled('p', {
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
+
+  '@bp3': {
+    fontSize: '14px',
+    lineHeight: '26px',
+    '& > br': {
+      display: 'none',
+    },
+    mx: '32px',
+  },
+  '@bp2': {
+    mx: '8px',
+  },
+  '@bp1': {
+    mx: '0',
+  },
 })
 
 export const Cards = styled('div', {
@@ -31,4 +47,18 @@ export const Cards = styled('div', {
 
   display: 'flex',
   gap: '32px',
+
+  '@bp4': {
+    marginTop: '40px',
+    gap: '24px',
+
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  '@bp3': {
+    gap: '32px',
+  },
+  '@bp2': {
+    marginTop: '32px',
+  },
 })

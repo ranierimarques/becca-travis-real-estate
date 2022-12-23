@@ -1,11 +1,12 @@
 import { SearchInput } from '@/shared'
+import { Section } from '@/template'
 import Image from 'next/image'
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'
 
 export function Hero() {
   return (
-    <S.Section>
+    <Section padding="7" direction="vertical">
       <S.Title>
         Find your dream <br />
         home today
@@ -30,6 +31,6 @@ export function Hero() {
       </S.ImageWrapper>
 
       <S.ArrowDown />
-    </S.Section>
+    </Section>
   )
 }

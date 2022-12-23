@@ -1,4 +1,5 @@
 import { Hat } from '@/shared'
+import { Section } from '@/template'
 import { Card } from '.'
 import { find, purchase, sell } from './images'
 import * as S from './services.styles'
@@ -32,7 +33,7 @@ const cardsData = [
 
 export function Services() {
   return (
-    <S.Section>
+    <Section direction="vertical" padding="1" hasMaxWidth css={{ textAlign: 'center' }}>
       <Hat>MAIN SERVICES</Hat>
       <S.Title>How can we help you?</S.Title>
       <S.Description>
@@ -46,6 +47,6 @@ export function Services() {
           <Card key={data.title} data={data} />
         ))}
       </S.Cards>
-    </S.Section>
+    </Section>
   )
 }

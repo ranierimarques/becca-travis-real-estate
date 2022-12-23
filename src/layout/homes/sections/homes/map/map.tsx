@@ -4,6 +4,7 @@ import { useGeolocationStore } from '@/layout/homes/store/geolocation'
 import useDebounce from '@/resources/hooks/useDebounce'
 import { HouseCard } from '@/shared'
 import { GoogleMap, InfoWindowF, MarkerF, useLoadScript } from '@react-google-maps/api'
+import type * as Stitches from '@stitches/react'
 import React, { memo, useEffect, useState, useRef } from 'react'
 import { css, keyframes } from 'stitches.config'
 
@@ -12,6 +13,14 @@ const customMarker = new URL('../svgs/mark.png', import.meta.url).href
 const containerStyle = css({
   width: '100%',
   // height: 'calc(100vh - 110px)',
+
+  variants: {
+    variant: {
+      1: {
+        height: 500,
+      },
+    },
+  },
 })
 
 const backgroundPulse = keyframes({
@@ -61,7 +70,9 @@ const getInfowindowOffset = (
   return offset
 }
 
-export const Map = memo(() => {
+type Props = Stitches.VariantProps<typeof containerStyle>
+
+export const Map = memo(({ variant }: Props) => {
   const { house } = useHouse()
 
   const { isLoaded } = useLoadScript({
@@ -125,7 +136,7 @@ export const Map = memo(() => {
   if (!isLoaded) {
     return (
       <Box
-        className={containerStyle()}
+        className={containerStyle({ variant })}
         css={{ animation: `${backgroundPulse} 1s linear infinite alternate` }}
       />
     )
@@ -133,7 +144,7 @@ export const Map = memo(() => {
 
   return (
     <GoogleMap
-      mapContainerClassName={containerStyle()}
+      mapContainerClassName={containerStyle({ variant })}
       center={center}
       zoom={10}
       onBoundsChanged={onMapBoundsChanged}

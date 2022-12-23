@@ -22,6 +22,10 @@ export const MadeBy = styled('span', {
   fontSize: '14px',
   lineHeight: '32px',
   color: '$gray3',
+
+  '@bp4': {
+    order: 3,
+  },
 })
 
 export const Link = styled('a', {
@@ -65,6 +69,26 @@ export const LogoLink = styled(NextLink, {
     borderRadius: 1,
     outline: '2px auto rgba($colors$magenta1Rgb, 0.2)',
     outlineOffset: '6px',
+  },
+
+  '@bp4': {
+    order: '0',
+    marginBottom: 12,
+  },
+})
+
+export const Divider = styled('div', {
+  display: 'none',
+
+  height: '1px',
+  width: '100%',
+
+  margin: '32px 0',
+
+  background: '$grayW9',
+
+  '@bp4': {
+    display: 'block',
   },
 })
 

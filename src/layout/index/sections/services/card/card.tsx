@@ -31,7 +31,18 @@ export function Card({ data }: cardProps) {
       <S.BottomWrapper>
         <S.Title>{data.title}</S.Title>
         <S.Description>{data.description}</S.Description>
-        <Button as="span" outlined size="2" css={{ mt: 16, pointerEvents: 'none' }}>
+        <Button
+          as="span"
+          outlined
+          size="2"
+          css={{
+            mt: 16,
+            pointerEvents: 'none',
+            '@bp4': {
+              mt: 24,
+            },
+          }}
+        >
           {data.buttonText}
         </Button>
       </S.BottomWrapper>

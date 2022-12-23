@@ -1,18 +1,40 @@
 import { DropdownMenu } from '@/primitives'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import * as Svg from '../svgs'
 import * as S from './dropdown-language.styles'
 
-export default function DropdownLanguage() {
+type Props = {
+  children?: ReactNode
+}
+
+export default function DropdownLanguage({ children }: Props) {
   const [language, setLanguage] = useState('en-US')
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Fix scrolling in mobile when open and closed dropdown if menu isn't opened before
+  function handleToggleDropdown(open: boolean) {
+    const dataset = document.body.dataset['overflow']
+
+    if (dataset === 'false' && !isOpen) return
+
+    document.body.dataset['overflow'] = String(!open)
+
+    setIsOpen(oldValue => !oldValue)
+  }
 
   return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger variant={1}>
-        <Svg.Earth />
-        Language
+    <DropdownMenu.Root onOpenChange={handleToggleDropdown}>
+      <DropdownMenu.Trigger variant={children ? undefined : 1}>
+        {children ? (
+          children
+        ) : (
+          <>
+            <Svg.Earth />
+            Language
+          </>
+        )}
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content align="start">
+      <DropdownMenu.Content align={children ? 'center' : 'start'}>
         <DropdownMenu.RadioGroup value={language} onValueChange={setLanguage}>
           <DropdownMenu.RadioItem value="en-US">
             <Svg.EnFlag />

@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    remotePatterns: [{ protocol: 'https', hostname: '**.fl.yelpcdn.com' }],
     domains: [
       'media.graphassets.com',
       'dvvjkgh94f2v6.cloudfront.net',
@@ -28,6 +29,7 @@ const nextConfig = {
                   params: {
                     overrides: {
                       cleanupIDs: false,
+                      removeViewBox: false,
                     },
                   },
                 },

@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { css, styled } from 'stitches.config'
 import * as Svg from '../svgs'
 
@@ -48,7 +49,7 @@ export const ArrowRight = styled(Svg.ArrowRight, {
   transition: 'transform 300ms ease, opacity 300ms ease',
 })
 
-export const CardLink = styled('a', {
+export const CardLink = styled(NextLink, {
   display: 'flex',
   gap: 12,
 
@@ -118,7 +119,7 @@ export const HuntsvilleDescription = styled('p', {
   color: '$gray5',
 })
 
-export const HuntsvilleLink = styled('a', {
+export const HuntsvilleLink = styled(NextLink, {
   display: 'flex',
   gap: 12,
 
@@ -155,7 +156,7 @@ export const OurCommunitiesList = styled('ul', {
   gap: 12,
 })
 
-export const OurCommunitiesListLink = styled('a', {
+export const OurCommunitiesListLink = styled(NextLink, {
   display: 'block',
 
   position: 'relative',

@@ -1,5 +1,6 @@
 import { Box, Flex, Image } from '@/common'
 import { Hat } from '@/shared'
+import { Section } from '@/template'
 import * as S from './achievements.styles'
 import { becca } from './images'
 import * as Svg from './svgs'
@@ -25,7 +26,7 @@ const badges = [
 
 export function Achievements() {
   return (
-    <S.Section>
+    <Section direction="vertical" padding="3" css={{ bg: 'rgba($grayW8Rgb, 0.1)' }}>
       <Flex direction="column" align="center" css={{ gap: 16 }}>
         <Hat>Becca Travis Real State Group</Hat>
         <S.Line />
@@ -74,6 +75,6 @@ export function Achievements() {
           })}
         </S.Badges>
       </Flex>
-    </S.Section>
+    </Section>
   )
 }
