@@ -1,18 +1,11 @@
 import { Button } from '@/common'
 import { HouseCard } from '@/shared'
+import { FormattedHouseCards } from '@/types/houses'
 import { useState } from 'react'
 import * as S from './homes.styles'
 
 interface HomesProps {
-  listings: {
-    id: string
-    media: string
-    price: string
-    address: string
-    bedroomsTotal: number
-    bathroomsTotal: number
-    livingArea: string
-  }[]
+  listings: FormattedHouseCards
   communityName: string
 }
 
