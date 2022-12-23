@@ -113,6 +113,8 @@ export async function getStaticProps({ params }: Params) {
     params: { City: params.community, limit: '6' },
   })
 
+  console.log(data)
+
   return {
     props: {
       community: params.community,
