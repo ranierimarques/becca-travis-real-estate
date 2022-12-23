@@ -16,10 +16,13 @@ export function Copyrights() {
         alignItems: 'center',
 
         padding: '32px 0',
-        maxWidth: 1072,
-        margin: '0 auto',
 
         boxShadow: '0 -1px 0 0 $colors$grayW9',
+
+        '@bp4': {
+          display: 'flex',
+          flexDirection: 'column',
+        },
       }}
     >
       <S.MadeBy>
@@ -38,6 +41,8 @@ export function Copyrights() {
       </S.LogoLink>
 
       <S.Copyright>© 2022 — All rights reserved.</S.Copyright>
+
+      <S.Divider />
     </Box>
   )
 }

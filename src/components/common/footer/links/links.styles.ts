@@ -27,6 +27,13 @@ export const Title = styled('span', {
   letterSpacing: '0.4px',
 
   color: '$gray1',
+
+  '@bp3': {
+    fontSize: '16px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+  },
 })
 
 export const Separator = styled('div', {
