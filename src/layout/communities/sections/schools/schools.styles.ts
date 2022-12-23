@@ -7,6 +7,8 @@ export const Section = styled('section', {
 
   maxWidth: 1072,
   margin: '0 auto 120px',
+
+  scrollMarginTop: 32,
 })
 
 export const Title = styled('h3', {

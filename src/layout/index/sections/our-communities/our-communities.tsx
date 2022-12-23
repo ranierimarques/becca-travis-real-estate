@@ -12,12 +12,27 @@ import * as S from './our-communities.styles'
 import { ArrowLeftSvg } from './svgs'
 
 const communitiesData = [
-  { image: harvest, alt: 'Harvest road', name: 'Harvest', href: '/harvest' },
-  { image: huntsville, alt: 'forest', name: 'Huntsville', href: '/huntsville' },
-  { image: hamptomCove, alt: 'lake', name: 'Hamptom Cove', href: '/hamptom-cove' },
-  { image: decatur, alt: 'home', name: 'Decatur', href: '/decatur' },
-  { image: athens, alt: 'river', name: 'Athens', href: '/athens' },
-  { image: meridianville, alt: 'house', name: 'Meridianville', href: '/meridianville' },
+  { image: harvest, alt: 'Harvest road', name: 'Harvest', href: '/communities/harvest' },
+  {
+    image: huntsville,
+    alt: 'forest',
+    name: 'Huntsville',
+    href: '/communities/huntsville',
+  },
+  {
+    image: hamptomCove,
+    alt: 'lake',
+    name: 'Hamptom Cove',
+    href: '/communities/hamptom-cove',
+  },
+  { image: decatur, alt: 'home', name: 'Decatur', href: '/communities/decatur' },
+  { image: athens, alt: 'river', name: 'Athens', href: '/communities/athens' },
+  {
+    image: meridianville,
+    alt: 'house',
+    name: 'Meridianville',
+    href: '/communities/meridianville',
+  },
 ]
 
 export function OurCommunities() {

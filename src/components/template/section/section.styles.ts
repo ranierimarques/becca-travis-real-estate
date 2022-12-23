@@ -19,39 +19,51 @@ export const Section = styled('section', {
     },
     padding: {
       '1': {
-        padding: '112px 0 120px',
+        paddingTop: '112px',
+        paddingBottom: '120px',
         '@bp4': {
-          padding: '112px 0 96px',
+          paddingTop: '112px',
+          paddingBottom: '96px',
         },
         '@bp3': {
-          padding: '96px 0 80px',
+          paddingTop: '96px',
+          paddingBottom: '80px',
         },
       },
       '2': {
-        padding: '120px 0 120px',
+        paddingTop: '120px',
+        paddingBottom: '120px',
       },
       '3': {
-        padding: '96px 0 104px',
+        paddingTop: '96px',
+        paddingBottom: '104px',
       },
       '4': {
-        padding: '0 0 116px',
+        paddingTop: '0',
+        paddingBottom: '116px',
       },
       '5': {
-        padding: '160px 0 160px',
+        paddingTop: '160px',
+        paddingBottom: '160px',
       },
       '6': {
-        padding: '160px 0 120px',
+        paddingTop: '160px',
+        paddingBottom: '120px',
       },
       '7': {
-        padding: '120px 0 116px',
+        paddingTop: '120px',
+        paddingBottom: '116px',
         '@bp4': {
-          padding: '80px 0 80px',
+          paddingTop: '80px',
+          paddingBottom: '80px',
         },
         '@bp3': {
-          padding: '64px 0 80px',
+          paddingTop: '64px',
+          paddingBottom: '80px',
         },
         '@bp1': {
-          padding: '56px 0 80px',
+          paddingTop: '56px',
+          paddingBottom: '80px',
         },
       },
     },

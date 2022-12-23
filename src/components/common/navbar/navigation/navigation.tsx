@@ -6,12 +6,12 @@ import * as Svg from '../svgs'
 import * as S from './navigation.styles'
 
 export const communitiesListItems = [
-  { image: Img.harvest, name: 'Harvest', href: '/harvest' },
-  { image: Img.huntsville, name: 'Huntsville', href: '/huntsville' },
-  { image: Img.hamptomCove, name: 'Hamptom Cove', href: '/hamptom-cove' },
-  { image: Img.decatur, name: 'Decatur', href: '/decatur' },
-  { image: Img.athens, name: 'Athens', href: '/athens' },
-  { image: Img.meridianville, name: 'Meridianville', href: '/meridianville' },
+  { image: Img.harvest, name: 'Harvest', href: '/communities/harvest' },
+  { image: Img.huntsville, name: 'Huntsville', href: '/communities/huntsville' },
+  { image: Img.hamptomCove, name: 'Hamptom Cove', href: '/communities/hamptom-cove' },
+  { image: Img.decatur, name: 'Decatur', href: '/communities/decatur' },
+  { image: Img.athens, name: 'Athens', href: '/communities/athens' },
+  { image: Img.meridianville, name: 'Meridianville', href: '/communities/meridianville' },
 ]
 
 export const aboutHuntsvilleListItems = [
@@ -19,7 +19,7 @@ export const aboutHuntsvilleListItems = [
     id: 1,
     icon: <Svg.House className={S.SvgStyles()} />,
     title: 'Huntsville',
-    href: '/huntsville',
+    href: '/communities/huntsville',
     description: 'Discover Huntsville',
     color: '$colors$green1Rgb',
   },
@@ -27,7 +27,7 @@ export const aboutHuntsvilleListItems = [
     id: 2,
     icon: <Svg.Baggage className={S.SvgStyles()} />,
     title: 'Relocation Information',
-    href: '/huntsville/relocation-information',
+    href: '/communities/huntsville#relocation-information',
     description: 'All you need to know about your Relocation',
     color: '$colors$red1Rgb',
   },
@@ -35,7 +35,7 @@ export const aboutHuntsvilleListItems = [
     id: 3,
     icon: <Svg.Pencil className={S.SvgStyles()} />,
     title: 'Huntsville school',
-    href: '/huntsville/school',
+    href: '/communities/huntsville#school',
     description: 'Discover our schools',
     color: '$colors$blue2Rgb',
   },
@@ -161,8 +161,8 @@ export type CardListItemProps = {
 function CardListItem({ content }: CardListItemProps) {
   return (
     <S.CardListItem>
-      <NavigationMenu.CustomLink href={content.href}>
-        <S.CardLink>
+      <NavigationMenu.NavigationLink asChild>
+        <S.CardLink href={content.href}>
           {content.icon}
           <div>
             <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>
@@ -172,7 +172,7 @@ function CardListItem({ content }: CardListItemProps) {
             <S.CardDescription>{content.description}</S.CardDescription>
           </div>
         </S.CardLink>
-      </NavigationMenu.CustomLink>
+      </NavigationMenu.NavigationLink>
     </S.CardListItem>
   )
 }
@@ -226,8 +226,8 @@ function CommunityGuideMenu() {
             <S.CommunitiesList>
               {aboutHuntsvilleListItems.map(item => (
                 <li key={item.id}>
-                  <NavigationMenu.CustomLink href={item.href}>
-                    <S.HuntsvilleLink css={{ $$color: item.color }}>
+                  <NavigationMenu.NavigationLink asChild>
+                    <S.HuntsvilleLink href={item.href} css={{ $$color: item.color }}>
                       {item.icon}
                       <Box>
                         <Flex align="center" css={{ gap: 4 }}>
@@ -239,7 +239,7 @@ function CommunityGuideMenu() {
                         </S.HuntsvilleDescription>
                       </Box>
                     </S.HuntsvilleLink>
-                  </NavigationMenu.CustomLink>
+                  </NavigationMenu.NavigationLink>
                 </li>
               ))}
             </S.CommunitiesList>
@@ -251,8 +251,8 @@ function CommunityGuideMenu() {
           <S.OurCommunitiesList>
             {communitiesListItems.map(item => (
               <li key={item.name}>
-                <NavigationMenu.CustomLink href={item.href}>
-                  <S.OurCommunitiesListLink>
+                <NavigationMenu.NavigationLink asChild>
+                  <S.OurCommunitiesListLink href={item.href}>
                     <Image
                       style={{
                         userSelect: 'none',
@@ -266,7 +266,7 @@ function CommunityGuideMenu() {
                     <S.OurCommunitiesImageOverlay />
                     <S.OurCommunitiesImageName>{item.name}, AL</S.OurCommunitiesImageName>
                   </S.OurCommunitiesListLink>
-                </NavigationMenu.CustomLink>
+                </NavigationMenu.NavigationLink>
               </li>
             ))}
           </S.OurCommunitiesList>
@@ -303,9 +303,9 @@ export function Navigation() {
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.CustomLink href="/blog/1">
-            <NavigationMenu.Link>Blog</NavigationMenu.Link>
-          </NavigationMenu.CustomLink>
+          <NavigationMenu.NavigationLink asChild>
+            <NavigationMenu.Link href="/blog/1">Blog</NavigationMenu.Link>
+          </NavigationMenu.NavigationLink>
         </NavigationMenu.Item>
 
         <NavigationMenu.IndicatorWithArrow />

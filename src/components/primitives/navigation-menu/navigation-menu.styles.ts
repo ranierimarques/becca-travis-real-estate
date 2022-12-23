@@ -1,4 +1,5 @@
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
+import NextLink from 'next/link'
 import { css, keyframes, styled } from 'stitches.config'
 import * as Svg from './svgs'
 
@@ -99,7 +100,7 @@ export const Content = styled(NavigationMenuPrimitive.Content, {
   '&[data-motion="to-end"]': { animationName: exitToRight },
 })
 
-export const Link = styled('a', linkStyles, {
+export const Link = styled(NextLink, linkStyles, {
   display: 'block',
 })
 

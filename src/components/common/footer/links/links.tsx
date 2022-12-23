@@ -7,7 +7,7 @@ import * as S from './links.styles'
 const siteMapLinks = [
   { href: '/homes', text: 'Purchase a home' },
   { href: '/sell-with-us', text: 'Sell your home' },
-  { href: '/huntsville', text: 'About Huntsville' },
+  { href: '/communities/huntsville#about-huntsville', text: 'About Huntsville' },
   { href: '/mortgage-calculator', text: 'Mortgage calculator' },
   { href: '/why-becca', text: 'Why Becca?' },
   { href: '/reviews', text: 'Client reviews' },

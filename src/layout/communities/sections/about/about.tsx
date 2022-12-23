@@ -6,7 +6,7 @@ interface AboutProps {
 
 export function About({ communityName }: AboutProps) {
   return (
-    <S.Section>
+    <S.Section id={`about-${communityName.toLowerCase()}`}>
       <S.Title>About {communityName}</S.Title>
       <S.Paragraph>
         Athens is a city in Limestone County, Alabama. As of the 2000 census, the
