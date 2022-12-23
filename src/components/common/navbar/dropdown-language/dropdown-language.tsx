@@ -9,11 +9,21 @@ type Props = {
 
 export default function DropdownLanguage({ children }: Props) {
   const [language, setLanguage] = useState('en-US')
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Fix scrolling in mobile when open and closed dropdown if menu isn't opened before
+  function handleToggleDropdown(open: boolean) {
+    const dataset = document.body.dataset['overflow']
+
+    if (dataset === 'false' && !isOpen) return
+
+    document.body.dataset['overflow'] = String(!open)
+
+    setIsOpen(oldValue => !oldValue)
+  }
 
   return (
-    <DropdownMenu.Root
-      onOpenChange={open => (document.body.dataset['overflow'] = String(!open))}
-    >
+    <DropdownMenu.Root onOpenChange={handleToggleDropdown}>
       <DropdownMenu.Trigger variant={children ? undefined : 1}>
         {children ? (
           children
