@@ -24,7 +24,7 @@ export const InputWrapper = styled('div', {
 export const Input = styled('input', {
   flex: 1,
 
-  width: 473,
+  width: 474,
   height: 64,
 
   padding: '0 16px 0 24px',
@@ -35,9 +35,26 @@ export const Input = styled('input', {
   color: '$gray1',
   caretColor: '$magenta8',
 
+  textOverflow: 'ellipsis',
+
   '&::placeholder': {
     fontWeight: 400,
     color: '$grayW5',
+  },
+
+  '@bp2': {
+    width: 'calc(100vw - 102px)',
+    height: 60,
+
+    padding: '0 16px',
+  },
+  '@bp1': {
+    width: 'calc(100vw - 86px)',
+    height: 56,
+
+    padding: '0 16px',
+
+    fontSize: 12,
   },
 })
 
@@ -67,6 +84,13 @@ export const SearchButton = styled('button', {
   '&:active': {
     background: 'rgba($colors$magenta2Rgb, 0.1)',
     color: '$magenta3',
+  },
+
+  '@bp2': {
+    padding: '18px 15px',
+  },
+  '@bp1': {
+    padding: '16px 15px',
   },
 })
 
@@ -141,6 +165,10 @@ export const Empty = styled('li', {
 export const Container = styled('div', {
   position: 'relative',
   marginTop: 32,
+
+  '@bp2': {
+    marginTop: 24,
+  },
 
   variants: {
     variant: {

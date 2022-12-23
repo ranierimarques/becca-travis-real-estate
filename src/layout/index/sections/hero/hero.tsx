@@ -6,7 +6,7 @@ import { downtownHuntsville } from './images'
 
 export function Hero() {
   return (
-    <Section direction="vertical">
+    <Section padding="7" direction="vertical">
       <S.Title>
         Find your dream <br />
         home today

@@ -79,51 +79,49 @@ export function SearchInput({ ...props }: SearchProps) {
   const hasLocationSuggestion = suggestions[0] === LOCATION_VALUE
 
   return (
-    <>
-      <S.Container {...props}>
-        <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
-          <S.Input
-            type="text"
-            placeholder="Search by address, neighborhood, city or ZIP code"
-            {...getInputProps({ onChange })}
-          />
-          <S.SearchButton aria-label="Search">
-            <Loupe />
-          </S.SearchButton>
-        </S.InputWrapper>
+    <S.Container {...props}>
+      <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
+        <S.Input
+          type="text"
+          placeholder="Search by address, neighborhood, city or ZIP code"
+          {...getInputProps({ onChange })}
+        />
+        <S.SearchButton aria-label="Search">
+          <Loupe />
+        </S.SearchButton>
+      </S.InputWrapper>
 
-        <S.Suggestions open={isOpen} {...getMenuProps()}>
-          {isOpen && (
-            <>
-              {!hasSuggestions && <S.Empty>No results found.</S.Empty>}
+      <S.Suggestions open={isOpen} {...getMenuProps()}>
+        {isOpen && (
+          <>
+            {!hasSuggestions && <S.Empty>No results found.</S.Empty>}
 
-              {hasLocationSuggestion && (
-                <S.Suggestion
-                  key={`${LOCATION_VALUE}${0}`}
-                  active={highlightedIndex === 0}
-                  {...getItemProps({ item: LOCATION_VALUE, index: 0 })}
-                >
-                  <Gps />
-                  Current Location
-                </S.Suggestion>
-              )}
+            {hasLocationSuggestion && (
+              <S.Suggestion
+                key={`${LOCATION_VALUE}${0}`}
+                active={highlightedIndex === 0}
+                {...getItemProps({ item: LOCATION_VALUE, index: 0 })}
+              >
+                <Gps />
+                Current Location
+              </S.Suggestion>
+            )}
 
-              {!hasLocationSuggestion &&
-                suggestions.map((item, index) => {
-                  return (
-                    <S.Suggestion
-                      key={`${item}${index}`}
-                      active={highlightedIndex === index}
-                      {...getItemProps({ item, index })}
-                    >
-                      {item}
-                    </S.Suggestion>
-                  )
-                })}
-            </>
-          )}
-        </S.Suggestions>
-      </S.Container>
-    </>
+            {!hasLocationSuggestion &&
+              suggestions.map((item, index) => {
+                return (
+                  <S.Suggestion
+                    key={`${item}${index}`}
+                    active={highlightedIndex === index}
+                    {...getItemProps({ item, index })}
+                  >
+                    {item}
+                  </S.Suggestion>
+                )
+              })}
+          </>
+        )}
+      </S.Suggestions>
+    </S.Container>
   )
 }
