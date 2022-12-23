@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image } from '@/common'
+import { Box, Button, Flex, Image, Loader } from '@/common'
 import { StaticImageData } from 'next/image'
 import { useState } from 'react'
 import * as Img from './images'
@@ -46,6 +46,7 @@ export function Yelp({ data, communityName }: YelpProps) {
   const [yelpData, setYelpData] = useState(data)
   const [activeCategory, setActiveCategory] = useState<CategoriesName>('dining')
   const [activeIndex, setActiveIndex] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
 
   const isAthens = communityName === 'Athens'
 
@@ -65,6 +66,7 @@ export function Yelp({ data, communityName }: YelpProps) {
   }
 
   async function handleRequestMoreData() {
+    setIsLoading(true)
     const offset = activeIndex * RESULTS_LIMIT
     const response = await fetch(
       `/api/yelp?category=${activeCategory}&community=${
@@ -74,12 +76,15 @@ export function Yelp({ data, communityName }: YelpProps) {
     const data = await response.json()
     setActiveIndex(oldValue => oldValue + 1)
     setYelpData([...yelpData, ...data])
+    setIsLoading(false)
   }
 
   return (
     <S.Section>
       <Flex direction="column" align="center">
-        <S.Title>Living in {communityName}</S.Title>
+        <S.Title>
+          Living in <S.Community>{communityName}</S.Community>
+        </S.Title>
         <S.Description>
           Explore the best restaurants, businesses, and activities near Athens.
         </S.Description>
@@ -136,8 +141,8 @@ export function Yelp({ data, communityName }: YelpProps) {
             </S.Card>
           ))}
         </S.CardsGrid>
-        <Button size="2" onClick={handleRequestMoreData}>
-          Load More
+        <Button size="2" onClick={handleRequestMoreData} loading={isLoading}>
+          {isLoading && <Loader />} Load More
         </Button>
       </Flex>
     </S.Section>

@@ -16,6 +16,10 @@ export const Title = styled('h3', {
   color: '#58243C',
 })
 
+export const Community = styled('span', {
+  textTransform: 'capitalize',
+})
+
 export const Statistics = styled('ul', {
   display: 'flex',
   alignItems: 'center',

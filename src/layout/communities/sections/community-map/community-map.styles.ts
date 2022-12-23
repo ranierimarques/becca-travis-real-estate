@@ -17,3 +17,7 @@ export const Title = styled('h3', {
 
   marginBottom: 28,
 })
+
+export const Community = styled('span', {
+  textTransform: 'capitalize',
+})

@@ -31,6 +31,7 @@ export const Title = styled('h2', {
 })
 
 export const Description = styled('span', {
+  maxWidth: '584px',
   fontWeight: 400,
   fontSize: '16px',
   lineHeight: '28px',
