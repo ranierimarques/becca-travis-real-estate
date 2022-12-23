@@ -225,10 +225,10 @@ export function Links() {
           },
         }}
       >
-        <Image src={Mls} alt="MLS logo" />
+        <Image src={Mls} alt="MLS logo" quality={100} />
         <ColdwellBanker />
-        <Image src={Realtor} alt="Realtor logo" />
-        <Image src={EqualHousing} alt="Equal Housing logo" />
+        <Image src={Realtor} alt="Realtor logo" quality={100} />
+        <Image src={EqualHousing} alt="Equal Housing logo" quality={100} />
       </Box>
     </Box>
   )
