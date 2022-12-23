@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       { params: { community: 'huntsville' } },
-      // { params: { community: 'athens' } }, // Check this
+      { params: { community: 'athens' } },
       { params: { community: 'harvest' } },
       { params: { community: 'hamptom-cove' } },
       { params: { community: 'decatur' } },
@@ -101,8 +101,13 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
+  const isAthens = params.community === 'athens'
+
   const response = await fetch(
-    endpoint + `/search?location=${params.community}&sort_by=review_count&limit=6`,
+    endpoint +
+      `/search?location=${
+        isAthens ? 'athens, alabama' : params.community
+      }&sort_by=review_count&limit=6`,
     options
   )
 

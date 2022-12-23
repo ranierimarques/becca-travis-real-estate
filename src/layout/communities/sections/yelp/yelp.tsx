@@ -16,7 +16,7 @@ interface YelpProps {
   communityName: string
 }
 
-type CategoriesName = 'dining' | 'active' | 'beauty' | 'nightlife'
+type CategoriesName = 'dining' | 'active' | 'shopping' | 'nightlife'
 
 const RESULTS_LIMIT = 6
 
@@ -39,7 +39,7 @@ const buttonOptions: buttonOptionsType = [
   { id: 1, category: 'dining' },
   { id: 2, category: 'active' },
   { id: 3, category: 'nightlife' },
-  { id: 4, category: 'beauty' },
+  { id: 4, category: 'shopping' },
 ]
 
 export function Yelp({ data, communityName }: YelpProps) {
@@ -47,14 +47,19 @@ export function Yelp({ data, communityName }: YelpProps) {
   const [activeCategory, setActiveCategory] = useState<CategoriesName>('dining')
   const [activeIndex, setActiveIndex] = useState(1)
 
+  const isAthens = communityName === 'Athens'
+
   async function handleRequestNewData(category: CategoriesName) {
     if (category === activeCategory) return
 
     setActiveCategory(category)
     setActiveIndex(1)
     const response = await fetch(
-      `/api/yelp?category=${category}&community=${communityName}&limit=${RESULTS_LIMIT}&offset=0`
+      `/api/yelp?category=${category}&community=${
+        isAthens ? 'athens, alabama' : communityName
+      }&limit=${RESULTS_LIMIT}&offset=0`
     )
+    console.log(response)
     const data = await response.json()
     setYelpData(data)
   }
@@ -62,7 +67,9 @@ export function Yelp({ data, communityName }: YelpProps) {
   async function handleRequestMoreData() {
     const offset = activeIndex * RESULTS_LIMIT
     const response = await fetch(
-      `/api/yelp?category=${activeCategory}&community=${communityName}&offset=${offset}&limit=${RESULTS_LIMIT}`
+      `/api/yelp?category=${activeCategory}&community=${
+        isAthens ? 'athens, alabama' : communityName
+      }&offset=${offset}&limit=${RESULTS_LIMIT}`
     )
     const data = await response.json()
     setActiveIndex(oldValue => oldValue + 1)
