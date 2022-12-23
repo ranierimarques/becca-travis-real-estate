@@ -20,7 +20,16 @@ export const Hat = styled('span', {
         padding: '8px 16px',
         borderRadius: '9999px',
 
+        lineHeight: '26px',
         color: '$magenta3',
+
+        '@bp3': {
+          padding: '6px 15px',
+        },
+        '@bp1': {
+          fontSize: '12px',
+          lineHeight: '24px',
+        },
       },
       '2': {
         display: 'flex',

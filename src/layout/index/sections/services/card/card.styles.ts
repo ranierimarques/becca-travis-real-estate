@@ -37,6 +37,18 @@ export const Link = styled(NextLink, {
     transition: 'all 300ms ease',
   },
 
+  '@bp4': {
+    flexGrow: 0,
+    flexBasis: '328px',
+  },
+  '@bp3': {
+    flexBasis: '272px',
+  },
+  '@bp2': {
+    flexBasis: 'auto',
+    maxWidth: '327px',
+  },
+
   '&:hover': {
     [`& ${ImageWrapper}`]: { transform: 'translateY(-8px)' },
     [`& ${TopWrapper}`]: { background: 'rgba($colors$magenta5Rgb, 0.6)' },
