@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 const options: RequestInit = {
   method: 'GET',
-  headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_YELP_API_KEY}` },
+  headers: { Authorization: `Bearer ${process.env.YELP_API_KEY}` },
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

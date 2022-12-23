@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       { params: { community: 'huntsville' } },
-      { params: { community: 'athens' } },
+      // { params: { community: 'athens' } }, // Check this
       { params: { community: 'harvest' } },
       { params: { community: 'hamptom-cove' } },
       { params: { community: 'decatur' } },
@@ -91,7 +91,7 @@ const endpoint = 'https://api.yelp.com/v3/businesses'
 
 const options = {
   method: 'GET',
-  headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_YELP_API_KEY}` },
+  headers: { Authorization: `Bearer ${process.env.YELP_API_KEY}` },
 } as RequestInit
 
 type Params = {
