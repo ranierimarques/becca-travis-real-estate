@@ -7,7 +7,9 @@ interface MarketTrendsProps {
 export function MarketTrends({ communityName }: MarketTrendsProps) {
   return (
     <S.Section>
-      <S.Title>{communityName} Market Trends</S.Title>
+      <S.Title>
+        <S.Community>{communityName}</S.Community> Market Trends
+      </S.Title>
       <S.Description>
         Athens market trends indicate an increase of $16 (11%) in the average price per
         square foot over the past 6 months. The average sales price fell to $319,445 from

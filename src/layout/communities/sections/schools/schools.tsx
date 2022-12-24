@@ -7,7 +7,9 @@ interface SchoolsProps {
 export function Schools({ communityName }: SchoolsProps) {
   return (
     <S.Section id="school">
-      <S.Title>Schools Near {communityName}</S.Title>
+      <S.Title>
+        Schools Near <S.Community>{communityName}</S.Community>
+      </S.Title>
       <S.Description>
         The following schools are within or nearby Athens, Alabama. The rating and
         statistics can serve as a starting point to make baseline comparisons on the right

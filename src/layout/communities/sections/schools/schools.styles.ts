@@ -20,6 +20,10 @@ export const Title = styled('h3', {
   marginBottom: 12,
 })
 
+export const Community = styled('span', {
+  textTransform: 'capitalize',
+})
+
 export const Description = styled('span', {
   fontWeight: 400,
   fontSize: '16px',

@@ -16,22 +16,20 @@ import Head from 'next/head'
 type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
 
 const Page: PageWithStaticProps = ({ data, listings, community }) => {
-  const capitalizedCommunityName = community[0].toUpperCase() + community.slice(1)
-
   return (
     <main>
       <Head>
         <title>Becca Travis</title>
       </Head>
 
-      <Hero communityName={capitalizedCommunityName} />
-      <About communityName={capitalizedCommunityName} />
-      <Demographics communityName={capitalizedCommunityName} />
-      <MarketTrends communityName={capitalizedCommunityName} />
-      <Schools communityName={capitalizedCommunityName} />
-      <CommunityMap communityName={capitalizedCommunityName} />
-      <Homes listings={listings} communityName={capitalizedCommunityName} />
-      <Yelp data={data} communityName={capitalizedCommunityName} />
+      <Hero communityName={community} />
+      <About communityName={community} />
+      <Demographics communityName={community} />
+      <MarketTrends communityName={community} />
+      <Schools communityName={community} />
+      <CommunityMap communityName={community} />
+      <Homes listings={listings} communityName={community} />
+      <Yelp data={data} communityName={community} />
       <LastCall />
     </main>
   )
@@ -43,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { community: 'huntsville' } },
       { params: { community: 'athens' } },
       { params: { community: 'harvest' } },
-      { params: { community: 'hamptom-cove' } },
+      { params: { community: 'hampton-cove' } },
       { params: { community: 'decatur' } },
       { params: { community: 'meridianville' } },
     ],
@@ -102,11 +100,12 @@ type Params = {
 
 export async function getStaticProps({ params }: Params) {
   const isAthens = params.community === 'athens'
+  const community = params.community.replace('-', ' ')
 
   const response = await fetch(
     endpoint +
       `/search?location=${
-        isAthens ? 'athens, alabama' : params.community
+        isAthens ? 'athens, alabama' : community
       }&sort_by=review_count&limit=6`,
     options
   )
@@ -115,12 +114,14 @@ export async function getStaticProps({ params }: Params) {
 
   const listings = await getHouseListing({
     type: 'card',
-    params: { City: params.community, limit: '6' },
+    params: { City: community, limit: '6' },
   })
+
+  console.log(listings)
 
   return {
     props: {
-      community: params.community,
+      community: community,
       data: data.businesses,
       listings,
     },

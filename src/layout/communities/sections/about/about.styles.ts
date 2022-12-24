@@ -20,6 +20,10 @@ export const Title = styled('h3', {
   color: '#58243C',
 })
 
+export const Community = styled('span', {
+  textTransform: 'capitalize',
+})
+
 export const Paragraph = styled('p', {
   fontWeight: 400,
   fontSize: '16px',

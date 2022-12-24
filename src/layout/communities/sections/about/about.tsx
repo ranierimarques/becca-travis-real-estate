@@ -7,7 +7,9 @@ interface AboutProps {
 export function About({ communityName }: AboutProps) {
   return (
     <S.Section id={`about-${communityName.toLowerCase()}`}>
-      <S.Title>About {communityName}</S.Title>
+      <S.Title>
+        About <S.Community>{communityName}</S.Community>
+      </S.Title>
       <S.Paragraph>
         Athens is a city in Limestone County, Alabama. As of the 2000 census, the
         population of the city was 18,967. According to the 2007 U.S. Census estimates,

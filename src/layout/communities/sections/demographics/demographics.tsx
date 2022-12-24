@@ -32,7 +32,9 @@ export function Demographics({ communityName }: DemographicsProps) {
   ]
   return (
     <S.Section>
-      <S.Title>{communityName} Demographics</S.Title>
+      <S.Title>
+        <S.Community>{communityName}</S.Community> Demographics
+      </S.Title>
       <S.Statistics>
         {statistics.map(stat => (
           <S.Statistic key={stat.name}>

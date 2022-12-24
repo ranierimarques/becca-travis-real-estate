@@ -30,24 +30,28 @@ export function Homes({ listings, communityName }: HomesProps) {
 
   return (
     <S.Section>
-      <S.Title>{communityName} Homes for Sale</S.Title>
+      <S.Title>
+        <S.Community>{communityName}</S.Community> Homes for Sale
+      </S.Title>
       <S.Container>
         <S.Houses>
           {listingData.map(listing => (
             <HouseCard key={listing.id} listing={listing} badge="New" />
           ))}
         </S.Houses>
-        <S.OverlayWrapper>
-          <S.Overlay />
-          <Button
-            size="2"
-            css={{ pointerEvents: 'auto', zIndex: 1 }}
-            onClick={handleRequestNewListings}
-            loading={isLoading}
-          >
-            {isLoading && <Loader />} Show more...
-          </Button>
-        </S.OverlayWrapper>
+        {listings.length >= 6 && (
+          <S.OverlayWrapper>
+            <S.Overlay />
+            <Button
+              size="2"
+              css={{ pointerEvents: 'auto', zIndex: 1 }}
+              onClick={handleRequestNewListings}
+              loading={isLoading}
+            >
+              {isLoading && <Loader />} Show more...
+            </Button>
+          </S.OverlayWrapper>
+        )}
       </S.Container>
     </S.Section>
   )
