@@ -58,7 +58,6 @@ const slideUp = keyframes({
 const linkStyles = css({
   padding: '16px 0',
   userSelect: 'none',
-  borderRadius: 4,
 
   color: '$magenta1',
   fontWeight: 400,
@@ -187,14 +186,6 @@ export const CardLink = styled(NextLink, {
   color: '$grayW6',
   transition: 'color 300ms ease',
 
-  '&:focus': {
-    outline: '2px solid rgba($colors$magenta1Rgb, 0.2)',
-    outlineOffset: '4px',
-    color: '$magenta1',
-    [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },
-    [`${CardTitle}`]: { color: '$magenta1' },
-    [`${CardDescription}`]: { color: '$grayW3' },
-  },
   '&:hover': {
     color: '$magenta1',
     [`${ArrowRight}`]: { transform: 'scale(1)', opacity: 1 },

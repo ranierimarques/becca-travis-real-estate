@@ -124,7 +124,7 @@ function CommunityGuideMenu({ toggleMenuVisibility }: ToggleMenuVisibility) {
         <S.OurCommunitiesList>
           {communitiesListItems.map(item => (
             <li key={item.name}>
-              <S.OurCommunitiesListLink href={item.href}>
+              <S.OurCommunitiesListLink href={item.href} onClick={toggleMenuVisibility}>
                 <Image
                   style={{
                     userSelect: 'none',
