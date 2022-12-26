@@ -37,7 +37,7 @@ export type FormattedHouseCard = {
   }
 }
 
-type FormattedHouseCardsWithAdditionalInfo = {
+export type FormattedHouseCardsWithAdditionalInfo = {
   listings: FormattedHouseCards
   timestamp: string
   total: number
@@ -147,6 +147,7 @@ export type GetHouseListing<T> = {
   type: T
   params?: {
     limit?: string
+    offset?: string
     PropertyType?: string
     StandardStatus?: string
     fields?: string
@@ -161,6 +162,22 @@ export type GetHouseListing<T> = {
     'ListingId.ne'?: string
     'BedroomsTotal.gte'?: string
     'BedroomsTotal.lte'?: string
+    'BathroomsTotalInteger.gte'?: string
+    'BathroomsTotalInteger.lte'?: string
+    'LotSizeAcres.gte'?: string
+    'LotSizeAcres.lte'?: string
+    'LivingArea.gte'?: string
+    'LivingArea.lte'?: string
+    'ListPrice.gte'?: string
+    'ListPrice.lte'?: string
+    'YearBuilt.gte'?: string
+    'YearBuilt.lte'?: string
+    ElementarySchool?: string
+    MiddleOrJuniorSchool?: string
+    HighSchool?: string
+    PostalCode?: string
+    PropertySubType?: string
+    City?: string
     box?: string
   }
   fetchOn?: 'browser' | 'server'
