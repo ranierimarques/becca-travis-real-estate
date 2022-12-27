@@ -6,9 +6,9 @@ export const Nav = styled('nav', {
   alignItems: 'center',
   justifyContent: 'space-between',
 
-  maxWidth: '1200px',
+  maxWidth: '1184px',
   margin: '0 auto',
-  padding: '0 64px',
+  padding: '0 56px',
 })
 
 export const OptionsList = styled('ul', {

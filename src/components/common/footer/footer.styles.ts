@@ -6,9 +6,9 @@ export const Footer = styled('footer', {
 })
 
 export const Wrapper = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1184px',
   margin: '0 auto',
-  padding: '0 64px',
+  padding: '0 56px',
 
   '@bp4': {
     padding: '0 40px',

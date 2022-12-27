@@ -37,6 +37,10 @@ export const Section = styled('section', {
       '3': {
         paddingTop: '96px',
         paddingBottom: '104px',
+        '@bp4': {
+          paddingTop: '88px',
+          paddingBottom: '88px',
+        },
       },
       '4': {
         paddingTop: '0',
@@ -69,9 +73,9 @@ export const Section = styled('section', {
     },
     hasMaxWidth: {
       true: {
-        maxWidth: '1200px',
+        maxWidth: '1184px',
         margin: '0 auto',
-        px: '64px',
+        padding: '0 56px',
 
         '@bp4': {
           px: '40px',
