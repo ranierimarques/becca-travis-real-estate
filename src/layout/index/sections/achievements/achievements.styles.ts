@@ -1,4 +1,5 @@
 import { styled } from 'stitches.config'
+import * as Svg from './svgs'
 
 export const Line = styled('div', {
   width: '40px',
@@ -6,6 +7,10 @@ export const Line = styled('div', {
 
   background: '$magenta1',
   borderRadius: '35px',
+
+  '@bp4': {
+    display: 'none',
+  },
 })
 
 export const Title = styled('h2', {
@@ -18,12 +23,24 @@ export const Title = styled('h2', {
   fontSize: '36px',
   lineHeight: '50px',
   color: '$magenta6',
+
+  '@bp4': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Paragraph = styled('p', {
-  maxWidth: '300px',
+  position: 'relative',
 
-  border: '1px solid $magenta3',
+  width: '298px',
+  height: 'fit-content',
+
+  boxShadow: '0px 0px 0px 1px $colors$magenta3',
   borderRadius: '8px',
   padding: '24px',
 
@@ -33,7 +50,23 @@ export const Paragraph = styled('p', {
   color: '$gray2',
 })
 
+export const LineLeft = styled(Svg.LineLeft, {
+  position: 'absolute',
+  bottom: '-90px',
+  left: '50%',
+})
+
+export const LineRight = styled(Svg.LineRight, {
+  position: 'absolute',
+  bottom: '-90px',
+  right: '50%',
+})
+
 export const Badges = styled('ul', {
+  justifySelf: 'end',
+
+  height: 'fit-content',
+
   padding: '16px 17px 18px 16px',
 
   display: 'flex',
@@ -49,7 +82,7 @@ export const Badges = styled('ul', {
 export const Badge = styled('li', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '9.007px',
+  gap: '9px',
 })
 
 export const BadgeDescription = styled('span', {

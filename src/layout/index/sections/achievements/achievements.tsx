@@ -7,27 +7,41 @@ import * as Svg from './svgs'
 
 const badges = [
   {
-    svg: <Svg.Chip />,
+    icon: <Svg.Chip />,
     description: `Coldwell Banker International Diamond Recipient`,
   },
   {
-    svg: <Svg.Cup />,
+    icon: <Svg.Cup />,
     description: 'Alabamas Top Real State Agent',
   },
   {
-    svg: <Svg.Flag />,
+    icon: <Svg.Flag />,
     description: '12+ Years of Experience',
   },
   {
-    svg: <Svg.Rocket />,
+    icon: <Svg.Rocket />,
     description: 'Huntsville Top Real State Agent',
   },
 ]
 
 export function Achievements() {
   return (
-    <Section direction="vertical" padding="3" css={{ bg: 'rgba($grayW8Rgb, 0.1)' }}>
-      <Flex direction="column" align="center" css={{ gap: 16 }}>
+    <Section
+      direction="vertical"
+      hasMaxWidth
+      padding="3"
+      background="rgba($grayW8Rgb, 0.1)"
+    >
+      <Flex
+        direction="column"
+        align="center"
+        css={{
+          gap: 16,
+          '@bp4': {
+            gap: 12,
+          },
+        }}
+      >
         <Hat>Becca Travis Real State Group</Hat>
         <S.Line />
         <S.Title>
@@ -36,28 +50,31 @@ export function Achievements() {
         </S.Title>
       </Flex>
 
-      <Flex align="start" css={{ gap: '70px' }}>
+      <Box
+        css={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gap: 24,
+          w: '100%',
+        }}
+      >
         <S.Paragraph>
           We thrive on satisfied customers and individuals who seek us out because they
           know that when you come here what matters most is getting results and when it
           comes to real estate, we want to exceed your expectations.
+          <S.LineLeft />
         </S.Paragraph>
 
-        <Box css={{ position: 'relative', top: '-53px' }}>
-          <Box css={{ br: '28px' }}>
-            <Image
-              src={becca}
-              alt="Becca Travis"
-              quality={100}
-              width={336}
-              height={453}
-            />
-          </Box>
-          <Box css={{ position: 'absolute', bottom: 66, left: -219 }}>
-            <Svg.LineLeft />
-          </Box>
-          <Box css={{ position: 'absolute', bottom: 66, right: -219 }}>
-            <Svg.LineRight />
+        <Box
+          css={{
+            transform: 'translateY(-11.6997%)',
+            width: 'inherit',
+            maxWidth: '336px',
+            justifySelf: 'center',
+          }}
+        >
+          <Box css={{ br: '28px', aspectRatio: '336 / 453' }}>
+            <Image src={becca} alt="Becca Travis" quality={100} fill />
           </Box>
         </Box>
 
@@ -66,15 +83,17 @@ export function Achievements() {
             return (
               <S.Badge key={i}>
                 <Flex align="start" css={{ gap: 12 }}>
-                  {badge.svg}
+                  {badge.icon}
                   <S.BadgeDescription>{badge.description}</S.BadgeDescription>
                 </Flex>
                 {i !== badges.length - 1 && <Svg.Line />}
               </S.Badge>
             )
           })}
+
+          <S.LineRight />
         </S.Badges>
-      </Flex>
+      </Box>
     </Section>
   )
 }
