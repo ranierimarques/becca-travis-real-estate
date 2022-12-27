@@ -8,6 +8,7 @@ export const { styled, getCssText, globalCss, css, keyframes } = createStitches(
     bp2: '(max-width: 639px)',
     bp3: '(max-width: 767px)',
     bp4: '(max-width: 1023px)',
+    bp5: '(max-width: 1279px)',
   },
   theme: {
     colors: {
