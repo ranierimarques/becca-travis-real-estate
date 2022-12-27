@@ -5,14 +5,7 @@ import * as S from './rent-to-own.styles'
 
 export function RentToOwn() {
   return (
-    <Section
-      hasMaxWidth
-      padding="4"
-      direction="horizontal"
-      css={{
-        justifyContent: 'center',
-      }}
-    >
+    <Section hasMaxWidth padding="4" direction="horizontal">
       <S.Container>
         <S.ImageContainer>
           <Image src={family} alt="Happy family" fill />

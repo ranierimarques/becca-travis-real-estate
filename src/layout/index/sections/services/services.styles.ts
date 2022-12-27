@@ -46,14 +46,13 @@ export const Cards = styled('div', {
   marginTop: '48px',
 
   display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
   gap: '32px',
 
-  '@bp4': {
+  '@bp5': {
     marginTop: '40px',
     gap: '24px',
-
-    flexWrap: 'wrap',
-    justifyContent: 'center',
   },
   '@bp3': {
     gap: '32px',

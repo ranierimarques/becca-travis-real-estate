@@ -13,14 +13,9 @@ export const Container = styled('div', {
 
     gap: 32,
   },
-  '@bp3': {
-    gap: 32,
-  },
-
   '@bp2': {
     alignItems: 'center',
   },
-
   '@bp1': {
     alignItems: 'flex-start',
   },
@@ -73,7 +68,6 @@ export const ImageContainer = styled('div', {
     },
 
     '@bp3': {
-      top: '14px',
       right: '10px',
     },
   },

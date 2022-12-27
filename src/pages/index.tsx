@@ -23,10 +23,10 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ fallba
 
         <Hero />
         <Services />
-        {/* <Achievements />
-        <NewToMarket /> */}
-        <RentToOwn />
-        <AboutHuntsville />
+        <Achievements />
+        {/* <NewToMarket /> */}
+        {/* <RentToOwn /> */}
+        {/* <AboutHuntsville /> */}
         {/* <OurCommunities /> */}
         {/* <ClientTestimonials /> */}
         {/* <LastCall /> */}

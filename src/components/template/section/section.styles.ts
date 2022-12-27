@@ -21,11 +21,11 @@ export const Section = styled('section', {
       '1': {
         paddingTop: '112px',
         paddingBottom: '120px',
-        '@bp4': {
+        '@bp5': {
           paddingTop: '112px',
           paddingBottom: '96px',
         },
-        '@bp3': {
+        '@bp4': {
           paddingTop: '96px',
           paddingBottom: '80px',
         },
@@ -37,20 +37,29 @@ export const Section = styled('section', {
       '3': {
         paddingTop: '96px',
         paddingBottom: '104px',
-        '@bp4': {
+        '@bp5': {
           paddingTop: '88px',
           paddingBottom: '88px',
+        },
+        '@bp4': {
+          paddingTop: '48px',
+          paddingBottom: '48px',
+        },
+        '@bp2': {
+          paddingTop: '40px',
+          paddingBottom: '40px',
         },
       },
       '4': {
         paddingTop: '0',
         paddingBottom: '116px',
-
-        '@bp4': {
-          padding: '48px 24px',
+        '@bp5': {
+          paddingTop: '48px',
+          paddingBottom: '48px',
         },
         '@bp1': {
-          padding: '40px 16px',
+          paddingTop: '40px',
+          paddingBottom: '40px',
         },
       },
       '5': {
@@ -64,11 +73,11 @@ export const Section = styled('section', {
       '7': {
         paddingTop: '120px',
         paddingBottom: '116px',
-        '@bp4': {
+        '@bp5': {
           paddingTop: '80px',
           paddingBottom: '80px',
         },
-        '@bp3': {
+        '@bp4': {
           paddingTop: '64px',
           paddingBottom: '80px',
         },
@@ -82,7 +91,7 @@ export const Section = styled('section', {
       true: {
         maxWidth: '1184px',
         margin: '0 auto',
-        padding: '0 56px',
+        px: '56px',
 
         '@bp4': {
           px: '40px',

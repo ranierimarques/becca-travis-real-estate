@@ -56,6 +56,12 @@ export function Achievements() {
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: 24,
           w: '100%',
+
+          '@bp4': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          },
         }}
       >
         <S.Paragraph>
@@ -63,6 +69,7 @@ export function Achievements() {
           know that when you come here what matters most is getting results and when it
           comes to real estate, we want to exceed your expectations.
           <S.LineLeft />
+          <S.LineLeftSmall />
         </S.Paragraph>
 
         <Box
@@ -71,6 +78,17 @@ export function Achievements() {
             width: 'inherit',
             maxWidth: '336px',
             justifySelf: 'center',
+
+            '@bp4': {
+              transform: 'none',
+              marginBottom: 24,
+            },
+            '@bp2': {
+              marginBottom: 8,
+            },
+            '@bp1': {
+              marginBottom: 0,
+            },
           }}
         >
           <Box css={{ br: '28px', aspectRatio: '336 / 453' }}>
@@ -87,11 +105,13 @@ export function Achievements() {
                   <S.BadgeDescription>{badge.description}</S.BadgeDescription>
                 </Flex>
                 {i !== badges.length - 1 && <Svg.Line />}
+                {i !== badges.length - 1 && <S.LineWithTriangle />}
               </S.Badge>
             )
           })}
 
           <S.LineRight />
+          <S.LineRightSmall />
         </S.Badges>
       </Box>
     </Section>

@@ -8,7 +8,7 @@ export const Title = styled('h1', {
   textAlign: 'center',
   color: '$grayW10',
 
-  '@bp4': {
+  '@bp5': {
     lineHeight: '48px',
   },
   '@bp2': {
@@ -30,7 +30,7 @@ export const HelperText = styled('span', {
   textAlign: 'center',
   color: '$grayW10',
 
-  '@bp4': {
+  '@bp5': {
     fontSize: 16,
     fontWeight: 300,
   },

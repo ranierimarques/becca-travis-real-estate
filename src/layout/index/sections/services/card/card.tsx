@@ -38,7 +38,7 @@ export function Card({ data }: cardProps) {
           css={{
             mt: 16,
             pointerEvents: 'none',
-            '@bp4': {
+            '@bp5': {
               mt: 24,
             },
           }}

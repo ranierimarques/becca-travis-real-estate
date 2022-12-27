@@ -5,7 +5,7 @@ import { huntsville } from './images'
 
 export function AboutHuntsville() {
   return (
-    <Section direction="horizontal" hasMaxWidth padding="4">
+    <Section hasMaxWidth padding="4" direction="horizontal">
       <S.Container>
         <S.TextContainer>
           <S.Title>About Huntsville</S.Title>
