@@ -15,7 +15,7 @@ import Head from 'next/head'
 
 type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
 
-const Page: PageWithStaticProps = ({ data, listings, community }) => {
+const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
   return (
     <main>
       <Head>
@@ -25,8 +25,8 @@ const Page: PageWithStaticProps = ({ data, listings, community }) => {
       <Hero communityName={community} />
       <About communityName={community} />
       <Demographics communityName={community} />
-      <MarketTrends communityName={community} />
-      <Schools communityName={community} />
+      {/* <MarketTrends communityName={community} /> */}
+      <Schools communityName={community} schools={schools} />
       <CommunityMap communityName={community} />
       <Homes listings={listings} communityName={community} />
       <Yelp data={data} communityName={community} />
@@ -49,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export interface FetchTypes {
+interface FetchTypes {
   businesses: {
     id: string
     alias: string
@@ -69,12 +69,12 @@ export interface FetchTypes {
   }[]
 }
 
-export interface Category {
+interface Category {
   alias: string
   title: string
 }
 
-export interface Location {
+interface Location {
   address1: string
   address2: string
   address3: string
@@ -83,6 +83,40 @@ export interface Location {
   country: string
   state: string
   display_address: string[]
+}
+
+interface SchoolsFormatted {
+  schoolid: string
+  schoolName: string
+  url: string
+  lowGrade: string
+  highGrade: string
+  schoolLevel: string
+  rankStars: string
+  numberOfStudents: string
+}
+
+export interface SchoolList {
+  High: SchoolsFormatted[]
+  Elementary: SchoolsFormatted[]
+  Middle: SchoolsFormatted[]
+}
+
+interface SchoolData {
+  schoolList: {
+    schoolid: string
+    schoolName: string
+    url: string
+    lowGrade: string
+    highGrade: string
+    schoolLevel: 'High' | 'Elementary' | 'Middle'
+    rankHistory: {
+      rankStars: string
+    }[]
+    schoolYearlyDetails: {
+      numberOfStudents: string
+    }[]
+  }[]
 }
 
 const endpoint = 'https://api.yelp.com/v3/businesses'
@@ -110,6 +144,31 @@ export async function getStaticProps({ params }: Params) {
     options
   )
 
+  const schoolsResponse = await fetch(
+    'https://api.schooldigger.com/v2.0/schools?st=AL&sortBy=rank&includeUnrankedSchoolsInRankSort=false&appID=d85b40ba&appKey=a7817ba93111d8421a1c0d8d46ccb2ae'
+  )
+  const schoolsData: SchoolData = await schoolsResponse.json()
+
+  const schools = schoolsData.schoolList.reduce(
+    (accumulator, currentValue) => ({
+      ...accumulator,
+      [currentValue.schoolLevel]: [
+        ...(accumulator[currentValue.schoolLevel] ?? []),
+        {
+          schoolid: currentValue.schoolid,
+          schoolName: currentValue.schoolName,
+          url: currentValue.url,
+          lowGrade: currentValue.lowGrade,
+          highGrade: currentValue.highGrade,
+          schoolLevel: currentValue.schoolLevel,
+          rankStars: currentValue.rankHistory[0].rankStars,
+          numberOfStudents: currentValue.schoolYearlyDetails[0].numberOfStudents,
+        },
+      ],
+    }),
+    {} as SchoolList
+  )
+
   const data = (await response.json()) as FetchTypes
 
   const listings = await getHouseListing({
@@ -117,12 +176,11 @@ export async function getStaticProps({ params }: Params) {
     params: { City: community, limit: '6' },
   })
 
-  console.log(listings)
-
   return {
     props: {
       community: community,
       data: data.businesses,
+      schools,
       listings,
     },
   }

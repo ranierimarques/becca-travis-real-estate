@@ -7,7 +7,7 @@ import * as S from './navigation.styles'
 export const communitiesListItems = [
   { image: Img.harvest, name: 'Harvest', href: '/communities/harvest' },
   { image: Img.huntsville, name: 'Huntsville', href: '/communities/huntsville' },
-  { image: Img.hamptomCove, name: 'Hamptom Cove', href: '/communities/hamptom-cove' },
+  { image: Img.hamptomCove, name: 'Hamptom Cove', href: '/communities/hampton-cove' },
   { image: Img.decatur, name: 'Decatur', href: '/communities/decatur' },
   { image: Img.athens, name: 'Athens', href: '/communities/athens' },
   { image: Img.meridianville, name: 'Meridianville', href: '/communities/meridianville' },

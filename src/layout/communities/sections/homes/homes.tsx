@@ -36,7 +36,7 @@ export function Homes({ listings, communityName }: HomesProps) {
       <S.Container>
         <S.Houses>
           {listingData.map(listing => (
-            <HouseCard key={listing.id} listing={listing} badge="New" />
+            <HouseCard key={listing.id} listing={listing} />
           ))}
         </S.Houses>
         {listings.length >= 6 && (
