@@ -24,7 +24,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ fallba
         <Hero />
         <Services />
         <Achievements />
-        {/* <NewToMarket /> */}
+        <NewToMarket />
         {/* <RentToOwn /> */}
         {/* <AboutHuntsville /> */}
         {/* <OurCommunities /> */}
@@ -36,7 +36,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ fallba
 }
 
 export const getStaticProps = async () => {
-  const listings = await getHouseListing({ type: 'card' })
+  const listings = await getHouseListing({ type: 'card', params: { limit: '4' } })
 
   return {
     props: {

@@ -19,10 +19,7 @@ export function HouseCard({
   onMouseLeave,
 }: HouseCardProps) {
   return (
-    <li
-      onMouseEnter={onMouseEnter ? onMouseEnter : undefined}
-      onMouseLeave={onMouseLeave ? onMouseLeave : undefined}
-    >
+    <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <S.Link href={`/homes/${listing.id}`} draggable="false" variant={variant}>
         <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
           <Image

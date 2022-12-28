@@ -88,8 +88,12 @@ export const FavoriteButton = styled('button', {
         background: 'rgba($whiteRgb, 0.8)',
         boxShadow:
           'inset 0 0 0 1px rgba($colors$magenta5Rgb, 0.4), 0 0 15px 5px rgba($colors$blackRgb, 0.15)',
-        [`& ${Favorite}`]: { background: 'rgba($colors$magenta9Rgb, 0.2)' },
-        '&:hover:not(:disabled)': { ...favoriteTrue },
+        [`& ${Favorite}`]: {
+          background: 'rgba($colors$magenta9Rgb, 0.2)',
+        },
+        '&:hover:not(:disabled)': {
+          ...favoriteTrue,
+        },
         '&:focus': {
           outline: '2px solid $colors$magenta1',
           outlineOffset: 2,
@@ -97,7 +101,9 @@ export const FavoriteButton = styled('button', {
         },
       },
       false: {
-        '&:hover:not(:disabled)': { ...favoriteFalse },
+        '&:hover:not(:disabled)': {
+          ...favoriteFalse,
+        },
         '&:focus': {
           outline: '2px solid $colors$magenta1',
           outlineOffset: 2,
@@ -136,6 +142,16 @@ export const Value = styled('h4', {
   fontSize: '20px',
   lineHeight: '30px',
   color: '$gray1',
+
+  '@bp3': {
+    fontSize: '18px',
+  },
+  '@bp2': {
+    fontSize: '22px',
+  },
+  '@bp1': {
+    fontSize: '20px',
+  },
 })
 
 export const Address = styled('p', {
@@ -150,6 +166,19 @@ export const Address = styled('p', {
   '-webkit-line-clamp': '2',
   '-webkit-box-orient': 'vertical',
   overflow: 'hidden',
+
+  '@bp3': {
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
+  '@bp2': {
+    fontSize: '14px',
+    lineHeight: '24px',
+  },
+  '@bp1': {
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
 })
 
 export const Details = styled('span', {
@@ -161,6 +190,52 @@ export const Details = styled('span', {
   fontSize: '14px',
   lineHeight: '20px',
   color: '$gray4',
+
+  '@bp5': {
+    fontSize: '12px',
+    lineHeight: '16px',
+
+    '> svg': {
+      width: 16,
+      height: 16,
+    },
+  },
+  '@bp4': {
+    fontSize: '14px',
+    lineHeight: '20px',
+
+    '> svg': {
+      width: 20,
+      height: 20,
+    },
+  },
+  '@bp3': {
+    fontSize: '12px',
+    lineHeight: '16px',
+
+    '> svg': {
+      width: 16,
+      height: 16,
+    },
+  },
+  '@bp2': {
+    fontSize: '14px',
+    lineHeight: '20px',
+
+    '> svg': {
+      width: 20,
+      height: 20,
+    },
+  },
+  '@bp1': {
+    fontSize: '12px',
+    lineHeight: '16px',
+
+    '> svg': {
+      width: 16,
+      height: 16,
+    },
+  },
 })
 
 export const VAMLS = styled('span', {
@@ -188,8 +263,12 @@ export const Link = styled(NextLink, {
 
   animation: `${scaleOut} 250ms ease forwards`,
 
-  '&:hover': { ...sharedAnimation },
-  '&:focus-within:not(:focus)': { ...sharedAnimation },
+  '&:hover': {
+    ...sharedAnimation,
+  },
+  '&:focus-within:not(:focus)': {
+    ...sharedAnimation,
+  },
   '&:focus-visible': {
     outline: '4px solid $colors$magenta2',
     outlineOffset: 4,
