@@ -1,0 +1,5 @@
+export { default as stars1 } from './1-stars.svg'
+export { default as stars2 } from './2-stars.svg'
+export { default as stars3 } from './3-stars.svg'
+export { default as stars4 } from './4-stars.svg'
+export { default as stars5 } from './5-stars.svg'

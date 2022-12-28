@@ -16,8 +16,6 @@ export const Background = styled('div', {
   zIndex: -1,
 })
 
-export const Container = styled('div', {})
-
 export const Title = styled('h2', {
   margin: '8px 0 16px',
 
@@ -37,6 +35,8 @@ export const Description = styled('span', {
   lineHeight: '28px',
   textAlign: 'center',
   color: '#4E4B59',
+
+  marginBottom: 48,
 })
 
 export const ImageSource = styled('span', {

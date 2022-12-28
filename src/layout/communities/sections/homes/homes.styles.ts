@@ -29,23 +29,9 @@ export const Houses = styled('ul', {
 })
 
 export const Container = styled('div', {
-  display: 'flex',
-  alignItems: 'flex-start',
-  gap: 32,
+  width: '100%',
 
   position: 'relative',
-
-  scrollMarginTop: 32,
-
-  variants: {
-    resize: {
-      false: {
-        '& ul > li:nth-child(n+3)': {
-          display: 'none',
-        },
-      },
-    },
-  },
 })
 
 export const OverlayWrapper = styled('div', {
