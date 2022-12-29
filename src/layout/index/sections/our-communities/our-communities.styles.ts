@@ -123,10 +123,14 @@ export const CommunityLink = styled(NextLink, {
     [`& ${Description}`]: { transform: 'translateY(-28px)' },
   },
   '&:active': { [`& img`]: { filter: 'brightness(0.6)' } },
+
+  '@bp2': {
+    borderRadius: '4px',
+  },
 })
 
 export const Image = styled(ImageUnstyled, {
-  borderRadius: '8px',
+  borderRadius: 'inherit',
 
   transition: 'opacity 150ms ease, filter 250ms ease',
   objectFit: 'cover',
@@ -135,7 +139,7 @@ export const Image = styled(ImageUnstyled, {
 export const ImageMask = styled('div', {
   position: 'absolute',
   inset: 0,
-  borderRadius: '8px',
+  borderRadius: 'inherit',
   background:
     'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.6) 100%)',
 })
