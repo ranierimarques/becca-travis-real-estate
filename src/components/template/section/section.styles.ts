@@ -85,6 +85,10 @@ export const Section = styled('section', {
       '6': {
         paddingTop: '160px',
         paddingBottom: '120px',
+
+        '@bp5': {
+          padding: '160px 56px 96px',
+        },
       },
       '7': {
         paddingTop: '120px',

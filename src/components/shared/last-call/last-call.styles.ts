@@ -12,6 +12,16 @@ export const Container = styled('div', {
   boxShadow:
     '0px 14px 50px rgba($colors$blackRgb, 0.08), 0 0 0 1px rgba($colors$tangerine7Rgb, 0.15)',
   borderRadius: '24px',
+
+  '@bp4': {
+    padding: '32px 0 32px',
+    justifyContent: 'center',
+
+    overflow: 'hidden',
+  },
+  '@bp2': {
+    padding: '32px 24px',
+  },
 })
 
 export const Title = styled('h3', {
@@ -22,6 +32,15 @@ export const Title = styled('h3', {
   fontSize: '32px',
   lineHeight: '44px',
   color: '$gray1',
+
+  '@bp4': {
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
 })
 
 export const Conversation = styled('span', {
@@ -39,6 +58,19 @@ export const Paragraph = styled('p', {
   fontSize: '16px',
   lineHeight: '29px',
   color: '$details1',
+
+  '@bp4': {
+    marginBottom: 22,
+  },
+
+  '@bp2': {
+    marginBottom: 28,
+
+    fontWeight: '400',
+    fontSize: '14px',
+    lineHeight: '26px',
+    textAlign: 'center',
+  },
 })
 
 export const IconContainer = styled('div', {
