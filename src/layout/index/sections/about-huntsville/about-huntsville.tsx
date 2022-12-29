@@ -29,7 +29,7 @@ export function AboutHuntsville() {
           Place.
         </S.Paragraph>
         <Button
-          href="/huntsville"
+          href="/communities/huntsville#about-huntsville"
           size={{
             '@initial': '3',
             '@bp1': '2',

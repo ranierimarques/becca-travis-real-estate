@@ -79,8 +79,24 @@ export const Section = styled('section', {
         },
       },
       '5': {
-        paddingTop: '160px',
-        paddingBottom: '160px',
+        paddingTop: '0px',
+        paddingBottom: '120px',
+        '@bp5': {
+          paddingTop: '40px',
+          paddingBottom: '96px',
+        },
+        '@bp4': {
+          paddingTop: '56px',
+          paddingBottom: '80px',
+        },
+        '@bp3': {
+          paddingTop: '32px',
+          paddingBottom: '80px',
+        },
+        '@bp1': {
+          paddingTop: '40px',
+          paddingBottom: '80px',
+        },
       },
       '6': {
         paddingTop: '160px',

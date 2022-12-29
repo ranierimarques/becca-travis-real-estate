@@ -37,8 +37,12 @@ const communitiesData = [
 
 export function OurCommunities() {
   return (
-    <Section padding="5" hasMaxWidth>
-      <Hat css={{ mb: 8 }}>Meet our communities</Hat>
+    <Section
+      padding="5"
+      hasMaxWidth
+      direction={{ '@initial': undefined, '@bp4': 'vertical' }}
+    >
+      <Hat css={{ mb: 8, '@bp4': { mb: 12 } }}>Meet our communities</Hat>
       <S.Title>Our communities</S.Title>
       <S.CommunitiesList>
         {communitiesData.map(community => {

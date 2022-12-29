@@ -25,7 +25,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
       <NewToMarket initialListings={listings} />
       <RentToOwn />
       <AboutHuntsville />
-      {/* <OurCommunities /> */}
+      <OurCommunities />
       {/* <ClientTestimonials /> */}
       {/* <LastCall /> */}
     </main>

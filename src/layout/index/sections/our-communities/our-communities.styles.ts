@@ -9,12 +9,43 @@ export const Title = styled('h2', {
   fontSize: 36,
   lineHeight: '50px',
   color: '$magenta6',
+
+  '@bp5': {
+    marginBottom: 40,
+  },
+  '@bp4': {
+    fontSize: 30,
+    lineHeight: '42px',
+  },
+  '@bp3': {
+    marginBottom: 24,
+  },
+  '@bp1': {
+    fontSize: 28,
+    lineHeight: '40px',
+  },
 })
 
 export const CommunitiesList = styled('ul', {
-  display: 'flex',
-  flexWrap: 'wrap',
+  width: '100%',
+
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr',
   gap: 32,
+
+  '@bp5': {
+    gap: 24,
+  },
+  '@bp4': {
+    gridTemplateColumns: '1fr 1fr',
+    gap: 32,
+  },
+  '@bp2': {
+    gap: 16,
+  },
+  '@bp1': {
+    gap: 12,
+  },
 })
 
 export const Description = styled('span', {
@@ -28,6 +59,19 @@ export const Description = styled('span', {
   color: '$white',
 
   transition: 'transform 250ms ease',
+
+  '@bp2': {
+    bottom: 10,
+    left: 10,
+
+    fontSize: 14,
+    lineHeight: '20px',
+    fontWeight: 500,
+  },
+  '@bp1': {
+    fontSize: 12,
+    lineHeight: '18px',
+  },
 })
 
 export const HoverSpan = styled('p', {
@@ -59,8 +103,7 @@ export const CommunityLink = styled(NextLink, {
 
   position: 'relative',
 
-  width: 336,
-  height: 229,
+  aspectRatio: '336 / 229',
 
   borderRadius: 8,
 
