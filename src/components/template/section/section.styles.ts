@@ -64,13 +64,17 @@ export const Section = styled('section', {
       },
       '4': {
         paddingTop: '0',
-        paddingBottom: '116px',
+        paddingBottom: '120px',
         '@bp5': {
-          paddingTop: '48px',
+          paddingTop: '0',
+          paddingBottom: '64px',
+        },
+        '@bp4': {
+          paddingTop: '0',
           paddingBottom: '48px',
         },
         '@bp1': {
-          paddingTop: '40px',
+          paddingTop: '0',
           paddingBottom: '40px',
         },
       },

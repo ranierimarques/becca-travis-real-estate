@@ -14,6 +14,7 @@ export function Image({ skeletonBackground, ...props }: ImageProps) {
       css={{ $$background: skeletonBackground || 'rgba($colors$grayW9Rgb)' }}
     >
       <S.Image
+        draggable="false"
         {...props}
         loaded={!isLoading}
         onLoadingComplete={() => setIsLoading(false)}
