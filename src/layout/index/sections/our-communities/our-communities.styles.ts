@@ -96,6 +96,19 @@ export const HoverSpan = styled('p', {
   transformOrigin: 'bottom',
 
   transition: 'transform 250ms ease, opacity 250ms ease',
+
+  '@bp2': {
+    bottom: 10,
+    left: 10,
+
+    fontSize: 14,
+    lineHeight: '20px',
+    fontWeight: 300,
+  },
+  '@bp1': {
+    fontSize: 12,
+    lineHeight: '18px',
+  },
 })
 
 export const CommunityLink = styled(NextLink, {
@@ -114,13 +127,23 @@ export const CommunityLink = styled(NextLink, {
   '&:hover': {
     [`& img`]: { filter: 'brightness(0.7)' },
     [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
-    [`& ${Description}`]: { transform: 'translateY(-28px)' },
+    [`& ${Description}`]: {
+      transform: 'translateY(-28px)',
+      '@bp2': {
+        transform: 'translateY(-24px)',
+      },
+    },
   },
   '&:focus-visible': {
     boxShadow: '0 0 0 4px $colors$magenta9',
     [`& img`]: { filter: 'brightness(0.7)' },
     [`& ${HoverSpan}`]: { transform: 'translateY(0)', opacity: 1 },
-    [`& ${Description}`]: { transform: 'translateY(-28px)' },
+    [`& ${Description}`]: {
+      transform: 'translateY(-28px)',
+      '@bp2': {
+        transform: 'translateY(-24px)',
+      },
+    },
   },
   '&:active': { [`& img`]: { filter: 'brightness(0.6)' } },
 
