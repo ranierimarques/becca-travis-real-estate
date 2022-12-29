@@ -33,6 +33,18 @@ export const Section = styled('section', {
       '2': {
         paddingTop: '120px',
         paddingBottom: '120px',
+        '@bp5': {
+          paddingTop: '96px',
+          paddingBottom: '104px',
+        },
+        '@bp4': {
+          paddingTop: '72px',
+          paddingBottom: '104px',
+        },
+        '@bp3': {
+          paddingTop: '80px',
+          paddingBottom: '80px',
+        },
       },
       '3': {
         paddingTop: '96px',

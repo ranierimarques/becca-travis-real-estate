@@ -47,6 +47,7 @@ export function Homes({ listings, communityName }: HomesProps) {
               css={{ pointerEvents: 'auto', zIndex: 1 }}
               onClick={handleRequestNewListings}
               loading={isLoading}
+              disabled={isLoading}
             >
               {isLoading && <Loader />} Show more...
             </Button>
