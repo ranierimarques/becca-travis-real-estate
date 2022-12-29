@@ -2,15 +2,15 @@ import { Button, Flex, Loader } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
 import { Section } from '@/template'
-import useSWR from 'swr'
+import { FormattedHouseCards } from '@/types/houses'
 import useSWRInfinite from 'swr/infinite'
 import * as S from './new-to-market.styles'
 
-export function NewToMarket() {
-  const { data: initialListings } = useSWR('/home/houses', async () =>
-    getHouseListing({ type: 'card', fetchOn: 'browser' })
-  )
+type Props = {
+  initialListings: FormattedHouseCards
+}
 
+export function NewToMarket({ initialListings }: Props) {
   const { data, error, size, setSize } = useSWRInfinite(
     index => String(index + 1),
     async index =>
