@@ -23,7 +23,7 @@ export const List = styled('ul', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   gap: 8,
-  width: 'max-content',
+  maxWidth: 'max-content',
 })
 
 export const Link = styled('a', {

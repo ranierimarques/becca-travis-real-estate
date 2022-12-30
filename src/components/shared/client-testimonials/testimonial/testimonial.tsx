@@ -10,31 +10,35 @@ interface ReviewProps {
     source: string
     text: ReactNode
   }
+  resize: boolean
 }
 
-export function Testimonial({ review }: ReviewProps) {
+export function Testimonial({ review, resize }: ReviewProps) {
   return (
     <S.TestimonialItem>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <S.Testimonial>
+          <S.Testimonial tabIndex={resize ? 0 : -1}>
             <Flex align="start" justify="between">
-              <Flex align="center" css={{ gap: 16, mb: 16 }}>
-                <Flex direction="column" align="start">
-                  <S.Name>{review.name}</S.Name>
-                  <Flex align="center" css={{ gap: 6 }}>
-                    <S.Source>{review.source}</S.Source>
-                    <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
-                    <Flex css={{ gap: 2 }}>
-                      <Svg.Star />
-                      <Svg.Star />
-                      <Svg.Star />
-                      <Svg.Star />
-                      <Svg.Star />
-                    </Flex>
+              <Flex
+                direction="column"
+                align="start"
+                css={{ mb: 16, '@bp4': { mb: 20 }, '@bp1': { mb: 16 } }}
+              >
+                <S.Name>{review.name}</S.Name>
+                <Flex align="center" css={{ gap: 6 }}>
+                  <S.Source>{review.source}</S.Source>
+                  <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
+                  <Flex css={{ gap: 2 }}>
+                    <Svg.Star />
+                    <Svg.Star />
+                    <Svg.Star />
+                    <Svg.Star />
+                    <Svg.Star />
                   </Flex>
                 </Flex>
               </Flex>
+
               <S.LinkSvgHover />
             </Flex>
 
@@ -46,23 +50,23 @@ export function Testimonial({ review }: ReviewProps) {
           title={`${review.name} review`}
           description={undefined}
           variant="2"
+          onCloseAutoFocus={event => !resize && event.preventDefault()}
         >
           <S.ContentHeader>
-            <Flex direction="column" align="start">
-              <S.Name>{review.name}</S.Name>
-              <Flex align="center" css={{ gap: 6 }}>
-                <S.Source>{review.source}</S.Source>
-                <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
-                <Flex css={{ gap: 2 }}>
-                  <Svg.Star />
-                  <Svg.Star />
-                  <Svg.Star />
-                  <Svg.Star />
-                  <Svg.Star />
-                </Flex>
+            <S.ModalName>{review.name}</S.ModalName>
+            <Flex align="center" css={{ gap: 6 }}>
+              <S.ModalSource>{review.source}</S.ModalSource>
+              <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
+              <Flex css={{ gap: 2 }}>
+                <Svg.Star />
+                <Svg.Star />
+                <Svg.Star />
+                <Svg.Star />
+                <Svg.Star />
               </Flex>
-              <S.ModalLogo />
             </Flex>
+
+            <S.ModalLogo />
           </S.ContentHeader>
 
           <S.ModalText>{review.text}</S.ModalText>

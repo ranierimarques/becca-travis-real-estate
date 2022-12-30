@@ -1,7 +1,7 @@
 import { styled } from 'stitches.config'
-import { LinkSvg, LogoSvg } from '../svgs'
+import * as Svg from '../svgs'
 
-export const LinkSvgHover = styled(LinkSvg, {
+export const LinkSvgHover = styled(Svg.Link, {
   transition: 'all 250ms ease',
   opacity: '0',
   transform: 'scale(0.5)',
@@ -9,7 +9,6 @@ export const LinkSvgHover = styled(LinkSvg, {
 
 export const Testimonial = styled('button', {
   padding: '24px',
-  maxWidth: '336px',
   background: '$white',
   boxShadow: '0px 0px 40px rgba($colors$blackRgb, 0.08)',
   borderRadius: '8px',
@@ -30,6 +29,26 @@ export const Testimonial = styled('button', {
 })
 
 export const TestimonialItem = styled('li', {
+  '& + &': {
+    marginTop: 32,
+  },
+
+  '@bp5': {
+    '& + &': {
+      marginTop: 24,
+    },
+  },
+  '@bp4': {
+    '& + &': {
+      marginTop: 32,
+    },
+  },
+  '@bp2': {
+    '& + &': {
+      marginTop: 16,
+    },
+  },
+
   [`&:has(${Testimonial}:focus-visible)`]: { zIndex: '1' },
   '@supports not selector(:has(a))': { '&:focus-within': { zIndex: '1' } },
 })
@@ -41,6 +60,11 @@ export const Name = styled('span', {
   fontSize: '16px',
   lineHeight: '24px',
   color: '$grayW1',
+
+  '@bp4': {
+    fontSize: '14px',
+    lineHeight: '20px',
+  },
 })
 
 export const Source = styled('span', {
@@ -48,6 +72,11 @@ export const Source = styled('span', {
   fontSize: '14px',
   lineHeight: '22px',
   color: '$gray3',
+
+  '@bp4': {
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
 })
 
 export const Text = styled('blockquote', {
@@ -70,19 +99,28 @@ export const Text = styled('blockquote', {
   WebkitLineClamp: '10',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
+
+  '@bp1': {
+    fontSize: '12px',
+  },
 })
 
 // Modal
 
 export const ContentHeader = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-
   position: 'relative',
+
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'start',
+
   padding: '32px 32px 24px 32px',
   background: 'rgba($colors$magenta5Rgb, 0.2)',
   borderBottom: '2px solid rgba($colors$magenta5Rgb, 0.5)',
-  gap: 16,
+
+  '@bp3': {
+    padding: '24px 20px',
+  },
 })
 
 export const ModalName = styled('span', {
@@ -102,10 +140,12 @@ export const ModalSource = styled('span', {
   color: '$gray3',
 })
 
-export const ModalLogo = styled(LogoSvg, {
+export const ModalLogo = styled(Svg.Logo, {
   position: 'absolute',
   top: 0,
   right: 36,
+
+  height: '100%',
 })
 
 export const ModalText = styled('p', {
@@ -133,5 +173,9 @@ export const ModalText = styled('p', {
 
   '&::-webkit-scrollbar-thumb:hover': {
     background: 'rgba($colors$grayW7Rgb, 0.8)',
+  },
+
+  '@bp3': {
+    padding: '24px 20px',
   },
 })

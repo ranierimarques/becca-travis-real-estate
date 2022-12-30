@@ -38,27 +38,29 @@ export const Content = ({
   return (
     <DialogPrimitive.Portal>
       {overlay && <S.Overlay />}
-      <S.Content
-        onOpenAutoFocus={onOpenAutoFocus}
-        ref={contentRef}
-        {...ariaDescribedby}
-        {...props}
-      >
-        <VisuallyHidden.Root asChild>
-          <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
-        </VisuallyHidden.Root>
-        {description && (
+      <S.ContentWrapper>
+        <S.Content
+          onOpenAutoFocus={onOpenAutoFocus}
+          ref={contentRef}
+          {...ariaDescribedby}
+          {...props}
+        >
           <VisuallyHidden.Root asChild>
-            <DialogPrimitive.Description>{description}</DialogPrimitive.Description>
+            <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
           </VisuallyHidden.Root>
-        )}
+          {description && (
+            <VisuallyHidden.Root asChild>
+              <DialogPrimitive.Description>{description}</DialogPrimitive.Description>
+            </VisuallyHidden.Root>
+          )}
 
-        {children}
+          {children}
 
-        <S.Close variant={variant} aria-label="Close">
-          <Cross />
-        </S.Close>
-      </S.Content>
+          <S.Close variant={variant} aria-label="Close">
+            <Cross />
+          </S.Close>
+        </S.Content>
+      </S.ContentWrapper>
     </DialogPrimitive.Portal>
   )
 }
