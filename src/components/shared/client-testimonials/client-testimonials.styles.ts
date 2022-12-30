@@ -121,8 +121,6 @@ export const TestimonialsContainer = styled('div', Breakpoints, {
 })
 
 export const TestimonialsList = styled('ul', {
-  scrollMarginTop: 32,
-
   columnCount: 3,
   columnGap: 32,
 

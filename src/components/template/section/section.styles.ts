@@ -99,11 +99,16 @@ export const Section = styled('section', {
         },
       },
       '6': {
-        paddingTop: '160px',
+        paddingTop: '120px',
         paddingBottom: '120px',
 
         '@bp5': {
-          padding: '160px 56px 96px',
+          paddingTop: '96px',
+          paddingBottom: '96px',
+        },
+        '@bp4': {
+          paddingTop: '80px',
+          paddingBottom: '80px',
         },
       },
       '7': {

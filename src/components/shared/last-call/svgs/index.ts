@@ -1,5 +1,3 @@
-export { default as Circles1024 } from './circles-1024.svg'
-export { default as Circles720 } from './circles-720.svg'
 export { default as Circles } from './circles.svg'
 export { default as Heart } from './heart.svg'
 export { default as House } from './house.svg'
