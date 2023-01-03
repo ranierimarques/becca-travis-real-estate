@@ -5,14 +5,14 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box',
   },
 
-  '.gm-style .gm-style-iw-tc::after': {
-    background: 'none',
-    boxShadow: 'none',
-  },
-
   '*': {
     margin: 0,
     '-webkit-tap-highlight-color': 'transparent',
+  },
+
+  '.gm-style .gm-style-iw-tc::after': {
+    background: 'none',
+    boxShadow: 'none',
   },
 
   // 'html, body, #__next': {
@@ -54,14 +54,9 @@ export const globalStyles = globalCss({
     listStyle: 'none',
   },
 
-  'img, picture, video, canvas': {
+  'img, picture, video, canvas, svg': {
     display: 'block',
     maxWidth: '100%',
-  },
-
-  svg: {
-    display: 'block',
-    minWidth: 'fit-content',
   },
 
   'input, button, textarea, select': {

@@ -50,7 +50,8 @@ export const ArrowRight = styled(Svg.ArrowRight, {
 })
 
 export const CardLink = styled(NextLink, {
-  display: 'flex',
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
   gap: 12,
 
   padding: '8px 10px 8px 0',
@@ -120,7 +121,8 @@ export const HuntsvilleDescription = styled('p', {
 })
 
 export const HuntsvilleLink = styled(NextLink, {
-  display: 'flex',
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
   gap: 12,
 
   color: 'rgba($$color, 0.15)', // Locally scoped tokens provides dynamically

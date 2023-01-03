@@ -176,8 +176,11 @@ export const ArrowRight = styled(Svg.ArrowRight, {
 })
 
 export const CardLink = styled(NextLink, {
-  display: 'flex',
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
   gap: 8,
+
+  width: 'fit-content',
 
   padding: '8px 10px 8px 0',
   userSelect: 'none',
@@ -262,8 +265,8 @@ export const HuntsvilleDescription = styled('p', {
 })
 
 export const HuntsvilleLink = styled(NextLink, {
-  display: 'flex',
-  alignItems: 'flex-start',
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
   gap: 12,
 
   padding: '4px 0',
