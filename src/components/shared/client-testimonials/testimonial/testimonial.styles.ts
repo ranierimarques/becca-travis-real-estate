@@ -29,6 +29,8 @@ export const Testimonial = styled('button', {
 })
 
 export const TestimonialItem = styled('li', {
+  breakInside: 'avoid',
+
   '& + &': {
     marginTop: 32,
   },
