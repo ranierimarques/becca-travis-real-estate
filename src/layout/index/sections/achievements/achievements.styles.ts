@@ -124,6 +124,8 @@ export const Badge = styled('li', {
 })
 
 export const Badges = styled('ul', {
+  position: 'relative',
+
   height: 'fit-content',
 
   padding: '16px 17px 18px 16px',
