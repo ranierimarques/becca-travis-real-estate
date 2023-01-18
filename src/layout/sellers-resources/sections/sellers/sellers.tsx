@@ -1,8 +1,9 @@
+import Script from 'next/script'
 import { useEffect } from 'react'
 import * as S from './sellers.styles'
 import { HomebotSvg } from './svgs'
 
-const style = `
+const inputStyle = `
   /* Div */
   
   .__hblgw--widget-container {
@@ -57,6 +58,7 @@ const style = `
    /* Button */
 
   .__hblgw--button-container {
+    font-size: 0;
     width: 54px;
     height: 48px;
     background-color: #E3E5E8;
@@ -69,7 +71,7 @@ const style = `
     outline: none;
     }
 
-  /* Input focus and Button hover */
+    /* Input focus and Button hover */
 
     #hb-lgw-input:focus ~ .__hblgw--button-container {
       background: rgba(192, 109, 148, 0.1);
@@ -86,46 +88,83 @@ const style = `
     #hb-lgw-input:focus ~ .__hblgw--button-container:hover img {
       filter: brightness(0) saturate(100%) invert(35%) sepia(13%) saturate(2509%) hue-rotate(279deg) brightness(93%) contrast(87%);
     }
+
+    /* Logo */
+
+    .__hblgw--logo-message_small {
+      display: none;
+    }
 `
 
-const homebotScript = `(function (h,b) { var w = window, d = document, s = 'script', x, y; w['__hb_namespace'] = h; w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; y = d.createElement(s); x = d.getElementsByTagName(s)[0]; y.async = 1; y.src = b; x.parentNode.insertBefore(y,x) })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); Homebot('#homebot_homeowner', 'f99d4fae1f736bdf7a150206671f876b4d8a7148254ef90e', {'size':'compact'})`
+const modalStyle = `
+  .__hblgw--backdrop-container {
+    overflow-y: hidden;
+  }
+`
+
+const homebotScript = `window.__hb_namespace="Homebot",window.Homebot=window.Homebot||function(){(window.Homebot.q=window.Homebot.q||[]).push(arguments)},Homebot("#homebot_homeowner","f99d4fae1f736bdf7a150206671f876b4d8a7148254ef90e",{size:"compact"});`
+const loadHomebot = new Function(homebotScript)
 
 export function Sellers() {
+  function handleSubmit(event: Event) {
+    event.preventDefault()
+  }
+
   useEffect(() => {
-    new Function(homebotScript)()
+    const homebot = document.getElementById('homebot_homeowner')
 
-    const homebot: HTMLElement | null = document.getElementById('homebot_homeowner')
+    const inputObserver = new MutationObserver(() => {
+      if (homebot?.shadowRoot?.querySelector('[data-qa="hblgw-container"]')) {
+        const homebotShadow = homebot.shadowRoot
 
-    function callback(e: { contentRect: { height: number } }[]) {
-      const loaded = e[0].contentRect.height !== 0
+        const styleSheet = document.createElement('style')
+        styleSheet.innerHTML = inputStyle
+        homebotShadow.appendChild(styleSheet)
 
-      if (!loaded) return
+        const homebotInput = homebotShadow.querySelector('.__hblgw--input-input')
+        homebotInput?.setAttribute('placeholder', 'Enter an address or Zip Code')
 
-      const homebotShadow = homebot?.shadowRoot
+        const homebotButton = homebotShadow.querySelector('.__hblgw--button-container')
+        if (!homebotButton) return
 
-      const styleSheet = document.createElement('style')
-      styleSheet.innerHTML = style
-      homebotShadow?.appendChild(styleSheet)
+        homebotButton.innerHTML = '<img src="/loupe.svg" alt="search" />'
 
-      const homebotInput = homebotShadow?.querySelector('.__hblgw--input-input')
-      homebotInput?.setAttribute('placeholder', 'Enter an address or Zip Code')
+        const homebotForm = homebotShadow.querySelector('form#hb-lgw-combobox')
 
-      const homebotButton = homebotShadow?.querySelector('.__hblgw--button-container')
-      if (!homebotButton) return
-      homebotButton.innerHTML = ''
-      const icon = document.createElement('img')
-      icon.setAttribute('src', '/loupe.svg')
-      homebotButton.setAttribute('style', 'font-size: 0')
-      homebotButton.appendChild(icon)
+        homebotForm?.addEventListener('submit', handleSubmit)
 
-      const homebotPoweredBy = homebotShadow?.querySelector(
-        '.__hblgw--logo-message_small'
-      )
-      homebotPoweredBy?.remove()
-    }
+        inputObserver.disconnect()
+      }
+    })
 
-    if (homebot !== null) {
-      new ResizeObserver(callback).observe(homebot)
+    inputObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+
+    const modalObserver = new MutationObserver(() => {
+      const homebotPortal = document.querySelector('[data-qa="hblgw-portal"]')
+
+      if (homebotPortal) {
+        const homebotShadow = homebotPortal.shadowRoot
+
+        const styleSheet = document.createElement('style')
+        styleSheet.innerHTML = modalStyle
+        homebotShadow?.appendChild(styleSheet)
+      }
+    })
+
+    modalObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+
+    return () => {
+      inputObserver.disconnect()
+      modalObserver.disconnect()
+
+      const homebotForm = homebot?.shadowRoot?.querySelector('form#hb-lgw-combobox')
+      homebotForm?.removeEventListener('submit', handleSubmit)
     }
   }, [])
 
@@ -141,7 +180,15 @@ export function Sellers() {
         <S.Paragraph>
           Enter your address and find out how much your property is worth
         </S.Paragraph>
+
         <div id="homebot_homeowner" />
+
+        <Script
+          id="homebot"
+          src="https://embed.homebotapp.com/lgw/v1/widget.js"
+          onReady={() => loadHomebot()}
+        />
+
         <S.SecuredData>
           Don&apos;t worry, your data is protected by our security system.
         </S.SecuredData>
