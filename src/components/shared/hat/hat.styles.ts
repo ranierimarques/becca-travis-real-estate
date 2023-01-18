@@ -40,6 +40,10 @@ export const Hat = styled('span', {
 
         letterSpacing: '0.03em',
         color: '$magenta1',
+
+        '@bp4': {
+          marginBottom: 12,
+        },
       },
       '3': {
         display: 'inline-block',
@@ -64,4 +68,8 @@ export const Line = styled('div', {
   width: '16px',
   height: '1px',
   background: '$magenta1',
+
+  '@bp4': {
+    display: 'none',
+  },
 })

@@ -2,30 +2,37 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { keyframes, styled } from 'stitches.config'
 import { ChevronSvg } from './svgs'
 
-export const Section = styled('section', {
-  maxWidth: '1072px',
-  margin: '0 auto',
-  padding: '160px 0 160px',
-
-  display: 'flex',
-  justifyContent: 'space-between',
-})
-
 export const Title = styled('h2', {
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '36px',
   color: '$magenta6',
+
+  marginBottom: 16,
+
+  '@bp2': {
+    fontSize: '20px',
+    lineHeight: '32px',
+  },
 })
 
 export const Paragraph = styled('p', {
-  marginBottom: 48,
   maxWidth: '458px',
 
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
+
+  '@bp4': {
+    textAlign: 'center',
+  },
+  '@bp2': {
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+  },
 })
 
 // ================== Radix ======================
@@ -121,11 +128,6 @@ export const Content = styled(AccordionPrimitive.Content, {
   overflow: 'hidden',
   backgroundColor: '$offWhite2',
 
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '28px',
-  color: '$grayW3',
-
   '&[data-state="open"]': {
     animation: `${slideDown} 300ms cubic-bezier(0.87, 0, 0.13, 1)`,
   },
@@ -138,4 +140,16 @@ export const ContentText = styled('div', {
   position: 'relative',
   bottom: '4px',
   padding: '0 24px 20px 64px',
+
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '28px',
+  color: '$grayW3',
+
+  '@bp4': {
+    fontSize: '14px',
+    lineHeight: '24px',
+
+    paddingLeft: 26,
+  },
 })

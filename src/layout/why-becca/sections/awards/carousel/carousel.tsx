@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { Image } from '@/common'
 import * as S from './carousel.styles'
 import {
   diamondSociety,
@@ -12,62 +12,65 @@ import {
 const awards = [
   {
     src: homeSnap,
-    alt: '',
+    alt: `Becca's award`,
   },
   {
     src: diamondSociety,
-    alt: '',
+    alt: `Becca's award`,
   },
   {
     src: luxuryHome,
-    alt: '',
+    alt: `Becca's award`,
   },
   {
     src: luxuryHomeMarketing,
-    alt: '',
+    alt: `Becca's award`,
   },
   {
     src: prominentAgent,
-    alt: '',
+    alt: `Becca's award`,
   },
   {
     src: realogy,
-    alt: '',
+    alt: `Becca's award`,
   },
 ]
 
 export function Carousel() {
   return (
     <S.Container>
-      <S.AwardsBackground />
-      <S.AwardsWrapper>
-        {awards.map(award => (
-          <S.Award key={award.alt}>
-            <Image src={award.src} alt={award.alt} />
-          </S.Award>
-        ))}
-      </S.AwardsWrapper>
-      <S.AwardsWrapper>
-        {awards.map(award => (
-          <S.Award key={award.alt}>
-            <Image src={award.src} alt={award.alt} />
-          </S.Award>
-        ))}
-      </S.AwardsWrapper>
-      <S.AwardsWrapper>
-        {awards.map(award => (
-          <S.Award key={award.alt}>
-            <Image src={award.src} alt={award.alt} />
-          </S.Award>
-        ))}
-      </S.AwardsWrapper>
-      <S.AwardsWrapper>
-        {awards.map(award => (
-          <S.Award key={award.alt}>
-            <Image src={award.src} alt={award.alt} />
-          </S.Award>
-        ))}
-      </S.AwardsWrapper>
+      <S.SliderWrapper>
+        <S.AwardsBackground />
+
+        <S.AwardsWrapper>
+          {awards.map(award => (
+            <S.Award key={award.alt}>
+              <Image src={award.src} alt={award.alt} />
+            </S.Award>
+          ))}
+        </S.AwardsWrapper>
+        <S.AwardsWrapper>
+          {awards.map(award => (
+            <S.Award key={award.alt}>
+              <Image src={award.src} alt={award.alt} />
+            </S.Award>
+          ))}
+        </S.AwardsWrapper>
+        <S.AwardsWrapper>
+          {awards.map(award => (
+            <S.Award key={award.alt}>
+              <Image src={award.src} alt={award.alt} />
+            </S.Award>
+          ))}
+        </S.AwardsWrapper>
+        <S.AwardsWrapper>
+          {awards.map(award => (
+            <S.Award key={award.alt}>
+              <Image src={award.src} alt={award.alt} />
+            </S.Award>
+          ))}
+        </S.AwardsWrapper>
+      </S.SliderWrapper>
     </S.Container>
   )
 }

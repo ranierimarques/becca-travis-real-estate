@@ -8,16 +8,17 @@ type Props = {
   children: ReactNode
   css?: Stitches.CSS
   background?: string
+  id?: string
 } & SectionVariants
 
-export function Section({ background, ...props }: Props) {
+export function Section({ background, id, ...props }: Props) {
   if (background) {
     return (
-      <Box css={{ bg: background }} as="section">
+      <Box css={{ bg: background }} id={id} as="section">
         <S.Section {...props} as="div" />
       </Box>
     )
   }
 
-  return <S.Section {...props} />
+  return <S.Section id={id} {...props} />
 }
