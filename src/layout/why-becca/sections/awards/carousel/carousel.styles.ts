@@ -94,7 +94,11 @@ export const Award = styled('div', {
 export const AwardsBackground = styled('div', {
   width: '100%',
   height: '100%',
-  background: `linear-gradient(90deg, #F5DED0 -15.59%, #F5DED0 -0.13%, rgba(245, 222, 208, 0) 50.45%, #F5DED0 100.33%, #F5DED0 113.79%)`,
+  background: `linear-gradient(90deg,
+    #F5DED0 0%,
+    transparent 20%,
+    transparent 80%,
+    #F5DED0 100%)`,
 
   position: 'absolute',
   top: 0,
