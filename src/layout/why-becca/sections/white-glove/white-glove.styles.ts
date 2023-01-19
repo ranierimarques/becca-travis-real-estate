@@ -48,6 +48,7 @@ const slideUp = keyframes({
 })
 
 export const Accordion = styled(AccordionPrimitive.Root, {
+  width: '100%',
   maxWidth: 438,
 })
 

@@ -49,7 +49,7 @@ export function WhiteGlove() {
             </S.Paragraph>
           </Flex>
 
-          <S.Accordion type="single" defaultValue="item-1">
+          <S.Accordion type="single" defaultValue="item-1" collapsible>
             <S.Item value="item-1">
               <S.Header>
                 <S.Trigger onClick={() => setContent('experience')}>
