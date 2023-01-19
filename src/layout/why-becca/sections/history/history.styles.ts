@@ -1,12 +1,6 @@
 import { styled } from 'stitches.config'
 import { PathSvg } from './svgs'
 
-export const Section = styled('section', {
-  maxWidth: '1072px',
-  margin: '0 auto',
-  padding: '155px 0 160px',
-})
-
 export const Title = styled('h1', {
   marginBottom: 16,
 
@@ -14,6 +8,16 @@ export const Title = styled('h1', {
   fontSize: '24px',
   lineHeight: '36px',
   color: '$magenta6',
+
+  '@bp4': {
+    lineHeight: '32px',
+  },
+  '@bp2': {
+    fontSize: '22px',
+  },
+  '@bp1': {
+    fontSize: '20px',
+  },
 })
 
 export const Paragraph = styled('p', {
@@ -22,28 +26,58 @@ export const Paragraph = styled('p', {
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
+
+  '@bp5': {
+    maxWidth: '363px',
+  },
+  '@bp4': {
+    maxWidth: '688px',
+    textAlign: 'center',
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+  },
 })
 
-export const Becca = styled('div', {
+export const Container = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+
+  '@bp4': {
+    flexDirection: 'column',
+    gap: 32,
+  },
+
+  '@bp2': {
+    gap: 40,
+  },
+
+  variants: {
+    mid: {
+      true: {
+        position: 'relative',
+        padding: '160px 0 160px',
+
+        '@bp4': {
+          padding: '80px 0 80px',
+        },
+        '@bp2': {
+          padding: '64px 0 64px',
+        },
+      },
+    },
+  },
 })
 
-export const OurHistory = styled('div', {
-  position: 'relative',
-
-  padding: '160px 0 160px',
-
+export const TextContainer = styled('div', {
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
+  flexDirection: 'column',
 
-export const Family = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+  '@bp4': {
+    alignItems: 'center',
+  },
 })
 
 export const Path = styled(PathSvg, {
@@ -52,13 +86,20 @@ export const Path = styled(PathSvg, {
   left: 60,
 
   zIndex: 1,
-})
 
-export const Path2 = styled(PathSvg, {
-  position: 'absolute',
-  bottom: -9,
-  right: 60,
+  '@bp4': {
+    display: 'none',
+  },
 
-  transform: 'scaleX(-1)',
-  zIndex: 1,
+  variants: {
+    inverted: {
+      true: {
+        top: 'initial',
+        left: 'initial',
+        bottom: -9,
+        right: 60,
+        transform: 'scaleX(-1)',
+      },
+    },
+  },
 })

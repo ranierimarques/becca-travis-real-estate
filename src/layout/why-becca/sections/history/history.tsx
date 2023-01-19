@@ -1,14 +1,18 @@
-import { Box } from '@/common'
+import { Box, Image } from '@/common'
 import { Hat } from '@/shared'
-import Image from 'next/image'
+import { Section } from '@/template'
 import * as S from './history.styles'
 import { becca, family, ourHistory } from './images'
 
 export function History() {
   return (
-    <S.Section>
-      <S.Becca>
-        <Box>
+    <Section
+      hasMaxWidth
+      css={{ pt: 120, '@bp5': { pt: 216 }, '@bp4': { pt: 120 }, '@bp2': { pt: 80 } }}
+      id="section-history"
+    >
+      <S.Container>
+        <S.TextContainer>
           <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
@@ -16,21 +20,27 @@ export function History() {
             strong and there are plenty of jobs available. The schools are excellent, and
             the living cost is very affordable.
           </S.Paragraph>
-        </Box>
+        </S.TextContainer>
 
         <Box css={{ borderRadius: 8, overflow: 'hidden' }}>
           <Image src={becca} alt="Becca Travis" />
         </Box>
-      </S.Becca>
+      </S.Container>
 
-      <S.OurHistory>
-        <S.Path />
-
-        <Box css={{ borderRadius: 8, overflow: 'hidden' }}>
+      <S.Container mid>
+        <Box
+          css={{
+            borderRadius: 8,
+            overflow: 'hidden',
+            '@bp4': {
+              order: '2',
+            },
+          }}
+        >
           <Image src={ourHistory} alt="Becca Travis" />
         </Box>
 
-        <Box>
+        <S.TextContainer>
           <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
@@ -38,13 +48,14 @@ export function History() {
             The quality of education in Huntsville is excellent, and students who attend
             school here have the opportunity to receive a well-rounded education.
           </S.Paragraph>
-        </Box>
+        </S.TextContainer>
 
-        <S.Path2 />
-      </S.OurHistory>
+        <S.Path />
+        <S.Path inverted />
+      </S.Container>
 
-      <S.Family>
-        <Box>
+      <S.Container>
+        <S.TextContainer>
           <Hat variant="2">Meet Huntsville</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
@@ -53,11 +64,11 @@ export function History() {
             have all the information needed so we can save time on finding what fits best
             with your needs!
           </S.Paragraph>
-        </Box>
+        </S.TextContainer>
         <Box css={{ borderRadius: 8, overflow: 'hidden' }}>
           <Image src={family} alt="Happy Family" />
         </Box>
-      </S.Family>
-    </S.Section>
+      </S.Container>
+    </Section>
   )
 }

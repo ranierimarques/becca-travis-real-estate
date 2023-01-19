@@ -6,7 +6,9 @@ export function Awards() {
   return (
     <S.Section>
       <Hat>Excellence</Hat>
-      <S.Title>Awards and certifications</S.Title>
+      <S.Title>
+        Awards and <br /> certifications
+      </S.Title>
       <S.Paragraph>
         We’re always ready to help by providing the best service for you
       </S.Paragraph>

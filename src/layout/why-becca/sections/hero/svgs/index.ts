@@ -1,1 +1,1 @@
-export { default as ArrowDownSvg } from './arrow-down'
+export { default as CircleArrow } from './circle-arrow.svg'
