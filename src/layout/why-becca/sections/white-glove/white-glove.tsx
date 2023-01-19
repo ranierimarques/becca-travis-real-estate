@@ -14,11 +14,7 @@ const images: Record<string, StaticImageData> = {
 }
 
 export function WhiteGlove() {
-  const [content, setContent] = useState<string>('experience')
-
-  function changeImage(value: string) {
-    setContent(value)
-  }
+  const [content, setContent] = useState('experience')
 
   return (
     <Section hasMaxWidth css={{ pt: 120, pb: 120, '@bp2': { pt: 80, pb: 80 } }}>
@@ -28,7 +24,7 @@ export function WhiteGlove() {
           '@bp4': 'column',
         }}
         align={{
-          '@initial': 'end',
+          '@initial': 'start',
           '@bp4': 'center',
         }}
         justify="between"
@@ -36,7 +32,7 @@ export function WhiteGlove() {
         <Flex
           direction="column"
           align="start"
-          css={{ w: '100%', gap: 48, '@bp4': { w: 'auto' } }}
+          css={{ w: '100%', h: '100%', gap: 48, '@bp4': { w: 'auto' } }}
         >
           <Flex
             direction="column"
@@ -56,7 +52,7 @@ export function WhiteGlove() {
           <S.Accordion type="single" defaultValue="item-1" collapsible>
             <S.Item value="item-1">
               <S.Header>
-                <S.Trigger onClick={e => changeImage('experience')}>
+                <S.Trigger onClick={() => setContent('experience')}>
                   <S.ContentTriggerWrapper>
                     <LikeSvg /> Experience
                   </S.ContentTriggerWrapper>
@@ -82,14 +78,18 @@ export function WhiteGlove() {
                     },
                   }}
                 >
-                  <Image src={experience} alt="test" />
+                  <Image
+                    src={experience}
+                    alt="accordion topic illustration"
+                    quality={100}
+                  />
                 </Box>
               </S.Content>
             </S.Item>
 
             <S.Item value="item-2">
               <S.Header>
-                <S.Trigger onClick={e => changeImage('negotiation')}>
+                <S.Trigger onClick={() => setContent('negotiation')}>
                   <S.ContentTriggerWrapper>
                     <HandshakeSvg />
                     Negotiation
@@ -116,14 +116,18 @@ export function WhiteGlove() {
                     },
                   }}
                 >
-                  <Image src={negotiation} alt="test" />
+                  <Image
+                    src={negotiation}
+                    alt="accordion topic illustration"
+                    quality={100}
+                  />
                 </Box>
               </S.Content>
             </S.Item>
 
             <S.Item value="item-3">
               <S.Header>
-                <S.Trigger onClick={e => changeImage('buyer')}>
+                <S.Trigger onClick={() => setContent('buyer')}>
                   <S.ContentTriggerWrapper>
                     <HomeSvg />
                     Buyer Resources
@@ -150,7 +154,7 @@ export function WhiteGlove() {
                     },
                   }}
                 >
-                  <Image src={buyer} alt="test" />
+                  <Image src={buyer} alt="accordion topic illustration" quality={100} />
                 </Box>
               </S.Content>
             </S.Item>
@@ -166,12 +170,18 @@ export function WhiteGlove() {
             borderRadius: 8,
             overflow: 'hidden',
 
+            alignSelf: 'flex-end',
+
             '@bp4': {
               display: 'none',
             },
           }}
         >
-          <Image src={images[content]} alt="test" />
+          <Image
+            src={images[content]}
+            alt="accordion topics illustration"
+            quality={100}
+          />
         </Box>
       </Flex>
     </Section>
