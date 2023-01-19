@@ -100,6 +100,8 @@ export const KeepExploring = styled('button', {
 
   backgroundColor: 'transparent',
 
+  transition: 'opacity .15s cubic-bezier(.4,0,.2,1)',
+
   '&:hover': {
     opacity: '100%',
   },
