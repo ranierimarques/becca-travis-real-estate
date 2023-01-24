@@ -162,9 +162,9 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   const onlyPostsTags = allPostsTags.posts.map(post => post.tag)
 
   const uniqueTags = [...new Set(onlyPostsTags)]
-  const countedTags = onlyPostsTags.reduce((accumulator: any, value) => {
-    return { ...accumulator, [value]: (accumulator[value] || 0) + 1 }
-  }, {})
+  const countedTags = onlyPostsTags.reduce((accumulator, value) => {
+    return { ...accumulator, [value]: (accumulator[value] ?? 0) + 1 }
+  }, {} as Record<string, number>)
 
   const mostPopularTags = Object.keys(countedTags).sort(
     (a, b) => countedTags[b] - countedTags[a]
