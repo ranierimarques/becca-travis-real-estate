@@ -1,5 +1,6 @@
 import { Home } from '@/layout/homes-id/sections'
 import { getHouseListing } from '@/services/house-listings'
+import { LastCall } from '@/shared'
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
@@ -11,6 +12,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
       </Head>
 
       <Home listing={listing} />
+      <LastCall />
     </main>
   )
 }
