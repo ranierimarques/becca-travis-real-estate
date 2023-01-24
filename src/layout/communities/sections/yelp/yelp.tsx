@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Loader } from '@/common'
+import { Box, Button, Flex, Image } from '@/common'
 import { StaticImageData } from 'next/image'
 import { useState } from 'react'
 import * as Img from './images'
@@ -142,7 +142,7 @@ export function Yelp({ data, communityName }: YelpProps) {
           ))}
         </S.CardsGrid>
         <Button size="2" onClick={handleRequestMoreData} loading={isLoading}>
-          {isLoading && <Loader />} Load More
+          Load More
         </Button>
       </Flex>
     </S.Section>

@@ -1,4 +1,4 @@
-import { Button, Flex, Loader } from '@/common'
+import { Button, Flex } from '@/common'
 import { Hat } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -168,7 +168,6 @@ export function Hero() {
               <Flex css={{ gap: 18 }}>
                 {formStep > 1 && (
                   <Button
-                    as="span"
                     outlined
                     disabled={isSubmitting}
                     onClick={previousForm}
@@ -178,13 +177,13 @@ export function Hero() {
                   </Button>
                 )}
                 {formStep < 3 && (
-                  <Button as="span" onClick={nextForm} size="2">
+                  <Button onClick={nextForm} size="2">
                     Next Step
                   </Button>
                 )}
                 {formStep === 3 && (
-                  <Button size="2" disabled={isSubmitting}>
-                    {isSubmitting && <Loader />}Send your message
+                  <Button size="2" loading={isSubmitting} disabled={isSubmitting}>
+                    Send your message
                   </Button>
                 )}
               </Flex>
