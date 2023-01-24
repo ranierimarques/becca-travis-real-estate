@@ -1,9 +1,13 @@
-import { useVisualizationStore } from '@/layout/homes/store/visualization'
-import { Houses, Map, Search } from '.'
+import { useAtomValue } from 'jotai'
+import dynamic from 'next/dynamic'
+import { visualizationAtom } from 'src/pages/homes'
+import { Houses, Search } from '.'
 import * as S from './homes.styles'
 
+const Map = dynamic(() => import('.').then(module => module.Map))
+
 export function Homes() {
-  const visualization = useVisualizationStore(state => state.visualization)
+  const visualization = useAtomValue(visualizationAtom)
 
   return (
     <S.Section visualization={visualization}>

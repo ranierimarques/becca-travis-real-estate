@@ -1,6 +1,7 @@
 import { Footer, Navbar } from '@/common'
 import { globalStyles } from '@/styles/global'
 import { IBM_Plex_Serif } from '@next/font/google'
+import { Provider } from 'jotai'
 import type { AppProps } from 'next/app'
 
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   globalStyles()
 
   return (
-    <>
+    <Provider>
       <style jsx global>{`
         html {
           font-family: ${ibmPlexSerif.style.fontFamily};
@@ -36,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Navbar />
       <Component {...pageProps} />
       <Footer />
-    </>
+    </Provider>
   )
 }
 
