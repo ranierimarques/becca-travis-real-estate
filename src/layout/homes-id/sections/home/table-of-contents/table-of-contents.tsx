@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import useThrottle from '@/resources/hooks/useThrottle'
+import { useEffect, useState } from 'react'
 import * as S from './table-of-contents.styles'
 
 const TOP_OFFSET = 110
@@ -9,7 +10,7 @@ export function getTabContainers(): NodeListOf<Element> {
 
 export function useTocHighlight() {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const timeoutRef = useRef<number | null>(null)
+  const throttle = useThrottle(100)
 
   useEffect(() => {
     function updateActiveLink() {
@@ -37,14 +38,7 @@ export function useTocHighlight() {
       setCurrentIndex(Math.max(index, 0))
     }
 
-    function throttledUpdateActiveLink() {
-      if (timeoutRef.current === null) {
-        timeoutRef.current = window.setTimeout(() => {
-          timeoutRef.current = null
-          updateActiveLink()
-        }, 100)
-      }
-    }
+    const throttledUpdateActiveLink = () => throttle(updateActiveLink)
 
     document.addEventListener('scroll', throttledUpdateActiveLink)
     document.addEventListener('resize', throttledUpdateActiveLink)
@@ -52,14 +46,10 @@ export function useTocHighlight() {
     updateActiveLink()
 
     return () => {
-      if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current)
-        timeoutRef.current = null
-      }
       document.removeEventListener('scroll', throttledUpdateActiveLink)
       document.removeEventListener('resize', throttledUpdateActiveLink)
     }
-  }, [])
+  }, [throttle])
 
   return {
     currentIndex,
