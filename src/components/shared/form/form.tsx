@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Loader } from '@/common'
+import { Box, Button, Flex, Input } from '@/common'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
@@ -151,8 +151,8 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
           you may be contacted by phone, text message and email about your inquiry.
         </S.DisclaimerText>
 
-        <Button size="2" disabled={isSubmitting}>
-          {isSubmitting && <Loader />} Send your message
+        <Button size="2" loading={isSubmitting} disabled={isSubmitting}>
+          Send your message
         </Button>
       </Flex>
     </S.Form>
