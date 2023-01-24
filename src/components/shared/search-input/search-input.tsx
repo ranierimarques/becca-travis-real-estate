@@ -1,24 +1,25 @@
 import { useGeolocationStore } from '@/layout/homes/store/geolocation'
-import useDebounce from '@/resources/hooks/useDebounce'
+import useDebounceTwo from '@/resources/hooks/useDebounceTwo'
 import { useCombobox } from 'downshift'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import * as S from './search-input.styles'
 import { Gps, Loupe } from './svgs'
 import {
+  getAddressUsingGeoLocation,
+  getBingSuggestions,
   LOCATION_VALUE,
   removeWhiteSpaces,
-  setAddressUsingGeoLocation,
-  setBingSuggestions,
 } from './utils'
 
 type SearchProps = React.ComponentProps<typeof S.Container>
 
 export function SearchInput({ ...props }: SearchProps) {
-  const skipFetch = useRef(true)
+  const skip = useRef(true)
   const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
   const [searchValue, setSearchValue] = useState('')
+  const [lastFetchValue, setLastFetchValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
-  const debouncedValue = useDebounce<string>(searchValue, 500)
+  const debounce = useDebounceTwo(500, skip)
   const {
     getMenuProps,
     getInputProps,
@@ -33,16 +34,14 @@ export function SearchInput({ ...props }: SearchProps) {
     items: suggestions,
     inputValue: searchValue,
     selectedItem: searchValue,
-    onSelectedItemChange: ({ selectedItem }) => {
+    onSelectedItemChange: async ({ selectedItem }) => {
       if (!selectedItem) return
 
-      skipFetch.current = true
-
       if (selectedItem === LOCATION_VALUE) {
-        setAddressUsingGeoLocation(address => {
-          setSearchValue(address)
-          setGeoLocation({ address })
-        })
+        const address = await getAddressUsingGeoLocation()
+
+        setSearchValue(address)
+        setGeoLocation({ address })
         return
       }
 
@@ -51,28 +50,38 @@ export function SearchInput({ ...props }: SearchProps) {
     },
   })
 
-  useEffect(() => {
-    if (skipFetch.current) return
-
-    setBingSuggestions(addresses => {
-      if (skipFetch.current) return
-
-      setSuggestions(addresses)
-      setGeoLocation({ address: debouncedValue })
-    }, debouncedValue)
-  }, [debouncedValue, setGeoLocation])
+  function resetStatesToInitialValue() {
+    setSuggestions([LOCATION_VALUE])
+    setGeoLocation({ address: '' })
+    setLastFetchValue('')
+  }
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value
-
-    skipFetch.current = removeWhiteSpaces(searchValue) === removeWhiteSpaces(newValue)
     setSearchValue(newValue)
 
+    skip.current = true
+
+    // isEmpty
     if (newValue.trim().length === 0) {
-      skipFetch.current = true
-      setSuggestions(['Current Location'])
-      setGeoLocation({ address: '' })
+      resetStatesToInitialValue()
+      return
     }
+
+    // no changes since last fetch
+    if (removeWhiteSpaces(lastFetchValue) === removeWhiteSpaces(newValue)) return
+
+    debounce(async () => {
+      if (skip.current) return
+
+      setLastFetchValue(newValue)
+      const addresses = await getBingSuggestions(newValue)
+
+      if (skip.current) return
+
+      setSuggestions(addresses)
+      setGeoLocation({ address: newValue })
+    })
   }
 
   const hasSuggestions = suggestions.length > 0
