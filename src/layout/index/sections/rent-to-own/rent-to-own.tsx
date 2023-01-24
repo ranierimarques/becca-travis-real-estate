@@ -21,7 +21,7 @@ export function RentToOwn() {
       }}
     >
       <S.ImageContainer>
-        <Image src={family} alt="Happy family" fill />
+        <Image src={family} alt="Happy family" />
       </S.ImageContainer>
 
       <S.TextContainer>
