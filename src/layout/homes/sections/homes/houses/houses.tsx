@@ -1,50 +1,47 @@
 import { useHouse } from '@/layout/homes/hooks/useHouse'
-import { useVisualizationStore } from '@/layout/homes/store/visualization'
-import { ScrollArea } from '@/primitives'
 import { HouseCard } from '@/shared'
+import { useAtomValue } from 'jotai'
+import { useEffect, useRef } from 'react'
+import { visualizationAtom } from 'src/pages/homes'
 import * as S from './houses.styles'
-import {
-  useGeolocationStore,
-  type GeoLocationState,
-} from '@/layout/homes/store/geolocation'
-import React from 'react'
 
 export function Houses() {
-  const { house, isLoading } = useHouse()
-  const visualization = useVisualizationStore(state => state.visualization)
-  const geoLocation = useGeolocationStore((state: GeoLocationState) => state.geoLocation)
-  const setGeoLocation = useGeolocationStore(
-    (state: GeoLocationState) => state.setGeoLocation
-  )
+  const loaderRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { house, setSize, isLoadingMore, isLoadingInitialData } = useHouse()
+  const visualization = useAtomValue(visualizationAtom)
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, scrollHeight, clientHeight } = event.target as HTMLDivElement
-    if (scrollTop + clientHeight + 0.5 >= scrollHeight && !isLoading) {
-      setGeoLocation({
-        ...geoLocation,
-        offset: house.listings?.length,
-        // faz cair no loop infinito que rola la no useHouse.ts se enviar o keepPreviousHouses como ftrue
-        //      keepPreviousHouses: true,
-      })
+  useEffect(() => {
+    const options = {
+      root: scrollRef.current,
+      rootMargin: '300px',
+      threshold: 1.0,
     }
-  }
+
+    const observer = new IntersectionObserver(entities => {
+      const target = entities[0]
+
+      if (target.isIntersecting && !isLoadingMore) {
+        setSize(oldSize => oldSize + 1)
+      }
+    }, options)
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [setSize, isLoadingMore])
 
   return (
-    <ScrollArea onScroll={handleScroll}>
+    <S.ScrollableDiv ref={scrollRef}>
       <S.Houses visualization={visualization}>
-        {isLoading && (
-          <>
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-            <S.SkeletonCard />
-          </>
-        )}
+        {/* Show 9 Skeleton's cards when loading first time */}
+        {isLoadingInitialData &&
+          [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
+
         {house.listings?.map(listing => (
           <HouseCard
             key={listing.id}
@@ -52,7 +49,11 @@ export function Houses() {
             variant={visualization === 'map' ? 'small' : undefined}
           />
         ))}
+
+        {isLoadingMore && [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
       </S.Houses>
-    </ScrollArea>
+
+      <div ref={loaderRef} />
+    </S.ScrollableDiv>
   )
 }

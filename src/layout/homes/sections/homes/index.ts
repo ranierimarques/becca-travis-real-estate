@@ -1,3 +1,5 @@
+export { Filters } from './filters/filters'
 export { Houses } from './houses/houses'
 export { Map } from './map/map'
 export { Search } from './search/search'
+export * as Select from './select/select'

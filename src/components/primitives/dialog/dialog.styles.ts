@@ -48,6 +48,16 @@ export const Content = styled(DialogPrimitive.Content, {
         maxWidth: '536px',
         maxHeight: 'min(80vh, 700px)',
       },
+      '3': {
+        display: 'flex',
+        flexDirection: 'column',
+
+        overflow: 'hidden',
+
+        width: '100%',
+        maxWidth: '722px',
+        maxHeight: 'min(80vh, 700px)',
+      },
     },
   },
 
@@ -58,11 +68,13 @@ export const Content = styled(DialogPrimitive.Content, {
 
 export const ContentWrapper = styled('div', {
   position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  inset: 0,
 
   width: '100%',
+  height: '100%',
+
+  display: 'grid',
+  placeItems: 'center',
 
   px: '56px',
 
@@ -97,6 +109,14 @@ export const Close = styled(DialogPrimitive.Close, {
         color: '$grayW5',
         '&:hover': { background: 'rgba($colors$gray5Rgb, 0.15)' },
         '&:focus': { boxShadow: '0 0 0 2px rgba($colors$gray4Rgb, 0.5)' },
+      },
+      '3': {
+        color: '$grayW5',
+        '&:hover': { background: 'rgba($colors$gray5Rgb, 0.15)' },
+        '&:focus': { boxShadow: '0 0 0 2px rgba($colors$gray4Rgb, 0.5)' },
+
+        top: 8,
+        right: 10,
       },
     },
   },

@@ -36,6 +36,7 @@ enum City {
   Ardmore = 'Ardmore',
   Ashville = 'Ashville',
 }
+
 interface GeoLocation {
   address?: string
   limit?: number
@@ -96,5 +97,5 @@ export const useGeolocationStore = create<GeoLocationState>(set => ({
     bounds: [],
     filter: {},
   },
-  setGeoLocation: geoLocation => set({ geoLocation }),
+  setGeoLocation: geoLocation => set(state => ({ ...state.geoLocation, geoLocation })),
 }))
