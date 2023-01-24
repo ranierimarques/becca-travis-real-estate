@@ -1,61 +1,101 @@
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
+import * as LabelPrimitive from '@radix-ui/react-label'
 import { styled } from 'stitches.config'
 
 export const Title = styled('span', {
   display: 'block',
+  whiteSpace: 'nowrap',
 
-  fontWeight: '600',
-  fontSize: '24px',
-  lineHeight: '36px',
-  color: '$magenta1',
+  fontWeight: '500',
+  fontSize: '14px',
+  lineHeight: '21px',
+  color: '$gray1',
+
+  textTransform: 'uppercase',
 })
 
-export const Description = styled('span', {
-  display: 'block',
-
-  margin: '8px 0 24px',
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '24px',
-  color: '$grayW4',
-})
-
-export const List = styled('ul', {
+export const CheckboxesContainer = styled('div', {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr 1fr',
-  gap: 8,
+  gridTemplateColumns: '1fr 1fr',
+  gap: 16,
 })
 
-export const Link = styled('a', {
+export const CheckBoxRoot = styled(CheckboxPrimitive.Root, {
+  background: '$white',
+
+  width: 22,
+  height: 22,
+  borderRadius: 4,
+
   display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
-  gap: 8,
+  justifyContent: 'center',
 
-  padding: '12px 28px',
+  transition: 'background .15s cubic-bezier(.4,0,.2,1)',
 
-  background: '$grayW10',
-  boxShadow: '0 0 0 1px $colors$grayW9',
-  borderRadius: '8px',
-
-  color: '$grayW3',
-
-  '&:hover': {
-    boxShadow: '0 0 0 1px $colors$magenta1',
-    color: '$magenta1',
-  },
+  boxShadow: '0 0 0 1px $colors$gray5, 0 2px 10px $colors$grayW9',
+  '&:hover': { background: '$offWhite2' },
   '&:focus': {
-    background: 'rgba($colors$magenta2Rgb, 0.05)',
     boxShadow: '0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
-    '&:hover': {
-      boxShadow: '0 0 0 1px $colors$magenta1, 0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
+  },
+
+  '&[data-state="checked"]': {
+    background: '$magenta2',
+    boxShadow: '0 0 0 1px $colors$magenta2, 0 2px 10px $colors$grayW9',
+
+    '&:focus': {
+      boxShadow: '0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
     },
   },
 })
 
-export const Text = styled('span', {
-  fontWeight: '400',
+export const CheckBoxIndicator = styled(CheckboxPrimitive.Indicator, {
+  color: '$white',
+})
+
+export const Label = styled(LabelPrimitive.Root, {
+  fontWeight: 400,
+  fontSize: '14px',
+  lineHeight: '22px',
+  color: '$gray2',
+})
+
+export const TopBar = styled('div', {
+  p: '8px 16px',
+
+  bg: '$grayW10',
+  boxShadow: '0 0 0 1px $colors$grayW8',
+
+  fontWeight: 400,
   fontSize: '16px',
   lineHeight: '24px',
+  color: '$gray3',
+})
+
+export const Container = styled('div', {
+  display: 'grid',
+  gap: 24,
+
+  padding: '16px 16px 24px',
+
+  overflowY: 'auto',
+
+  '&::-webkit-scrollbar': {
+    width: '12px',
+  },
+
+  '&::-webkit-scrollbar-track': {
+    background: 'rgba($colors$blackRgb, 0.08)',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    background: '$grayW8',
+    borderRadius: '6px',
+  },
+
+  '&::-webkit-scrollbar-thumb:hover': {
+    background: 'rgba($colors$grayW7Rgb, 0.8)',
+  },
 })
 
 export const Button = styled('button', {
@@ -75,7 +115,6 @@ export const Button = styled('button', {
   transition: 'filter 150ms ease, box-shadow 150ms ease',
 
   '&:focus': {
-    zIndex: 2,
     boxShadow: 'inset 0 0 0 1px $colors$magenta3, 0 0 0 1px $colors$magenta3',
   },
 
@@ -96,46 +135,61 @@ export const Button = styled('button', {
         },
       },
     },
-    borderDirection: {
-      left: {
-        borderRadius: '5px 0 0 5px',
-      },
-      right: {
-        borderRadius: '0 5px 5px 0',
+  },
+})
+
+export const InputsContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr auto 1fr',
+  alignItems: 'center',
+  gap: 16,
+})
+
+export const InputsText = styled('span', {
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '24px',
+  color: '$gray2',
+
+  variants: {
+    small: {
+      true: {
+        fontSize: '14px',
+        lineHeight: '22px',
       },
     },
   },
 })
 
 export const Input = styled('input', {
-  flex: 1,
-
   boxShadow: '0 0 0 1px $colors$grayW7',
   borderRadius: '4px',
   width: '100%',
-  height: '40px',
 
-  overflow: 'hidden',
-
-  padding: '0 16px 0 20px',
+  padding: '8px 16px',
 
   fontWeight: 500,
-  fontSize: 14,
-  lineHeight: '18px',
-  color: '$gray1',
+  fontSize: 16,
+  lineHeight: '24px',
+  color: '$gray2',
   caretColor: '$magenta8',
 
   '&::placeholder': {
     fontWeight: 400,
-    color: '$gray3',
+    color: '$grayW6',
   },
   '&:hover': {
-    boxShadow: '0 0 0 1px $colors$gray5, inset 0px 0px 5px rgba(0, 0, 0, 0.1)',
-
-    cursor: 'text',
+    boxShadow: '0 0 0 1px $colors$gray5, inset 0px 0px 5px rgba($colors$blackRgb, 0.1)',
   },
 
-  '&:focus-within': {
-    boxShadow: '0 0 0 2px $colors$gray5',
+  '&:focus': {
+    boxShadow:
+      '0 0 0 2px $colors$magenta3, inset 0px 0px 5px rgba($colors$blackRgb, 0.1)',
   },
+})
+
+export const MultiColumnContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '24px 30px',
 })

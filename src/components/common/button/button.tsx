@@ -1,3 +1,4 @@
+import { Loader } from '@/common'
 import type * as Stitches from '@stitches/react'
 import { forwardRef, ReactNode } from 'react'
 import type { ButtonVariants } from './button.styles'
@@ -21,10 +22,12 @@ type spanRef = React.ForwardedRef<HTMLSpanElement>
 
 export const Button = forwardRef<ref, buttonProps>(
   ({ href, children, as, target, ...props }, forwardedRef) => {
+    const { loading } = props
+
     if (href && !as) {
       return (
         <S.NextLink {...props} href={href} ref={forwardedRef as anchorRef}>
-          {children}
+          {loading && <Loader />} {children}
         </S.NextLink>
       )
     }
@@ -38,7 +41,7 @@ export const Button = forwardRef<ref, buttonProps>(
           rel="noreferrer noopener"
           ref={forwardedRef as anchorRef}
         >
-          {children}
+          {loading && <Loader />} {children}
         </S.Link>
       )
     }
@@ -46,14 +49,14 @@ export const Button = forwardRef<ref, buttonProps>(
     if (as === 'span') {
       return (
         <S.Span {...props} ref={forwardedRef as spanRef}>
-          {children}
+          {loading && <Loader />} {children}
         </S.Span>
       )
     }
 
     return (
       <S.Button {...props} ref={forwardedRef as buttonRef}>
-        {children}
+        {loading && <Loader />} {children}
       </S.Button>
     )
   }

@@ -1,77 +1,96 @@
 import { Flex } from '@/common'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
-import { useVisualizationStore } from '@/layout/homes/store/visualization'
 import useRelativeDate from '@/resources/hooks/useRelativeDate'
 import { getDate } from '@/resources/utils/date'
 import { SearchInput } from '@/shared'
+import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
+import { visualizationAtom } from 'src/pages/homes'
+import { Filters } from '../'
 import * as Svg from '../svgs'
 import * as S from './search.styles'
-import Filters from '../filters/filters'
 
 type LastUpdateProps = {
-  timestamp: string
+  timestamp: string | undefined
 }
 
-function LastUpdate({ timestamp }: LastUpdateProps) {
+function LastUpdate({ timestamp = '' }: LastUpdateProps) {
   const relativeDate = useRelativeDate(timestamp)
 
   return <span title={getDate(timestamp, 'en-US', 'full')}>{relativeDate}</span>
 }
 
+type HeaderInfosProps = {
+  isLoadingAll: boolean | undefined
+  total: number | undefined
+  timestamp: string | undefined
+} & S.HeaderInfosVariants
+
+function HeaderInfos({ isLoadingAll, total, timestamp, variant }: HeaderInfosProps) {
+  return (
+    <S.HeaderInfos variant={variant}>
+      <S.HomesForSale>{isLoadingAll ? '---' : total} Homes for sale</S.HomesForSale>
+      <S.LastUpdate>
+        Last update:{' '}
+        {isLoadingAll ? (
+          <S.Space>-- ------- ---</S.Space>
+        ) : (
+          <LastUpdate timestamp={timestamp} />
+        )}
+      </S.LastUpdate>
+    </S.HeaderInfos>
+  )
+}
+
 export function Search() {
   const router = useRouter()
-  const { house, isLoading } = useHouse()
-  const visualization = useVisualizationStore(state => state.visualization)
+  const [visualization, setVisualization] = useAtom(visualizationAtom)
+  const { house, isLoadingAll } = useHouse()
 
-  const hasListing = house.listings?.[0]
-  const timestamp = house.timestamp ?? ''
+  function onChangeVisualization(view: 'map' | 'gallery') {
+    router.replace(`?view=${view}`, undefined, { shallow: true })
+    setVisualization(view)
+  }
 
   return (
     <>
       <S.Container visualization={visualization}>
-        <S.HeaderInfos>
-          <S.HomesForSale>
-            {isLoading ? '---' : house.total} Homes for sale
-          </S.HomesForSale>
-          <S.LastUpdate>
-            Last update: {isLoading && <S.Space>- ------- ---</S.Space>}
-            {hasListing ? <LastUpdate timestamp={timestamp} /> : '--'}
-          </S.LastUpdate>
-        </S.HeaderInfos>
+        <HeaderInfos
+          isLoadingAll={isLoadingAll}
+          total={house.total}
+          timestamp={house.timestamp}
+        />
 
         <SearchInput variant="houses" visualization={visualization} />
 
         <S.Options>
           <Flex>
             <S.Button
-              onClick={() => router.replace('?view=map')}
+              onClick={() => onChangeVisualization('map')}
               active={visualization === 'map'}
               borderDirection="left"
             >
               <Svg.Location /> Map
             </S.Button>
             <S.Button
-              onClick={() => router.replace('?view=gallery')}
+              onClick={() => onChangeVisualization('gallery')}
               active={visualization === 'gallery'}
               borderDirection="right"
             >
               <Svg.Gallery /> Gallery
             </S.Button>
           </Flex>
+
           <Filters />
         </S.Options>
       </S.Container>
 
-      <S.HeaderInfos variant="2">
-        <S.HomesForSale variant="2">
-          {isLoading ? '---' : house.total} Homes for sale
-        </S.HomesForSale>
-        <S.LastUpdate variant="2">
-          Last update: {isLoading && <S.Space>- ------- ---</S.Space>}
-          {hasListing ? <LastUpdate timestamp={timestamp} /> : '--'}
-        </S.LastUpdate>
-      </S.HeaderInfos>
+      <HeaderInfos
+        variant="2"
+        isLoadingAll={isLoadingAll}
+        total={house.total}
+        timestamp={house.timestamp}
+      />
     </>
   )
 }

@@ -1,10 +1,8 @@
 import { getHouseListing } from '@/services/house-listings'
-import useSWR, { preload } from 'swr'
-import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
-import { useHousesListStore } from '@/layout/homes/store/housesList'
 import { FormattedHouseCard } from '@/services/house-listings/types'
-
-type Fetcher = [string, GeoLocationState['geoLocation']]
+import { useEffect } from 'react'
+import useSWRInfinite from 'swr/infinite'
+import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
 
 const mountFilters = (
   geoLocation: GeoLocationState['geoLocation'],
@@ -29,7 +27,7 @@ const mountFilters = (
       | undefined
   }
 
-  const rangeNumberfilters: string[] = [
+  const rangeNumberFilters: string[] = [
     'BedroomsTotal',
     'BathroomsTotalInteger',
     'LotSizeAcres',
@@ -40,7 +38,7 @@ const mountFilters = (
 
   if (geoLocation.filter) {
     const filter = geoLocation.filter as Filter
-    rangeNumberfilters.forEach(f => {
+    rangeNumberFilters.forEach(f => {
       if (filter[f]) {
         params[`${f}.gte`] = String(filter[f]?.gte)
         params[`${f}.lte`] = String(filter[f]?.lte)
@@ -71,16 +69,21 @@ const mountFilters = (
   return params
 }
 
-const fetcher = async ([, geoLocation]: Fetcher) => {
+const fetcher = async (key: string, geoLocation: GeoLocationState['geoLocation']) => {
+  const increment = 9
+  const index = key.split('/').at(-1) as string
+  const initialOffset = Number.parseInt(index) - 1 // -1 to start in 0
+
   const params = {
-    limit: '50',
+    limit: increment.toString(),
+    offset: `${initialOffset * increment}`,
     PropertyType: 'Residential',
     StandardStatus: 'Active',
     'PhotosCount.gte': '1', // There must be at least 1 photo
     'ListPrice.gt': '1', // Price cannot be 0
     sortBy: 'BridgeModificationTimestamp',
     order: 'desc',
-  } as Record<string, string>
+  }
   const newParams = mountFilters(geoLocation, params)
 
   return getHouseListing({
@@ -90,42 +93,37 @@ const fetcher = async ([, geoLocation]: Fetcher) => {
   })
 }
 
-preload(['houses', ''], fetcher)
-
 export function useHouse() {
   const geoLocation = useGeolocationStore(state => state.geoLocation)
-  const setHousesList = useHousesListStore(state => state.setHousesList)
-  const currentHousesList = useHousesListStore(state => state.housesList)
+  const { data, error, size, setSize, mutate, isValidating } = useSWRInfinite(
+    index => `search/${index + 1}`,
+    key => fetcher(key, geoLocation)
+  )
 
-  const { data, error } = useSWR(['houses', geoLocation], fetcher, {
-    keepPreviousData: true,
-  })
+  useEffect(() => {
+    mutate()
+    setSize(1)
+  }, [geoLocation, mutate, setSize])
 
-  if (data) {
-    // vem do scroll infinito essa propriedade, pra mandter exibindo as casas anteriores
-    if (geoLocation.keepPreviousHouses) {
-      const nonDuplicateListings: FormattedHouseCard[] = []
-      currentHousesList.listings.concat(data.listings).forEach(listing => {
-        if (!nonDuplicateListings.find(l => l.id === listing.id)) {
-          nonDuplicateListings.push(listing)
-        }
-      })
-
-      setHousesList({
-        listings: nonDuplicateListings,
-        timestamp: data.timestamp,
-        total: data.total,
-      })
-    } else {
-      setHousesList(data)
-    }
-  }
+  const isLoadingInitialData = !data && !error
+  const isLoadingMore =
+    isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
+  const isRefreshing = isValidating && data && data.length === size
 
   return {
     house: {
-      ...data,
+      timestamp: data?.at(-1)?.timestamp,
+      listings: data?.reduce(
+        (total, current) => [...total, ...current.listings],
+        [] as FormattedHouseCard[]
+      ),
+      total: data?.at(-1)?.total,
     },
-    isLoading: !error && !data,
     isError: error,
+    setSize,
+    isLoadingMore,
+    isRefreshing,
+    isLoadingInitialData,
+    isLoadingAll: isLoadingInitialData || isLoadingMore || isRefreshing,
   }
 }

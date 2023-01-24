@@ -1,4 +1,4 @@
-import { Button, Loader } from '@/common'
+import { Button } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { HouseCard } from '@/shared'
 import { FormattedHouseCards } from '@/types/houses'
@@ -49,7 +49,7 @@ export function Homes({ listings, communityName }: HomesProps) {
               loading={isLoading}
               disabled={isLoading}
             >
-              {isLoading && <Loader />} Show more...
+              Show more...
             </Button>
           </S.OverlayWrapper>
         )}

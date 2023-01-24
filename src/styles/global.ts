@@ -66,6 +66,15 @@ export const globalStyles = globalCss({
     outline: 'none',
   },
 
+  'input[type="number"]': {
+    '&::-webkit-outer-spin-button': {
+      '-webkit-appearance': 'none',
+    },
+    '&::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'none',
+    },
+  },
+
   textarea: {
     resize: 'vertical',
   },

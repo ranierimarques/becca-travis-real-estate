@@ -31,9 +31,7 @@ const contacts = [
 
 export function Contact({ children, ...props }: ContactProps) {
   return (
-    <Dialog.Root
-      onOpenChange={open => (document.body.dataset['overflow'] = String(!open))}
-    >
+    <Dialog.Root>
       <Dialog.Trigger asChild>
         {children ? children : <Button {...props}>Let&apos;s chat</Button>}
       </Dialog.Trigger>

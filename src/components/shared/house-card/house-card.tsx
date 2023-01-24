@@ -3,23 +3,15 @@ import { FormattedHouseCard } from '@/services/house-listings/types'
 import * as S from './house-card.styles'
 import * as Svg from './svgs'
 
-interface HouseCardProps {
+interface HouseCardProps extends React.HTMLAttributes<HTMLLIElement> {
   listing: FormattedHouseCard
   variant?: 'small'
   badge?: string
-  onMouseEnter?: () => void
-  onMouseLeave?: () => void
 }
 
-export function HouseCard({
-  listing,
-  variant,
-  badge,
-  onMouseEnter,
-  onMouseLeave,
-}: HouseCardProps) {
+export function HouseCard({ listing, variant, badge, ...props }: HouseCardProps) {
   return (
-    <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <li {...props}>
       <S.Link href={`/homes/${listing.id}`} draggable="false" variant={variant}>
         <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
           <Image
@@ -27,6 +19,7 @@ export function HouseCard({
             alt="House"
             css={{ objectFit: 'cover', pointerEvents: 'none' }}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           {badge && <S.Badge>{badge}</S.Badge>}
           <S.FavoriteButton

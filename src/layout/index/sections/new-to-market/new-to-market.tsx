@@ -1,4 +1,4 @@
-import { Button, Flex, Loader } from '@/common'
+import { Button, Flex } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
 import { Section } from '@/template'
@@ -12,11 +12,11 @@ type Props = {
 
 export function NewToMarket({ initialListings }: Props) {
   const { data, error, size, setSize } = useSWRInfinite(
-    index => String(index + 1),
+    index => `home/${index + 1}`,
     async index =>
       getHouseListing({
         type: 'card',
-        params: { limit: '4', offset: `${(Number(index) - 1) * 4}` },
+        params: { limit: '4', offset: `${(Number(index.split('/').at(-1)) - 1) * 4}` },
         fetchOn: 'browser',
       }),
     { fallbackData: [initialListings] }
@@ -64,7 +64,7 @@ export function NewToMarket({ initialListings }: Props) {
 
       <Button
         size="3"
-        onClick={() => setSize(size + 1)}
+        onClick={() => setSize(oldSize => oldSize + 1)}
         loading={isLoadingMore}
         disabled={isLoadingMore}
         css={{
@@ -74,7 +74,7 @@ export function NewToMarket({ initialListings }: Props) {
           '@bp2': { mt: 24 },
         }}
       >
-        {isLoadingMore && <Loader />} View more properties
+        View more properties
       </Button>
     </Section>
   )

@@ -1,4 +1,21 @@
+import type * as Stitches from '@stitches/react'
 import { styled } from 'stitches.config'
+
+export const HomesForSale = styled('div', {
+  fontWeight: '400',
+  fontSize: '14px',
+  lineHeight: '24px',
+  letterSpacing: '-0.02em',
+  color: '$magenta6',
+})
+
+export const LastUpdate = styled('div', {
+  fontWeight: '400',
+  fontSize: '14px',
+  lineHeight: '24px',
+  letterSpacing: '-0.02em',
+  color: '$grayW5',
+})
 
 export const HeaderInfos = styled('div', {
   display: 'flex',
@@ -12,53 +29,24 @@ export const HeaderInfos = styled('div', {
         alignItems: 'flex-end',
 
         justifyContent: 'center',
+
+        [`${HomesForSale}`]: {
+          fontSize: '24px',
+          lineHeight: '36px',
+          letterSpacing: 'initial',
+          color: '$black',
+        },
+
+        [`${LastUpdate}`]: {
+          position: 'absolute',
+          right: '0',
+        },
       },
     },
   },
 })
 
-export const HomesForSale = styled('div', {
-  fontWeight: '400',
-
-  variants: {
-    variant: {
-      1: {
-        fontSize: '14px',
-        lineHeight: '24px',
-        letterSpacing: '-0.02em',
-        color: '$magenta6',
-      },
-      2: {
-        fontSize: '24px',
-        lineHeight: '36px',
-        color: '$black',
-      },
-    },
-  },
-
-  defaultVariants: {
-    variant: '1',
-  },
-})
-
-export const LastUpdate = styled('div', {
-  fontWeight: '400',
-  fontSize: '14px',
-  lineHeight: '24px',
-  letterSpacing: '-0.02em',
-  color: '$grayW5',
-
-  variants: {
-    variant: {
-      2: {
-        position: 'absolute',
-        right: '0',
-        // margin: '0 16px 12px',
-        // alignItems: 'flex-end',
-      },
-    },
-  },
-})
+export type HeaderInfosVariants = Stitches.VariantProps<typeof HeaderInfos>
 
 export const Options = styled('div', {
   display: 'flex',

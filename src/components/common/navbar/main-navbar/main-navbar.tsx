@@ -1,6 +1,6 @@
 import { Box } from '@/common'
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavigationMobile } from '..'
 import * as Svg from '../svgs'
 import * as S from './main-navbar.styles'
@@ -9,7 +9,7 @@ const Navigation = dynamic(
   () => import('../navigation/navigation').then(module => module.Navigation),
   { ssr: false, loading: () => <div /> }
 )
-const TalkToMe = dynamic(() => import('@/shared').then(module => module.Contact), {
+const Contact = dynamic(() => import('@/shared').then(module => module.Contact), {
   ssr: false,
   loading: () => <div />,
 })
@@ -23,15 +23,17 @@ export function MainNavbar() {
 
   function toggleMenuVisibility() {
     setIsOpen(oldValue => !oldValue)
+    document.body.dataset['overflow'] = String(!isOpen)
   }
 
-  useEffect(() => {
-    document.body.dataset['overflow'] = String(isOpen)
-  }, [isOpen])
+  function hiddenMenuVisibility() {
+    setIsOpen(false)
+    document.body.dataset['overflow'] = 'false'
+  }
 
   return (
     <S.Nav>
-      <S.Link href="/" onClick={() => setIsOpen(false)}>
+      <S.Link href="/" onClick={hiddenMenuVisibility}>
         <Svg.Logo />
       </S.Link>
 
@@ -55,7 +57,7 @@ export function MainNavbar() {
 
       <Box css={{ display: 'flex', alignItems: 'center', '@bp4': { display: 'none' } }}>
         <Navigation />
-        <TalkToMe css={{ marginLeft: 16 }} />
+        <Contact css={{ marginLeft: 16 }} />
       </Box>
     </S.Nav>
   )

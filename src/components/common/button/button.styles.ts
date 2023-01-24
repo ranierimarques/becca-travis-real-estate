@@ -17,25 +17,14 @@ const sharedStyles = css({
   whiteSpace: 'nowrap',
 
   '&:disabled': {
-    $$primaryColor: 'rgba($colors$magenta1Rgb, 0.33)',
-    $$secondaryColor: 'transparent',
-  },
-
-  '&:not(:disabled)': {
-    '&:hover': {
-      filter: 'brightness(0.9)',
-    },
-
-    '&:active': {
-      filter: 'brightness(0.8)',
-    },
+    cursor: 'default',
+    opacity: '0.33',
   },
 
   [`& ${Loader}`]: {
     display: 'block',
 
     position: 'absolute',
-    top: '12px',
     left: '50%',
     transform: 'translate(-50%, -50%)',
   },
@@ -71,6 +60,18 @@ const sharedStyles = css({
         '&:focus:not(&:active)': {
           boxShadow: '0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
         },
+
+        '&:not(:disabled)': {
+          '&:hover': {
+            background: '$colors$magenta9',
+            color: 'rgba($colors$whiteRgb, 0.9)',
+          },
+
+          '&:active': {
+            background: 'rgba($colors$magenta8Rgb, 0.98)',
+            color: 'rgba($colors$whiteRgb, 0.8)',
+          },
+        },
       },
     },
     outlined: {
@@ -81,19 +82,21 @@ const sharedStyles = css({
         background: 'transparent',
         boxShadow: 'inset 0 0 0 1px $$primaryColor',
 
-        '&:hover': {
-          background: 'rgba($colors$magenta5Rgb, 0.2)',
-          filter: 'none',
-        },
-        '&:active': {
-          background: 'rgba($colors$magenta5Rgb, 0.4)',
-          filter: 'none',
+        '&:not(:disabled)': {
+          '&:hover': {
+            background: 'rgba($colors$magenta5Rgb, 0.2)',
+            color: '$$primaryColor',
+          },
+          '&:active': {
+            background: 'rgba($colors$magenta5Rgb, 0.4)',
+            color: '$$primaryColor',
+          },
         },
       },
     },
     loading: {
       true: {
-        $$secondaryColor: 'transparent',
+        color: 'transparent !important',
       },
     },
   },
@@ -114,24 +117,6 @@ export const Link = styled('a', sharedStyles, {
 
 export const Span = styled('span', sharedStyles, {
   display: 'inline-block',
-
-  cursor: 'pointer',
-
-  variants: {
-    disabled: {
-      true: {
-        opacity: '.33',
-
-        '&:hover': {
-          cursor: 'default',
-          background: 'transparent',
-        },
-        '&:active': {
-          background: 'transparent',
-        },
-      },
-    },
-  },
 })
 
 export const Button = styled('button', sharedStyles)

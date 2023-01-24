@@ -1,6 +1,6 @@
 import { Flex } from '@/common'
 import { FormattedHouse } from '@/services/house-listings/types'
-import { LastCall } from '@/shared'
+
 import {
   AskAQuestion,
   Description,
@@ -47,8 +47,6 @@ export function Home({ listing }: Listing) {
 
         <RelatedProperties id={listing.id} coords={listing.coords} />
       </div>
-
-      <LastCall />
     </S.Section>
   )
 }

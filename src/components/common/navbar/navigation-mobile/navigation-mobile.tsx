@@ -1,6 +1,8 @@
 import { Box, Flex, Image } from '@/common'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
+import { useSetAtom } from 'jotai'
 import dynamic from 'next/dynamic'
+import { visualizationAtom } from 'src/pages/homes'
 import {
   aboutHuntsvilleListItems,
   CardListItemProps,
@@ -10,7 +12,7 @@ import {
 } from '../navigation/navigation'
 import * as S from './navigation-mobile.styles'
 
-const TalkToMe = dynamic(() => import('@/shared').then(module => module.Contact), {
+const Contact = dynamic(() => import('@/shared').then(module => module.Contact), {
   ssr: false,
   loading: () => <div />,
 })
@@ -28,9 +30,19 @@ function CardListItem({
   content,
   toggleMenuVisibility,
 }: CardListItemProps & ToggleMenuVisibility) {
+  const setVisualization = useSetAtom(visualizationAtom)
+
+  function handleClick() {
+    toggleMenuVisibility()
+
+    if (content.onClickValue) {
+      setVisualization(content.onClickValue)
+    }
+  }
+
   return (
     <S.CardListItem>
-      <S.CardLink href={content.href} onClick={toggleMenuVisibility}>
+      <S.CardLink href={content.href} onClick={handleClick}>
         {content.icon}
         <div>
           <Flex
@@ -219,7 +231,7 @@ export function NavigationMobile({ isOpen, toggleMenuVisibility }: Props) {
         </li>
       </S.List>
 
-      <TalkToMe size="3" css={{ width: '100%', mt: 32 }} />
+      <Contact size="3" css={{ width: '100%', mt: 32 }} />
     </S.Nav>
   )
 }
