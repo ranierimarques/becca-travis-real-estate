@@ -175,7 +175,7 @@ const texts: Texts = {
 export function About({ communityName }: AboutProps) {
   const isHamptonCove = communityName === 'hampton cove'
   return (
-    <S.Section id={`about-${communityName.toLowerCase()}`}>
+    <S.Section hasMaxWidth id={`about-${communityName.toLowerCase()}`}>
       <S.Title>
         About <S.Community>{communityName}</S.Community>
       </S.Title>

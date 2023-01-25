@@ -31,6 +31,25 @@ export const Trigger = styled(SelectPrimitive.Trigger, {
     fontWeight: 500,
     color: '$grayW5',
   },
+
+  variants: {
+    community: {
+      true: {
+        maxWidth: 240,
+
+        padding: '8px',
+
+        background: '$white',
+        boxShadow: '0 0 0 1px $colors$grayW7',
+        borderRadius: 4,
+
+        fontWeight: 400,
+        fontSize: 16,
+        lineHeight: '24px',
+        color: '$grayW6',
+      },
+    },
+  },
 })
 
 export const Content = styled(SelectPrimitive.Content, {

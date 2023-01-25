@@ -1,10 +1,11 @@
-import { Box, Flex } from '@/common'
+import { Box, Flex, Image } from '@/common'
+import { Tooltip } from '@/primitives'
 import { Hat, LastCall } from '@/shared'
+import { Section } from '@/template'
 import { getDate } from '@/utils/date'
-import Image from 'next/image'
 import { Fragment } from 'react'
 import * as S from './post.styles'
-import { ClockSvg, DividerSvg } from './svgs'
+import { ClockSvg } from './svgs'
 
 function GetList({ post }: any) {
   return (
@@ -45,15 +46,27 @@ function contentSwitch(type: string, post: any, index: number) {
     case 'numbered-list': {
       return (
         <S.OrderedList key={index}>
-          <GetList post={post} />
+          <GetList post={post} index={index} />
         </S.OrderedList>
       )
     }
     case 'bulleted-list': {
       return (
         <S.UnorderedList key={index}>
-          <GetList post={post} />
+          <GetList post={post} index={index} />
         </S.UnorderedList>
+      )
+    }
+    case 'image': {
+      return (
+        <Box key={index} css={{ mb: 24, br: 8, overflow: 'hidden' }}>
+          <Image
+            src={post.src}
+            alt={post.title}
+            width={post.width}
+            height={post.height}
+          />
+        </Box>
       )
     }
     default: {
@@ -66,56 +79,102 @@ export function Post({ data }: any) {
   const article = data.post
 
   return (
-    <S.Section>
-      <S.Background />
-      <S.Content>
+    <>
+      <Section hasMaxWidth background="rgba($colors$tangerine5Rgb, 0.3)">
         <S.Header>
           <Hat css={{ marginBottom: 8 }}>{article.tag}</Hat>
           <S.PostTitle>{article.postTitle}</S.PostTitle>
           <S.PostDescription>{article.postDescription}</S.PostDescription>
-          <div>
-            <Image
-              src={article.postBanner.url}
-              alt={article.postBannerAlt}
-              width="888"
-              height="340"
-              priority
-              style={{
-                borderRadius: '8px',
-                userSelect: 'none',
-                pointerEvents: 'none',
+          <Box
+            css={{
+              position: 'relative',
+            }}
+          >
+            <Box
+              css={{
+                background: '$white',
+
+                position: 'absolute',
+                left: '50%',
+
+                transform: 'translate(-50%)',
+
+                height: '100%',
+                width: '100vw',
               }}
             />
+            <Box
+              css={{
+                background: 'rgba($colors$tangerine5Rgb, 0.3)',
 
-            <S.PostDetails>
-              <Flex align="center" css={{ gap: 16 }}>
-                <S.DatePublished>
-                  {getDate(article.createdAt, 'en-US', 'long').replace(' ', ' - ')}
-                </S.DatePublished>
-                <Box
-                  css={{
-                    background: '#8C8A97',
-                    width: '4px',
-                    height: '4px',
-                    borderRadius: 999,
-                  }}
-                />
-                <S.TimeToRead>{data.readingTime}</S.TimeToRead>
-              </Flex>
-              <S.LastUpdate>
-                <ClockSvg />
-                Last updated on {getDate(article.updatedAt, 'en-US', 'short')}
-              </S.LastUpdate>
-            </S.PostDetails>
-            <DividerSvg />
-          </div>
+                position: 'absolute',
+                left: '50%',
+
+                transform: 'translate(-50%)',
+
+                height: '40%',
+                width: '100vw',
+              }}
+            />
+            <div>
+              <Image
+                src={article.postBanner.url}
+                alt={article.postBannerAlt}
+                width="888"
+                height="340"
+                priority
+                style={{
+                  borderRadius: '8px',
+                  userSelect: 'none',
+                  pointerEvents: 'none',
+                }}
+              />
+
+              <S.PostDetails>
+                <Flex align="center" css={{ gap: 16 }}>
+                  <span>
+                    {getDate(article.createdAt, 'en-US', 'long').replace(' ', ' - ')}
+                  </span>
+                  <Box css={{ bg: '$gray5', w: '4px', h: '4px', br: 999 }} />
+                  <span>{data.readingTime}</span>
+                </Flex>
+                <S.LastUpdate>
+                  <ClockSvg />
+                  Last updated on {getDate(article.updatedAt, 'en-US', 'short')}
+                </S.LastUpdate>
+                <Box css={{ display: 'none', '@bp2': { display: 'block' } }}>
+                  <Tooltip
+                    variant="2"
+                    align="end"
+                    alignOffset={-5}
+                    content={`Last updated on ${getDate(
+                      article.updatedAt,
+                      'en-US',
+                      'short'
+                    )}`}
+                  >
+                    <S.TooltipButton>
+                      <ClockSvg />
+                    </S.TooltipButton>
+                  </Tooltip>
+                </Box>
+              </S.PostDetails>
+              <S.Divider />
+              {/* <DividerSvg /> */}
+            </div>
+          </Box>
         </S.Header>
+      </Section>
 
-        {article.postContent.raw.children.map((post: any, index: number) =>
-          contentSwitch(post.type, post, index)
-        )}
+      <S.Content>
+        <S.Container>
+          {article.postContent.raw.children.map((post: any, index: number) =>
+            contentSwitch(post.type, post, index)
+          )}
+        </S.Container>
       </S.Content>
+
       <LastCall />
-    </S.Section>
+    </>
   )
 }

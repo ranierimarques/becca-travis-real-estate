@@ -1,5 +1,6 @@
-import { Box, Button } from '@/common'
+import { Box, Button, Flex } from '@/common'
 import { Hat } from '@/shared'
+import { Section } from '@/template'
 import Image from 'next/image'
 import * as S from './hero.styles'
 import { becca, house } from './images'
@@ -9,8 +10,8 @@ const skills = ['Experience', 'Professionalism', 'Efficiency']
 
 export function Hero() {
   return (
-    <S.Section>
-      <S.Container>
+    <Section hasMaxWidth background="rgba($colors$tangerine5Rgb, 0.3)">
+      <Flex justify="between">
         <div>
           <Hat>Seller Resources</Hat>
           <S.Title>Schedule your no-pressure selling consult with Becca </S.Title>
@@ -44,7 +45,7 @@ export function Hero() {
           </Box>
           <S.ImageDescription>Image by Becca Travis</S.ImageDescription>
         </S.ImageContainer>
-      </S.Container>
-    </S.Section>
+      </Flex>
+    </Section>
   )
 }

@@ -1,21 +1,23 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  position: 'relative',
-})
-
-export const Background = styled('div', {
-  position: 'absolute',
-  top: 0,
-  width: '100%',
-  height: '570px',
-  backgroundColor: 'rgba($colors$tangerine5Rgb, 0.3)',
-  zIndex: -1,
+export const Container = styled('div', {
+  maxWidth: 888,
+  margin: '0 auto',
 })
 
 export const Content = styled('div', {
-  maxWidth: '888px',
-  margin: '0 auto',
+  '@bp4': {
+    px: '40px',
+  },
+  '@bp3': {
+    px: '32px',
+  },
+  '@bp2': {
+    px: '24px',
+  },
+  '@bp1': {
+    px: '16px',
+  },
 })
 
 export const Header = styled('div', {
@@ -26,6 +28,12 @@ export const Header = styled('div', {
   marginBottom: 48,
 })
 
+export const TooltipButton = styled('button', {
+  background: 'rgba($colors$magenta5Rgb, 0.15)',
+  borderRadius: 4,
+  padding: 4,
+})
+
 export const PostTitle = styled('h1', {
   marginBottom: 16,
 
@@ -34,7 +42,20 @@ export const PostTitle = styled('h1', {
   fontSize: '40px',
   lineHeight: '64px',
   textAlign: 'center',
-  color: '#58243C',
+  color: '$magenta6',
+
+  '@bp4': {
+    fontSize: '36px',
+    lineHeight: '50px',
+  },
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const PostDescription = styled('p', {
@@ -44,7 +65,14 @@ export const PostDescription = styled('p', {
   fontSize: '16px',
   lineHeight: '28px',
   textAlign: 'center',
-  color: '#4E4B59',
+  color: '$gray2',
+
+  maxWidth: 756,
+
+  '@bp2': {
+    fontSize: '14px',
+    lineHeight: '26px',
+  },
 })
 
 export const PostDetails = styled('div', {
@@ -54,20 +82,58 @@ export const PostDetails = styled('div', {
 
   width: '100%',
   margin: '32px 0 16px ',
-})
 
-export const DatePublished = styled('span', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '32px',
-  color: '#5F5C6B',
+  color: '$gray3',
+
+  position: 'relative',
+
+  '@bp2': {
+    fontSize: '14px',
+    lineHeight: '24px',
+  },
+  '@bp1': {
+    fontSize: '12px',
+  },
 })
 
-export const TimeToRead = styled('span', {
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '32px',
-  color: '#5F5C6B',
+export const Divider = styled('div', {
+  width: '100%',
+  height: 1,
+
+  background: '$grayW7',
+
+  position: 'relative',
+
+  '&::before': {
+    content: '',
+    position: 'absolute',
+
+    top: '50%',
+
+    borderLeft: '3px solid transparent',
+    borderRight: '3px solid transparent',
+
+    borderTop: '5px solid $colors$grayW7',
+
+    transform: 'translate(-0.5px, -50%) rotate(-90deg)',
+  },
+  '&::after': {
+    content: '',
+    position: 'absolute',
+
+    top: '50%',
+    right: 0,
+
+    borderLeft: '3px solid transparent',
+    borderRight: '3px solid transparent',
+
+    borderTop: '5px solid $colors$grayW7',
+
+    transform: 'translate(0.5px, -50%) rotate(90deg)',
+  },
 })
 
 export const LastUpdate = styled('span', {
@@ -75,90 +141,136 @@ export const LastUpdate = styled('span', {
   alignItems: 'center',
   gap: 10,
 
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '32px',
-  color: '#5F5C6B',
+  '@bp2': {
+    display: 'none',
+  },
 })
 
 export const Heading1 = styled('h1', {
   fontWeight: '500',
   fontSize: '40px',
   lineHeight: '64px',
-  color: '#58243C',
+  color: '$magenta6',
+
+  '@bp4': {
+    fontSize: '36px',
+    lineHeight: '50px',
+  },
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Heading2 = styled('h2', {
+  marginBottom: 16,
+
   fontWeight: '500',
   fontSize: '32px',
   lineHeight: '48px',
-  color: '#58243C',
+  color: '$magenta6',
+
+  '@bp4': {
+    fontSize: '24px',
+    lineHeight: '32px',
+  },
+  '@bp2': {
+    fontSize: '22px',
+  },
+  '@bp1': {
+    fontSize: '20px',
+  },
 })
 
 export const Heading3 = styled('h3', {
   fontWeight: '500',
   fontSize: '28px',
   lineHeight: '44px',
-  color: '#58243C',
+  color: '$magenta6',
 })
 
 export const Heading4 = styled('h4', {
   fontWeight: '600',
   fontSize: '24px',
   lineHeight: '40px',
-  color: '#58243C',
+  color: '$magenta6',
 })
 
 export const Heading5 = styled('h5', {
   fontWeight: '600',
   fontSize: '22px',
   lineHeight: '36px',
-  color: '#58243C',
+  color: '$magenta6',
 })
 
 export const Heading6 = styled('h6', {
   fontWeight: '600',
   fontSize: '20px',
   lineHeight: '30px',
-  color: '#58243C',
+  color: '$magenta6',
 })
 
 export const Paragraph = styled('p', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '32px',
-  color: '#4E4B59',
+  color: '$gray2',
+
+  marginBottom: 16,
+
+  '@bp4': {
+    marginBottom: 24,
+
+    fontSize: '14px',
+    lineHeight: '26px',
+  },
 })
 
 export const Blockquote = styled('blockquote', {
   padding: '24px',
-  background: '#F6F6F8',
+  background: '$offWhite2',
   borderRadius: '8px',
 
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '32px',
-  color: '#5F5C6B',
+  color: '$gray3',
+
+  marginBottom: 48,
+
+  '@bp4': {
+    fontSize: '14px',
+    lineHeight: '26px',
+  },
+  '@bp2': {
+    marginBottom: 40,
+  },
 })
 
 export const OrderedList = styled('ol', {
   paddingLeft: 17.61,
   listStyle: 'revert',
 
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '32px',
-  color: '#4E4B59',
+  marginBottom: 24,
+
+  '@bp3': {
+    marginBottom: 32,
+  },
 })
 
 export const UnorderedList = styled('ul', {
   paddingLeft: 17.61,
   listStyle: 'revert',
 
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '32px',
-  color: '#4E4B59',
+  marginBottom: 24,
+
+  '@bp3': {
+    marginBottom: 32,
+  },
 })
 
 export const ListItem = styled('li', {
@@ -167,5 +279,10 @@ export const ListItem = styled('li', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '32px',
-  color: '#4E4B59',
+  color: '$gray2',
+
+  '@bp4': {
+    fontSize: '14px',
+    lineHeight: '26px',
+  },
 })

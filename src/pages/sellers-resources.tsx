@@ -16,10 +16,10 @@ const Home: NextPage = () => {
       </Head>
 
       <Hero />
-      <WhyARealtor />
-      <Sellers />
-      <SellingWithUs />
-      <LastCall />
+      {/* <WhyARealtor /> */}
+      {/* <Sellers /> */}
+      {/* <SellingWithUs /> */}
+      {/* <LastCall /> */}
     </main>
   )
 }
