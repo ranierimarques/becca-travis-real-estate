@@ -2,6 +2,8 @@ import type * as Stitches from '@stitches/react'
 import { styled } from 'stitches.config'
 
 export const Section = styled('section', {
+  scrollMarginTop: 32,
+
   variants: {
     direction: {
       vertical: {

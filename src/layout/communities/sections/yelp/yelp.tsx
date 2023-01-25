@@ -1,6 +1,11 @@
 import { Box, Button, Flex, Image } from '@/common'
+<<<<<<< develop
+import { Select } from '@/primitives'
+import { Section } from '@/template'
+=======
+>>>>>>> main
 import { StaticImageData } from 'next/image'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import * as Img from './images'
 import * as S from './yelp.styles'
 
@@ -80,8 +85,12 @@ export function Yelp({ data, communityName }: YelpProps) {
   }
 
   return (
-    <S.Section>
-      <Flex direction="column" align="center">
+    <Section hasMaxWidth css={{ pt: 120, '@bp4': { pt: 80 }, '@bp2': { pt: 64 } }}>
+      <Flex
+        direction="column"
+        align="center"
+        css={{ '@bp5': { mb: 48 }, '@bp4': { mb: 32 } }}
+      >
         <S.Title>
           Living in <S.Community>{communityName}</S.Community>
         </S.Title>
@@ -100,25 +109,40 @@ export function Yelp({ data, communityName }: YelpProps) {
             </Button>
           ))}
         </S.Options>
+
+        <Box
+          css={{
+            display: 'none',
+            w: '100%',
+            '@bp4': { display: 'flex', justifyContent: 'center' },
+          }}
+        >
+          <Select.Root
+            onValueChange={(value: CategoriesName) => handleRequestNewData(value)}
+            category={activeCategory}
+            community
+          >
+            <Select.Item value="dining">dining</Select.Item>
+            <Select.Item value="active">active</Select.Item>
+            <Select.Item value="nightlife">nightlife</Select.Item>
+            <Select.Item value="shopping">shopping</Select.Item>
+          </Select.Root>
+        </Box>
       </Flex>
-      <Flex direction="column" align="center" css={{ gap: 48 }}>
+
+      <Flex direction="column" align="center">
+        <S.YelpLogo />
+
         <S.CardsGrid>
-          <S.YelpLogo />
           {yelpData.map(business => (
             <S.Card key={business.id}>
               <a href={business.url} target="_blank" rel="noreferrer noopener">
-                <Box
-                  css={{
-                    h: '100%',
-                  }}
-                >
-                  <Image
-                    src={business.image_url}
-                    alt={business.name}
-                    style={{ objectFit: 'cover' }}
-                    fill
-                  />
-                </Box>
+                <Image
+                  src={business.image_url}
+                  alt={business.name}
+                  style={{ objectFit: 'cover' }}
+                  fill
+                />
                 <Box
                   css={{
                     position: 'absolute',
@@ -141,10 +165,15 @@ export function Yelp({ data, communityName }: YelpProps) {
             </S.Card>
           ))}
         </S.CardsGrid>
-        <Button size="2" onClick={handleRequestMoreData} loading={isLoading}>
+        <Button
+          size="2"
+          onClick={handleRequestMoreData}
+          loading={isLoading}
+          css={{ mt: 48 }}
+        >
           Load More
         </Button>
       </Flex>
-    </S.Section>
+    </Section>
   )
 }

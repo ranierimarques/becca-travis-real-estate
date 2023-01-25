@@ -1,8 +1,26 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  padding: '80px 0 56px',
-  position: 'relative',
+export const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  gap: 48,
+
+  paddingTop: 80,
+
+  '@bp5': {
+    flexDirection: 'column',
+    gap: 48,
+  },
+
+  '@bp4': {
+    paddingTop: 64,
+  },
+  '@bp2': {
+    paddingTop: 40,
+  },
 })
 
 export const Background = styled('div', {
@@ -12,7 +30,7 @@ export const Background = styled('div', {
   width: '100%',
   height: '460px',
 
-  background: 'rgba(250, 220, 208, 0.3)',
+  background: 'rgba($colors$tangerine5Rgb, 0.3)',
   zIndex: -1,
 })
 
@@ -25,7 +43,22 @@ export const Title = styled('h2', {
 
   textAlign: 'center',
 
-  color: '#58243C',
+  color: '$magenta6',
+
+  '@bp4': {
+    fontSize: '36px',
+    lineHeight: '50px',
+  },
+
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Description = styled('span', {
@@ -34,22 +67,27 @@ export const Description = styled('span', {
   fontSize: '16px',
   lineHeight: '28px',
   textAlign: 'center',
-  color: '#4E4B59',
+  color: '$gray2',
 
-  marginBottom: 48,
+  '@bp2': {
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+  },
 })
 
 export const ImageSource = styled('span', {
   fontWeight: 400,
   fontSize: '12px',
   lineHeight: '18px',
-  color: '#4E4B59',
+  color: '$gray2',
 })
 
 export const Banner = styled('div', {
   width: '704px',
   height: '396px',
-  backgroundColor: '#4E4B59',
+  backgroundColor: '$gray2',
   borderRadius: '8px',
 
   marginTop: '48px',

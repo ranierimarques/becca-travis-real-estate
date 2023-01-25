@@ -1,9 +1,5 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  background: 'rgba($colors$tangerine5Rgb, 0.3)',
-})
-
 export const Container = styled('div', {
   maxWidth: '1072px',
   margin: '0 auto',
@@ -22,6 +18,15 @@ export const Title = styled('h1', {
   fontSize: '36px',
   lineHeight: '50px',
   color: '$magenta6',
+
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Skills = styled('ul', {
@@ -53,6 +58,13 @@ export const Span = styled('span', {
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
+
+  '@bp2': {
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+  },
 })
 
 export const ImageContainer = styled('div', {

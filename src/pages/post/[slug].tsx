@@ -42,6 +42,7 @@ const query = gql`
       postBanner {
         url
       }
+      postBannerAlt
       postContent {
         raw
         text

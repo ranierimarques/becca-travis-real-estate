@@ -1,52 +1,76 @@
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-
-  maxWidth: 1072,
-  margin: '0 auto 120px',
-
-  scrollMarginTop: 32,
-})
-
 export const Title = styled('h3', {
   fontWeight: 500,
   fontSize: '32px',
   lineHeight: '48px',
-  color: '#58243C',
+  color: '$magenta6',
+
+  textAlign: 'center',
 
   marginBottom: 12,
-})
 
-export const Community = styled('span', {
-  textTransform: 'capitalize',
+  '@bp4': {
+    marginBottom: 24,
+
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp2': {
+    fontSize: '22px',
+    lineHeight: '32px',
+  },
+  '@bp1': {
+    fontSize: '20px',
+  },
 })
 
 export const Description = styled('span', {
   fontWeight: 400,
   fontSize: '16px',
   lineHeight: '32px',
-  textAlign: 'center',
-  color: '#4E4B59',
+  color: '$gray2',
 
-  marginBottom: 78,
+  textAlign: 'center',
+
+  display: 'block',
+
+  marginBottom: 40,
+
+  '@bp2': {
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+    marginBottom: 32,
+  },
 })
 
-export const SchoolsTable = styled('div', {})
+export const Community = styled('span', {
+  textTransform: 'capitalize',
+})
+
+export const SchoolsTable = styled('div', {
+  width: '100%',
+})
 
 export const SchoolCategory = styled('h4', {
   fontWeight: 500,
   fontSize: '24px',
   lineHeight: '36px',
 
-  color: '#4E4B59',
+  color: '$gray2',
 
   marginBottom: 8,
-})
 
-export const SchoolsList = styled('ul', {})
+  '@bp5': {
+    fontSize: '20px',
+    lineHeight: '30px',
+  },
+  '@bp1': {
+    fontSize: '18px',
+  },
+})
 
 export const Hr = styled('hr', {
   border: '1px solid $grayW8',
@@ -57,8 +81,6 @@ export const School = styled('li', {
   alignItems: 'flex-start',
   justifyContent: 'space-between',
 
-  width: 336,
-
   marginTop: 24,
 })
 
@@ -66,24 +88,31 @@ export const SchoolName = styled('a', {
   fontWeight: 400,
   fontSize: '14px',
   lineHeight: '24px',
-  color: '#5F5C6B',
+  color: '$gray3',
+
+  maxWidth: 220,
 
   '&:hover': {
     textDecoration: 'underline',
   },
+
+  '@bp5': {
+    fontSize: '13px',
+  },
+  '@bp4': {
+    fontSize: '14px',
+  },
+  '@bp1': {
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
 })
 
 export const SchoolInfoCard = styled('div', {
-  background: '#F6F6F8',
-  borderRadius: '4px',
-  padding: '2px 6px',
-
-  width: 'fit-content',
-
   fontWeight: 500,
   fontSize: '12px',
   lineHeight: '18px',
-  color: '#8C8A97',
+  color: '$gray5',
 
   '& span': {
     color: '$gray3',

@@ -1,6 +1,7 @@
-import { Box, Flex } from '@/common'
+import { Box, Flex, Image } from '@/common'
 import { Hat } from '@/shared'
-import Image, { StaticImageData } from 'next/image'
+import { Section } from '@/template'
+import { StaticImageData } from 'next/image'
 import * as S from './hero.styles'
 import * as Img from './images'
 
@@ -57,29 +58,58 @@ const communities: Communities = {
 export function Hero({ communityName }: HeroProps) {
   const isHamptonCove = communityName === 'hampton cove'
   return (
-    <S.Section>
-      <Flex direction="column" align="center">
-        <Hat>{communityName}</Hat>
-        <S.Title>
-          {communities[isHamptonCove ? 'hamptonCove' : communityName].title}
-        </S.Title>
-        <S.Description>
-          {communities[isHamptonCove ? 'hamptonCove' : communityName].description}
-        </S.Description>
-        <Flex direction="column" align="end" css={{ gap: 8 }}>
-          <Box css={{ br: 8, overflow: 'hidden' }}>
-            <Image
-              src={communities[isHamptonCove ? 'hamptonCove' : communityName].image}
-              alt={communityName}
-            />
-          </Box>
-
-          <S.ImageSource>
-            Image by Unknown via <a href="#">Hyperlink</a>{' '}
-          </S.ImageSource>
+    <Section hasMaxWidth background="rgba($colors$tangerine5Rgb, 0.3)">
+      <S.Container>
+        <Flex direction="column" align="center">
+          <Hat>{communityName}</Hat>
+          <S.Title>
+            {communities[isHamptonCove ? 'hamptonCove' : communityName].title}
+          </S.Title>
+          <S.Description>
+            {communities[isHamptonCove ? 'hamptonCove' : communityName].description}
+          </S.Description>
         </Flex>
-      </Flex>
-      <S.Background />
-    </S.Section>
+
+        <Box css={{ position: 'relative' }}>
+          <Box
+            css={{
+              background: '$white',
+
+              position: 'absolute',
+              left: '50%',
+
+              transform: 'translate(-50%)',
+
+              height: '100%',
+              width: '100vw',
+            }}
+          />
+          <Box
+            css={{
+              background: 'rgba($colors$tangerine5Rgb, 0.3)',
+
+              position: 'absolute',
+              left: '50%',
+
+              transform: 'translate(-50%)',
+
+              height: '40%',
+              width: '100vw',
+            }}
+          />
+          <Flex direction="column" align="end" css={{ gap: 8, position: 'relative' }}>
+            <Box css={{ br: 8, overflow: 'hidden' }}>
+              <Image
+                src={communities[isHamptonCove ? 'hamptonCove' : communityName].image}
+                alt={communityName}
+              />
+            </Box>
+            <S.ImageSource>
+              Image by Unknown via <a href="#">Hyperlink</a>{' '}
+            </S.ImageSource>
+          </Flex>
+        </Box>
+      </S.Container>
+    </Section>
   )
 }

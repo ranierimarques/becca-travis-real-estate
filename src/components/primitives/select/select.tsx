@@ -3,13 +3,16 @@ import React from 'react'
 import * as S from './select.styles'
 import * as Svg from './svgs'
 
-type Props = React.ComponentProps<typeof SelectPrimitive.Root>
+type Props = React.ComponentProps<typeof SelectPrimitive.Root> & {
+  community?: boolean
+  category?: string
+}
 
-export const Root = ({ children, ...props }: Props) => {
+export const Root = ({ children, community, category, ...props }: Props) => {
   return (
     <SelectPrimitive.Root {...props}>
-      <S.Trigger>
-        <SelectPrimitive.Value placeholder="Select category" />
+      <S.Trigger community={community}>
+        <SelectPrimitive.Value placeholder={community ? category : 'Select category'} />
         <SelectPrimitive.Icon>
           <Svg.ArrowDown />
         </SelectPrimitive.Icon>
