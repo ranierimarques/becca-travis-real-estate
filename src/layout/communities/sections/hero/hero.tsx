@@ -70,14 +70,7 @@ export function Hero({ communityName }: HeroProps) {
           </S.Description>
         </Flex>
 
-        <Box
-          css={{
-            width: '100%',
-            maxWidth: 520,
-
-            position: 'relative',
-          }}
-        >
+        <Box css={{ position: 'relative' }}>
           <Box
             css={{
               background: '$white',
