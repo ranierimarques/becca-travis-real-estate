@@ -1,9 +1,6 @@
 import { Box, Button, Flex, Image } from '@/common'
-<<<<<<< develop
 import { Select } from '@/primitives'
 import { Section } from '@/template'
-=======
->>>>>>> main
 import { StaticImageData } from 'next/image'
 import React, { useState } from 'react'
 import * as Img from './images'
