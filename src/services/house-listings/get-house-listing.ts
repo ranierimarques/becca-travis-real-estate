@@ -1,7 +1,14 @@
 import { convertSquareFeets } from '@/resources/utils/convert'
 import { formatToDollar } from '@/resources/utils/currency'
 import { getDate } from '@/resources/utils/date'
-import { GetHouseListing, House, HouseCard, ReturnType, Type } from './types'
+import {
+  GetHouseListing,
+  GetHouseListingParams,
+  House,
+  HouseCard,
+  ReturnType,
+  Type,
+} from './types'
 
 const baseURL = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings'
 const defaultParams = {
@@ -27,6 +34,14 @@ function getAuthorization(fetchOn: 'browser' | 'server') {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
   }
+}
+
+// This function remove parameters when key is null or undefined
+function getValidParams<T extends GetHouseListingParams>(params: T) {
+  const filteredParams = Object.entries(params).filter(
+    ([, value]) => typeof value === 'string'
+  )
+  return Object.fromEntries(filteredParams)
 }
 
 export async function getHouseListing<T extends Type>({
@@ -88,7 +103,9 @@ export async function getHouseListing<T extends Type>({
     }
   }
 
-  const newParams = { ...defaultParams, ...params }
+  const validParams = getValidParams(params ?? {})
+
+  const newParams = { ...defaultParams, ...validParams }
   const endpoint = baseURL + toURL + '?' + new URLSearchParams(newParams)
 
   const response = await fetch(endpoint, authorization)
