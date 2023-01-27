@@ -1,40 +1,40 @@
 import create from 'zustand'
 
-enum PropertyType {
-  Residential = 'Residential',
-  Land = 'Land',
-  BusinessOpportunity = 'Business Opportunity',
-  ResidentialIncome = 'Residential Income',
+interface PropertyType {
+  Residential: 'Residential'
+  Land: 'Land'
+  BusinessOpportunity: 'Business Opportunity'
+  ResidentialIncome: 'Residential Income'
 }
 
-enum PropertySubType {
-  SingleFamilyResidence = 'Single Family Residence',
-  ManufacturedHome = 'Manufactured Home',
-  Condominium = 'Condominium',
-  DeededRv = 'Deeded RV',
-  Townhouse = 'Townhouse',
-  FarmWhome = 'Farm w/Home',
+interface PropertySubType {
+  SingleFamilyResidence: 'Single Family Residence'
+  ManufacturedHome: 'Manufactured Home'
+  Condominium: 'Condominium'
+  DeededRv: 'Deeded RV'
+  Townhouse: 'Townhouse'
+  FarmWhome: 'Farm w/Home'
 }
 
-enum StandardStatus {
-  Active = 'Active',
-  Pending = 'Pending',
-  Sold = 'Sold',
-  ComingSoon = 'Coming Soon',
-  ActiveUnderContract = 'Active Under Contract',
+interface StandardStatus {
+  Active: 'Active'
+  Pending: 'Pending'
+  Sold: 'Sold'
+  ComingSoon: 'Coming Soon'
+  ActiveUnderContract: 'Active Under Contract'
 }
 
-enum City {
-  Addison = 'Addison',
-  Alexandria = 'Alexandria',
-  Anderson = 'Anderson',
-  Arab = 'Arab',
-  Arley = 'Arley',
-  Albertville = 'Albertville',
-  Altoona = 'Altoona',
-  Anniston = 'Anniston',
-  Ardmore = 'Ardmore',
-  Ashville = 'Ashville',
+interface City {
+  Addison: 'Addison'
+  Alexandria: 'Alexandria'
+  Anderson: 'Anderson'
+  Arab: 'Arab'
+  Arley: 'Arley'
+  Albertville: 'Albertville'
+  Altoona: 'Altoona'
+  Anniston: 'Anniston'
+  Ardmore: 'Ardmore'
+  Ashville: 'Ashville'
 }
 
 interface GeoLocation {

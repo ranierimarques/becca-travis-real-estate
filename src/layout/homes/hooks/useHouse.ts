@@ -4,91 +4,62 @@ import { useEffect } from 'react'
 import useSWRInfinite from 'swr/infinite'
 import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
 
-const mountFilters = (
-  geoLocation: GeoLocationState['geoLocation'],
-  params: {
-    [key: string]: string | undefined
-  }
-) => {
-  if (geoLocation.address) {
-    params['UnparsedAddress.in'] = geoLocation.address
-  }
+const rangeNumberFilters = [
+  'BedroomsTotal',
+  'BathroomsTotalInteger',
+  'LotSizeAcres',
+  'LivingArea',
+  'ListPrice',
+  'YearBuilt',
+] as const
 
-  if (geoLocation?.bounds && geoLocation.bounds.length >= 3) {
-    params.box = geoLocation.bounds.join(',')
-  }
-
-  interface Filter {
-    [key: string]:
-      | {
-          gte: number
-          lte: number
-        }
-      | undefined
-  }
-
-  const rangeNumberFilters: string[] = [
-    'BedroomsTotal',
-    'BathroomsTotalInteger',
-    'LotSizeAcres',
-    'LivingArea',
-    'ListPrice',
-    'YearBuilt',
-  ]
-
-  if (geoLocation.filter) {
-    const filter = geoLocation.filter as Filter
-    rangeNumberFilters.forEach(f => {
-      if (filter[f]) {
-        params[`${f}.gte`] = String(filter[f]?.gte)
-        params[`${f}.lte`] = String(filter[f]?.lte)
-      }
-    })
-  }
-
-  const stringFilters: string[] = [
-    'ElementarySchool',
-    'MiddleOrJuniorSchool',
-    'HighSchool',
-    'PostalCode',
-    'PropertyType',
-    'PropertySubType',
-    'StandardStatus',
-    'City',
-  ]
-
-  if (geoLocation.filter) {
-    const filter = geoLocation.filter as Record<string, string>
-    stringFilters.forEach(f => {
-      if (filter[f]) {
-        params[f] = filter[f]
-      }
-    })
-  }
-
-  return params
-}
+const stringFilters = [
+  'ElementarySchool',
+  'MiddleOrJuniorSchool',
+  'HighSchool',
+  'PostalCode',
+  'PropertyType',
+  'PropertySubType',
+  'StandardStatus',
+  'City',
+] as const
 
 const fetcher = async (key: string, geoLocation: GeoLocationState['geoLocation']) => {
   const increment = 9
   const index = key.split('/').at(-1) as string
   const initialOffset = Number.parseInt(index) - 1 // -1 to start in 0
 
+  const gteAndLteFilters = rangeNumberFilters.reduce((total, param) => {
+    return {
+      ...total,
+      [`${param}.gte`]: geoLocation.filter?.[param]?.gte?.toString(),
+      [`${param}.lte`]: geoLocation.filter?.[param]?.lte?.toString(),
+    }
+  }, {} as Record<`${typeof rangeNumberFilters[number]}.${'gte' | 'lte'}`, string | undefined>)
+
+  const othersFilters = stringFilters.reduce((total, param) => {
+    return { ...total, [param]: geoLocation?.filter?.[param] }
+  }, {} as Record<typeof stringFilters[number], string | undefined>)
+
   const params = {
     limit: increment.toString(),
     offset: `${initialOffset * increment}`,
-    PropertyType: 'Residential',
-    StandardStatus: 'Active',
     'PhotosCount.gte': '1', // There must be at least 1 photo
     'ListPrice.gt': '1', // Price cannot be 0
     sortBy: 'BridgeModificationTimestamp',
     order: 'desc',
+    'UnparsedAddress.in': geoLocation.address,
+    box:
+      geoLocation?.bounds && geoLocation.bounds.length >= 3
+        ? geoLocation.bounds.join(',')
+        : undefined,
+    ...gteAndLteFilters,
+    ...othersFilters,
   }
-  const newParams = mountFilters(geoLocation, params)
 
   return getHouseListing({
     type: 'card-full-info',
-    params: newParams,
+    params: params,
     fetchOn: 'browser',
   })
 }
@@ -110,13 +81,14 @@ export function useHouse() {
     isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
   const isRefreshing = isValidating && data && data.length === size
 
+  const listings = data?.reduce((total, current) => {
+    return [...total, ...current.listings]
+  }, [] as FormattedHouseCard[])
+
   return {
     house: {
       timestamp: data?.at(-1)?.timestamp,
-      listings: data?.reduce(
-        (total, current) => [...total, ...current.listings],
-        [] as FormattedHouseCard[]
-      ),
+      listings,
       total: data?.at(-1)?.total,
     },
     isError: error,

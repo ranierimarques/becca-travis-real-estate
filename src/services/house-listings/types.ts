@@ -143,41 +143,43 @@ export type FormattedHouse = {
 
 export type Type = 'card' | 'card-full-info' | 'house'
 
+export type GetHouseListingParams = {
+  limit?: string
+  offset?: string
+  PropertyType?: string
+  StandardStatus?: string
+  fields?: string
+  'PhotosCount.gte'?: string
+  'ListPrice.gt'?: string
+  'UnparsedAddress.in'?: string
+  sortBy?: string
+  order?: string
+  near?: string
+  'ListingId.ne'?: string
+  'BedroomsTotal.gte'?: string
+  'BedroomsTotal.lte'?: string
+  'BathroomsTotalInteger.gte'?: string
+  'BathroomsTotalInteger.lte'?: string
+  'LotSizeAcres.gte'?: string
+  'LotSizeAcres.lte'?: string
+  'LivingArea.gte'?: string
+  'LivingArea.lte'?: string
+  'ListPrice.gte'?: string
+  'ListPrice.lte'?: string
+  'YearBuilt.gte'?: string
+  'YearBuilt.lte'?: string
+  ElementarySchool?: string
+  MiddleOrJuniorSchool?: string
+  HighSchool?: string
+  PostalCode?: string
+  PropertySubType?: string
+  City?: string
+  box?: string
+}
+
 export type GetHouseListing<T> = {
   type: T
-  params?: {
-    limit?: string
-    offset?: string
-    PropertyType?: string
-    StandardStatus?: string
-    fields?: string
-    'PhotosCount.gte'?: string
-    'ListPrice.gt'?: string
-    'UnparsedAddress.in'?: string
-    sortBy?: string
-    order?: string
-    near?: string
-    'ListingId.ne'?: string
-    'BedroomsTotal.gte'?: string
-    'BedroomsTotal.lte'?: string
-    'BathroomsTotalInteger.gte'?: string
-    'BathroomsTotalInteger.lte'?: string
-    'LotSizeAcres.gte'?: string
-    'LotSizeAcres.lte'?: string
-    'LivingArea.gte'?: string
-    'LivingArea.lte'?: string
-    'ListPrice.gte'?: string
-    'ListPrice.lte'?: string
-    'YearBuilt.gte'?: string
-    'YearBuilt.lte'?: string
-    ElementarySchool?: string
-    MiddleOrJuniorSchool?: string
-    HighSchool?: string
-    PostalCode?: string
-    PropertySubType?: string
-    City?: string
-    box?: string
-  }
+  params?: GetHouseListingParams
   fetchOn?: 'browser' | 'server'
   toURL?: string
 }
