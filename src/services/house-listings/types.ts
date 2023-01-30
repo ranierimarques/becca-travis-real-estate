@@ -143,7 +143,7 @@ export type FormattedHouse = {
 
 export type Type = 'card' | 'card-full-info' | 'house'
 
-export type GetHouseListingParams = {
+export type Params = {
   limit?: string
   offset?: string
   PropertyType?: string
@@ -177,9 +177,11 @@ export type GetHouseListingParams = {
   box?: string
 }
 
-export type GetHouseListing<T> = {
+type NoExtraProperties<T, U> = U & Record<Exclude<keyof U, keyof T>, never>
+
+export type GetHouseListing<T, P> = {
   type: T
-  params?: GetHouseListingParams
+  params?: NoExtraProperties<Params, P>
   fetchOn?: 'browser' | 'server'
   toURL?: string
 }
