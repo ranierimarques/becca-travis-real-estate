@@ -1,14 +1,7 @@
 import { convertSquareFeets } from '@/resources/utils/convert'
 import { formatToDollar } from '@/resources/utils/currency'
 import { getDate } from '@/resources/utils/date'
-import {
-  GetHouseListing,
-  GetHouseListingParams,
-  House,
-  HouseCard,
-  ReturnType,
-  Type,
-} from './types'
+import { GetHouseListing, House, HouseCard, Params, ReturnType, Type } from './types'
 
 const baseURL = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings'
 const defaultParams = {
@@ -37,19 +30,19 @@ function getAuthorization(fetchOn: 'browser' | 'server') {
 }
 
 // This function remove parameters when key is null or undefined
-function getValidParams<T extends GetHouseListingParams>(params: T) {
+function getValidParams(params: Params) {
   const filteredParams = Object.entries(params).filter(
     ([, value]) => typeof value === 'string'
   )
   return Object.fromEntries(filteredParams)
 }
 
-export async function getHouseListing<T extends Type>({
+export async function getHouseListing<T extends Type, P extends Params>({
   type,
   params,
   fetchOn = 'server',
   toURL = '',
-}: GetHouseListing<T>): Promise<ReturnType<T>> {
+}: GetHouseListing<T, P>): Promise<ReturnType<T>> {
   const authorization = getAuthorization(fetchOn)
 
   if (type === 'house') {
@@ -97,10 +90,10 @@ export async function getHouseListing<T extends Type>({
       coords: house.bundle.Coordinates,
     }
 
-    return <ReturnType<T>>{
+    return {
       success: house.success,
       listing,
-    }
+    } as ReturnType<T>
   }
 
   const validParams = getValidParams(params ?? {})
@@ -126,12 +119,12 @@ export async function getHouseListing<T extends Type>({
   }))
 
   if (type === 'card') {
-    return <ReturnType<T>>listings
+    return listings as ReturnType<T>
   } else {
-    return <ReturnType<T>>{
+    return {
       listings,
       timestamp: house.bundle[0].BridgeModificationTimestamp,
       total: house.total,
-    }
+    } as ReturnType<T>
   }
 }
