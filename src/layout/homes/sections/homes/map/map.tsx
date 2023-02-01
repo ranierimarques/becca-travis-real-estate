@@ -88,7 +88,7 @@ export const Map = memo(({ variant }: Props) => {
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
     >
-      {house.listings?.map(listing => {
+      {house?.listings?.map(listing => {
         const coordinates = {
           lat: listing.coordinates.latitude,
           lng: listing.coordinates.longitude,

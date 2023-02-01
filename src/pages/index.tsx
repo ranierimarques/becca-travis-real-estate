@@ -9,10 +9,11 @@ import {
 } from '@/layout/index/sections'
 import { getHouseListing } from '@/services/house-listings'
 import { ClientTestimonials, LastCall } from '@/shared'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 
-const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listings }) => {
+const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
   return (
     <main>
       <Head>
@@ -22,7 +23,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
       <Hero />
       <Services />
       <Achievements />
-      <NewToMarket initialListings={listings} />
+      <NewToMarket />
       <RentToOwn />
       <AboutHuntsville />
       <OurCommunities />
@@ -33,11 +34,17 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
 }
 
 export const getStaticProps = async () => {
+  const queryClient = new QueryClient()
   const listings = await getHouseListing({ type: 'card', params: { limit: '4' } })
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ['home/new-to-market'],
+    queryFn: () => listings,
+  })
 
   return {
     props: {
-      listings,
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
     revalidate: 60 * 10, // 10 minutes
   }

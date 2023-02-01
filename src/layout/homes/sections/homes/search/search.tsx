@@ -57,8 +57,8 @@ export function Search() {
       <S.Container visualization={visualization}>
         <HeaderInfos
           isLoadingAll={isLoadingAll}
-          total={house.total}
-          timestamp={house.timestamp}
+          total={house?.total}
+          timestamp={house?.timestamp}
         />
 
         <SearchInput variant="houses" visualization={visualization} />
@@ -88,8 +88,8 @@ export function Search() {
       <HeaderInfos
         variant="2"
         isLoadingAll={isLoadingAll}
-        total={house.total}
-        timestamp={house.timestamp}
+        total={house?.total}
+        timestamp={house?.timestamp}
       />
     </>
   )
