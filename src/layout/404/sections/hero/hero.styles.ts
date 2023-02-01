@@ -94,6 +94,4 @@ export const LinkDescription = styled('div', {
 
 export const House = styled(HouseSvg, {
   transform: 'scale(1.15)',
-  maxWidth: '100%',
-  minWidth: 'auto',
 })

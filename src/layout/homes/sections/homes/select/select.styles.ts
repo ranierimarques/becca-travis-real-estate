@@ -29,6 +29,10 @@ export const Trigger = styled(SelectPrimitive.Trigger, {
     fontWeight: 500,
     color: '$grayW6',
   },
+
+  '&:focus': {
+    boxShadow: '0 0 0 4px rgba($colors$magenta1Rgb, 0.2)',
+  },
 })
 
 export const Content = styled(SelectPrimitive.Content, {

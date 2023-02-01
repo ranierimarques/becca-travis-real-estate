@@ -1,28 +1,13 @@
 import { Box, Button, Flex, Image } from '@/common'
 import { Select } from '@/primitives'
 import { Section } from '@/template'
-import { StaticImageData } from 'next/image'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as Img from './images'
 import * as S from './yelp.styles'
 
-interface YelpProps {
-  data: {
-    id: string
-    name: string
-    review_count: number
-    rating: number
-    image_url: string
-    url: string
-  }[]
-  communityName: string
-}
-
-type CategoriesName = 'dining' | 'active' | 'shopping' | 'nightlife'
-
 const RESULTS_LIMIT = 6
 
-const businessRatingImage: Record<number, StaticImageData> = {
+const businessRatingImage = {
   0: Img.rating0,
   1: Img.rating1,
   1.5: Img.rating1_5,
@@ -35,14 +20,26 @@ const businessRatingImage: Record<number, StaticImageData> = {
   5: Img.rating5,
 }
 
-type buttonOptionsType = { id: number; category: CategoriesName }[]
-
-const buttonOptions: buttonOptionsType = [
+const buttonOptions = [
   { id: 1, category: 'dining' },
   { id: 2, category: 'active' },
   { id: 3, category: 'nightlife' },
   { id: 4, category: 'shopping' },
-]
+] as const
+
+interface YelpProps {
+  data: {
+    id: string
+    name: string
+    review_count: number
+    rating: keyof typeof businessRatingImage
+    image_url: string
+    url: string
+  }[]
+  communityName: string
+}
+
+type CategoriesName = 'dining' | 'active' | 'shopping' | 'nightlife'
 
 export function Yelp({ data, communityName }: YelpProps) {
   const [yelpData, setYelpData] = useState(data)
