@@ -1,6 +1,6 @@
 import { Box, Button, Flex } from '@/common'
 import { Hat } from '@/shared'
-import { CertifiedSvg, ContractSvg, SearchSvg } from './svgs'
+import * as Svg from './svgs'
 import * as S from './why-a-realtor.styles'
 
 const reasons = [
@@ -8,23 +8,23 @@ const reasons = [
     title: 'Up-to-date knowledge',
     paragraph: `Agents have up-to-date knowledge of the market and
     can help you find the best deal. I'm ready to help you in this process!`,
-    svg: <CertifiedSvg />,
+    svg: <Svg.Certified className={S.SvgStyles()} />,
   },
   {
     title: 'Best features',
     paragraph: `They have resources at their disposal that you likely don't, like access to MLS listings and Multiple Listing Services (MLS).`,
-    svg: <SearchSvg />,
+    svg: <Svg.Contract className={S.SvgStyles()} />,
   },
   {
     title: 'Experience',
     paragraph: `A good agent will be with you every step of the way, from finding the right property to getting through closing negotiations.`,
-    svg: <ContractSvg />,
+    svg: <Svg.Search className={S.SvgStyles()} />,
   },
 ]
 
 export function WhyARealtor() {
   return (
-    <S.Section>
+    <S.Section hasMaxWidth>
       <S.Container>
         <S.Content>
           <Hat variant="2">Meet Huntsville</Hat>
@@ -34,19 +34,66 @@ export function WhyARealtor() {
             several reasons why working with an experienced professional can be
             advantageous. Here are three of the most important ones:
           </S.Paragraph>
-          <Button size="2" href="/contact-us">
+          <Button
+            href="/contact-us"
+            size={{
+              '@initial': '2',
+              '@bp4': '3',
+            }}
+            css={{
+              '@bp1': {
+                padding: '12px 24px',
+                borderRadius: '5px',
+                fontSize: '14px',
+                lineHeight: '21px',
+                fontWeight: '400',
+              },
+            }}
+          >
             Contact Becca Travis
           </Button>
         </S.Content>
-        <Flex direction="column" css={{ gap: 104 }}>
+
+        <Flex
+          direction="column"
+          css={{
+            gap: 104,
+            '@bp5': { gap: 144 },
+            '@bp4': { gap: 88 },
+            '@bp2': { gap: 78 },
+          }}
+        >
           {reasons.map(reason => {
             return (
-              <S.Reasons key={reason.title}>
-                <Box css={{ position: 'absolute', top: -24, left: 32 }}>{reason.svg}</Box>
-                <S.Svg />
-                <S.ReasonTitle>{reason.title}</S.ReasonTitle>
-                <S.ReasonParagraph>{reason.paragraph}</S.ReasonParagraph>
-              </S.Reasons>
+              <S.Reason key={reason.title}>
+                <Box
+                  css={{
+                    position: 'relative',
+                    top: -24,
+
+                    mb: 8,
+
+                    '@bp5': {
+                      w: 84,
+                      h: 84,
+                    },
+
+                    '@bp2': {
+                      mb: 10,
+                    },
+                    '@bp1': {
+                      mb: 12,
+                    },
+                  }}
+                >
+                  {reason.svg}
+                </Box>
+                <S.ReasonContent>
+                  <S.ReasonTitle>{reason.title}</S.ReasonTitle>
+                  <S.ReasonParagraph>{reason.paragraph}</S.ReasonParagraph>
+                </S.ReasonContent>
+                <S.CirclesSvg />
+              </S.Reason>
             )
           })}
         </Flex>
