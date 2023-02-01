@@ -1,4 +1,4 @@
-export { default as CertifiedSvg } from './certified'
-export { default as CirclesSvg } from './circles'
-export { default as ContractSvg } from './contract'
-export { default as SearchSvg } from './search'
+export { default as Certified } from './certified.svg'
+export { default as Circles } from './circles.svg'
+export { default as Contract } from './contract.svg'
+export { default as Search } from './search.svg'

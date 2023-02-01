@@ -1,10 +1,19 @@
+import { Section as TemplateSection } from '@/template'
 import { styled } from 'stitches.config'
-import { CirclesSvg, HomebotBackgroundSvg } from './svgs'
+import { Circles, HomebotBackgroundSvg } from './svgs'
 
-export const Container = styled('div', {
-  maxWidth: '1072px',
-  margin: '0 auto',
-  position: 'relative',
+export const Section = styled(TemplateSection, {
+  pt: 160,
+  pb: 120,
+
+  '@bp5': {
+    pt: 120,
+    pb: 120,
+  },
+  '@bp4': {
+    pt: 80,
+    pb: 80,
+  },
 })
 
 export const PoweredBy = styled('div', {
@@ -23,13 +32,27 @@ export const PoweredBy = styled('div', {
   lineHeight: '23px',
   color: '$white',
 
+  whiteSpace: 'nowrap',
+
   zIndex: 1,
+
+  '@bp4': {
+    left: '50%',
+    transform: 'translateX(-50%)',
+
+    lineHeight: '18px',
+  },
+  '@bp1': {
+    fontSize: '10px',
+  },
 })
 
 export const BackgroundPoweredBy = styled(HomebotBackgroundSvg, {
   position: 'absolute',
   top: 0,
-  left: 44,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  zIndex: -1,
 })
 
 export const HomeWorth = styled('div', {
@@ -38,14 +61,25 @@ export const HomeWorth = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
-  width: '1072px',
-  height: '320px',
+  position: 'relative',
+
+  width: '100%',
+  height: '100%',
+
+  padding: '56px 0',
 
   border: '1px solid rgba($colors$tangerine7Rgb, 0.15)',
   boxShadow: '0px 14px 50px rgba($colors$blackRgb, 0.08)',
 
   background: '$tangerine10',
   borderRadius: '24px',
+
+  '@bp4': {
+    padding: '44px 0 32px',
+  },
+  '@bp2': {
+    padding: '60px 24px 32px',
+  },
 })
 
 export const Title = styled('h3', {
@@ -56,6 +90,18 @@ export const Title = styled('h3', {
   lineHeight: '48px',
   color: '$gray1',
   zIndex: 1,
+
+  '@bp4': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp2': {
+    textAlign: 'center',
+  },
+  '@bp1': {
+    fontSize: '24px',
+    lineHeight: '32px',
+  },
 })
 
 export const Paragraph = styled('p', {
@@ -66,6 +112,18 @@ export const Paragraph = styled('p', {
   lineHeight: '28px',
   color: '$magenta1',
   zIndex: 1,
+
+  '@bp4': {
+    fontSize: '14px',
+    lineHeight: '24px',
+
+    maxWidth: 279,
+    textAlign: 'center',
+  },
+
+  '@bp1': {
+    fontSize: '13px',
+  },
 })
 
 export const SecuredData = styled('span', {
@@ -76,10 +134,19 @@ export const SecuredData = styled('span', {
   lineHeight: '24px',
   color: '$gray3',
   zIndex: 1,
+
+  '@bp4': {
+    maxWidth: 279,
+    textAlign: 'center',
+  },
+  '@bp1': {
+    fontSize: '13px',
+  },
 })
 
-export const BackgroundSvg = styled(CirclesSvg, {
+export const BackgroundSvg = styled(Circles, {
   position: 'absolute',
-  top: 0,
-  left: 59,
+  bottom: 0,
+  left: '50%',
+  transform: 'translateX(-50%)',
 })
