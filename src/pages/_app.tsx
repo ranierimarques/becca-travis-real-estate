@@ -1,43 +1,24 @@
 import { Footer, Navbar } from '@/common'
 import { globalStyles } from '@/styles/global'
-import { IBM_Plex_Serif } from '@next/font/google'
+import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'jotai'
 import type { AppProps } from 'next/app'
-
-const ibmPlexSerif = IBM_Plex_Serif({
-  display: 'fallback',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  fallback: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'Segoe UI',
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    'sans-serif',
-  ],
-})
+import { useState } from 'react'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [queryClient] = useState(() => new QueryClient())
   globalStyles()
 
   return (
-    <Provider>
-      <style jsx global>{`
-        html {
-          font-family: ${ibmPlexSerif.style.fontFamily};
-        }
-      `}</style>
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Provider>
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
+        </Provider>
+      </Hydrate>
+    </QueryClientProvider>
   )
 }
 

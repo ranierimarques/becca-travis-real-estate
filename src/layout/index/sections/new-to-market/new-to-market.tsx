@@ -2,29 +2,20 @@ import { Button, Flex } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
 import { Section } from '@/template'
-import { FormattedHouseCards } from '@/types/houses'
-import useSWRInfinite from 'swr/infinite'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import * as S from './new-to-market.styles'
 
-type Props = {
-  initialListings: FormattedHouseCards
-}
-
-export function NewToMarket({ initialListings }: Props) {
-  const { data, error, size, setSize } = useSWRInfinite(
-    index => `home/${index + 1}`,
-    async index =>
+export function NewToMarket() {
+  const { data, isFetchingNextPage, fetchNextPage } = useInfiniteQuery({
+    queryKey: ['home/new-to-market'],
+    queryFn: ({ pageParam = 0 }) =>
       getHouseListing({
         type: 'card',
-        params: { limit: '4', offset: `${(Number(index.split('/').at(-1)) - 1) * 4}` },
+        params: { limit: '4', offset: `${pageParam * 4}` },
         fetchOn: 'browser',
       }),
-    { fallbackData: [initialListings] }
-  )
-
-  const isLoadingInitialData = !data && !error
-  const isLoadingMore =
-    isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
+    getNextPageParam: (_, allPages) => allPages.length,
+  })
 
   return (
     <Section
@@ -55,7 +46,7 @@ export function NewToMarket({ initialListings }: Props) {
       </Flex>
 
       <S.Houses>
-        {data?.map(listings =>
+        {data?.pages?.map(listings =>
           listings?.map(listing => (
             <HouseCard key={listing.id} listing={listing} badge="New" />
           ))
@@ -64,9 +55,9 @@ export function NewToMarket({ initialListings }: Props) {
 
       <Button
         size="3"
-        onClick={() => setSize(oldSize => oldSize + 1)}
-        loading={isLoadingMore}
-        disabled={isLoadingMore}
+        onClick={fetchNextPage}
+        loading={isFetchingNextPage}
+        disabled={isFetchingNextPage}
         css={{
           display: 'none',
           mt: 32,

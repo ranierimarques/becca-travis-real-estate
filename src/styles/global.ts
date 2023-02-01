@@ -1,4 +1,25 @@
+import { IBM_Plex_Serif } from '@next/font/google'
 import { globalCss } from 'stitches.config'
+
+const ibmPlexSerif = IBM_Plex_Serif({
+  display: 'fallback',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  fallback: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    'sans-serif',
+  ],
+})
 
 export const globalStyles = globalCss({
   '*, *::before, *::after': {
@@ -12,6 +33,7 @@ export const globalStyles = globalCss({
 
   html: {
     '-webkit-text-size-adjust': '100%',
+    fontFamily: ibmPlexSerif.style.fontFamily,
   },
 
   'html:focus-within': {

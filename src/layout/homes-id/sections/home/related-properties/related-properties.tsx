@@ -1,6 +1,6 @@
 import { getHouseListing } from '@/services/house-listings'
 import { HouseCard } from '@/shared'
-import useSWR from 'swr'
+import { useQuery } from '@tanstack/react-query'
 import * as S from './related-properties.styles'
 
 interface Props {
@@ -9,16 +9,18 @@ interface Props {
 }
 
 export function RelatedProperties({ coords, id }: Props) {
-  const { data: listings } = useSWR('/home/houses', async () =>
-    getHouseListing({
-      type: 'card',
-      params: {
-        near: `${coords[0]},${coords[1]}`,
-        'ListingId.ne': id,
-      },
-      fetchOn: 'browser',
-    })
-  )
+  const { data: listings } = useQuery({
+    queryKey: ['/home/houses'],
+    queryFn: () =>
+      getHouseListing({
+        type: 'card',
+        params: {
+          near: `${coords[0]},${coords[1]}`,
+          'ListingId.ne': id,
+        },
+        fetchOn: 'browser',
+      }),
+  })
 
   return (
     <S.Container id="related-properties" data-tab-container>
