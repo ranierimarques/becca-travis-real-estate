@@ -1,7 +1,8 @@
+import { Box } from '@/common'
 import Script from 'next/script'
 import { useEffect } from 'react'
 import * as S from './sellers.styles'
-import { HomebotSvg } from './svgs'
+import * as Svg from './svgs'
 
 const inputStyle = `
   /* Div */
@@ -38,6 +39,7 @@ const inputStyle = `
     height: 48px !important;
     border-radius: 8px;
     background: #F6F6F8;
+    text-overflow: ellipsis;
    }
    #hb-lgw-input:focus-visible {
     outline: none;
@@ -55,6 +57,11 @@ const inputStyle = `
     color: #5F5C6B;
    }
 
+   .__hblgw--input-input {
+    padding: 4px 86px 4px 13px;
+    z-index: 1;
+   }
+
    /* Button */
 
   .__hblgw--button-container {
@@ -63,6 +70,7 @@ const inputStyle = `
     height: 48px;
     background-color: #E3E5E8;
     border-radius: 0px 8px 8px 0px;
+    z-index: 1;
    }
    .__hblgw--button-container:hover {
     background-color: #E3E5E8;
@@ -93,6 +101,15 @@ const inputStyle = `
 
     .__hblgw--logo-message_small {
       display: none;
+    }
+
+
+    /* Responsive */
+
+    @media (max-width: 767px) {
+      .__hblgw--widget-container {
+        width: 100%;
+      }
     }
 `
 
@@ -169,11 +186,11 @@ export function Sellers() {
   }, [])
 
   return (
-    <S.Container>
+    <S.Section hasMaxWidth>
       <S.HomeWorth>
-        <S.BackgroundPoweredBy />
         <S.PoweredBy>
-          <HomebotSvg />
+          <S.BackgroundPoweredBy />
+          <Svg.Homebot />
           Powered by Homebot
         </S.PoweredBy>
         <S.Title>What&apos;s your home worth?</S.Title>
@@ -192,8 +209,8 @@ export function Sellers() {
         <S.SecuredData>
           Don&apos;t worry, your data is protected by our security system.
         </S.SecuredData>
+        <S.BackgroundSvg />
       </S.HomeWorth>
-      <S.BackgroundSvg />
-    </S.Container>
+    </S.Section>
   )
 }
