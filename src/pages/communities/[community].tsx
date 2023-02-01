@@ -59,7 +59,7 @@ interface FetchTypes {
     url: string
     review_count: number
     categories: Category[]
-    rating: number
+    rating: 0 | 1 | 2 | 1.5 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5
     transactions: string[]
     price: string
     location: Location
