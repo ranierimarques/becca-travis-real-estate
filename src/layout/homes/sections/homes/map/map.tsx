@@ -104,7 +104,7 @@ export const Map = memo(({ variant }: Props) => {
           >
             {activeCardId === listing.id && (
               <OverlayViewF
-                mapPaneName="overlayMouseTarget" // TODO: search
+                mapPaneName="overlayMouseTarget" // TODO: Search
                 position={coordinates}
                 zIndex={10000}
               >
