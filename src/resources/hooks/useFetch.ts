@@ -1,10 +1,8 @@
-import useSWR from 'swr'
+import { useQuery } from '@tanstack/react-query'
 
-export function useFetch<Data = any>(url: string) {
-  const { data, error } = useSWR<Data>(url, async fetchURL => {
-    const response = await fetch(fetchURL)
-    return response.json()
+export function useFetch(url: string) {
+  return useQuery({
+    queryKey: [url],
+    queryFn: async () => await fetch(url).then(response => response.json()),
   })
-
-  return { data, error }
 }

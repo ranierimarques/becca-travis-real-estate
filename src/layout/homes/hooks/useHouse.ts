@@ -1,7 +1,6 @@
 import { getHouseListing } from '@/services/house-listings'
 import { FormattedHouseCard } from '@/services/house-listings/types'
-import { useEffect } from 'react'
-import useSWRInfinite from 'swr/infinite'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
 
 const rangeNumberFilters = [
@@ -24,10 +23,11 @@ const stringFilters = [
   'City',
 ] as const
 
-const fetcher = async (key: string, geoLocation: GeoLocationState['geoLocation']) => {
+const fetcher = async (
+  pageParam: number,
+  geoLocation: GeoLocationState['geoLocation']
+) => {
   const increment = 9
-  const index = key.split('/').at(-1) as string
-  const initialOffset = Number.parseInt(index) - 1 // -1 to start in 0
 
   const gteAndLteFilters = rangeNumberFilters.reduce((total, param) => {
     return {
@@ -41,61 +41,45 @@ const fetcher = async (key: string, geoLocation: GeoLocationState['geoLocation']
     return { ...total, [param]: geoLocation?.filter?.[param] }
   }, {} as Record<typeof stringFilters[number], string | undefined>)
 
-  const params = {
-    limit: increment.toString(),
-    offset: `${initialOffset * increment}`,
-    'PhotosCount.gte': '1', // There must be at least 1 photo
-    'ListPrice.gt': '1', // Price cannot be 0
-    sortBy: 'BridgeModificationTimestamp',
-    order: 'desc',
-    'UnparsedAddress.in': geoLocation.address,
-    box:
-      geoLocation?.bounds && geoLocation.bounds.length >= 3
-        ? geoLocation.bounds.join(',')
-        : undefined,
-    ...gteAndLteFilters,
-    ...othersFilters,
-  }
-
   return getHouseListing({
     type: 'card-full-info',
-    params: params,
+    params: {
+      limit: increment.toString(),
+      offset: `${pageParam * increment}`,
+      'PhotosCount.gte': '1', // There must be at least 1 photo
+      'ListPrice.gt': '1', // Price cannot be 0
+      sortBy: 'BridgeModificationTimestamp',
+      order: 'desc',
+      'UnparsedAddress.in': geoLocation.address,
+      box:
+        geoLocation?.bounds && geoLocation.bounds.length >= 3
+          ? geoLocation.bounds.join(',')
+          : undefined,
+      ...gteAndLteFilters,
+      ...othersFilters,
+    },
     fetchOn: 'browser',
   })
 }
 
 export function useHouse() {
   const geoLocation = useGeolocationStore(state => state.geoLocation)
-  const { data, error, size, setSize, mutate, isValidating } = useSWRInfinite(
-    index => `search/${index + 1}`,
-    key => fetcher(key, geoLocation)
-  )
-
-  useEffect(() => {
-    mutate()
-    setSize(1)
-  }, [geoLocation, mutate, setSize])
-
-  const isLoadingInitialData = !data && !error
-  const isLoadingMore =
-    isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
-  const isRefreshing = isValidating && data && data.length === size
-
-  const listings = data?.reduce((total, current) => {
-    return [...total, ...current.listings]
-  }, [] as FormattedHouseCard[])
+  const { data, ...rest } = useInfiniteQuery({
+    queryKey: ['search/houses', geoLocation],
+    queryFn: ({ pageParam = 0 }) => fetcher(pageParam, geoLocation),
+    getNextPageParam: (_, allPages) => allPages.length,
+    refetchOnWindowFocus: false,
+  })
 
   return {
     house: {
-      timestamp: data?.at(-1)?.timestamp,
-      listings,
-      total: data?.at(-1)?.total,
+      timestamp: data?.pages?.at(-1)?.timestamp,
+      listings: data?.pages?.reduce((total, current) => {
+        return [...total, ...current.listings]
+      }, [] as FormattedHouseCard[]),
+      total: data?.pages?.at(-1)?.total,
     },
-    isError: error,
-    setSize,
-    isLoadingMore,
-    isRefreshing,
-    isLoadingInitialData,
-    isLoadingAll: isLoadingInitialData || isLoadingMore || isRefreshing,
+    isLoadingAll: rest.isInitialLoading || rest.isFetchingNextPage || rest.isRefetching,
+    ...rest,
   }
 }

@@ -1,4 +1,5 @@
 import { useHouse } from '@/layout/homes/hooks/useHouse'
+import { useGeolocationStore } from '@/layout/homes/store/geolocation'
 import { HouseCard } from '@/shared'
 import { useAtomValue } from 'jotai'
 import { useEffect, useRef } from 'react'
@@ -6,9 +7,10 @@ import { visualizationAtom } from 'src/pages/homes'
 import * as S from './houses.styles'
 
 export function Houses() {
+  const geoLocation = useGeolocationStore(state => state.geoLocation)
+  const { house, fetchNextPage, isFetchingNextPage, isInitialLoading } = useHouse()
   const loaderRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const { house, setSize, isLoadingMore, isLoadingInitialData } = useHouse()
   const visualization = useAtomValue(visualizationAtom)
 
   useEffect(() => {
@@ -21,8 +23,8 @@ export function Houses() {
     const observer = new IntersectionObserver(entities => {
       const target = entities[0]
 
-      if (target.isIntersecting && !isLoadingMore) {
-        setSize(oldSize => oldSize + 1)
+      if (target.isIntersecting && !isFetchingNextPage && fetchNextPage) {
+        fetchNextPage()
       }
     }, options)
 
@@ -33,16 +35,20 @@ export function Houses() {
     return () => {
       observer.disconnect()
     }
-  }, [setSize, isLoadingMore])
+  }, [fetchNextPage, isFetchingNextPage])
+
+  useEffect(() => {
+    scrollRef.current?.scroll({ top: 0 })
+  }, [geoLocation])
 
   return (
     <S.ScrollableDiv ref={scrollRef}>
       <S.Houses visualization={visualization}>
         {/* Show 9 Skeleton's cards when loading first time */}
-        {isLoadingInitialData &&
+        {isInitialLoading &&
           [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
 
-        {house.listings?.map(listing => (
+        {house?.listings?.map(listing => (
           <HouseCard
             key={listing.id}
             listing={listing}
@@ -50,7 +56,8 @@ export function Houses() {
           />
         ))}
 
-        {isLoadingMore && [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
+        {isFetchingNextPage &&
+          [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
       </S.Houses>
 
       <div ref={loaderRef} />
