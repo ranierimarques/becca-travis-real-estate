@@ -37,10 +37,23 @@ export const DisclaimerText = styled('span', {
   fontSize: '10px',
   lineHeight: '16px',
   color: '$gray3',
+
+  '@bp4': {
+    order: 2,
+    maxWidth: 'inherit',
+
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
 })
 
 export const Disclaimer = styled('strong', {
   fontSize: '10px',
   lineHeight: '18px',
   color: '$gray1',
+
+  '@bp4': {
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
 })
