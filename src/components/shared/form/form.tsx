@@ -127,6 +127,19 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
           gap: 32,
           marginBottom: 56,
           width: '100%',
+
+          '@bp5': {
+            marginBottom: 48,
+          },
+          '@bp4': {
+            marginBottom: 32,
+            gap: 24,
+          },
+          '@bp2': {
+            gap: 20,
+            marginBottom: 24,
+            gridTemplateColumns: '1fr',
+          },
         }}
       >
         {inputs.map(({ name, ...input }) => {
@@ -144,14 +157,41 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
         })}
       </Box>
 
-      <Flex align="center" justify="between">
+      <Flex
+        direction={{
+          '@initial': 'row',
+          '@bp4': 'column',
+        }}
+        align="center"
+        justify="between"
+        css={{
+          '@bp4': {
+            gap: 32,
+          },
+          '@bp3': {
+            gap: 24,
+          },
+          '@bp2': {
+            gap: 32,
+          },
+        }}
+      >
         <S.DisclaimerText>
           <S.Disclaimer>Disclaimer:</S.Disclaimer> By entering your information and
           submitting this form, you agree to our Terms of Use and Privacy Policy and that
           you may be contacted by phone, text message and email about your inquiry.
         </S.DisclaimerText>
 
-        <Button size="2" loading={isSubmitting} disabled={isSubmitting}>
+        <Button
+          size="2"
+          loading={isSubmitting}
+          disabled={isSubmitting}
+          css={{
+            '@bp4': {
+              alignSelf: 'flex-end',
+            },
+          }}
+        >
           Send your message
         </Button>
       </Flex>

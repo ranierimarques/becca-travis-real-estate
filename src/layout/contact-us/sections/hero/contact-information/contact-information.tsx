@@ -11,13 +11,31 @@ interface ContactInformationProps {
 export function ContactInformation({ openToast, onOpenToast }: ContactInformationProps) {
   return (
     <S.Card>
-      <Box css={{ p: '32px 0 0 32px' }}>
+      <S.CardContainer>
         <S.Title>Contact information</S.Title>
         <S.Description>
           I&apos;m ready to help you and take all your questions, get in touch!
         </S.Description>
 
-        <Flex direction="column" css={{ gap: 24 }}>
+        <Flex
+          direction={{
+            '@initial': 'column',
+            '@bp4': 'row',
+          }}
+          css={{
+            gap: 24,
+
+            '@bp4': {
+              gap: 32,
+              justifyContent: 'center',
+            },
+
+            '@bp2': {
+              flexDirection: 'column',
+              gap: 16,
+            },
+          }}
+        >
           <S.Contact>
             <S.SvgBackground>
               <MailSvg />
@@ -42,7 +60,7 @@ export function ContactInformation({ openToast, onOpenToast }: ContactInformatio
         </Flex>
 
         <S.Svg />
-      </Box>
+      </S.CardContainer>
       <Toast openToast={openToast} onOpenToast={onOpenToast} form />
     </S.Card>
   )

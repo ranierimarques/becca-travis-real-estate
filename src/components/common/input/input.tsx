@@ -90,7 +90,7 @@ export function Input({
 
   if (type === 'textarea') {
     return (
-      <S.Label css={{ gridColumn: 'span 2' }}>
+      <S.Label css={{ gridColumn: 'span 2', '@bp2': { gridColumn: 'auto' } }}>
         <S.LabelWrapper showError={hasError}>
           {label} {props.required && <S.Asterisk>*</S.Asterisk>}
         </S.LabelWrapper>

@@ -1,23 +1,17 @@
+import { Section as SectionTemplate } from '@/template'
 import { styled } from 'stitches.config'
 
-export const Section = styled('section', {
-  padding: '72px 0 160px',
-
+export const Section = styled(SectionTemplate, {
   position: 'relative',
-})
 
-export const Background = styled('div', {
-  height: '330px',
-  width: '100%',
-  background: 'rgba($colors$tangerine5Rgb, 0.3)',
-  position: 'absolute',
-  top: 0,
-  zIndex: -2,
-})
+  pt: 80,
 
-export const Container = styled('div', {
-  maxWidth: '1072px',
-  margin: '0 auto',
+  '@bp4': {
+    pt: 64,
+  },
+  '@bp2': {
+    pt: 40,
+  },
 })
 
 export const Header = styled('div', {
@@ -39,6 +33,22 @@ export const FormContainer = styled('div', {
 
   boxShadow: '0 0 0 1px $colors$grayW8',
   borderRadius: '16px',
+
+  '@bp4': {
+    gap: 44,
+
+    padding: '24px 32px 32px',
+
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  '@bp3': {
+    gap: 32,
+  },
+  '@bp1': {
+    margin: '0 -16px',
+    padding: '24px 16px 32px',
+  },
 })
 
 export const Title = styled('h1', {
@@ -48,11 +58,21 @@ export const Title = styled('h1', {
   fontSize: '36px',
   lineHeight: '50px',
   color: '$magenta6',
+
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+
+    textAlign: 'center',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Paragraph = styled('p', {
-  marginBottom: 40,
-  maxWidth: '359px',
+  marginBottom: 48,
 
   textAlign: 'center',
 
@@ -60,4 +80,21 @@ export const Paragraph = styled('p', {
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
+
+  '@bp4': {
+    marginBottom: 40,
+  },
+  '@bp3': {
+    marginBottom: 48,
+  },
+
+  '@bp2': {
+    marginBottom: 40,
+
+    fontSize: '14px',
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    marginBottom: 32,
+  },
 })
