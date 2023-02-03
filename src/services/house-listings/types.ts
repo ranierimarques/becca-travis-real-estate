@@ -148,6 +148,7 @@ export type Params = {
   offset?: string
   PropertyType?: string
   StandardStatus?: string
+  'StandardStatus.in'?: string
   fields?: string
   'PhotosCount.gte'?: string
   'ListPrice.gt'?: string

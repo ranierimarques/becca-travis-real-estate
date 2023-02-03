@@ -3,25 +3,49 @@ import { FormattedHouseCard } from '@/services/house-listings/types'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useGeolocationStore, type GeoLocationState } from '../store/geolocation'
 
-const rangeNumberFilters = [
-  'BedroomsTotal',
-  'BathroomsTotalInteger',
-  'LotSizeAcres',
-  'LivingArea',
-  'ListPrice',
-  'YearBuilt',
-] as const
+function getRangeNumberFilters(geoLocation: GeoLocationState['geoLocation']) {
+  const rangeNumberFilters = [
+    'BedroomsTotal',
+    'BathroomsTotalInteger',
+    'LotSizeAcres',
+    'LivingArea',
+    'ListPrice',
+    'YearBuilt',
+  ] as const
 
-const stringFilters = [
-  'ElementarySchool',
-  'MiddleOrJuniorSchool',
-  'HighSchool',
-  'PostalCode',
-  'PropertyType',
-  'PropertySubType',
-  'StandardStatus',
-  'City',
-] as const
+  return rangeNumberFilters.reduce((total, param) => {
+    return {
+      ...total,
+      [`${param}.gte`]: geoLocation.filter?.[param]?.gte?.toString(),
+      [`${param}.lte`]: geoLocation.filter?.[param]?.lte?.toString(),
+    }
+  }, {} as Record<`${typeof rangeNumberFilters[number]}.${'gte' | 'lte'}`, string | undefined>)
+}
+
+function getStringFilters(geoLocation: GeoLocationState['geoLocation']) {
+  const stringFilters = [
+    'ElementarySchool',
+    'MiddleOrJuniorSchool',
+    'HighSchool',
+    'PostalCode',
+    'PropertyType',
+    'PropertySubType',
+    'StandardStatus',
+    'City',
+  ] as const
+
+  return stringFilters.reduce((total, param) => {
+    return { ...total, [param]: geoLocation?.filter?.[param] }
+  }, {} as Record<typeof stringFilters[number], string | undefined>)
+}
+
+function getBox(geoLocation: GeoLocationState['geoLocation']) {
+  if (geoLocation?.bounds && geoLocation.bounds.length >= 3) {
+    return geoLocation.bounds.join(',')
+  }
+
+  return undefined
+}
 
 const fetcher = async (
   pageParam: number,
@@ -29,17 +53,9 @@ const fetcher = async (
 ) => {
   const increment = 9
 
-  const gteAndLteFilters = rangeNumberFilters.reduce((total, param) => {
-    return {
-      ...total,
-      [`${param}.gte`]: geoLocation.filter?.[param]?.gte?.toString(),
-      [`${param}.lte`]: geoLocation.filter?.[param]?.lte?.toString(),
-    }
-  }, {} as Record<`${typeof rangeNumberFilters[number]}.${'gte' | 'lte'}`, string | undefined>)
-
-  const othersFilters = stringFilters.reduce((total, param) => {
-    return { ...total, [param]: geoLocation?.filter?.[param] }
-  }, {} as Record<typeof stringFilters[number], string | undefined>)
+  const gteAndLteFilters = getRangeNumberFilters(geoLocation)
+  const othersFilters = getStringFilters(geoLocation)
+  const box = getBox(geoLocation)
 
   return getHouseListing({
     type: 'card-full-info',
@@ -51,10 +67,7 @@ const fetcher = async (
       sortBy: 'BridgeModificationTimestamp',
       order: 'desc',
       'UnparsedAddress.in': geoLocation.address,
-      box:
-        geoLocation?.bounds && geoLocation.bounds.length >= 3
-          ? geoLocation.bounds.join(',')
-          : undefined,
+      box,
       ...gteAndLteFilters,
       ...othersFilters,
     },

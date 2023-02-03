@@ -2,46 +2,54 @@ import create from 'zustand'
 
 interface PropertyType {
   Residential: 'Residential'
-  Land: 'Land'
-  BusinessOpportunity: 'Business Opportunity'
   ResidentialIncome: 'Residential Income'
+  ResidentialLease: 'Residential Lease'
+  CommercialLease: 'Commercial Lease'
+  BusinessOpportunity: 'Business Opportunity'
+  Land: 'Land'
 }
 
 interface PropertySubType {
-  SingleFamilyResidence: 'Single Family Residence'
-  ManufacturedHome: 'Manufactured Home'
-  Condominium: 'Condominium'
-  DeededRv: 'Deeded RV'
-  Townhouse: 'Townhouse'
-  FarmWhome: 'Farm w/Home'
+  Apartment: 'Apartment'
+  Business: 'Business'
+  CommercialLot: 'COMMERCIAL LOT'
+  DeededRv: 'Deeded RV Lots'
+  Duplex: 'Duplex'
+  Lot: 'LOT'
+  PatioHome: 'Patio Home'
+  Retail: 'Retail'
+  UnimprovedLand: 'Unimproved Land'
 }
 
 interface StandardStatus {
   Active: 'Active'
   Pending: 'Pending'
+  Closed: 'Closed'
   Sold: 'Sold'
   ComingSoon: 'Coming Soon'
+  Expired: 'Expired'
+  Hold: 'Hold'
   ActiveUnderContract: 'Active Under Contract'
+  Canceled: 'Canceled'
 }
 
 interface City {
-  Addison: 'Addison'
-  Alexandria: 'Alexandria'
-  Anderson: 'Anderson'
-  Arab: 'Arab'
-  Arley: 'Arley'
-  Albertville: 'Albertville'
-  Altoona: 'Altoona'
-  Anniston: 'Anniston'
-  Ardmore: 'Ardmore'
-  Ashville: 'Ashville'
+  Madison: 'Madison'
+  Athens: 'Athens'
+  Guntersville: 'Guntersville'
+  Hartselle: 'Hartselle'
+  Boaz: 'Boaz'
+  FortPayne: 'Fort Payne'
+  Fayetteville: 'Fayetteville'
+  Southside: 'Southside'
+  RainbowCity: 'Rainbow City'
+  Attalla: 'Attalla'
 }
 
 interface GeoLocation {
   address?: string
   limit?: number
   offset?: number
-  keepPreviousHouses?: boolean
   bounds?: number[]
   box?: string
   filter?: {

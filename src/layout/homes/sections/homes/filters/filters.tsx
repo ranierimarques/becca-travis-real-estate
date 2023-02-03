@@ -1,7 +1,7 @@
 import { Box, Button, Flex } from '@/common'
 import { useGeolocationStore } from '@/layout/homes/store/geolocation'
 import { Dialog } from '@/primitives'
-import { useState } from 'react'
+import { ComponentProps, useState } from 'react'
 import { Select } from '..'
 import * as Svg from '../svgs'
 import * as S from './filters.styles'
@@ -15,10 +15,14 @@ function Title({ title }: { title: string }) {
   )
 }
 
-function Checkbox({ label }: { label: string }) {
+type CheckboxProps = ComponentProps<typeof S.CheckBoxRoot> & {
+  label: string
+}
+
+function Checkbox({ label, ...props }: CheckboxProps) {
   return (
     <Flex css={{ alignItems: 'center', gap: 8 }}>
-      <S.CheckBoxRoot id={label}>
+      <S.CheckBoxRoot id={label} {...props}>
         <S.CheckBoxIndicator>
           <Svg.Check />
         </S.CheckBoxIndicator>
@@ -34,8 +38,8 @@ export function Filters() {
   const [bathroomLte, setBathroomLte] = useState('')
   const [bathroomGte, setBathroomGte] = useState('')
 
-  const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
   const geoLocation = useGeolocationStore(state => state.geoLocation)
+  const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
 
   const removeFiltersInGeolocation = () => {
     const newGeoLocation = { ...geoLocation }
@@ -80,21 +84,25 @@ export function Filters() {
             <Title title="Property type" />
             <S.CheckboxesContainer>
               <Checkbox label="Residential" />
-              <Checkbox label="Business Opportunity" />
-              <Checkbox label="Land" />
               <Checkbox label="Residential Income" />
+              <Checkbox label="Residential Lease" />
+              <Checkbox label="Business Opportunity" />
+              <Checkbox label="Commercial Lease" />
+              <Checkbox label="Land" />
             </S.CheckboxesContainer>
           </div>
           <div>
             <Title title="Property sub-type" />
             <S.CheckboxesContainer>
-              <Checkbox label="Single Family Residence" />
-              <Checkbox label="Townhouse" />
-              <Checkbox label="Manufactured Home" />
-              <Checkbox label="Farm W/home" />
-              <Checkbox label="Condominium" />
-              <Checkbox label="Single Family Detached" />
+              <Checkbox label="Apartment" />
+              <Checkbox label="Business" />
+              <Checkbox label="Commercial Lot" />
               <Checkbox label="Deeded Rv" />
+              <Checkbox label="Duplex" />
+              <Checkbox label="Lot" />
+              <Checkbox label="Patio Home" />
+              <Checkbox label="Retail" />
+              <Checkbox label="Unimproved Land" />
             </S.CheckboxesContainer>
           </div>
           <div>
@@ -225,6 +233,10 @@ export function Filters() {
               <Checkbox label="Coming Soon" />
               <Checkbox label="Sold" />
               <Checkbox label="Pending" />
+              <Checkbox label="Closed" />
+              <Checkbox label="Expired" />
+              <Checkbox label="Hold" />
+              <Checkbox label="Canceled" />
             </S.CheckboxesContainer>
           </div>
           <div>
@@ -269,16 +281,16 @@ export function Filters() {
           <div>
             <Title title="City" />
             <S.CheckboxesContainer>
-              <Checkbox label="Addison" />
-              <Checkbox label="Albertville" />
-              <Checkbox label="Alexandria" />
-              <Checkbox label="Altoona" />
-              <Checkbox label="Anderson" />
-              <Checkbox label="Anniston" />
-              <Checkbox label="Arab" />
-              <Checkbox label="Ardmore" />
-              <Checkbox label="Arley" />
-              <Checkbox label="Ashville" />
+              <Checkbox label="Madison" />
+              <Checkbox label="Athens" />
+              <Checkbox label="Guntersville" />
+              <Checkbox label="Hartselle" />
+              <Checkbox label="Boaz" />
+              <Checkbox label="Fort Payne" />
+              <Checkbox label="Fayetteville" />
+              <Checkbox label="Southside" />
+              <Checkbox label="Rainbow City" />
+              <Checkbox label="Attalla" />
             </S.CheckboxesContainer>
           </div>
           <S.MultiColumnContainer>
