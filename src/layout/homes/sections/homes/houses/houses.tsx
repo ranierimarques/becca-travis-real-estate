@@ -6,6 +6,22 @@ import { useEffect, useRef } from 'react'
 import { visualizationAtom } from 'src/pages/homes'
 import * as S from './houses.styles'
 
+type SkeletonCardsProps = { count: number }
+
+function SkeletonCards({ count }: SkeletonCardsProps) {
+  return (
+    <>
+      {[...Array(count)].map((_, index) => (
+        <S.SkeletonCard key={index} />
+      ))}
+    </>
+  )
+}
+
+function NoResults() {
+  return <div>No results</div>
+}
+
 export function Houses() {
   const geoLocation = useGeolocationStore(state => state.geoLocation)
   const { house, fetchNextPage, isFetchingNextPage, isInitialLoading } = useHouse()
@@ -23,7 +39,7 @@ export function Houses() {
     const observer = new IntersectionObserver(entities => {
       const target = entities[0]
 
-      if (target.isIntersecting && !isFetchingNextPage && fetchNextPage) {
+      if (target.isIntersecting && !isFetchingNextPage && fetchNextPage && house.total) {
         fetchNextPage()
       }
     }, options)
@@ -35,7 +51,7 @@ export function Houses() {
     return () => {
       observer.disconnect()
     }
-  }, [fetchNextPage, isFetchingNextPage])
+  }, [fetchNextPage, isFetchingNextPage, house.total])
 
   useEffect(() => {
     scrollRef.current?.scroll({ top: 0 })
@@ -44,9 +60,7 @@ export function Houses() {
   return (
     <S.ScrollableDiv ref={scrollRef}>
       <S.Houses visualization={visualization}>
-        {/* Show 9 Skeleton's cards when loading first time */}
-        {isInitialLoading &&
-          [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
+        {isInitialLoading && <SkeletonCards count={9} />}
 
         {house?.listings?.map(listing => (
           <HouseCard
@@ -56,8 +70,9 @@ export function Houses() {
           />
         ))}
 
-        {isFetchingNextPage &&
-          [...Array(9)].map((_, index) => <S.SkeletonCard key={index} />)}
+        {!house.total && <NoResults />}
+
+        {isFetchingNextPage && <SkeletonCards count={9} />}
       </S.Houses>
 
       <div ref={loaderRef} />

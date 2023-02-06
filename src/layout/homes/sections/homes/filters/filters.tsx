@@ -1,7 +1,10 @@
 import { Box, Button, Flex } from '@/common'
-import { useGeolocationStore } from '@/layout/homes/store/geolocation'
+import { SetFiltersSection, useGeolocationStore } from '@/layout/homes/store/geolocation'
 import { Dialog } from '@/primitives'
-import { ComponentProps, useState } from 'react'
+import { ReplaceAll } from '@/types/helpers'
+import { CheckedState } from '@radix-ui/react-checkbox'
+import { ComponentProps } from 'react'
+import shallow from 'zustand/shallow'
 import { Select } from '..'
 import * as Svg from '../svgs'
 import * as S from './filters.styles'
@@ -32,37 +35,78 @@ function Checkbox({ label, ...props }: CheckboxProps) {
   )
 }
 
+function removeSpaces<T extends string>(string: T) {
+  return string.replaceAll(' ', '') as ReplaceAll<T, ' ', ''>
+}
+
+const filters = {
+  checkboxes: {
+    propertyType: {
+      title: 'PropertyType',
+      items: [
+        'Residential',
+        'Residential Income',
+        'Residential Lease',
+        'Business Opportunity',
+        'Commercial Lease',
+        'Land',
+      ],
+    },
+    propertySubType: {
+      title: 'PropertySubType',
+      items: [
+        'Single Family Residence',
+        'Townhouse',
+        'Manufactured Home',
+        'Farm w/Home',
+        'Condominium',
+        'Deeded RV',
+      ],
+    },
+    standardStatus: {
+      title: 'StandardStatus',
+      items: [
+        'Active',
+        'Active Under Contract',
+        'Coming Soon',
+        'Closed',
+        'Pending',
+        'Expired',
+        'Hold',
+        'Canceled',
+      ],
+    },
+    city: {
+      title: 'City',
+      items: [
+        'Addison',
+        'Albertville',
+        'Alexandria',
+        'Altoona',
+        'Anderson',
+        'Anniston',
+        'Arab',
+        'Ardmore',
+        'Arley',
+        'Ashville',
+      ],
+    },
+  },
+} as const
+
 export function Filters() {
-  const [bedroomLte, setBedroomLte] = useState('')
-  const [bedroomGte, setBedroomGte] = useState('')
-  const [bathroomLte, setBathroomLte] = useState('')
-  const [bathroomGte, setBathroomGte] = useState('')
+  const [geoLocation, setFilters, resetFilters] = useGeolocationStore(
+    state => [state.geoLocation, state.setFilters, state.resetFilters],
+    shallow
+  )
 
-  const geoLocation = useGeolocationStore(state => state.geoLocation)
-  const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
-
-  const removeFiltersInGeolocation = () => {
-    const newGeoLocation = { ...geoLocation }
-    delete newGeoLocation.filter
-    setBedroomLte('')
-    setBedroomGte('')
-    setBathroomLte('')
-    setBathroomGte('')
-    setGeoLocation(newGeoLocation)
-  }
-
-  const searchGeolocation = () => {
-    setGeoLocation({
-      filter: {
-        BedroomsTotal: {
-          lte: Number(bedroomLte),
-          gte: Number(bedroomGte),
-        },
-        BathroomsTotalInteger: {
-          lte: Number(bathroomLte),
-          gte: Number(bathroomGte),
-        },
-      },
+  function handleFilterChange(
+    section: SetFiltersSection,
+    checked: CheckedState,
+    key: string
+  ) {
+    setFilters(section, {
+      [removeSpaces(key)]: checked === true ? key : undefined,
     })
   }
 
@@ -83,26 +127,33 @@ export function Filters() {
           <div>
             <Title title="Property type" />
             <S.CheckboxesContainer>
-              <Checkbox label="Residential" />
-              <Checkbox label="Residential Income" />
-              <Checkbox label="Residential Lease" />
-              <Checkbox label="Business Opportunity" />
-              <Checkbox label="Commercial Lease" />
-              <Checkbox label="Land" />
+              {filters.checkboxes.propertyType.items.map(item => {
+                const section = filters.checkboxes.propertyType.title
+                return (
+                  <Checkbox
+                    key={item}
+                    label={item}
+                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
+                    onCheckedChange={value => handleFilterChange(section, value, item)}
+                  />
+                )
+              })}
             </S.CheckboxesContainer>
           </div>
           <div>
             <Title title="Property sub-type" />
             <S.CheckboxesContainer>
-              <Checkbox label="Apartment" />
-              <Checkbox label="Business" />
-              <Checkbox label="Commercial Lot" />
-              <Checkbox label="Deeded Rv" />
-              <Checkbox label="Duplex" />
-              <Checkbox label="Lot" />
-              <Checkbox label="Patio Home" />
-              <Checkbox label="Retail" />
-              <Checkbox label="Unimproved Land" />
+              {filters.checkboxes.propertySubType.items.map(item => {
+                const section = filters.checkboxes.propertySubType.title
+                return (
+                  <Checkbox
+                    key={item}
+                    label={item}
+                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
+                    onCheckedChange={value => handleFilterChange(section, value, item)}
+                  />
+                )
+              })}
             </S.CheckboxesContainer>
           </div>
           <div>
@@ -228,23 +279,25 @@ export function Filters() {
           <div>
             <Title title="Listing status" />
             <S.CheckboxesContainer>
-              <Checkbox label="Active" />
-              <Checkbox label="Active Under Contract" />
-              <Checkbox label="Coming Soon" />
-              <Checkbox label="Sold" />
-              <Checkbox label="Pending" />
-              <Checkbox label="Closed" />
-              <Checkbox label="Expired" />
-              <Checkbox label="Hold" />
-              <Checkbox label="Canceled" />
+              {filters.checkboxes.standardStatus.items.map(item => {
+                const section = filters.checkboxes.standardStatus.title
+                return (
+                  <Checkbox
+                    key={item}
+                    label={item}
+                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
+                    onCheckedChange={value => handleFilterChange(section, value, item)}
+                  />
+                )
+              })}
             </S.CheckboxesContainer>
           </div>
-          <div>
+          <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
             <Title title="Open houses" />
             <S.CheckboxesContainer>
-              <Checkbox label="Search Open Houses" />
+              <Checkbox disabled label="Search Open Houses" />
             </S.CheckboxesContainer>
-          </div>
+          </Box>
           <div>
             <Title title="Year built" />
             <S.InputsContainer>
@@ -253,7 +306,7 @@ export function Filters() {
               <S.Input type="number" min="0" placeholder="Max" />
             </S.InputsContainer>
           </div>
-          <div>
+          <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
             <Title title="Stories" />
             <S.CheckboxesContainer>
               <Checkbox label="Multi/split" />
@@ -263,7 +316,7 @@ export function Filters() {
               <Checkbox label="Tri-Level" />
               <Checkbox label="Three Or More" />
             </S.CheckboxesContainer>
-          </div>
+          </Box>
           <S.MultiColumnContainer>
             <div>
               <Title title="Elementary school" />
@@ -281,16 +334,17 @@ export function Filters() {
           <div>
             <Title title="City" />
             <S.CheckboxesContainer>
-              <Checkbox label="Madison" />
-              <Checkbox label="Athens" />
-              <Checkbox label="Guntersville" />
-              <Checkbox label="Hartselle" />
-              <Checkbox label="Boaz" />
-              <Checkbox label="Fort Payne" />
-              <Checkbox label="Fayetteville" />
-              <Checkbox label="Southside" />
-              <Checkbox label="Rainbow City" />
-              <Checkbox label="Attalla" />
+              {filters.checkboxes.city.items.map(item => {
+                const section = filters.checkboxes.city.title
+                return (
+                  <Checkbox
+                    key={item}
+                    label={item}
+                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
+                    onCheckedChange={value => handleFilterChange(section, value, item)}
+                  />
+                )
+              })}
             </S.CheckboxesContainer>
           </div>
           <S.MultiColumnContainer>
@@ -323,12 +377,10 @@ export function Filters() {
           justify="between"
           css={{ p: 14, bg: '$grayW10', boxShadow: '0 0 0 1px $colors$grayW8' }}
         >
-          <Button size="2" outlined onClick={removeFiltersInGeolocation}>
+          <Button size="2" outlined onClick={resetFilters}>
             Clear filters
           </Button>
-          <Button size="2" onClick={searchGeolocation}>
-            Save filters
-          </Button>
+          <Button size="2">Save filters</Button>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>

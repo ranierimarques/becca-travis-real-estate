@@ -4,10 +4,10 @@ import { getDate } from '@/resources/utils/date'
 import { GetHouseListing, House, HouseCard, Params, ReturnType, Type } from './types'
 
 const baseURL = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings'
-const defaultParams = {
+const defaultParams: Params = {
   limit: '3',
-  PropertyType: 'Residential',
-  StandardStatus: 'Active',
+  'PropertyType.in': 'Residential',
+  'StandardStatus.in': 'Active',
   fields:
     // Return only this values
     'Media.MediaURL,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
@@ -29,7 +29,7 @@ function getAuthorization(fetchOn: 'browser' | 'server') {
   }
 }
 
-// This function remove parameters when key is null or undefined
+// This function remove parameters when key isn't a string
 function getValidParams(params: Params) {
   const filteredParams = Object.entries(params).filter(
     ([, value]) => typeof value === 'string'
@@ -96,34 +96,38 @@ export async function getHouseListing<T extends Type, P extends Params>({
     } as ReturnType<T>
   }
 
-  const validParams = getValidParams(params ?? {})
+  const newParams = { ...defaultParams, ...params }
+  const validParams = getValidParams(newParams)
 
-  const newParams = { ...defaultParams, ...validParams }
-  const endpoint = baseURL + toURL + '?' + new URLSearchParams(newParams)
+  const endpoint = baseURL + toURL + '?' + new URLSearchParams(validParams)
 
   const response = await fetch(endpoint, authorization)
   const house: HouseCard = await response.json()
 
-  const listings = house.bundle.map(listing => ({
-    id: listing.ListingId,
-    media: listing.Media[0].MediaURL,
-    price: formatToDollar(listing.ListPrice),
-    address: listing.UnparsedAddress,
-    bedroomsTotal: listing.BedroomsTotal,
-    bathroomsTotal: listing.BathroomsTotalInteger,
-    livingArea: convertSquareFeets(listing.LivingArea),
-    coordinates: {
-      latitude: listing.Latitude,
-      longitude: listing.Longitude,
-    },
-  }))
+  const listings = house.bundle.map(listing => {
+    if (!listing) return []
+
+    return {
+      id: listing.ListingId,
+      media: listing.Media[0].MediaURL,
+      price: formatToDollar(listing.ListPrice),
+      address: listing.UnparsedAddress,
+      bedroomsTotal: listing.BedroomsTotal,
+      bathroomsTotal: listing.BathroomsTotalInteger,
+      livingArea: convertSquareFeets(listing.LivingArea),
+      coordinates: {
+        latitude: listing.Latitude,
+        longitude: listing.Longitude,
+      },
+    }
+  })
 
   if (type === 'card') {
     return listings as ReturnType<T>
   } else {
     return {
       listings,
-      timestamp: house.bundle[0].BridgeModificationTimestamp,
+      timestamp: house.bundle[0]?.BridgeModificationTimestamp,
       total: house.total,
     } as ReturnType<T>
   }

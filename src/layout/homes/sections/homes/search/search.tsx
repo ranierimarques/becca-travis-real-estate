@@ -14,7 +14,7 @@ type LastUpdateProps = {
   timestamp: string | undefined
 }
 
-function LastUpdate({ timestamp = '' }: LastUpdateProps) {
+function LastUpdate({ timestamp = new Date().toISOString() }: LastUpdateProps) {
   const relativeDate = useRelativeDate(timestamp)
 
   return <span title={getDate(timestamp, 'en-US', 'full')}>{relativeDate}</span>
@@ -29,7 +29,9 @@ type HeaderInfosProps = {
 function HeaderInfos({ isLoadingAll, total, timestamp, variant }: HeaderInfosProps) {
   return (
     <S.HeaderInfos variant={variant}>
-      <S.HomesForSale>{isLoadingAll ? '---' : total} Homes for sale</S.HomesForSale>
+      <S.HomesForSale>
+        {isLoadingAll ? '---' : (total || 0).toLocaleString('en')} Homes for sale
+      </S.HomesForSale>
       <S.LastUpdate>
         Last update:{' '}
         {isLoadingAll ? (

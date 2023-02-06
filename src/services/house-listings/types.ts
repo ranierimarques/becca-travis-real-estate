@@ -3,23 +3,26 @@ import { FormattedHouseCards } from '@/types/houses'
 export type HouseCard = {
   success: string
   status: number
-  bundle: {
-    LivingArea: number
-    BedroomsTotal: number
-    BridgeModificationTimestamp: string
-    Media: {
-      MediaURL: string
-    }[]
-    ListingId: string
-    ListPrice: number
-    BathroomsTotalInteger: number
-    UnparsedAddress: string
-    ListingKey: string
-    Latitude: number
-    Longitude: number
-    FeedTypes: []
-    url: string
-  }[]
+  bundle: (
+    | {
+        LivingArea: number
+        BedroomsTotal: number
+        BridgeModificationTimestamp: string
+        Media: {
+          MediaURL: string
+        }[]
+        ListingId: string
+        ListPrice: number
+        BathroomsTotalInteger: number
+        UnparsedAddress: string
+        ListingKey: string
+        Latitude: number
+        Longitude: number
+        FeedTypes: []
+        url: string
+      }
+    | undefined
+  )[]
   total: number
 }
 
@@ -146,9 +149,10 @@ export type Type = 'card' | 'card-full-info' | 'house'
 export type Params = {
   limit?: string
   offset?: string
-  PropertyType?: string
-  StandardStatus?: string
+  'PropertyType.in'?: string
+  'PropertySubType.in'?: string
   'StandardStatus.in'?: string
+  'City.in'?: string
   fields?: string
   'PhotosCount.gte'?: string
   'ListPrice.gt'?: string
@@ -173,8 +177,6 @@ export type Params = {
   MiddleOrJuniorSchool?: string
   HighSchool?: string
   PostalCode?: string
-  PropertySubType?: string
-  City?: string
   box?: string
 }
 

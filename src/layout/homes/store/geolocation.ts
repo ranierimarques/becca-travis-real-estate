@@ -1,4 +1,7 @@
+import { DeepPartial } from '@/types/helpers'
 import create from 'zustand'
+
+type ObjectProperties<T> = { [K in keyof T]: T[K] extends object ? K : never }[keyof T]
 
 interface PropertyType {
   Residential: 'Residential'
@@ -10,22 +13,18 @@ interface PropertyType {
 }
 
 interface PropertySubType {
-  Apartment: 'Apartment'
-  Business: 'Business'
-  CommercialLot: 'COMMERCIAL LOT'
-  DeededRv: 'Deeded RV Lots'
-  Duplex: 'Duplex'
-  Lot: 'LOT'
-  PatioHome: 'Patio Home'
-  Retail: 'Retail'
-  UnimprovedLand: 'Unimproved Land'
+  SingleFamilyResidence: 'Single Family Residence'
+  ManufacturedHome: 'Manufactured Home'
+  Townhouse: 'Townhouse'
+  'Farmw/Home': 'Farm w/Home'
+  Condominium: 'Condominium'
+  DeededRV: 'Deeded RV'
 }
 
 interface StandardStatus {
   Active: 'Active'
   Pending: 'Pending'
   Closed: 'Closed'
-  Sold: 'Sold'
   ComingSoon: 'Coming Soon'
   Expired: 'Expired'
   Hold: 'Hold'
@@ -34,69 +33,77 @@ interface StandardStatus {
 }
 
 interface City {
-  Madison: 'Madison'
-  Athens: 'Athens'
-  Guntersville: 'Guntersville'
-  Hartselle: 'Hartselle'
-  Boaz: 'Boaz'
-  FortPayne: 'Fort Payne'
-  Fayetteville: 'Fayetteville'
-  Southside: 'Southside'
-  RainbowCity: 'Rainbow City'
-  Attalla: 'Attalla'
+  Addison: 'Addison'
+  Albertville: 'Albertville'
+  Alexandria: 'Alexandria'
+  Altoona: 'Altoona'
+  Anderson: 'Anderson'
+  Anniston: 'Anniston'
+  Arab: 'Arab'
+  Ardmore: 'Ardmore'
+  Arley: 'Arley'
+  Ashville: 'Ashville'
 }
 
-interface GeoLocation {
-  address?: string
-  limit?: number
-  offset?: number
-  bounds?: number[]
-  box?: string
-  filter?: {
-    BedroomsTotal?: {
+export interface GeoLocation {
+  address: string
+  limit: number
+  offset: number
+  bounds: number[]
+  box: string
+  filter: {
+    BedroomsTotal: {
       // BEDROOMS
       gte: number
       lte: number
     }
-    BathroomsTotalInteger?: {
+    BathroomsTotalInteger: {
       // BATHROOMS
       gte: number
       lte: number
     }
-    LotSizeAcres?: {
+    LotSizeAcres: {
       // LOT SIZE
       gte: number
       lte: number
     }
-    LivingArea?: {
+    LivingArea: {
       // PROPERTY SIZE
       gte: number
       lte: number
     }
-    ListPrice?: {
+    ListPrice: {
       // PRICE RANGE
       gte: number
       lte: number
     }
-    YearBuilt?: {
+    YearBuilt: {
       // YEAR BUILT
       gte: number
       lte: number
     }
-    ElementarySchool?: string
-    MiddleOrJuniorSchool?: string
-    HighSchool?: string
-    PostalCode?: string
-    PropertyType?: PropertyType
-    PropertySubType?: PropertySubType
-    StandardStatus?: StandardStatus
-    City?: City
+    ElementarySchool: string
+    MiddleOrJuniorSchool: string
+    HighSchool: string
+    PostalCode: string
+    PropertyType: PropertyType
+    PropertySubType: PropertySubType
+    StandardStatus: StandardStatus
+    City: City
   }
 }
 
+export type GeoLocationOptional = DeepPartial<GeoLocation>
+export type SetFiltersSection = ObjectProperties<GeoLocation['filter']>
+
 export interface GeoLocationState {
-  geoLocation: GeoLocation
-  setGeoLocation: (geoLocation: GeoLocation) => void
+  geoLocation: GeoLocationOptional
+  setGeoLocation: (geoLocation: GeoLocationOptional) => void
+  setFilters: <T extends SetFiltersSection>(
+    section: T,
+    filter: DeepPartial<GeoLocation['filter'][T]>
+  ) => void
+  resetFilters: () => void
 }
 
 export const useGeolocationStore = create<GeoLocationState>(set => ({
@@ -106,4 +113,25 @@ export const useGeolocationStore = create<GeoLocationState>(set => ({
     filter: {},
   },
   setGeoLocation: geoLocation => set(state => ({ ...state.geoLocation, geoLocation })),
+  setFilters: (section, filter) =>
+    set(state => ({
+      geoLocation: {
+        ...state.geoLocation,
+        filter: {
+          ...state.geoLocation.filter,
+          [section]: {
+            ...state.geoLocation.filter?.[section],
+            ...filter,
+          },
+        },
+      },
+    })),
+  resetFilters: () =>
+    set(state => ({
+      geoLocation: {
+        address: state.geoLocation.address,
+        bounds: [],
+        filter: {},
+      },
+    })),
 }))
