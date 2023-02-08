@@ -466,7 +466,7 @@ export function Filters() {
               <Title title="Zip code" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.PostalCode}
+                value={geoLocation.filter?.PostalCode ?? ''}
                 onChange={event => handleInput2Change('PostalCode', event.target.value)}
               />
             </div>

@@ -75,11 +75,10 @@ function getInputFilters(geoLocation: GeoLocationOptional) {
   }, {} as Record<`${typeof inputParams[number]}.${'gte' | 'lte'}`, string | undefined>)
 }
 
+const INCREMENT = 9
+
 const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
-  const increment = 9
-
   const othersFilters = getStringFilters(geoLocation)
-
   const selectFilters = getSelectFilters(geoLocation)
   const inputFilters = getInputFilters(geoLocation)
   const mapBoundsFilter = getMapBoundsFilter(geoLocation)
@@ -88,8 +87,8 @@ const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
   return getHouseListing({
     type: 'card-full-info',
     params: {
-      limit: increment.toString(),
-      offset: `${pageParam * increment}`,
+      limit: INCREMENT.toString(),
+      offset: `${pageParam * INCREMENT}`,
       'PhotosCount.gte': '1', // There must be at least 1 photo
       sortBy: 'BridgeModificationTimestamp',
       order: 'desc',
@@ -109,7 +108,10 @@ export function useHouse() {
   const { data, ...rest } = useInfiniteQuery({
     queryKey: ['search/houses', geoLocation],
     queryFn: ({ pageParam = 0 }) => fetcher(pageParam, geoLocation),
-    getNextPageParam: (_, allPages) => allPages.length,
+    getNextPageParam: (_, allPages) => {
+      if (allPages[0].total - allPages.length * INCREMENT <= 0) return undefined
+      return allPages.length
+    },
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60, // 1 minute
     retry: 3, // 3 attempts
