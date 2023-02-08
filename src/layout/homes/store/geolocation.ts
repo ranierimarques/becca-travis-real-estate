@@ -94,19 +94,14 @@ export interface GeoLocation {
 }
 
 export type GeoLocationOptional = DeepPartial<GeoLocation>
-export type SetFiltersSection = Properties<GeoLocation['filter'], object>
-export type SetFiltersSection2 = Properties<GeoLocation['filter'], string>
+export type SetFiltersSection = Properties<GeoLocation['filter'], object | string>
 
 export interface GeoLocationState {
   geoLocation: GeoLocationOptional
   setGeoLocation: (geoLocation: GeoLocationOptional) => void
-  setFilters: <T extends SetFiltersSection>(
+  setFilters: <T extends keyof GeoLocation['filter']>(
     section: T,
-    filter: DeepPartial<GeoLocation['filter'][T]>
-  ) => void
-  setFilters2: <T extends SetFiltersSection2>(
-    section: T,
-    filter: DeepPartial<GeoLocation['filter'][T]>
+    newFilter: DeepPartial<GeoLocation['filter'][T]>
   ) => void
   resetFilters: () => void
 }
@@ -124,20 +119,13 @@ export const useGeolocationStore = create<GeoLocationState>(set => ({
         ...state.geoLocation,
         filter: {
           ...state.geoLocation.filter,
-          [section]: {
-            ...state.geoLocation.filter?.[section],
-            ...newFilters,
-          },
-        },
-      },
-    })),
-  setFilters2: (section, newFilters) =>
-    set(state => ({
-      geoLocation: {
-        ...state.geoLocation,
-        filter: {
-          ...state.geoLocation.filter,
-          [section]: newFilters,
+          [section]:
+            typeof newFilters === 'object'
+              ? {
+                  ...(state.geoLocation.filter?.[section] as object),
+                  ...(newFilters as object),
+                }
+              : newFilters,
         },
       },
     })),

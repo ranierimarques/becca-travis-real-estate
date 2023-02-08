@@ -158,8 +158,8 @@ export type Params = {
   'PropertySubType.in'?: string
   'StandardStatus.in'?: string
   'City.in'?: string
-  'PhotosCount.gte'?: string
   'UnparsedAddress.in'?: string
+  'PhotosCount.gte'?: string
   'ListingId.ne'?: string
   'BedroomsTotal.gte'?: string
   'BedroomsTotal.lte'?: string
