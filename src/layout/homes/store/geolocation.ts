@@ -1,7 +1,7 @@
 import { DeepPartial } from '@/types/helpers'
 import create from 'zustand'
 
-type ObjectProperties<T> = { [K in keyof T]: T[K] extends object ? K : never }[keyof T]
+type Properties<T, U> = { [K in keyof T]: T[K] extends U ? K : never }[keyof T]
 
 interface PropertyType {
   Residential: 'Residential'
@@ -54,33 +54,33 @@ export interface GeoLocation {
   filter: {
     BedroomsTotal: {
       // BEDROOMS
-      gte: number
-      lte: number
+      gte: string
+      lte: string
     }
     BathroomsTotalInteger: {
       // BATHROOMS
-      gte: number
-      lte: number
+      gte: string
+      lte: string
     }
     LotSizeAcres: {
       // LOT SIZE
-      gte: number
-      lte: number
+      gte: string
+      lte: string
     }
     LivingArea: {
       // PROPERTY SIZE
-      gte: number
-      lte: number
+      gte: string
+      lte: string
     }
     ListPrice: {
       // PRICE RANGE
-      gte: number
-      lte: number
+      gte: string
+      lte: string
     }
     YearBuilt: {
       // YEAR BUILT
-      gte: number
-      lte: number
+      gte: string
+      lte: string
     }
     ElementarySchool: string
     MiddleOrJuniorSchool: string
@@ -94,12 +94,17 @@ export interface GeoLocation {
 }
 
 export type GeoLocationOptional = DeepPartial<GeoLocation>
-export type SetFiltersSection = ObjectProperties<GeoLocation['filter']>
+export type SetFiltersSection = Properties<GeoLocation['filter'], object>
+export type SetFiltersSection2 = Properties<GeoLocation['filter'], string>
 
 export interface GeoLocationState {
   geoLocation: GeoLocationOptional
   setGeoLocation: (geoLocation: GeoLocationOptional) => void
   setFilters: <T extends SetFiltersSection>(
+    section: T,
+    filter: DeepPartial<GeoLocation['filter'][T]>
+  ) => void
+  setFilters2: <T extends SetFiltersSection2>(
     section: T,
     filter: DeepPartial<GeoLocation['filter'][T]>
   ) => void
@@ -113,7 +118,7 @@ export const useGeolocationStore = create<GeoLocationState>(set => ({
     filter: {},
   },
   setGeoLocation: geoLocation => set(state => ({ ...state.geoLocation, geoLocation })),
-  setFilters: (section, filter) =>
+  setFilters: (section, newFilters) =>
     set(state => ({
       geoLocation: {
         ...state.geoLocation,
@@ -121,8 +126,18 @@ export const useGeolocationStore = create<GeoLocationState>(set => ({
           ...state.geoLocation.filter,
           [section]: {
             ...state.geoLocation.filter?.[section],
-            ...filter,
+            ...newFilters,
           },
+        },
+      },
+    })),
+  setFilters2: (section, newFilters) =>
+    set(state => ({
+      geoLocation: {
+        ...state.geoLocation,
+        filter: {
+          ...state.geoLocation.filter,
+          [section]: newFilters,
         },
       },
     })),

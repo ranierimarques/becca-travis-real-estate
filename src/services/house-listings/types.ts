@@ -149,17 +149,17 @@ export type Type = 'card' | 'card-full-info' | 'house'
 export type Params = {
   limit?: string
   offset?: string
+  fields?: string
+  sortBy?: string
+  order?: string
+  near?: string
+  box?: string
   'PropertyType.in'?: string
   'PropertySubType.in'?: string
   'StandardStatus.in'?: string
   'City.in'?: string
-  fields?: string
   'PhotosCount.gte'?: string
-  'ListPrice.gt'?: string
   'UnparsedAddress.in'?: string
-  sortBy?: string
-  order?: string
-  near?: string
   'ListingId.ne'?: string
   'BedroomsTotal.gte'?: string
   'BedroomsTotal.lte'?: string
@@ -173,11 +173,10 @@ export type Params = {
   'ListPrice.lte'?: string
   'YearBuilt.gte'?: string
   'YearBuilt.lte'?: string
-  ElementarySchool?: string
-  MiddleOrJuniorSchool?: string
-  HighSchool?: string
-  PostalCode?: string
-  box?: string
+  'ElementarySchool.eq'?: string
+  'MiddleOrJuniorSchool.eq'?: string
+  'HighSchool.eq'?: string
+  'PostalCode.eq'?: string
 }
 
 type NoExtraProperties<T, U> = U & Record<Exclude<keyof U, keyof T>, never>

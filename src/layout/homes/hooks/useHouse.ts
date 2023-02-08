@@ -3,23 +3,24 @@ import { FormattedHouseCard } from '@/services/house-listings/types'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useGeolocationStore, type GeoLocationOptional } from '../store/geolocation'
 
-function getRangeNumberFilters(geoLocation: GeoLocationOptional) {
-  const rangeNumberFilters = [
+function getSelectFilters(geoLocation: GeoLocationOptional) {
+  const selectParams = [
     'BedroomsTotal',
     'BathroomsTotalInteger',
     'LotSizeAcres',
     'LivingArea',
-    'ListPrice',
-    'YearBuilt',
   ] as const
 
-  return rangeNumberFilters.reduce((total, param) => {
+  return selectParams.reduce((total, param) => {
+    const gteValue = geoLocation.filter?.[param]?.gte
+    const lteValue = geoLocation.filter?.[param]?.lte
+
     return {
       ...total,
-      [`${param}.gte`]: geoLocation.filter?.[param]?.gte?.toString(),
-      [`${param}.lte`]: geoLocation.filter?.[param]?.lte?.toString(),
+      [`${param}.gte`]: gteValue !== 'default' ? gteValue : undefined,
+      [`${param}.lte`]: lteValue !== 'default' ? lteValue : undefined,
     }
-  }, {} as Record<`${typeof rangeNumberFilters[number]}.${'gte' | 'lte'}`, string | undefined>)
+  }, {} as Record<`${typeof selectParams[number]}.${'gte' | 'lte'}`, string | undefined>)
 }
 
 function getStringFilters(geoLocation: GeoLocationOptional) {
@@ -31,40 +32,57 @@ function getStringFilters(geoLocation: GeoLocationOptional) {
   ] as const
 
   return stringFilters.reduce((total, param) => {
-    return { ...total, [param]: geoLocation?.filter?.[param] }
-  }, {} as Record<typeof stringFilters[number], string | undefined>)
+    return { ...total, [`${param}.eq`]: geoLocation?.filter?.[param] }
+  }, {} as Record<`${typeof stringFilters[number]}.eq`, string | undefined>)
 }
 
-function getBox(geoLocation: GeoLocationOptional) {
+function getMapBoundsFilter(geoLocation: GeoLocationOptional) {
   if (geoLocation?.bounds && geoLocation.bounds.length >= 3) {
-    return geoLocation.bounds.join(',')
+    return { box: geoLocation.bounds.join(',') }
   }
 
-  return undefined
+  return { box: undefined }
 }
 
 function getCheckboxesFilters(geoLocation: GeoLocationOptional) {
-  const checkboxesFiltersParams = [
+  const checkboxesParams = [
     'PropertyType',
     'PropertySubType',
     'StandardStatus',
     'City',
   ] as const
 
-  return checkboxesFiltersParams.reduce((total, param) => {
+  return checkboxesParams.reduce((total, param) => {
     const values = Object.values(geoLocation?.filter?.[param] ?? {})
     const query = values.filter(value => value !== undefined).toString()
 
     return { ...total, [`${param}.in`]: query !== '' ? query : undefined }
-  }, {} as Record<`${typeof checkboxesFiltersParams[number]}.in`, string | undefined>)
+  }, {} as Record<`${typeof checkboxesParams[number]}.in`, string | undefined>)
+}
+
+function getInputFilters(geoLocation: GeoLocationOptional) {
+  const inputParams = ['ListPrice', 'YearBuilt'] as const
+
+  return inputParams.reduce((total, param) => {
+    const gteValue = geoLocation.filter?.[param]?.gte ?? ''
+    const lteValue = geoLocation.filter?.[param]?.lte ?? ''
+
+    return {
+      ...total,
+      [`${param}.gte`]: Number.parseInt(gteValue, 10) >= 0 ? gteValue : undefined,
+      [`${param}.lte`]: Number.parseInt(lteValue, 10) >= 0 ? lteValue : undefined,
+    }
+  }, {} as Record<`${typeof inputParams[number]}.${'gte' | 'lte'}`, string | undefined>)
 }
 
 const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
   const increment = 9
 
-  const gteAndLteFilters = getRangeNumberFilters(geoLocation)
   const othersFilters = getStringFilters(geoLocation)
-  const box = getBox(geoLocation)
+
+  const selectFilters = getSelectFilters(geoLocation)
+  const inputFilters = getInputFilters(geoLocation)
+  const mapBoundsFilter = getMapBoundsFilter(geoLocation)
   const checkboxesFilters = getCheckboxesFilters(geoLocation)
 
   return getHouseListing({
@@ -73,14 +91,14 @@ const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
       limit: increment.toString(),
       offset: `${pageParam * increment}`,
       'PhotosCount.gte': '1', // There must be at least 1 photo
-      'ListPrice.gt': '1', // Price cannot be 0
       sortBy: 'BridgeModificationTimestamp',
       order: 'desc',
       'UnparsedAddress.in': geoLocation.address !== '' ? geoLocation.address : undefined,
-      box,
-      ...checkboxesFilters,
-      ...gteAndLteFilters,
+      ...selectFilters,
       ...othersFilters,
+      ...inputFilters,
+      ...mapBoundsFilter,
+      ...checkboxesFilters,
     },
     fetchOn: 'browser',
   })

@@ -12,7 +12,7 @@ const defaultParams: Params = {
     // Return only this values
     'Media.MediaURL,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
   'PhotosCount.gte': '1', // There must be at least 1 photo
-  'ListPrice.gt': '1', // Price cannot be 0
+  'ListPrice.gte': '1', // Price cannot be 0
   sortBy: 'BridgeModificationTimestamp',
   order: 'desc',
 }
