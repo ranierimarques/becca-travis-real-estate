@@ -106,6 +106,34 @@ function Selects({ param, geoLocation, setFilters }: SelectsProps) {
   )
 }
 
+type InputsProps = {
+  param: keyof typeof filters['inputs']
+  setFilters: SetFilters
+  geoLocation: GeoLocationOptional
+}
+
+function Inputs({ param, geoLocation, setFilters }: InputsProps) {
+  return (
+    <S.InputsContainer>
+      <S.Input
+        type="number"
+        min="0"
+        placeholder="Min"
+        value={geoLocation.filter?.[param]?.['gte'] ?? ''}
+        onChange={event => setFilters(param, { gte: event.target.value })}
+      />
+      <S.InputsText>to</S.InputsText>
+      <S.Input
+        type="number"
+        min="0"
+        placeholder="Max"
+        value={geoLocation.filter?.[param]?.['lte'] ?? ''}
+        onChange={event => setFilters(param, { lte: event.target.value })}
+      />
+    </S.InputsContainer>
+  )
+}
+
 const filters = {
   checkboxes: {
     PropertyType: [
@@ -225,6 +253,10 @@ const filters = {
       ],
     },
   },
+  inputs: {
+    ListPrice: {},
+    YearBuilt: {},
+  },
 } as const
 
 export function Filters() {
@@ -265,23 +297,7 @@ export function Filters() {
           </div>
           <div>
             <Title title="Price range" />
-            <S.InputsContainer>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Min"
-                value={geoLocation.filter?.ListPrice?.['gte'] ?? ''}
-                onChange={event => setFilters('ListPrice', { gte: event.target.value })}
-              />
-              <S.InputsText>to</S.InputsText>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Max"
-                value={geoLocation.filter?.ListPrice?.['lte'] ?? ''}
-                onChange={event => setFilters('ListPrice', { lte: event.target.value })}
-              />
-            </S.InputsContainer>
+            <Inputs param="ListPrice" geoLocation={geoLocation} setFilters={setFilters} />
           </div>
           <S.MultiColumnContainer>
             <div>
@@ -333,23 +349,7 @@ export function Filters() {
           </S.Disabled>
           <div>
             <Title title="Year built" />
-            <S.InputsContainer>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Min"
-                value={geoLocation.filter?.YearBuilt?.['gte'] ?? ''}
-                onChange={event => setFilters('YearBuilt', { gte: event.target.value })}
-              />
-              <S.InputsText>to</S.InputsText>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Max"
-                value={geoLocation.filter?.YearBuilt?.['lte'] ?? ''}
-                onChange={event => setFilters('YearBuilt', { lte: event.target.value })}
-              />
-            </S.InputsContainer>
+            <Inputs param="YearBuilt" geoLocation={geoLocation} setFilters={setFilters} />
           </div>
           <S.Disabled>
             <Title title="Stories" />
@@ -367,7 +367,7 @@ export function Filters() {
               <Title title="Elementary school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.ElementarySchool}
+                value={geoLocation.filter?.ElementarySchool ?? ''}
                 onChange={event => setFilters('ElementarySchool', event.target.value)}
               />
             </div>
@@ -375,7 +375,7 @@ export function Filters() {
               <Title title="Middle school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.MiddleOrJuniorSchool}
+                value={geoLocation.filter?.MiddleOrJuniorSchool ?? ''}
                 onChange={event => setFilters('MiddleOrJuniorSchool', event.target.value)}
               />
             </div>
@@ -383,7 +383,7 @@ export function Filters() {
               <Title title="High school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.HighSchool}
+                value={geoLocation.filter?.HighSchool ?? ''}
                 onChange={event => setFilters('HighSchool', event.target.value)}
               />
             </div>
