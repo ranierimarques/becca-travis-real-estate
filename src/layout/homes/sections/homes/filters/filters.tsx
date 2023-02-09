@@ -1,5 +1,9 @@
 import { Box, Button, Flex } from '@/common'
-import { useGeolocationStore } from '@/layout/homes/store/geolocation'
+import {
+  GeoLocationOptional,
+  SetFilters,
+  useGeolocationStore,
+} from '@/layout/homes/store/geolocation'
 import { Dialog } from '@/primitives'
 import { ReplaceAll } from '@/types/helpers'
 import { ComponentProps } from 'react'
@@ -38,58 +42,74 @@ function removeSpaces<T extends string>(string: T) {
   return string.replaceAll(' ', '') as ReplaceAll<T, ' ', ''>
 }
 
+type CheckboxesProps = {
+  param: keyof typeof filters['checkboxes']
+  setFilters: SetFilters
+  geoLocation: GeoLocationOptional
+}
+
+function Checkboxes({ param, geoLocation, setFilters }: CheckboxesProps) {
+  return (
+    <S.CheckboxesContainer>
+      {filters.checkboxes[param].map(item => {
+        const noSpaceItem = removeSpaces(item)
+        return (
+          <Checkbox
+            key={item}
+            label={item}
+            checked={geoLocation.filter?.[param]?.[noSpaceItem as never] === item}
+            onCheckedChange={value =>
+              setFilters(param, {
+                [noSpaceItem]: value === true ? item : undefined,
+              })
+            }
+          />
+        )
+      })}
+    </S.CheckboxesContainer>
+  )
+}
+
 const filters = {
   checkboxes: {
-    propertyType: {
-      title: 'PropertyType',
-      items: [
-        'Residential',
-        'Residential Income',
-        'Residential Lease',
-        'Business Opportunity',
-        'Commercial Lease',
-        'Land',
-      ],
-    },
-    propertySubType: {
-      title: 'PropertySubType',
-      items: [
-        'Single Family Residence',
-        'Townhouse',
-        'Manufactured Home',
-        'Farm w/Home',
-        'Condominium',
-        'Deeded RV',
-      ],
-    },
-    standardStatus: {
-      title: 'StandardStatus',
-      items: [
-        'Active',
-        'Active Under Contract',
-        'Coming Soon',
-        'Closed',
-        'Pending',
-        'Expired',
-        'Hold',
-        'Canceled',
-      ],
-    },
-    city: {
-      title: 'City',
-      items: [
-        'Addison',
-        'Albertville',
-        'Alexandria',
-        'Altoona',
-        'Anderson',
-        'Anniston',
-        'Arab',
-        'Ardmore',
-        'Arley',
-        'Ashville',
-      ],
-    },
+    PropertyType: [
+      'Residential',
+      'Residential Income',
+      'Residential Lease',
+      'Business Opportunity',
+      'Commercial Lease',
+      'Land',
+    ],
+    PropertySubType: [
+      'Single Family Residence',
+      'Townhouse',
+      'Manufactured Home',
+      'Farm w/Home',
+      'Condominium',
+      'Deeded RV',
+    ],
+    StandardStatus: [
+      'Active',
+      'Active Under Contract',
+      'Coming Soon',
+      'Closed',
+      'Pending',
+      'Expired',
+      'Hold',
+      'Canceled',
+    ],
+    City: [
+      'Addison',
+      'Albertville',
+      'Alexandria',
+      'Altoona',
+      'Anderson',
+      'Anniston',
+      'Arab',
+      'Ardmore',
+      'Arley',
+      'Ashville',
+    ],
   },
 } as const
 
@@ -115,45 +135,19 @@ export function Filters() {
         <S.Container>
           <div>
             <Title title="Property type" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.propertyType.items.map(item => {
-                const section = filters.checkboxes.propertyType.title
-                const noSpaceItem = removeSpaces(item)
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[noSpaceItem] === item}
-                    onCheckedChange={value =>
-                      setFilters(section, {
-                        [noSpaceItem]: value === true ? item : undefined,
-                      })
-                    }
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes
+              param="PropertyType"
+              geoLocation={geoLocation}
+              setFilters={setFilters}
+            />
           </div>
           <div>
             <Title title="Property sub-type" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.propertySubType.items.map(item => {
-                const section = filters.checkboxes.propertySubType.title
-                const noSpaceItem = removeSpaces(item)
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[noSpaceItem] === item}
-                    onCheckedChange={value =>
-                      setFilters(section, {
-                        [noSpaceItem]: value === true ? item : undefined,
-                      })
-                    }
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes
+              param="PropertySubType"
+              geoLocation={geoLocation}
+              setFilters={setFilters}
+            />
           </div>
           <div>
             <Title title="Price range" />
@@ -325,31 +319,18 @@ export function Filters() {
           </S.MultiColumnContainer>
           <div>
             <Title title="Listing status" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.standardStatus.items.map(item => {
-                const section = filters.checkboxes.standardStatus.title
-                const noSpaceItem = removeSpaces(item)
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
-                    onCheckedChange={value =>
-                      setFilters(section, {
-                        [noSpaceItem]: value === true ? item : undefined,
-                      })
-                    }
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes
+              param="StandardStatus"
+              geoLocation={geoLocation}
+              setFilters={setFilters}
+            />
           </div>
-          <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+          <S.Disabled>
             <Title title="Open houses" />
             <S.CheckboxesContainer>
               <Checkbox disabled label="Search Open Houses" />
             </S.CheckboxesContainer>
-          </Box>
+          </S.Disabled>
           <div>
             <Title title="Year built" />
             <S.InputsContainer>
@@ -370,7 +351,7 @@ export function Filters() {
               />
             </S.InputsContainer>
           </div>
-          <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+          <S.Disabled>
             <Title title="Stories" />
             <S.CheckboxesContainer>
               <Checkbox label="Multi/split" />
@@ -380,7 +361,7 @@ export function Filters() {
               <Checkbox label="Tri-Level" />
               <Checkbox label="Three Or More" />
             </S.CheckboxesContainer>
-          </Box>
+          </S.Disabled>
           <S.MultiColumnContainer>
             <div>
               <Title title="Elementary school" />
@@ -409,24 +390,7 @@ export function Filters() {
           </S.MultiColumnContainer>
           <div>
             <Title title="City" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.city.items.map(item => {
-                const section = filters.checkboxes.city.title
-                const noSpaceItem = removeSpaces(item)
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
-                    onCheckedChange={value =>
-                      setFilters(section, {
-                        [noSpaceItem]: value === true ? item : undefined,
-                      })
-                    }
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes param="City" geoLocation={geoLocation} setFilters={setFilters} />
           </div>
           <S.MultiColumnContainer>
             <div>
@@ -437,7 +401,7 @@ export function Filters() {
                 onChange={event => setFilters('PostalCode', event.target.value)}
               />
             </div>
-            <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+            <S.Disabled>
               <Title title="Foreclosures" />
               <Select.Root placeholder="No preference">
                 <Select.Item value="default">No preference</Select.Item>
@@ -446,15 +410,15 @@ export function Filters() {
                   Exclude foreclosures
                 </Select.Item>
               </Select.Root>
-            </Box>
-            <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+            </S.Disabled>
+            <S.Disabled>
               <Title title="Short Sales" />
               <Select.Root placeholder="No preference">
                 <Select.Item value="default">No preference</Select.Item>
                 <Select.Item value="Search-short-sales">Search short sales</Select.Item>
                 <Select.Item value="Exclude-short-sales">Exclude short sales</Select.Item>
               </Select.Root>
-            </Box>
+            </S.Disabled>
           </S.MultiColumnContainer>
         </S.Container>
 

@@ -193,3 +193,9 @@ export const MultiColumnContainer = styled('div', {
   gridTemplateColumns: '1fr 1fr',
   gap: '24px 30px',
 })
+
+export const Disabled = styled('div', {
+  opacity: 0.33,
+  pointerEvents: 'none',
+  userSelect: 'none',
+})

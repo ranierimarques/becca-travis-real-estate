@@ -52,33 +52,33 @@ export interface GeoLocation {
   bounds: number[]
   box: string
   filter: {
+    // BEDROOMS
     BedroomsTotal: {
-      // BEDROOMS
       gte: string
       lte: string
     }
+    // BATHROOMS
     BathroomsTotalInteger: {
-      // BATHROOMS
       gte: string
       lte: string
     }
+    // LOT SIZE
     LotSizeAcres: {
-      // LOT SIZE
       gte: string
       lte: string
     }
+    // PROPERTY SIZE
     LivingArea: {
-      // PROPERTY SIZE
       gte: string
       lte: string
     }
+    // PRICE RANGE
     ListPrice: {
-      // PRICE RANGE
       gte: string
       lte: string
     }
+    // YEAR BUILT
     YearBuilt: {
-      // YEAR BUILT
       gte: string
       lte: string
     }
@@ -95,14 +95,15 @@ export interface GeoLocation {
 
 export type GeoLocationOptional = DeepPartial<GeoLocation>
 export type SetFiltersSection = Properties<GeoLocation['filter'], object | string>
+export type SetFilters = <T extends keyof GeoLocation['filter']>(
+  section: T,
+  newFilter: DeepPartial<GeoLocation['filter'][T]>
+) => void
 
 export interface GeoLocationState {
   geoLocation: GeoLocationOptional
   setGeoLocation: (geoLocation: GeoLocationOptional) => void
-  setFilters: <T extends keyof GeoLocation['filter']>(
-    section: T,
-    newFilter: DeepPartial<GeoLocation['filter'][T]>
-  ) => void
+  setFilters: SetFilters
   resetFilters: () => void
 }
 
