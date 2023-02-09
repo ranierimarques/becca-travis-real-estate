@@ -34,16 +34,8 @@ function getInputFilters(geoLocation: GeoLocationOptional) {
   ] as const
 
   return inputParams.reduce((total, param) => {
-    return { ...total, [`${param}.eq`]: geoLocation?.filter?.[param] }
+    return { ...total, [`${param}.eq`]: geoLocation.filter?.[param] }
   }, {} as Record<`${typeof inputParams[number]}.eq`, string | undefined>)
-}
-
-function getMapBoundsFilter(geoLocation: GeoLocationOptional) {
-  if (geoLocation?.bounds && geoLocation.bounds.length >= 3) {
-    return { box: geoLocation.bounds.join(',') }
-  }
-
-  return { box: undefined }
 }
 
 function getCheckboxesFilters(geoLocation: GeoLocationOptional) {
@@ -55,11 +47,25 @@ function getCheckboxesFilters(geoLocation: GeoLocationOptional) {
   ] as const
 
   return checkboxesParams.reduce((total, param) => {
-    const values = Object.values(geoLocation?.filter?.[param] ?? {})
+    const values = Object.values(geoLocation.filter?.[param] ?? {})
     const query = values.filter(value => value !== undefined).toString()
 
     return { ...total, [`${param}.in`]: query !== '' ? query : undefined }
   }, {} as Record<`${typeof checkboxesParams[number]}.in`, string | undefined>)
+}
+
+function getMapBoundsFilter(geoLocation: GeoLocationOptional) {
+  if (geoLocation.bounds && geoLocation.bounds.length >= 3) {
+    return { box: geoLocation.bounds.join(',') }
+  }
+
+  return { box: undefined }
+}
+
+function getAddressFilter(geoLocation: GeoLocationOptional) {
+  return {
+    'UnparsedAddress.in': geoLocation.address !== '' ? geoLocation.address : undefined,
+  }
 }
 
 const INCREMENT = 9
@@ -67,8 +73,9 @@ const INCREMENT = 9
 const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
   const selectAndInputRangeFilters = getSelectAndInputRangeFilters(geoLocation)
   const inputFilters = getInputFilters(geoLocation)
-  const mapBoundsFilter = getMapBoundsFilter(geoLocation)
   const checkboxesFilters = getCheckboxesFilters(geoLocation)
+  const mapBoundsFilter = getMapBoundsFilter(geoLocation)
+  const addressFilter = getAddressFilter(geoLocation)
 
   return getHouseListing({
     type: 'card-full-info',
@@ -78,11 +85,11 @@ const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
       'PhotosCount.gte': '1', // There must be at least 1 photo
       sortBy: 'BridgeModificationTimestamp',
       order: 'desc',
-      'UnparsedAddress.in': geoLocation.address !== '' ? geoLocation.address : undefined,
       ...selectAndInputRangeFilters,
       ...inputFilters,
-      ...mapBoundsFilter,
       ...checkboxesFilters,
+      ...mapBoundsFilter,
+      ...addressFilter,
     },
     fetchOn: 'browser',
   })
