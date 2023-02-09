@@ -70,6 +70,42 @@ function Checkboxes({ param, geoLocation, setFilters }: CheckboxesProps) {
   )
 }
 
+type SelectsProps = {
+  param: keyof typeof filters['selects']
+  setFilters: SetFilters
+  geoLocation: GeoLocationOptional
+}
+
+function Selects({ param, geoLocation, setFilters }: SelectsProps) {
+  return (
+    <S.InputsContainer>
+      <Select.Root
+        placeholder="Min"
+        value={geoLocation.filter?.[param]?.['gte']}
+        onValueChange={value => setFilters(param, { ['gte']: value })}
+      >
+        {filters.selects[param]['gte'].map(item => (
+          <Select.Item key={item.value} value={item.value}>
+            {item.text}
+          </Select.Item>
+        ))}
+      </Select.Root>
+      <S.InputsText small>to</S.InputsText>
+      <Select.Root
+        placeholder="Max"
+        value={geoLocation.filter?.[param]?.['lte']}
+        onValueChange={value => setFilters(param, { ['lte']: value })}
+      >
+        {filters.selects[param]['lte'].map(item => (
+          <Select.Item key={item.value} value={item.value}>
+            {item.text}
+          </Select.Item>
+        ))}
+      </Select.Root>
+    </S.InputsContainer>
+  )
+}
+
 const filters = {
   checkboxes: {
     PropertyType: [
@@ -110,6 +146,84 @@ const filters = {
       'Arley',
       'Ashville',
     ],
+  },
+  selects: {
+    BedroomsTotal: {
+      gte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
+      ],
+      lte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
+      ],
+    },
+    BathroomsTotalInteger: {
+      gte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
+      ],
+      lte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
+      ],
+    },
+    LivingArea: {
+      gte: [
+        { value: 'default', text: 'No min' },
+        ...Array.from(Array(20), (_, i) => ({
+          value: `${(i + 1) * 500}`,
+          text: `${((i + 1) * 500).toLocaleString('en-US')} ft²`,
+        })),
+      ],
+      lte: [
+        { value: 'default', text: 'No max' },
+        ...Array.from(Array(20), (_, i) => ({
+          value: `${(i + 1) * 500}`,
+          text: `${((i + 1) * 500).toLocaleString('en-US')} ft²`,
+        })),
+      ],
+    },
+    LotSizeAcres: {
+      gte: [
+        { value: 'default', text: 'No min' },
+        { value: '0.25', text: '1/4 acre' },
+        { value: '0.5', text: '1/2 acre' },
+        { value: '1', text: '1 acre' },
+        { value: '1.5', text: '1 1/2 acre' },
+        { value: '2', text: '2 acre' },
+        { value: '2.5', text: '2 1/2 acre' },
+        { value: '3', text: '3 acre' },
+        { value: '5', text: '5 acre' },
+        { value: '10', text: '10 acre' },
+        { value: '15', text: '15 acre' },
+        { value: '20', text: '20 acre' },
+        { value: '25', text: '25 acre' },
+        { value: '30', text: '30 acre' },
+        { value: '40', text: '40 acre' },
+        { value: '50', text: '50 acre' },
+        { value: '100', text: '100 acre' },
+      ],
+      lte: [
+        { value: 'default', text: 'No min' },
+        { value: '0.25', text: '1/4 acre' },
+        { value: '0.5', text: '1/2 acre' },
+        { value: '1', text: '1 acre' },
+        { value: '1.5', text: '1 1/2 acre' },
+        { value: '2', text: '2 acre' },
+        { value: '2.5', text: '2 1/2 acre' },
+        { value: '3', text: '3 acre' },
+        { value: '5', text: '5 acre' },
+        { value: '10', text: '10 acre' },
+        { value: '15', text: '15 acre' },
+        { value: '20', text: '20 acre' },
+        { value: '25', text: '25 acre' },
+        { value: '30', text: '30 acre' },
+        { value: '40', text: '40 acre' },
+        { value: '50', text: '50 acre' },
+        { value: '100', text: '100 acre' },
+      ],
+    },
   },
 } as const
 
@@ -172,149 +286,35 @@ export function Filters() {
           <S.MultiColumnContainer>
             <div>
               <Title title="Bedrooms" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.BedroomsTotal?.['gte']}
-                  onValueChange={value => setFilters('BedroomsTotal', { gte: value })}
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.BedroomsTotal?.['lte']}
-                  onValueChange={value => setFilters('BedroomsTotal', { lte: value })}
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects
+                param="BedroomsTotal"
+                geoLocation={geoLocation}
+                setFilters={setFilters}
+              />
             </div>
             <div>
               <Title title="Bathrooms" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.BathroomsTotalInteger?.['gte']}
-                  onValueChange={value =>
-                    setFilters('BathroomsTotalInteger', { gte: value })
-                  }
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.BathroomsTotalInteger?.['lte']}
-                  onValueChange={value =>
-                    setFilters('BathroomsTotalInteger', { lte: value })
-                  }
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects
+                param="BathroomsTotalInteger"
+                geoLocation={geoLocation}
+                setFilters={setFilters}
+              />
             </div>
             <div>
               <Title title="Property size" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.LivingArea?.['gte']}
-                  onValueChange={value => setFilters('LivingArea', { gte: value })}
-                >
-                  <Select.Item value="default">No min</Select.Item>
-                  {Array.from({ length: 20 }).map((_, index) => (
-                    <Select.Item key={index} value={`${(index + 1) * 500}`}>
-                      {((index + 1) * 500).toLocaleString('en-US')} ft²
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.LivingArea?.['lte']}
-                  onValueChange={value => setFilters('LivingArea', { lte: value })}
-                >
-                  <Select.Item value="default">No max</Select.Item>
-                  {Array.from({ length: 20 }).map((_, index) => (
-                    <Select.Item key={index} value={`${(index + 1) * 500}`}>
-                      {((index + 1) * 500).toLocaleString('en-US')} ft²
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects
+                param="LivingArea"
+                geoLocation={geoLocation}
+                setFilters={setFilters}
+              />
             </div>
             <div>
               <Title title="Lot size" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.LotSizeAcres?.['gte']}
-                  onValueChange={value => setFilters('LotSizeAcres', { gte: value })}
-                >
-                  <Select.Item value="default">No min</Select.Item>
-                  <Select.Item value="0.25">1/4 acre</Select.Item>
-                  <Select.Item value="0.50">1/2 acre</Select.Item>
-                  <Select.Item value="1">1 acre</Select.Item>
-                  <Select.Item value="1.5">1 1/2 acre</Select.Item>
-                  <Select.Item value="2">2 acres</Select.Item>
-                  <Select.Item value="2.5">2 1/2 acres</Select.Item>
-                  <Select.Item value="3">3 acres</Select.Item>
-                  <Select.Item value="5">5 acres</Select.Item>
-                  <Select.Item value="10">10 acres</Select.Item>
-                  <Select.Item value="15">15 acres</Select.Item>
-                  <Select.Item value="20">20 acres</Select.Item>
-                  <Select.Item value="25">25 acres</Select.Item>
-                  <Select.Item value="30">30 acres</Select.Item>
-                  <Select.Item value="40">40 acres</Select.Item>
-                  <Select.Item value="50">50 acres</Select.Item>
-                  <Select.Item value="100">100 acres</Select.Item>
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.LotSizeAcres?.['lte']}
-                  onValueChange={value => setFilters('LotSizeAcres', { lte: value })}
-                >
-                  <Select.Item value="default">No min</Select.Item>
-                  <Select.Item value="0.25">1/4 acre</Select.Item>
-                  <Select.Item value="0.50">1/2 acre</Select.Item>
-                  <Select.Item value="1">1 acre</Select.Item>
-                  <Select.Item value="1.5">1 1/2 acre</Select.Item>
-                  <Select.Item value="2">2 acres</Select.Item>
-                  <Select.Item value="2.5">2 1/2 acres</Select.Item>
-                  <Select.Item value="3">3 acres</Select.Item>
-                  <Select.Item value="5">5 acres</Select.Item>
-                  <Select.Item value="10">10 acres</Select.Item>
-                  <Select.Item value="15">15 acres</Select.Item>
-                  <Select.Item value="20">20 acres</Select.Item>
-                  <Select.Item value="25">25 acres</Select.Item>
-                  <Select.Item value="30">30 acres</Select.Item>
-                  <Select.Item value="40">40 acres</Select.Item>
-                  <Select.Item value="50">50 acres</Select.Item>
-                  <Select.Item value="100">100 acres</Select.Item>
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects
+                param="LotSizeAcres"
+                geoLocation={geoLocation}
+                setFilters={setFilters}
+              />
             </div>
           </S.MultiColumnContainer>
           <div>
