@@ -14,13 +14,17 @@ export function HouseCard({ listing, variant, badge, ...props }: HouseCardProps)
     <li {...props}>
       <S.Link href={`/homes/${listing.id}`} draggable="false" variant={variant}>
         <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
-          <Image
-            src={listing.media}
-            alt="House"
-            css={{ objectFit: 'cover', pointerEvents: 'none' }}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+          {listing.media ? (
+            <Image
+              src={listing.media}
+              alt="House"
+              css={{ objectFit: 'cover', pointerEvents: 'none' }}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <Svg.NoHouse />
+          )}
           {badge && <S.Badge>{badge}</S.Badge>}
           <S.FavoriteButton
             disabled

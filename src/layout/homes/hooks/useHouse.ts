@@ -82,7 +82,6 @@ const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
     params: {
       limit: INCREMENT.toString(),
       offset: `${pageParam * INCREMENT}`,
-      'PhotosCount.gte': '1', // There must be at least 1 photo
       sortBy: 'BridgeModificationTimestamp',
       order: 'desc',
       ...selectAndInputRangeFilters,

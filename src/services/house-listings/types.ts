@@ -8,7 +8,7 @@ export type HouseCard = {
         LivingArea: number
         BedroomsTotal: number
         BridgeModificationTimestamp: string
-        Media: {
+        Media?: {
           MediaURL: string
         }[]
         ListingId: string
@@ -28,7 +28,7 @@ export type HouseCard = {
 
 export type FormattedHouseCard = {
   id: string
-  media: string
+  media: string | undefined
   price: string
   address: string
   bedroomsTotal: number
@@ -67,7 +67,7 @@ export type House = {
       | 'Provisional'
       | 'Sold'
       | 'Temporarily Off Market'
-    Media: {
+    Media?: {
       MediaURL: string
     }[]
     ListingId: string
@@ -119,7 +119,7 @@ export type FormattedHouse = {
       | 'Temporarily Off Market'
     lastUpdated: string
     lastUpdatedTitle: string
-    media: string[]
+    media: string[] | null
     bathroomsTotal: number
     bedroomsTotal: number
     lotSizeSquareFeet: string
@@ -159,7 +159,6 @@ export type Params = {
   'StandardStatus.in'?: string
   'City.in'?: string
   'UnparsedAddress.in'?: string
-  'PhotosCount.gte'?: string
   'ListingId.ne'?: string
   'BedroomsTotal.gte'?: string
   'BedroomsTotal.lte'?: string
