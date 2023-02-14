@@ -12,7 +12,7 @@ export function Hero() {
         home today
       </S.Title>
 
-      <SearchInput />
+      <SearchInput navigate />
 
       <S.HelperText>
         If you have any questions about the properties <br />

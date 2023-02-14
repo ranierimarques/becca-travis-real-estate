@@ -1,7 +1,9 @@
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useDebounceTwo from '@/resources/hooks/useDebounceTwo'
 import { useCombobox } from 'downshift'
-import { ChangeEvent, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { ChangeEvent, FormEvent, useRef, useState } from 'react'
+import shallow from 'zustand/shallow'
 import * as S from './search-input.styles'
 import { Gps, Loupe } from './svgs'
 import {
@@ -11,12 +13,18 @@ import {
   removeWhiteSpaces,
 } from './utils'
 
-type SearchProps = React.ComponentProps<typeof S.Container>
+type SearchProps = React.ComponentProps<typeof S.Form> & {
+  navigate?: boolean
+}
 
-export function SearchInput({ ...props }: SearchProps) {
+export function SearchInput({ navigate, ...props }: SearchProps) {
+  const router = useRouter()
   const skip = useRef(true)
-  const setFilters = useFiltersStore(state => state.setFilters)
-  const [searchValue, setSearchValue] = useState('')
+  const [filters, setFilters] = useFiltersStore(
+    state => [state.filters, state.setFilters],
+    shallow
+  )
+  const [searchValue, setSearchValue] = useState(filters.address)
   const [lastFetchValue, setLastFetchValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
   const debounce = useDebounceTwo(500, skip)
@@ -42,11 +50,12 @@ export function SearchInput({ ...props }: SearchProps) {
 
         setSearchValue(address)
         setFilters('address', address)
-        return
+      } else {
+        setSearchValue(selectedItem)
+        setFilters('address', selectedItem)
       }
 
-      setSearchValue(selectedItem)
-      setFilters('address', selectedItem)
+      handleNavigate()
     },
   })
 
@@ -56,7 +65,7 @@ export function SearchInput({ ...props }: SearchProps) {
     setLastFetchValue('')
   }
 
-  function onChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleInputTyping(event: ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value
     setSearchValue(newValue)
 
@@ -84,16 +93,30 @@ export function SearchInput({ ...props }: SearchProps) {
     })
   }
 
+  function handleNavigate() {
+    if (navigate) {
+      router.push('/homes?view=map', undefined, { shallow: true })
+    }
+  }
+
+  function handleSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (searchValue !== '') {
+      setFilters('address', searchValue)
+      handleNavigate()
+    }
+  }
+
   const hasSuggestions = suggestions.length > 0
   const hasLocationSuggestion = suggestions[0] === LOCATION_VALUE
 
   return (
-    <S.Container {...props}>
+    <S.Form onSubmit={handleSearch} {...props}>
       <S.InputWrapper {...getComboboxProps({ onFocus: openMenu, onBlur: closeMenu })}>
         <S.Input
           type="text"
           placeholder="Search by address, neighborhood, city or ZIP code"
-          {...getInputProps({ onChange })}
+          {...getInputProps({ onChange: handleInputTyping })}
         />
         <S.SearchButton aria-label="Search">
           <Loupe />
@@ -131,6 +154,6 @@ export function SearchInput({ ...props }: SearchProps) {
           </>
         )}
       </S.Suggestions>
-    </S.Container>
+    </S.Form>
   )
 }
