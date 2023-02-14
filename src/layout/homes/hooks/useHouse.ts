@@ -1,9 +1,9 @@
 import { getHouseListing } from '@/services/house-listings'
 import { FormattedHouseCard } from '@/services/house-listings/types'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useGeolocationStore, type GeoLocationOptional } from '../store/geolocation'
+import { Filters, useFiltersStore } from '../store/filters'
 
-function getSelectAndInputRangeFilters(geoLocation: GeoLocationOptional) {
+function getSelectAndInputRangeFilters(filters: Filters) {
   const selectAndInputRangeParams = [
     'BedroomsTotal',
     'BathroomsTotalInteger',
@@ -14,8 +14,8 @@ function getSelectAndInputRangeFilters(geoLocation: GeoLocationOptional) {
   ] as const
 
   return selectAndInputRangeParams.reduce((total, param) => {
-    const gteValue = geoLocation.filter?.[param]?.gte ?? ''
-    const lteValue = geoLocation.filter?.[param]?.lte ?? ''
+    const gteValue = filters[param].gte ?? ''
+    const lteValue = filters[param].lte ?? ''
 
     return {
       ...total,
@@ -25,7 +25,7 @@ function getSelectAndInputRangeFilters(geoLocation: GeoLocationOptional) {
   }, {} as Record<`${typeof selectAndInputRangeParams[number]}.${'gte' | 'lte'}`, string | undefined>)
 }
 
-function getInputFilters(geoLocation: GeoLocationOptional) {
+function getInputFilters(filters: Filters) {
   const inputParams = [
     'ElementarySchool',
     'MiddleOrJuniorSchool',
@@ -34,11 +34,14 @@ function getInputFilters(geoLocation: GeoLocationOptional) {
   ] as const
 
   return inputParams.reduce((total, param) => {
-    return { ...total, [`${param}.eq`]: geoLocation.filter?.[param] }
+    return {
+      ...total,
+      [`${param}.eq`]: filters[param] !== '' ? filters[param] : undefined,
+    }
   }, {} as Record<`${typeof inputParams[number]}.eq`, string | undefined>)
 }
 
-function getCheckboxesFilters(geoLocation: GeoLocationOptional) {
+function getCheckboxesFilters(filters: Filters) {
   const checkboxesParams = [
     'PropertyType',
     'PropertySubType',
@@ -47,35 +50,29 @@ function getCheckboxesFilters(geoLocation: GeoLocationOptional) {
   ] as const
 
   return checkboxesParams.reduce((total, param) => {
-    const values = Object.values(geoLocation.filter?.[param] ?? {})
+    const values = Object.values(filters[param] ?? {})
     const query = values.filter(value => value !== undefined).toString()
 
     return { ...total, [`${param}.in`]: query !== '' ? query : undefined }
   }, {} as Record<`${typeof checkboxesParams[number]}.in`, string | undefined>)
 }
 
-function getMapBoundsFilter(geoLocation: GeoLocationOptional) {
-  if (geoLocation.bounds && geoLocation.bounds.length >= 3) {
-    return { box: geoLocation.bounds.join(',') }
-  }
-
-  return { box: undefined }
+function getMapBoundsFilter(filters: Filters) {
+  return { box: filters.bounds.length >= 3 ? filters.bounds.join(',') : undefined }
 }
 
-function getAddressFilter(geoLocation: GeoLocationOptional) {
-  return {
-    'UnparsedAddress.in': geoLocation.address !== '' ? geoLocation.address : undefined,
-  }
+function getAddressFilter(filters: Filters) {
+  return { 'UnparsedAddress.in': filters.address !== '' ? filters.address : undefined }
 }
 
 const INCREMENT = 9
 
-const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
-  const selectAndInputRangeFilters = getSelectAndInputRangeFilters(geoLocation)
-  const inputFilters = getInputFilters(geoLocation)
-  const checkboxesFilters = getCheckboxesFilters(geoLocation)
-  const mapBoundsFilter = getMapBoundsFilter(geoLocation)
-  const addressFilter = getAddressFilter(geoLocation)
+const fetcher = async (pageParam: number, filters: Filters) => {
+  const selectAndInputRangeFilters = getSelectAndInputRangeFilters(filters)
+  const inputFilters = getInputFilters(filters)
+  const checkboxesFilters = getCheckboxesFilters(filters)
+  const mapBoundsFilter = getMapBoundsFilter(filters)
+  const addressFilter = getAddressFilter(filters)
 
   return getHouseListing({
     type: 'card-full-info',
@@ -95,10 +92,10 @@ const fetcher = async (pageParam: number, geoLocation: GeoLocationOptional) => {
 }
 
 export function useHouse() {
-  const geoLocation = useGeolocationStore(state => state.geoLocation)
+  const filters = useFiltersStore(state => state.filters)
   const { data, ...rest } = useInfiniteQuery({
-    queryKey: ['search/houses', geoLocation],
-    queryFn: ({ pageParam = 0 }) => fetcher(pageParam, geoLocation),
+    queryKey: ['search/houses', filters],
+    queryFn: ({ pageParam = 0 }) => fetcher(pageParam, filters),
     getNextPageParam: (_, allPages) => {
       if (allPages[0].total - allPages.length * INCREMENT <= 0) return undefined
       return allPages.length
@@ -107,15 +104,18 @@ export function useHouse() {
     staleTime: 1000 * 60, // 1 minute
   })
 
-  return {
-    house: {
-      timestamp: data?.pages.at(-1)?.timestamp,
-      listings: data?.pages.reduce((total, current) => {
-        return [...total, ...current.listings]
-      }, [] as FormattedHouseCard[]),
-      total: data?.pages.at(-1)?.total,
-    },
-    isLoadingAll: rest.isInitialLoading || rest.isFetchingNextPage || rest.isRefetching,
-    ...rest,
+  const listings = data?.pages.reduce((total, current) => {
+    return [...total, ...current.listings]
+  }, [] as FormattedHouseCard[])
+
+  const house = {
+    timestamp: data?.pages.at(-1)?.timestamp,
+    listings,
+    total: data?.pages.at(-1)?.total,
   }
+
+  const isLoadingAll =
+    rest.isInitialLoading || rest.isFetchingNextPage || rest.isRefetching
+
+  return { house, isLoadingAll, ...rest }
 }

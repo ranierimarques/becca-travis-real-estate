@@ -1,5 +1,5 @@
 import { useHouse } from '@/layout/homes/hooks/useHouse'
-import { useGeolocationStore } from '@/layout/homes/store/geolocation'
+import { useFiltersStore } from '@/layout/homes/store/filters'
 import { HouseCard } from '@/shared'
 import { useAtomValue } from 'jotai'
 import { useEffect, useRef } from 'react'
@@ -23,7 +23,7 @@ function NoResults() {
 }
 
 export function Houses() {
-  const geoLocation = useGeolocationStore(state => state.geoLocation)
+  const filters = useFiltersStore(state => state.filters)
   const { house, fetchNextPage, isFetchingNextPage, isInitialLoading } = useHouse()
   const loaderRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -55,7 +55,7 @@ export function Houses() {
 
   useEffect(() => {
     scrollRef.current?.scroll({ top: 0 })
-  }, [geoLocation])
+  }, [filters])
 
   return (
     <S.ScrollableDiv ref={scrollRef}>

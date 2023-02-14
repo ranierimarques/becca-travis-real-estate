@@ -1,9 +1,9 @@
 import { Box, Button, Flex } from '@/common'
 import {
-  GeoLocationOptional,
+  Filters as FiltersType,
   SetFilters,
-  useGeolocationStore,
-} from '@/layout/homes/store/geolocation'
+  useFiltersStore,
+} from '@/layout/homes/store/filters'
 import { Dialog } from '@/primitives'
 import { ReplaceAll } from '@/types/helpers'
 import { ComponentProps } from 'react'
@@ -42,99 +42,7 @@ function removeSpaces<T extends string>(string: T) {
   return string.replaceAll(' ', '') as ReplaceAll<T, ' ', ''>
 }
 
-type CheckboxesProps = {
-  param: keyof typeof filters['checkboxes']
-  setFilters: SetFilters
-  geoLocation: GeoLocationOptional
-}
-
-function Checkboxes({ param, geoLocation, setFilters }: CheckboxesProps) {
-  return (
-    <S.CheckboxesContainer>
-      {filters.checkboxes[param].map(item => {
-        const noSpaceItem = removeSpaces(item)
-        return (
-          <Checkbox
-            key={item}
-            label={item}
-            checked={geoLocation.filter?.[param]?.[noSpaceItem as never] === item}
-            onCheckedChange={value =>
-              setFilters(param, {
-                [noSpaceItem]: value === true ? item : undefined,
-              })
-            }
-          />
-        )
-      })}
-    </S.CheckboxesContainer>
-  )
-}
-
-type SelectsProps = {
-  param: keyof typeof filters['selects']
-  setFilters: SetFilters
-  geoLocation: GeoLocationOptional
-}
-
-function Selects({ param, geoLocation, setFilters }: SelectsProps) {
-  return (
-    <S.InputsContainer>
-      <Select.Root
-        placeholder="Min"
-        value={geoLocation.filter?.[param]?.['gte']}
-        onValueChange={value => setFilters(param, { ['gte']: value })}
-      >
-        {filters.selects[param]['gte'].map(item => (
-          <Select.Item key={item.value} value={item.value}>
-            {item.text}
-          </Select.Item>
-        ))}
-      </Select.Root>
-      <S.InputsText small>to</S.InputsText>
-      <Select.Root
-        placeholder="Max"
-        value={geoLocation.filter?.[param]?.['lte']}
-        onValueChange={value => setFilters(param, { ['lte']: value })}
-      >
-        {filters.selects[param]['lte'].map(item => (
-          <Select.Item key={item.value} value={item.value}>
-            {item.text}
-          </Select.Item>
-        ))}
-      </Select.Root>
-    </S.InputsContainer>
-  )
-}
-
-type InputsProps = {
-  param: keyof typeof filters['inputs']
-  setFilters: SetFilters
-  geoLocation: GeoLocationOptional
-}
-
-function Inputs({ param, geoLocation, setFilters }: InputsProps) {
-  return (
-    <S.InputsContainer>
-      <S.Input
-        type="number"
-        min="0"
-        placeholder="Min"
-        value={geoLocation.filter?.[param]?.['gte'] ?? ''}
-        onChange={event => setFilters(param, { gte: event.target.value })}
-      />
-      <S.InputsText>to</S.InputsText>
-      <S.Input
-        type="number"
-        min="0"
-        placeholder="Max"
-        value={geoLocation.filter?.[param]?.['lte'] ?? ''}
-        onChange={event => setFilters(param, { lte: event.target.value })}
-      />
-    </S.InputsContainer>
-  )
-}
-
-const filters = {
+const filtersOptions = {
   checkboxes: {
     PropertyType: [
       'Residential',
@@ -259,9 +167,101 @@ const filters = {
   },
 } as const
 
+type CheckboxesProps = {
+  param: keyof typeof filtersOptions['checkboxes']
+  setFilters: SetFilters
+  filters: FiltersType
+}
+
+function Checkboxes({ param, filters, setFilters }: CheckboxesProps) {
+  return (
+    <S.CheckboxesContainer>
+      {filtersOptions.checkboxes[param].map(item => {
+        const noSpaceItem = removeSpaces(item)
+        return (
+          <Checkbox
+            key={item}
+            label={item}
+            checked={filters[param]?.[noSpaceItem as never] === item}
+            onCheckedChange={value =>
+              setFilters(param, {
+                [noSpaceItem]: value === true ? item : undefined,
+              })
+            }
+          />
+        )
+      })}
+    </S.CheckboxesContainer>
+  )
+}
+
+type SelectsProps = {
+  param: keyof typeof filtersOptions['selects']
+  setFilters: SetFilters
+  filters: FiltersType
+}
+
+function Selects({ param, filters, setFilters }: SelectsProps) {
+  return (
+    <S.InputsContainer>
+      <Select.Root
+        placeholder="Min"
+        value={filters[param]['gte']}
+        onValueChange={value => setFilters(param, { ['gte']: value })}
+      >
+        {filtersOptions.selects[param]['gte'].map(item => (
+          <Select.Item key={item.value} value={item.value}>
+            {item.text}
+          </Select.Item>
+        ))}
+      </Select.Root>
+      <S.InputsText small>to</S.InputsText>
+      <Select.Root
+        placeholder="Max"
+        value={filters[param]['lte']}
+        onValueChange={value => setFilters(param, { ['lte']: value })}
+      >
+        {filtersOptions.selects[param]['lte'].map(item => (
+          <Select.Item key={item.value} value={item.value}>
+            {item.text}
+          </Select.Item>
+        ))}
+      </Select.Root>
+    </S.InputsContainer>
+  )
+}
+
+type InputsProps = {
+  param: keyof typeof filtersOptions['inputs']
+  setFilters: SetFilters
+  filters: FiltersType
+}
+
+function Inputs({ param, filters, setFilters }: InputsProps) {
+  return (
+    <S.InputsContainer>
+      <S.Input
+        type="number"
+        min="0"
+        placeholder="Min"
+        value={filters[param]['gte']}
+        onChange={event => setFilters(param, { gte: event.target.value })}
+      />
+      <S.InputsText>to</S.InputsText>
+      <S.Input
+        type="number"
+        min="0"
+        placeholder="Max"
+        value={filters[param]['lte']}
+        onChange={event => setFilters(param, { lte: event.target.value })}
+      />
+    </S.InputsContainer>
+  )
+}
+
 export function Filters() {
-  const [geoLocation, setFilters, resetFilters] = useGeolocationStore(
-    state => [state.geoLocation, state.setFilters, state.resetFilters],
+  const [filters, setFilters, resetFilters] = useFiltersStore(
+    state => [state.filters, state.setFilters, state.resetFilters],
     shallow
   )
 
@@ -281,63 +281,47 @@ export function Filters() {
         <S.Container>
           <div>
             <Title title="Property type" />
-            <Checkboxes
-              param="PropertyType"
-              geoLocation={geoLocation}
-              setFilters={setFilters}
-            />
+            <Checkboxes param="PropertyType" filters={filters} setFilters={setFilters} />
           </div>
           <div>
             <Title title="Property sub-type" />
             <Checkboxes
               param="PropertySubType"
-              geoLocation={geoLocation}
+              filters={filters}
               setFilters={setFilters}
             />
           </div>
           <div>
             <Title title="Price range" />
-            <Inputs param="ListPrice" geoLocation={geoLocation} setFilters={setFilters} />
+            <Inputs param="ListPrice" filters={filters} setFilters={setFilters} />
           </div>
           <S.MultiColumnContainer>
             <div>
               <Title title="Bedrooms" />
-              <Selects
-                param="BedroomsTotal"
-                geoLocation={geoLocation}
-                setFilters={setFilters}
-              />
+              <Selects param="BedroomsTotal" filters={filters} setFilters={setFilters} />
             </div>
             <div>
               <Title title="Bathrooms" />
               <Selects
                 param="BathroomsTotalInteger"
-                geoLocation={geoLocation}
+                filters={filters}
                 setFilters={setFilters}
               />
             </div>
             <div>
               <Title title="Property size" />
-              <Selects
-                param="LivingArea"
-                geoLocation={geoLocation}
-                setFilters={setFilters}
-              />
+              <Selects param="LivingArea" filters={filters} setFilters={setFilters} />
             </div>
             <div>
               <Title title="Lot size" />
-              <Selects
-                param="LotSizeAcres"
-                geoLocation={geoLocation}
-                setFilters={setFilters}
-              />
+              <Selects param="LotSizeAcres" filters={filters} setFilters={setFilters} />
             </div>
           </S.MultiColumnContainer>
           <div>
             <Title title="Listing status" />
             <Checkboxes
               param="StandardStatus"
-              geoLocation={geoLocation}
+              filters={filters}
               setFilters={setFilters}
             />
           </div>
@@ -349,7 +333,7 @@ export function Filters() {
           </S.Disabled>
           <div>
             <Title title="Year built" />
-            <Inputs param="YearBuilt" geoLocation={geoLocation} setFilters={setFilters} />
+            <Inputs param="YearBuilt" filters={filters} setFilters={setFilters} />
           </div>
           <S.Disabled>
             <Title title="Stories" />
@@ -367,7 +351,7 @@ export function Filters() {
               <Title title="Elementary school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.ElementarySchool ?? ''}
+                value={filters.ElementarySchool}
                 onChange={event => setFilters('ElementarySchool', event.target.value)}
               />
             </div>
@@ -375,7 +359,7 @@ export function Filters() {
               <Title title="Middle school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.MiddleOrJuniorSchool ?? ''}
+                value={filters.MiddleOrJuniorSchool}
                 onChange={event => setFilters('MiddleOrJuniorSchool', event.target.value)}
               />
             </div>
@@ -383,21 +367,21 @@ export function Filters() {
               <Title title="High school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.HighSchool ?? ''}
+                value={filters.HighSchool}
                 onChange={event => setFilters('HighSchool', event.target.value)}
               />
             </div>
           </S.MultiColumnContainer>
           <div>
             <Title title="City" />
-            <Checkboxes param="City" geoLocation={geoLocation} setFilters={setFilters} />
+            <Checkboxes param="City" filters={filters} setFilters={setFilters} />
           </div>
           <S.MultiColumnContainer>
             <div>
               <Title title="Zip code" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.PostalCode ?? ''}
+                value={filters.PostalCode}
                 onChange={event => setFilters('PostalCode', event.target.value)}
               />
             </div>

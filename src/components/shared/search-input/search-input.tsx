@@ -1,4 +1,4 @@
-import { useGeolocationStore } from '@/layout/homes/store/geolocation'
+import { useFiltersStore } from '@/layout/homes/store/filters'
 import useDebounceTwo from '@/resources/hooks/useDebounceTwo'
 import { useCombobox } from 'downshift'
 import { ChangeEvent, useRef, useState } from 'react'
@@ -15,7 +15,7 @@ type SearchProps = React.ComponentProps<typeof S.Container>
 
 export function SearchInput({ ...props }: SearchProps) {
   const skip = useRef(true)
-  const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
+  const setFilters = useFiltersStore(state => state.setFilters)
   const [searchValue, setSearchValue] = useState('')
   const [lastFetchValue, setLastFetchValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([LOCATION_VALUE])
@@ -41,18 +41,18 @@ export function SearchInput({ ...props }: SearchProps) {
         const address = await getAddressUsingGeoLocation()
 
         setSearchValue(address)
-        setGeoLocation({ address })
+        setFilters('address', address)
         return
       }
 
       setSearchValue(selectedItem)
-      setGeoLocation({ address: selectedItem })
+      setFilters('address', selectedItem)
     },
   })
 
   function resetStatesToInitialValue() {
     setSuggestions([LOCATION_VALUE])
-    setGeoLocation({ address: '' })
+    setFilters('address', '')
     setLastFetchValue('')
   }
 
@@ -80,7 +80,7 @@ export function SearchInput({ ...props }: SearchProps) {
       if (skip.current) return
 
       setSuggestions(addresses)
-      setGeoLocation({ address: newValue })
+      setFilters('address', newValue)
     })
   }
 
