@@ -14,7 +14,7 @@ export function Slider({ media }: ListingMedia) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
+    // initial: 0,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
     },
@@ -40,21 +40,26 @@ export function Slider({ media }: ListingMedia) {
     <S.NavigationWrapper>
       <div ref={sliderRef} className="keen-slider">
         {media ? (
-          media.map((url, index) => (
-            <Box
-              key={index}
-              className="keen-slider__slide"
-              css={{ w: 704, h: 395, lineHeight: 0, overflow: 'hidden' }}
-            >
-              <Image
-                src={url}
-                alt="house image"
-                priority={index === 0}
-                style={{ objectFit: 'cover' }}
-                fill
-              />
-            </Box>
-          ))
+          media.map((url, index) => {
+            const loadPreviousAndCurrentImages = currentSlide + 3 >= index
+
+            return (
+              <Box
+                key={index}
+                className="keen-slider__slide"
+                css={{ w: 704, h: 395, lineHeight: 0, overflow: 'hidden' }}
+              >
+                <Image
+                  src={url}
+                  alt="house image"
+                  priority={index === 0}
+                  style={{ objectFit: 'cover' }}
+                  loading={loadPreviousAndCurrentImages ? 'eager' : 'lazy'}
+                  fill
+                />
+              </Box>
+            )
+          })
         ) : (
           <Box
             className="keen-slider__slide"
