@@ -10,7 +10,7 @@ interface Props {
 
 export function RelatedProperties({ coords, id }: Props) {
   const { data: listings } = useQuery({
-    queryKey: ['/home/houses'],
+    queryKey: ['home/houses', id],
     queryFn: () =>
       getHouseListing({
         type: 'card',
