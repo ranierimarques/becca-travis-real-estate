@@ -37,7 +37,7 @@
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
     "jotai": "^1.13.0",
-    "keen-slider": "^6.7.0",
+    "keen-slider": "^6.8.5",
     "next": "^13.1.6",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",

@@ -3,29 +3,32 @@ import { FormattedHouseCards } from '@/types/houses'
 export type HouseCard = {
   success: string
   status: number
-  bundle: {
-    LivingArea: number
-    BedroomsTotal: number
-    BridgeModificationTimestamp: string
-    Media: {
-      MediaURL: string
-    }[]
-    ListingId: string
-    ListPrice: number
-    BathroomsTotalInteger: number
-    UnparsedAddress: string
-    ListingKey: string
-    Latitude: number
-    Longitude: number
-    FeedTypes: []
-    url: string
-  }[]
+  bundle: (
+    | {
+        LivingArea: number
+        BedroomsTotal: number
+        BridgeModificationTimestamp: string
+        Media?: {
+          MediaURL: string
+        }[]
+        ListingId: string
+        ListPrice: number
+        BathroomsTotalInteger: number
+        UnparsedAddress: string
+        ListingKey: string
+        Latitude: number
+        Longitude: number
+        FeedTypes: []
+        url: string
+      }
+    | undefined
+  )[]
   total: number
 }
 
 export type FormattedHouseCard = {
   id: string
-  media: string
+  media: string | undefined
   price: string
   address: string
   bedroomsTotal: number
@@ -64,7 +67,7 @@ export type House = {
       | 'Provisional'
       | 'Sold'
       | 'Temporarily Off Market'
-    Media: {
+    Media?: {
       MediaURL: string
     }[]
     ListingId: string
@@ -116,7 +119,7 @@ export type FormattedHouse = {
       | 'Temporarily Off Market'
     lastUpdated: string
     lastUpdatedTitle: string
-    media: string[]
+    media: string[] | null
     bathroomsTotal: number
     bedroomsTotal: number
     lotSizeSquareFeet: string
@@ -146,15 +149,16 @@ export type Type = 'card' | 'card-full-info' | 'house'
 export type Params = {
   limit?: string
   offset?: string
-  PropertyType?: string
-  StandardStatus?: string
   fields?: string
-  'PhotosCount.gte'?: string
-  'ListPrice.gt'?: string
-  'UnparsedAddress.in'?: string
   sortBy?: string
   order?: string
   near?: string
+  box?: string
+  'PropertyType.in'?: string
+  'PropertySubType.in'?: string
+  'StandardStatus.in'?: string
+  'City.in'?: string
+  'UnparsedAddress.in'?: string
   'ListingId.ne'?: string
   'BedroomsTotal.gte'?: string
   'BedroomsTotal.lte'?: string
@@ -168,13 +172,10 @@ export type Params = {
   'ListPrice.lte'?: string
   'YearBuilt.gte'?: string
   'YearBuilt.lte'?: string
-  ElementarySchool?: string
-  MiddleOrJuniorSchool?: string
-  HighSchool?: string
-  PostalCode?: string
-  PropertySubType?: string
-  City?: string
-  box?: string
+  'ElementarySchool.eq'?: string
+  'MiddleOrJuniorSchool.eq'?: string
+  'HighSchool.eq'?: string
+  'PostalCode.eq'?: string
 }
 
 type NoExtraProperties<T, U> = U & Record<Exclude<keyof U, keyof T>, never>

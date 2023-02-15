@@ -1,33 +1,9 @@
 import { Flex } from '@/common'
+import { FormattedHouse } from '@/services/house-listings/types'
 import * as S from './features.styles'
 
 interface Listing {
-  listing: {
-    price: string
-    address: string
-    status: string
-    lastUpdated: string
-    media: string[]
-    bedroomsTotal: number
-    bathroomsTotal: number
-    lotSizeSquareFeet: string
-    subdivisionName: string
-    propertySubType: string
-    countyOrParish: string
-    cityRegion: string | null
-
-    foundationDetails: string
-    levels: string
-    buildingTotalArea: string
-    newConstruction: string
-    propertyCondition: string
-    propertyType: string
-    sewer: string
-    waterSource: string
-    elementarySchool: string
-    middleSchool: string
-    highSchool: string
-  }
+  listing: FormattedHouse['listing']
 }
 
 export function Features({ listing }: Listing) {
