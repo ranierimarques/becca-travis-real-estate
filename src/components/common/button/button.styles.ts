@@ -99,6 +99,13 @@ const sharedStyles = css({
         color: 'transparent !important',
       },
     },
+    askAQuestion: {
+      true: {
+        '@bp2': {
+          w: '100%',
+        },
+      },
+    },
   },
 
   defaultVariants: {
@@ -117,6 +124,10 @@ export const Link = styled('a', sharedStyles, {
 
 export const Span = styled('span', sharedStyles, {
   display: 'inline-block',
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
 })
 
 export const Button = styled('button', sharedStyles)

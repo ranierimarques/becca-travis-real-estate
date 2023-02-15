@@ -30,6 +30,37 @@ export const TextInput = styled('input', {
   },
 })
 
+export const DisclaimerContainer = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  '@bp4': {
+    flexDirection: 'column',
+    gap: 32,
+  },
+  '@bp3': {
+    gap: 24,
+  },
+  '@bp2': {
+    gap: 32,
+  },
+
+  variants: {
+    askAQuestion: {
+      true: {
+        '@bp4': {
+          flexDirection: 'row',
+        },
+
+        '@bp2': {
+          flexDirection: 'column',
+        },
+      },
+    },
+  },
+})
+
 export const DisclaimerText = styled('span', {
   maxWidth: '327px',
 
@@ -44,6 +75,20 @@ export const DisclaimerText = styled('span', {
 
     fontSize: '12px',
     lineHeight: '20px',
+  },
+
+  variants: {
+    askAQuestion: {
+      true: {
+        '@bp4': {
+          order: 'initial',
+        },
+
+        '@bp2': {
+          maxWidth: 'inherit',
+        },
+      },
+    },
   },
 })
 

@@ -1,4 +1,5 @@
-import { Button, Flex } from '@/common'
+import { Box, Button, Flex } from '@/common'
+import { Toast } from '@/primitives'
 import { Hat } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -122,24 +123,56 @@ export function Hero() {
   }
 
   return (
-    <S.Section>
-      <S.Background />
-      <S.Container>
-        <S.Header>
-          <Hat css={{ mb: 8 }}>form for sellers</Hat>
-          <S.Title>We&apos;re here to serve and sell</S.Title>
-          <S.Paragraph>
-            Complimentary evaluation when you complete the form to sell your home
-          </S.Paragraph>
-        </S.Header>
+    <S.Section hasMaxWidth background="rgba($colors$tangerine5Rgb, 0.3)">
+      <S.Header>
+        <Hat css={{ mb: 8 }}>form for sellers</Hat>
+        <S.Title>We&apos;re here to serve and sell</S.Title>
+        <S.Paragraph>
+          Complimentary evaluation when you complete the form to sell your home
+        </S.Paragraph>
+      </S.Header>
+
+      <Box
+        css={{
+          position: 'relative',
+          pb: 160,
+          '@bp4': {
+            pb: 120,
+          },
+          '@bp1': {
+            pb: 80,
+          },
+        }}
+      >
+        <Box
+          css={{
+            background: '$white',
+
+            position: 'absolute',
+            left: '50%',
+
+            transform: 'translate(-50%)',
+
+            height: '100%',
+            width: '100vw',
+          }}
+        />
+        <Box
+          css={{
+            background: 'rgba($colors$tangerine5Rgb, 0.3)',
+
+            position: 'absolute',
+            left: '50%',
+
+            transform: 'translate(-50%)',
+
+            height: '10%',
+            width: '100vw',
+          }}
+        />
 
         <S.FormContainer>
-          <ContactInformation
-            formStep={formStep}
-            openToast={openToast}
-            onOpenToast={setOpenToast}
-            isSubmitting={isSubmitting}
-          />
+          <ContactInformation formStep={formStep} isSubmitting={isSubmitting} />
 
           <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
             {formStep === 1 && (
@@ -157,7 +190,25 @@ export function Hero() {
               <Step3 errors={errors} register={register} isSubmitting={isSubmitting} />
             )}
 
-            <Flex align="center" justify="between">
+            <Flex
+              direction={{
+                '@initial': 'row',
+                '@bp4': 'column',
+              }}
+              align="center"
+              justify="between"
+              css={{
+                '@bp4': {
+                  gap: 32,
+                },
+                '@bp3': {
+                  gap: 24,
+                },
+                '@bp2': {
+                  gap: 32,
+                },
+              }}
+            >
               <S.DisclaimerText lastStep={formStep === 3}>
                 <S.Disclaimer>Disclaimer:</S.Disclaimer> By entering your information and
                 submitting this form, you agree to our Terms of Use and Privacy Policy and
@@ -165,9 +216,19 @@ export function Hero() {
                 inquiry.
               </S.DisclaimerText>
 
-              <Flex css={{ gap: 18 }}>
+              <Flex
+                justify={{
+                  '@bp2': 'between',
+                }}
+                css={{
+                  gap: 18,
+                  '@bp4': { alignSelf: 'flex-end' },
+                  '@bp2': { w: '100%' },
+                }}
+              >
                 {formStep > 1 && (
                   <Button
+                    type="button"
                     outlined
                     disabled={isSubmitting}
                     onClick={previousForm}
@@ -177,12 +238,32 @@ export function Hero() {
                   </Button>
                 )}
                 {formStep < 3 && (
-                  <Button onClick={nextForm} size="2">
+                  <Button
+                    type="button"
+                    onClick={nextForm}
+                    size="2"
+                    css={{ '@bp2': { marginLeft: 'auto' } }}
+                  >
                     Next Step
                   </Button>
                 )}
                 {formStep === 3 && (
-                  <Button size="2" loading={isSubmitting} disabled={isSubmitting}>
+                  <Button
+                    type="submit"
+                    size="2"
+                    loading={isSubmitting}
+                    disabled={isSubmitting}
+                    css={{
+                      '@bp2': {
+                        color: 'transparent',
+                        '&::after': {
+                          content: 'Send message',
+                          color: '$white',
+                          marginLeft: -128,
+                        },
+                      },
+                    }}
+                  >
                     Send your message
                   </Button>
                 )}
@@ -190,7 +271,8 @@ export function Hero() {
             </Flex>
           </S.Form>
         </S.FormContainer>
-      </S.Container>
+      </Box>
+      <Toast openToast={openToast} onOpenToast={setOpenToast} form />
     </S.Section>
   )
 }

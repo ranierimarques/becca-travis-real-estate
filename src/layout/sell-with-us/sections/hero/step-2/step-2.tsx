@@ -108,8 +108,17 @@ export function Step2({ errors, register, control, isSubmitting }: StepProps) {
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: 32,
-          marginBottom: 48,
           width: '100%',
+
+          '@bp4': {
+            gap: 24,
+          },
+
+          '@bp2': {
+            gridTemplateColumns: '1fr',
+
+            gap: 20,
+          },
         }}
       >
         {inputs.map(({ name, ...input }) => {

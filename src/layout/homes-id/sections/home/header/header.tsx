@@ -1,39 +1,14 @@
 import { Box, Flex } from '@/common'
 import { DropdownMenu, Toast } from '@/primitives'
 import useRelativeDate from '@/resources/hooks/useRelativeDate'
+import { FormattedHouse } from '@/services/house-listings/types'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as Svg from '../svgs'
 import * as S from './header.styles'
 
 interface Listing {
-  listing: {
-    price: string
-    address: string
-    status: string
-    lastUpdated: string
-    lastUpdatedTitle: string
-    media: string[]
-    bedroomsTotal: number
-    bathroomsTotal: number
-    lotSizeSquareFeet: string
-    subdivisionName: string
-    propertySubType: string
-    countyOrParish: string
-    cityRegion: string | null
-
-    foundationDetails: string
-    levels: string
-    buildingTotalArea: string
-    newConstruction: string
-    propertyCondition: string
-    propertyType: string
-    sewer: string
-    waterSource: string
-    elementarySchool: string
-    middleSchool: string
-    highSchool: string
-  }
+  listing: FormattedHouse['listing']
 }
 
 export function Header({ listing }: Listing) {

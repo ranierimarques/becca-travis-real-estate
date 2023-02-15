@@ -3,11 +3,11 @@ import { styled } from 'stitches.config'
 export const NavigationWrapper = styled('div', {
   position: 'relative',
   overflow: 'hidden',
-  maxWidth: '704px',
+  // maxWidth: '704px',
   borderRadius: '8px',
   cursor: 'grab',
 
-  flex: 1,
+  // flex: 1,
 
   '&:active': {
     cursor: 'grabbing',
@@ -16,6 +16,9 @@ export const NavigationWrapper = styled('div', {
 
 export const SkipOverlay = styled('div', {
   position: 'absolute',
+  top: 0,
+
+  zIndex: '1',
 
   height: '100%',
   width: '120px',
@@ -53,7 +56,7 @@ export const Skip = styled('button', {
 
   width: 'fit-content',
 
-  zIndex: '1',
+  zIndex: '2',
 
   '&:hover': {
     [`& + ${SkipOverlay}`]: {

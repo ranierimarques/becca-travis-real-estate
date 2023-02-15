@@ -1,14 +1,8 @@
-import { Box, Flex } from '@/common'
-import { Toast } from '@/primitives'
+import { Flex } from '@/common'
 import { MailSvg, PhoneSvg } from '../svgs'
 import * as S from './contact-information.styles'
 
-interface ContactInformationProps {
-  openToast: boolean
-  onOpenToast: (open: boolean) => void
-}
-
-export function ContactInformation({ openToast, onOpenToast }: ContactInformationProps) {
+export function ContactInformation() {
   return (
     <S.Card>
       <S.CardContainer>
@@ -61,7 +55,6 @@ export function ContactInformation({ openToast, onOpenToast }: ContactInformatio
 
         <S.Svg />
       </S.CardContainer>
-      <Toast openToast={openToast} onOpenToast={onOpenToast} form />
     </S.Card>
   )
 }

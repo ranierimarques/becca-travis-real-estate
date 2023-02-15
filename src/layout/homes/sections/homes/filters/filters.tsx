@@ -1,12 +1,11 @@
 import { Box, Button, Flex } from '@/common'
 import {
-  SetFiltersSection,
-  SetFiltersSection2,
-  useGeolocationStore,
-} from '@/layout/homes/store/geolocation'
+  Filters as FiltersType,
+  SetFilters,
+  useFiltersStore,
+} from '@/layout/homes/store/filters'
 import { Dialog } from '@/primitives'
 import { ReplaceAll } from '@/types/helpers'
-import { CheckedState } from '@radix-ui/react-checkbox'
 import { ComponentProps } from 'react'
 import shallow from 'zustand/shallow'
 import { Select } from '..'
@@ -43,94 +42,228 @@ function removeSpaces<T extends string>(string: T) {
   return string.replaceAll(' ', '') as ReplaceAll<T, ' ', ''>
 }
 
-const filters = {
+const filtersOptions = {
   checkboxes: {
-    propertyType: {
-      title: 'PropertyType',
-      items: [
-        'Residential',
-        'Residential Income',
-        'Residential Lease',
-        'Business Opportunity',
-        'Commercial Lease',
-        'Land',
+    PropertyType: [
+      'Residential',
+      'Residential Income',
+      'Residential Lease',
+      'Business Opportunity',
+      'Commercial Lease',
+      'Land',
+    ],
+    PropertySubType: [
+      'Single Family Residence',
+      'Townhouse',
+      'Manufactured Home',
+      'Farm w/Home',
+      'Condominium',
+      'Deeded RV',
+    ],
+    StandardStatus: [
+      'Active',
+      'Active Under Contract',
+      'Coming Soon',
+      'Closed',
+      'Pending',
+      'Expired',
+      'Hold',
+      'Canceled',
+    ],
+    City: [
+      'Addison',
+      'Albertville',
+      'Alexandria',
+      'Altoona',
+      'Anderson',
+      'Anniston',
+      'Arab',
+      'Ardmore',
+      'Arley',
+      'Ashville',
+    ],
+  },
+  selects: {
+    BedroomsTotal: {
+      gte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
+      ],
+      lte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
       ],
     },
-    propertySubType: {
-      title: 'PropertySubType',
-      items: [
-        'Single Family Residence',
-        'Townhouse',
-        'Manufactured Home',
-        'Farm w/Home',
-        'Condominium',
-        'Deeded RV',
+    BathroomsTotalInteger: {
+      gte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
+      ],
+      lte: [
+        { value: 'default', text: 'Any' },
+        ...Array.from(Array(8), (_, i) => ({ value: `${i + 1}`, text: `${i + 1}` })),
       ],
     },
-    standardStatus: {
-      title: 'StandardStatus',
-      items: [
-        'Active',
-        'Active Under Contract',
-        'Coming Soon',
-        'Closed',
-        'Pending',
-        'Expired',
-        'Hold',
-        'Canceled',
+    LivingArea: {
+      gte: [
+        { value: 'default', text: 'No min' },
+        ...Array.from(Array(20), (_, i) => ({
+          value: `${(i + 1) * 500}`,
+          text: `${((i + 1) * 500).toLocaleString('en-US')} ft²`,
+        })),
+      ],
+      lte: [
+        { value: 'default', text: 'No max' },
+        ...Array.from(Array(20), (_, i) => ({
+          value: `${(i + 1) * 500}`,
+          text: `${((i + 1) * 500).toLocaleString('en-US')} ft²`,
+        })),
       ],
     },
-    city: {
-      title: 'City',
-      items: [
-        'Addison',
-        'Albertville',
-        'Alexandria',
-        'Altoona',
-        'Anderson',
-        'Anniston',
-        'Arab',
-        'Ardmore',
-        'Arley',
-        'Ashville',
+    LotSizeAcres: {
+      gte: [
+        { value: 'default', text: 'No min' },
+        { value: '0.25', text: '1/4 acre' },
+        { value: '0.5', text: '1/2 acre' },
+        { value: '1', text: '1 acre' },
+        { value: '1.5', text: '1 1/2 acre' },
+        { value: '2', text: '2 acre' },
+        { value: '2.5', text: '2 1/2 acre' },
+        { value: '3', text: '3 acre' },
+        { value: '5', text: '5 acre' },
+        { value: '10', text: '10 acre' },
+        { value: '15', text: '15 acre' },
+        { value: '20', text: '20 acre' },
+        { value: '25', text: '25 acre' },
+        { value: '30', text: '30 acre' },
+        { value: '40', text: '40 acre' },
+        { value: '50', text: '50 acre' },
+        { value: '100', text: '100 acre' },
+      ],
+      lte: [
+        { value: 'default', text: 'No min' },
+        { value: '0.25', text: '1/4 acre' },
+        { value: '0.5', text: '1/2 acre' },
+        { value: '1', text: '1 acre' },
+        { value: '1.5', text: '1 1/2 acre' },
+        { value: '2', text: '2 acre' },
+        { value: '2.5', text: '2 1/2 acre' },
+        { value: '3', text: '3 acre' },
+        { value: '5', text: '5 acre' },
+        { value: '10', text: '10 acre' },
+        { value: '15', text: '15 acre' },
+        { value: '20', text: '20 acre' },
+        { value: '25', text: '25 acre' },
+        { value: '30', text: '30 acre' },
+        { value: '40', text: '40 acre' },
+        { value: '50', text: '50 acre' },
+        { value: '100', text: '100 acre' },
       ],
     },
   },
+  inputs: {
+    ListPrice: {},
+    YearBuilt: {},
+  },
 } as const
 
+type CheckboxesProps = {
+  param: keyof typeof filtersOptions['checkboxes']
+  setFilters: SetFilters
+  filters: FiltersType
+}
+
+function Checkboxes({ param, filters, setFilters }: CheckboxesProps) {
+  return (
+    <S.CheckboxesContainer>
+      {filtersOptions.checkboxes[param].map(item => {
+        const noSpaceItem = removeSpaces(item)
+        return (
+          <Checkbox
+            key={item}
+            label={item}
+            checked={filters[param]?.[noSpaceItem as never] === item}
+            onCheckedChange={value =>
+              setFilters(param, {
+                [noSpaceItem]: value === true ? item : undefined,
+              })
+            }
+          />
+        )
+      })}
+    </S.CheckboxesContainer>
+  )
+}
+
+type SelectsProps = {
+  param: keyof typeof filtersOptions['selects']
+  setFilters: SetFilters
+  filters: FiltersType
+}
+
+function Selects({ param, filters, setFilters }: SelectsProps) {
+  return (
+    <S.InputsContainer>
+      <Select.Root
+        placeholder="Min"
+        value={filters[param]['gte']}
+        onValueChange={value => setFilters(param, { ['gte']: value })}
+      >
+        {filtersOptions.selects[param]['gte'].map(item => (
+          <Select.Item key={item.value} value={item.value}>
+            {item.text}
+          </Select.Item>
+        ))}
+      </Select.Root>
+      <S.InputsText small>to</S.InputsText>
+      <Select.Root
+        placeholder="Max"
+        value={filters[param]['lte']}
+        onValueChange={value => setFilters(param, { ['lte']: value })}
+      >
+        {filtersOptions.selects[param]['lte'].map(item => (
+          <Select.Item key={item.value} value={item.value}>
+            {item.text}
+          </Select.Item>
+        ))}
+      </Select.Root>
+    </S.InputsContainer>
+  )
+}
+
+type InputsProps = {
+  param: keyof typeof filtersOptions['inputs']
+  setFilters: SetFilters
+  filters: FiltersType
+}
+
+function Inputs({ param, filters, setFilters }: InputsProps) {
+  return (
+    <S.InputsContainer>
+      <S.Input
+        type="number"
+        min="0"
+        placeholder="Min"
+        value={filters[param]['gte']}
+        onChange={event => setFilters(param, { gte: event.target.value })}
+      />
+      <S.InputsText>to</S.InputsText>
+      <S.Input
+        type="number"
+        min="0"
+        placeholder="Max"
+        value={filters[param]['lte']}
+        onChange={event => setFilters(param, { lte: event.target.value })}
+      />
+    </S.InputsContainer>
+  )
+}
+
 export function Filters() {
-  const [geoLocation, setFilters, setFilters2, resetFilters] = useGeolocationStore(
-    state => [state.geoLocation, state.setFilters, state.setFilters2, state.resetFilters],
+  const [filters, setFilters, resetFilters] = useFiltersStore(
+    state => [state.filters, state.setFilters, state.resetFilters],
     shallow
   )
-
-  function handleCheckboxChange(
-    section: SetFiltersSection,
-    checked: CheckedState,
-    key: string
-  ) {
-    setFilters(section, {
-      [removeSpaces(key)]: checked === true ? key : undefined,
-    })
-  }
-
-  function handleInputChange(section: SetFiltersSection, value: string, key: string) {
-    setFilters(section, {
-      [key]: value,
-    })
-  }
-
-  function handleInput2Change(section: SetFiltersSection2, value: string) {
-    setFilters2(section, value)
-  }
-
-  function handleSelectChange(section: SetFiltersSection, value: string, key: string) {
-    console.log(value)
-
-    setFilters(section, {
-      [key]: value,
-    })
-  }
 
   return (
     <Dialog.Root>
@@ -148,263 +281,61 @@ export function Filters() {
         <S.Container>
           <div>
             <Title title="Property type" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.propertyType.items.map(item => {
-                const section = filters.checkboxes.propertyType.title
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
-                    onCheckedChange={value => handleCheckboxChange(section, value, item)}
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes param="PropertyType" filters={filters} setFilters={setFilters} />
           </div>
           <div>
             <Title title="Property sub-type" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.propertySubType.items.map(item => {
-                const section = filters.checkboxes.propertySubType.title
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
-                    onCheckedChange={value => handleCheckboxChange(section, value, item)}
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes
+              param="PropertySubType"
+              filters={filters}
+              setFilters={setFilters}
+            />
           </div>
           <div>
             <Title title="Price range" />
-            <S.InputsContainer>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Min"
-                value={geoLocation.filter?.ListPrice?.['gte'] ?? ''}
-                onChange={event =>
-                  handleInputChange('ListPrice', event.target.value, 'gte')
-                }
-              />
-              <S.InputsText>to</S.InputsText>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Max"
-                value={geoLocation.filter?.ListPrice?.['lte'] ?? ''}
-                onChange={event =>
-                  handleInputChange('ListPrice', event.target.value, 'lte')
-                }
-              />
-            </S.InputsContainer>
+            <Inputs param="ListPrice" filters={filters} setFilters={setFilters} />
           </div>
           <S.MultiColumnContainer>
             <div>
               <Title title="Bedrooms" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.BedroomsTotal?.['gte']}
-                  onValueChange={value =>
-                    handleSelectChange('BedroomsTotal', value, 'gte')
-                  }
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.BedroomsTotal?.['lte']}
-                  onValueChange={value =>
-                    handleSelectChange('BedroomsTotal', value, 'lte')
-                  }
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects param="BedroomsTotal" filters={filters} setFilters={setFilters} />
             </div>
             <div>
               <Title title="Bathrooms" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.BathroomsTotalInteger?.['gte']}
-                  onValueChange={value =>
-                    handleSelectChange('BathroomsTotalInteger', value, 'gte')
-                  }
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.BathroomsTotalInteger?.['lte']}
-                  onValueChange={value =>
-                    handleSelectChange('BathroomsTotalInteger', value, 'lte')
-                  }
-                >
-                  <Select.Item value="default">Any</Select.Item>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <Select.Item key={index} value={`${index + 1}`}>
-                      {index + 1}
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects
+                param="BathroomsTotalInteger"
+                filters={filters}
+                setFilters={setFilters}
+              />
             </div>
             <div>
               <Title title="Property size" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.LivingArea?.['gte']}
-                  onValueChange={value => handleSelectChange('LivingArea', value, 'gte')}
-                >
-                  <Select.Item value="default">No min</Select.Item>
-                  {Array.from({ length: 20 }).map((_, index) => (
-                    <Select.Item key={index} value={`${(index + 1) * 500}`}>
-                      {((index + 1) * 500).toLocaleString('en-US')} ft²
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.LivingArea?.['lte']}
-                  onValueChange={value => handleSelectChange('LivingArea', value, 'lte')}
-                >
-                  <Select.Item value="default">No max</Select.Item>
-                  {Array.from({ length: 20 }).map((_, index) => (
-                    <Select.Item key={index} value={`${(index + 1) * 500}`}>
-                      {((index + 1) * 500).toLocaleString('en-US')} ft²
-                    </Select.Item>
-                  ))}
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects param="LivingArea" filters={filters} setFilters={setFilters} />
             </div>
             <div>
               <Title title="Lot size" />
-              <S.InputsContainer>
-                <Select.Root
-                  placeholder="Min"
-                  value={geoLocation.filter?.LotSizeAcres?.['gte']}
-                  onValueChange={value =>
-                    handleSelectChange('LotSizeAcres', value, 'gte')
-                  }
-                >
-                  <Select.Item value="default">No min</Select.Item>
-                  <Select.Item value="0.25">1/4 acre</Select.Item>
-                  <Select.Item value="0.50">1/2 acre</Select.Item>
-                  <Select.Item value="1">1 acre</Select.Item>
-                  <Select.Item value="1.5">1 1/2 acre</Select.Item>
-                  <Select.Item value="2">2 acres</Select.Item>
-                  <Select.Item value="2.5">2 1/2 acres</Select.Item>
-                  <Select.Item value="3">3 acres</Select.Item>
-                  <Select.Item value="5">5 acres</Select.Item>
-                  <Select.Item value="10">10 acres</Select.Item>
-                  <Select.Item value="15">15 acres</Select.Item>
-                  <Select.Item value="20">20 acres</Select.Item>
-                  <Select.Item value="25">25 acres</Select.Item>
-                  <Select.Item value="30">30 acres</Select.Item>
-                  <Select.Item value="40">40 acres</Select.Item>
-                  <Select.Item value="50">50 acres</Select.Item>
-                  <Select.Item value="100">100 acres</Select.Item>
-                </Select.Root>
-                <S.InputsText small>to</S.InputsText>
-                <Select.Root
-                  placeholder="Max"
-                  value={geoLocation.filter?.LotSizeAcres?.['lte']}
-                  onValueChange={value =>
-                    handleSelectChange('LotSizeAcres', value, 'lte')
-                  }
-                >
-                  <Select.Item value="default">No min</Select.Item>
-                  <Select.Item value="0.25">1/4 acre</Select.Item>
-                  <Select.Item value="0.50">1/2 acre</Select.Item>
-                  <Select.Item value="1">1 acre</Select.Item>
-                  <Select.Item value="1.5">1 1/2 acre</Select.Item>
-                  <Select.Item value="2">2 acres</Select.Item>
-                  <Select.Item value="2.5">2 1/2 acres</Select.Item>
-                  <Select.Item value="3">3 acres</Select.Item>
-                  <Select.Item value="5">5 acres</Select.Item>
-                  <Select.Item value="10">10 acres</Select.Item>
-                  <Select.Item value="15">15 acres</Select.Item>
-                  <Select.Item value="20">20 acres</Select.Item>
-                  <Select.Item value="25">25 acres</Select.Item>
-                  <Select.Item value="30">30 acres</Select.Item>
-                  <Select.Item value="40">40 acres</Select.Item>
-                  <Select.Item value="50">50 acres</Select.Item>
-                  <Select.Item value="100">100 acres</Select.Item>
-                </Select.Root>
-              </S.InputsContainer>
+              <Selects param="LotSizeAcres" filters={filters} setFilters={setFilters} />
             </div>
           </S.MultiColumnContainer>
           <div>
             <Title title="Listing status" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.standardStatus.items.map(item => {
-                const section = filters.checkboxes.standardStatus.title
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
-                    onCheckedChange={value => handleCheckboxChange(section, value, item)}
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes
+              param="StandardStatus"
+              filters={filters}
+              setFilters={setFilters}
+            />
           </div>
-          <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+          <S.Disabled>
             <Title title="Open houses" />
             <S.CheckboxesContainer>
               <Checkbox disabled label="Search Open Houses" />
             </S.CheckboxesContainer>
-          </Box>
+          </S.Disabled>
           <div>
             <Title title="Year built" />
-            <S.InputsContainer>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Min"
-                value={geoLocation.filter?.YearBuilt?.['gte'] ?? ''}
-                onChange={event =>
-                  handleInputChange('YearBuilt', event.target.value, 'gte')
-                }
-              />
-              <S.InputsText>to</S.InputsText>
-              <S.Input
-                type="number"
-                min="0"
-                placeholder="Max"
-                value={geoLocation.filter?.YearBuilt?.['lte'] ?? ''}
-                onChange={event =>
-                  handleInputChange('YearBuilt', event.target.value, 'lte')
-                }
-              />
-            </S.InputsContainer>
+            <Inputs param="YearBuilt" filters={filters} setFilters={setFilters} />
           </div>
-          <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+          <S.Disabled>
             <Title title="Stories" />
             <S.CheckboxesContainer>
               <Checkbox label="Multi/split" />
@@ -414,63 +345,47 @@ export function Filters() {
               <Checkbox label="Tri-Level" />
               <Checkbox label="Three Or More" />
             </S.CheckboxesContainer>
-          </Box>
+          </S.Disabled>
           <S.MultiColumnContainer>
             <div>
               <Title title="Elementary school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.ElementarySchool}
-                onChange={event =>
-                  handleInput2Change('ElementarySchool', event.target.value)
-                }
+                value={filters.ElementarySchool}
+                onChange={event => setFilters('ElementarySchool', event.target.value)}
               />
             </div>
             <div>
               <Title title="Middle school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.MiddleOrJuniorSchool}
-                onChange={event =>
-                  handleInput2Change('MiddleOrJuniorSchool', event.target.value)
-                }
+                value={filters.MiddleOrJuniorSchool}
+                onChange={event => setFilters('MiddleOrJuniorSchool', event.target.value)}
               />
             </div>
             <div>
               <Title title="High school" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.HighSchool}
-                onChange={event => handleInput2Change('HighSchool', event.target.value)}
+                value={filters.HighSchool}
+                onChange={event => setFilters('HighSchool', event.target.value)}
               />
             </div>
           </S.MultiColumnContainer>
           <div>
             <Title title="City" />
-            <S.CheckboxesContainer>
-              {filters.checkboxes.city.items.map(item => {
-                const section = filters.checkboxes.city.title
-                return (
-                  <Checkbox
-                    key={item}
-                    label={item}
-                    checked={geoLocation.filter?.[section]?.[removeSpaces(item)] === item}
-                    onCheckedChange={value => handleCheckboxChange(section, value, item)}
-                  />
-                )
-              })}
-            </S.CheckboxesContainer>
+            <Checkboxes param="City" filters={filters} setFilters={setFilters} />
           </div>
           <S.MultiColumnContainer>
             <div>
               <Title title="Zip code" />
               <S.Input
                 type="text"
-                value={geoLocation.filter?.PostalCode ?? ''}
-                onChange={event => handleInput2Change('PostalCode', event.target.value)}
+                value={filters.PostalCode}
+                onChange={event => setFilters('PostalCode', event.target.value)}
               />
             </div>
-            <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+            <S.Disabled>
               <Title title="Foreclosures" />
               <Select.Root placeholder="No preference">
                 <Select.Item value="default">No preference</Select.Item>
@@ -479,15 +394,15 @@ export function Filters() {
                   Exclude foreclosures
                 </Select.Item>
               </Select.Root>
-            </Box>
-            <Box css={{ opacity: 0.33, pointerEvents: 'none', userSelect: 'none' }}>
+            </S.Disabled>
+            <S.Disabled>
               <Title title="Short Sales" />
               <Select.Root placeholder="No preference">
                 <Select.Item value="default">No preference</Select.Item>
                 <Select.Item value="Search-short-sales">Search short sales</Select.Item>
                 <Select.Item value="Exclude-short-sales">Exclude short sales</Select.Item>
               </Select.Root>
-            </Box>
+            </S.Disabled>
           </S.MultiColumnContainer>
         </S.Container>
 

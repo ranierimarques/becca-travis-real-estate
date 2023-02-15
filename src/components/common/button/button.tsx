@@ -10,6 +10,7 @@ type buttonProps = {
   children: ReactNode
   href?: string
   as?: 'span' | 'a'
+  type?: 'button' | 'submit'
   target?: '_blank' | '_self'
   css?: Stitches.CSS
   onClick?: () => void

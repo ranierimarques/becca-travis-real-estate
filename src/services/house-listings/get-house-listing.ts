@@ -11,8 +11,6 @@ const defaultParams: Params = {
   fields:
     // Return only this values
     'Media.MediaURL,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
-  'PhotosCount.gte': '1', // There must be at least 1 photo
-  'ListPrice.gte': '1', // Price cannot be 0
   sortBy: 'BridgeModificationTimestamp',
   order: 'desc',
 }
@@ -29,7 +27,7 @@ function getAuthorization(fetchOn: 'browser' | 'server') {
   }
 }
 
-// This function remove parameters when key isn't a string
+// This function remove parameters when value of key isn't a string
 function getValidParams(params: Params) {
   const filteredParams = Object.entries(params).filter(
     ([, value]) => typeof value === 'string'
@@ -67,7 +65,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
         'en-US',
         'full'
       ),
-      media: house.bundle.Media.map(media => media.MediaURL),
+      media: house.bundle.Media?.map(media => media.MediaURL) ?? null,
       bathroomsTotal: house.bundle.BathroomsTotalInteger,
       bedroomsTotal: house.bundle.BedroomsTotal,
       lotSizeSquareFeet: convertSquareFeets(house.bundle.LotSizeSquareFeet),
@@ -109,7 +107,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
 
     return {
       id: listing.ListingId,
-      media: listing.Media[0].MediaURL,
+      media: listing.Media?.[0].MediaURL ?? null,
       price: formatToDollar(listing.ListPrice),
       address: listing.UnparsedAddress,
       bedroomsTotal: listing.BedroomsTotal,

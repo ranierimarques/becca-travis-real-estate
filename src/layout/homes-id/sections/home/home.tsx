@@ -25,7 +25,7 @@ export function Home({ listing }: Listing) {
       <Header listing={listing} />
 
       <Flex css={{ gap: 32 }}>
-        <Slider media={listing.media} />
+        <Slider key={listing.id} media={listing.media} />
         <PropertyDetails listing={listing} />
       </Flex>
 

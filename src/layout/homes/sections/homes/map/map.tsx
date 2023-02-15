@@ -1,5 +1,5 @@
 import { useHouse } from '@/layout/homes/hooks/useHouse'
-import { useGeolocationStore } from '@/layout/homes/store/geolocation'
+import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
 import { HouseCard } from '@/shared'
 import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
@@ -41,7 +41,7 @@ export const Map = memo(({ variant }: Props) => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   })
   const { house } = useHouse()
-  const setGeoLocation = useGeolocationStore(state => state.setGeoLocation)
+  const setFilters = useFiltersStore(state => state.setFilters)
   const throttle = useThrottle(500)
   const [activeCardId, setActiveCardId] = useState<string | null>(null)
   const [isFirstRender, setIsFirstRender] = useState(true)
@@ -64,7 +64,7 @@ export const Map = memo(({ variant }: Props) => {
       mapRef.current.getBounds()?.getNorthEast().lat(),
     ] as number[]
 
-    setGeoLocation({ bounds })
+    setFilters('bounds', bounds)
     // setActiveCardId(null)
   }
 
