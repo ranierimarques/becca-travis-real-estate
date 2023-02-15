@@ -1,4 +1,5 @@
 import { Box } from '@/common'
+import { Toast } from '@/primitives'
 import { Form, Hat } from '@/shared'
 import { useState } from 'react'
 import { ContactInformation } from '.'
@@ -57,12 +58,14 @@ export function Hero() {
         />
 
         <S.FormContainer>
-          <ContactInformation openToast={openToast} onOpenToast={setOpenToast} />
+          <ContactInformation />
           <Box css={{ m: '24px 0', width: '100%' }}>
             <Form onOpenToast={setOpenToast} />
           </Box>
         </S.FormContainer>
       </Box>
+
+      <Toast openToast={openToast} onOpenToast={setOpenToast} form />
     </S.Section>
   )
 }

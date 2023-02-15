@@ -20,7 +20,9 @@ export const swipeOut = keyframes({
 })
 
 export const Viewport = styled(ToastPrimitive.Viewport, {
-  position: 'absolute',
+  position: 'fixed',
+
+  w: 'fit-content',
 
   display: 'flex',
   flexDirection: 'column',
@@ -35,13 +37,21 @@ export const Viewport = styled(ToastPrimitive.Viewport, {
   variants: {
     variant: {
       1: {
+        position: 'absolute',
+
         top: -43,
         left: -44,
         padding: 0,
       },
       2: {
         bottom: 0,
-        left: 0,
+        right: 0,
+
+        '@bp2': {
+          padding: 12,
+          right: '50%',
+          transform: 'translateX(50%)',
+        },
       },
     },
   },
@@ -52,11 +62,17 @@ export const Root = styled(ToastPrimitive.Root, {
   border: '1px solid rgba($colors$green1Rgb, 0.5)',
   borderRadius: 8,
 
+  boxShadow: '0px 8px 50px rgba(33, 31, 31, 0.16)',
+
   padding: 12,
   height: 69,
   width: 334,
 
   position: 'relative',
+
+  '@bp2': {
+    width: 296,
+  },
 
   '@media (prefers-reduced-motion: no-preference)': {
     '&[data-state="open"]': {
@@ -141,7 +157,7 @@ export const SpanToastTitle = styled('span', {
   fontWeight: '500',
   fontSize: '12px',
   lineHeight: '22px',
-  color: '#F6F6F8',
+  color: '$grayW10',
 })
 
 export const ToastDescription = styled(ToastPrimitive.Description, {

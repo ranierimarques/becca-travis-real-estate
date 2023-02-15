@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input } from '@/common'
+import { Box, Button, Input } from '@/common'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
@@ -38,7 +38,7 @@ type formSchemaType = z.infer<typeof formSchema>
 
 interface FormProps {
   onOpenToast?: (value: boolean) => void
-  noTitle?: boolean
+  askAQuestion?: boolean
 }
 
 const inputs = [
@@ -85,7 +85,7 @@ const inputs = [
   required: boolean
 }[]
 
-export function Form({ onOpenToast, noTitle }: FormProps) {
+export function Form({ onOpenToast, askAQuestion }: FormProps) {
   const {
     register,
     handleSubmit,
@@ -119,7 +119,7 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
     <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
       <input type="hidden" name="from_name" value="Becca Travis Website" />
       <input type="hidden" name="subject" value="New submission from Contact Us" />
-      {!noTitle && <S.FormTitle>Send me a message</S.FormTitle>}
+      {!askAQuestion && <S.FormTitle>Send me a message</S.FormTitle>}
       <Box
         css={{
           display: 'grid',
@@ -157,26 +157,8 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
         })}
       </Box>
 
-      <Flex
-        direction={{
-          '@initial': 'row',
-          '@bp4': 'column',
-        }}
-        align="center"
-        justify="between"
-        css={{
-          '@bp4': {
-            gap: 32,
-          },
-          '@bp3': {
-            gap: 24,
-          },
-          '@bp2': {
-            gap: 32,
-          },
-        }}
-      >
-        <S.DisclaimerText>
+      <S.DisclaimerContainer askAQuestion>
+        <S.DisclaimerText askAQuestion>
           <S.Disclaimer>Disclaimer:</S.Disclaimer> By entering your information and
           submitting this form, you agree to our Terms of Use and Privacy Policy and that
           you may be contacted by phone, text message and email about your inquiry.
@@ -184,6 +166,7 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
 
         <Button
           size="2"
+          askAQuestion
           loading={isSubmitting}
           disabled={isSubmitting}
           css={{
@@ -194,7 +177,7 @@ export function Form({ onOpenToast, noTitle }: FormProps) {
         >
           Send your message
         </Button>
-      </Flex>
+      </S.DisclaimerContainer>
     </S.Form>
   )
 }
