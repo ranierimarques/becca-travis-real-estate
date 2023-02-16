@@ -62,7 +62,7 @@ export function Houses() {
       <S.Houses visualization={visualization}>
         {isInitialLoading && <SkeletonCards count={9} />}
 
-        {house?.listings?.map(listing => (
+        {house.listings?.map(listing => (
           <HouseCard
             key={listing.id}
             listing={listing}
