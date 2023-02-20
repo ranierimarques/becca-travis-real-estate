@@ -1,15 +1,16 @@
-import { formatToDollar } from '@/resources/utils/currency'
+import { Box } from '@/common'
+import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
+import { ArcElement, Chart, Legend, Tooltip } from 'chart.js'
+import { ChangeEvent, FocusEvent } from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { Calculator } from '.'
 import * as S from './payment-calculator.styles'
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+Chart.register(ArcElement, Tooltip, Legend)
 
-const options = {
+const chartOptions = {
   plugins: {
     legend: {
       display: false,
@@ -17,119 +18,379 @@ const options = {
   },
 }
 
-interface ListingPrice {
+const extractNumbersRegex = /[^0-9.-]+/g
+
+function removeFormat(value: string) {
+  return Number.parseInt(value.replace(extractNumbersRegex, ''), 10)
+}
+
+function removeFormatFloat(value: string) {
+  return Number.parseFloat(value.replace(extractNumbersRegex, ''))
+}
+
+function isValidNumber(value: string) {
+  return !isNaN(Number(value.replace(extractNumbersRegex, '')))
+}
+
+function isValidNumberFloat(value: string) {
+  return !isNaN(Number.parseFloat(value.replace(extractNumbersRegex, '')))
+}
+
+const formSchema = z
+  .object({
+    propertyPrice: z
+      .string()
+      .min(1, 'This field is required')
+      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .transform(value => removeFormat(value))
+      .refine(value => value >= 5_000, {
+        message: 'Property price must be greater than or equal to 5,000',
+      })
+      .refine(value => value <= 1_000_000_000, {
+        message: 'Property price must be less than or equal to 1,000,000,000',
+      }),
+    downPayment: z
+      .string()
+      .min(1, 'This field is required')
+      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .transform(value => removeFormat(value))
+      .refine(value => value >= 0, {
+        message: 'Down payment must be greater than or equal to 0',
+      }),
+    downPaymentPercentage: z
+      .string()
+      .min(1, 'This field is required')
+      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .transform(value => removeFormatFloat(value))
+      .refine(value => value >= 0, {
+        message: 'Down payment percent must be greater than or equal to 0',
+      })
+      .refine(value => value < 100, {
+        message: 'Down payment percent must be less than 100',
+      }),
+    lengthOfMortgageInYears: z
+      .string()
+      .min(1, 'This field is required')
+      .refine(isValidNumberFloat, value => ({
+        message: `'${value}' is not a valid number`,
+      }))
+      .transform(value => Number.parseFloat(value.replaceAll(',', '')))
+      .refine(value => value > 0, {
+        message: 'Length of Mortgage must be greater than 0 years',
+      })
+      .refine(value => value < 50, {
+        message: 'Length of Mortgage must be less than 50 years',
+      }),
+    annualInterestRateInPercentage: z
+      .string()
+      .min(1, 'This field is required')
+      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .transform(value => removeFormatFloat(value))
+      .refine(value => value >= 0, {
+        message: 'Rate must be greater than or equal to 0',
+      })
+      .refine(value => value <= 100, {
+        message: 'Rate must be less than or equal to 100',
+      }),
+  })
+  .refine(value => value.downPayment < value.propertyPrice, {
+    message: 'The down payment amount must be less than the property price',
+    path: ['downPayment'],
+  })
+
+type FormSchemaType = z.input<typeof formSchema>
+
+interface PaymentCalculatorProps {
   price: number
 }
 
-const currencyRegExp = /^\$?(\d{1,3}(,\d{3})*|(\d+))(\.\d{2})?$/
+export function PaymentCalculator({ price }: PaymentCalculatorProps) {
+  const defaultValues = {
+    propertyPrice: formatToDollar(price),
+    downPayment: formatToDollar(price * 0.2),
+    downPaymentPercentage: '20%',
+    lengthOfMortgageInYears: '30 years',
+    annualInterestRateInPercentage: '6%',
+  }
 
-const formSchema = z.object({
-  propertyPrice: z.number().min(1),
-  // .transform(value => `$${value}`)
-  // .refine(value => currencyRegExp.test(value)),
-  downPayment: z.number().min(1),
-  // .refine(value => currencyRegExp.test(value)),
-  downPaymentPercentage: z.string().transform(value => Number(value)),
-  lengthOfMortgageInYears: z.number(),
-  annualInterestRateInPercentage: z.number(),
-})
-
-type formSchemaType = z.infer<typeof formSchema>
-
-// export type ValuesKeys =
-//   | 'annual_interest_rate'
-//   | 'down_payment'
-//   | 'down_payment_percentage'
-//   | 'length_of_mortgage'
-//   | 'property_price'
-
-export function PaymentCalculator({ price }: ListingPrice) {
   const {
     register,
     setValue,
-    getFieldState,
     getValues,
-    formState: { isValidating, isValid },
-  } = useForm<formSchemaType>({
+    formState: { errors },
+  } = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
-    mode: 'onBlur',
-    defaultValues: {
-      propertyPrice: price,
-      downPayment: price * (20 / 100),
-      downPaymentPercentage: 20,
-      lengthOfMortgageInYears: 30,
-      annualInterestRateInPercentage: 6,
-    },
+    mode: 'onChange',
+    defaultValues,
   })
 
-  const value = getValues()
-  console.log(value)
+  // const {
+  //   propertyPrice,
+  //   downPayment,
+  //   annualInterestRateInPercentage,
+  //   lengthOfMortgageInYears,
+  // } = getValues()
 
-  const downPaymentState = getFieldState('downPayment')
-  const downPaymentPercentageState = getFieldState('downPaymentPercentage')
+  // const principal = propertyPrice - downPayment
+  // const r = annualInterestRateInPercentage / 1200 // Monthly interest rate
+  // const n = lengthOfMortgageInYears * 12 // Total number of payments
+  // const numerator = r * Math.pow(1 + r, n)
+  // const denominator = Math.pow(1 + r, n) - 1
 
-  console.log(downPaymentState)
-  console.log(downPaymentPercentageState)
+  // const monthlyPayment = principal * (numerator / denominator)
+  // const totalInterest = monthlyPayment * n - principal
 
-  // if (downPaymentState.isTouched && !downPaymentState.error) {
-  //   setValue('downPaymentPercentage', value.propertyPrice / value.downPayment)
+  // const monthlyPaymentFormatted = formatToDollar(monthlyPayment, 2)
+
+  // const chartData = {
+  //   labels: ['Principal', 'Interest'],
+  //   datasets: [
+  //     {
+  //       data: [principal, totalInterest],
+  //       backgroundColor: ['#D9BC3A', '#42A0FF'],
+  //       cutout: '80%',
+  //     },
+  //   ],
   // }
 
-  // if (downPaymentPercentageState.isTouched && !downPaymentPercentageState.error) {
-  //   setValue('downPayment', value.propertyPrice * (value.downPaymentPercentage / 100))
-  // }
+  function handlePropertyPriceChange(event: ChangeEvent<HTMLInputElement>) {
+    const { downPaymentPercentage } = getValues()
+    const percent = removeFormat(downPaymentPercentage) / 100
+    const downPayment = removeFormat(event.target.value) * percent
 
-  if (
-    (downPaymentState.isTouched && !downPaymentState.error) ||
-    (downPaymentPercentageState.isTouched && !downPaymentPercentageState.error)
-  ) {
-    if (downPaymentPercentageState.isTouched && !downPaymentState.isTouched) {
-      setValue('downPayment', value.propertyPrice * (value.downPaymentPercentage / 100))
-    } else {
-      setValue('downPaymentPercentage', value.propertyPrice / value.downPayment)
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      downPayment: formatToDollar(downPayment),
+      propertyPrice: event.target.value,
+    })
+
+    if (parsed.success) {
+      const downPaymentRounded = Math.round(downPayment)
+
+      setValue('downPayment', formatToDollar(downPaymentRounded), {
+        shouldValidate: true, // Clean up old errors
+      })
     }
   }
 
-  const principalLoan: number =
-    value.propertyPrice - (value.propertyPrice / 100) * value.downPaymentPercentage
-  const monthlyInterestRate: number = value.annualInterestRateInPercentage / 100 / 12
-  const numberOfPayments: number = value.lengthOfMortgageInYears * 12
+  function handlePropertyPriceBlur(event: FocusEvent<HTMLInputElement>) {
+    const { downPaymentPercentage } = getValues()
+    const percent = removeFormat(downPaymentPercentage) / 100
+    const downPayment = removeFormat(event.target.value) * percent
 
-  const total: number =
-    principalLoan *
-    ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
-      ((1 + monthlyInterestRate) ** numberOfPayments - 1))
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      downPayment: formatToDollar(downPayment),
+      propertyPrice: event.target.value,
+    })
 
-  const principal: number = total - (principalLoan / 100) * 0.5
-  const interest: number = (principalLoan / 100) * 0.5
-
-  const data = {
-    labels: ['Principal', 'Interest'],
-    datasets: [
-      {
-        data: [principal, interest],
-        backgroundColor: ['#D9BC3A', '#42A0FF'],
-        cutout: '80%',
-      },
-    ],
+    if (parsed.success) {
+      event.target.value = formatToDollar(parsed.data.propertyPrice)
+    }
   }
 
-  // function changeValue(key: ValuesKeys, value: number): void {
-  //   setValue(oldValues => ({ ...oldValues, [key]: value }))
-  // }
+  function handleDownPaymentChange(event: ChangeEvent<HTMLInputElement>) {
+    const { propertyPrice } = getValues()
+    const percent = removeFormat(event.target.value) / removeFormat(propertyPrice)
+
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      downPayment: event.target.value,
+      propertyPrice,
+    })
+
+    if (parsed.success) {
+      setValue('downPaymentPercentage', formatToPercent(percent), {
+        shouldValidate: true, // Clean up old errors
+      })
+    }
+  }
+
+  function handleDownPaymentBlur(event: FocusEvent<HTMLInputElement>) {
+    const { propertyPrice } = getValues()
+
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      downPayment: event.target.value,
+      propertyPrice,
+    })
+
+    if (parsed.success) {
+      event.target.value = formatToDollar(parsed.data.downPayment)
+    }
+  }
+
+  function handleDownPaymentPercentageChange(event: ChangeEvent<HTMLInputElement>) {
+    const { propertyPrice } = getValues()
+    const percent = removeFormatFloat(event.target.value) / 100
+    const downPayment = removeFormat(propertyPrice) * percent
+
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      propertyPrice,
+      downPayment: downPayment.toString(),
+      downPaymentPercentage: event.target.value,
+    })
+
+    if (parsed.success) {
+      setValue('downPayment', formatToDollar(downPayment), {
+        shouldValidate: true, // Clean up old errors
+      })
+    }
+  }
+
+  function handleDownPaymentPercentageBlur(event: FocusEvent<HTMLInputElement>) {
+    const { propertyPrice } = getValues()
+    const percent = Number.parseFloat(event.target.value.replaceAll(',', '')) / 100
+    const downPayment = removeFormat(propertyPrice) * percent
+
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      propertyPrice,
+      downPayment: downPayment.toString(),
+      downPaymentPercentage: event.target.value,
+    })
+
+    if (parsed.success) {
+      event.target.value = formatToPercent(parsed.data.downPaymentPercentage / 100)
+    }
+  }
+
+  function handleLengthOfMortgageInYearsBlur(event: FocusEvent<HTMLInputElement>) {
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      lengthOfMortgageInYears: event.target.value,
+    })
+
+    if (parsed.success) {
+      const yearsCount = parsed.data.lengthOfMortgageInYears === 1 ? 'year' : 'years'
+      event.target.value = `${parsed.data.lengthOfMortgageInYears} ${yearsCount}`
+    }
+  }
+
+  function handleAnnualInterestRateInPercentagesBlur(
+    event: FocusEvent<HTMLInputElement>
+  ) {
+    const parsed = formSchema.safeParse({
+      ...defaultValues,
+      annualInterestRateInPercentage: event.target.value,
+    })
+
+    if (parsed.success) {
+      event.target.value = formatToPercent(
+        parsed.data.annualInterestRateInPercentage / 100
+      )
+    }
+  }
 
   return (
     <S.Container>
       <S.Title>Payment calculator</S.Title>
       <S.Graphic>
         <S.CenterText>
-          <S.Value>{formatToDollar(total, 2)}</S.Value>
+          {/* <S.Value>{monthlyPaymentFormatted}</S.Value> */}
           <S.Divisor>month</S.Divisor>
         </S.CenterText>
-        <Doughnut data={data} options={options} />
+        {/* <Doughnut data={chartData} options={chartOptions} /> */}
       </S.Graphic>
 
-      <Calculator register={register} />
+      <S.Form>
+        <S.Label showError={!!errors.propertyPrice}>
+          <div>
+            Property Price <S.Asterisk>*</S.Asterisk>
+          </div>
+          <S.InputWrapper>
+            <S.Input
+              placeholder="$320,000.00"
+              {...register('propertyPrice', {
+                onChange: handlePropertyPriceChange,
+                onBlur: handlePropertyPriceBlur,
+              })}
+            />
+            <S.Warning />
+          </S.InputWrapper>
+          {errors.propertyPrice && (
+            <S.ErrorMessage>{errors.propertyPrice.message}</S.ErrorMessage>
+          )}
+        </S.Label>
+
+        <Box css={{ display: 'grid', gridTemplateColumns: '172px 100px', columnGap: 16 }}>
+          <S.Label showError={!!errors.downPayment}>
+            <div>
+              Down payment <S.Asterisk>*</S.Asterisk>
+            </div>
+            <S.InputWrapper>
+              <S.Input
+                placeholder="$64,000.00"
+                {...register('downPayment', {
+                  onChange: handleDownPaymentChange,
+                  onBlur: handleDownPaymentBlur,
+                })}
+              />
+              <S.Warning />
+            </S.InputWrapper>
+          </S.Label>
+          <S.Label showError={!!errors.downPaymentPercentage} css={{ mt: 20 }}>
+            <S.InputWrapper>
+              <S.Input
+                placeholder="20%"
+                {...register('downPaymentPercentage', {
+                  onChange: handleDownPaymentPercentageChange,
+                  onBlur: handleDownPaymentPercentageBlur,
+                })}
+              />
+              <S.Warning />
+            </S.InputWrapper>
+          </S.Label>
+          <Box css={{ mt: 4, gridColumn: 'span 2' }}>
+            {errors.downPayment ? (
+              <S.ErrorMessage>{errors.downPayment.message}</S.ErrorMessage>
+            ) : (
+              errors.downPaymentPercentage && (
+                <S.ErrorMessage>{errors.downPaymentPercentage.message}</S.ErrorMessage>
+              )
+            )}
+          </Box>
+        </Box>
+
+        <S.Label showError={!!errors.lengthOfMortgageInYears}>
+          <div>
+            Length of Mortgage <S.Asterisk>*</S.Asterisk>
+          </div>
+          <S.InputWrapper>
+            <S.Input
+              placeholder="30 Years"
+              {...register('lengthOfMortgageInYears', {
+                onBlur: handleLengthOfMortgageInYearsBlur,
+              })}
+            />
+            <S.Warning />
+          </S.InputWrapper>
+          {errors.lengthOfMortgageInYears && (
+            <S.ErrorMessage>{errors.lengthOfMortgageInYears.message}</S.ErrorMessage>
+          )}
+        </S.Label>
+
+        <S.Label showError={!!errors.annualInterestRateInPercentage}>
+          <div>
+            Annual Interest Rate <S.Asterisk>*</S.Asterisk>
+          </div>
+          <S.InputWrapper>
+            <S.Input
+              placeholder="4%"
+              {...register('annualInterestRateInPercentage', {
+                onBlur: handleAnnualInterestRateInPercentagesBlur,
+              })}
+            />
+            <S.Warning />
+          </S.InputWrapper>
+          {errors.annualInterestRateInPercentage && (
+            <S.ErrorMessage>
+              {errors.annualInterestRateInPercentage.message}
+            </S.ErrorMessage>
+          )}
+        </S.Label>
+      </S.Form>
     </S.Container>
   )
 }

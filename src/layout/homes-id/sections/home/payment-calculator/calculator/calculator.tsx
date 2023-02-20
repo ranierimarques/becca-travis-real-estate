@@ -12,75 +12,38 @@ interface CalculatorProps {
   }>
 }
 
-type inputType = {
-  name:
-    | 'propertyPrice'
-    | 'downPayment'
-    | 'lengthOfMortgageInYears'
-    | 'annualInterestRateInPercentage'
-  type: string
-  placeholder: string
-  label: string
-  required: boolean
-}[]
-
 export function Calculator({ register }: CalculatorProps) {
-  const inputs: inputType = [
-    {
-      name: 'propertyPrice',
-      label: 'Property Price',
-      placeholder: '$320,000.00',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'downPayment',
-      label: 'Down payment',
-      placeholder: '$64,000.00',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'lengthOfMortgageInYears',
-      label: 'Length of Mortgage',
-      placeholder: '30 Years',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'annualInterestRateInPercentage',
-      label: 'Annual Interest Rate',
-      placeholder: '4%',
-      type: 'text',
-      required: false,
-    },
-  ]
-
   return (
     <S.Form>
-      {inputs.map((input, index) => (
-        <S.Label key={index}>
-          {input.label}
-          {input.name === 'downPayment' ? (
-            <Flex css={{ gap: 16 }}>
-              <S.InputWrapper css={{ w: 172 }}>
-                <S.Input {...input} {...register(input.name)} />
-              </S.InputWrapper>
-              <S.InputWrapper css={{ w: 100 }}>
-                <S.Input
-                  {...register('downPaymentPercentage')}
-                  placeholder="20%"
-                  type="text"
-                />
-              </S.InputWrapper>
-            </Flex>
-          ) : (
-            <S.InputWrapper>
-              <S.Input {...input} {...register(input.name)} />
-            </S.InputWrapper>
-          )}
-        </S.Label>
-      ))}
+      <S.Label>
+        Property Price
+        <S.InputWrapper>
+          <S.Input placeholder="$320,000.00" {...register('propertyPrice')} />
+        </S.InputWrapper>
+      </S.Label>
+      <S.Label>
+        Down payment
+        <Flex css={{ gap: 16 }}>
+          <S.InputWrapper css={{ w: 172 }}>
+            <S.Input placeholder="$64,000.00" {...register('downPayment')} />
+          </S.InputWrapper>
+          <S.InputWrapper css={{ w: 100 }}>
+            <S.Input placeholder="20%" {...register('downPaymentPercentage')} />
+          </S.InputWrapper>
+        </Flex>
+      </S.Label>
+      <S.Label>
+        Length of Mortgage
+        <S.InputWrapper>
+          <S.Input placeholder="30 Years" {...register('lengthOfMortgageInYears')} />
+        </S.InputWrapper>
+      </S.Label>
+      <S.Label>
+        Annual Interest Rate
+        <S.InputWrapper>
+          <S.Input placeholder="4%" {...register('annualInterestRateInPercentage')} />
+        </S.InputWrapper>
+      </S.Label>
     </S.Form>
   )
 }
