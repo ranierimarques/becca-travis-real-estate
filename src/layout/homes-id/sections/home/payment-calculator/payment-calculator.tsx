@@ -1,19 +1,25 @@
 import { Box } from '@/common'
 import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArcElement, Chart, Legend, Tooltip } from 'chart.js'
+import { ArcElement, Chart, ChartData, ChartOptions, Tooltip } from 'chart.js'
 import { ChangeEvent, FocusEvent } from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import * as S from './payment-calculator.styles'
 
-Chart.register(ArcElement, Tooltip, Legend)
+Chart.register(ArcElement, Tooltip)
 
-const chartOptions = {
+const chartOptions: ChartOptions<'doughnut'> = {
+  cutout: '80%',
   plugins: {
-    legend: {
-      display: false,
+    tooltip: {
+      padding: 8,
+      boxPadding: 4,
+      usePointStyle: true,
+      callbacks: {
+        label: context => formatToDollar(context.raw as number, 2),
+      },
     },
   },
 }
@@ -124,34 +130,37 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     defaultValues,
   })
 
-  // const {
-  //   propertyPrice,
-  //   downPayment,
-  //   annualInterestRateInPercentage,
-  //   lengthOfMortgageInYears,
-  // } = getValues()
+  const {
+    propertyPrice,
+    downPayment,
+    annualInterestRateInPercentage,
+    lengthOfMortgageInYears,
+  } = getValues()
 
-  // const principal = propertyPrice - downPayment
-  // const r = annualInterestRateInPercentage / 1200 // Monthly interest rate
-  // const n = lengthOfMortgageInYears * 12 // Total number of payments
-  // const numerator = r * Math.pow(1 + r, n)
-  // const denominator = Math.pow(1 + r, n) - 1
+  const principalLoan = 300000 - 50000
+  const r = 15 / 100 / 12 // Monthly interest rate
+  const n = 20 * 12 // Total number of payments
+  const numerator = r * Math.pow(1 + r, n)
+  const denominator = Math.pow(1 + r, n) - 1
 
-  // const monthlyPayment = principal * (numerator / denominator)
-  // const totalInterest = monthlyPayment * n - principal
+  const monthlyPayment = principalLoan * (numerator / denominator)
 
-  // const monthlyPaymentFormatted = formatToDollar(monthlyPayment, 2)
+  const principal = monthlyPayment - (principalLoan / 100) * (15 / 12)
+  const interest = (principalLoan / 100) * (15 / 12)
 
-  // const chartData = {
-  //   labels: ['Principal', 'Interest'],
-  //   datasets: [
-  //     {
-  //       data: [principal, totalInterest],
-  //       backgroundColor: ['#D9BC3A', '#42A0FF'],
-  //       cutout: '80%',
-  //     },
-  //   ],
-  // }
+  const monthlyPaymentFormatted = formatToDollar(monthlyPayment, 2)
+
+  console.log(interest, principal)
+
+  const chartData: ChartData<'doughnut', number[], string> = {
+    labels: ['Interest', 'Principal'],
+    datasets: [
+      {
+        data: [interest, principal],
+        backgroundColor: ['#42A0FF', '#D9BC3A'],
+      },
+    ],
+  }
 
   function handlePropertyPriceChange(event: ChangeEvent<HTMLInputElement>) {
     const { downPaymentPercentage } = getValues()
@@ -288,10 +297,10 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
       <S.Title>Payment calculator</S.Title>
       <S.Graphic>
         <S.CenterText>
-          {/* <S.Value>{monthlyPaymentFormatted}</S.Value> */}
+          <S.Value>{monthlyPaymentFormatted}</S.Value>
           <S.Divisor>month</S.Divisor>
         </S.CenterText>
-        {/* <Doughnut data={chartData} options={chartOptions} /> */}
+        <Doughnut data={chartData} options={chartOptions} />
       </S.Graphic>
 
       <S.Form>

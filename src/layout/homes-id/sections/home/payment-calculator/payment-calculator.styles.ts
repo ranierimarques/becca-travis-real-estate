@@ -27,6 +27,8 @@ export const CenterText = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   gap: 4,
+
+  zIndex: '-1',
 })
 
 export const Value = styled('span', {
