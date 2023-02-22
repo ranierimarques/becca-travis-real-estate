@@ -1,5 +1,5 @@
-import { Box } from '@/common'
 import dynamic from 'next/dynamic'
+import { Box } from '@/common'
 import * as Svg from '../svgs'
 import * as S from './helper-navbar.styles'
 

@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import { Box } from '@/common'
 import { Toast } from '@/primitives'
 import { Form, Hat } from '@/shared'
-import { useState } from 'react'
 import { ContactInformation } from '.'
 import * as S from './hero.styles'
 

@@ -1,3 +1,5 @@
+import type { NextPage } from 'next'
+import Head from 'next/head'
 import {
   Hero,
   Sellers,
@@ -5,8 +7,6 @@ import {
   WhyARealtor,
 } from '@/layout/sellers-resources/sections'
 import { LastCall } from '@/shared'
-import type { NextPage } from 'next'
-import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (

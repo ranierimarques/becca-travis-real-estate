@@ -1,10 +1,10 @@
+import { memo, useRef, useState } from 'react'
+import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
+import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
 import { HouseCard } from '@/shared'
-import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
-import type * as Stitches from '@stitches/react'
-import { memo, useRef, useState } from 'react'
 import * as Img from '../images'
 import * as S from './map.styles'
 

@@ -1,9 +1,9 @@
+import { useState } from 'react'
 import { Button } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { HouseCard } from '@/shared'
 import { Section } from '@/template'
 import { FormattedHouseCards } from '@/types/houses'
-import { useState } from 'react'
 import * as S from './homes.styles'
 
 interface HomesProps {

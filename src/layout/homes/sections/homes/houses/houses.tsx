@@ -1,9 +1,9 @@
+import { useEffect, useRef } from 'react'
+import { useAtomValue } from 'jotai'
+import { visualizationAtom } from 'src/pages/homes'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import { HouseCard } from '@/shared'
-import { useAtomValue } from 'jotai'
-import { useEffect, useRef } from 'react'
-import { visualizationAtom } from 'src/pages/homes'
 import * as S from './houses.styles'
 
 type SkeletonCardsProps = { count: number }

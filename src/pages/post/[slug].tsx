@@ -1,7 +1,7 @@
-import { Post } from '@/layout/post-slug/sections'
-import request, { gql } from 'graphql-request'
 import Head from 'next/head'
+import request, { gql } from 'graphql-request'
 import getReadingTime from 'reading-time'
+import { Post } from '@/layout/post-slug/sections'
 
 export default function PostPage({ data }: any) {
   return (

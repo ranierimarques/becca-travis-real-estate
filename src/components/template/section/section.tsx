@@ -1,6 +1,6 @@
-import { Box } from '@/common'
-import type * as Stitches from '@stitches/react'
 import { ReactNode } from 'react'
+import type * as Stitches from '@stitches/react'
+import { Box } from '@/common'
 import type { SectionVariants } from './section.styles'
 import * as S from './section.styles'
 

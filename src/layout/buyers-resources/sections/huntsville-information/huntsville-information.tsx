@@ -1,5 +1,5 @@
-import { Hat } from '@/shared'
 import Image from 'next/image'
+import { Hat } from '@/shared'
 import * as S from './huntsville-information.styles'
 import { image1, image2, image3 } from './images'
 import { ArrowSvg } from './svgs'

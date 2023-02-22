@@ -1,7 +1,7 @@
-import { Box, Flex } from '@/common'
-import { Section } from '@/template'
 import { ReactNode } from 'react'
 import { SchoolList } from 'src/pages/communities/[community]'
+import { Box, Flex } from '@/common'
+import { Section } from '@/template'
 import * as S from './schools.styles'
 import * as Svg from './svgs'
 

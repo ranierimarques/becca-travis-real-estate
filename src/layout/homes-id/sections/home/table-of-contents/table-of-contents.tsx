@@ -1,5 +1,5 @@
-import useThrottle from '@/resources/hooks/useThrottle'
 import { useEffect, useState } from 'react'
+import useThrottle from '@/resources/hooks/useThrottle'
 import * as S from './table-of-contents.styles'
 
 const TOP_OFFSET = 110

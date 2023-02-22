@@ -1,6 +1,6 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { getHouseListing } from '@/services/house-listings'
 import { FormattedHouseCard } from '@/services/house-listings/types'
-import { useInfiniteQuery } from '@tanstack/react-query'
 import { Filters, useFiltersStore } from '../store/filters'
 
 function getSelectAndInputRangeFilters(filters: Filters) {

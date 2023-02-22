@@ -1,5 +1,5 @@
-import { Section as TemplateSection } from '@/template'
 import { styled } from 'stitches.config'
+import { Section as TemplateSection } from '@/template'
 
 export const Section = styled(TemplateSection, {
   display: 'flex',

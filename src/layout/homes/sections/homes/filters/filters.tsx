@@ -1,3 +1,5 @@
+import { ComponentProps } from 'react'
+import shallow from 'zustand/shallow'
 import { Box, Button, Flex } from '@/common'
 import {
   Filters as FiltersType,
@@ -6,8 +8,6 @@ import {
 } from '@/layout/homes/store/filters'
 import { Dialog } from '@/primitives'
 import { ReplaceAll } from '@/types/helpers'
-import { ComponentProps } from 'react'
-import shallow from 'zustand/shallow'
 import { Select } from '..'
 import * as Svg from '../svgs'
 import * as S from './filters.styles'

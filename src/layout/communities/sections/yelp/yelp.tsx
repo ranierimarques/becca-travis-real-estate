@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import { Box, Button, Flex, Image } from '@/common'
 import { Select } from '@/primitives'
 import { Section } from '@/template'
-import { useState } from 'react'
 import * as Img from './images'
 import * as S from './yelp.styles'
 

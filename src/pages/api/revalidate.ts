@@ -1,5 +1,5 @@
-import request, { gql } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
+import request, { gql } from 'graphql-request'
 
 const query2 = gql`
   query {

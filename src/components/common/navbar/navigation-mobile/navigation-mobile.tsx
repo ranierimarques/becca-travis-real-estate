@@ -1,13 +1,13 @@
-import { Box, Flex, Image } from '@/common'
+import dynamic from 'next/dynamic'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { useSetAtom } from 'jotai'
-import dynamic from 'next/dynamic'
 import { visualizationAtom } from 'src/pages/homes'
+import { Box, Flex, Image } from '@/common'
 import {
-  aboutHuntsvilleListItems,
   CardListItemProps,
-  communitiesListItems,
   MenuProps,
+  aboutHuntsvilleListItems,
+  communitiesListItems,
   menus,
 } from '../navigation/navigation'
 import * as S from './navigation-mobile.styles'

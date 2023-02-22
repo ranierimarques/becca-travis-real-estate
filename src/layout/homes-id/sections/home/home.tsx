@@ -1,6 +1,5 @@
 import { Flex } from '@/common'
 import { FormattedHouse } from '@/services/house-listings/types'
-
 import {
   AskAQuestion,
   Description,

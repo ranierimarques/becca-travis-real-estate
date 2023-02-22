@@ -1,6 +1,6 @@
-import { Loader } from '@/common'
+import { ReactNode, forwardRef } from 'react'
 import type * as Stitches from '@stitches/react'
-import { forwardRef, ReactNode } from 'react'
+import { Loader } from '@/common'
 import type { ButtonVariants } from './button.styles'
 import * as S from './button.styles'
 

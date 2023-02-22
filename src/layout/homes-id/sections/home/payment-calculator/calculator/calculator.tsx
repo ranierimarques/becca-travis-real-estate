@@ -1,5 +1,5 @@
-import { Flex } from '@/common'
 import { UseFormRegister } from 'react-hook-form'
+import { Flex } from '@/common'
 import * as S from './calculator.styles'
 
 interface CalculatorProps {

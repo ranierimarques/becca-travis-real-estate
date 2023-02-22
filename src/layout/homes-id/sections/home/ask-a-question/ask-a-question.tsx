@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import { Box } from '@/common'
 import { Toast } from '@/primitives'
 import { Form } from '@/shared'
-import { useState } from 'react'
 import * as S from './ask-a-question.styles'
 
 export function AskAQuestion() {

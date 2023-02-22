@@ -1,5 +1,5 @@
-import type * as Stitches from '@stitches/react'
 import NextLinkUnstyled from 'next/link'
+import type * as Stitches from '@stitches/react'
 import { css, styled } from 'stitches.config'
 import { Loader } from '../loader/loader.styles'
 

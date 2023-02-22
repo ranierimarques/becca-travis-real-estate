@@ -1,5 +1,5 @@
-import * as SelectPrimitive from '@radix-ui/react-select'
 import React from 'react'
+import * as SelectPrimitive from '@radix-ui/react-select'
 import * as S from './select.styles'
 import * as Svg from './svgs'
 

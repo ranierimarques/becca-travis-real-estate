@@ -1,5 +1,5 @@
-import { Button, Image } from '@/common'
 import { StaticImageData } from 'next/image'
+import { Button, Image } from '@/common'
 import * as S from './card.styles'
 
 type cardProps = {
