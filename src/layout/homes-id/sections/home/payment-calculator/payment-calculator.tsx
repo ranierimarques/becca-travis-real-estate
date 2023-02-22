@@ -1,11 +1,11 @@
-import { Box } from '@/common'
-import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
+import { ChangeEvent, FocusEvent } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArcElement, Chart, ChartData, ChartOptions, Tooltip } from 'chart.js'
-import { ChangeEvent, FocusEvent } from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Box } from '@/common'
+import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
 import * as S from './payment-calculator.styles'
 
 Chart.register(ArcElement, Tooltip)
@@ -47,7 +47,9 @@ const formSchema = z
     propertyPrice: z
       .string()
       .min(1, 'This field is required')
-      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .refine(isValidNumber, value => ({
+        message: `'${value}' is not a valid number`,
+      }))
       .transform(value => removeFormat(value))
       .refine(value => value >= 5_000, {
         message: 'Property price must be greater than or equal to 5,000',
@@ -58,7 +60,9 @@ const formSchema = z
     downPayment: z
       .string()
       .min(1, 'This field is required')
-      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .refine(isValidNumber, value => ({
+        message: `'${value}' is not a valid number`,
+      }))
       .transform(value => removeFormat(value))
       .refine(value => value >= 0, {
         message: 'Down payment must be greater than or equal to 0',
@@ -66,7 +70,9 @@ const formSchema = z
     downPaymentPercentage: z
       .string()
       .min(1, 'This field is required')
-      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .refine(isValidNumber, value => ({
+        message: `'${value}' is not a valid number`,
+      }))
       .transform(value => removeFormatFloat(value))
       .refine(value => value >= 0, {
         message: 'Down payment percent must be greater than or equal to 0',
@@ -90,7 +96,9 @@ const formSchema = z
     annualInterestRateInPercentage: z
       .string()
       .min(1, 'This field is required')
-      .refine(isValidNumber, value => ({ message: `'${value}' is not a valid number` }))
+      .refine(isValidNumber, value => ({
+        message: `'${value}' is not a valid number`,
+      }))
       .transform(value => removeFormatFloat(value))
       .refine(value => value >= 0, {
         message: 'Rate must be greater than or equal to 0',
@@ -323,7 +331,13 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
           )}
         </S.Label>
 
-        <Box css={{ display: 'grid', gridTemplateColumns: '172px 100px', columnGap: 16 }}>
+        <Box
+          css={{
+            display: 'grid',
+            gridTemplateColumns: '172px 100px',
+            columnGap: 16,
+          }}
+        >
           <S.Label showError={!!errors.downPayment}>
             <div>
               Down payment <S.Asterisk>*</S.Asterisk>
