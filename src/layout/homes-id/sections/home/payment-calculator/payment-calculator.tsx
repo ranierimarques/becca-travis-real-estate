@@ -1,28 +1,11 @@
 import { ChangeEvent, FocusEvent } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArcElement, Chart, ChartData, ChartOptions, Tooltip } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Box } from '@/common'
 import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
+import { Chart } from '.'
 import * as S from './payment-calculator.styles'
-
-Chart.register(ArcElement, Tooltip)
-
-const chartOptions: ChartOptions<'doughnut'> = {
-  cutout: '80%',
-  plugins: {
-    tooltip: {
-      padding: 8,
-      boxPadding: 4,
-      usePointStyle: true,
-      callbacks: {
-        label: context => formatToDollar(context.raw as number, 2),
-      },
-    },
-  },
-}
 
 const extractNumbersRegex = /[^0-9.-]+/g
 
@@ -42,7 +25,7 @@ function isValidNumberFloat(value: string) {
   return !isNaN(Number.parseFloat(value.replace(extractNumbersRegex, '')))
 }
 
-const formSchema = z
+export const formSchema = z
   .object({
     propertyPrice: z
       .string()
@@ -112,7 +95,7 @@ const formSchema = z
     path: ['downPayment'],
   })
 
-type FormSchemaType = z.input<typeof formSchema>
+export type FormSchemaType = z.input<typeof formSchema>
 
 interface PaymentCalculatorProps {
   price: number
@@ -126,10 +109,10 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     lengthOfMortgageInYears: '30 years',
     annualInterestRateInPercentage: '6%',
   }
-
   const {
     register,
     setValue,
+    control,
     getValues,
     formState: { errors },
   } = useForm<FormSchemaType>({
@@ -137,38 +120,6 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     mode: 'onChange',
     defaultValues,
   })
-
-  const {
-    propertyPrice,
-    downPayment,
-    annualInterestRateInPercentage,
-    lengthOfMortgageInYears,
-  } = getValues()
-
-  const principalLoan = 300000 - 50000
-  const r = 15 / 100 / 12 // Monthly interest rate
-  const n = 20 * 12 // Total number of payments
-  const numerator = r * Math.pow(1 + r, n)
-  const denominator = Math.pow(1 + r, n) - 1
-
-  const monthlyPayment = principalLoan * (numerator / denominator)
-
-  const principal = monthlyPayment - (principalLoan / 100) * (15 / 12)
-  const interest = (principalLoan / 100) * (15 / 12)
-
-  const monthlyPaymentFormatted = formatToDollar(monthlyPayment, 2)
-
-  console.log(interest, principal)
-
-  const chartData: ChartData<'doughnut', number[], string> = {
-    labels: ['Interest', 'Principal'],
-    datasets: [
-      {
-        data: [interest, principal],
-        backgroundColor: ['#42A0FF', '#D9BC3A'],
-      },
-    ],
-  }
 
   function handlePropertyPriceChange(event: ChangeEvent<HTMLInputElement>) {
     const { downPaymentPercentage } = getValues()
@@ -303,13 +254,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
   return (
     <S.Container>
       <S.Title>Payment calculator</S.Title>
-      <S.Graphic>
-        <S.CenterText>
-          <S.Value>{monthlyPaymentFormatted}</S.Value>
-          <S.Divisor>month</S.Divisor>
-        </S.CenterText>
-        <Doughnut data={chartData} options={chartOptions} />
-      </S.Graphic>
+      <Chart control={control} />
 
       <S.Form>
         <S.Label showError={!!errors.propertyPrice}>

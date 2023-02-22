@@ -1,1 +1,1 @@
-export { Calculator } from './calculator/calculator'
+export { Chart } from './chart/chart'
