@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { ArcElement, ChartData, Chart as ChartJS, ChartOptions, Tooltip } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import { Control, useWatch } from 'react-hook-form'
@@ -12,11 +12,21 @@ const chartOptions: ChartOptions<'doughnut'> = {
   cutout: '80%',
   plugins: {
     tooltip: {
-      padding: 8,
-      boxPadding: 4,
+      backgroundColor: '#5F5C6B',
+      cornerRadius: 5,
+      padding: {
+        y: 4,
+        x: 8,
+      },
+      boxPadding: 6,
       usePointStyle: true,
+      bodySpacing: 30,
+      bodyFont: {
+        size: 12,
+      },
       callbacks: {
-        label: context => formatToDollar(context.raw as number, 2),
+        label: context => `${context.label}: ${formatToDollar(context.raw as number, 2)}`,
+        title: () => '',
       },
     },
   },
