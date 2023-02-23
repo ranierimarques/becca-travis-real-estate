@@ -3,7 +3,11 @@ import { ArcElement, ChartData, Chart as ChartJS, ChartOptions, Tooltip } from '
 import { Doughnut } from 'react-chartjs-2'
 import { Control, useWatch } from 'react-hook-form'
 import { formatToDollar } from '@/resources/utils/currency'
-import { FormSchemaType, formSchema } from '../payment-calculator'
+import {
+  FormSchemaTypeInput,
+  FormSchemaTypeOutput,
+  formSchema,
+} from '../payment-calculator'
 import * as S from './chart.styles'
 
 ChartJS.register(ArcElement, Tooltip)
@@ -32,47 +36,54 @@ const chartOptions: ChartOptions<'doughnut'> = {
   },
 }
 
+function getMortgageCalculationResults({
+  propertyPrice,
+  downPayment,
+  annualInterestRateInPercentage,
+  lengthOfMortgageInYears,
+}: FormSchemaTypeOutput) {
+  const loan = propertyPrice - downPayment
+  const monthlyInterestRateInPercentage = annualInterestRateInPercentage / 100 / 12
+  const numberOfPayments = lengthOfMortgageInYears * 12
+
+  const numerator =
+    monthlyInterestRateInPercentage *
+    Math.pow(1 + monthlyInterestRateInPercentage, numberOfPayments)
+  const denominator = Math.pow(1 + monthlyInterestRateInPercentage, numberOfPayments) - 1
+
+  const rateIsZero = monthlyInterestRateInPercentage === 0
+  const payment = rateIsZero ? loan / numberOfPayments : loan * (numerator / denominator)
+
+  const interest = loan * monthlyInterestRateInPercentage
+  const principal = payment - interest
+
+  return { principal, interest, payment }
+}
+
 interface ChartProps {
-  control: Control<FormSchemaType>
+  control: Control<FormSchemaTypeInput>
 }
 
 export function Chart({ control }: ChartProps) {
-  const actualRef = useRef({ data: [0, 0], monthlyPayment: 0 })
+  const resultsRef = useRef({ data: [0, 0], monthlyPayment: 0 })
   const values = useWatch({ control })
 
+  // WARNING: Understanding the code below requires advanced knowledge of React.
+  // This code works perfectly and guarantees the highest possible performance of updating chart data.
+  // However, reading and writing Refs during rendering is not a recommended practice.
+  // So this code might break in a major React update.
   const parsed = formSchema.safeParse({ ...values })
 
   if (parsed.success) {
-    const {
-      propertyPrice,
-      downPayment,
-      annualInterestRateInPercentage,
-      lengthOfMortgageInYears,
-    } = parsed.data
-
-    const principalLoan = propertyPrice - downPayment
-    const r = annualInterestRateInPercentage / 100 / 12 // Monthly interest rate
-    const n = lengthOfMortgageInYears * 12 // Total number of payments
-    const numerator = r * Math.pow(1 + r, n)
-    const denominator = Math.pow(1 + r, n) - 1
-
-    const monthlyPayment =
-      annualInterestRateInPercentage === 0
-        ? principalLoan / n
-        : principalLoan * (numerator / denominator)
-
-    const principal =
-      monthlyPayment - (principalLoan / 100) * (annualInterestRateInPercentage / 12)
-    const interest = (principalLoan / 100) * (annualInterestRateInPercentage / 12)
-
-    actualRef.current = { data: [interest, principal], monthlyPayment }
+    const { interest, principal, payment } = getMortgageCalculationResults(parsed.data)
+    resultsRef.current = { data: [interest, principal], monthlyPayment: payment }
   }
 
   const chartData: ChartData<'doughnut', number[], string> = {
     labels: ['Interest', 'Principal'],
     datasets: [
       {
-        data: actualRef.current.data,
+        data: resultsRef.current.data,
         backgroundColor: ['#42A0FF', '#D9BC3A'],
       },
     ],
@@ -81,7 +92,7 @@ export function Chart({ control }: ChartProps) {
   return (
     <S.Graphic>
       <S.CenterText>
-        <S.Value>{formatToDollar(actualRef.current.monthlyPayment, 2)}</S.Value>
+        <S.Value>{formatToDollar(resultsRef.current.monthlyPayment, 2)}</S.Value>
         <S.Divisor>month</S.Divisor>
       </S.CenterText>
       <Doughnut data={chartData} options={chartOptions} />

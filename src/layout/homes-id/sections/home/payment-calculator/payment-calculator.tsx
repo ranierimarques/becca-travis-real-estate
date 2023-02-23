@@ -95,7 +95,8 @@ export const formSchema = z
     path: ['downPayment'],
   })
 
-export type FormSchemaType = z.input<typeof formSchema>
+export type FormSchemaTypeInput = z.input<typeof formSchema>
+export type FormSchemaTypeOutput = z.output<typeof formSchema>
 
 interface PaymentCalculatorProps {
   price: number
@@ -115,7 +116,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     control,
     getValues,
     formState: { errors },
-  } = useForm<FormSchemaType>({
+  } = useForm<FormSchemaTypeInput>({
     resolver: zodResolver(formSchema),
     mode: 'onChange',
     defaultValues,
