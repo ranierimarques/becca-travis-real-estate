@@ -1,6 +1,3 @@
 export function formatToPercent(amount: number) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'percent',
-    maximumSignificantDigits: 4,
-  }).format(amount)
+  return `${amount.toString().match(/^-?\d+(?:\.\d{0,2})?/)?.[0] ?? '0'}%`
 }

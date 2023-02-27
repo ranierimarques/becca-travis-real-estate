@@ -39,11 +39,11 @@ const chartOptions: ChartOptions<'doughnut'> = {
 function getMortgageCalculationResults({
   propertyPrice,
   downPayment,
-  annualInterestRateInPercentage,
+  annualInterestRate,
   lengthOfMortgageInYears,
 }: FormSchemaTypeOutput) {
   const loan = propertyPrice - downPayment
-  const monthlyInterestRateInPercentage = annualInterestRateInPercentage / 100 / 12
+  const monthlyInterestRateInPercentage = annualInterestRate / 100 / 12
   const numberOfPayments = lengthOfMortgageInYears * 12
 
   const numerator =
