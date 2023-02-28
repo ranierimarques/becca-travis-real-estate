@@ -33,7 +33,7 @@ export function Home({ listing }: Listing) {
       <Features listing={listing} />
       <AskAQuestion />
       <FasterContact />
-      {/* <PaymentCalculator price={listing.priceNumber} /> */}
+      <PaymentCalculator price={listing.priceNumber} />
       <RelatedProperties id={listing.id} coords={listing.coords} />
     </S.Section>
   )

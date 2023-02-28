@@ -1,6 +1,6 @@
-import { Section as SectionTemplate } from '@/template'
 import NextLink from 'next/link'
 import { styled } from 'stitches.config'
+import { Section as SectionTemplate } from '@/template'
 
 export const Section = styled(SectionTemplate, {
   position: 'relative',

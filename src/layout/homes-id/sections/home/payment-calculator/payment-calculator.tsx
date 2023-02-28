@@ -1,8 +1,8 @@
-import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { ChangeEvent, FocusEvent } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
 import { Chart, Input, InputDouble } from '.'
 import * as S from './payment-calculator.styles'
 

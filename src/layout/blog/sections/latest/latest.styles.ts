@@ -1,6 +1,6 @@
-import { Section as SectionTemplate } from '@/template'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { keyframes, styled } from 'stitches.config'
+import { Section as SectionTemplate } from '@/template'
 
 export const Section = styled(SectionTemplate, {
   paddingTop: 40,
