@@ -1,8 +1,9 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
-import request, { gql } from 'graphql-request'
-import getReadingTime from 'reading-time'
-import { Flex, Pagination } from '@/common'
+import { Box, Flex, Pagination } from '@/common'
 import useDebounce from '@/resources/hooks/useDebounce'
+import * as Dialog from '@radix-ui/react-dialog'
+import request, { gql } from 'graphql-request'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import getReadingTime from 'reading-time'
 import { Articles, Sidebar } from '.'
 import * as S from './latest.styles'
 import * as Svg from './svgs'
@@ -183,9 +184,71 @@ export function Latest({
   }
 
   return (
-    <S.Section>
-      <Flex align="center" justify="between" css={{ mb: 64 }}>
-        <S.Title>Latest articles</S.Title>
+    <S.Section hasMaxWidth id="latest">
+      <Flex
+        direction={{
+          '@initial': 'row',
+          '@bp4': 'column',
+        }}
+        align={{
+          '@initial': 'center',
+          '@bp4': 'stretch',
+        }}
+        justify="between"
+        css={{ mb: 64, '@bp4': { gap: 32, mb: 40 } }}
+      >
+        <Flex justify="between">
+          <S.Title>Latest articles</S.Title>
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <S.Filter>
+                Filter
+                <Svg.Filter />
+              </S.Filter>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <S.Overlay />
+              <S.Content>
+                <S.DialogTitle>Most Popular</S.DialogTitle>
+                <Box
+                  css={{
+                    height: 310,
+                    overflowY: 'auto',
+                    padding: 20,
+
+                    '@bp1': {
+                      padding: 16,
+                    },
+                  }}
+                >
+                  <ul>
+                    <S.ListItem>
+                      <S.CategoryButton
+                        onClick={() => setActiveCategory('View all')}
+                        active={activeCategory === 'View all'}
+                      >
+                        View all
+                      </S.CategoryButton>
+                    </S.ListItem>
+                    {mostPopularTags.map(category => (
+                      <S.ListItem key={category}>
+                        <S.CategoryButton
+                          onClick={() => setActiveCategory(category)}
+                          active={activeCategory === category}
+                        >
+                          {category}
+                        </S.CategoryButton>
+                      </S.ListItem>
+                    ))}
+                  </ul>
+                </Box>
+                <S.Close asChild>
+                  <Svg.Cross />
+                </S.Close>
+              </S.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
+        </Flex>
         <S.InputWrapper>
           <S.Input
             type="text"
