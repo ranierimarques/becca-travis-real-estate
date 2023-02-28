@@ -17,6 +17,7 @@ export const Section = styled(SectionTemplate, {
   '@bp4': {
     flexDirection: 'column',
     gap: 80,
+    padding: '40px 0',
   },
   '@bp1': {
     gap: 64,
