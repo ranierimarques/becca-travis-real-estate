@@ -7,6 +7,19 @@ export const Title = styled('h4', {
   fontSize: '24px',
   lineHeight: '36px',
   color: '$gray1',
+
+  '@bp2': {
+    margin: '24px 0 14px',
+
+    fontSize: '20px',
+    lineHeight: '24px',
+  },
+  '@bp1': {
+    margin: '20px 0 12px',
+
+    fontSize: '18px',
+    lineHeight: '26px',
+  },
 })
 
 export const Description = styled('p', {
@@ -16,4 +29,16 @@ export const Description = styled('p', {
   fontSize: '14px',
   lineHeight: '26px',
   color: '$grayW5',
+
+  '@bp4': {
+    fontSize: '16px',
+    lineHeight: '28px',
+  },
+
+  '@bp2': {
+    lineHeight: '26px',
+  },
+  '@bp1': {
+    fontSize: '14px',
+  },
 })

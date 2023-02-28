@@ -1,10 +1,27 @@
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
-  width: '336px',
+  gridArea: 'contact',
+
+  marginTop: 32,
+
+  width: '100%',
+  height: 'fit-content',
   padding: 24,
   boxShadow: '0 0 0 1px $colors$grayW8',
   borderRadius: '8px',
+
+  '@bp4': {
+    boxShadow: 'none',
+    marginTop: 0,
+    padding: 0,
+  },
+  '@bp2': {
+    px: 24,
+  },
+  '@bp1': {
+    px: 16,
+  },
 })
 
 export const Title = styled('h4', {
@@ -14,6 +31,10 @@ export const Title = styled('h4', {
   fontSize: '16px',
   lineHeight: '24px',
   color: '$gray1',
+
+  '@bp4': {
+    display: 'none',
+  },
 })
 
 export const Paragraph = styled('p', {
@@ -24,4 +45,8 @@ export const Paragraph = styled('p', {
   fontSize: '12px',
   lineHeight: '20px',
   color: '$grayW4',
+
+  '@bp4': {
+    display: 'none',
+  },
 })

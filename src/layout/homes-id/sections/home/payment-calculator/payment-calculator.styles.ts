@@ -1,13 +1,17 @@
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
+  gridArea: 'calculator',
+
+  height: 'fit-content',
+
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   gap: 24,
 
   padding: '24px',
-  boxShadow: '0 0 0 1px #CDD1D6',
+  boxShadow: '0 0 0 1px $gray1',
   borderRadius: '8px',
 })
 
@@ -16,7 +20,7 @@ export const Title = styled('h4', {
   fontWeight: '500',
   fontSize: '16px',
   lineHeight: '24px',
-  color: '#33303E',
+  color: '$gray1',
 })
 
 export const Form = styled('form', {

@@ -42,6 +42,19 @@ export const Viewport = styled(ToastPrimitive.Viewport, {
         top: -43,
         left: -44,
         padding: 0,
+
+        '@bp4': {
+          position: 'fixed',
+          top: 'unset',
+          left: 'unset',
+          bottom: 16,
+          right: 16,
+        },
+        '@bp2': {
+          bottom: 12,
+          left: '50%',
+          transform: 'translateX(-50%)',
+        },
       },
       2: {
         bottom: 0,
@@ -192,4 +205,8 @@ export const ArrowSvg = styled(Svg.Arrow, {
   bottom: -13,
   left: '50%',
   transform: 'translate(-50%, -50%)',
+
+  '@bp4': {
+    display: 'none',
+  },
 })

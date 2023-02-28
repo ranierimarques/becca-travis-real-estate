@@ -2,6 +2,8 @@ import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
+  gridArea: 'table',
+
   paddingTop: 32,
   display: 'flex',
   flexDirection: 'column',
@@ -12,20 +14,46 @@ export const Container = styled('div', {
 
   zIndex: 2,
 
+  width: '100%',
   maxWidth: 1072,
-  margin: '0 auto',
+  // margin: '0 auto',
 
-  '&::before': {
-    content: '',
-    background: '$white',
-    position: 'absolute',
-    top: 0,
-    left: '50%',
-    height: '100%',
-    transform: 'translateX(-50%)',
-
-    width: '100vw',
+  '@bp5': {
+    paddingTop: 40,
   },
+  '@bp4': {
+    top: 70,
+    paddingTop: 16,
+
+    overflowX: 'hidden',
+  },
+  '@bp3': {
+    paddingTop: 32,
+  },
+  '@bp2': {
+    px: 24,
+  },
+  '@bp1': {
+    paddingTop: 24,
+    px: 16,
+  },
+
+  background: '$colors$white',
+  boxShadow: '64px 0 0 0 $colors$white, -64px 0 0 0 $colors$white',
+
+  // '&::before': {
+  //   content: '',
+  //   background: '$white',
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: '50%',
+  //   height: '100%',
+  //   transform: 'translateX(-50%)',
+
+  //   width: '100vw',
+
+  //   '@bp4': {},
+  // },
 })
 
 export const PageIndex = styled('ul', {
@@ -37,10 +65,16 @@ export const PageIndex = styled('ul', {
   fontSize: '16px',
   lineHeight: '26px',
   color: '$gray5',
-
   zIndex: 2,
-
   borderBottom: '2px solid rgba($colors$gray5Rgb, 0.3)',
+
+  '@bp4': {
+    overflow: 'auto hidden',
+  },
+
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 })
 
 export const ActiveHr = styled('div', {
@@ -67,6 +101,10 @@ export const Content = styled(NextLink, {
   paddingBottom: 24,
 
   transition: '150ms ease-out',
+
+  '@bp1': {
+    fontSize: '14px',
+  },
 })
 
 export const Li = styled('li', {
@@ -75,6 +113,8 @@ export const Li = styled('li', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+
+  whiteSpace: 'nowrap',
 
   '&:hover': {
     [`& ${ActiveHr}`]: {

@@ -39,14 +39,24 @@ export function Header({ listing }: Listing) {
 
   return (
     <S.Header>
-      <Flex align="center" justify="between" css={{ mb: 16 }}>
+      <Flex
+        align={{
+          '@initial': 'center',
+          '@bp2': 'start',
+        }}
+        justify="between"
+        css={{ mb: 16, '@bp4': { mb: 12 } }}
+      >
         <S.HouseName>{listing.address}</S.HouseName>
         <Box css={{ position: 'relative' }}>
           <Toast openToast={openToast} onOpenToast={setOpenToast} />
           <DropdownMenu.Root>
-            <DropdownMenu.Trigger variant={2}>
-              <Svg.Share />
-              Share
+            <DropdownMenu.Trigger asChild>
+              <S.ShareButton>
+                <S.Dots />
+                <S.Share />
+                Share
+              </S.ShareButton>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content align="center" sideOffset={8}>
               <DropdownMenu.Group>
@@ -81,20 +91,43 @@ export function Header({ listing }: Listing) {
         </Box>
       </Flex>
 
-      <Flex align="center" css={{ gap: 16 }}>
+      <Flex
+        align="center"
+        css={{
+          gap: 16,
+
+          '@bp3': {
+            '> :nth-child(3)': {
+              display: 'none',
+            },
+          },
+        }}
+      >
         <S.HousePrice>{listing.price}</S.HousePrice>
-        <Box css={{ h: 16, w: 2, background: 'rgba($colors$gray5Rgb, .5)' }} />
-        {titleDetails.map((titleDetail, index) => {
-          return (
-            <Flex align="center" css={{ gap: 16 }} key={titleDetail.title}>
-              <S.HouseStatus>
-                {titleDetail.title}
-                <S.Status title={titleDetail.alt}> {titleDetail.status}</S.Status>
-              </S.HouseStatus>
-              {index + 1 < titleDetails.length && <S.Dot />}
-            </Flex>
-          )
-        })}
+        <Box
+          css={{
+            h: 16,
+            w: 2,
+            background: 'rgba($colors$gray5Rgb, .5)',
+            '@bp2': { display: 'none' },
+          }}
+        />
+        {titleDetails.map((titleDetail, index) => (
+          <Flex
+            align="center"
+            key={titleDetail.title}
+            css={{
+              gap: 16,
+              '@bp2': { display: 'none' },
+            }}
+          >
+            <S.HouseStatus>
+              {titleDetail.title}
+              <S.Status title={titleDetail.alt}> {titleDetail.status}</S.Status>
+            </S.HouseStatus>
+            {index + 1 < titleDetails.length && <S.Dot />}
+          </Flex>
+        ))}
       </Flex>
     </S.Header>
   )

@@ -1,13 +1,24 @@
 import { styled } from 'stitches.config'
 
 export const NavigationWrapper = styled('div', {
+  gridArea: 'slider',
+
   position: 'relative',
   overflow: 'hidden',
   // maxWidth: '704px',
   borderRadius: '8px',
   cursor: 'grab',
 
+  minWidth: 600,
+
   // flex: 1,
+
+  '@bp4': {
+    minWidth: 'unset',
+  },
+  '@bp2': {
+    borderRadius: 'unset',
+  },
 
   '&:active': {
     cursor: 'grabbing',
@@ -34,6 +45,10 @@ export const SkipOverlay = styled('div', {
 
   '&:hover': {
     opacity: '1',
+  },
+
+  '@bp2': {
+    borderRadius: 'unset',
   },
 
   variants: {
@@ -74,10 +89,17 @@ export const Skip = styled('button', {
   variants: {
     direction: {
       left: {
-        left: '32px',
+        left: '24px',
+
+        '@bp4': {
+          left: '16px',
+        },
       },
       right: {
-        right: '32px',
+        right: '24px',
+        '@bp4': {
+          right: '16px',
+        },
       },
     },
   },

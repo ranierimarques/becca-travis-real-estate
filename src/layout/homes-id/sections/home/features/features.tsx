@@ -1,4 +1,4 @@
-import { Flex } from '@/common'
+import { Box, Flex } from '@/common'
 import { FormattedHouse } from '@/services/house-listings/types'
 import * as S from './features.styles'
 
@@ -88,15 +88,15 @@ export function Features({ listing }: Listing) {
         return (
           <div key={index}>
             <S.Title>{feature.title}</S.Title>
-            <Flex direction="column" align="start" css={{ gap: 16 }}>
+            <Flex direction="column" css={{ gap: 24 }}>
               {feature.feats.map((info, i) => (
                 <Flex
                   align="center"
                   justify="between"
                   css={{
-                    borderBottom: '1px solid rgba(156, 168, 183, 1)',
-                    w: '276px',
-                    h: '56px',
+                    pb: 8,
+                    borderBottom: '1px solid $grayW6',
+                    w: '100%',
                   }}
                   key={i}
                 >

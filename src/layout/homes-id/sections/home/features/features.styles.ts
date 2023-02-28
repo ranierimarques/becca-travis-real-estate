@@ -1,13 +1,37 @@
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: 60,
+  gridArea: 'features',
+
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '96px 60px',
 
   marginBottom: 120,
 
   scrollMarginTop: 100,
+
+  '@bp5': {
+    gap: '48px 24px',
+    marginBottom: 80,
+  },
+  '@bp4': {
+    gap: '48px 32px',
+    marginBottom: 64,
+  },
+  '@bp3': {
+    gridTemplateColumns: '1fr',
+    gap: '48px',
+  },
+  '@bp2': {
+    px: 24,
+    gap: '40px',
+    marginBottom: 80,
+  },
+  '@bp1': {
+    px: 16,
+    marginBottom: 64,
+  },
 })
 
 export const Title = styled('h3', {
@@ -16,7 +40,16 @@ export const Title = styled('h3', {
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '36px',
-  color: '#33303E',
+  color: '$gray1',
+
+  '@bp4': {
+    fontSize: '20px',
+    lineHeight: '24px',
+  },
+  '@bp1': {
+    fontSize: '18px',
+    lineHeight: '26px',
+  },
 })
 
 export const Feature = styled('span', {
@@ -25,7 +58,14 @@ export const Feature = styled('span', {
   fontWeight: '500',
   fontSize: '14px',
   lineHeight: '20px',
-  color: '#586474',
+  color: '$grayW4',
+
+  '@bp4': {
+    fontSize: '16px',
+  },
+  '@bp2': {
+    fontSize: '14px',
+  },
 })
 
 export const Value = styled('span', {
@@ -33,7 +73,14 @@ export const Value = styled('span', {
   textAlign: 'end',
 
   fontWeight: '400',
-  fontSize: '14px',
+  fontSize: '12px',
   lineHeight: '20px',
-  color: '#586474',
+  color: '$grayW4',
+
+  '@bp4': {
+    fontSize: '14px',
+  },
+  '@bp2': {
+    fontSize: '12px',
+  },
 })
