@@ -22,11 +22,10 @@ export function Home({ listing }: Listing) {
   return (
     <S.Section>
       <Header listing={listing} />
-      {/* 
       <Flex css={{ gap: 32 }}>
         <Slider key={listing.id} media={listing.media} />
         <PropertyDetails listing={listing} />
-      </Flex> */}
+      </Flex>
 
       <div>
         <TableOfContents />

@@ -1,10 +1,9 @@
 import { ChangeEvent, FocusEvent } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { Box } from '@/common'
 import { formatToDollar, formatToPercent } from '@/resources/utils/currency'
-import { Chart } from '.'
+import { Chart, Input, InputDouble } from '.'
 import * as S from './payment-calculator.styles'
 
 const extractNumbersRegex = /[^0-9.-]+/g
@@ -15,7 +14,7 @@ function removeFormat(value: string) {
 
 const baseSchema = z.string().min(1, 'This field is required').transform(removeFormat)
 
-export const formSchema = z
+export const calculatorFormValidationSchema = z
   .object({
     propertyPrice: baseSchema
       .refine(value => value >= 5_000, {
@@ -54,8 +53,8 @@ export const formSchema = z
     path: ['downPayment'],
   })
 
-export type FormSchemaTypeInput = z.input<typeof formSchema>
-export type FormSchemaTypeOutput = z.output<typeof formSchema>
+export type calculatorFormDataInput = z.input<typeof calculatorFormValidationSchema>
+export type calculatorFormDataOutput = z.output<typeof calculatorFormValidationSchema>
 
 interface PaymentCalculatorProps {
   price: number
@@ -69,24 +68,20 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     lengthOfMortgageInYears: '30 years',
     annualInterestRate: '6%',
   }
-  const {
-    register,
-    setValue,
-    control,
-    getValues,
-    formState: { errors },
-  } = useForm<FormSchemaTypeInput>({
-    resolver: zodResolver(formSchema),
+  const calculatorForm = useForm<calculatorFormDataInput>({
+    resolver: zodResolver(calculatorFormValidationSchema),
     mode: 'onChange',
     defaultValues,
   })
+
+  const { setValue, control, getValues } = calculatorForm
 
   function handlePropertyPriceChange(event: ChangeEvent<HTMLInputElement>) {
     const { downPaymentPercentage } = getValues()
     const percent = removeFormat(downPaymentPercentage) / 100
     const downPayment = removeFormat(event.target.value) * percent
 
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       downPayment: formatToDollar(downPayment),
       propertyPrice: event.target.value,
@@ -106,7 +101,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     const percent = removeFormat(downPaymentPercentage) / 100
     const downPayment = removeFormat(event.target.value) * percent
 
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       downPayment: formatToDollar(downPayment),
       propertyPrice: event.target.value,
@@ -120,7 +115,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
   function handleDownPaymentChange(event: ChangeEvent<HTMLInputElement>) {
     const { propertyPrice } = getValues()
 
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       downPayment: event.target.value,
       propertyPrice,
@@ -138,7 +133,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
   function handleDownPaymentBlur(event: FocusEvent<HTMLInputElement>) {
     const { propertyPrice } = getValues()
 
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       downPayment: event.target.value,
       propertyPrice,
@@ -154,7 +149,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     const percent = removeFormat(event.target.value) / 100
     const downPayment = removeFormat(propertyPrice) * percent
 
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       propertyPrice,
       downPayment: downPayment.toString(),
@@ -173,7 +168,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
     const percent = removeFormat(event.target.value) / 100
     const downPayment = removeFormat(propertyPrice) * percent
 
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       propertyPrice,
       downPayment: downPayment.toString(),
@@ -186,7 +181,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
   }
 
   function handleLengthOfMortgageInYearsBlur(event: FocusEvent<HTMLInputElement>) {
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       lengthOfMortgageInYears: event.target.value,
     })
@@ -198,7 +193,7 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
   }
 
   function handleAnnualInterestRateBlur(event: FocusEvent<HTMLInputElement>) {
-    const parsed = formSchema.safeParse({
+    const parsed = calculatorFormValidationSchema.safeParse({
       ...defaultValues,
       annualInterestRate: event.target.value,
     })
@@ -214,105 +209,51 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
       <Chart control={control} />
 
       <S.Form>
-        <S.Label showError={!!errors.propertyPrice}>
-          <div>
-            Property Price <S.Asterisk>*</S.Asterisk>
-          </div>
-          <S.InputWrapper>
-            <S.Input
-              placeholder="$320,000.00"
-              {...register('propertyPrice', {
-                onChange: handlePropertyPriceChange,
-                onBlur: handlePropertyPriceBlur,
-              })}
-            />
-            <S.Warning />
-          </S.InputWrapper>
-          {errors.propertyPrice && (
-            <S.ErrorMessage>{errors.propertyPrice.message}</S.ErrorMessage>
-          )}
-        </S.Label>
+        <FormProvider {...calculatorForm}>
+          <Input
+            label="Property Price"
+            field="propertyPrice"
+            placeholder="$320,000.00"
+            options={{
+              onChange: handlePropertyPriceChange,
+              onBlur: handlePropertyPriceBlur,
+            }}
+          />
 
-        <Box
-          css={{
-            display: 'grid',
-            gridTemplateColumns: '172px 100px',
-            columnGap: 16,
-          }}
-        >
-          <S.Label showError={!!errors.downPayment}>
-            <div>
-              Down payment <S.Asterisk>*</S.Asterisk>
-            </div>
-            <S.InputWrapper>
-              <S.Input
-                placeholder="$64,000.00"
-                {...register('downPayment', {
-                  onChange: handleDownPaymentChange,
-                  onBlur: handleDownPaymentBlur,
-                })}
-              />
-              <S.Warning />
-            </S.InputWrapper>
-          </S.Label>
-          <S.Label showError={!!errors.downPaymentPercentage} css={{ mt: 20 }}>
-            <S.InputWrapper>
-              <S.Input
-                placeholder="20%"
-                {...register('downPaymentPercentage', {
-                  onChange: handleDownPaymentPercentageChange,
-                  onBlur: handleDownPaymentPercentageBlur,
-                })}
-              />
-              <S.Warning />
-            </S.InputWrapper>
-          </S.Label>
-          <Box css={{ mt: 4, gridColumn: 'span 2' }}>
-            {errors.downPayment ? (
-              <S.ErrorMessage>{errors.downPayment.message}</S.ErrorMessage>
-            ) : (
-              errors.downPaymentPercentage && (
-                <S.ErrorMessage>{errors.downPaymentPercentage.message}</S.ErrorMessage>
-              )
-            )}
-          </Box>
-        </Box>
+          <InputDouble
+            one={{
+              label: 'Down payment',
+              field: 'downPayment',
+              placeholder: '$64,000.00',
+              options: {
+                onChange: handleDownPaymentChange,
+                onBlur: handleDownPaymentBlur,
+              },
+            }}
+            two={{
+              field: 'downPaymentPercentage',
+              placeholder: '20%',
+              options: {
+                onChange: handleDownPaymentPercentageChange,
+                onBlur: handleDownPaymentPercentageBlur,
+              },
+            }}
+          />
 
-        <S.Label showError={!!errors.lengthOfMortgageInYears}>
-          <div>
-            Length of Mortgage <S.Asterisk>*</S.Asterisk>
-          </div>
-          <S.InputWrapper>
-            <S.Input
-              placeholder="30 Years"
-              {...register('lengthOfMortgageInYears', {
-                onBlur: handleLengthOfMortgageInYearsBlur,
-              })}
-            />
-            <S.Warning />
-          </S.InputWrapper>
-          {errors.lengthOfMortgageInYears && (
-            <S.ErrorMessage>{errors.lengthOfMortgageInYears.message}</S.ErrorMessage>
-          )}
-        </S.Label>
+          <Input
+            label="Length of Mortgage"
+            field="lengthOfMortgageInYears"
+            placeholder="30 Years"
+            options={{ onBlur: handleLengthOfMortgageInYearsBlur }}
+          />
 
-        <S.Label showError={!!errors.annualInterestRate}>
-          <div>
-            Annual Interest Rate <S.Asterisk>*</S.Asterisk>
-          </div>
-          <S.InputWrapper>
-            <S.Input
-              placeholder="4%"
-              {...register('annualInterestRate', {
-                onBlur: handleAnnualInterestRateBlur,
-              })}
-            />
-            <S.Warning />
-          </S.InputWrapper>
-          {errors.annualInterestRate && (
-            <S.ErrorMessage>{errors.annualInterestRate.message}</S.ErrorMessage>
-          )}
-        </S.Label>
+          <Input
+            label="Annual Interest Rate"
+            field="annualInterestRate"
+            placeholder="4%"
+            options={{ onBlur: handleAnnualInterestRateBlur }}
+          />
+        </FormProvider>
       </S.Form>
     </S.Container>
   )

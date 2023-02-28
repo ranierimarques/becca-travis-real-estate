@@ -4,9 +4,9 @@ import { Doughnut } from 'react-chartjs-2'
 import { Control, useWatch } from 'react-hook-form'
 import { formatToDollar } from '@/resources/utils/currency'
 import {
-  FormSchemaTypeInput,
-  FormSchemaTypeOutput,
-  formSchema,
+  calculatorFormDataInput,
+  calculatorFormDataOutput,
+  calculatorFormValidationSchema,
 } from '../payment-calculator'
 import * as S from './chart.styles'
 
@@ -41,7 +41,7 @@ function getMortgageCalculationResults({
   downPayment,
   annualInterestRate,
   lengthOfMortgageInYears,
-}: FormSchemaTypeOutput) {
+}: calculatorFormDataOutput) {
   const loan = propertyPrice - downPayment
   const monthlyInterestRateInPercentage = annualInterestRate / 100 / 12
   const numberOfPayments = lengthOfMortgageInYears * 12
@@ -61,7 +61,7 @@ function getMortgageCalculationResults({
 }
 
 interface ChartProps {
-  control: Control<FormSchemaTypeInput>
+  control: Control<calculatorFormDataInput>
 }
 
 export function Chart({ control }: ChartProps) {
@@ -72,7 +72,7 @@ export function Chart({ control }: ChartProps) {
   // This code works perfectly and guarantees the highest possible performance of updating chart data.
   // However, reading and writing Refs during rendering is not a recommended practice.
   // So this code might break in a major React update.
-  const parsed = formSchema.safeParse({ ...values })
+  const parsed = calculatorFormValidationSchema.safeParse({ ...values })
 
   if (parsed.success) {
     const { interest, principal, payment } = getMortgageCalculationResults(parsed.data)
