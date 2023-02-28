@@ -1,9 +1,11 @@
-import { Section as SectionTemplate } from '@/template'
 import NextLink from 'next/link'
 import { styled } from 'stitches.config'
 import { Arrow as ArrowSvg, House as HouseSvg } from './svgs'
 
-export const Section = styled(SectionTemplate, {
+export const Section = styled('section', {
+  maxWidth: '1072px',
+  margin: '0 auto',
+
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -11,16 +13,6 @@ export const Section = styled(SectionTemplate, {
   padding: '88px 0',
 
   position: 'relative',
-
-  overflowX: 'hidden',
-
-  '@bp4': {
-    flexDirection: 'column',
-    gap: 80,
-  },
-  '@bp1': {
-    gap: 64,
-  },
 })
 
 export const Title = styled('h1', {
@@ -32,15 +24,6 @@ export const Title = styled('h1', {
   color: '$magenta6',
 
   display: 'inline-block',
-
-  '@bp2': {
-    fontSize: '30px',
-    lineHeight: '42px',
-  },
-  '@bp1': {
-    fontSize: '28px',
-    lineHeight: '40px',
-  },
 })
 
 export const Description = styled('p', {
@@ -50,11 +33,6 @@ export const Description = styled('p', {
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
-
-  '@bp2': {
-    fontSize: '14px',
-    lineHeight: '26px',
-  },
 })
 
 export const List = styled('ul', {
@@ -63,18 +41,10 @@ export const List = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
   gap: 24,
-
-  '@bp2': {
-    alignItems: 'center',
-  },
 })
 
 export const Arrow = styled(ArrowSvg, {
   transition: 'transform 150ms ease',
-
-  '@bp4': {
-    display: 'none',
-  },
 })
 
 export const LinkHeader = styled('div', {
@@ -90,22 +60,12 @@ export const LinkHeader = styled('div', {
   marginBottom: 4,
 
   transition: 'all 250ms ease',
-
-  '@bp4': {
-    textDecoration: 'underline',
-  },
 })
 
 export const Link = styled(NextLink, {
   display: 'inline-block',
 
   borderRadius: 5,
-
-  '@bp4': {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
 
   '&:hover': {
     [`${Arrow}`]: {
@@ -133,5 +93,5 @@ export const LinkDescription = styled('div', {
 })
 
 export const House = styled(HouseSvg, {
-  filter: 'drop-shadow(0 20px 40px rgba($colors$tangerine7Rgb, 0.4))',
+  transform: 'scale(1.15)',
 })
