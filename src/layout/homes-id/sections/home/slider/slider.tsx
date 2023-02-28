@@ -1,8 +1,8 @@
-import { Box, Image } from '@/common'
-import { FormattedHouse } from '@/services/house-listings/types'
+import { useState } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
-import { useState } from 'react'
+import { Box, Image } from '@/common'
+import { FormattedHouse } from '@/services/house-listings/types'
 import * as Svg from '../svgs'
 import * as S from './slider.styles'
 

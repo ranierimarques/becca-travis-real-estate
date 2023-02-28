@@ -1,8 +1,8 @@
-import { Box, Button, Input } from '@/common'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
+import { Box, Button, Input } from '@/common'
 import * as S from './form.styles'
 
 const nameRegExp = /^[a-z ,.'-]+$/i

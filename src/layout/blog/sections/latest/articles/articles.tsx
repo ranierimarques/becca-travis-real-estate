@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { Box, Flex } from '@/common'
 import { getDate } from '@/utils/date'
-import Image from 'next/image'
 import * as S from './articles.styles'
 
 interface PostsProps {

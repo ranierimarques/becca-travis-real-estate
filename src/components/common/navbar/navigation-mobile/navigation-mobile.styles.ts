@@ -1,6 +1,6 @@
+import NextLink from 'next/link'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { css } from '@stitches/react'
-import NextLink from 'next/link'
 import { keyframes, styled } from 'stitches.config'
 import * as Svg from '../svgs'
 

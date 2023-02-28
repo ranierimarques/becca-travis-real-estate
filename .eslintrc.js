@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     'sonarjs/no-duplicate-string': ['error', 10],
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         endOfLine: 'auto',
         arrowParens: 'avoid',

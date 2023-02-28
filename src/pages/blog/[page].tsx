@@ -1,8 +1,8 @@
-import { Hero, Latest } from '@/layout/blog/sections'
-import request, { gql } from 'graphql-request'
 import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
+import request, { gql } from 'graphql-request'
 import getReadingTime from 'reading-time'
+import { Hero, Latest } from '@/layout/blog/sections'
 
 const baseURL = 'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master'
 

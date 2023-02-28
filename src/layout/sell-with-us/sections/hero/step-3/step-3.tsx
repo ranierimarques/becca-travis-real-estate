@@ -1,5 +1,5 @@
-import { Box, Input } from '@/common'
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form'
+import { Box, Input } from '@/common'
 import * as S from './step-3.styles'
 
 interface StepProps {

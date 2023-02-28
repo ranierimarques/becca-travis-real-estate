@@ -1,5 +1,5 @@
-import { Box } from '@/common'
 import { useState } from 'react'
+import { Box } from '@/common'
 import { Logo } from '../svgs'
 import * as S from './copyrights.styles'
 

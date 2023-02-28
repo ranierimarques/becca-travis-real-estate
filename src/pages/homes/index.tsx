@@ -1,8 +1,8 @@
-import { Homes } from '@/layout/homes/sections'
-import { atom } from 'jotai'
-import { useHydrateAtoms } from 'jotai/utils'
 import { GetServerSidePropsContext, InferGetServerSidePropsType, NextPage } from 'next'
 import Head from 'next/head'
+import { atom } from 'jotai'
+import { useHydrateAtoms } from 'jotai/utils'
+import { Homes } from '@/layout/homes/sections'
 
 export const visualizationAtom = atom<'map' | 'gallery'>('map')
 

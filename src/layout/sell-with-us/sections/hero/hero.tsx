@@ -1,11 +1,11 @@
-import { Box, Button, Flex } from '@/common'
-import { Toast } from '@/primitives'
-import { Hat } from '@/shared'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
+import { Box, Button, Flex } from '@/common'
+import { Toast } from '@/primitives'
+import { Hat } from '@/shared'
 import { ContactInformation, Step1, Step2, Step3 } from '.'
 import * as S from './hero.styles'
 
@@ -14,56 +14,23 @@ const zipcodeRegExp = /(^\d{5}$)|(^\d{5}-\d{4}$)/
 const currencyRegExp = /^\$?(\d{1,3}(,\d{3})*|(\d+))(\.\d{2})?$/
 
 const formSchema = z.object({
-  street_address: z.string().min(1, {
-    message: 'Address is required',
-  }),
-  state: z.string().min(1, {
-    message: 'State is required',
-  }),
-  city: z.string().min(1, {
-    message: 'City is required',
-  }),
-  zipcode: z.string().refine(value => zipcodeRegExp.test(value), {
-    message: 'Invalid Zipcode',
-  }),
-  additional_information: z.string().min(1, {
-    message: 'Message is required',
-  }),
-  timeframe: z.string().min(1, {
-    message: 'Timeframe is required',
-  }),
+  street_address: z.string().min(1, 'Address is required'),
+  state: z.string().min(1, 'State is required'),
+  city: z.string().min(1, 'City is required'),
+  zipcode: z.string().refine(value => zipcodeRegExp.test(value), 'Invalid Zipcode'),
+  additional_information: z.string().min(1, 'Message is required'),
+  timeframe: z.string().min(1, 'Timeframe is required'),
   selling_price: z
     .string()
-    .min(1, {
-      message: 'Selling Price is required',
-    })
-    .refine(value => currencyRegExp.test(value), {
-      message: 'Must be currency',
-    }),
-  first_name: z.string().refine(value => nameRegExp.test(value), {
-    message: 'Invalid Name',
-  }),
-  last_name: z.string().refine(value => nameRegExp.test(value), {
-    message: 'Invalid Name',
-  }),
-  email: z
-    .string()
-    .min(1, {
-      message: 'Email is required',
-    })
-    .email({
-      message: 'Invalid email',
-    }),
+    .min(1, 'Selling Price is required')
+    .refine(value => currencyRegExp.test(value), 'Must be currency'),
+  first_name: z.string().refine(value => nameRegExp.test(value), 'Invalid Name'),
+  last_name: z.string().refine(value => nameRegExp.test(value), 'Invalid Name'),
+  email: z.string().min(1, 'Email is required').email('Invalid email'),
   number: z
-    .string({
-      required_error: 'Number is required',
-    })
-    .refine(value => isValidPhoneNumber(value), {
-      message: 'Invalid phone number',
-    }),
-  message: z.string().min(1, {
-    message: 'Message is required',
-  }),
+    .string({ required_error: 'Number is required' })
+    .refine(value => isValidPhoneNumber(value), 'Invalid phone number'),
+  message: z.string().min(1, 'Message is required'),
 })
 
 type formSchemaType = z.infer<typeof formSchema>

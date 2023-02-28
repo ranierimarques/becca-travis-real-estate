@@ -1,5 +1,5 @@
-import { Section as TemplateSection } from '@/template'
 import { css, styled } from 'stitches.config'
+import { Section as TemplateSection } from '@/template'
 import { Circles } from './svgs'
 
 export const Section = styled(TemplateSection, {

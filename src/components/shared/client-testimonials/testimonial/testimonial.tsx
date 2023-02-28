@@ -1,6 +1,6 @@
+import { ReactNode } from 'react'
 import { Box, Flex } from '@/common'
 import { Dialog } from '@/primitives'
-import { ReactNode } from 'react'
 import * as Svg from '../svgs'
 import * as S from './testimonial.styles'
 

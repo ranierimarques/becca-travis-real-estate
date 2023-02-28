@@ -1,3 +1,6 @@
+import type { InferGetStaticPropsType, NextPage } from 'next'
+import Head from 'next/head'
+import { QueryClient, dehydrate } from '@tanstack/react-query'
 import {
   AboutHuntsville,
   Achievements,
@@ -9,9 +12,6 @@ import {
 } from '@/layout/index/sections'
 import { getHouseListing } from '@/services/house-listings'
 import { ClientTestimonials, LastCall } from '@/shared'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
-import type { InferGetStaticPropsType, NextPage } from 'next'
-import Head from 'next/head'
 
 const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
   return (

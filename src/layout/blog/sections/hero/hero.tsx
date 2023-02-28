@@ -1,7 +1,7 @@
+import Image from 'next/image'
 import { Flex } from '@/common'
 import { Hat } from '@/shared'
 import { getDate } from '@/utils/date'
-import Image from 'next/image'
 import * as S from './hero.styles'
 import * as Svg from './svgs'
 

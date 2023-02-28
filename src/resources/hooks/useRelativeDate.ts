@@ -1,5 +1,5 @@
-import { getRelativeDate } from '@/resources/utils/date'
 import { useEffect, useState } from 'react'
+import { getRelativeDate } from '@/resources/utils/date'
 
 function useRelativeDate(timestamp: string): string {
   const [relativeDate, setRelativeDate] = useState(() => getRelativeDate(timestamp))

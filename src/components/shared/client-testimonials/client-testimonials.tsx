@@ -1,7 +1,7 @@
+import { useRef, useState } from 'react'
 import { Button, Flex } from '@/common'
 import { Tooltip } from '@/primitives'
 import { Hat } from '@/shared'
-import { useRef, useState } from 'react'
 import { Testimonial } from '.'
 import * as S from './client-testimonials.styles'
 import * as Svg from './svgs'

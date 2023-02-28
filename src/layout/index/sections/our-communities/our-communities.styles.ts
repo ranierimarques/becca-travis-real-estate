@@ -1,6 +1,6 @@
-import { Image as ImageUnstyled } from '@/common'
 import NextLink from 'next/link'
 import { styled } from 'stitches.config'
+import { Image as ImageUnstyled } from '@/common'
 
 export const Title = styled('h2', {
   marginBottom: 48,

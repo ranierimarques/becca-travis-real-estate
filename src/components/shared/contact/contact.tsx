@@ -1,7 +1,7 @@
+import { ReactNode } from 'react'
+import type * as Stitches from '@stitches/react'
 import { Button } from '@/common'
 import { Dialog } from '@/primitives'
-import type * as Stitches from '@stitches/react'
-import { ReactNode } from 'react'
 import * as S from './contact.styles'
 import * as Svg from './svgs'
 

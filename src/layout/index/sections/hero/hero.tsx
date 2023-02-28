@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { SearchInput } from '@/shared'
 import { Section } from '@/template'
-import Image from 'next/image'
 import * as S from './hero.styles'
 import { downtownHuntsville } from './images'
 

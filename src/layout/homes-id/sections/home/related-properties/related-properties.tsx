@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
 import { getHouseListing } from '@/services/house-listings'
 import { HouseCard } from '@/shared'
-import { useQuery } from '@tanstack/react-query'
 import * as S from './related-properties.styles'
 
 interface Props {

@@ -1,6 +1,5 @@
 import { Flex } from '@/common'
 import { FormattedHouse } from '@/services/house-listings/types'
-
 import {
   AskAQuestion,
   Description,
@@ -23,7 +22,6 @@ export function Home({ listing }: Listing) {
   return (
     <S.Section>
       <Header listing={listing} />
-
       <Flex css={{ gap: 32 }}>
         <Slider key={listing.id} media={listing.media} />
         <PropertyDetails listing={listing} />

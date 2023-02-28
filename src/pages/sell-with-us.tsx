@@ -1,6 +1,6 @@
-import { Hero } from '@/layout/sell-with-us/sections'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { Hero } from '@/layout/sell-with-us/sections'
 
 const Page: NextPage = () => {
   return (

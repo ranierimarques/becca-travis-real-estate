@@ -1,5 +1,5 @@
-import { DeepPartial } from '@/types/helpers'
 import create from 'zustand'
+import { DeepPartial } from '@/types/helpers'
 
 interface PropertyType {
   Residential?: 'Residential'

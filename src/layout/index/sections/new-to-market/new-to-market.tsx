@@ -1,8 +1,8 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { Button, Flex } from '@/common'
 import { getHouseListing } from '@/services/house-listings'
 import { Hat, HouseCard } from '@/shared'
 import { Section } from '@/template'
-import { useInfiniteQuery } from '@tanstack/react-query'
 import * as S from './new-to-market.styles'
 
 export function NewToMarket() {

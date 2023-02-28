@@ -1,10 +1,10 @@
+import { memo, useRef, useState } from 'react'
+import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
+import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
 import { HouseCard } from '@/shared'
-import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
-import type * as Stitches from '@stitches/react'
-import { memo, useRef, useState } from 'react'
 import * as Img from '../images'
 import * as S from './map.styles'
 
@@ -72,7 +72,7 @@ export const Map = memo(({ variant }: Props) => {
     setActiveCardId(id)
   }
 
-  function handleHiddenActiveCard() {
+  function handleHiddenCardActive() {
     setActiveCardId(null)
   }
 
@@ -88,7 +88,7 @@ export const Map = memo(({ variant }: Props) => {
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
     >
-      {house?.listings?.map(listing => {
+      {house.listings?.map(listing => {
         const coordinates = {
           lat: listing.coordinates.latitude,
           lng: listing.coordinates.longitude,
@@ -100,7 +100,7 @@ export const Map = memo(({ variant }: Props) => {
             icon={Img.Mark.src}
             position={coordinates}
             onMouseOver={() => handleActiveCardById(listing.id)}
-            onMouseOut={handleHiddenActiveCard}
+            onMouseOut={handleHiddenCardActive}
           >
             {activeCardId === listing.id && (
               <OverlayViewF
@@ -113,7 +113,7 @@ export const Map = memo(({ variant }: Props) => {
                   listing={listing}
                   variant="small"
                   onMouseEnter={() => handleActiveCardById(listing.id)}
-                  onMouseLeave={handleHiddenActiveCard}
+                  onMouseLeave={handleHiddenCardActive}
                   style={{ maxWidth: '250px' }}
                 />
               </OverlayViewF>

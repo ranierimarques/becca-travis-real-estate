@@ -1,5 +1,5 @@
-import { useAtomValue } from 'jotai'
 import dynamic from 'next/dynamic'
+import { useAtomValue } from 'jotai'
 import { visualizationAtom } from 'src/pages/homes'
 import { Houses, Search } from '.'
 import * as S from './homes.styles'

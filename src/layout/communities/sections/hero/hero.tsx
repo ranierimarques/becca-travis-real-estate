@@ -1,7 +1,7 @@
+import { StaticImageData } from 'next/image'
 import { Box, Flex, Image } from '@/common'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
-import { StaticImageData } from 'next/image'
 import * as S from './hero.styles'
 import * as Img from './images'
 

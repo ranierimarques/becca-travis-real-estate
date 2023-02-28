@@ -1,15 +1,15 @@
-import { useFiltersStore } from '@/layout/homes/store/filters'
-import useDebounceTwo from '@/resources/hooks/useDebounceTwo'
-import { useCombobox } from 'downshift'
 import { useRouter } from 'next/router'
 import { ChangeEvent, FormEvent, useRef, useState } from 'react'
+import { useCombobox } from 'downshift'
 import shallow from 'zustand/shallow'
+import { useFiltersStore } from '@/layout/homes/store/filters'
+import useDebounceTwo from '@/resources/hooks/useDebounceTwo'
 import * as S from './search-input.styles'
 import { Gps, Loupe } from './svgs'
 import {
+  LOCATION_VALUE,
   getAddressUsingGeoLocation,
   getBingSuggestions,
-  LOCATION_VALUE,
   removeWhiteSpaces,
 } from './utils'
 

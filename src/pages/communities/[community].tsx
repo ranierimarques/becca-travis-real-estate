@@ -1,3 +1,5 @@
+import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
+import Head from 'next/head'
 import {
   About,
   CommunityMap,
@@ -10,8 +12,6 @@ import {
 } from '@/layout/communities/sections'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
-import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
-import Head from 'next/head'
 
 type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
 

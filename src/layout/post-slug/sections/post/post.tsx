@@ -1,9 +1,9 @@
+import { Fragment } from 'react'
 import { Box, Flex, Image } from '@/common'
 import { Tooltip } from '@/primitives'
 import { Hat, LastCall } from '@/shared'
 import { Section } from '@/template'
 import { getDate } from '@/utils/date'
-import { Fragment } from 'react'
 import * as S from './post.styles'
 import { ClockSvg } from './svgs'
 

@@ -1,6 +1,6 @@
+import { SetStateAction } from 'react'
 import { Box } from '@/common'
 import { Select } from '@/primitives'
-import { SetStateAction } from 'react'
 import * as S from './sidebar.styles'
 
 interface SidebarProps {

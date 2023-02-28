@@ -1,6 +1,6 @@
-import { Box } from '@/common'
 import Script from 'next/script'
 import { useEffect } from 'react'
+import { Box } from '@/common'
 import * as S from './sellers.styles'
 import * as Svg from './svgs'
 

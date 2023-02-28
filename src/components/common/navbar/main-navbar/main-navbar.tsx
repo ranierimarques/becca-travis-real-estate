@@ -1,6 +1,6 @@
-import { Box } from '@/common'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import { Box } from '@/common'
 import { NavigationMobile } from '..'
 import * as Svg from '../svgs'
 import * as S from './main-navbar.styles'
