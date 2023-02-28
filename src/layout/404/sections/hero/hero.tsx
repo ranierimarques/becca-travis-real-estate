@@ -1,4 +1,4 @@
-import { Box } from '@/common'
+import { Flex } from '@/common'
 import { Hat } from '@/shared'
 import * as S from './hero.styles'
 
@@ -25,8 +25,14 @@ const links = [
 
 export function Hero() {
   return (
-    <S.Section>
-      <div>
+    <S.Section hasMaxWidth>
+      <Flex
+        direction="column"
+        align={{
+          '@initial': 'start',
+          '@bp4': 'center',
+        }}
+      >
         <Hat>404 Error</Hat>
         <S.Title>Where is my page?</S.Title>
         <S.Description>
@@ -47,11 +53,9 @@ export function Hero() {
             </li>
           ))}
         </S.List>
-      </div>
+      </Flex>
 
-      <Box css={{ position: 'relative', top: 50, right: -40 }}>
-        <S.House />
-      </Box>
+      <S.House />
     </S.Section>
   )
 }
