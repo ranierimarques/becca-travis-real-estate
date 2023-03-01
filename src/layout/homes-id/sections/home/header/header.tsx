@@ -58,7 +58,7 @@ export function Header({ listing }: Listing) {
                 Share
               </S.ShareButton>
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content align="center" sideOffset={8}>
+            <DropdownMenu.Content align="center" collisionPadding={20} sideOffset={8}>
               <DropdownMenu.Group>
                 <DropdownMenu.Item asChild>
                   <a
