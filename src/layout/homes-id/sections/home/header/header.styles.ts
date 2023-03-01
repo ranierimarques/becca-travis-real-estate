@@ -124,15 +124,8 @@ export const Button = styled('button', {
 })
 
 export const ShareButton = styled('button', {
-  display: 'flex',
-  alignItems: 'center',
-
-  gap: 8,
-
   padding: '8px 10px',
-
   boxShadow: '0 0 0 1px $colors$magenta1',
-
   borderRadius: '5px',
 
   fontWeight: '500',
@@ -148,19 +141,6 @@ export const ShareButton = styled('button', {
   '@bp4': {
     padding: 0,
     boxShadow: 'none',
-    borderRadius: 0,
-    color: 'transparent',
-
-    textIndent: '-9999px',
-    lineHeight: 0,
-  },
-})
-
-export const Share = styled(Svg.Share, {
-  display: 'block',
-
-  '@bp4': {
-    display: 'none',
   },
 })
 

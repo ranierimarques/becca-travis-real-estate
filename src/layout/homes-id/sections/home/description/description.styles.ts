@@ -33,6 +33,8 @@ export const Description = styled('p', {
   '@bp4': {
     fontSize: '16px',
     lineHeight: '28px',
+
+    maxWidth: 'none',
   },
 
   '@bp2': {

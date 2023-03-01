@@ -91,6 +91,7 @@ export function Features({ listing }: Listing) {
             <Flex direction="column" css={{ gap: 24 }}>
               {feature.feats.map((info, i) => (
                 <Flex
+                  key={i}
                   align="center"
                   justify="between"
                   css={{
@@ -98,7 +99,6 @@ export function Features({ listing }: Listing) {
                     borderBottom: '1px solid $grayW6',
                     w: '100%',
                   }}
-                  key={i}
                 >
                   <S.Feature>{info.feat}</S.Feature>
                   <S.Value>{info.value === null ? 'None' : info.value}</S.Value>

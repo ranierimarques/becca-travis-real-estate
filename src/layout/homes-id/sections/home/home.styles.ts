@@ -12,6 +12,7 @@ export const Section = styled(SectionTemplate, {
     "slider slider propertyDetails"
     "table table table"
     "description description contact"
+    "description description calculator"
     "features features calculator"
     "form form ."
     "properties properties properties"

@@ -33,7 +33,7 @@ export function Header({ listing }: Listing) {
   const [openToast, setOpenToast] = useState(false)
 
   async function copyToClipboard() {
-    navigator.clipboard.writeText(`https://beccatravis.com${router.asPath}`)
+    await navigator.clipboard.writeText(`https://beccatravis.com${router.asPath}`)
     setOpenToast(true)
   }
 
@@ -54,8 +54,22 @@ export function Header({ listing }: Listing) {
             <DropdownMenu.Trigger asChild>
               <S.ShareButton>
                 <S.Dots />
-                <S.Share />
-                Share
+                <Box
+                  as="span"
+                  css={{
+                    display: 'flex',
+                    alignItems: 'center',
+
+                    gap: 8,
+
+                    '@bp4': {
+                      display: 'none',
+                    },
+                  }}
+                >
+                  <Svg.Share />
+                  Share
+                </Box>
               </S.ShareButton>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content align="center" collisionPadding={20} sideOffset={8}>

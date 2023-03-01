@@ -11,6 +11,8 @@ export const Container = styled('div', {
 
   scrollMarginTop: 100,
 
+  maxWidth: '612px',
+
   '@bp5': {
     gap: '48px 24px',
     marginBottom: 80,
@@ -19,6 +21,8 @@ export const Container = styled('div', {
     gap: '48px 32px',
     marginBottom: 64,
     scrollMarginTop: 170,
+
+    maxWidth: 'none',
   },
   '@bp3': {
     gridTemplateColumns: '1fr',
