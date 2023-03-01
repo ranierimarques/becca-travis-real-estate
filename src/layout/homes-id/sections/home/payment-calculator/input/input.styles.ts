@@ -66,6 +66,8 @@ export const Label = styled('label', {
 
   flexGrow: 1,
 
+  width: '100%',
+
   fontWeight: '400',
   fontSize: '12px',
   lineHeight: '16px',

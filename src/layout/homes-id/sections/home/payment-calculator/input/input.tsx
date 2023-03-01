@@ -49,7 +49,7 @@ export function InputDouble({ one, two }: InputDoubleProps) {
   const errorTwo = errors[fieldTwo]
 
   return (
-    <Box css={{ display: 'grid', gridTemplateColumns: '172px 100px', columnGap: 16 }}>
+    <Box css={{ display: 'grid', gridTemplateColumns: '2fr 1fr', columnGap: 16 }}>
       <S.Label showError={!!errorOne}>
         <div>
           {labelOne} <S.Asterisk>*</S.Asterisk>
