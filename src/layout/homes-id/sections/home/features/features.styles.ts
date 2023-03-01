@@ -18,6 +18,7 @@ export const Container = styled('div', {
   '@bp4': {
     gap: '48px 32px',
     marginBottom: 64,
+    scrollMarginTop: 170,
   },
   '@bp3': {
     gridTemplateColumns: '1fr',

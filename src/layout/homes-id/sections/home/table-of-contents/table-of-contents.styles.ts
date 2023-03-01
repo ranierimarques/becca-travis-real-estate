@@ -66,7 +66,7 @@ export const PageIndex = styled('ul', {
   lineHeight: '26px',
   color: '$gray5',
   zIndex: 2,
-  borderBottom: '2px solid rgba($colors$gray5Rgb, 0.3)',
+  boxShadow: 'inset 0 -2px 0 rgba($colors$gray5Rgb, 0.3)',
 
   '@bp4': {
     overflow: 'auto hidden',
@@ -84,7 +84,7 @@ export const ActiveHr = styled('div', {
   borderRadius: '999px',
 
   position: 'absolute',
-  bottom: -2,
+  bottom: 0,
 
   opacity: 0,
   pointerEvents: 'none',
@@ -98,7 +98,7 @@ export const Content = styled(NextLink, {
   lineHeight: '26px',
   color: '$gray5',
 
-  paddingBottom: 24,
+  paddingBottom: 26, // 24px design + 2px borders...
 
   transition: '150ms ease-out',
 

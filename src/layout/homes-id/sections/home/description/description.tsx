@@ -11,10 +11,10 @@ export function Description({ publicRemarks }: DescriptionProps) {
       id="description"
       data-tab-container
       css={{
-        scrollMarginTop: 100,
+        scrollMarginTop: 80,
         mb: 64,
         gridArea: 'description',
-        '@bp4': { mb: 56 },
+        '@bp4': { mb: 56, scrollMarginTop: 150 },
         '@bp3': { mb: 48 },
         '@bp2': { mb: 40, px: 24 },
         '@bp1': { px: 16 },

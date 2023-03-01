@@ -16,6 +16,7 @@ export const Container = styled('div', {
   },
   '@bp4': {
     marginTop: 64,
+    scrollMarginTop: 170,
   },
   '@bp2': {
     marginTop: 80,
