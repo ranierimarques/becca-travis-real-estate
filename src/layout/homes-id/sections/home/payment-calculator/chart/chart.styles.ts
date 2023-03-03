@@ -23,14 +23,14 @@ export const Value = styled('span', {
   fontWeight: '500',
   fontSize: '18px',
   lineHeight: '26px',
-  color: '#33303E',
+  color: '$gray1',
 
-  borderBottom: '1px solid #8C8A97',
+  borderBottom: '1px solid $colors$gray5',
 })
 
 export const Divisor = styled('span', {
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '22px',
-  color: '#33303E',
+  color: '$gray1',
 })

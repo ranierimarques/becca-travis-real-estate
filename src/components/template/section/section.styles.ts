@@ -149,6 +149,11 @@ export const Section = styled('section', {
           px: '16px',
         },
       },
+      false: {
+        maxWidth: '1184px',
+        margin: '0 auto',
+        padding: 0,
+      },
     },
   },
 })

@@ -17,7 +17,7 @@ export function Sidebar({
   mostPopularTags,
 }: SidebarProps) {
   return (
-    <Box css={{ minWidth: 280 }}>
+    <Box css={{ minWidth: 280, '@bp4': { display: 'none' } }}>
       <div>
         <S.Title>Blog categories</S.Title>
         <Select.Root onValueChange={value => setActiveCategory(value)}>

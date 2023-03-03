@@ -33,22 +33,46 @@ export function Header({ listing }: Listing) {
   const [openToast, setOpenToast] = useState(false)
 
   async function copyToClipboard() {
-    navigator.clipboard.writeText(`https://beccatravis.com${router.asPath}`)
+    await navigator.clipboard.writeText(`https://beccatravis.com${router.asPath}`)
     setOpenToast(true)
   }
 
   return (
     <S.Header>
-      <Flex align="center" justify="between" css={{ mb: 16 }}>
+      <Flex
+        align={{
+          '@initial': 'center',
+          '@bp2': 'start',
+        }}
+        justify="between"
+        css={{ mb: 16, '@bp4': { mb: 12 } }}
+      >
         <S.HouseName>{listing.address}</S.HouseName>
         <Box css={{ position: 'relative' }}>
           <Toast openToast={openToast} onOpenToast={setOpenToast} />
           <DropdownMenu.Root>
-            <DropdownMenu.Trigger variant={2}>
-              <Svg.Share />
-              Share
+            <DropdownMenu.Trigger asChild>
+              <S.ShareButton>
+                <S.Dots />
+                <Box
+                  as="span"
+                  css={{
+                    display: 'flex',
+                    alignItems: 'center',
+
+                    gap: 8,
+
+                    '@bp4': {
+                      display: 'none',
+                    },
+                  }}
+                >
+                  <Svg.Share />
+                  Share
+                </Box>
+              </S.ShareButton>
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content align="center" sideOffset={8}>
+            <DropdownMenu.Content align="center" collisionPadding={20} sideOffset={8}>
               <DropdownMenu.Group>
                 <DropdownMenu.Item asChild>
                   <a
@@ -81,20 +105,43 @@ export function Header({ listing }: Listing) {
         </Box>
       </Flex>
 
-      <Flex align="center" css={{ gap: 16 }}>
+      <Flex
+        align="center"
+        css={{
+          gap: 16,
+
+          '@bp3': {
+            '> :nth-child(3)': {
+              display: 'none',
+            },
+          },
+        }}
+      >
         <S.HousePrice>{listing.price}</S.HousePrice>
-        <Box css={{ h: 16, w: 2, background: 'rgba($colors$gray5Rgb, .5)' }} />
-        {titleDetails.map((titleDetail, index) => {
-          return (
-            <Flex align="center" css={{ gap: 16 }} key={titleDetail.title}>
-              <S.HouseStatus>
-                {titleDetail.title}
-                <S.Status title={titleDetail.alt}> {titleDetail.status}</S.Status>
-              </S.HouseStatus>
-              {index + 1 < titleDetails.length && <S.Dot />}
-            </Flex>
-          )
-        })}
+        <Box
+          css={{
+            h: 16,
+            w: 2,
+            background: 'rgba($colors$gray5Rgb, .5)',
+            '@bp2': { display: 'none' },
+          }}
+        />
+        {titleDetails.map((titleDetail, index) => (
+          <Flex
+            align="center"
+            key={titleDetail.title}
+            css={{
+              gap: 16,
+              '@bp2': { display: 'none' },
+            }}
+          >
+            <S.HouseStatus>
+              {titleDetail.title}
+              <S.Status title={titleDetail.alt}> {titleDetail.status}</S.Status>
+            </S.HouseStatus>
+            {index + 1 < titleDetails.length && <S.Dot />}
+          </Flex>
+        ))}
       </Flex>
     </S.Header>
   )

@@ -45,7 +45,17 @@ export function Slider({ media }: ListingMedia) {
 
             return (
               <Box key={index} className="keen-slider__slide">
-                <Box css={{ w: 704, h: 395, lineHeight: 0, overflow: 'hidden' }}>
+                <Box
+                  css={{
+                    w: 704,
+                    h: 395,
+                    lineHeight: 0,
+                    overflow: 'hidden',
+                    '@bp5': { w: '100%' },
+                    '@bp2': { w: '100vw', h: 211 },
+                    '@bp1': { h: 180 },
+                  }}
+                >
                   <Image
                     src={url}
                     alt="house image"

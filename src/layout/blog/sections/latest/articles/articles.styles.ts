@@ -8,6 +8,10 @@ export const Articles = styled('ul', {
   gap: 32,
 
   width: '100%',
+
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+  },
 })
 
 export const NoResults = styled('div', {

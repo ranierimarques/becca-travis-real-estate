@@ -7,7 +7,21 @@ import * as S from './ask-a-question.styles'
 export function AskAQuestion() {
   const [openToast, setOpenToast] = useState(false)
   return (
-    <Box id="ask-a-question" data-tab-container css={{ scrollMarginTop: 100 }}>
+    <Box
+      id="ask-a-question"
+      data-tab-container
+      css={{
+        scrollMarginTop: 100,
+        gridArea: 'form',
+        '@bp4': { scrollMarginTop: 170 },
+        '@bp2': {
+          px: 24,
+        },
+        '@bp1': {
+          px: 16,
+        },
+      }}
+    >
       <S.Title>Ask a Question</S.Title>
 
       <S.Container>

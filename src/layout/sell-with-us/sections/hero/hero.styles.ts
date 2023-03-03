@@ -1,5 +1,5 @@
-import { Section as SectionTemplate } from '@/template'
 import { styled } from 'stitches.config'
+import { Section as SectionTemplate } from '@/template'
 
 export const Section = styled(SectionTemplate, {
   position: 'relative',

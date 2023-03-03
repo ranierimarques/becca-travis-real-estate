@@ -10,7 +10,15 @@ export function Description({ publicRemarks }: DescriptionProps) {
     <Box
       id="description"
       data-tab-container
-      css={{ scrollMarginTop: 100, marginBottom: 64 }}
+      css={{
+        scrollMarginTop: 80,
+        mb: 64,
+        gridArea: 'description',
+        '@bp4': { mb: 56, scrollMarginTop: 150 },
+        '@bp3': { mb: 48 },
+        '@bp2': { mb: 40, px: 24 },
+        '@bp1': { px: 16 },
+      }}
     >
       <S.Title>Description</S.Title>
       <S.Description>{publicRemarks}</S.Description>

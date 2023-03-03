@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import useThrottle from '@/resources/hooks/useThrottle'
 import * as S from './table-of-contents.styles'
 
-const TOP_OFFSET = 110
-
 export function getTabContainers(): NodeListOf<Element> {
   return document.querySelectorAll('[data-tab-container]')
 }
@@ -15,8 +13,11 @@ export function useTocHighlight() {
   useEffect(() => {
     function updateActiveLink() {
       const pageHeight = document.body.scrollHeight
+      const pageWidth = window.innerWidth
       const scrollPosition = window.scrollY + window.innerHeight
       const tabContainers = getTabContainers()
+
+      const TOP_OFFSET = pageWidth <= 1023 ? 180 : 110
 
       if (scrollPosition >= 0 && pageHeight - scrollPosition <= TOP_OFFSET) {
         // Scrolled to bottom of page.

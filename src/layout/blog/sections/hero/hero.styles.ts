@@ -1,12 +1,20 @@
 import NextLink from 'next/link'
 import { styled } from 'stitches.config'
+import { Section as SectionTemplate } from '@/template'
 
-export const Section = styled('section', {
-  background: 'rgba($colors$tangerine5Rgb, 0.3)',
-  padding: '80px 0',
-
+export const Section = styled(SectionTemplate, {
   position: 'relative',
-  marginBottom: 40,
+  pt: 80,
+  pb: 80,
+
+  '@bp4': {
+    pt: 64,
+    pb: 0,
+  },
+
+  '@bp2': {
+    pt: 40,
+  },
 })
 
 export const Wrapper = styled('div', {
@@ -14,8 +22,16 @@ export const Wrapper = styled('div', {
   alignItems: 'center',
   justifyContent: 'space-between',
 
-  margin: '0 auto',
-  maxWidth: '1072px',
+  '@bp4': {
+    flexDirection: 'column',
+    gap: 48,
+  },
+  '@bp3': {
+    gap: 56,
+  },
+  '@bp2': {
+    gap: 40,
+  },
 })
 
 export const Title = styled('h1', {
@@ -25,6 +41,15 @@ export const Title = styled('h1', {
   fontSize: '36px',
   lineHeight: '50px',
   color: '$magenta6',
+
+  '@bp2': {
+    fontSize: '30px',
+    lineHeight: '42px',
+  },
+  '@bp1': {
+    fontSize: '28px',
+    lineHeight: '40px',
+  },
 })
 
 export const Description = styled('p', {
@@ -34,14 +59,25 @@ export const Description = styled('p', {
   fontSize: '16px',
   lineHeight: '28px',
   color: '$gray2',
+
+  '@bp4': {
+    textAlign: 'center',
+  },
+
+  '@bp1': {
+    fontSize: '14px',
+    lineHeight: '26px',
+  },
 })
 
 export const KeepExploring = styled('div', {
-  marginTop: 24,
-
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'flex-start',
   gap: 8,
+
+  padding: 0,
+  marginTop: 24,
 
   fontWeight: '400',
   fontSize: '16px',
@@ -49,6 +85,15 @@ export const KeepExploring = styled('div', {
   color: '$magenta6',
 
   opacity: '60%',
+
+  backgroundColor: 'transparent',
+
+  transition: 'opacity .15s cubic-bezier(.4,0,.2,1)',
+
+  '&:hover': {
+    opacity: '100%',
+    cursor: 'pointer',
+  },
 })
 
 export const Overlay = styled('div', {
@@ -79,6 +124,14 @@ export const PostTitle = styled('h3', {
   fontSize: '20px',
   lineHeight: '30px',
   color: '$white',
+
+  '@bp2': {
+    fontSize: '14px',
+    lineHeight: '24px',
+  },
+  '@bp1': {
+    fontSize: '12px',
+  },
 })
 
 export const PostDescription = styled('p', {
@@ -94,6 +147,10 @@ export const PostDescription = styled('p', {
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+
+  '@bp2': {
+    display: 'none',
+  },
 })
 
 export const PostDate = styled('span', {

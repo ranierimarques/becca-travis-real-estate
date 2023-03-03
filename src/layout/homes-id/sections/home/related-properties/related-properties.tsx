@@ -15,6 +15,7 @@ export function RelatedProperties({ coords, id }: Props) {
       getHouseListing({
         type: 'card',
         params: {
+          limit: '4',
           near: `${coords[0]},${coords[1]}`,
           'ListingId.ne': id,
         },

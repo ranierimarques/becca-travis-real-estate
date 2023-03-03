@@ -55,6 +55,10 @@ export const Hat = styled('span', {
         fontSize: '12px',
         lineHeight: '20px',
         color: '$white',
+
+        '@bp2': {
+          background: 'rgba($colors$magenta2Rgb, 0.6)',
+        },
       },
     },
   },
