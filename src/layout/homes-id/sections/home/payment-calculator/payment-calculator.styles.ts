@@ -11,7 +11,6 @@ export const Container = styled('div', {
 
   padding: '24px',
   boxShadow: '0 0 0 1px $colors$grayW8',
-  // border: '1px solid $colors$grayW8',
   borderRadius: '8px',
 
   marginTop: 32,
@@ -21,7 +20,7 @@ export const Container = styled('div', {
     mb: 64,
     gridTemplateColumns: '1fr 1fr',
     gridTemplateAreas: `
-      'title inputs'
+      'graphic inputs'
       'graphic inputs'
     `,
   },
@@ -29,13 +28,25 @@ export const Container = styled('div', {
     margin: '0 24px 80px',
     gridTemplateColumns: '1fr',
     gridTemplateAreas: `
-      'title'
       'graphic'
       'inputs'
     `,
     gap: 32,
   },
   '@bp1': { margin: '0 16px 64px' },
+})
+
+export const Header = styled('header', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
+  '@bp4': {
+    alignItems: 'flex-start',
+  },
+  '@bp2': {
+    alignItems: 'center',
+  },
 })
 
 export const Title = styled('h4', {
@@ -46,13 +57,16 @@ export const Title = styled('h4', {
   color: '$gray1',
   whiteSpace: 'nowrap',
 
+  marginBottom: 24,
+
   '@bp4': {
-    gridArea: 'title',
+    gridArea: 'graphic',
     fontSize: '20px',
   },
   '@bp1': {
     fontSize: '18px',
     lineHeight: '26px',
+    marginBottom: 32,
   },
 })
 
