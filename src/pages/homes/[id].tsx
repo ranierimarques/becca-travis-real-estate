@@ -11,7 +11,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
         <title>Becca Travis</title>
       </Head>
 
-      <Home listing={listing} />
+      <Home key={listing.id} listing={listing} />
       <LastCall />
     </main>
   )
