@@ -10,6 +10,9 @@ interface HouseCardProps extends React.HTMLAttributes<HTMLLIElement> {
 }
 
 export function HouseCard({ listing, variant, badge, ...props }: HouseCardProps) {
+  const isStatusActive =
+    listing.status === 'Active' || listing.status === 'Active Under Contract'
+
   return (
     <li {...props}>
       <S.Link href={`/homes/${listing.id}`} draggable="false" variant={variant}>
@@ -35,9 +38,9 @@ export function HouseCard({ listing, variant, badge, ...props }: HouseCardProps)
           </S.FavoriteButton>
         </Box>
         <S.HouseInfo>
-          <S.Status>
-            <Box css={{ w: 8, h: 8, bg: '$green1', br: 4 }} />
-            For sale
+          <S.Status status={listing.status}>
+            <Box css={{ w: 8, h: 8, br: 4 }} />
+            {isStatusActive ? 'For sale' : listing.status}
           </S.Status>
           <S.Value>{listing.price}</S.Value>
           <S.Address>{listing.address}</S.Address>

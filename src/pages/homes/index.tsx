@@ -25,7 +25,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
-      view: context.query.view,
+      view: context.query.view || 'map',
     },
   }
 }
