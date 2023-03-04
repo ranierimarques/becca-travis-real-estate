@@ -6,17 +6,17 @@ function useRelativeDate(timestamp: string): string {
 
   console.log(getFormattedDate(timestamp))
 
-  useEffect(() => {
-    setRelativeDate(getRelativeDate(timestamp))
+  // useEffect(() => {
+  //   setRelativeDate(getRelativeDate(timestamp))
 
-    const intervalId = setInterval(() => {
-      setRelativeDate(getRelativeDate(timestamp))
-    }, 1000)
+  //   const intervalId = setInterval(() => {
+  //     setRelativeDate(getRelativeDate(timestamp))
+  //   }, 1000)
 
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [timestamp])
+  //   return () => {
+  //     clearInterval(intervalId)
+  //   }
+  // }, [timestamp])
 
   return relativeDate
 }
