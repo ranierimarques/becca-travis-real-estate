@@ -4,6 +4,8 @@ import { getFormattedDate, getRelativeDate } from '@/resources/utils/date'
 function useRelativeDate(timestamp: string): string {
   const [relativeDate, setRelativeDate] = useState(() => getFormattedDate(timestamp))
 
+  console.log(getFormattedDate(timestamp))
+
   useEffect(() => {
     setRelativeDate(getRelativeDate(timestamp))
 
