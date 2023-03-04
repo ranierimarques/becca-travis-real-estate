@@ -39,7 +39,8 @@ export const Container = styled('div', {
   },
 
   background: '$colors$white',
-  boxShadow: '64px 0 0 0 $colors$white, -64px 0 0 0 $colors$white',
+  boxShadow: '0 0 0 100vmax $colors$white',
+  clipPath: 'inset(0 -100vmax)',
 
   // '&::before': {
   //   content: '',
