@@ -2,14 +2,25 @@ import { styled } from 'stitches.config'
 
 export const Graphic = styled('div', {
   position: 'relative',
-  padding: '0 32px',
+  height: '224px',
+  width: '224px',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  '@bp4': {
+    height: '200px',
+    width: '200px',
+  },
+  '@bp2': {
+    height: '204px',
+    width: '204px',
+  },
 })
 
 export const CenterText = styled('div', {
   position: 'absolute',
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
 
   display: 'flex',
   flexDirection: 'column',

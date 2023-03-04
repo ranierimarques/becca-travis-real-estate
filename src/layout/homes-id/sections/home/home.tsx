@@ -19,14 +19,9 @@ interface Listing {
 
 export function Home({ listing }: Listing) {
   return (
-    <S.Section
-      hasMaxWidth={{
-        '@initial': 'true',
-        '@bp2': 'false',
-      }}
-    >
+    <S.Section hasMaxWidth={{ '@initial': 'true', '@bp2': 'false' }}>
       <Header listing={listing} />
-      <Slider key={listing.id} media={listing.media} />
+      <Slider media={listing.media} />
       <PropertyDetails listing={listing} />
       <TableOfContents />
       <Description publicRemarks={listing.publicRemarks} />

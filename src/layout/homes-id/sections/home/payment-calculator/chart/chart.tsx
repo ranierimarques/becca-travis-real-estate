@@ -84,7 +84,7 @@ export function Chart({ control }: ChartProps) {
     datasets: [
       {
         data: resultsRef.current.data,
-        backgroundColor: ['#42A0FF', '#D9BC3A'],
+        backgroundColor: ['#D9BC3A', '#42A0FF'],
       },
     ],
   }
