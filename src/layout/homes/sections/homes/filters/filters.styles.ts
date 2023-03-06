@@ -118,6 +118,12 @@ export const Button = styled('button', {
     boxShadow: 'inset 0 0 0 1px $colors$magenta3, 0 0 0 1px $colors$magenta3',
   },
 
+  '@bp1': {
+    fontSize: '13px',
+    gap: 6,
+    padding: '8px 12px',
+  },
+
   variants: {
     active: {
       true: {

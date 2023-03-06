@@ -5,6 +5,10 @@ export const Wrapper = styled('div', {
   flexDirection: 'column',
 
   height: 'calc(100vh - 110px)',
+
+  '@bp4': {
+    height: '100%',
+  },
 })
 
 export const Section = styled('section', {
@@ -12,9 +16,18 @@ export const Section = styled('section', {
     visualization: {
       map: {
         display: 'flex',
+
+        '@bp4': {
+          flexDirection: 'column',
+        },
         [`${Wrapper}`]: {
           maxWidth: '45%',
           minWidth: '45%',
+
+          '@bp4': {
+            maxWidth: 'none',
+            minWidth: 'auto',
+          },
         },
       },
       gallery: {

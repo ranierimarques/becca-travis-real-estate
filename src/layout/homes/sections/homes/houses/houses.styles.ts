@@ -8,6 +8,10 @@ const backgroundPulse = keyframes({
 export const ScrollableDiv = styled('div', {
   overflowY: 'overlay',
 
+  '@bp4': {
+    overflowY: 'visible',
+  },
+
   '&::-webkit-scrollbar': {
     width: '10px',
   },
@@ -15,7 +19,7 @@ export const ScrollableDiv = styled('div', {
   '&::-webkit-scrollbar-track': {},
 
   '&::-webkit-scrollbar-thumb': {
-    border: '2px solid rgba(0, 0, 0, 0)',
+    border: '2px solid rgba($colors$blackRgb, 0)',
     backgroundClip: 'padding-box',
     backgroundColor: '$grayW8',
   },
@@ -44,12 +48,20 @@ export const Houses = styled('ul', {
 
   padding: '28px 16px 48px',
 
+  '@bp5': {
+    gridTemplateColumns: '1fr 1fr',
+  },
+
   variants: {
     visualization: {
       map: {
         '& > li': {
           // flex: '1 1 155px',
           // maxWidth: '336px',
+        },
+
+        '@bp4': {
+          display: 'none',
         },
       },
       gallery: {
