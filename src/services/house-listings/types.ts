@@ -12,6 +12,15 @@ export type HouseCard = {
           MediaURL: string
         }[]
         ListingId: string
+        StandardStatus:
+          | 'Active'
+          | 'Coming Soon'
+          | 'Pending'
+          | 'Hold'
+          | 'Active Under Contract'
+          | 'Closed'
+          | 'Expired'
+          | 'Canceled'
         ListPrice: number
         BathroomsTotalInteger: number
         UnparsedAddress: string
@@ -29,6 +38,15 @@ export type HouseCard = {
 export type FormattedHouseCard = {
   id: string
   media: string | undefined
+  status:
+    | 'Active'
+    | 'Coming Soon'
+    | 'Pending'
+    | 'Hold'
+    | 'Active Under Contract'
+    | 'Closed'
+    | 'Expired'
+    | 'Canceled'
   price: string
   address: string
   bedroomsTotal: number
@@ -53,20 +71,15 @@ export type House = {
     LotSizeSquareFeet: number
     BedroomsTotal: number
     BridgeModificationTimestamp: string
-    MlsStatus:
-      | 'ACTIVE'
-      | 'Active – Non Compliance'
-      | 'Cancelled'
+    StandardStatus:
+      | 'Active'
       | 'Coming Soon'
-      | 'Contingent'
-      | 'Expired'
-      | 'Expired Provisional'
-      | 'Leased'
-      | 'Office Exclusive'
       | 'Pending'
-      | 'Provisional'
-      | 'Sold'
-      | 'Temporarily Off Market'
+      | 'Hold'
+      | 'Active Under Contract'
+      | 'Closed'
+      | 'Expired'
+      | 'Canceled'
     Media?: {
       MediaURL: string
     }[]
@@ -104,19 +117,14 @@ export type FormattedHouse = {
     price: string
     address: string
     status:
-      | 'ACTIVE'
-      | 'Active – Non Compliance'
-      | 'Cancelled'
+      | 'Active'
       | 'Coming Soon'
-      | 'Contingent'
-      | 'Expired'
-      | 'Expired Provisional'
-      | 'Leased'
-      | 'Office Exclusive'
       | 'Pending'
-      | 'Provisional'
-      | 'Sold'
-      | 'Temporarily Off Market'
+      | 'Hold'
+      | 'Active Under Contract'
+      | 'Closed'
+      | 'Expired'
+      | 'Canceled'
     lastUpdated: string
     lastUpdatedTitle: string
     media: string[] | null

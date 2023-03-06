@@ -10,7 +10,7 @@ const defaultParams: Params = {
   'StandardStatus.in': 'Active',
   fields:
     // Return only this values
-    'Media.MediaURL,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
+    'Media.MediaURL,ListPrice,StandardStatus,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
   sortBy: 'BridgeModificationTimestamp',
   order: 'desc',
 }
@@ -46,7 +46,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
   if (type === 'house') {
     const newParams = {
       fields:
-        'Media.MediaURL,PublicRemarks,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,MlsStatus,LotSizeSquareFeet,SubdivisionName,PropertySubType,CountyOrParish,CityRegion,FoundationDetails,Levels,BuildingAreaTotal,NewConstructionYN,PropertyCondition,PropertyType,Sewer,WaterSource,ElementarySchool,MiddleOrJuniorSchool,HighSchool,Coordinates',
+        'Media.MediaURL,PublicRemarks,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,StandardStatus,LotSizeSquareFeet,SubdivisionName,PropertySubType,CountyOrParish,CityRegion,FoundationDetails,Levels,BuildingAreaTotal,NewConstructionYN,PropertyCondition,PropertyType,Sewer,WaterSource,ElementarySchool,MiddleOrJuniorSchool,HighSchool,Coordinates',
     }
     const endpoint = baseURL + toURL + '?' + new URLSearchParams(newParams)
 
@@ -58,7 +58,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
       price: formatToDollar(house.bundle.ListPrice),
       priceNumber: house.bundle.ListPrice,
       address: house.bundle.UnparsedAddress,
-      status: house.bundle.MlsStatus,
+      status: house.bundle.StandardStatus,
       lastUpdated: house.bundle.BridgeModificationTimestamp,
       lastUpdatedTitle: getDate(
         house.bundle.BridgeModificationTimestamp,
@@ -108,6 +108,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
     return {
       id: listing.ListingId,
       media: listing.Media?.[0].MediaURL ?? null,
+      status: listing.StandardStatus,
       price: formatToDollar(listing.ListPrice),
       address: listing.UnparsedAddress,
       bedroomsTotal: listing.BedroomsTotal,

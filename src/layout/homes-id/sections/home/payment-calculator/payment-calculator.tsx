@@ -205,8 +205,10 @@ export function PaymentCalculator({ price }: PaymentCalculatorProps) {
 
   return (
     <S.Container>
-      <S.Title>Payment calculator</S.Title>
-      <Chart control={control} />
+      <S.Header>
+        <S.Title>Payment calculator</S.Title>
+        <Chart control={control} />
+      </S.Header>
 
       <S.Form>
         <FormProvider {...calculatorForm}>

@@ -132,7 +132,19 @@ export const Status = styled('div', {
   fontWeight: '600',
   fontSize: '12px',
   lineHeight: '18px',
-  color: '$green3',
+
+  variants: {
+    status: {
+      Active: { color: '$green3', '& > div': { background: '$green1' } },
+      'Active Under Contract': { color: '$green3', '& > div': { background: '$green1' } },
+      'Coming Soon': { color: '$yellow3', '& > div': { background: '$yellow2' } },
+      Pending: { color: '$yellow3', '& > div': { background: '$yellow2' } },
+      Hold: { color: '$yellow3', '& > div': { background: '$yellow2' } },
+      Closed: { color: '$red3', '& > div': { background: '$red2' } },
+      Expired: { color: '$red3', '& > div': { background: '$red2' } },
+      Canceled: { color: '$red3', '& > div': { background: '$red2' } },
+    },
+  },
 })
 
 export const Value = styled('h4', {

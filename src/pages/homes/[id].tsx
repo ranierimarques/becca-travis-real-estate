@@ -1,6 +1,7 @@
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import { Home } from '@/layout/homes-id/sections'
+import { getFormattedDate } from '@/resources/utils/date'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 
@@ -11,7 +12,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
         <title>Becca Travis</title>
       </Head>
 
-      <Home listing={listing} />
+      <Home key={listing.id} listing={listing} />
       <LastCall />
     </main>
   )
@@ -42,6 +43,8 @@ export const getStaticProps = async ({ params }: Params) => {
       'ListingId.ne': house.listing.id,
     },
   })
+
+  console.log(getFormattedDate(house.listing.lastUpdated))
 
   return {
     props: {
