@@ -12,24 +12,8 @@ interface Listing {
 }
 
 export function Header({ listing }: Listing) {
-  const relativeDate = useRelativeDate(listing.lastUpdated)
-
-  const titleDetails = [
-    {
-      title: 'Status:',
-      status: listing.status,
-    },
-    {
-      title: 'On site:',
-      status: '10 days',
-    },
-    {
-      title: 'Updated:',
-      status: relativeDate,
-      alt: listing.lastUpdatedTitle,
-    },
-  ]
   const router = useRouter()
+  const relativeDate = useRelativeDate(listing.lastUpdated)
   const [openToast, setOpenToast] = useState(false)
 
   async function copyToClipboard() {
@@ -126,22 +110,30 @@ export function Header({ listing }: Listing) {
             '@bp2': { display: 'none' },
           }}
         />
-        {titleDetails.map((titleDetail, index) => (
-          <Flex
-            align="center"
-            key={titleDetail.title}
-            css={{
-              gap: 16,
-              '@bp2': { display: 'none' },
-            }}
-          >
-            <S.HouseStatus>
-              {titleDetail.title}
-              <S.Status title={titleDetail.alt}> {titleDetail.status}</S.Status>
-            </S.HouseStatus>
-            {index + 1 < titleDetails.length && <S.Dot />}
-          </Flex>
-        ))}
+        <S.StatusWrapper>
+          <S.HouseStatus>
+            Status: <S.Status> {listing.status}</S.Status>
+          </S.HouseStatus>
+          <S.Dot />
+        </S.StatusWrapper>
+        <S.StatusWrapper>
+          <S.HouseStatus>
+            On site: <S.Status> 10 days</S.Status>
+          </S.HouseStatus>
+          <S.Dot />
+        </S.StatusWrapper>
+        <S.StatusWrapper>
+          <S.HouseStatus>
+            Updated:{' '}
+            <S.Status
+              as="time"
+              title={listing.lastUpdatedTitle}
+              dateTime={listing.lastUpdated}
+            >
+              {relativeDate}
+            </S.Status>
+          </S.HouseStatus>
+        </S.StatusWrapper>
       </Flex>
     </S.Header>
   )

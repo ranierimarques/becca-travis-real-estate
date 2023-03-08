@@ -1,5 +1,8 @@
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 
-export function getFormattedDate(ISOString: string) {
-  return dayjs(ISOString).format('DD MMM HH:mm')
+dayjs.extend(utc)
+
+export function getFormattedDate(ISOString: string, format?: string) {
+  return dayjs(ISOString).utc().format(format)
 }

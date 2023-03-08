@@ -1,10 +1,10 @@
-import { memo, useRef, useState } from 'react'
-import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
-import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
 import { HouseCard } from '@/shared'
+import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
+import type * as Stitches from '@stitches/react'
+import { memo, useRef, useState } from 'react'
 import * as Img from '../images'
 import * as S from './map.styles'
 
@@ -12,6 +12,8 @@ const huntsvilleCoordinates = {
   lat: 34.7503416,
   lng: -86.6350868,
 }
+
+const zoomValue = 10
 
 // const getPixelFromLatLng = (
 //   map: google.maps.Map,
@@ -84,9 +86,16 @@ export const Map = memo(({ variant }: Props) => {
     <GoogleMap
       mapContainerClassName={S.containerStyle({ variant })}
       center={huntsvilleCoordinates}
-      zoom={10}
+      zoom={zoomValue}
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
+      options={{
+        mapId: 'a7274021a73cd91c', //Id from the CLoud Console to style the map
+        maxZoom: zoomValue + 10,
+        minZoom: zoomValue - 2,
+        streetViewControl: false,
+        fullscreenControl: false,
+      }}
     >
       {house.listings?.map(listing => {
         const coordinates = {
