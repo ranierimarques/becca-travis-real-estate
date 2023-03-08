@@ -67,6 +67,16 @@ export const HousePrice = styled('span', {
   },
 })
 
+export const StatusWrapper = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 16,
+
+  '@bp2': {
+    display: 'none',
+  },
+})
+
 export const HouseStatus = styled('div', {
   fontWeight: '400',
   fontSize: '14px',

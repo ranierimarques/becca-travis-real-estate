@@ -62,7 +62,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
       lastUpdated: house.bundle.BridgeModificationTimestamp,
       lastUpdatedTitle: getFormattedDate(
         house.bundle.BridgeModificationTimestamp,
-        'MMMM D, YYYY [at] h:mm:ss A Z'
+        'MMMM D, YYYY [at] h:mm:ss A [UTC]Z'
       ),
       media: house.bundle.Media?.map(media => media.MediaURL) ?? null,
       bathroomsTotal: house.bundle.BathroomsTotalInteger,

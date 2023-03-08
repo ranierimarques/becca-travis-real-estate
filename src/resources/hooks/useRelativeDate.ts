@@ -6,8 +6,6 @@ function useRelativeDate(timestamp: string): string {
     getFormattedDate(timestamp, 'DD MMM HH:mm Z')
   )
 
-  console.log(getFormattedDate(timestamp))
-
   useEffect(() => {
     setRelativeDate(getRelativeDate(timestamp))
 
