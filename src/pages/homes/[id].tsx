@@ -44,7 +44,13 @@ export const getStaticProps = async ({ params }: Params) => {
     },
   })
 
-  console.log(getFormattedDate(house.listing.lastUpdated))
+  // const teste = Date(house.listing.lastUpdated)
+
+  console.log(
+    getFormattedDate(house.listing.lastUpdated, 'MMMM D, YYYY [at] h:mm:ss A Z')
+  )
+  console.log(house.listing.lastUpdated)
+  // console.log('teste', teste)
 
   return {
     props: {
