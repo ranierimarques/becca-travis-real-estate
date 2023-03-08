@@ -107,7 +107,9 @@ export const MoreDetail = styled('div', {
   alignItems: 'center',
   justifyContent: 'space-between',
 
-  '@bp4': {},
+  gap: 8,
+
+  overflow: 'hidden',
 })
 
 export const DetailTitle = styled('span', {
@@ -118,6 +120,12 @@ export const DetailTitle = styled('span', {
 })
 
 export const DetailDescription = styled('span', {
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+
+  textAlign: 'right',
+  textOverflow: 'ellipsis',
+
   fontWeight: '400',
   fontSize: '14px',
   lineHeight: '18px',
