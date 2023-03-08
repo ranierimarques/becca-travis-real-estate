@@ -9,6 +9,10 @@ export const containerStyle = css({
   width: '100%',
   // height: 'calc(100vh - 110px)',
 
+  '@bp4': {
+    height: 500,
+  },
+
   variants: {
     variant: {
       1: {

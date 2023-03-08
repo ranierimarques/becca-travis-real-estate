@@ -7,6 +7,13 @@ export const HomesForSale = styled('div', {
   lineHeight: '24px',
   letterSpacing: '-0.02em',
   color: '$magenta6',
+
+  '@bp4': {
+    lineHeight: '20px',
+  },
+  '@bp1': {
+    fontSize: '12px',
+  },
 })
 
 export const LastUpdate = styled('div', {
@@ -15,6 +22,13 @@ export const LastUpdate = styled('div', {
   lineHeight: '24px',
   letterSpacing: '-0.02em',
   color: '$grayW5',
+
+  '@bp4': {
+    lineHeight: '20px',
+  },
+  '@bp1': {
+    fontSize: '12px',
+  },
 })
 
 export const HeaderInfos = styled('div', {
@@ -103,6 +117,12 @@ export const Button = styled('button', {
   '&:focus': {
     zIndex: 2,
     boxShadow: 'inset 0 0 0 1px $colors$magenta3, 0 0 0 1px $colors$magenta3',
+  },
+
+  '@bp1': {
+    fontSize: '13px',
+    gap: 6,
+    padding: '8px 12px',
   },
 
   variants: {
