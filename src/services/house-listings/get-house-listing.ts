@@ -1,6 +1,6 @@
 import { convertSquareFeets } from '@/resources/utils/convert'
 import { formatToDollar } from '@/resources/utils/currency'
-import { getDate } from '@/resources/utils/date'
+import { getFormattedDate } from '@/resources/utils/date'
 import { GetHouseListing, House, HouseCard, Params, ReturnType, Type } from './types'
 
 const baseURL = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings'
@@ -60,10 +60,9 @@ export async function getHouseListing<T extends Type, P extends Params>({
       address: house.bundle.UnparsedAddress,
       status: house.bundle.StandardStatus,
       lastUpdated: house.bundle.BridgeModificationTimestamp,
-      lastUpdatedTitle: getDate(
+      lastUpdatedTitle: getFormattedDate(
         house.bundle.BridgeModificationTimestamp,
-        'en-US',
-        'full'
+        'MMMM D, YYYY [at] h:mm:ss A [UTC]Z'
       ),
       media: house.bundle.Media?.map(media => media.MediaURL) ?? null,
       bathroomsTotal: house.bundle.BathroomsTotalInteger,

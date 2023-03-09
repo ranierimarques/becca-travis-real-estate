@@ -10,6 +10,8 @@ interface ListingDetails {
 }
 
 export function PropertyDetails({ listing }: ListingDetails) {
+  const relativeDate = useRelativeDate(listing.lastUpdated)
+
   const details = [
     {
       svg: <Svg.Price />,
@@ -53,8 +55,6 @@ export function PropertyDetails({ listing }: ListingDetails) {
       information: listing.cityRegion === null ? 'Not defined' : listing.cityRegion,
     },
   ]
-
-  const relativeDate = useRelativeDate(listing.lastUpdated)
 
   return (
     <S.PropertyDetails>
@@ -122,7 +122,9 @@ export function PropertyDetails({ listing }: ListingDetails) {
           return (
             <S.MoreDetail key={detail.title}>
               <S.DetailTitle>{detail.title}:</S.DetailTitle>
-              <S.DetailDescription>{detail.information}</S.DetailDescription>
+              <S.DetailDescription title={detail.information}>
+                {detail.information}
+              </S.DetailDescription>
             </S.MoreDetail>
           )
         })}
@@ -147,7 +149,9 @@ export function PropertyDetails({ listing }: ListingDetails) {
             >
               <S.MoreDetail css={{ display: 'none', '@bp3': { display: 'flex' } }}>
                 <S.DetailTitle>Status:</S.DetailTitle>
-                <S.DetailDescription>{listing.status}</S.DetailDescription>
+                <S.DetailDescription title={listing.status}>
+                  {listing.status}
+                </S.DetailDescription>
               </S.MoreDetail>
               <Box
                 css={{
@@ -169,7 +173,9 @@ export function PropertyDetails({ listing }: ListingDetails) {
                 return (
                   <S.MoreDetail key={detail.title}>
                     <S.DetailTitle>{detail.title}:</S.DetailTitle>
-                    <S.DetailDescription>{detail.information}</S.DetailDescription>
+                    <S.DetailDescription title={detail.information}>
+                      {detail.information}
+                    </S.DetailDescription>
                   </S.MoreDetail>
                 )
               })}
