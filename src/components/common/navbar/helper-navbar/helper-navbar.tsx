@@ -9,9 +9,15 @@ const DropdownLanguage = dynamic(() => import('../dropdown-language/dropdown-lan
 })
 
 const links = [
-  { id: 1, icon: <Svg.Shield />, text: 'Local Guides', href: '/local-guides' },
+  {
+    id: 1,
+    icon: <Svg.Shield />,
+    text: 'Local Guides',
+    href: '/local-guides',
+    disabled: true,
+  },
   { id: 2, icon: <Svg.Chat />, text: 'Contact Us', href: '/contact-us' },
-  { id: 3, icon: <Svg.User />, text: 'My account', href: '/profile' },
+  { id: 3, icon: <Svg.User />, text: 'My account', href: '/profile', disabled: true },
 ]
 
 export function HelperNavbar() {
@@ -29,13 +35,24 @@ export function HelperNavbar() {
         <DropdownLanguage />
 
         <S.OptionsList>
-          {links.map(link => (
-            <li key={link.id}>
-              <S.Link href={link.href}>
-                {link.icon} {link.text}
-              </S.Link>
-            </li>
-          ))}
+          {links.map(link => {
+            if (link.disabled) {
+              return (
+                <li key={link.id}>
+                  <S.DisabledLink>
+                    {link.icon} {link.text}
+                  </S.DisabledLink>
+                </li>
+              )
+            }
+            return (
+              <li key={link.id}>
+                <S.Link href={link.href}>
+                  {link.icon} {link.text}
+                </S.Link>
+              </li>
+            )
+          })}
         </S.OptionsList>
       </S.Nav>
     </Box>

@@ -23,6 +23,7 @@ export const aboutHuntsvilleListItems = [
     href: '/communities/huntsville',
     description: 'Discover Huntsville',
     color: '$colors$green1Rgb',
+    disabled: false,
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ export const aboutHuntsvilleListItems = [
     href: '/communities/huntsville#relocation-information',
     description: 'All you need to know about your Relocation',
     color: '$colors$red1Rgb',
+    disabled: true,
   },
   {
     id: 3,
@@ -39,6 +41,7 @@ export const aboutHuntsvilleListItems = [
     href: '/communities/huntsville#school',
     description: 'Discover our schools',
     color: '$colors$blue2Rgb',
+    disabled: true,
   },
 ]
 
@@ -55,6 +58,7 @@ export const menus = {
           description: 'View all properties for sale',
           href: '/homes?view=map',
           onClickValue: 'map',
+          disabled: false,
         },
         {
           id: 2,
@@ -63,6 +67,7 @@ export const menus = {
           description: 'View all properties for sale',
           href: '/homes?view=gallery',
           onClickValue: 'gallery',
+          disabled: false,
         },
       ],
     },
@@ -76,6 +81,7 @@ export const menus = {
           title: 'Buyers Resources',
           description: 'All you need to know to buy your property',
           href: '/buyers-resources',
+          disabled: true,
         },
         {
           id: 2,
@@ -83,6 +89,7 @@ export const menus = {
           title: 'Mortgage Calculator',
           description: 'Estimate your monthly mortgage payment',
           href: '/mortgage-calculator',
+          disabled: true,
         },
       ],
     },
@@ -98,6 +105,7 @@ export const menus = {
           title: 'Sell with us',
           description: 'We can help you sell your home',
           href: '/sell-with-us',
+          disabled: false,
         },
       ],
     },
@@ -111,6 +119,7 @@ export const menus = {
           title: 'Sellers Resources',
           description: 'All you need to sell your property',
           href: '/sellers-resources',
+          disabled: false,
         },
       ],
     },
@@ -126,6 +135,7 @@ export const menus = {
           title: 'Client reviews',
           description: 'See what our clients are telling about us',
           href: '/reviews',
+          disabled: true,
         },
         {
           id: 2,
@@ -133,6 +143,7 @@ export const menus = {
           title: 'Referral',
           description: 'See what our partners are telling about us',
           href: '/referral',
+          disabled: true,
         },
       ],
     },
@@ -146,6 +157,7 @@ export const menus = {
           title: 'Why Becca?',
           description: 'Why we are your best choice',
           href: '/why-becca',
+          disabled: false,
         },
       ],
     },
@@ -158,6 +170,7 @@ export type CardListItemProps = {
     title: string
     href: string
     icon: JSX.Element
+    disabled: boolean
     onClickValue?: 'map' | 'gallery'
   }
 }
@@ -169,6 +182,23 @@ function CardListItem({ content }: CardListItemProps) {
     if (content.onClickValue) {
       setVisualization(content.onClickValue)
     }
+  }
+
+  if (content.disabled) {
+    return (
+      <S.CardListItem>
+        <S.DisabledCardLink>
+          {content.icon}
+          <div>
+            <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>
+              <S.CardTitle>{content.title}</S.CardTitle>
+              <S.ArrowRight css={{ pos: 'absolute', right: -18 }} />
+            </Flex>
+            <S.CardDescription>{content.description}</S.CardDescription>
+          </div>
+        </S.DisabledCardLink>
+      </S.CardListItem>
+    )
   }
 
   return (
@@ -204,6 +234,7 @@ export type MenuProps = {
 }
 
 function Menu({ menu }: MenuProps) {
+  console.log(menu)
   return (
     <NavigationMenu.Content
       css={{
@@ -236,24 +267,44 @@ function CommunityGuideMenu() {
           <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
           <Box>
             <S.CommunitiesList>
-              {aboutHuntsvilleListItems.map(item => (
-                <li key={item.id}>
-                  <NavigationMenu.NavigationLink asChild>
-                    <S.HuntsvilleLink href={item.href} css={{ $$color: item.color }}>
-                      {item.icon}
-                      <Box>
-                        <Flex align="center" css={{ gap: 4 }}>
-                          <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
-                          <S.ArrowRight />
-                        </Flex>
-                        <S.HuntsvilleDescription>
-                          {item.description}
-                        </S.HuntsvilleDescription>
-                      </Box>
-                    </S.HuntsvilleLink>
-                  </NavigationMenu.NavigationLink>
-                </li>
-              ))}
+              {aboutHuntsvilleListItems.map(item => {
+                if (item.disabled) {
+                  return (
+                    <li key={item.id}>
+                      <S.DisableHuntsvilleLink css={{ $$color: item.color }}>
+                        {item.icon}
+                        <Box>
+                          <Flex align="center" css={{ gap: 4 }}>
+                            <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
+                            <S.ArrowRight />
+                          </Flex>
+                          <S.HuntsvilleDescription>
+                            {item.description}
+                          </S.HuntsvilleDescription>
+                        </Box>
+                      </S.DisableHuntsvilleLink>
+                    </li>
+                  )
+                }
+                return (
+                  <li key={item.id}>
+                    <NavigationMenu.NavigationLink asChild>
+                      <S.HuntsvilleLink href={item.href} css={{ $$color: item.color }}>
+                        {item.icon}
+                        <Box>
+                          <Flex align="center" css={{ gap: 4 }}>
+                            <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
+                            <S.ArrowRight />
+                          </Flex>
+                          <S.HuntsvilleDescription>
+                            {item.description}
+                          </S.HuntsvilleDescription>
+                        </Box>
+                      </S.HuntsvilleLink>
+                    </NavigationMenu.NavigationLink>
+                  </li>
+                )
+              })}
             </S.CommunitiesList>
           </Box>
         </Box>
