@@ -6,6 +6,11 @@ import * as S from './homes.styles'
 
 const Map = dynamic(() => import('.').then(module => module.Map))
 
+const huntsvilleCoordinates = {
+  lat: 34.7503416,
+  lng: -86.6350868,
+}
+
 export function Homes() {
   const visualization = useAtomValue(visualizationAtom)
 
@@ -15,7 +20,7 @@ export function Homes() {
         <Search />
         <Houses />
       </S.Wrapper>
-      {visualization === 'map' && <Map />}
+      {visualization === 'map' && <Map coords={huntsvilleCoordinates} />}
     </S.Section>
   )
 }

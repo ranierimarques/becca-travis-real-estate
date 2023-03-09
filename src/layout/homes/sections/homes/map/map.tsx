@@ -1,19 +1,12 @@
+import { memo, useRef, useState } from 'react'
+import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
+import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
-import { HouseCard } from '@/shared'
-import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
-import type * as Stitches from '@stitches/react'
-import { memo, useRef, useState } from 'react'
+import { MapHouseCard } from '@/shared'
 import * as Img from '../images'
 import * as S from './map.styles'
-
-const huntsvilleCoordinates = {
-  lat: 34.7503416,
-  lng: -86.6350868,
-}
-
-const zoomValue = 10
 
 // const getPixelFromLatLng = (
 //   map: google.maps.Map,
@@ -36,9 +29,16 @@ const zoomValue = 10
 // }
 
 type MapRef = google.maps.Map
-type Props = Stitches.VariantProps<typeof S.containerStyle>
 
-export const Map = memo(({ variant }: Props) => {
+type Props = Stitches.VariantProps<typeof S.containerStyle> & {
+  coords: {
+    lat: number
+    lng: number
+  }
+  zoom?: number
+}
+
+export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   })
@@ -85,14 +85,14 @@ export const Map = memo(({ variant }: Props) => {
   return (
     <GoogleMap
       mapContainerClassName={S.containerStyle({ variant })}
-      center={huntsvilleCoordinates}
-      zoom={zoomValue}
+      center={coords}
+      zoom={zoom}
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
       options={{
         mapId: 'a7274021a73cd91c', //Id from the CLoud Console to style the map
-        maxZoom: zoomValue + 10,
-        minZoom: zoomValue - 2,
+        maxZoom: zoom + 10,
+        minZoom: zoom - 2,
         streetViewControl: false,
         fullscreenControl: false,
       }}
@@ -117,13 +117,11 @@ export const Map = memo(({ variant }: Props) => {
                 position={coordinates}
                 zIndex={10000}
               >
-                <HouseCard
+                <MapHouseCard
                   key={listing.id}
                   listing={listing}
-                  variant="small"
                   onMouseEnter={() => handleActiveCardById(listing.id)}
                   onMouseLeave={handleHiddenCardActive}
-                  style={{ maxWidth: '250px' }}
                 />
               </OverlayViewF>
             )}
