@@ -15,6 +15,8 @@ export const PropertyDetails = styled('div', {
 
   background: '$offWhite2',
 
+  overflow: 'hidden',
+
   '@bp4': {
     background: 'none',
     padding: 0,

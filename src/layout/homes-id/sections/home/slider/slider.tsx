@@ -13,10 +13,16 @@ interface ListingMedia {
 export function Slider({ media }: ListingMedia) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  const [lazyImages, setLazyImages] = useState<boolean[]>([true, true, true, true])
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
+      setLazyImages(oldLazyImages => {
+        const newLazyImages = [...oldLazyImages]
+        newLazyImages[slider.track.details.rel + 3] = true
+        return newLazyImages
+      })
     },
     created() {
       setLoaded(true)
@@ -40,38 +46,34 @@ export function Slider({ media }: ListingMedia) {
     <S.NavigationWrapper>
       <div ref={sliderRef} className="keen-slider">
         {media ? (
-          media.map((url, index) => {
-            const loadPreviousAndCurrentImages = currentSlide + 3 >= index
-
-            return (
-              <Box key={index} className="keen-slider__slide">
-                <Box
-                  css={{
-                    w: 704,
-                    h: 395,
-                    lineHeight: 0,
-                    overflow: 'hidden',
-                    '@bp5': { w: '100%' },
-                    '@bp2': { w: '100vw', h: 211 },
-                    '@bp1': { h: 180 },
-                  }}
-                >
+          media.map((url, index) => (
+            <Box key={index} className="keen-slider__slide" css={{ minWidth: '100%' }}>
+              <Box
+                css={{
+                  h: 395,
+                  overflow: 'hidden',
+                  '@bp5': { w: '100%' },
+                  '@bp2': { h: 211 },
+                  '@bp1': { h: 180 },
+                }}
+              >
+                {lazyImages[index] && (
                   <Image
                     src={url}
                     alt="house image"
                     priority={index === 0}
                     style={{ objectFit: 'cover' }}
-                    loading={loadPreviousAndCurrentImages ? 'eager' : 'lazy'}
+                    loading="eager"
                     fill
                   />
-                </Box>
+                )}
               </Box>
-            )
-          })
+            </Box>
+          ))
         ) : (
           <Box
             className="keen-slider__slide"
-            css={{ w: 704, h: 395, lineHeight: 0, overflow: 'hidden' }}
+            css={{ w: 704, h: 395, overflow: 'hidden' }}
           >
             <Svg.NoHouse />
           </Box>
