@@ -1,12 +1,13 @@
+import { CommunityName } from 'src/pages/communities/[community]'
 import { Map } from '@/layout/homes/sections/homes'
 import { Section } from '@/template'
 import * as S from './community-map.styles'
 
 interface CommunityMapProps {
-  communityName: string
+  communityName: CommunityName
 }
 
-const coordinates: Record<string, { lat: number; lng: number }> = {
+const coordinates = {
   harvest: {
     lat: 34.86075438004774,
     lng: -86.75534072839538,
