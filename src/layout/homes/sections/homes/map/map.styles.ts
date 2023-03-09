@@ -17,6 +17,7 @@ export const containerStyle = css({
     variant: {
       1: {
         height: 500,
+        borderRadius: 8,
       },
     },
   },
