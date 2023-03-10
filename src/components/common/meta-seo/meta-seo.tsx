@@ -20,7 +20,7 @@ export function MetaSEO({ title, description, image, alt, url, children }: MetaS
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:locale" content="pt_BR" />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:site_name" content="Becca Travis" />
       <meta property="og:image" content={image} />
       <meta property="og:image:secure_url" content={image} />
