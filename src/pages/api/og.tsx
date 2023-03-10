@@ -7,7 +7,7 @@ export const config = {
 }
 
 const font = fetch(
-  new URL('/fonts/ibm-plex-serif/semi-bold.woff2', import.meta.url)
+  new URL('/public/fonts/ibm-plex-serif/semi-bold.woff2', import.meta.url)
 ).then(res => res.arrayBuffer())
 
 export default async function handleOg(req: NextRequest) {
