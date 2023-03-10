@@ -62,7 +62,7 @@ export const Houses = styled('ul', {
         },
       },
       gallery: {
-        padding: '28px 0 48px',
+        padding: '28px 16px 48px',
       },
     },
   },

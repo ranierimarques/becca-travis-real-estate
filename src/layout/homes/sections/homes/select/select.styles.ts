@@ -5,7 +5,7 @@ export const Trigger = styled(SelectPrimitive.Trigger, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  gap: 8,
+  gap: 2,
 
   padding: '8px 16px',
 
@@ -20,6 +20,16 @@ export const Trigger = styled(SelectPrimitive.Trigger, {
   color: '$gray2',
 
   transition: 'box-shadow 150ms ease',
+
+  '> span:first-child': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+
+  '@bp2': {
+    fontSize: 14,
+  },
 
   '&:hover': {
     boxShadow: '0 0 0 1px rgba($colors$grayW7Rgb, 0.65)',
@@ -59,6 +69,10 @@ export const Item = styled(SelectPrimitive.Item, {
   color: '$gray2',
 
   userSelect: 'none',
+
+  '@bp2': {
+    fontSize: 14,
+  },
 
   '&[data-highlighted]': {
     background: 'rgba($colors$grayW7Rgb, 0.15)',
