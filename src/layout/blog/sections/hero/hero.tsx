@@ -34,6 +34,7 @@ export function Hero({ newPost }: HeroProps) {
             '@initial': 'start',
             '@bp4': 'center',
           }}
+          css={{ minWidth: 336, '@bp4': { minwidth: 'auto' } }}
         >
           <Hat>News</Hat>
           <S.Title>Becca Travis Blog</S.Title>
@@ -98,13 +99,6 @@ export function Hero({ newPost }: HeroProps) {
                 userSelect: 'none',
                 pointerEvents: 'none',
                 overflow: 'hidden',
-
-                '@bp5': {
-                  maxWidth: 521,
-                },
-                '@bp4': {
-                  maxWidth: 'unset',
-                },
               }}
             >
               <Image
