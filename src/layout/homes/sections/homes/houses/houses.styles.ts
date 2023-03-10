@@ -8,15 +8,13 @@ const backgroundPulse = keyframes({
 export const ScrollableDiv = styled('div', {
   overflowY: 'overlay',
 
-  '@bp4': {
-    overflowY: 'visible',
-  },
-
   '&::-webkit-scrollbar': {
     width: '10px',
-  },
 
-  '&::-webkit-scrollbar-track': {},
+    '@media (any-pointer: coarse)': {
+      display: 'none',
+    },
+  },
 
   '&::-webkit-scrollbar-thumb': {
     border: '2px solid rgba($colors$blackRgb, 0)',
@@ -38,15 +36,9 @@ export const ScrollableDiv = styled('div', {
 })
 
 export const Houses = styled('ul', {
-  // display: 'grid',
-  // gridTemplateColumns: 'repeat(2, minmax(255px, 336px))',
-  // gridAutoColumns: 'minmax(200px, 240px)',
-
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   gap: 16,
-
-  padding: '28px 16px 48px',
 
   '@bp5': {
     gridTemplateColumns: '1fr 1fr',
@@ -59,19 +51,18 @@ export const Houses = styled('ul', {
   variants: {
     visualization: {
       map: {
-        '& > li': {
-          // flex: '1 1 155px',
-          // maxWidth: '336px',
-        },
+        padding: '28px 16px 48px',
 
         '@bp4': {
           display: 'none',
+
+          '+ div': {
+            display: 'none',
+          },
         },
       },
       gallery: {
-        '& > li': {
-          // flex: '1 1 336px',
-        },
+        padding: '28px 0 48px',
       },
     },
   },

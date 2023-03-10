@@ -1,17 +1,14 @@
 import { styled } from 'stitches.config'
+import { Section as SectionTemplate } from '@/template'
 
 export const Wrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 
   height: 'calc(100vh - 110px)',
-
-  '@bp4': {
-    height: '100%',
-  },
 })
 
-export const Section = styled('section', {
+export const Section = styled(SectionTemplate, {
   variants: {
     visualization: {
       map: {
@@ -27,13 +24,18 @@ export const Section = styled('section', {
           '@bp4': {
             maxWidth: 'none',
             minWidth: 'auto',
+            height: 'auto',
           },
         },
       },
       gallery: {
         [`${Wrapper}`]: {
-          maxWidth: '1104px',
-          margin: '0 auto',
+          '@bp4': {
+            height: 'calc(100vh + 180px)',
+          },
+          '@bp2': {
+            height: 'calc(100vh + 150px)',
+          },
         },
       },
     },
