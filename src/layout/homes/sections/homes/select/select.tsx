@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import * as S from './select.styles'
 import * as Svg from './svgs'
@@ -8,10 +8,8 @@ type Props = React.ComponentProps<typeof SelectPrimitive.Root> & {
 }
 
 export const Root = ({ children, placeholder, ...props }: Props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
   return (
-    <SelectPrimitive.Root onOpenChange={open => setIsOpen(open)} open={isOpen} {...props}>
+    <SelectPrimitive.Root {...props}>
       <S.Trigger>
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon>
@@ -19,16 +17,7 @@ export const Root = ({ children, placeholder, ...props }: Props) => {
         </SelectPrimitive.Icon>
       </S.Trigger>
 
-      <S.Content
-        onKeyDown={e => {
-          if (e.key === 'Escape') {
-            // propagation stopped and Dialog close on escape is not called
-            // check later on radix if they already solved this issue
-            setIsOpen(false)
-            e.stopPropagation()
-          }
-        }}
-      >
+      <S.Content>
         <S.ScrollUpButton>
           <Svg.Arrow />
         </S.ScrollUpButton>

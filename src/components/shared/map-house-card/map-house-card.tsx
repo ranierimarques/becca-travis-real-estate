@@ -1,4 +1,5 @@
 import { Box, Flex, Image } from '@/common'
+import { convertToSlug } from '@/resources/utils/convert'
 import { FormattedHouseCard } from '@/services/house-listings/types'
 import * as S from './map-house-card.styles'
 import * as Svg from './svgs'
@@ -10,7 +11,10 @@ interface MapHouseCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export function MapHouseCard({ listing, ...props }: MapHouseCardProps) {
   return (
     <div {...props}>
-      <S.Link href={`/homes/${listing.id}`} draggable="false">
+      <S.Link
+        href={`/homes/${listing.id}/${convertToSlug(listing.address)}`}
+        draggable="false"
+      >
         <Box css={{ position: 'relative', aspectRatio: '16 / 9' }}>
           {listing.media ? (
             <Image src={listing.media} style={{ objectFit: 'cover' }} alt="House" fill />
@@ -19,17 +23,7 @@ export function MapHouseCard({ listing, ...props }: MapHouseCardProps) {
           )}
         </Box>
         <Flex direction="column">
-          <Box
-            css={{
-              bg: '$green1',
-              br: 1,
-              w: 4,
-              h: 4,
-              position: 'absolute',
-              top: 4,
-              right: 4,
-            }}
-          />
+          <S.Status status={listing.status} />
           <S.Price>{listing.price}</S.Price>
           <Flex css={{ gap: 8, mb: 8 }}>
             <S.Info>

@@ -24,7 +24,7 @@ const schoolRating: Record<string, ReactNode> = {
 
 export function Schools({ communityName, schools }: SchoolsProps) {
   return (
-    <Section id="schools" hasMaxWidth>
+    <Section hasMaxWidth>
       <S.Title>
         Schools Near <S.Community>{communityName}</S.Community>
       </S.Title>

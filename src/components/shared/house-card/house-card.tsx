@@ -1,4 +1,5 @@
 import { Box, Flex, Image } from '@/common'
+import { convertToSlug } from '@/resources/utils/convert'
 import { FormattedHouseCard } from '@/services/house-listings/types'
 import * as S from './house-card.styles'
 import * as Svg from './svgs'
@@ -15,7 +16,11 @@ export function HouseCard({ listing, variant, badge, ...props }: HouseCardProps)
 
   return (
     <li {...props}>
-      <S.Link href={`/homes/${listing.id}`} draggable="false" variant={variant}>
+      <S.Link
+        href={`/homes/${listing.id}/${convertToSlug(listing.address)}`}
+        draggable="false"
+        variant={variant}
+      >
         <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
           {listing.media ? (
             <Image

@@ -5,13 +5,13 @@ import {
   CommunityMap,
   Demographics,
   Hero,
-  Homes,
-  MarketTrends,
+  Homes, // MarketTrends,
   Schools,
   Yelp,
 } from '@/layout/communities/sections'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
+import { ReplaceAll } from '@/types/helpers'
 
 type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
 
@@ -126,21 +126,30 @@ const options = {
   headers: { Authorization: `Bearer ${process.env.YELP_API_KEY}` },
 } as RequestInit
 
+type CommunityNameParams =
+  | 'harvest'
+  | 'huntsville'
+  | 'hampton-cove'
+  | 'decatur'
+  | 'athens'
+  | 'meridianville'
+
+export type CommunityName = ReplaceAll<CommunityNameParams, '-', ' '>
+
 type Params = {
   params: {
-    community: string
+    community: CommunityNameParams
   }
 }
 
 export async function getStaticProps({ params }: Params) {
   const isAthens = params.community === 'athens'
-  const community = params.community.replace('-', ' ')
+  const community = params.community.replace('-', ' ') as CommunityName
 
   const response = await fetch(
-    endpoint +
-      `/search?location=${
-        isAthens ? 'athens, alabama' : community
-      }&sort_by=review_count&limit=6`,
+    `${endpoint}/search?location=${
+      isAthens ? 'athens, alabama' : community
+    }&sort_by=review_count&limit=6`,
     options
   )
 
