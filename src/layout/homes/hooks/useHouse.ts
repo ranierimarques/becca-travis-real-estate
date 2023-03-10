@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
+import useDebounce from '@/resources/hooks/useDebounce'
 import { getHouseListing } from '@/services/house-listings'
 import { FormattedHouseCard } from '@/services/house-listings/types'
 import { Filters, useFiltersStore } from '../store/filters'
@@ -93,9 +94,10 @@ const fetcher = async (pageParam: number, filters: Filters) => {
 
 export function useHouse() {
   const filters = useFiltersStore(state => state.filters)
+  const filtersDebounced = useDebounce(filters, 800)
   const { data, ...rest } = useInfiniteQuery({
-    queryKey: ['search/houses', filters],
-    queryFn: ({ pageParam = 0 }) => fetcher(pageParam, filters),
+    queryKey: ['search/houses', filtersDebounced],
+    queryFn: ({ pageParam = 0 }) => fetcher(pageParam, filtersDebounced),
     getNextPageParam: (_, allPages) => {
       if (allPages[0].total - allPages.length * INCREMENT <= 0) return undefined
       return allPages.length

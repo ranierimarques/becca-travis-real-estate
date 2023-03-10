@@ -5,13 +5,10 @@ export const NavigationWrapper = styled('div', {
 
   position: 'relative',
   overflow: 'hidden',
-  // maxWidth: '704px',
   borderRadius: '8px',
   cursor: 'grab',
 
   minWidth: 600,
-
-  // flex: 1,
 
   '@bp4': {
     minWidth: 'unset',
@@ -49,6 +46,7 @@ export const SkipOverlay = styled('div', {
 
   '@bp2': {
     borderRadius: 'unset',
+    display: 'none',
   },
 
   variants: {
@@ -94,11 +92,22 @@ export const Skip = styled('button', {
         '@bp4': {
           left: '16px',
         },
+
+        '@bp2': {
+          left: '4px',
+          padding: '12px',
+        },
       },
       right: {
         right: '24px',
+
         '@bp4': {
           right: '16px',
+        },
+
+        '@bp2': {
+          right: '4px',
+          padding: '12px',
         },
       },
     },
@@ -120,4 +129,8 @@ export const Index = styled('div', {
   fontSize: '12px',
   lineHeight: '20px',
   color: '$white',
+
+  '@bp2': {
+    pointerEvents: 'none',
+  },
 })

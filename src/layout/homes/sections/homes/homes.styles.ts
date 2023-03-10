@@ -5,10 +5,6 @@ export const Wrapper = styled('div', {
   flexDirection: 'column',
 
   height: 'calc(100vh - 110px)',
-
-  '@bp4': {
-    height: '100%',
-  },
 })
 
 export const Section = styled('section', {
@@ -27,13 +23,30 @@ export const Section = styled('section', {
           '@bp4': {
             maxWidth: 'none',
             minWidth: 'auto',
+            height: 'auto',
           },
         },
       },
       gallery: {
         [`${Wrapper}`]: {
-          maxWidth: '1104px',
+          maxWidth: '1184px',
           margin: '0 auto',
+          px: '40px',
+
+          '@bp4': {
+            px: '24px',
+            height: 'calc(100vh + 180px)',
+          },
+          '@bp3': {
+            px: '16px',
+          },
+          '@bp2': {
+            px: '8px',
+            height: 'calc(100vh + 150px)',
+          },
+          '@bp1': {
+            px: '0',
+          },
         },
       },
     },

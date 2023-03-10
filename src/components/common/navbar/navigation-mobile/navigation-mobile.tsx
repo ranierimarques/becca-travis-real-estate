@@ -40,6 +40,23 @@ function CardListItem({
     }
   }
 
+  if (content.disabled) {
+    return (
+      <S.CardListItem>
+        <S.DisabledCardLink>
+          {content.icon}
+          <div>
+            <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 8 }}>
+              <S.CardTitle>{content.title}</S.CardTitle>
+              <S.ArrowRight css={{ pos: 'absolute', right: -18 }} />
+            </Flex>
+            <S.CardDescription>{content.description}</S.CardDescription>
+          </div>
+        </S.DisabledCardLink>
+      </S.CardListItem>
+    )
+  }
+
   return (
     <S.CardListItem>
       <S.CardLink href={content.href} onClick={handleClick}>
@@ -109,24 +126,47 @@ function CommunityGuideMenu({ toggleMenuVisibility }: ToggleMenuVisibility) {
         <S.CommunitiesTitle>About Huntsville</S.CommunitiesTitle>
         <Box>
           <S.CommunitiesList>
-            {aboutHuntsvilleListItems.map(item => (
-              <li key={item.id}>
-                <S.HuntsvilleLink
-                  href={item.href}
-                  onClick={toggleMenuVisibility}
-                  css={{ $$color: item.color }}
-                >
-                  {item.icon}
-                  <Box>
-                    <Flex align="center" css={{ gap: 4 }}>
-                      <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
-                      <S.ArrowRight />
-                    </Flex>
-                    <S.HuntsvilleDescription>{item.description}</S.HuntsvilleDescription>
-                  </Box>
-                </S.HuntsvilleLink>
-              </li>
-            ))}
+            {aboutHuntsvilleListItems.map(item => {
+              if (item.disabled) {
+                return (
+                  <li key={item.id}>
+                    <S.DisableHuntsvilleLink css={{ $$color: item.color }}>
+                      {item.icon}
+                      <Box>
+                        <Flex align="center" css={{ gap: 4 }}>
+                          <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
+                          <S.ArrowRight />
+                        </Flex>
+                        <S.HuntsvilleDescription>
+                          {item.description}
+                        </S.HuntsvilleDescription>
+                      </Box>
+                    </S.DisableHuntsvilleLink>
+                  </li>
+                )
+              }
+
+              return (
+                <li key={item.id}>
+                  <S.HuntsvilleLink
+                    href={item.href}
+                    onClick={toggleMenuVisibility}
+                    css={{ $$color: item.color }}
+                  >
+                    {item.icon}
+                    <Box>
+                      <Flex align="center" css={{ gap: 4 }}>
+                        <S.HuntsvilleTitle>{item.title}</S.HuntsvilleTitle>
+                        <S.ArrowRight />
+                      </Flex>
+                      <S.HuntsvilleDescription>
+                        {item.description}
+                      </S.HuntsvilleDescription>
+                    </Box>
+                  </S.HuntsvilleLink>
+                </li>
+              )
+            })}
           </S.CommunitiesList>
         </Box>
       </Box>
@@ -162,7 +202,7 @@ function CommunityGuideMenu({ toggleMenuVisibility }: ToggleMenuVisibility) {
 export function NavigationMobile({ isOpen, toggleMenuVisibility }: Props) {
   return (
     <S.Nav isVisible={isOpen}>
-      <S.Root type="single" defaultValue="item-1" collapsible>
+      <S.Root type="single" collapsible>
         <S.Item value="item-1">
           <AccordionPrimitive.Header>
             <S.Trigger>
@@ -220,14 +260,10 @@ export function NavigationMobile({ isOpen, toggleMenuVisibility }: Props) {
           </S.Link>
         </li>
         <li>
-          <S.Link href="/local-guides" onClick={toggleMenuVisibility}>
-            Local Guides
-          </S.Link>
+          <S.DisabledLink>Local Guides</S.DisabledLink>
         </li>
         <li>
-          <S.Link href="/profile" onClick={toggleMenuVisibility}>
-            My Account
-          </S.Link>
+          <S.DisabledLink>My Account</S.DisabledLink>
         </li>
       </S.List>
 

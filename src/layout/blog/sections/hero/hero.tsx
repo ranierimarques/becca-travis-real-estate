@@ -34,6 +34,7 @@ export function Hero({ newPost }: HeroProps) {
             '@initial': 'start',
             '@bp4': 'center',
           }}
+          css={{ minWidth: 336, '@bp4': { minWidth: 'auto' } }}
         >
           <Hat>News</Hat>
           <S.Title>Becca Travis Blog</S.Title>
@@ -48,6 +49,9 @@ export function Hero({ newPost }: HeroProps) {
 
         <Box
           css={{
+            width: '100%',
+            maxWidth: '612px',
+
             '@bp4': {
               position: 'relative',
               pb: 64,
@@ -99,19 +103,16 @@ export function Hero({ newPost }: HeroProps) {
                 pointerEvents: 'none',
                 overflow: 'hidden',
 
-                '@bp5': {
-                  maxWidth: 521,
-                },
-                '@bp4': {
-                  maxWidth: 'unset',
-                },
+                aspectRatio: '16 / 9',
+
+                width: '100%',
               }}
             >
               <Image
                 src={newPost.postBanner.url}
                 alt={newPost.postBannerAlt}
-                width={612}
-                height={344}
+                style={{ objectFit: 'cover' }}
+                fill
                 priority
               />
             </Box>

@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, useState } from 'react'
 import shallow from 'zustand/shallow'
 import { Box, Button, Flex } from '@/common'
 import {
@@ -260,13 +260,18 @@ function Inputs({ param, filters, setFilters }: InputsProps) {
 }
 
 export function Filters() {
+  const [open, setOpen] = useState(false)
   const [filters, setFilters, resetFilters] = useFiltersStore(
     state => [state.filters, state.setFilters, state.resetFilters],
     shallow
   )
 
+  function handleCloseModal() {
+    setOpen(false)
+  }
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <S.Button css={{ marginLeft: 16 }}>
           <Svg.Filter /> Filters
@@ -413,7 +418,9 @@ export function Filters() {
           <Button size="2" outlined onClick={resetFilters}>
             Clear filters
           </Button>
-          <Button size="2">Save filters</Button>
+          <Button size="2" onClick={handleCloseModal}>
+            Save filters
+          </Button>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>

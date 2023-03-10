@@ -116,10 +116,12 @@ export const Badge = styled('li', {
   gap: '9px',
 
   '@bp4': {
-    height: '100%',
-
     gap: 16,
     justifyContent: 'space-between',
+  },
+
+  '& svg': {
+    flexShrink: 0,
   },
 })
 

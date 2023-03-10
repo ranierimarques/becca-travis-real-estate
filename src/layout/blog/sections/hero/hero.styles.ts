@@ -21,6 +21,7 @@ export const Wrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  gap: 55,
 
   '@bp4': {
     flexDirection: 'column',
@@ -110,6 +111,7 @@ export const Overlay = styled('div', {
 
 export const LastPostLink = styled(NextLink, {
   position: 'relative',
+  display: 'flex',
 
   '&:hover': {
     [`& ${Overlay}`]: {

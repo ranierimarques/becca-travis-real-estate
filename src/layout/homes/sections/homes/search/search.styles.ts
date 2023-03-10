@@ -44,16 +44,34 @@ export const HeaderInfos = styled('div', {
 
         justifyContent: 'center',
 
+        '@bp4': {
+          flexDirection: 'column',
+          alignItems: 'center',
+        },
+
         [`${HomesForSale}`]: {
           fontSize: '24px',
           lineHeight: '36px',
           letterSpacing: 'initial',
           color: '$black',
+
+          '@bp1': {
+            fontSize: '20px',
+          },
         },
 
         [`${LastUpdate}`]: {
           position: 'absolute',
           right: '0',
+
+          '@bp4': {
+            position: 'static',
+
+            lineHeight: '24px',
+          },
+          '@bp1': {
+            fontSize: '14px',
+          },
         },
       },
     },
@@ -70,7 +88,21 @@ export const Container = styled('div', {
   variants: {
     visualization: {
       map: {
-        margin: '20px 16px',
+        margin: '20px 16px', // Change this height value affects card box-shadow
+
+        '@bp4': {
+          margin: '20px 0',
+          px: '40px',
+        },
+        '@bp3': {
+          px: '32px',
+        },
+        '@bp2': {
+          px: '24px',
+        },
+        '@bp1': {
+          px: '16px',
+        },
 
         [`> ${Options}`]: {
           justifyContent: 'space-between',
@@ -87,8 +119,39 @@ export const Container = styled('div', {
 
         margin: '32px 16px',
 
+        '@bp5': {
+          margin: '48px 16px',
+        },
+
+        '@bp4': {
+          flexDirection: 'column',
+          flexWrap: 'nowrap',
+          gap: 24,
+
+          margin: '40px 16px',
+        },
+
+        '@bp3': {
+          margin: '40px 16px',
+        },
+
+        '@bp2': {
+          gap: 16,
+          margin: '24px 16px',
+        },
+        '@bp1': {
+          margin: '24px 16px',
+        },
+
         [`> ${Options}`]: {
           gap: 32,
+
+          '@bp4': {
+            justifyContent: 'space-between',
+          },
+          '@bp2': {
+            gap: 0,
+          },
         },
         [`> ${HeaderInfos}`]: {
           display: 'none',

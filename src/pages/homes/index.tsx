@@ -1,10 +1,18 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType, NextPage } from 'next'
-import Head from 'next/head'
 import { atom } from 'jotai'
 import { useHydrateAtoms } from 'jotai/utils'
+import { MetaSEO } from '@/common'
 import { Homes } from '@/layout/homes/sections'
 
 export const visualizationAtom = atom<'map' | 'gallery'>('map')
+
+const meta = {
+  title: 'Becca Travis',
+  description: `Feel at home before finding the perfect property.`,
+  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
+  alt: `Feel at home before finding the perfect property.`,
+  url: 'https://beccatravis.com/',
+}
 
 const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
   view,
@@ -13,9 +21,13 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <main>
-      <Head>
-        <title>Becca Travis</title>
-      </Head>
+      <MetaSEO
+        title={meta.title}
+        description={meta.description}
+        image={meta.image}
+        alt={meta.alt}
+        url={meta.url}
+      />
 
       <Homes />
     </main>

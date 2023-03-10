@@ -3,7 +3,7 @@ import { getFormattedDate, getRelativeDate } from '@/resources/utils/date'
 
 function useRelativeDate(timestamp: string): string {
   const [relativeDate, setRelativeDate] = useState(() =>
-    getFormattedDate(timestamp, 'DD MMM HH:mm Z')
+    getFormattedDate(timestamp, 'DD MMM HH:mm')
   )
 
   useEffect(() => {

@@ -32,3 +32,19 @@ export const Link = styled(NextLink, {
   '&:focus': { outline: '2px solid rgba($colors$tangerine8Rgb, 0.5)', outlineOffset: 0 },
   '&:hover': { background: 'rgba($colors$tangerine9Rgb, 0.15)' },
 })
+
+export const DisabledLink = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+
+  color: '$magenta1',
+  fontSize: 12,
+  lineHeight: '16px',
+  fontWeight: 400,
+
+  padding: '6px 8px',
+
+  opacity: 0.33,
+  userSelect: 'none',
+})

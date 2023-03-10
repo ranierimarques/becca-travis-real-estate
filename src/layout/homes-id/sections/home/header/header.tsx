@@ -116,12 +116,12 @@ export function Header({ listing }: Listing) {
           </S.HouseStatus>
           <S.Dot />
         </S.StatusWrapper>
-        <S.StatusWrapper>
+        {/* <S.StatusWrapper>
           <S.HouseStatus>
             On site: <S.Status> 10 days</S.Status>
           </S.HouseStatus>
           <S.Dot />
-        </S.StatusWrapper>
+        </S.StatusWrapper> */}
         <S.StatusWrapper>
           <S.HouseStatus>
             Updated:{' '}

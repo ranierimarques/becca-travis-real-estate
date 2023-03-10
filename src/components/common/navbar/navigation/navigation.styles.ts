@@ -49,6 +49,21 @@ export const ArrowRight = styled(Svg.ArrowRight, {
   transition: 'transform 300ms ease, opacity 300ms ease',
 })
 
+export const DisabledCardLink = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
+  gap: 12,
+
+  padding: '8px 10px 8px 0',
+  userSelect: 'none',
+  borderRadius: 5,
+
+  color: '$grayW6',
+  transition: 'color 300ms ease',
+
+  opacity: 0.33,
+})
+
 export const CardLink = styled(NextLink, {
   display: 'grid',
   gridTemplateColumns: 'auto auto',
@@ -147,6 +162,22 @@ export const HuntsvilleLink = styled(NextLink, {
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
     [`.${SvgStyles}`]: { background: 'currentColor' },
   },
+})
+
+export const DisableHuntsvilleLink = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
+  gap: 12,
+
+  color: 'rgba($$color, 0.15)', // Locally scoped tokens provides dynamically
+
+  width: 'fit-content',
+  borderRadius: 2,
+
+  transition: 'all .15s cubic-bezier(.4,0,.2,1)',
+
+  opacity: 0.33,
+  userSelect: 'none',
 })
 
 // Our communities

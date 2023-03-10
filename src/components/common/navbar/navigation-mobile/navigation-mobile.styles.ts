@@ -115,6 +115,22 @@ export const Link = styled(NextLink, linkStyles, {
   boxShadow: '0 1px 0 0 rgba($colors$magenta1Rgb, 0.15)',
 })
 
+export const DisabledLink = styled('div', {
+  display: 'block',
+
+  boxShadow: '0 1px 0 0 rgba($colors$magenta1Rgb, 0.15)',
+
+  padding: '16px 0',
+  userSelect: 'none',
+
+  color: '$magenta1',
+  fontWeight: 400,
+  fontSize: 16,
+  lineHeight: '24px',
+
+  opacity: 0.33,
+})
+
 export const CategoryTitle = styled('span', {
   display: 'block',
 
@@ -195,6 +211,21 @@ export const CardLink = styled(NextLink, {
     [`${CardTitle}`]: { color: '$magenta1' },
     [`${CardDescription}`]: { color: '$grayW3' },
   },
+})
+
+export const DisabledCardLink = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
+  gap: 12,
+
+  padding: '8px 10px 8px 0',
+  userSelect: 'none',
+  borderRadius: 5,
+
+  color: '$grayW6',
+  transition: 'color 300ms ease',
+
+  opacity: 0.33,
 })
 
 // Community guides
@@ -284,6 +315,24 @@ export const HuntsvilleLink = styled(NextLink, {
     [`${HuntsvilleTitle}`]: { color: '$gray1' },
     [`.${SvgStyles}`]: { background: 'currentColor' },
   },
+})
+
+export const DisableHuntsvilleLink = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
+  gap: 12,
+
+  padding: '4px 0',
+
+  color: 'rgba($$color, 0.15)', // Locally scoped tokens provides dynamically
+
+  width: 'fit-content',
+  borderRadius: 2,
+
+  transition: 'all .15s cubic-bezier(.4,0,.2,1)',
+
+  opacity: 0.33,
+  userSelect: 'none',
 })
 
 // Our communities
