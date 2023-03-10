@@ -68,6 +68,30 @@ export const Price = styled('span', {
   margin: '8px 0 6px',
 })
 
+export const Status = styled('div', {
+  borderRadius: 1,
+
+  width: 4,
+  height: 4,
+  position: 'absolute',
+
+  top: 4,
+  right: 4,
+
+  variants: {
+    status: {
+      Active: { background: '$green1' },
+      'Active Under Contract': { background: '$green1' },
+      'Coming Soon': { background: '$yellow2' },
+      Pending: { background: '$yellow2' },
+      Hold: { background: '$yellow2' },
+      Closed: { background: '$red2' },
+      Expired: { background: '$red2' },
+      Canceled: { background: '$red2' },
+    },
+  },
+})
+
 export const Info = styled('div', {
   fontWeight: 500,
   fontSize: '12px',

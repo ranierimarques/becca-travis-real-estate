@@ -1,6 +1,7 @@
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import { Home } from '@/layout/homes-id/sections'
+import { convertToSlug } from '@/resources/utils/convert'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 
@@ -25,15 +26,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 type Params = {
-  params: {
-    id: string
+  params?: {
+    segments: string[]
   }
 }
 
 export const getStaticProps = async ({ params }: Params) => {
-  const house = await getHouseListing({ type: 'house', toURL: '/' + params.id })
+  const house = await getHouseListing({ type: 'house', toURL: '/' + params?.segments[0] })
 
-  if (!house.success) return { notFound: true }
+  if (!house.success || !params || params.segments.length >= 3) return { notFound: true }
+
+  const sluggedAddress = convertToSlug(house.listing.address)
+
+  if (params.segments[1] !== sluggedAddress) {
+    return {
+      redirect: {
+        destination: `/homes/${params?.segments[0]}/${sluggedAddress}`,
+        permanent: true,
+      },
+    }
+  }
 
   const relatedProperties = await getHouseListing({
     type: 'card',
