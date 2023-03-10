@@ -10,7 +10,7 @@ RuntimeLoader.setWasmUrl(riveWasmUrl)
 const meta = {
   title: 'Becca Travis',
   description: `Feel at home before finding the perfect property.`,
-  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
+  image: '/sharing-cards/og-image.jpg',
   alt: `Feel at home before finding the perfect property.`,
   url: 'https://beccatravis.com/',
 }
