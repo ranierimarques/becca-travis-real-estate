@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { ReactNode } from 'react'
 
 interface MetaSEOProps {
   title: string
@@ -6,9 +7,10 @@ interface MetaSEOProps {
   image: string
   alt: string
   url: string
+  children?: ReactNode
 }
 
-export function MetaSEO({ title, description, image, alt, url }: MetaSEOProps) {
+export function MetaSEO({ title, description, image, alt, url, children }: MetaSEOProps) {
   return (
     <Head>
       <title>{title}</title>
@@ -25,13 +27,14 @@ export function MetaSEO({ title, description, image, alt, url }: MetaSEOProps) {
       <meta property="og:image:alt" content={alt} />
       <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="628" />
+      <meta property="og:image:height" content="630" />
       <meta property="twitter:card" content="summary_large_image" />
       <link rel="canonical" href={url} />
       <meta
         name="robots"
         content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
       />
+      {children}
     </Head>
   )
 }
