@@ -15,7 +15,10 @@ export function Homes() {
   const visualization = useAtomValue(visualizationAtom)
 
   return (
-    <S.Section visualization={visualization}>
+    <S.Section
+      hasMaxWidth={{ '@initial': visualization === 'gallery' ? true : undefined }}
+      visualization={visualization}
+    >
       <S.Wrapper>
         <Search />
         <Houses />
