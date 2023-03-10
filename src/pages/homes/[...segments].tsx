@@ -6,9 +6,6 @@ import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 
 const meta = {
-  title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
   alt: '',
   url: 'https://beccatravis.com/',
 }

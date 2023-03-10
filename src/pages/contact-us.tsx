@@ -9,9 +9,9 @@ RuntimeLoader.setWasmUrl(riveWasmUrl)
 
 const meta = {
   title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: '/sharing-cards/og-image.jpg',
-  alt: `Feel at home before finding the perfect property.`,
+  description: `Find your dream home today | Becca Travis Real Estate Group`,
+  image: '/sharing-cards/og-contact-us.jpg',
+  alt: `Contact Becca Travis today and start with the best realtor`,
   url: 'https://beccatravis.com/',
 }
 

@@ -15,8 +15,8 @@ import { ClientTestimonials, LastCall } from '@/shared'
 
 const meta = {
   title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: '/sharing-cards/og-image.jpg',
+  description: `Find your dream home today | Becca Travis Real Estate Group`,
+  image: '/sharing-cards/og-index.jpg',
   alt: `Feel at home before finding the perfect property.`,
   url: 'https://beccatravis.com/',
 }

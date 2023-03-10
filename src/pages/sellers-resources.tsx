@@ -10,9 +10,9 @@ import { LastCall } from '@/shared'
 
 const meta = {
   title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: '/sharing-cards/og-image.jpg',
-  alt: `Feel at home before finding the perfect property.`,
+  description: `Find your dream home today | Becca Travis Real Estate Group`,
+  image: '/sharing-cards/og-sellers.jpg',
+  alt: `Discover your home's true value and sell confidently`,
   url: 'https://beccatravis.com/',
 }
 
