@@ -46,5 +46,5 @@ export const DisabledLink = styled('div', {
   padding: '6px 8px',
 
   opacity: 0.33,
-  cursor: 'pointer',
+  userSelect: 'none',
 })

@@ -62,7 +62,6 @@ export const DisabledCardLink = styled('div', {
   transition: 'color 300ms ease',
 
   opacity: 0.33,
-  cursor: 'pointer',
 })
 
 export const CardLink = styled(NextLink, {
@@ -178,7 +177,7 @@ export const DisableHuntsvilleLink = styled('div', {
   transition: 'all .15s cubic-bezier(.4,0,.2,1)',
 
   opacity: 0.33,
-  cursor: 'pointer',
+  userSelect: 'none',
 })
 
 // Our communities

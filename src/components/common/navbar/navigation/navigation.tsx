@@ -1,7 +1,7 @@
-import { useSetAtom } from 'jotai'
-import { visualizationAtom } from 'src/pages/homes'
 import { Box, Flex, Image } from '@/common'
 import { NavigationMenu } from '@/primitives'
+import { useSetAtom } from 'jotai'
+import { visualizationAtom } from 'src/pages/homes'
 import * as Img from '../images'
 import * as Svg from '../svgs'
 import * as S from './navigation.styles'
@@ -170,7 +170,7 @@ export type CardListItemProps = {
     title: string
     href: string
     icon: JSX.Element
-    disabled: boolean
+    disabled?: boolean
     onClickValue?: 'map' | 'gallery'
   }
 }
@@ -234,7 +234,6 @@ export type MenuProps = {
 }
 
 function Menu({ menu }: MenuProps) {
-  console.log(menu)
   return (
     <NavigationMenu.Content
       css={{
