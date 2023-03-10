@@ -18,6 +18,10 @@ export const CheckboxesContainer = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   gap: 16,
+
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+  },
 })
 
 export const CheckBoxRoot = styled(CheckboxPrimitive.Root, {
@@ -198,6 +202,10 @@ export const MultiColumnContainer = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   gap: '24px 30px',
+
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+  },
 })
 
 export const Disabled = styled('div', {

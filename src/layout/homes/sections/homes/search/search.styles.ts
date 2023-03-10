@@ -39,7 +39,7 @@ export const HeaderInfos = styled('div', {
     variant: {
       2: {
         position: 'relative',
-        margin: '0 0 12px',
+        margin: '0 16px 12px',
         alignItems: 'flex-end',
 
         justifyContent: 'center',
@@ -117,10 +117,10 @@ export const Container = styled('div', {
         flexWrap: 'wrap',
         gap: 48,
 
-        margin: '32px 0 48px',
+        margin: '32px 16px',
 
         '@bp5': {
-          margin: '48px 0',
+          margin: '48px 16px',
         },
 
         '@bp4': {
@@ -128,19 +128,19 @@ export const Container = styled('div', {
           flexWrap: 'nowrap',
           gap: 24,
 
-          margin: '40px 0 48px',
+          margin: '40px 16px',
         },
 
         '@bp3': {
-          margin: '40px 0 48px',
+          margin: '40px 16px',
         },
 
         '@bp2': {
           gap: 16,
-          margin: '24px 0 40px',
+          margin: '24px 16px',
         },
         '@bp1': {
-          margin: '24px 0 40px',
+          margin: '24px 16px',
         },
 
         [`> ${Options}`]: {
