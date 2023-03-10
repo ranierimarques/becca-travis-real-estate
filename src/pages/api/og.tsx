@@ -13,7 +13,7 @@ const font = fetch(
 export default async function handleOg(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const title = searchParams.get('title')
-  const image = searchParams.get('image') ?? 'test'
+  const image = searchParams.get('image') ?? '/public/sharing-cards/fallback-house.jpg'
 
   const fontData = await font
 
