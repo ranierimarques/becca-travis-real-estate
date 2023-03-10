@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useAtomValue } from 'jotai'
 import { visualizationAtom } from 'src/pages/homes'
+import { Box } from '@/common'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import { HouseCard } from '@/shared'
@@ -75,7 +76,7 @@ export function Houses() {
         {isFetchingNextPage && <SkeletonCards count={9} />}
       </S.Houses>
 
-      <div ref={loaderRef} />
+      <Box ref={loaderRef} css={{ '@bp4': { display: 'none' } }} />
     </S.ScrollableDiv>
   )
 }

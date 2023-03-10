@@ -52,6 +52,10 @@ export const Houses = styled('ul', {
     gridTemplateColumns: '1fr 1fr',
   },
 
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+  },
+
   variants: {
     visualization: {
       map: {
