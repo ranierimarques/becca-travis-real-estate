@@ -1,15 +1,21 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType, NextPage } from 'next'
-import { atom } from 'jotai'
-import { useHydrateAtoms } from 'jotai/utils'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { MetaSEO } from '@/common'
-import { Homes } from '@/layout/homes/sections'
+import { useVisualizationStore } from '@/layout/homes/store/visualization'
 
-export const visualizationAtom = atom<'map' | 'gallery'>('map')
+const Homes = dynamic(() => import('@/layout/homes/sections').then(mod => mod.Homes), {
+  ssr: false,
+})
 
-const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
-  view,
-}) => {
-  useHydrateAtoms([[visualizationAtom, view]])
+const Page = () => {
+  const router = useRouter()
+  const setVisualization = useVisualizationStore(state => state.setVisualization)
+
+  useEffect(() => {
+    if (router.query.view === 'map') setVisualization('map')
+    if (router.query.view === 'gallery') setVisualization('gallery')
+  }, [router.query.view, setVisualization])
 
   return (
     <main>
@@ -23,14 +29,6 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
       <Homes />
     </main>
   )
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return {
-    props: {
-      view: context.query.view || 'map',
-    },
-  }
 }
 
 export default Page
