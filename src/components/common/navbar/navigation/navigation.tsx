@@ -1,7 +1,5 @@
 import { Box, Flex, Image } from '@/common'
 import { NavigationMenu } from '@/primitives'
-import { useSetAtom } from 'jotai'
-import { visualizationAtom } from 'src/pages/homes'
 import * as Img from '../images'
 import * as Svg from '../svgs'
 import * as S from './navigation.styles'
@@ -57,7 +55,6 @@ export const menus = {
           title: 'Search Map View',
           description: 'View all properties for sale',
           href: '/homes?view=map',
-          onClickValue: 'map',
           disabled: false,
         },
         {
@@ -66,7 +63,6 @@ export const menus = {
           title: 'Search List View',
           description: 'View all properties for sale',
           href: '/homes?view=gallery',
-          onClickValue: 'gallery',
           disabled: false,
         },
       ],
@@ -171,19 +167,10 @@ export type CardListItemProps = {
     href: string
     icon: JSX.Element
     disabled?: boolean
-    onClickValue?: 'map' | 'gallery'
   }
 }
 
 function CardListItem({ content }: CardListItemProps) {
-  const setVisualization = useSetAtom(visualizationAtom)
-
-  function handleClick() {
-    if (content.onClickValue) {
-      setVisualization(content.onClickValue)
-    }
-  }
-
   if (content.disabled) {
     return (
       <S.CardListItem>
@@ -204,7 +191,7 @@ function CardListItem({ content }: CardListItemProps) {
   return (
     <S.CardListItem>
       <NavigationMenu.NavigationLink asChild>
-        <S.CardLink href={content.href} onClick={handleClick}>
+        <S.CardLink href={content.href}>
           {content.icon}
           <div>
             <Flex align="center" css={{ pos: 'relative', w: 'fit-content', mb: 4 }}>

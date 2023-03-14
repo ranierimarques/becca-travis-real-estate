@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { useAtomValue } from 'jotai'
-import { visualizationAtom } from 'src/pages/homes'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
+import { useVisualizationStore } from '@/layout/homes/store/visualization'
 import { HouseCard } from '@/shared'
 import * as S from './houses.styles'
 
@@ -27,7 +26,7 @@ export function Houses() {
   const { house, fetchNextPage, isFetchingNextPage, isInitialLoading } = useHouse()
   const loaderRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const visualization = useAtomValue(visualizationAtom)
+  const visualization = useVisualizationStore(state => state.visualization)
 
   useEffect(() => {
     const options = {

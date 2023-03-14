@@ -1,7 +1,5 @@
 import dynamic from 'next/dynamic'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
-import { useSetAtom } from 'jotai'
-import { visualizationAtom } from 'src/pages/homes'
 import { Box, Flex, Image } from '@/common'
 import {
   CardListItemProps,
@@ -30,14 +28,8 @@ function CardListItem({
   content,
   toggleMenuVisibility,
 }: CardListItemProps & ToggleMenuVisibility) {
-  const setVisualization = useSetAtom(visualizationAtom)
-
   function handleClick() {
     toggleMenuVisibility()
-
-    if (content.onClickValue) {
-      setVisualization(content.onClickValue)
-    }
   }
 
   if (content.disabled) {
