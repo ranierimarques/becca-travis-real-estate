@@ -6,6 +6,7 @@ import { useVisualizationStore } from '@/layout/homes/store/visualization'
 
 const Homes = dynamic(() => import('@/layout/homes/sections').then(mod => mod.Homes), {
   ssr: false,
+  loading: () => <div style={{ height: '100vh' }} />,
 })
 
 const Page = () => {
