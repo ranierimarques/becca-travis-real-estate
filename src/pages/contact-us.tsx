@@ -7,23 +7,14 @@ const riveWasmUrl = 'https://unpkg.com/@rive-app/canvas/rive.wasm'
 
 RuntimeLoader.setWasmUrl(riveWasmUrl)
 
-const meta = {
-  title: 'Becca Travis',
-  description: `Find your dream home today | Becca Travis Real Estate Group`,
-  image: '/sharing-cards/og-contact-us.jpg',
-  alt: `Contact Becca Travis today and start with the best realtor`,
-  url: 'https://beccatravis.com/',
-}
-
 const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-        alt={meta.alt}
-        url={meta.url}
+        title="Becca Travis"
+        description="Find your dream home today | Becca Travis Real Estate Group"
+        image="/sharing-cards/og-contact-us.jpg"
+        alt="Contact Becca Travis today and start with the best realtor."
       >
         <link rel="preload" href={riveWasmUrl} as="fetch" crossOrigin="anonymous" />
         <link rel="preload" href="/check.riv" as="fetch" crossOrigin="anonymous" />

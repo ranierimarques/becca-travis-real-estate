@@ -69,14 +69,6 @@ interface AllPostsTagsQuery {
   }[]
 }
 
-const meta = {
-  title: 'Becca Travis',
-  description: `Find your dream home today | Becca Travis Real Estate Group`,
-  image: 'https://beccatravis.com/sharing-cards/og-blog.jpg',
-  alt: `Get up-to-date about Alabama’s Real Estate.`,
-  url: 'https://beccatravis.com/',
-}
-
 const Page: NextPage<PostsProps> = ({
   uniqueTags,
   mostPopularTags,
@@ -88,11 +80,10 @@ const Page: NextPage<PostsProps> = ({
   return (
     <main>
       <MetaSEO
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-        alt={meta.alt}
-        url={meta.url}
+        title="Becca Travis"
+        description="Find your dream home today | Becca Travis Real Estate Group"
+        image="/sharing-cards/og-blog.jpg"
+        alt="Get up-to-date about Alabama’s Real Estate."
       />
 
       <Hero newPost={newPost} />

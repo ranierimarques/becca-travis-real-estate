@@ -6,14 +6,6 @@ import { Homes } from '@/layout/homes/sections'
 
 export const visualizationAtom = atom<'map' | 'gallery'>('map')
 
-const meta = {
-  title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
-  alt: `Feel at home before finding the perfect property.`,
-  url: 'https://beccatravis.com/',
-}
-
 const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
   view,
 }) => {
@@ -22,11 +14,10 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   return (
     <main>
       <MetaSEO
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-        alt={meta.alt}
-        url={meta.url}
+        title="Becca Travis"
+        description="Find your dream home today | Becca Travis Real Estate Group"
+        image="/sharing-cards/og-image.jpg"
+        alt="Feel at home before finding the perfect property."
       />
 
       <Homes />
