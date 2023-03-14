@@ -19,9 +19,9 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis"
+        title={`${community} | Becca Travis`}
         description="Find your dream home today | Becca Travis Real Estate Group"
-        image="/sharing-cards/og-image.jpg"
+        image={`/api/og?title=${community}&image=/sharing-cards/huntsville.jpg`}
         alt="Feel at home before finding the perfect property."
       />
 
