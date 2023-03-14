@@ -8,7 +8,7 @@ const Page: NextPage = () => {
       <MetaSEO
         title="Becca Travis"
         description="Find your dream home today | Becca Travis Real Estate Group"
-        image="sharing-cards/og-sellers.jpg"
+        image="/sharing-cards/og-sellers.jpg"
         alt="Discover your home's true value and sell confidently"
       />
 
