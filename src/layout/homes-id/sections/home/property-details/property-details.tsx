@@ -30,7 +30,7 @@ export function PropertyDetails({ listing }: ListingDetails) {
     },
     {
       svg: <Svg.SquareFeet />,
-      text: `${listing.lotSizeSquareFeet} Sq.Ft`,
+      text: `${listing.buildingTotalArea} Sq.Ft`,
       tooltip: 'Total meters',
     },
   ]

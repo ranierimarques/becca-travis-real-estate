@@ -74,7 +74,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
       cityRegion: house.bundle.CityRegion,
       foundationDetails: house.bundle.FoundationDetails,
       levels: house.bundle.Levels,
-      buildingTotalArea: house.bundle.BuildingAreaTotal,
+      buildingTotalArea: house.bundle.LivingArea,
       newConstruction: house.bundle.NewConstructionYN,
       propertyCondition: house.bundle.PropertyCondition,
       propertyType: house.bundle.PropertyType,
