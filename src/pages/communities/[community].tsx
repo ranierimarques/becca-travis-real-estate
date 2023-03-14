@@ -1,11 +1,11 @@
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
-import Head from 'next/head'
+import { MetaSEO } from '@/common'
 import {
   About,
   CommunityMap,
   Demographics,
   Hero,
-  Homes, // MarketTrends,
+  Homes,
   Schools,
   Yelp,
 } from '@/layout/communities/sections'
@@ -18,9 +18,12 @@ type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProp
 const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
   return (
     <main>
-      <Head>
-        <title>Becca Travis</title>
-      </Head>
+      <MetaSEO
+        title="Becca Travis"
+        description="Find your dream home today | Becca Travis Real Estate Group"
+        image="/sharing-cards/og-image.jpg"
+        alt="Feel at home before finding the perfect property."
+      />
 
       <Hero communityName={community} />
       <About communityName={community} />
