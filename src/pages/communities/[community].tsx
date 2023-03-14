@@ -9,6 +9,7 @@ import {
   Schools,
   Yelp,
 } from '@/layout/communities/sections'
+import { capitalizeEveryWord } from '@/resources/utils/text'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 import { ReplaceAll } from '@/types/helpers'
@@ -19,10 +20,14 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
   return (
     <main>
       <MetaSEO
-        title={`${community} | Becca Travis`}
-        description="Find your dream home today | Becca Travis Real Estate Group"
-        image={`/api/og?title=${community}&image=/sharing-cards/huntsville.jpg`}
-        alt="Feel at home before finding the perfect property."
+        title={`${capitalizeEveryWord(community)} | Becca Travis`}
+        description={`Find out more about ${capitalizeEveryWord(
+          community
+        )} | Becca Travis`}
+        image={`/sharing-cards/communities/${
+          community === 'hampton cove' ? 'hampton-cove' : community
+        }.jpg`}
+        alt={community}
       />
 
       <Hero communityName={community} />
