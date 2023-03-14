@@ -16,7 +16,7 @@ export function MetaSEO({ title, description, image, alt, url, children }: MetaS
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="image" content={image} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={process.env.VERCEL_URL} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
