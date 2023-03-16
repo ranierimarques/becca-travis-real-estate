@@ -46,22 +46,30 @@ export function Yelp({ data, communityName }: YelpProps) {
   const [activeCategory, setActiveCategory] = useState<CategoriesName>('dining')
   const [activeIndex, setActiveIndex] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
+  const [blocked, setBlocked] = useState(false)
 
   const isAthens = communityName === 'Athens'
 
   async function handleRequestNewData(category: CategoriesName) {
     if (category === activeCategory) return
 
-    setActiveCategory(category)
-    setActiveIndex(1)
-    const response = await fetch(
-      `/api/yelp?category=${category}&community=${
-        isAthens ? 'athens, alabama' : communityName
-      }&limit=${RESULTS_LIMIT}&offset=0`
-    )
-    console.log(response)
-    const data = await response.json()
-    setYelpData(data)
+    if (!blocked) {
+      setBlocked(true)
+
+      setActiveCategory(category)
+      setActiveIndex(1)
+      if (category === 'active') {
+        await new Promise(r => setTimeout(r, 2000))
+      }
+      const response = await fetch(
+        `/api/yelp?category=${category}&community=${
+          isAthens ? 'athens, alabama' : communityName
+        }&limit=${RESULTS_LIMIT}&offset=0`
+      )
+      const data = await response.json()
+      setYelpData(data)
+      setBlocked(false)
+    }
   }
 
   async function handleRequestMoreData() {
