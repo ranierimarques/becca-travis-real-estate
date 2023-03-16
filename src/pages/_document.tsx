@@ -1,5 +1,12 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+import { RuntimeLoader } from '@rive-app/react-canvas'
 import { getCssText } from 'stitches.config'
+
+// This downloads the newer version of rive.wasm,
+// maybe cause bugs. Version 1.0.102 is stable.
+export const riveWasmUrl = 'https://unpkg.com/@rive-app/canvas/rive.wasm'
+
+RuntimeLoader.setWasmUrl(riveWasmUrl)
 
 export default function Document() {
   return (
