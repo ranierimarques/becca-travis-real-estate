@@ -6,8 +6,8 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis"
-        description="Find your dream home today | Becca Travis Real Estate Group"
+        title="404: Page Not Found | Becca Travis"
+        description="Page Not Found | Becca Travis"
         image="/sharing-cards/og-index.jpg"
         alt="Feel at home before finding the perfect property."
       />

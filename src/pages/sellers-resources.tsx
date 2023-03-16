@@ -12,8 +12,8 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis"
-        description="Find your dream home today | Becca Travis Real Estate Group"
+        title="Sellers Resources | Becca Travis"
+        description="Learn how we work and ensure your goals are my goals every step of the way | Becca Travis"
         image="/sharing-cards/og-sellers.jpg"
         alt="Discover your home's true value and sell confidently"
       />

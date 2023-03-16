@@ -12,7 +12,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listin
         title={`${listing.address} | Becca Travis`}
         description={`This property features ${listing.bedroomsTotal} Bedrooms, ${listing.bathroomsTotal} Bathrooms and a total of ${listing.buildingTotalArea} square feet of building area. Find out more at beccatravis.com`}
         image={`/api/og?title=${listing.address}&image=${listing.media?.[0]}`}
-        alt=""
+        alt={listing.address}
       />
 
       <Home key={listing.id} listing={listing} />

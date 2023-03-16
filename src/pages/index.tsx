@@ -17,8 +17,8 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis"
-        description="Find your dream home today | Becca Travis Real Estate Group"
+        title="Becca Travis Real Estate"
+        description="Find your dream home today | Becca Travis"
         image="/sharing-cards/og-index.jpg"
         alt="Feel at home before finding the perfect property."
       />

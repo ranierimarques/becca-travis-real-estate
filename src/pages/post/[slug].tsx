@@ -1,14 +1,17 @@
-import Head from 'next/head'
 import request, { gql } from 'graphql-request'
 import getReadingTime from 'reading-time'
+import { MetaSEO } from '@/common'
 import { Post } from '@/layout/post-slug/sections'
 
 export default function PostPage({ data }: any) {
   return (
     <main>
-      <Head>
-        <title>Becca Travis</title>
-      </Head>
+      <MetaSEO
+        title={`${data.post.postTitle} | Becca Travis`}
+        description={`${data.post.postDescription} | Becca Travis`}
+        image={data.post.postBanner.url}
+        alt={data.post.postBannerAlt}
+      />
 
       <Post data={data} />
     </main>

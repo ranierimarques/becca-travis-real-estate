@@ -80,8 +80,10 @@ const Page: NextPage<PostsProps> = ({
   return (
     <main>
       <MetaSEO
-        title="Becca Travis"
-        description="Find your dream home today | Becca Travis Real Estate Group"
+        title={`Blog ${
+          currentPage > 1 ? '- Page (' + currentPage + ')' : ''
+        } | Becca Travis`}
+        description="Read the latest news from Alabama’s Real Estate. | Becca Travis"
         image="/sharing-cards/og-blog.jpg"
         alt="Get up-to-date about Alabama’s Real Estate."
       />
