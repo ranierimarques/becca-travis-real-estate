@@ -58,9 +58,6 @@ export function Yelp({ data, communityName }: YelpProps) {
 
       setActiveCategory(category)
       setActiveIndex(1)
-      if (category === 'active') {
-        await new Promise(r => setTimeout(r, 2000))
-      }
       const response = await fetch(
         `/api/yelp?category=${category}&community=${
           isAthens ? 'athens, alabama' : communityName
