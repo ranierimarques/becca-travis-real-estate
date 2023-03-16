@@ -1,15 +1,13 @@
 import Head from 'next/head'
-import { ReactNode } from 'react'
 
 interface MetaSEOProps {
   title: string
   description: string
   image: string
   alt: string
-  children?: ReactNode
 }
 
-export function MetaSEO({ title, description, image, alt, children }: MetaSEOProps) {
+export function MetaSEO({ title, description, image, alt }: MetaSEOProps) {
   const generatedUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   const url = `${generatedUrl ? 'https://' + generatedUrl : ''}`
   const imagePath = url + image
@@ -37,7 +35,6 @@ export function MetaSEO({ title, description, image, alt, children }: MetaSEOPro
         name="robots"
         content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
       />
-      {children}
     </Head>
   )
 }
