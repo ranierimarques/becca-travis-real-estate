@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Box, Button, Flex, Image } from '@/common'
 import { Select } from '@/primitives'
 import { Section } from '@/template'
@@ -42,45 +42,61 @@ interface YelpProps {
 type CategoriesName = 'dining' | 'active' | 'shopping' | 'nightlife'
 
 export function Yelp({ data, communityName }: YelpProps) {
-  const [yelpData, setYelpData] = useState(data)
+  const lastActiveCategoryRef = useRef<CategoriesName>('dining')
+  const controllerRef = useRef<AbortController | null>(null)
   const [activeCategory, setActiveCategory] = useState<CategoriesName>('dining')
+  const [yelpData, setYelpData] = useState(data)
   const [activeIndex, setActiveIndex] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
-  const [blocked, setBlocked] = useState(false)
 
   const isAthens = communityName === 'Athens'
 
   async function handleRequestNewData(category: CategoriesName) {
     if (category === activeCategory) return
 
-    if (!blocked) {
-      setBlocked(true)
+    controllerRef.current?.abort()
+    controllerRef.current = new AbortController()
 
-      setActiveCategory(category)
-      setActiveIndex(1)
+    lastActiveCategoryRef.current = category
+    setActiveCategory(category)
+    setActiveIndex(1)
+
+    try {
       const response = await fetch(
         `/api/yelp?category=${category}&community=${
           isAthens ? 'athens, alabama' : communityName
-        }&limit=${RESULTS_LIMIT}&offset=0`
+        }&limit=${RESULTS_LIMIT}&offset=0`,
+        { signal: controllerRef.current.signal }
       )
       const data = await response.json()
+      if (category !== lastActiveCategoryRef.current) return
       setYelpData(data)
-      setBlocked(false)
+    } catch (e) {
+      console.log(e)
     }
   }
 
   async function handleRequestMoreData() {
-    setIsLoading(true)
-    const offset = activeIndex * RESULTS_LIMIT
-    const response = await fetch(
-      `/api/yelp?category=${activeCategory}&community=${
-        isAthens ? 'athens, alabama' : communityName
-      }&offset=${offset}&limit=${RESULTS_LIMIT}`
-    )
-    const data = await response.json()
-    setActiveIndex(oldValue => oldValue + 1)
-    setYelpData([...yelpData, ...data])
-    setIsLoading(false)
+    controllerRef.current?.abort()
+    controllerRef.current = new AbortController()
+
+    try {
+      setIsLoading(true)
+      const offset = activeIndex * RESULTS_LIMIT
+      const response = await fetch(
+        `/api/yelp?category=${activeCategory}&community=${
+          isAthens ? 'athens, alabama' : communityName
+        }&offset=${offset}&limit=${RESULTS_LIMIT}`,
+        { signal: controllerRef.current.signal }
+      )
+      const data = await response.json()
+      setActiveIndex(oldValue => oldValue + 1)
+      setYelpData([...yelpData, ...data])
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
