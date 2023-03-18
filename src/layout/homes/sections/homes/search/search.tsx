@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router'
-import { useAtom } from 'jotai'
-import { visualizationAtom } from 'src/pages/homes'
 import { Flex } from '@/common'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
+import { useVisualizationStore } from '@/layout/homes/store/visualization'
 import useRelativeDate from '@/resources/hooks/useRelativeDate'
 import { getDate } from '@/resources/utils/date'
 import { SearchInput } from '@/shared'
@@ -46,7 +45,8 @@ function HeaderInfos({ isLoadingAll, total, timestamp, variant }: HeaderInfosPro
 
 export function Search() {
   const router = useRouter()
-  const [visualization, setVisualization] = useAtom(visualizationAtom)
+  const visualization = useVisualizationStore(state => state.visualization)
+  const setVisualization = useVisualizationStore(state => state.setVisualization)
   const { house, isLoadingAll } = useHouse()
 
   function onChangeVisualization(view: 'map' | 'gallery') {

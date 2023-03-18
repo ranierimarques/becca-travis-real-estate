@@ -4,6 +4,7 @@ import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
+import { FormattedHouseCard } from '@/services/house-listings/types'
 import { MapHouseCard } from '@/shared'
 import * as Img from '../images'
 import * as S from './map.styles'
@@ -36,6 +37,15 @@ type Props = Stitches.VariantProps<typeof S.containerStyle> & {
     lng: number
   }
   zoom?: number
+}
+
+interface CustomMarkerProps {
+  listing: FormattedHouseCard
+  coordinates: { lat: number; lng: number }
+  handleActiveCardById: (id: string) => void
+  handleHiddenCardActive: () => void
+  activeCardId: string | null
+  key: string
 }
 
 export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
@@ -104,30 +114,64 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
         }
 
         return (
-          <MarkerF
+          <CustomMarker
             key={listing.id}
-            icon={Img.Mark.src}
-            position={coordinates}
-            onMouseOver={() => handleActiveCardById(listing.id)}
-            onMouseOut={handleHiddenCardActive}
-          >
-            {activeCardId === listing.id && (
-              <OverlayViewF
-                mapPaneName="overlayMouseTarget" // TODO: Search
-                position={coordinates}
-                zIndex={10000}
-              >
-                <MapHouseCard
-                  key={listing.id}
-                  listing={listing}
-                  onMouseEnter={() => handleActiveCardById(listing.id)}
-                  onMouseLeave={handleHiddenCardActive}
-                />
-              </OverlayViewF>
-            )}
-          </MarkerF>
+            listing={listing}
+            coordinates={coordinates}
+            handleActiveCardById={handleActiveCardById}
+            handleHiddenCardActive={handleHiddenCardActive}
+            activeCardId={activeCardId}
+          />
         )
       })}
     </GoogleMap>
   )
 })
+
+function CustomMarker({
+  listing,
+  coordinates,
+  handleActiveCardById,
+  handleHiddenCardActive,
+  activeCardId,
+  key,
+}: CustomMarkerProps) {
+  const [markerRef, setMarkerRef] = useState<google.maps.Marker | null>(null)
+
+  const icon = Img.Mark.src
+  const iconActive = Img.MarkActive.src
+
+  return (
+    <MarkerF
+      key={key}
+      icon={icon}
+      onLoad={setMarkerRef}
+      position={coordinates}
+      onMouseOver={() => {
+        markerRef?.setIcon(iconActive)
+        markerRef?.setZIndex(100)
+        handleActiveCardById(listing.id)
+      }}
+      onMouseOut={() => {
+        markerRef?.setIcon(icon)
+        markerRef?.setZIndex(0)
+        handleHiddenCardActive()
+      }}
+    >
+      {activeCardId === listing.id && (
+        <OverlayViewF
+          mapPaneName="overlayMouseTarget" // TODO: Search
+          position={coordinates}
+          zIndex={10000}
+        >
+          <MapHouseCard
+            key={listing.id}
+            listing={listing}
+            onMouseEnter={() => handleActiveCardById(listing.id)}
+            onMouseLeave={handleHiddenCardActive}
+          />
+        </OverlayViewF>
+      )}
+    </MarkerF>
+  )
+}

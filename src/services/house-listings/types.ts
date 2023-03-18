@@ -107,6 +107,7 @@ export type House = {
     HighSchool: string
     Coordinates: string[]
     url: string
+    LivingArea: string
   }
 }
 

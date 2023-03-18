@@ -1,14 +1,15 @@
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
-import Head from 'next/head'
+import { MetaSEO } from '@/common'
 import {
   About,
   CommunityMap,
   Demographics,
   Hero,
-  Homes, // MarketTrends,
+  Homes,
   Schools,
   Yelp,
 } from '@/layout/communities/sections'
+import { capitalizeEveryWord } from '@/resources/utils/text'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 import { ReplaceAll } from '@/types/helpers'
@@ -18,9 +19,16 @@ type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProp
 const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
   return (
     <main>
-      <Head>
-        <title>Becca Travis</title>
-      </Head>
+      <MetaSEO
+        title={`${capitalizeEveryWord(community)} | Becca Travis`}
+        description={`Find out more about ${capitalizeEveryWord(
+          community
+        )} | Becca Travis`}
+        image={`/sharing-cards/communities/${
+          community === 'hampton cove' ? 'hampton-cove' : community
+        }.jpg`}
+        alt={community}
+      />
 
       <Hero communityName={community} />
       <About communityName={community} />

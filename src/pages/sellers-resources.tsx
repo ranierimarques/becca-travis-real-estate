@@ -8,23 +8,14 @@ import {
 } from '@/layout/sellers-resources/sections'
 import { LastCall } from '@/shared'
 
-const meta = {
-  title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
-  alt: `Feel at home before finding the perfect property.`,
-  url: 'https://beccatravis.com/',
-}
-
 const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-        alt={meta.alt}
-        url={meta.url}
+        title="Sellers Resources | Becca Travis"
+        description="Learn how we work and ensure your goals are my goals every step of the way | Becca Travis"
+        image="/sharing-cards/og-sellers.jpg"
+        alt="Discover your home's true value and sell confidently"
       />
 
       <Hero />

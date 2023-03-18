@@ -6,6 +6,7 @@ declare namespace NodeJS {
     NEXT_PUBLIC_BING_AUTOCOMPLETE_API_KEY: string
     NEXT_PUBLIC_WEB3FORMS_API_KEY: string
     NEXT_PUBLIC_BRIDGE_API_KEY: string
+    NEXT_PUBLIC_VERCEL_URL: string | null
 
     // Server only
     GOOGLE_GEOLOCATION_API_KEY: string

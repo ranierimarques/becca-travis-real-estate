@@ -13,23 +13,14 @@ import {
 import { getHouseListing } from '@/services/house-listings'
 import { ClientTestimonials, LastCall } from '@/shared'
 
-const meta = {
-  title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
-  alt: `Feel at home before finding the perfect property.`,
-  url: 'https://beccatravis.com/',
-}
-
 const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
   return (
     <main>
       <MetaSEO
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-        alt={meta.alt}
-        url={meta.url}
+        title="Becca Travis Real Estate"
+        description="Find your dream home today | Becca Travis"
+        image="/sharing-cards/og-index.jpg"
+        alt="Feel at home before finding the perfect property."
       />
 
       <Hero />

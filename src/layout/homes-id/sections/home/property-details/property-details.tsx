@@ -20,17 +20,17 @@ export function PropertyDetails({ listing }: ListingDetails) {
     },
     {
       svg: <Svg.Bedroom />,
-      text: `${listing.bedroomsTotal} Bedrooms`,
+      text: `${listing.bedroomsTotal ?? 0} Bedrooms`,
       tooltip: 'Total bedrooms',
     },
     {
       svg: <Svg.Bathroom />,
-      text: `${listing.bathroomsTotal} Bathrooms`,
+      text: `${listing.bathroomsTotal ?? 0} Bathrooms`,
       tooltip: 'Total bathrooms',
     },
     {
       svg: <Svg.SquareFeet />,
-      text: `${listing.lotSizeSquareFeet} Sq.Ft`,
+      text: `${listing.buildingTotalArea ?? 0} Sq.Ft`,
       tooltip: 'Total meters',
     },
   ]
@@ -52,7 +52,7 @@ export function PropertyDetails({ listing }: ListingDetails) {
     },
     {
       title: 'Area',
-      information: listing.cityRegion === null ? 'Not defined' : listing.cityRegion,
+      information: listing.cityRegion ?? 'Not defined',
     },
   ]
 

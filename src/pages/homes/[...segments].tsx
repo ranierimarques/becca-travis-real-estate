@@ -5,25 +5,14 @@ import { convertToSlug } from '@/resources/utils/convert'
 import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 
-const meta = {
-  title: 'Becca Travis',
-  description: `Feel at home before finding the perfect property.`,
-  image: 'https://beccatravis.com/sharing-cards/og-image.jpg',
-  alt: '',
-  url: 'https://beccatravis.com/',
-}
-
 const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ listing }) => {
   return (
     <main>
       <MetaSEO
         title={`${listing.address} | Becca Travis`}
-        description={`This property features ${listing.bedroomsTotal} Bedrooms, 
-        ${listing.bathroomsTotal} Bathrooms and a total of ${listing.buildingTotalArea}
-         square feet of building area. Find out more at beccatravis.com`}
+        description={`This property features ${listing.bedroomsTotal} Bedrooms, ${listing.bathroomsTotal} Bathrooms and a total of ${listing.buildingTotalArea} square feet of building area. Find out more at beccatravis.com`}
         image={`/api/og?title=${listing.address}&image=${listing.media?.[0]}`}
-        alt={meta.alt}
-        url={meta.url}
+        alt={listing.address}
       />
 
       <Home key={listing.id} listing={listing} />
