@@ -3,22 +3,22 @@ import { keyframes, styled } from 'stitches.config'
 
 const scaleIn = keyframes({
   from: {
-    transform: 'scale(1)',
+    transform: 'scale(1) translateX(-50%)',
     boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
   },
   to: {
-    transform: 'scale(1.02)',
+    transform: 'scale(1.02) translateX(-50%)',
     boxShadow: '0 0 0 1px $colors$grayW8, 0 0 25px rgba($colors$blackRgb, 0.15)',
   },
 })
 
 const scaleOut = keyframes({
   from: {
-    transform: 'scale(1.02)',
+    transform: 'scale(1.02) translateX(-50%)',
     boxShadow: '0 0 0 1px $colors$grayW8, 0 0 25px rgba($colors$blackRgb, 0.15)',
   },
   to: {
-    transform: 'scale(1)',
+    transform: 'scale(1) translateX(-50%)',
     boxShadow: '0 0 0 1px $colors$grayW9, 0 0 25px rgba($colors$blackRgb, 0.08)',
   },
 })
@@ -32,7 +32,8 @@ export const Container = styled('div', {})
 export const Link = styled(NextLink, {
   display: 'flex',
   gap: 8,
-  position: 'relative',
+  position: 'absolute',
+  left: '50%',
 
   overflow: 'hidden',
   background: '$white',

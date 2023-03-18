@@ -26,3 +26,16 @@ export const containerStyle = css({
 export const Skeleton = styled('div', containerStyle, {
   animation: `${backgroundPulse} 1s linear infinite alternate`,
 })
+
+export const Wrapper = styled('div', {
+  position: 'relative',
+
+  color: '$red2',
+
+  transition: 'all .15s cubic-bezier(.4,0,.2,1)',
+
+  '&:hover': {
+    color: '$blue1',
+    cursor: 'pointer',
+  },
+})

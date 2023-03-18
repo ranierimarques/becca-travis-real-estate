@@ -1,32 +1,32 @@
 import { memo, useRef, useState } from 'react'
-import { GoogleMap, MarkerF, OverlayViewF, useLoadScript } from '@react-google-maps/api'
+import { GoogleMap, OverlayViewF, useLoadScript } from '@react-google-maps/api'
 import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
 import { useFiltersStore } from '@/layout/homes/store/filters'
 import useThrottle from '@/resources/hooks/useThrottle'
 import { MapHouseCard } from '@/shared'
-import * as Img from '../images'
+import * as Svg from '../svgs'
 import * as S from './map.styles'
 
-// const getPixelFromLatLng = (
-//   map: google.maps.Map,
-//   latLng: google.maps.LatLngLiteral | google.maps.LatLng
-// ) => {
-//   return map.getProjection()?.fromLatLngToPoint(latLng) as google.maps.Point
-// }
+const getPixelFromLatLng = (
+  map: google.maps.Map,
+  latLng: google.maps.LatLngLiteral | google.maps.LatLng
+) => {
+  return map.getProjection()?.fromLatLngToPoint(latLng) as google.maps.Point
+}
 
-// const getInfoWindowOffset = (
-//   map: google.maps.Map,
-//   markerLatLng: google.maps.LatLngLiteral
-// ) => {
-//   const center = getPixelFromLatLng(map, map.getCenter() as google.maps.LatLng)
-//   const point = getPixelFromLatLng(map, markerLatLng)
+const getInfoWindowOffset = (
+  map: google.maps.Map,
+  markerLatLng: google.maps.LatLngLiteral
+) => {
+  const center = getPixelFromLatLng(map, map.getCenter() as google.maps.LatLng)
+  const point = getPixelFromLatLng(map, markerLatLng)
 
-//   const width = point.x < center.x ? 140 : -140
-//   const height = point.y > center.y ? 40 : 370
+  const width = point.x < center.x ? 140 : -140
+  const height = point.y > center.y ? 40 : 370
 
-//   return new google.maps.Size(width, height)
-// }
+  return new google.maps.Size(width, height)
+}
 
 type MapRef = google.maps.Map
 
@@ -90,7 +90,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
       options={{
-        mapId: 'a7274021a73cd91c', //Id from the CLoud Console to style the map
+        mapId: 'a7274021a73cd91c', // Id from the CLoud Console to style the map
         maxZoom: zoom + 10,
         minZoom: zoom - 2,
         streetViewControl: false,
@@ -104,28 +104,27 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
         }
 
         return (
-          <MarkerF
+          <OverlayViewF
             key={listing.id}
-            icon={Img.Mark.src}
+            mapPaneName="overlayMouseTarget"
             position={coordinates}
-            onMouseOver={() => handleActiveCardById(listing.id)}
-            onMouseOut={handleHiddenCardActive}
+            zIndex={activeCardId === listing.id ? 1 : 0}
           >
-            {activeCardId === listing.id && (
-              <OverlayViewF
-                mapPaneName="overlayMouseTarget" // TODO: Search
-                position={coordinates}
-                zIndex={10000}
-              >
+            <S.Wrapper>
+              <Svg.Mark
+                onMouseOver={() => handleActiveCardById(listing.id)}
+                onMouseOut={handleHiddenCardActive}
+              />
+              {activeCardId === listing.id && (
                 <MapHouseCard
                   key={listing.id}
                   listing={listing}
                   onMouseEnter={() => handleActiveCardById(listing.id)}
                   onMouseLeave={handleHiddenCardActive}
                 />
-              </OverlayViewF>
-            )}
-          </MarkerF>
+              )}
+            </S.Wrapper>
+          </OverlayViewF>
         )
       })}
     </GoogleMap>
