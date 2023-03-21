@@ -34,8 +34,13 @@ export const Wrapper = styled('div', {
 
   transition: 'all .15s cubic-bezier(.4,0,.2,1)',
 
-  '&:hover': {
-    color: '$blue1',
-    cursor: 'pointer',
+  cursor: 'pointer',
+
+  variants: {
+    active: {
+      true: {
+        color: '$blue1',
+      },
+    },
   },
 })

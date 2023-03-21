@@ -8,33 +8,65 @@ import { MapHouseCard } from '@/shared'
 import * as Svg from '../svgs'
 import * as S from './map.styles'
 
-const getPixelFromLatLng = (
-  map: google.maps.Map,
-  latLng: google.maps.LatLngLiteral | google.maps.LatLng
-) => {
-  return map.getProjection()?.fromLatLngToPoint(latLng) as google.maps.Point
+function centerMarker(width: number, height: number) {
+  return {
+    x: -(width / 2), // -50% width
+    y: -height, // -100% height
+  }
 }
 
-const getInfoWindowOffset = (
-  map: google.maps.Map,
-  markerLatLng: google.maps.LatLngLiteral
-) => {
-  const center = getPixelFromLatLng(map, map.getCenter() as google.maps.LatLng)
-  const point = getPixelFromLatLng(map, markerLatLng)
+function onOverlayViewDraw(
+  mapRef: MapType | null,
+  overlayView: OverlayViewType,
+  coordinates: Coords
+) {
+  if (!mapRef) return
 
-  const width = point.x < center.x ? 140 : -140
-  const height = point.y > center.y ? 40 : 370
+  const MARKER_HALF_WIDTH = 15
+  const MARKER_FULL_HEIGHT = 32
+  const MAP_PADDING = 8
 
-  return new google.maps.Size(width, height)
+  const projection = overlayView.getProjection()
+  const point = projection.fromLatLngToDivPixel(coordinates)
+  const toContainer = projection.fromLatLngToContainerPixel(coordinates)
+
+  if (!point || !toContainer) return
+
+  let translateX = `calc(-50% + ${point.x}px)`
+  let translateY = `${point.y}px`
+
+  const targetRect = overlayView.container.getBoundingClientRect()
+  const rootRect = mapRef.getDiv().getBoundingClientRect()
+
+  if (toContainer.x - targetRect.width / 2 < MAP_PADDING) {
+    translateX = `calc(0% + ${point.x - MARKER_HALF_WIDTH}px)`
+  }
+
+  if (toContainer.x + targetRect.width / 2 > rootRect.width - MAP_PADDING) {
+    translateX = `calc(-100% + ${point.x + MARKER_HALF_WIDTH}px)`
+  }
+
+  if (toContainer.y + targetRect.height > rootRect.height - MAP_PADDING) {
+    translateY = `calc(-100% + ${point.y - MARKER_FULL_HEIGHT}px)`
+  }
+
+  overlayView.container.style.transform = `translate(${translateX}, ${translateY})`
 }
 
-type MapRef = google.maps.Map
+function onLoadCardOverlayView(mapRef: MapType | null, coordinates: Coords) {
+  return (overlayView: OverlayViewType) => {
+    overlayView.draw = () => {
+      onOverlayViewDraw(mapRef, overlayView, coordinates)
+    }
+  }
+}
+
+type Coords = { lat: number; lng: number }
+type OverlayViewType = google.maps.OverlayView
+type MapType = google.maps.Map
 
 type Props = Stitches.VariantProps<typeof S.containerStyle> & {
-  coords: {
-    lat: number
-    lng: number
-  }
+  coords: Coords
   zoom?: number
 }
 
@@ -47,9 +79,9 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
   const throttle = useThrottle(500)
   const [activeCardId, setActiveCardId] = useState<string | null>(null)
   const [isFirstRender, setIsFirstRender] = useState(true)
-  const mapRef = useRef<MapRef>()
+  const mapRef = useRef<MapType | null>(null)
 
-  function onLoad(map: MapRef) {
+  function onLoad(map: MapType) {
     mapRef.current = map
   }
 
@@ -84,10 +116,11 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
 
   return (
     <GoogleMap
+      id="map"
       mapContainerClassName={S.containerStyle({ variant })}
       center={coords}
       zoom={zoom}
-      onBoundsChanged={() => throttle(onMapBoundsChanged)}
+      // onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
       options={{
         mapId: 'a7274021a73cd91c', // Id from the CLoud Console to style the map
@@ -108,20 +141,27 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
             key={listing.id}
             mapPaneName="overlayMouseTarget"
             position={coordinates}
+            getPixelPositionOffset={centerMarker}
             zIndex={activeCardId === listing.id ? 1 : 0}
           >
-            <S.Wrapper>
+            <S.Wrapper active={activeCardId === listing.id}>
               <Svg.Mark
-                onMouseOver={() => handleActiveCardById(listing.id)}
-                onMouseOut={handleHiddenCardActive}
+                onMouseEnter={() => handleActiveCardById(listing.id)}
+                // onMouseLeave={handleHiddenCardActive}
               />
               {activeCardId === listing.id && (
-                <MapHouseCard
-                  key={listing.id}
-                  listing={listing}
-                  onMouseEnter={() => handleActiveCardById(listing.id)}
-                  onMouseLeave={handleHiddenCardActive}
-                />
+                <OverlayViewF
+                  onLoad={onLoadCardOverlayView(mapRef.current, coordinates)}
+                  mapPaneName="overlayMouseTarget"
+                  zIndex={100}
+                >
+                  <MapHouseCard
+                    key={listing.id}
+                    listing={listing}
+                    onMouseEnter={() => handleActiveCardById(listing.id)}
+                    // onMouseLeave={handleHiddenCardActive}
+                  />
+                </OverlayViewF>
               )}
             </S.Wrapper>
           </OverlayViewF>

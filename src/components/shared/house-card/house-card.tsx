@@ -21,14 +21,14 @@ export function HouseCard({ listing, variant, badge, ...props }: HouseCardProps)
         draggable="false"
         variant={variant}
       >
-        <Box css={{ position: 'relative', w: '100%', aspectRatio: '16 / 9' }}>
+        <Box css={{ w: '100%', aspectRatio: '16 / 9' }}>
           {listing.media ? (
             <Image
               src={listing.media}
-              alt="House"
               css={{ objectFit: 'cover', pointerEvents: 'none' }}
-              fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              alt="House"
+              fill
             />
           ) : (
             <Svg.NoHouse />

@@ -15,9 +15,15 @@ export function MapHouseCard({ listing, ...props }: MapHouseCardProps) {
       draggable="false"
       {...props}
     >
-      <Box css={{ position: 'relative', aspectRatio: '16 / 9' }}>
+      <Box css={{ aspectRatio: '16 / 9' }}>
         {listing.media ? (
-          <Image src={listing.media} style={{ objectFit: 'cover' }} alt="House" fill />
+          <Image
+            src={listing.media}
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            alt="House"
+            fill
+          />
         ) : (
           <Svg.NoHouse />
         )}
