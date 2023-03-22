@@ -116,21 +116,31 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
 
   return (
     <GoogleMap
-      id="map"
       mapContainerClassName={S.containerStyle({ variant })}
       center={coords}
       zoom={zoom}
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
       options={{
-        mapId: 'a7274021a73cd91c', // Id from the CLoud Console to style the map
+        mapId: 'a7274021a73cd91c', // Id from the Cloud Console to style the map
         maxZoom: zoom + 10,
         minZoom: zoom - 2,
         streetViewControl: false,
         fullscreenControl: false,
+        mapTypeControlOptions: {
+          position: 3,
+        },
+        gestureHandling: 'greedy',
       }}
     >
+      {house.total !== undefined && (
+        <S.CountOverlay>
+          Showing {house.listings?.length} of {house.total} results in this area
+        </S.CountOverlay>
+      )}
+
       {house.listings?.map(listing => {
+        const isCardActive = activeCardId === listing.id
         const coordinates = {
           lat: listing.coordinates.latitude,
           lng: listing.coordinates.longitude,
@@ -142,15 +152,15 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
             mapPaneName="overlayMouseTarget"
             position={coordinates}
             getPixelPositionOffset={centerMarker}
-            zIndex={activeCardId === listing.id ? 1 : 0}
+            zIndex={isCardActive ? 1 : 0}
           >
-            <S.Wrapper active={activeCardId === listing.id}>
+            <S.Wrapper active={isCardActive}>
               <Svg.Mark
                 onTouchStart={() => handleActiveCardById(listing.id)}
                 onMouseEnter={() => handleActiveCardById(listing.id)}
                 onMouseLeave={handleHiddenCardActive}
               />
-              {activeCardId === listing.id && (
+              {isCardActive && (
                 <OverlayViewF
                   onLoad={onLoadCardOverlayView(mapRef.current, coordinates)}
                   mapPaneName="overlayMouseTarget"

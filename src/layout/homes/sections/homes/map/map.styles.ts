@@ -27,6 +27,21 @@ export const Skeleton = styled('div', containerStyle, {
   animation: `${backgroundPulse} 1s linear infinite alternate`,
 })
 
+export const CountOverlay = styled('div', {
+  position: 'absolute',
+  top: 10,
+  left: 10,
+
+  fontSize: '16px',
+  lineHeight: '24px',
+  fontWeight: '400',
+  color: '$white',
+
+  background: 'rgba($gray1Rgb, 0.8)',
+  padding: '8px 12px',
+  borderRadius: 4,
+})
+
 export const Wrapper = styled('div', {
   position: 'relative',
 
