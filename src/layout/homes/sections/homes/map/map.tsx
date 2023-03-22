@@ -120,7 +120,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
       mapContainerClassName={S.containerStyle({ variant })}
       center={coords}
       zoom={zoom}
-      // onBoundsChanged={() => throttle(onMapBoundsChanged)}
+      onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
       options={{
         mapId: 'a7274021a73cd91c', // Id from the CLoud Console to style the map
@@ -146,8 +146,9 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
           >
             <S.Wrapper active={activeCardId === listing.id}>
               <Svg.Mark
+                onTouchStart={() => handleActiveCardById(listing.id)}
                 onMouseEnter={() => handleActiveCardById(listing.id)}
-                // onMouseLeave={handleHiddenCardActive}
+                onMouseLeave={handleHiddenCardActive}
               />
               {activeCardId === listing.id && (
                 <OverlayViewF
@@ -159,7 +160,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
                     key={listing.id}
                     listing={listing}
                     onMouseEnter={() => handleActiveCardById(listing.id)}
-                    // onMouseLeave={handleHiddenCardActive}
+                    onMouseLeave={handleHiddenCardActive}
                   />
                 </OverlayViewF>
               )}
