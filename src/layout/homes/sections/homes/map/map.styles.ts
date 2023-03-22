@@ -40,6 +40,15 @@ export const CountOverlay = styled('div', {
   background: 'rgba($gray1Rgb, 0.8)',
   padding: '8px 12px',
   borderRadius: 4,
+
+  '@bp2': {
+    top: 'auto',
+    bottom: 24,
+
+    '> span': {
+      display: 'none',
+    },
+  },
 })
 
 export const Wrapper = styled('div', {

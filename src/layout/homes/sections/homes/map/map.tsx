@@ -135,7 +135,8 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
     >
       {house.total !== undefined && (
         <S.CountOverlay>
-          Showing {house.listings?.length} of {house.total} results in this area
+          Showing {house.listings?.length} of {house.total} results{' '}
+          <span>in this area</span>
         </S.CountOverlay>
       )}
 
