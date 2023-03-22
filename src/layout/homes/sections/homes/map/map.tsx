@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react'
+import { memo, useMemo, useRef, useState } from 'react'
 import { GoogleMap, OverlayViewF, useLoadScript } from '@react-google-maps/api'
 import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
@@ -64,6 +64,7 @@ function onLoadCardOverlayView(mapRef: MapType | null, coordinates: Coords) {
 type Coords = { lat: number; lng: number }
 type OverlayViewType = google.maps.OverlayView
 type MapType = google.maps.Map
+type MapOptionsType = typeof GoogleMap.prototype.props.options
 
 type Props = Stitches.VariantProps<typeof S.containerStyle> & {
   coords: Coords
@@ -80,6 +81,19 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
   const [activeCardId, setActiveCardId] = useState<string | null>(null)
   const [isFirstRender, setIsFirstRender] = useState(true)
   const mapRef = useRef<MapType | null>(null)
+  const mapOptions: MapOptionsType = useMemo(() => {
+    return {
+      mapId: 'a7274021a73cd91c', // Id from the Cloud Console to style the map
+      maxZoom: zoom + 10,
+      minZoom: zoom - 2,
+      streetViewControl: false,
+      fullscreenControl: false,
+      mapTypeControlOptions: {
+        position: 3,
+      },
+      gestureHandling: 'greedy',
+    }
+  }, [zoom])
 
   function onLoad(map: MapType) {
     mapRef.current = map
@@ -122,17 +136,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
       zoom={zoom}
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
-      options={{
-        mapId: 'a7274021a73cd91c', // Id from the Cloud Console to style the map
-        maxZoom: zoom + 10,
-        minZoom: zoom - 2,
-        streetViewControl: false,
-        fullscreenControl: false,
-        mapTypeControlOptions: {
-          position: 3,
-        },
-        gestureHandling: 'greedy',
-      }}
+      options={mapOptions}
     >
       {house.total !== undefined && (
         <S.CountOverlay>
