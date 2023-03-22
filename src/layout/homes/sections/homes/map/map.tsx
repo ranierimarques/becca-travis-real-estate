@@ -99,7 +99,6 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
     ] as number[]
 
     setFilters('bounds', bounds)
-    // setActiveCardId(null)
   }
 
   function handleActiveCardById(id: string) {
@@ -113,6 +112,8 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
   if (!isLoaded) {
     return <S.Skeleton variant={variant} />
   }
+
+  const slicedHouses = house.listings?.slice(0, 50)
 
   return (
     <GoogleMap
@@ -135,12 +136,12 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
     >
       {house.total !== undefined && (
         <S.CountOverlay>
-          Showing {house.listings?.length} of {house.total} results{' '}
+          Showing {slicedHouses?.length} of {house.total} results{' '}
           <span>in this area</span>
         </S.CountOverlay>
       )}
 
-      {house.listings?.map(listing => {
+      {slicedHouses?.map(listing => {
         const isCardActive = activeCardId === listing.id
         const coordinates = {
           lat: listing.coordinates.latitude,
