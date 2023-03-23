@@ -100,7 +100,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
   }
 
   function onMapBoundsChanged() {
-    if (!mapRef.current || isFirstRender) {
+    if (!mapRef.current || (isFirstRender && !variant)) {
       setIsFirstRender(false)
       return
     }
