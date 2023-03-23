@@ -193,10 +193,8 @@ export const ArrowRight = styled(Svg.ArrowRight, {
 
 export const CardLink = styled(NextLink, {
   display: 'grid',
-  gridTemplateColumns: 'auto auto',
+  gridTemplateColumns: 'auto 1fr',
   gap: 8,
-
-  width: 'fit-content',
 
   padding: '8px 10px 8px 0',
   userSelect: 'none',
@@ -215,7 +213,7 @@ export const CardLink = styled(NextLink, {
 
 export const DisabledCardLink = styled('div', {
   display: 'grid',
-  gridTemplateColumns: 'auto auto',
+  gridTemplateColumns: 'auto 1fr',
   gap: 12,
 
   padding: '8px 10px 8px 0',
