@@ -5,7 +5,7 @@ import { keyframes, styled } from 'stitches.config'
 import * as Svg from '../svgs'
 
 export const Nav = styled('nav', {
-  display: 'none',
+  visibility: 'hidden',
 
   position: 'fixed',
   background: '$white',
@@ -36,7 +36,7 @@ export const Nav = styled('nav', {
     isVisible: {
       true: {
         '@bp4': {
-          display: 'block',
+          visibility: 'visible',
         },
       },
     },
