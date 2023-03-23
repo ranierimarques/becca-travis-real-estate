@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react'
+import { memo, useMemo, useRef, useState } from 'react'
 import { GoogleMap, OverlayViewF, useLoadScript } from '@react-google-maps/api'
 import type * as Stitches from '@stitches/react'
 import { useHouse } from '@/layout/homes/hooks/useHouse'
@@ -64,6 +64,7 @@ function onLoadCardOverlayView(mapRef: MapType | null, coordinates: Coords) {
 type Coords = { lat: number; lng: number }
 type OverlayViewType = google.maps.OverlayView
 type MapType = google.maps.Map
+type MapOptionsType = typeof GoogleMap.prototype.props.options
 
 type Props = Stitches.VariantProps<typeof S.containerStyle> & {
   coords: Coords
@@ -80,13 +81,26 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
   const [activeCardId, setActiveCardId] = useState<string | null>(null)
   const [isFirstRender, setIsFirstRender] = useState(true)
   const mapRef = useRef<MapType | null>(null)
+  const mapOptions: MapOptionsType = useMemo(() => {
+    return {
+      mapId: 'a7274021a73cd91c', // Id from the Cloud Console to style the map
+      maxZoom: zoom + 10,
+      minZoom: zoom - 2,
+      streetViewControl: false,
+      fullscreenControl: false,
+      mapTypeControlOptions: {
+        position: 3,
+      },
+      gestureHandling: 'greedy',
+    }
+  }, [zoom])
 
   function onLoad(map: MapType) {
     mapRef.current = map
   }
 
   function onMapBoundsChanged() {
-    if (!mapRef.current || isFirstRender) {
+    if (!mapRef.current || (isFirstRender && !variant)) {
       setIsFirstRender(false)
       return
     }
@@ -99,7 +113,6 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
     ] as number[]
 
     setFilters('bounds', bounds)
-    // setActiveCardId(null)
   }
 
   function handleActiveCardById(id: string) {
@@ -114,23 +127,26 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
     return <S.Skeleton variant={variant} />
   }
 
+  const slicedHouses = house.listings?.slice(0, 50)
+
   return (
     <GoogleMap
-      id="map"
       mapContainerClassName={S.containerStyle({ variant })}
       center={coords}
       zoom={zoom}
       onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
-      options={{
-        mapId: 'a7274021a73cd91c', // Id from the CLoud Console to style the map
-        maxZoom: zoom + 10,
-        minZoom: zoom - 2,
-        streetViewControl: false,
-        fullscreenControl: false,
-      }}
+      options={mapOptions}
     >
-      {house.listings?.map(listing => {
+      {house.total !== undefined && (
+        <S.CountOverlay>
+          Showing {slicedHouses?.length} of {house.total} results{' '}
+          <span>in this area</span>
+        </S.CountOverlay>
+      )}
+
+      {slicedHouses?.map(listing => {
+        const isCardActive = activeCardId === listing.id
         const coordinates = {
           lat: listing.coordinates.latitude,
           lng: listing.coordinates.longitude,
@@ -142,15 +158,15 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
             mapPaneName="overlayMouseTarget"
             position={coordinates}
             getPixelPositionOffset={centerMarker}
-            zIndex={activeCardId === listing.id ? 1 : 0}
+            zIndex={isCardActive ? 1 : 0}
           >
-            <S.Wrapper active={activeCardId === listing.id}>
+            <S.Wrapper active={isCardActive}>
               <Svg.Mark
                 onTouchStart={() => handleActiveCardById(listing.id)}
                 onMouseEnter={() => handleActiveCardById(listing.id)}
                 onMouseLeave={handleHiddenCardActive}
               />
-              {activeCardId === listing.id && (
+              {isCardActive && (
                 <OverlayViewF
                   onLoad={onLoadCardOverlayView(mapRef.current, coordinates)}
                   mapPaneName="overlayMouseTarget"

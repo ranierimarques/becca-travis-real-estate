@@ -6,6 +6,7 @@ const backgroundPulse = keyframes({
 })
 
 export const containerStyle = css({
+  position: 'relative',
   width: '100%',
   // height: 'calc(100vh - 110px)',
 
@@ -25,6 +26,30 @@ export const containerStyle = css({
 
 export const Skeleton = styled('div', containerStyle, {
   animation: `${backgroundPulse} 1s linear infinite alternate`,
+})
+
+export const CountOverlay = styled('div', {
+  position: 'absolute',
+  top: 10,
+  left: 10,
+
+  fontSize: '16px',
+  lineHeight: '24px',
+  fontWeight: '400',
+  color: '$white',
+
+  background: 'rgba($gray1Rgb, 0.8)',
+  padding: '8px 12px',
+  borderRadius: 4,
+
+  '@bp2': {
+    top: 'auto',
+    bottom: 24,
+
+    '> span': {
+      display: 'none',
+    },
+  },
 })
 
 export const Wrapper = styled('div', {

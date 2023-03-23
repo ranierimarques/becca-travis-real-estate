@@ -36,6 +36,7 @@ const coordinates = {
 
 export function CommunityMap({ communityName }: CommunityMapProps) {
   const isHamptonCove = communityName === 'hampton cove'
+
   return (
     <Section
       hasMaxWidth
