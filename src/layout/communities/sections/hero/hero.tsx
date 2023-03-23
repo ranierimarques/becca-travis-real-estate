@@ -100,6 +100,7 @@ export function Hero({ communityName }: HeroProps) {
           <Flex direction="column" align="end" css={{ gap: 8, position: 'relative' }}>
             <Box css={{ br: 8, overflow: 'hidden' }}>
               <Image
+                priority
                 src={communities[isHamptonCove ? 'hamptonCove' : communityName].image}
                 alt={communityName}
               />
