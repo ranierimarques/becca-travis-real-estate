@@ -5,7 +5,7 @@ import { keyframes, styled } from 'stitches.config'
 import * as Svg from '../svgs'
 
 export const Nav = styled('nav', {
-  display: 'none',
+  visibility: 'hidden',
 
   position: 'fixed',
   background: '$white',
@@ -36,7 +36,7 @@ export const Nav = styled('nav', {
     isVisible: {
       true: {
         '@bp4': {
-          display: 'block',
+          visibility: 'visible',
         },
       },
     },
@@ -295,14 +295,13 @@ export const HuntsvilleDescription = styled('p', {
 
 export const HuntsvilleLink = styled(NextLink, {
   display: 'grid',
-  gridTemplateColumns: 'auto auto',
+  gridTemplateColumns: 'auto 1fr',
   gap: 12,
 
   padding: '4px 0',
 
   color: 'rgba($$color, 0.15)', // Locally scoped tokens provides dynamically
 
-  width: 'fit-content',
   borderRadius: 2,
 
   transition: 'all .15s cubic-bezier(.4,0,.2,1)',

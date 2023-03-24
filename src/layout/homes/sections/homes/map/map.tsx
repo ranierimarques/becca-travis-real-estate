@@ -88,6 +88,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
       minZoom: zoom - 2,
       streetViewControl: false,
       fullscreenControl: false,
+      clickableIcons: false,
       mapTypeControlOptions: {
         position: 3,
       },
