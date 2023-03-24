@@ -40,7 +40,7 @@ export function Copyrights() {
         <Logo />
       </S.LogoLink>
 
-      <S.Copyright>© 2022 — All rights reserved.</S.Copyright>
+      <S.Copyright>© {new Date().getFullYear()} — All rights reserved.</S.Copyright>
 
       <S.Divider />
     </Box>
