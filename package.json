@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
@@ -40,6 +41,7 @@
     "graphql-request": "^4.3.0",
     "keen-slider": "^6.8.5",
     "next": "^13.1.6",
+    "next-sitemap": "^4.0.6",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
