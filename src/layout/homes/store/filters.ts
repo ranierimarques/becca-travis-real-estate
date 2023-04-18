@@ -143,7 +143,7 @@ export const useFiltersStore = create<FiltersState>(set => ({
       filters: {
         ...state.filters,
         [section]:
-          typeof newFilters === 'object'
+          typeof newFilters === 'object' && !Array.isArray(newFilters)
             ? {
                 ...(state.filters[section] as object),
                 ...(newFilters as object),

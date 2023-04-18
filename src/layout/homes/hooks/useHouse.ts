@@ -66,7 +66,7 @@ function getAddressFilter(filters: Filters) {
   return { 'UnparsedAddress.in': filters.address !== '' ? filters.address : undefined }
 }
 
-const INCREMENT = 9
+const INCREMENT = 50
 
 const fetcher = async (pageParam: number, filters: Filters) => {
   const selectAndInputRangeFilters = getSelectAndInputRangeFilters(filters)

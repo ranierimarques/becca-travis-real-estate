@@ -266,6 +266,11 @@ export function Filters() {
     shallow
   )
 
+  function handleResetFilters() {
+    resetFilters()
+    handleCloseModal()
+  }
+
   function handleCloseModal() {
     setOpen(false)
   }
@@ -415,7 +420,7 @@ export function Filters() {
           justify="between"
           css={{ p: 14, bg: '$grayW10', boxShadow: '0 0 0 1px $colors$grayW8' }}
         >
-          <Button size="2" outlined onClick={resetFilters}>
+          <Button size="2" outlined onClick={handleResetFilters}>
             Clear filters
           </Button>
           <Button size="2" onClick={handleCloseModal}>
