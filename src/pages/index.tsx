@@ -7,7 +7,6 @@ import {
   Hero,
   NewToMarket,
   OurCommunities,
-  RentToOwn,
   Services,
 } from '@/layout/index/sections'
 import { getHouseListing } from '@/services/house-listings'
@@ -27,7 +26,6 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
       <Services />
       <Achievements />
       <NewToMarket />
-      <RentToOwn />
       <AboutHuntsville />
       <OurCommunities />
       <ClientTestimonials />
