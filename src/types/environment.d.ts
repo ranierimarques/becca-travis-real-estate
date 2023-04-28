@@ -2,7 +2,6 @@ declare namespace NodeJS {
   interface ProcessEnv {
     // Public
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string
-    NEXT_PUBLIC_SMARTY_AUTOCOMPLETE_API_KEY: string
     NEXT_PUBLIC_BING_AUTOCOMPLETE_API_KEY: string
     NEXT_PUBLIC_WEB3FORMS_API_KEY: string
     NEXT_PUBLIC_BRIDGE_API_KEY: string
