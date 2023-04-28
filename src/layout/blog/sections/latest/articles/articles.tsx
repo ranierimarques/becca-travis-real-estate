@@ -40,7 +40,7 @@ export function Articles({ posts, hasResults, searchValue }: PostsProps) {
                 <Image
                   src={post.postBanner.url}
                   alt={post.postBannerAlt}
-                  style={{ borderRadius: 8 }}
+                  style={{ borderRadius: 8, objectFit: 'cover' }}
                   fill
                 />
                 <S.Overlay />
