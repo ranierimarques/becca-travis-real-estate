@@ -21,6 +21,12 @@ export function Header({ listing }: Listing) {
     setOpenToast(true)
   }
 
+  async function handleShare() {
+    await navigator.share({
+      url: `https://beccatravis.com${router.asPath}`,
+    })
+  }
+
   return (
     <S.Header>
       <Flex
@@ -60,16 +66,6 @@ export function Header({ listing }: Listing) {
               <DropdownMenu.Group>
                 <DropdownMenu.Item asChild>
                   <a
-                    href={`https://www.facebook.com/dialog/share?app_id=657185652633943&display=popup&href=https%3A%2F%2Fdev.beccatravis.com%2Fhomes%2F1812215`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Svg.Facebook />
-                    <S.ShareOption>Share on Facebook</S.ShareOption>
-                  </a>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item asChild>
-                  <a
                     href={`mailto:?body=https://beccatravis.com${router.asPath} `}
                     target="_blank"
                     rel="noreferrer noopener"
@@ -81,6 +77,10 @@ export function Header({ listing }: Listing) {
                 <DropdownMenu.Item onClick={copyToClipboard}>
                   <Svg.AttachmentLink />
                   <S.ShareOption>Copy property link</S.ShareOption>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item onClick={handleShare}>
+                  <Svg.ShareOptions />
+                  <S.ShareOption>More share options</S.ShareOption>
                 </DropdownMenu.Item>
               </DropdownMenu.Group>
               <DropdownMenu.Arrow />

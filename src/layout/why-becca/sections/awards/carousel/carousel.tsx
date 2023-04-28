@@ -43,29 +43,29 @@ export function Carousel() {
         <S.AwardsBackground />
 
         <S.AwardsWrapper>
-          {awards.map(award => (
-            <S.Award key={award.alt}>
+          {awards.map((award, index) => (
+            <S.Award key={index}>
               <Image src={award.src} alt={award.alt} />
             </S.Award>
           ))}
         </S.AwardsWrapper>
         <S.AwardsWrapper>
-          {awards.map(award => (
-            <S.Award key={award.alt}>
+          {awards.map((award, index) => (
+            <S.Award key={index}>
               <Image src={award.src} alt={award.alt} />
             </S.Award>
           ))}
         </S.AwardsWrapper>
         <S.AwardsWrapper>
-          {awards.map(award => (
-            <S.Award key={award.alt}>
+          {awards.map((award, index) => (
+            <S.Award key={index}>
               <Image src={award.src} alt={award.alt} />
             </S.Award>
           ))}
         </S.AwardsWrapper>
         <S.AwardsWrapper>
-          {awards.map(award => (
-            <S.Award key={award.alt}>
+          {awards.map((award, index) => (
+            <S.Award key={index}>
               <Image src={award.src} alt={award.alt} />
             </S.Award>
           ))}

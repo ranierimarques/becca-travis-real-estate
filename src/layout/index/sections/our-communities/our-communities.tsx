@@ -22,7 +22,7 @@ const communitiesData = [
   {
     image: hamptomCove,
     alt: 'lake',
-    name: 'Hamptom Cove',
+    name: 'Hampton Cove',
     href: '/communities/hampton-cove',
   },
   { image: decatur, alt: 'home', name: 'Decatur', href: '/communities/decatur' },

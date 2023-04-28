@@ -6,7 +6,6 @@ import {
   Demographics,
   Hero,
   Homes,
-  Schools,
   Yelp,
 } from '@/layout/communities/sections'
 import { capitalizeEveryWord } from '@/resources/utils/text'
@@ -34,7 +33,7 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
       <About communityName={community} />
       <Demographics communityName={community} />
       {/* <MarketTrends communityName={community} /> */}
-      <Schools communityName={community} schools={schools} />
+      {/* <Schools communityName={community} schools={schools} /> */}
       <CommunityMap communityName={community} />
       <Homes listings={listings} communityName={community} />
       <Yelp data={data} communityName={community} />

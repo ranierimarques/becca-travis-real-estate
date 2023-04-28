@@ -7,17 +7,21 @@ interface MetaSEOProps {
   alt: string
 }
 
+const environment = process.env.NEXT_PUBLIC_VERCEL_ENV
+const vercelURL = process.env.NEXT_PUBLIC_VERCEL_URL
+
+const url = environment === 'production' ? 'beccatravis.com' : vercelURL
+const fullURL = `${url ? 'https://' + url : 'http://localhost:3000'}`
+
 export function MetaSEO({ title, description, image, alt }: MetaSEOProps) {
-  const generatedUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-  const url = `${generatedUrl ? 'https://' + generatedUrl : ''}`
-  const imagePath = url + image
+  const imagePath = fullURL + image
 
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="image" content={imagePath} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={fullURL} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -30,7 +34,7 @@ export function MetaSEO({ title, description, image, alt }: MetaSEOProps) {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="twitter:card" content="summary_large_image" />
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={fullURL} />
       <meta
         name="robots"
         content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
