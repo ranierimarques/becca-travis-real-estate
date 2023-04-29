@@ -6,7 +6,7 @@ export const Section = styled('section', {
   alignItems: 'center',
   gap: 32,
 
-  // paddingBottom: 160,
+  paddingBottom: 160,
 
   '@bp5': {
     padding: '0 56px 160px',
