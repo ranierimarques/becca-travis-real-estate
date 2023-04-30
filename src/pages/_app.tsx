@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Analytics />
         <Footer />
-        {process.env.NODE_ENV !== 'production' && <DevTools />}
+        {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && <DevTools />}
       </Hydrate>
     </QueryClientProvider>
   )
