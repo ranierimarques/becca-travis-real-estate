@@ -41,11 +41,11 @@ export function WhiteGlove() {
               '@bp4': 'center',
             }}
           >
-            <Hat variant="2">Meet Huntsville</Hat>
-            <S.Title>White glove moving</S.Title>
+            <Hat variant="2">Meet Becca</Hat>
+            <S.Title>Huntsville&apos;s top real estate agent</S.Title>
             <S.Paragraph>
-              There are many reasons to use a buyers agent when purchasing a home. Here
-              are three key reasons:
+              There are many reasons to use a real estate agent when purchasing a home.
+              Here are three key reasons:
             </S.Paragraph>
           </Flex>
 
@@ -61,8 +61,8 @@ export function WhiteGlove() {
               </S.Header>
               <S.Content>
                 <S.ContentText>
-                  First, they have the experience and expertise to help you navigate
-                  through the buying process.
+                  First, We have the experience and expertise to help you navigate through
+                  the buying process.
                 </S.ContentText>
                 <Box
                   css={{
@@ -99,7 +99,7 @@ export function WhiteGlove() {
               </S.Header>
               <S.Content>
                 <S.ContentText>
-                  Second, I have negotiation skills that will guarantee you great
+                  Second, We have the negotiation skills that will guarantee you great
                   conditions for buying your property.
                 </S.ContentText>
                 <Box
@@ -130,15 +130,15 @@ export function WhiteGlove() {
                 <S.Trigger onClick={() => setContent('buyer')}>
                   <S.ContentTriggerWrapper>
                     <HomeSvg />
-                    Buyer Resources
+                    Buyer / Seller Resources
                   </S.ContentTriggerWrapper>
                   <S.Chevron />
                 </S.Trigger>
               </S.Header>
               <S.Content>
                 <S.ContentText>
-                  Third, I have buying smarts when it comes to finding good properties for
-                  your family.
+                  We utilize cutting-edge technology, data-driven insights, and industry
+                  expertise to guide you through the process.
                 </S.ContentText>
                 <Box
                   css={{

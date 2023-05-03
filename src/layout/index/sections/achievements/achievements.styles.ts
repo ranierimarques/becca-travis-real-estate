@@ -16,7 +16,7 @@ export const Line = styled('div', {
 export const Title = styled('h2', {
   marginBottom: '101px',
 
-  maxWidth: '847px',
+  maxWidth: '900px',
   textAlign: 'center',
 
   fontWeight: '500',

@@ -177,8 +177,9 @@ export function ClientTestimonials() {
         <S.Title>Client stories</S.Title>
         <Flex align="end" justify="between">
           <S.Description>
-            I work with my heart and the best part about my job is guiding each of home. I
-            am grateful for each of my clients, here are just a few of their stories…
+            Guiding clients to their dream home is more than just a job for me – it&apos;s
+            a passion. Nothing brings me more joy than helping each and every one of my
+            clients find the perfect home that meets their unique needs and desires.
           </S.Description>
           <Tooltip content="Coming soon">
             <S.ViewAll>VIEW ALL</S.ViewAll>

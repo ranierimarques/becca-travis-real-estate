@@ -23,10 +23,12 @@ export function AboutHuntsville() {
       <S.TextContainer>
         <S.Title>About Huntsville</S.Title>
         <S.Paragraph>
-          Huntsville is now Alabamas Largest City. US recently names Huntsville, Al as the
-          Place to Live, other notable mentions include: One Of The Best Place to Retire,
-          Best Place to Live in Alabama, Most Affordable Place to Live, Fastest-Growing
-          Place.
+          Are you considering a move to Huntsville, Alabama? Look no further! Huntsville
+          is an amazing place to live, work, and play with a wide range of activities to
+          enjoy and friendly people to meet. It&apos;s no wonder the US recently named it
+          the &quot;Place to Live&quot; and it has also been recognized as one of the best
+          places to retire, live, and the most affordable and fastest-growing city in
+          Alabama.
         </S.Paragraph>
         <Button
           href="/communities/huntsville#about-huntsville"

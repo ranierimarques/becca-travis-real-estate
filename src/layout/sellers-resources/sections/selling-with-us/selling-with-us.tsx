@@ -14,11 +14,13 @@ export function SellingWithUs() {
             '@bp4': 'center',
           }}
         >
-          <Hat variant="2">Meet Huntsville</Hat>
-          <S.Title>Selling your home with us</S.Title>
+          <Hat variant="2">Sell Your Home with Confidence</Hat>
+          <S.Title>Maximize Your Home&apos;s Value</S.Title>
           <S.Paragraph>
-            Huntsville is a great place to live for many reasons. The people are friendly
-            and welcoming, the city is clean and safe.
+            Selling your home with us means you&apos;ll have a dedicated team of
+            experienced professionals on your side, working to get you the best possible
+            outcome. From the moment you decide to work with us we&apos;ll be with you
+            every step of the way, providing personalized service and expert guidance.
           </S.Paragraph>
           <Button
             href="/contact-us"

@@ -22,13 +22,11 @@ export function Hero() {
         >
           <Hat css={{ marginBottom: 8 }}>Why Becca?</Hat>
 
-          <S.Title>
-            With Becca Travis, your sell is our assignment, and helping with your purchase
-            is our passion
-          </S.Title>
+          <S.Title>Contact Becca Travis to achieve your real estate goals.</S.Title>
           <S.Paragraph>
-            From finding your dream home to negotiating terms on your behalf, we cover
-            every step of the process along the way
+            As a dedicated professional, Becca delivers results and puts your interests
+            first. Whether buying, selling, or relocating to Huntsville, Becca provides
+            personalized guidance to make informed decisions.
           </S.Paragraph>
 
           <Flex

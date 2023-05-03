@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Box, Button, Flex, Image } from '@/common'
 import { Select } from '@/primitives'
+import { capitalizeEveryWord } from '@/resources/utils/text'
 import { Section } from '@/template'
 import * as Img from './images'
 import * as S from './yelp.styles'
@@ -110,7 +111,8 @@ export function Yelp({ data, communityName }: YelpProps) {
           Living in <S.Community>{communityName}</S.Community>
         </S.Title>
         <S.Description>
-          Explore the best restaurants, businesses, and activities near Athens.
+          Explore the best restaurants, businesses, and activities near{' '}
+          {capitalizeEveryWord(communityName)}.
         </S.Description>
         <S.Options>
           {buttonOptions.map(option => (

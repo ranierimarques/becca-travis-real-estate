@@ -16,11 +16,11 @@ const badges = [
   },
   {
     icon: <Svg.Flag />,
-    description: '12+ Years of Experience',
+    description: 'Fluent in English, Portuguese, and Spanish',
   },
   {
     icon: <Svg.Rocket />,
-    description: 'Huntsville Top Real State Agent',
+    description: '12+ Years of Experience',
   },
 ]
 
@@ -45,8 +45,8 @@ export function Achievements() {
         <Hat>Becca Travis Real State Group</Hat>
         <S.Line />
         <S.Title>
-          Enjoy the freedom that comes with having one of Alabama&apos;s top real estate
-          agent&apos;s in your corner
+          Experience the freedom that comes with having one of Alabama&apos;s top real
+          estate agents by your side.
         </S.Title>
       </Flex>
 
@@ -65,9 +65,9 @@ export function Achievements() {
         }}
       >
         <S.Paragraph>
-          We thrive on satisfied customers and individuals who seek us out because they
-          know that when you come here what matters most is getting results and when it
-          comes to real estate, we want to exceed your expectations.
+          Our goal is to exceed your expectations and deliver top-notch results in real
+          estate. With a focus on achieving your goals and providing exceptional service,
+          we take pride in our satisfied customers who trust us to get the job done.
           <S.LineLeft />
           <S.LineLeftSmall />
         </S.Paragraph>
