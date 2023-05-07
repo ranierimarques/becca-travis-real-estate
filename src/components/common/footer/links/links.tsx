@@ -8,23 +8,24 @@ const siteMapLinks = [
   { href: '/homes', text: 'Purchase a home' },
   { href: '/sell-with-us', text: 'Sell your home' },
   { href: '/communities/huntsville#about-huntsville', text: 'About Huntsville' },
-  { href: '/mortgage-calculator', text: 'Mortgage calculator' },
+  // { href: '/mortgage-calculator', text: 'Mortgage calculator' },
   { href: '/why-becca', text: 'Why Becca?' },
-  { href: '/reviews', text: 'Client reviews' },
+  // { href: '/reviews', text: 'Client reviews' },
 ]
 
 const resourcesLinks = [
-  { href: '/buyers-resources', text: 'Buyers resources' },
+  // { href: '/buyers-resources', text: 'Buyers resources' },
   { href: '/sellers-resources', text: 'Sellers resources' },
   { href: '/blog', text: 'Blog' },
 ]
 
 const utilsLinks = [
-  { href: '/', text: 'Privacy Notice' },
-  { href: '/', text: 'DMCA' },
-  { href: '/', text: 'Accessibility statement' },
-  { href: '/', text: 'Terms of service' },
-  { href: '/', text: 'Fraud alert' },
+  { href: '/privacy-notice', text: 'Privacy Notice' },
+  { href: '/fair-housing-statement', text: 'Fair Housing Statement' },
+  { href: '/dmca', text: 'DMCA' },
+  { href: '/accessibility-statement', text: 'Accessibility statement' },
+  { href: '/terms-of-service', text: 'Terms of service' },
+  { href: '/fraud-alert', text: 'Fraud alert' },
 ]
 
 type linksProps = {
