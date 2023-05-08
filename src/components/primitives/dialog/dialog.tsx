@@ -14,8 +14,8 @@ export const Trigger = DialogPrimitive.Trigger
 
 type ContentProps = React.ComponentProps<typeof S.Content> & {
   overlay?: boolean
-  title: string
-  description: string | undefined
+  title?: string
+  description?: string | undefined
 }
 
 export const Content = ({
