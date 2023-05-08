@@ -162,7 +162,12 @@ export async function getStaticProps({ params }: Params) {
   )
 
   const schoolsResponse = await fetch(
-    `https://api.schooldigger.com/v2.0/schools?st=AL&sortBy=rank&includeUnrankedSchoolsInRankSort=false&appID=d85b40ba&appKey=${process.env.SCHOOL_DIGGER_API_KEY}`
+    `https://api.schooldigger.com/v2.0/schools?st=AL&city=${community.replace(
+      ' ',
+      '%20'
+    )}&sortBy=rank&includeUnrankedSchoolsInRankSort=false&appID=${
+      process.env.SCHOOL_DIGGER_API_ID
+    }&appKey=${process.env.SCHOOL_DIGGER_API_KEY}`
   )
   const schoolsData: SchoolData = await schoolsResponse.json()
 

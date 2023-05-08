@@ -54,7 +54,7 @@ export function Schools({ communityName, schools }: SchoolsProps) {
             <S.SchoolCategory>{level}</S.SchoolCategory>
             <S.Hr />
             <ul>
-              {schools[level].map(school => (
+              {schools[level]?.map(school => (
                 <S.School key={school.schoolid}>
                   <Flex direction="column" css={{ gap: 6 }}>
                     <S.SchoolName href={school.url} target="_blank">
