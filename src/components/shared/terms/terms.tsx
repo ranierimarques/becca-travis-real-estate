@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Section } from '@/template'
+import { TermsData } from '@/types/terms'
 import * as S from './terms.styles'
 
 function GetList({ content }: any) {
@@ -58,11 +59,15 @@ function contentSwitch(type: string, content: any, index: number) {
   }
 }
 
-export function Terms({ data }: any) {
+type TermsProps = {
+  terms: TermsData
+}
+
+export function Terms({ terms }: TermsProps) {
   return (
     <Section hasMaxWidth>
-      <S.PageTitle>{data.utils[0].pageTitle}</S.PageTitle>
-      {data.utils[0].content.raw.children.map((content: any, index: any) =>
+      <S.PageTitle>{terms.utils[0].pageTitle}</S.PageTitle>
+      {terms.utils[0].content.raw.children.map((content, index) =>
         contentSwitch(content.type, content, index)
       )}
     </Section>

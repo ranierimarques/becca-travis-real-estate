@@ -1,4 +1,5 @@
 import request, { gql } from 'graphql-request'
+import { TermsData } from '@/types/terms'
 
 const query = gql`
   query TermsBySlug($slug: String!) {
@@ -20,7 +21,7 @@ type GetTermsSlugs =
   | 'dmca'
 
 export async function getTerms(slug: GetTermsSlugs) {
-  return await request(
+  return await request<TermsData>(
     'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
     query,
     {

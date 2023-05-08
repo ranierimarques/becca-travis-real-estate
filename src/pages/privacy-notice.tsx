@@ -13,7 +13,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ data }
         alt="Feel at home before finding the perfect property."
       />
 
-      <Terms data={data} />
+      <Terms terms={data} />
     </main>
   )
 }
