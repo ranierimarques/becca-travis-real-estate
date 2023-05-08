@@ -171,6 +171,8 @@ export async function getStaticProps({ params }: Params) {
   )
   const schoolsData: SchoolData = await schoolsResponse.json()
 
+  console.log(schoolsData)
+
   const schools = schoolsData.schoolList.reduce(
     (accumulator, currentValue) => ({
       ...accumulator,
@@ -190,7 +192,6 @@ export async function getStaticProps({ params }: Params) {
     }),
     {} as SchoolList
   )
-
   const data = (await response.json()) as FetchTypes
 
   const listings = await getHouseListing({
