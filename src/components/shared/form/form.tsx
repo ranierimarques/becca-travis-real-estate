@@ -105,6 +105,8 @@ export function Form({ onOpenToast, askAQuestion }: FormProps) {
       },
       body: JSON.stringify({
         access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+        subject: 'New Contact Form',
+        from_name: 'Becca Travis Website',
         ...values,
       }),
     })
@@ -117,8 +119,6 @@ export function Form({ onOpenToast, askAQuestion }: FormProps) {
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <input type="hidden" name="from_name" value="Becca Travis Website" />
-      <input type="hidden" name="subject" value="New submission from Contact Us" />
       {!askAQuestion && <S.FormTitle>Send me a message</S.FormTitle>}
       <Box
         css={{

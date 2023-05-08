@@ -78,6 +78,8 @@ export function Hero() {
       },
       body: JSON.stringify({
         access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+        subject: 'New Sell Property Form',
+        from_name: 'Becca Travis Website',
         ...values,
       }),
     })

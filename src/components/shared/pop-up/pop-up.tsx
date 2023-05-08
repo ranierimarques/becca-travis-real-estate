@@ -53,6 +53,8 @@ export function PopUp() {
       },
       body: JSON.stringify({
         access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+        subject: 'New Pop-up Form',
+        from_name: 'Becca Travis Website',
         ...values,
       }),
     })
@@ -67,7 +69,12 @@ export function PopUp() {
       <Dialog.Trigger>Olá</Dialog.Trigger>
       <Dialog.Content
         variant={2}
-        css={{ p: '16px 24px 16px 16px', maxWidth: 'none', w: 'fit-content' }}
+        css={{
+          p: '16px 24px 16px 16px',
+          maxWidth: 'none',
+          w: 'fit-content',
+          maxHeight: 500,
+        }}
       >
         <Flex css={{ gap: 24 }}>
           <Box css={{ overflow: 'hidden', br: 10 }}>
@@ -134,9 +141,9 @@ export function PopUp() {
               </Button>
             </S.Form>
 
-            <S.Divider />
+            {/* <S.Divider /> */}
 
-            <Flex align="start" css={{ gap: 10, w: '100%' }}>
+            <Flex align="start" css={{ gap: 10, w: '100%', mt: 16 }}>
               <Svg.Secure />
               <S.SecureText>
                 I agree to the website&apos;s privacy terms and understand my information
