@@ -118,9 +118,11 @@ interface SchoolData {
     lowGrade: string
     highGrade: string
     schoolLevel: 'High' | 'Elementary' | 'Middle'
-    rankHistory: {
-      rankStars: string
-    }[]
+    rankHistory:
+      | {
+          rankStars: string
+        }[]
+      | null
     schoolYearlyDetails: {
       numberOfStudents: string
     }[]
@@ -185,8 +187,9 @@ export async function getStaticProps({ params }: Params) {
           lowGrade: currentValue.lowGrade,
           highGrade: currentValue.highGrade,
           schoolLevel: currentValue.schoolLevel,
-          rankStars: currentValue.rankHistory[0].rankStars,
-          numberOfStudents: currentValue.schoolYearlyDetails[0].numberOfStudents,
+          rankStars: currentValue.rankHistory?.[0].rankStars ?? null,
+          numberOfStudents:
+            currentValue.schoolYearlyDetails?.[0].numberOfStudents ?? null,
         },
       ],
     }),
