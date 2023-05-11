@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
 import { Box, Button, Flex, Image, Input } from '@/common'
 import { Dialog } from '@/primitives'
+import { checkCookie, setCookie } from '@/resources/utils/cookies'
 import * as Img from './images'
 import * as S from './pop-up.styles'
 import * as Svg from './svgs'
@@ -39,10 +41,24 @@ export function PopUp() {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
+  const [openPopup, setOpenPopup] = useState(false)
+
+  useEffect(() => {
+    const isSubscribed = checkCookie('subscribed')
+    const wasDismissed = checkCookie('dismissed')
+
+    if (!isSubscribed && !wasDismissed) {
+      const timer = setTimeout(() => {
+        setOpenPopup(true)
+      }, 1000 * 5)
+
+      return () => clearTimeout(timer)
+    }
+  }, [])
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
     const result = await fetch('https://api.web3forms.com/submit', {
@@ -60,14 +76,26 @@ export function PopUp() {
     })
 
     if (result.status === 200) {
+      setCookie('subscribed', 'true')
       reset()
+
+      setTimeout(() => {
+        setOpenPopup(false)
+      }, 1000)
+    }
+  }
+
+  function handleOpenChange(open: boolean) {
+    if (!isSubmitting && !isSubmitSuccessful) {
+      setOpenPopup(open)
+      setCookie('dismissed', 'true')
     }
   }
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>Olá</Dialog.Trigger>
+    <Dialog.Root onOpenChange={handleOpenChange} open={openPopup}>
       <Dialog.Content
+        onPointerDownOutside={e => e.preventDefault()}
         variant={2}
         css={{
           p: '16px 24px 16px 16px',
@@ -130,18 +158,21 @@ export function PopUp() {
               <Button
                 size="2"
                 loading={isSubmitting}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isSubmitSuccessful}
+                submitted={isSubmitSuccessful}
                 css={{
                   w: '100%',
                   gridColumn: 'span 2',
                   mt: 8,
+
+                  '&:disabled': {
+                    opacity: '1',
+                  },
                 }}
               >
-                Submit
+                {isSubmitSuccessful ? 'Submitted!' : 'Submit'}
               </Button>
             </S.Form>
-
-            {/* <S.Divider /> */}
 
             <Flex align="start" css={{ gap: 10, w: '100%', mt: 16 }}>
               <Svg.Secure />
