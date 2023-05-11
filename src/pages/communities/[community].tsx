@@ -167,9 +167,11 @@ export async function getStaticProps({ params }: Params) {
     `https://api.schooldigger.com/v2.0/schools?st=AL&city=${community.replace(
       ' ',
       '%20'
-    )}&sortBy=rank&includeUnrankedSchoolsInRankSort=false&appID=${
-      process.env.SCHOOL_DIGGER_API_ID
-    }&appKey=${process.env.SCHOOL_DIGGER_API_KEY}`
+    )}&sortBy=rank&includeUnrankedSchoolsInRankSort=${
+      community === 'meridianville' ? 'true' : 'false'
+    }&appID=${process.env.SCHOOL_DIGGER_API_ID}&appKey=${
+      process.env.SCHOOL_DIGGER_API_KEY
+    }`
   )
   const schoolsData: SchoolData = await schoolsResponse.json()
 

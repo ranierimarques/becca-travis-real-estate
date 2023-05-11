@@ -1,5 +1,35 @@
 import { styled } from 'stitches.config'
 
+export const TableContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gap: 32,
+
+  '@bp4': {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  '@bp3': {
+    gridTemplateColumns: '1fr',
+  },
+
+  variants: {
+    onlyTwoLevels: {
+      true: {
+        gridTemplateColumns: '1fr 1fr',
+
+        '@bp3': {
+          gridTemplateColumns: '1fr',
+        },
+      },
+    },
+    onlyOneLevel: {
+      true: {
+        gridTemplateColumns: '1fr',
+      },
+    },
+  },
+})
+
 export const Title = styled('h3', {
   fontWeight: 500,
   fontSize: '32px',
