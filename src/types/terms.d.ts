@@ -53,9 +53,31 @@ type Paragraph = {
   children: Textual[]
 }
 
+// Table
+
+type TableCell = {
+  type: 'table_cell'
+  children: Paragraph[]
+}
+
+type TableRow = {
+  type: 'table_row'
+  children: TableCell[]
+}
+
+type TableBody = {
+  type: 'table_body'
+  children: TableRow[]
+}
+
+type Table = {
+  type: 'table'
+  children: TableBody[]
+}
+
 // Lists
 
-type ListItemChild = Paragraph[] | Textual[] | BulletedList | NumberedList
+type ListItemChild = Paragraph[] | Textual[] | BulletedList | NumberedList | Table
 
 type NumberedList = {
   type: 'numbered-list'
@@ -89,6 +111,7 @@ type Content =
   | Paragraph
   | BulletedList
   | NumberedList
+  | Table
 
 type TermsPage = {
   content: {

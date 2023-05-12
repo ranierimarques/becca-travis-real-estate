@@ -173,8 +173,6 @@ export async function getStaticProps({ params }: Params) {
   )
   const schoolsData: SchoolData = await schoolsResponse.json()
 
-  console.log(schoolsData)
-
   const schools = schoolsData.schoolList.reduce(
     (accumulator, currentValue) => ({
       ...accumulator,
