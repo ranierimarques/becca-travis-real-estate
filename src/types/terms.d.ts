@@ -10,11 +10,11 @@ type Text = {
 type Link = {
   type: 'link'
   href: string
-  children: text[]
-  openInNewTab?: boolean
+  children: Text[]
+  openInNewTab: boolean
 }
 
-type Textual = Text | Link
+export type Textual = Text | Link
 
 // Heading
 
@@ -77,7 +77,12 @@ type Table = {
 
 // Lists
 
-type ListItemChild = Paragraph[] | Textual[] | BulletedList | NumberedList | Table
+export type ListItemChild =
+  | Paragraph[]
+  | Textual[]
+  | BulletedList[]
+  | NumberedList[]
+  | Table[]
 
 type NumberedList = {
   type: 'numbered-list'
@@ -101,7 +106,7 @@ type BulletedList = {
   }[]
 }
 
-type Content =
+export type Content =
   | HeadingOne
   | HeadingTwo
   | HeadingThree

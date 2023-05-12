@@ -1,60 +1,145 @@
-import { Fragment } from 'react'
 import { Section } from '@/template'
-import { TermsData } from '@/types/terms'
+import { Content, ListItemChild, TermsData, Textual } from '@/types/terms'
 import * as S from './terms.styles'
 
-function GetList({ content }: any) {
-  return (
-    <>
-      {content.children.map((child: any, i: number) => {
-        return <S.ListItem key={i}>{child.children[0].children[0].text}</S.ListItem>
-      })}
-    </>
-  )
+function listItemChildSwitch(listItemChild: ListItemChild) {
+  return listItemChild.map((content, index) => {
+    if ('type' in content && content.type !== 'link') {
+      return contentSwitch(content, index)
+    }
+
+    return textualSwitch(content, index)
+  })
 }
 
-function contentSwitch(type: string, content: any, index: number) {
-  switch (type) {
+function textualSwitch(content: Textual, index: number) {
+  if ('type' in content && content.type === 'link') {
+    return (
+      <a
+        key={index}
+        href={content.href}
+        target={content.openInNewTab ? '_blank' : '_self'}
+        rel="noreferrer noopener"
+      >
+        {content.children.map((child, index) => textualSwitch(child, index))}
+      </a>
+    )
+  }
+
+  if ('text' in content) {
+    return (
+      <S.Text
+        key={index}
+        underline={content.underline}
+        bold={content.bold}
+        italic={content.italic}
+      >
+        {content.text}
+      </S.Text>
+    )
+  }
+
+  throw new Error(`Some case in textual switch isn't implemented`)
+}
+
+function contentSwitch(content: Content, index: number) {
+  switch (content.type) {
     case 'heading-one': {
-      return <S.Heading1 key={index}>{content.children[0].text}</S.Heading1>
+      return (
+        <S.Heading1 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading1>
+      )
     }
     case 'heading-two': {
-      return <S.Heading2 key={index}>{content.children[0].text}</S.Heading2>
+      return (
+        <S.Heading2 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading2>
+      )
     }
     case 'heading-three': {
-      return <S.Heading3 key={index}>{content.children[0].text}</S.Heading3>
+      return (
+        <S.Heading3 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading3>
+      )
     }
     case 'heading-four': {
-      return <S.Heading4 key={index}>{content.children[0].text}</S.Heading4>
+      return (
+        <S.Heading4 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading4>
+      )
     }
     case 'heading-five': {
-      return <S.Heading5 key={index}>{content.children[0].text}</S.Heading5>
+      return (
+        <S.Heading5 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading5>
+      )
     }
     case 'heading-six': {
-      return <S.Heading6 key={index}>{content.children[0].text}</S.Heading6>
+      return (
+        <S.Heading6 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading6>
+      )
     }
     case 'paragraph': {
-      return <S.Paragraph key={index}>{content.children[0].text}</S.Paragraph>
-    }
-    case 'block-quote': {
-      return <S.Blockquote key={index}>{content.children[0].text}</S.Blockquote>
+      return (
+        <S.Paragraph key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Paragraph>
+      )
     }
     case 'numbered-list': {
       return (
         <S.OrderedList key={index}>
-          <GetList content={content} index={index} />
+          {content.children.map((listItem, index) => (
+            <li key={index}>
+              {listItem.children.map(listItemChild =>
+                listItemChildSwitch(listItemChild.children)
+              )}
+            </li>
+          ))}
         </S.OrderedList>
       )
     }
     case 'bulleted-list': {
       return (
         <S.UnorderedList key={index}>
-          <GetList content={content} index={index} />
+          {content.children.map((listItem, index) => (
+            <li key={index}>
+              {listItem.children.map(listItemChild =>
+                listItemChildSwitch(listItemChild.children)
+              )}
+            </li>
+          ))}
         </S.UnorderedList>
       )
     }
+    case 'table': {
+      return (
+        <table key={index}>
+          <tbody>
+            {content.children[0].children.map((tableRow, index) => (
+              <tr key={index}>
+                {tableRow.children.map((tableCell, index) => (
+                  <th key={index}>
+                    {tableCell.children.map((content, index) =>
+                      contentSwitch(content, index)
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )
+    }
     default: {
-      return <Fragment key={index}>{content.children[0].text}</Fragment>
+      throw new Error(`Some case in content switch isn't implemented`)
     }
   }
 }
@@ -64,11 +149,13 @@ type TermsProps = {
 }
 
 export function Terms({ terms }: TermsProps) {
+  const termPage = terms.utils[0]
+
   return (
     <Section hasMaxWidth>
-      <S.PageTitle>{terms.utils[0].pageTitle}</S.PageTitle>
-      {terms.utils[0].content.raw.children.map((content, index) =>
-        contentSwitch(content.type, content, index)
+      <S.PageTitle>{termPage.pageTitle}</S.PageTitle>
+      {termPage.content.raw.children.map((content, index) =>
+        contentSwitch(content, index)
       )}
     </Section>
   )

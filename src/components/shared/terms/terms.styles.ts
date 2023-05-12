@@ -1,5 +1,27 @@
 import { styled } from 'stitches.config'
 
+export const Text = styled('span', {
+  variants: {
+    bold: {
+      true: {
+        fontWeight: 'bold',
+      },
+    },
+    italic: {
+      true: {
+        fontStyle: 'italic',
+      },
+    },
+    underline: {
+      true: {
+        textDecoration: 'underline',
+      },
+    },
+  },
+})
+
+export const Link = styled('a', {})
+
 export const PageTitle = styled('h1', {
   fontWeight: '500',
   fontSize: '40px',
