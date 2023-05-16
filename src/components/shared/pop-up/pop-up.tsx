@@ -48,10 +48,9 @@ export function PopUp() {
   const [openPopup, setOpenPopup] = useState(false)
 
   useEffect(() => {
-    const isSubscribed = checkCookie('subscribed')
-    const wasDismissed = checkCookie('dismissed')
+    const cookie = checkCookie('pop-up')
 
-    if (!isSubscribed && !wasDismissed) {
+    if (!cookie) {
       const timer = setTimeout(() => {
         setOpenPopup(true)
       }, 1000 * 5)
@@ -76,7 +75,7 @@ export function PopUp() {
     })
 
     if (result.status === 200) {
-      setCookie('subscribed', 'true')
+      setCookie('pop-up', { subscribed: true })
       reset()
 
       setTimeout(() => {
@@ -88,7 +87,7 @@ export function PopUp() {
   function handleOpenChange(open: boolean) {
     if (!isSubmitting && !isSubmitSuccessful) {
       setOpenPopup(open)
-      setCookie('dismissed', 'true')
+      setCookie('pop-up', { closed: true })
     }
   }
 

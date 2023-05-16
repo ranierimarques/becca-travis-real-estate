@@ -15,7 +15,8 @@ export function setCookie(name: string, value: Record<string, unknown>) {
   const expires = `expires=${oneYearLater.toUTCString()}`
 
   const stringValue = JSON.stringify(value)
-  const isSubscribed = name === 'subscribed'
+  console.log(stringValue, value)
+  const isSubscribed = Object.keys(value).includes('subscribed')
 
   document.cookie = `${name}=${stringValue};${isSubscribed ? expires : ''};path=/`
 }
