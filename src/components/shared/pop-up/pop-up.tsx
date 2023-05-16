@@ -5,7 +5,7 @@ import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
 import { Box, Button, Flex, Image, Input } from '@/common'
 import { Dialog } from '@/primitives'
-import { checkCookie, setCookie } from '@/resources/utils/cookies'
+import { getCookie, setCookie } from '@/resources/utils/cookies'
 import * as Img from './images'
 import * as S from './pop-up.styles'
 import * as Svg from './svgs'
@@ -48,14 +48,16 @@ export function PopUp() {
   const [openPopup, setOpenPopup] = useState(false)
 
   useEffect(() => {
-    const cookie = checkCookie('pop-up')
+    const cookie = getCookie('pop-up')
 
-    if (!cookie) {
+    if (!cookie?.subscribed && !cookie?.closed) {
       const timer = setTimeout(() => {
         setOpenPopup(true)
       }, 1000 * 5)
 
-      return () => clearTimeout(timer)
+      return () => {
+        clearTimeout(timer)
+      }
     }
   }, [])
 
@@ -75,7 +77,7 @@ export function PopUp() {
     })
 
     if (result.status === 200) {
-      setCookie('pop-up', { subscribed: true })
+      setCookie('pop-up', { subscribed: true }, { expires: 'one-year' })
       reset()
 
       setTimeout(() => {
@@ -87,7 +89,7 @@ export function PopUp() {
   function handleOpenChange(open: boolean) {
     if (!isSubmitting && !isSubmitSuccessful) {
       setOpenPopup(open)
-      setCookie('pop-up', { closed: true })
+      setCookie('pop-up', { closed: true }, { expires: 'session' })
     }
   }
 

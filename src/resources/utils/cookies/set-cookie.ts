@@ -1,3 +1,6 @@
+import { getCookie } from '@/resources/utils/cookies'
+import { CookieName, GetCookieType, SetCookieOptions } from '@/types/cookies'
+
 function getOneYearLater() {
   const date = new Date()
   return new Date(
@@ -10,13 +13,23 @@ function getOneYearLater() {
   )
 }
 
-export function setCookie(name: string, value: Record<string, unknown>) {
-  const oneYearLater = getOneYearLater()
-  const expires = `expires=${oneYearLater.toUTCString()}`
+function getCookieExpiresTime(expires: SetCookieOptions['expires']) {
+  // TODO: Implement expires with custom number
+  if (typeof expires === 'number') throw new Error('Expires in number not implemented')
+  if (expires === 'one-year') return `expires=${getOneYearLater().toUTCString()}`
+  if (expires === 'session') return ''
 
-  const stringValue = JSON.stringify(value)
-  console.log(stringValue, value)
-  const isSubscribed = Object.keys(value).includes('subscribed')
+  return ''
+}
 
-  document.cookie = `${name}=${stringValue};${isSubscribed ? expires : ''};path=/`
+export function setCookie<T extends CookieName>(
+  name: T,
+  value: GetCookieType<T>,
+  options: SetCookieOptions
+) {
+  const cookie = getCookie(name)
+  const expires = getCookieExpiresTime(options.expires)
+  const newValue = JSON.stringify({ cookie, ...value })
+
+  document.cookie = `${name}=${newValue};${expires};path=/`
 }
