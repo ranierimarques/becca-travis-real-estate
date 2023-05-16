@@ -24,16 +24,12 @@ export const Link = styled('a', {})
 
 export const PageTitle = styled('h1', {
   fontWeight: '500',
-  fontSize: '40px',
-  lineHeight: '64px',
+  fontSize: '36px',
+  lineHeight: '50px',
   color: '$magenta6',
 
-  textAlign: 'center',
+  marginBottom: 24,
 
-  '@bp4': {
-    fontSize: '36px',
-    lineHeight: '50px',
-  },
   '@bp2': {
     fontSize: '30px',
     lineHeight: '42px',
@@ -41,6 +37,41 @@ export const PageTitle = styled('h1', {
   '@bp1': {
     fontSize: '28px',
     lineHeight: '40px',
+  },
+})
+
+export const Table = styled('table', {
+  background: '$grayW10',
+  borderRadius: 8,
+  padding: 16,
+
+  textAlign: 'left',
+
+  marginBottom: 16,
+})
+
+export const Tr = styled('tr', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  justifyContent: 'center',
+
+  '&:not(:last-child)': {
+    boxShadow: 'rgba($colors$blackRgb, 0.12) 0px -1px 0px inset',
+  },
+})
+
+export const Th = styled('th', {
+  padding: 24,
+
+  '@bp2': {
+    '& p': {
+      fontSize: 10,
+      lineHeight: '14px',
+    },
+    '& li': {
+      fontSize: 10,
+      lineHeight: '14px',
+    },
   },
 })
 
@@ -162,7 +193,7 @@ export const OrderedList = styled('ol', {
 
 export const UnorderedList = styled('ul', {
   paddingLeft: 17.61,
-  listStyle: 'revert',
+  listStyleType: 'disc',
 
   marginBottom: 24,
 
@@ -172,12 +203,14 @@ export const UnorderedList = styled('ul', {
 })
 
 export const ListItem = styled('li', {
-  listStyle: 'revert',
-
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '32px',
   color: '$gray2',
+
+  width: 'fit-content',
+
+  listStyle: 'initial',
 
   '@bp4': {
     fontSize: '14px',

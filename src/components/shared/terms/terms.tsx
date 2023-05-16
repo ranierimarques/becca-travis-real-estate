@@ -97,11 +97,11 @@ function contentSwitch(content: Content, index: number) {
       return (
         <S.OrderedList key={index}>
           {content.children.map((listItem, index) => (
-            <li key={index}>
+            <S.ListItem key={index}>
               {listItem.children.map(listItemChild =>
                 listItemChildSwitch(listItemChild.children)
               )}
-            </li>
+            </S.ListItem>
           ))}
         </S.OrderedList>
       )
@@ -110,32 +110,32 @@ function contentSwitch(content: Content, index: number) {
       return (
         <S.UnorderedList key={index}>
           {content.children.map((listItem, index) => (
-            <li key={index}>
+            <S.ListItem key={index}>
               {listItem.children.map(listItemChild =>
                 listItemChildSwitch(listItemChild.children)
               )}
-            </li>
+            </S.ListItem>
           ))}
         </S.UnorderedList>
       )
     }
     case 'table': {
       return (
-        <table key={index}>
+        <S.Table key={index}>
           <tbody>
             {content.children[0].children.map((tableRow, index) => (
-              <tr key={index}>
+              <S.Tr key={index}>
                 {tableRow.children.map((tableCell, index) => (
-                  <th key={index}>
+                  <S.Th key={index}>
                     {tableCell.children.map((content, index) =>
                       contentSwitch(content, index)
                     )}
-                  </th>
+                  </S.Th>
                 ))}
-              </tr>
+              </S.Tr>
             ))}
           </tbody>
-        </table>
+        </S.Table>
       )
     }
     default: {
@@ -152,7 +152,7 @@ export function Terms({ terms }: TermsProps) {
   const termPage = terms.utils[0]
 
   return (
-    <Section hasMaxWidth>
+    <Section hasMaxWidth css={{ pt: 60, pb: 60 }}>
       <S.PageTitle>{termPage.pageTitle}</S.PageTitle>
       {termPage.content.raw.children.map((content, index) =>
         contentSwitch(content, index)
