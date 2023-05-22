@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
-import { Box, Button, Flex, Image, Input } from '@/common'
+import { Box, Flex, Image } from '@/common'
 import { Dialog } from '@/primitives'
 import { getCookie, setCookie } from '@/resources/utils/cookies'
+import { Form } from './'
 import * as Img from './images'
 import * as S from './pop-up.styles'
-import * as Svg from './svgs'
 
 const nameRegExp = /^[a-z ,.'-]+$/i
 
@@ -31,64 +31,39 @@ const formSchema = z.object({
     .refine(value => isValidPhoneNumber(value), {
       message: 'Invalid phone number',
     }),
+  method_of_communication: z.enum(['phone', 'text']),
+  subject_of_preference: z.enum(['buying', 'selling']),
 })
 
-type formSchemaType = z.infer<typeof formSchema>
+export type FormSchemaType = z.infer<typeof formSchema>
 
 export function PopUp() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
-  } = useForm<formSchemaType>({
+  const popUpForm = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
   })
+
+  const {
+    formState: { isSubmitting, isSubmitSuccessful },
+  } = popUpForm
+
   const [openPopup, setOpenPopup] = useState(false)
 
   useEffect(() => {
     const cookie = getCookie('pop-up')
-
     if (!cookie?.subscribed && !cookie?.closed) {
       const timer = setTimeout(() => {
         setOpenPopup(true)
       }, 1000 * 5)
-
       return () => {
         clearTimeout(timer)
       }
     }
   }, [])
 
-  const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
-    const result = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
-        subject: 'New Pop-up Form',
-        from_name: 'Becca Travis Website',
-        ...values,
-      }),
-    })
-
-    if (result.status === 200) {
-      setCookie('pop-up', { subscribed: true }, { expires: 'one-year' })
-      reset()
-
-      setTimeout(() => {
-        setOpenPopup(false)
-      }, 1000)
-    }
-  }
-
   function handleOpenChange(open: boolean) {
     if (!isSubmitting && !isSubmitSuccessful) {
       setOpenPopup(open)
+
       setCookie('pop-up', { closed: true }, { expires: 'session' })
     }
   }
@@ -100,88 +75,53 @@ export function PopUp() {
         variant={2}
         css={{
           p: '16px 24px 16px 16px',
-          maxWidth: 'none',
-          w: 'fit-content',
-          maxHeight: 500,
+          maxWidth: 900,
+          maxHeight: 'min(90vh, 495px)',
+          w: 'auto',
+
+          '@bp5': {
+            p: '14px 16px 14px 14px',
+          },
+
+          '@bp4': {
+            p: '24px 24px 24px 24px',
+
+            maxHeight: '90vh',
+
+            overflowY: 'scroll',
+          },
+          '@bp2': {
+            p: '16px 16px 16px 16px',
+          },
+          '@bp1': {
+            p: '14px 14px 14px 14px',
+          },
         }}
       >
         <Flex css={{ gap: 24 }}>
-          <Box css={{ overflow: 'hidden', br: 10 }}>
+          <Box
+            css={{
+              overflow: 'hidden',
+              br: 10,
+              minWidth: 'fit-content',
+              '@bp4': { display: 'none' },
+            }}
+          >
             <Image src={Img.Illustration} alt="finding the right house" />
           </Box>
-          <Box css={{ maxWidth: 356, p: '16px 0 26px' }}>
-            <S.Title>Your Dream Home Awaits: Uncover It with My Expertise</S.Title>
+          <Box>
+            <S.Title>
+              Discover the Power of Expert Advice personalized for all of Your Real Estate
+              Needs
+            </S.Title>
             <S.Description>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore.
+              Every real estate need is unique. Complete the form to receive the
+              exceptional support and guidance you deserve.
             </S.Description>
 
-            <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
-              <Input
-                key="first_name"
-                error={errors['first_name']?.message}
-                type="text"
-                placeholder="Michael"
-                label="First Name"
-                required={true}
-                control={control}
-                name="first_name"
-                register={register}
-                disabled={isSubmitting}
-              />
-              <Input
-                key="number"
-                error={errors['number']?.message}
-                type="tel"
-                placeholder="(000) 000-0000"
-                label="Number"
-                required={true}
-                register={register}
-                control={control}
-                name="number"
-                disabled={isSubmitting}
-              />
-              <Box css={{ gridColumn: 'span 2' }}>
-                <Input
-                  key="email"
-                  error={errors['email']?.message}
-                  type="email"
-                  placeholder="Email"
-                  label="Email"
-                  required={true}
-                  control={control}
-                  register={register}
-                  name="email"
-                  disabled={isSubmitting}
-                />
-              </Box>
-
-              <Button
-                size="2"
-                loading={isSubmitting}
-                disabled={isSubmitting || isSubmitSuccessful}
-                submitted={isSubmitSuccessful}
-                css={{
-                  w: '100%',
-                  gridColumn: 'span 2',
-                  mt: 8,
-
-                  '&:disabled': {
-                    opacity: '1',
-                  },
-                }}
-              >
-                {isSubmitSuccessful ? 'Submitted!' : 'Submit'}
-              </Button>
-            </S.Form>
-
-            <Flex align="start" css={{ gap: 10, w: '100%', mt: 16 }}>
-              <Svg.Secure />
-              <S.SecureText>
-                I agree to the website&apos;s privacy terms and understand my information
-                will only be used for contact purposes.
-              </S.SecureText>
-            </Flex>
+            <FormProvider {...popUpForm}>
+              <Form onOpenPopup={setOpenPopup} />
+            </FormProvider>
           </Box>
         </Flex>
       </Dialog.Content>

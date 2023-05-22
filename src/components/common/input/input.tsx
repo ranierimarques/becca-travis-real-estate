@@ -51,7 +51,7 @@ interface InputProps {
     | 'selling_price'
   type: string
   placeholder: string
-  label: string
+  label: string | string[]
   required: boolean
 }
 

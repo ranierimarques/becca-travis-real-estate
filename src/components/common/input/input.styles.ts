@@ -11,6 +11,17 @@ export const Label = styled('label', {
   fontSize: '12px',
   lineHeight: '16px',
   color: '$gray2',
+
+  variants: {
+    checkbox: {
+      true: {
+        flexDirection: 'row',
+        gap: 8,
+        fontWeight: '500',
+        color: '$gray3',
+      },
+    },
+  },
 })
 
 export const LabelWrapper = styled('div', {
