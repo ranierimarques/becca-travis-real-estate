@@ -50,10 +50,12 @@ export function PopUp() {
 
   useEffect(() => {
     const cookie = getCookie('pop-up')
+
     if (!cookie?.subscribed && !cookie?.closed) {
       const timer = setTimeout(() => {
         setOpenPopup(true)
       }, 1000 * 5)
+
       return () => {
         clearTimeout(timer)
       }
@@ -63,7 +65,6 @@ export function PopUp() {
   function handleOpenChange(open: boolean) {
     if (!isSubmitting && !isSubmitSuccessful) {
       setOpenPopup(open)
-
       setCookie('pop-up', { closed: true }, { expires: 'session' })
     }
   }
