@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  if (req.headers.Type === 'post') {
+  if (req.headers.type === 'post') {
     const totalPosts: TotalPostsQuery = await request(baseURL, query2)
 
     try {
@@ -41,13 +41,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  if (req.headers.Type === 'utils') {
+  if (req.headers.type === 'utils') {
     try {
-      await res.revalidate(JSON.parse(req.body).data.slug)
+      await res.revalidate(`/${req.body.data.slug}`)
       return res.json({ revalidated: true })
     } catch (err) {
       // If there was an error, Next.js will continue
       // to show the last successfully generated page
+      console.log(err)
       return res.status(500).send('Error revalidating')
     }
   }
