@@ -20,7 +20,7 @@ export default function PostPage({ data }: any) {
 
 export async function getStaticPaths() {
   const data = await request(
-    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
+    'https://us-east-1.cdn.hygraph.com/content/cl5jvxz1t27ha01ujh7na0fn3/master',
     gql`
       query {
         posts {
@@ -60,7 +60,7 @@ const query = gql`
 
 export async function getStaticProps({ params }: any) {
   const data = await request(
-    'https://api-us-east-1.hygraph.com/v2/cl5jvxz1t27ha01ujh7na0fn3/master',
+    'https://us-east-1.cdn.hygraph.com/content/cl5jvxz1t27ha01ujh7na0fn3/master',
     query,
     {
       slug: params.slug,
