@@ -23,6 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Invalid token' })
   }
 
+  console.log(req.headers)
+
   if (req.headers.Type === 'post') {
     const totalPosts: TotalPostsQuery = await request(baseURL, query2)
 
