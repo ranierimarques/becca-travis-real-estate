@@ -43,6 +43,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.headers.type === 'utils') {
     try {
+      console.log('teste')
+
+      console.log(JSON.parse(req.body).data.slug)
+
       await res.revalidate(JSON.parse(req.body).data.slug)
       return res.json({ revalidated: true })
     } catch (err) {
