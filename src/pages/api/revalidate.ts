@@ -44,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.headers.type === 'utils') {
     try {
       console.log('teste')
+      console.log('ab', `/${req.body.data.slug}`)
       console.log('a', req.body.data.slug)
       console.log('b', JSON.stringify(req.body.data.slug))
       console.log('c', JSON.parse(req.body).data.slug)
