@@ -32,7 +32,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const paths = Array.from({ length: Math.ceil(totalPosts.posts.length / 6) }).map(
         (_, i) => `/blog/${i + 2}`
       )
-      await Promise.all(paths.map(path => res.revalidate(path)))
+      await Promise.all([
+        ...paths.map(path => res.revalidate(path)),
+        `/${req.body.data.slug}`,
+      ])
       return res.json({ revalidated: true })
     } catch (err) {
       // If there was an error, Next.js will continue
