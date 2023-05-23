@@ -23,6 +23,7 @@ const schoolRating: Record<string, ReactNode> = {
 }
 
 export function Schools({ communityName, schools }: SchoolsProps) {
+  const levelsLength = Object.keys(schools).length
   return (
     <Section hasMaxWidth>
       <S.Title>
@@ -35,51 +36,45 @@ export function Schools({ communityName, schools }: SchoolsProps) {
         your family.
       </S.Description>
 
-      <Box
-        css={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 32,
-
-          '@bp4': {
-            gridTemplateColumns: '1fr 1fr',
-          },
-          '@bp3': {
-            gridTemplateColumns: '1fr',
-          },
-        }}
+      <S.TableContainer
+        onlyOneLevel={levelsLength === 1}
+        onlyTwoLevels={levelsLength === 2}
       >
-        {levels.map(level => (
-          <S.SchoolsTable key={level}>
-            <S.SchoolCategory>{level}</S.SchoolCategory>
-            <S.Hr />
-            <ul>
-              {schools[level].map(school => (
-                <S.School key={school.schoolid}>
-                  <Flex direction="column" css={{ gap: 6 }}>
-                    <S.SchoolName href={school.url} target="_blank">
-                      {school.schoolName}
-                    </S.SchoolName>
-                    <Flex align="center" css={{ gap: 8 }}>
-                      <S.SchoolInfoCard>
-                        Grades:{' '}
-                        <span>
-                          {school.lowGrade} - {school.highGrade}
-                        </span>
-                      </S.SchoolInfoCard>
-                      <Box css={{ br: 999, w: 5, h: 5, bg: '$grayW7' }} />
-                      <S.SchoolInfoCard>
-                        Enrollment: <span>{school.numberOfStudents}</span>
-                      </S.SchoolInfoCard>
-                    </Flex>
-                  </Flex>
-                  <Box css={{ paddingTop: 6 }}>{schoolRating[school.rankStars]}</Box>
-                </S.School>
-              ))}
-            </ul>
-          </S.SchoolsTable>
-        ))}
-      </Box>
+        {levels.map(level => {
+          if (schools[level]) {
+            return (
+              <S.SchoolsTable key={level}>
+                <S.SchoolCategory>{level}</S.SchoolCategory>
+                <S.Hr />
+                <ul>
+                  {schools[level]?.map(school => (
+                    <S.School key={school.schoolid}>
+                      <Flex direction="column" css={{ gap: 6 }}>
+                        <S.SchoolName href={school.url} target="_blank">
+                          {school.schoolName}
+                        </S.SchoolName>
+                        <Flex align="center" css={{ gap: 8 }}>
+                          <S.SchoolInfoCard>
+                            Grades:{' '}
+                            <span>
+                              {school.lowGrade} - {school.highGrade}
+                            </span>
+                          </S.SchoolInfoCard>
+                          <Box css={{ br: 999, w: 5, h: 5, bg: '$grayW7' }} />
+                          <S.SchoolInfoCard>
+                            Enrollment: <span>{school.numberOfStudents}</span>
+                          </S.SchoolInfoCard>
+                        </Flex>
+                      </Flex>
+                      <Box css={{ paddingTop: 6 }}>{schoolRating[school.rankStars]}</Box>
+                    </S.School>
+                  ))}
+                </ul>
+              </S.SchoolsTable>
+            )
+          }
+        })}
+      </S.TableContainer>
     </Section>
   )
 }

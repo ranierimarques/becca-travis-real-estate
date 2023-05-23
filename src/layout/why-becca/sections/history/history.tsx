@@ -13,12 +13,14 @@ export function History() {
     >
       <S.Container>
         <S.TextContainer>
-          <Hat variant="2">Meet Huntsville</Hat>
+          <Hat variant="2">Meet Becca</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
-            There are many reasons why Huntsville is a great place to live. The economy is
-            strong and there are plenty of jobs available. The schools are excellent, and
-            the living cost is very affordable.
+            Becca Travis is a passionate real estate professional who loves working with
+            people from all cultures. Fluent in Portuguese and conversational in Spanish,
+            Becca has a unique ability to connect with clients on a personal level and
+            make the home buying or selling process a stress-free and enjoyable
+            experience.
           </S.Paragraph>
         </S.TextContainer>
 
@@ -41,12 +43,15 @@ export function History() {
         </Box>
 
         <S.TextContainer>
-          <Hat variant="2">Meet Huntsville</Hat>
+          <Hat variant="2">Meet Becca</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
-            Huntsville is home to a number of highly respected colleges and universities.
-            The quality of education in Huntsville is excellent, and students who attend
-            school here have the opportunity to receive a well-rounded education.
+            With a background in IT staffing and marketing, Becca brings a consultative
+            approach to working with her clients. She is dedicated to helping buyers and
+            sellers achieve their dreams in Madison and Limestone counties in Northern
+            Alabama. Becca is committed to treating her clients with the utmost respect
+            and professionalism, always following the golden rule of treating others how
+            THEY want to be treated.
           </S.Paragraph>
         </S.TextContainer>
 
@@ -56,13 +61,13 @@ export function History() {
 
       <S.Container>
         <S.TextContainer>
-          <Hat variant="2">Meet Huntsville</Hat>
+          <Hat variant="2">Meet Becca</Hat>
           <S.Title>Becca Travis Real State</S.Title>
           <S.Paragraph>
-            The Huntsville area offers an excellent real estate market. You&apos;ll find
-            an amazing selection of homes for sale here, and my job is to make sure you
-            have all the information needed so we can save time on finding what fits best
-            with your needs!
+            Becca&apos;s dedication to her clients has been recognized by her peers and
+            the industry. She was honored as the 2021 Coldwell Banker International
+            Diamond Society winner, ranked in the top 50 agents in Alabama, and named one
+            of the top 20 agents on social media in Huntsville.
           </S.Paragraph>
         </S.TextContainer>
         <Box css={{ borderRadius: 8, overflow: 'hidden' }}>

@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Analytics } from '@vercel/analytics/react'
-import { Footer, Navbar } from '@/common'
+import { DevTools, Footer, Navbar } from '@/common'
 import { globalStyles } from '@/styles/global'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Analytics />
         <Footer />
+        {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && <DevTools />}
       </Hydrate>
     </QueryClientProvider>
   )

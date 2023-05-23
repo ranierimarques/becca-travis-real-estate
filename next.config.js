@@ -74,7 +74,7 @@ const ContentSecurityPolicy = `
   img-src * blob: data:;
   media-src 'self';
   connect-src *;
-  font-src 'self' fonts.gstatic.com;
+  font-src 'self' fonts.gstatic.com assets.vercel.com;
 `
 
 const securityHeaders = [

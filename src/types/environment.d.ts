@@ -13,5 +13,7 @@ declare namespace NodeJS {
     BRIDGE_API_KEY: string
     REVALIDATE_API_SECRET_TOKEN: string
     YELP_API_KEY: string
+    SCHOOL_DIGGER_API_KEY: string
+    SCHOOL_DIGGER_API_ID: string
   }
 }

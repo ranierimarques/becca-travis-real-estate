@@ -99,6 +99,11 @@ const sharedStyles = css({
         color: 'transparent !important',
       },
     },
+    submitted: {
+      true: {
+        background: '$green2',
+      },
+    },
     askAQuestion: {
       true: {
         '@bp2': {

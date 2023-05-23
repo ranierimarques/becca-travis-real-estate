@@ -15,8 +15,8 @@ export function Hero() {
       <SearchInput navigate />
 
       <S.HelperText>
-        If you have any questions about the properties <br />
-        listed on this page, please feel free to contact us.
+        If you have any questions about the properties listed, <br /> please don&apos;t
+        hesitate to contact us. We&apos;re here to help!
       </S.HelperText>
 
       <S.ImageWrapper>

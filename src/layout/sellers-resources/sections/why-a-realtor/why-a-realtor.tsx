@@ -6,18 +6,25 @@ import * as S from './why-a-realtor.styles'
 const reasons = [
   {
     title: 'Up-to-date knowledge',
-    paragraph: `Agents have up-to-date knowledge of the market and
-    can help you find the best deal. I'm ready to help you in this process!`,
+    paragraph: `Working with an experienced realtor provides you with access to up-to-date knowledge that is essential when selling your home.
+     A good realtor will provide you with a comparative market analysis done by a human, which will give you an accurate understanding of the current market conditions and how to price your home competitively.`,
     svg: <Svg.Certified className={S.SvgStyles()} />,
   },
   {
-    title: 'Best features',
-    paragraph: `They have resources at their disposal that you likely don't, like access to MLS listings and Multiple Listing Services (MLS).`,
+    title: 'Making Marketing work for you',
+    paragraph: `An experienced realtor can provide you with the latest marketing techniques to target buyers moving to the Huntsville area, including professional photography and 3-D tours.
+     In addition, they can perform a comparative market analysis, providing you with up-to-date knowledge of local home values and market trends.
+      By partnering with a knowledgeable realtor, you can be confident that you have access to the most current information and tools to sell your home quickly and for top dollar.
+    `,
     svg: <Svg.Contract className={S.SvgStyles()} />,
   },
   {
     title: 'Experience',
-    paragraph: `A good agent will be with you every step of the way, from finding the right property to getting through closing negotiations.`,
+    paragraph: `Experience is key when it comes to successfully selling a home.
+      We believe in being there for our clients every step of the way, from finding the perfect property to navigating closing negotiations.
+      we have access to relocation buyers who may be interested in your home, and we understand how to leverage the power of social media to reach even more potential buyers.
+      Our experience and resources ensure that we have the tools necessary to sell your home quickly and for top dollar.
+    `,
     svg: <Svg.Search className={S.SvgStyles()} />,
   },
 ]
@@ -27,12 +34,13 @@ export function WhyARealtor() {
     <S.Section hasMaxWidth>
       <S.Container>
         <S.Content>
-          <Hat variant="2">Meet Huntsville</Hat>
+          <Hat variant="2">Sell your home</Hat>
           <S.Title>Why you need a Realtor</S.Title>
           <S.Paragraph>
-            While it is possible to sell a home without the help of a realtor, there are
-            several reasons why working with an experienced professional can be
-            advantageous. Here are three of the most important ones:
+            Selling a home can be a complex and challenging process, and while some may
+            consider going the DIY route, partnering with an experienced realtor can bring
+            numerous benefits. Here are just a few reasons why having a professional on
+            your side can help you maximize your profits and minimize the headaches:
           </S.Paragraph>
           <Button
             href="/contact-us"

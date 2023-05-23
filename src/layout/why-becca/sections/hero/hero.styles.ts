@@ -26,7 +26,7 @@ export const Container = styled('div', {
 export const Title = styled('h1', {
   marginBottom: 24,
 
-  maxWidth: '428px',
+  maxWidth: '400px',
 
   fontWeight: '500',
   fontSize: '36px',
@@ -53,7 +53,7 @@ export const Title = styled('h1', {
 
 export const Paragraph = styled('p', {
   marginBottom: 48,
-  maxWidth: '380px',
+  maxWidth: '450px',
 
   fontWeight: '400',
   fontSize: '16px',

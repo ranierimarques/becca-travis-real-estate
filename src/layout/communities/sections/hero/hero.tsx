@@ -20,43 +20,43 @@ type Communities = {
 
 const communities: Communities = {
   harvest: {
-    title: 'The Harvest is Plenty',
-    description: 'Where seeds have been planted, people have been nurtured',
+    title: 'Thinking about moving to Harvest?',
+    description:
+      'The charming community of Harvest offers a peaceful and tranquil escape from the hustle and bustle of city life.',
     image: Img.harvest,
     source: 'https://unsplash.com/pt-br/fotografias/uttvGsYg1DI',
   },
   huntsville: {
-    title: 'The Heart of Huntsville',
+    title: 'Are you considering a move to Huntsville, Alabama?',
     description:
-      'Beautiful hillsides, various entertainment and diverse ethnicities is what makes the heart of Huntsville',
+      'Huntsville, Alabama is a thriving city known for its rich history, technological advancements, and Southern charm.',
     image: Img.huntsville,
     source: 'https://unsplash.com/pt-br/fotografias/6Qo5-GUXFqc',
   },
   hamptonCove: {
     title: 'Happenings of Hampton Cove',
     description:
-      'This community of widespread features from a waterfall entry, exclusive golf course, paved walkways and a flair of flamingos, makes this one of the most sought after neighborhoods',
+      'Nestled amidst the stunning natural beauty of North Alabama, Hampton Cove is a place where the best of urban and rural lifestyles converge.',
     image: Img.hamptonCove,
     source: 'https://unsplash.com/pt-br/fotografias/HrwSidHL9fM',
   },
   decatur: {
-    title: 'Destined for Decatur',
+    title: 'Discover Decatur',
     description:
-      'With the largest Victorian era home in close proximity, and Alabamas oldest opera house in the area, this is sure to be a prime location for anyone wanting to experience the culture of our beautiful state',
+      'Decatur is a vibrant city with a rich history, strong economy, and plenty of recreational opportunities.',
     image: Img.decatur,
     source: 'https://unsplash.com/pt-br/fotografias/uttvGsYg1DI',
   },
   athens: {
-    title: 'What about Athens?',
-    description:
-      'The manufacturing industry keeps this community thriving. Athens State University founded in 1822 is still an intricant part of the community.   People within the community and surrounding areas are makes up the pulse of Athens',
+    title: 'Call Athens Home',
+    description: 'Athens, Alabama: Where History and Nature Meet.',
     image: Img.athens,
     source: 'https://unsplash.com/pt-br/fotografias/aPgxZw4zcyc',
   },
   meridianville: {
-    title: 'The Make-Up of Meridianville',
+    title: 'Welcome to Meridianville, Alabama',
     description:
-      'This quaint suburb of Huntsville sets in Madison County. Considered one of the best places to reside, Meridianville offers a rural feel in a modern day community.  Amongst the farms, Wade Mountain Nature and Preserve, and Horseback Riding Tours; the Independent Musical Productions, and Huntsville Country Club brings a balance to the community',
+      'Meridianville, Alabama: Where Community and Convenience Meet. Your Gateway to Southern Charm.',
     image: Img.meridianville,
     source: 'https://unsplash.com/pt-br/fotografias/w_k-BFRiqJ0',
   },

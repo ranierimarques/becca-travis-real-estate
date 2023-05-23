@@ -6,6 +6,7 @@ import {
   Demographics,
   Hero,
   Homes,
+  Schools,
   Yelp,
 } from '@/layout/communities/sections'
 import { capitalizeEveryWord } from '@/resources/utils/text'
@@ -33,7 +34,7 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
       <About communityName={community} />
       <Demographics communityName={community} />
       {/* <MarketTrends communityName={community} /> */}
-      {/* <Schools communityName={community} schools={schools} /> */}
+      <Schools communityName={community} schools={schools} />
       <CommunityMap communityName={community} />
       <Homes listings={listings} communityName={community} />
       <Yelp data={data} communityName={community} />
@@ -117,9 +118,11 @@ interface SchoolData {
     lowGrade: string
     highGrade: string
     schoolLevel: 'High' | 'Elementary' | 'Middle'
-    rankHistory: {
-      rankStars: string
-    }[]
+    rankHistory:
+      | {
+          rankStars: string
+        }[]
+      | null
     schoolYearlyDetails: {
       numberOfStudents: string
     }[]
@@ -161,7 +164,14 @@ export async function getStaticProps({ params }: Params) {
   )
 
   const schoolsResponse = await fetch(
-    'https://api.schooldigger.com/v2.0/schools?st=AL&sortBy=rank&includeUnrankedSchoolsInRankSort=false&appID=d85b40ba&appKey=a7817ba93111d8421a1c0d8d46ccb2ae'
+    `https://api.schooldigger.com/v2.0/schools?st=AL&city=${community.replace(
+      ' ',
+      '%20'
+    )}&sortBy=rank&includeUnrankedSchoolsInRankSort=${
+      community === 'meridianville' ? 'true' : 'false'
+    }&appID=${process.env.SCHOOL_DIGGER_API_ID}&appKey=${
+      process.env.SCHOOL_DIGGER_API_KEY
+    }`
   )
   const schoolsData: SchoolData = await schoolsResponse.json()
 
@@ -177,14 +187,14 @@ export async function getStaticProps({ params }: Params) {
           lowGrade: currentValue.lowGrade,
           highGrade: currentValue.highGrade,
           schoolLevel: currentValue.schoolLevel,
-          rankStars: currentValue.rankHistory[0].rankStars,
-          numberOfStudents: currentValue.schoolYearlyDetails[0].numberOfStudents,
+          rankStars: currentValue.rankHistory?.[0].rankStars ?? null,
+          numberOfStudents:
+            currentValue.schoolYearlyDetails?.[0].numberOfStudents ?? null,
         },
       ],
     }),
     {} as SchoolList
   )
-
   const data = (await response.json()) as FetchTypes
 
   const listings = await getHouseListing({

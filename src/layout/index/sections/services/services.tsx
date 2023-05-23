@@ -9,7 +9,8 @@ const cardsData = [
     image: purchase,
     alt: 'A magnifying glass searching a house',
     title: 'Purchase a home',
-    description: `Do you want to move to the Huntsville or Madison, Al area? We have you covered. Our database is constantly updated so we are the best place to search for homes in North Alabama.`,
+    description: `Looking to move to Huntsville or Madison, AL? We've got you covered. With our constantly updated database, we're the go-to source for finding homes in North Alabama.
+    `,
     href: '/homes',
     buttonText: 'Search a home',
   },
@@ -17,7 +18,7 @@ const cardsData = [
     image: sell,
     alt: 'Home sales page',
     title: 'Sell your home today',
-    description: `We understand you have unique needs when it comes to selling your home. We will come up with a custom strategy to sell your property for top dollar.`,
+    description: `Selling your home is a significant decision, and we understand that your situation is unique. We create a customized strategy to sell your property for top dollar. Trust us for exceptional service and results that exceed your expectations.`,
     href: '/sell-with-us',
     buttonText: 'Sell your home',
   },
@@ -25,7 +26,7 @@ const cardsData = [
     image: find,
     alt: 'Your home price valuation chart',
     title: 'Find your home value',
-    description: `We make it easy for you to get a personalized estimate of your home's value by providing an accurate estimate. Find your properties value.`,
+    description: `Get a personalized estimate of your home's value with ease. Our accurate estimate system makes it simple to find out what your property is worth. Find your home's value now.`,
     href: '/sellers-resources#home-bot',
     buttonText: 'Estimate value',
   },
@@ -35,11 +36,12 @@ export function Services() {
   return (
     <Section direction="vertical" padding="1" hasMaxWidth css={{ textAlign: 'center' }}>
       <Hat>MAIN SERVICES</Hat>
-      <S.Title>How can we help you?</S.Title>
+      <S.Title>Looking to buy or sell a home?</S.Title>
       <S.Description>
-        Experience matters. As one of Huntsvilles, Al top agents I know how to deliver top
-        results. <br />
-        You would not settle buying a home, why settle with your agent.
+        As one of the top real estate agents in the area, I have the experience and
+        expertise to help you achieve your goals. <br /> With a consultative approach, I
+        work closely with clients to make their home buying and selling dreams a reality.
+        Don&apos;t settle for anything less than exceptional service.
       </S.Description>
 
       <S.Cards>
