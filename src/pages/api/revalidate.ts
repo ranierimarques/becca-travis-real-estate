@@ -23,9 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  console.log(req.headers)
-
-  if (req.headers.Type === 'post') {
+  if (req.headers.type === 'post') {
     const totalPosts: TotalPostsQuery = await request(baseURL, query2)
 
     try {
@@ -43,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  if (req.headers.Type === 'utils') {
+  if (req.headers.type === 'utils') {
     try {
       await res.revalidate(JSON.parse(req.body).data.slug)
       return res.json({ revalidated: true })
