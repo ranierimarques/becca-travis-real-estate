@@ -33,8 +33,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         (_, i) => `/blog/${i + 2}`
       )
       await Promise.all([
-        ...paths.map(path => res.revalidate(path)),
         res.revalidate(`/post/${req.body.data.slug}`),
+        ...paths.map(path => res.revalidate(path)),
       ])
       return res.json({ revalidated: true })
     } catch (err) {
