@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log(JSON.parse(req.body).data)
       console.log(JSON.parse(req.body).data.slug)
 
-      await res.revalidate(JSON.parse(req.body).data.slug)
+      await res.revalidate(`/${JSON.parse(req.body).data.slug}`)
       return res.json({ revalidated: true })
     } catch (err) {
       // If there was an error, Next.js will continue
