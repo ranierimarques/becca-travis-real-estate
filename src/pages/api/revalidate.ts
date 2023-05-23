@@ -23,19 +23,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  const totalPosts: TotalPostsQuery = await request(baseURL, query2)
+  if (req.headers.Type === 'post') {
+    const totalPosts: TotalPostsQuery = await request(baseURL, query2)
 
-  try {
-    // this should be the actual path not a rewritten path
-    // e.g. for "/blog/[slug]" this should be "/blog/post-1"
-    const paths = Array.from({ length: Math.ceil(totalPosts.posts.length / 6) }).map(
-      (_, i) => `/blog/${i + 2}`
-    )
-    await Promise.all(paths.map(path => res.revalidate(path)))
-    return res.json({ revalidated: true })
-  } catch (err) {
-    // If there was an error, Next.js will continue
-    // to show the last successfully generated page
-    return res.status(500).send('Error revalidating')
+    try {
+      // this should be the actual path not a rewritten path
+      // e.g. for "/blog/[slug]" this should be "/blog/post-1"
+      const paths = Array.from({ length: Math.ceil(totalPosts.posts.length / 6) }).map(
+        (_, i) => `/blog/${i + 2}`
+      )
+      await Promise.all(paths.map(path => res.revalidate(path)))
+      return res.json({ revalidated: true })
+    } catch (err) {
+      // If there was an error, Next.js will continue
+      // to show the last successfully generated page
+      return res.status(500).send('Error revalidating')
+    }
   }
+
+  if (req.headers.Type === 'utils') {
+    try {
+      await res.revalidate(JSON.parse(req.body).data.slug)
+      return res.json({ revalidated: true })
+    } catch (err) {
+      // If there was an error, Next.js will continue
+      // to show the last successfully generated page
+      return res.status(500).send('Error revalidating')
+    }
+  }
+
+  return res.status(500).send('Error revalidating')
 }
