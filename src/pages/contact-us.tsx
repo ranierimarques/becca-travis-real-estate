@@ -9,7 +9,7 @@ const Home: NextPage = () => {
         title="Contact us | Becca Travis"
         description="Need help? Send us a message | Becca Travis"
         image="/sharing-cards/og-contact-us.jpg"
-        alt="Contact Becca Travis today and start with the best realtor."
+        alt="Contact Becca Travis today and start with the best REALTOR®."
       />
 
       <Hero />
