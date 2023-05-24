@@ -126,7 +126,7 @@ const reviews = [
   {
     name: 'Nick R.',
     source: 'Google',
-    text: `If you need a realtor in Huntsville, Becca is your go-to AGENT! she goes above
+    text: `If you need a REALTOR® in Huntsville, Becca is your go-to AGENT! she goes above
       and beyond for you and has many outside referrals and connections to make your life
       EASIER! she is awesome and we will continue to use her as we continue to buy more
       rentals! thanks again!`,
@@ -150,7 +150,7 @@ const reviews = [
     name: 'C. Hill',
     source: 'Google',
     text: `My wife, our kids and myself were looking for a place to purchase in the
-     Huntsville area and were living in Seattle WA.  We needed a realtor we could trust
+     Huntsville area and were living in Seattle WA.  We needed a REALTOR® we could trust
       and it had to be someone we could meet over the phone and trust that would work for
        us from 2600 miles away`,
   },

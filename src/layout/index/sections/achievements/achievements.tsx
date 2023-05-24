@@ -12,7 +12,7 @@ const badges = [
   },
   {
     icon: <Svg.Cup />,
-    description: 'Alabamas Top Real State Agent',
+    description: 'Alabamas Top Real Estate Agent',
   },
   {
     icon: <Svg.Flag />,
@@ -42,7 +42,7 @@ export function Achievements() {
           },
         }}
       >
-        <Hat>Becca Travis Real State Group</Hat>
+        <Hat>Becca Travis Real Estate Group</Hat>
         <S.Line />
         <S.Title>
           Experience the freedom that comes with having one of Alabama&apos;s top real

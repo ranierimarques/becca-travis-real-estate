@@ -14,7 +14,7 @@ export function History() {
       <S.Container>
         <S.TextContainer>
           <Hat variant="2">Meet Becca</Hat>
-          <S.Title>Becca Travis Real State</S.Title>
+          <S.Title>Becca Travis Real Estate</S.Title>
           <S.Paragraph>
             Becca Travis is a passionate real estate professional who loves working with
             people from all cultures. Fluent in Portuguese and conversational in Spanish,
@@ -44,7 +44,7 @@ export function History() {
 
         <S.TextContainer>
           <Hat variant="2">Meet Becca</Hat>
-          <S.Title>Becca Travis Real State</S.Title>
+          <S.Title>Becca Travis Real Estate</S.Title>
           <S.Paragraph>
             With a background in IT staffing and marketing, Becca brings a consultative
             approach to working with her clients. She is dedicated to helping buyers and
@@ -62,12 +62,12 @@ export function History() {
       <S.Container>
         <S.TextContainer>
           <Hat variant="2">Meet Becca</Hat>
-          <S.Title>Becca Travis Real State</S.Title>
+          <S.Title>Becca Travis Real Estate</S.Title>
           <S.Paragraph>
             Becca&apos;s dedication to her clients has been recognized by her peers and
-            the industry. She was honored as the 2021 Coldwell Banker International
-            Diamond Society winner, ranked in the top 50 agents in Alabama, and named one
-            of the top 20 agents on social media in Huntsville.
+            the industry. She was honored as the 2021 and 2022 Coldwell Banker
+            International Diamond Society winner, ranked in the top 50 agents in Alabama,
+            and named one of the top 20 agents on social media in Huntsville.
           </S.Paragraph>
         </S.TextContainer>
         <Box css={{ borderRadius: 8, overflow: 'hidden' }}>

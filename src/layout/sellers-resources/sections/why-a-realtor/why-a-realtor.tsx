@@ -6,15 +6,15 @@ import * as S from './why-a-realtor.styles'
 const reasons = [
   {
     title: 'Up-to-date knowledge',
-    paragraph: `Working with an experienced realtor provides you with access to up-to-date knowledge that is essential when selling your home.
-     A good realtor will provide you with a comparative market analysis done by a human, which will give you an accurate understanding of the current market conditions and how to price your home competitively.`,
+    paragraph: `Working with an experienced REALTOR® provides you with access to up-to-date knowledge that is essential when selling your home.
+     A good REALTOR® will provide you with a comparative market analysis done by a human, which will give you an accurate understanding of the current market conditions and how to price your home competitively.`,
     svg: <Svg.Certified className={S.SvgStyles()} />,
   },
   {
     title: 'Making Marketing work for you',
-    paragraph: `An experienced realtor can provide you with the latest marketing techniques to target buyers moving to the Huntsville area, including professional photography and 3-D tours.
+    paragraph: `An experienced REALTOR® can provide you with the latest marketing techniques to target buyers moving to the Huntsville area, including professional photography and 3-D tours.
      In addition, they can perform a comparative market analysis, providing you with up-to-date knowledge of local home values and market trends.
-      By partnering with a knowledgeable realtor, you can be confident that you have access to the most current information and tools to sell your home quickly and for top dollar.
+      By partnering with a knowledgeable REALTOR®, you can be confident that you have access to the most current information and tools to sell your home quickly and for top dollar.
     `,
     svg: <Svg.Contract className={S.SvgStyles()} />,
   },
@@ -35,12 +35,12 @@ export function WhyARealtor() {
       <S.Container>
         <S.Content>
           <Hat variant="2">Sell your home</Hat>
-          <S.Title>Why you need a Realtor</S.Title>
+          <S.Title>Why you need a REALTOR®</S.Title>
           <S.Paragraph>
             Selling a home can be a complex and challenging process, and while some may
-            consider going the DIY route, partnering with an experienced realtor can bring
-            numerous benefits. Here are just a few reasons why having a professional on
-            your side can help you maximize your profits and minimize the headaches:
+            consider going the DIY route, partnering with an experienced REALTOR® can
+            bring numerous benefits. Here are just a few reasons why having a professional
+            on your side can help you maximize your profits and minimize the headaches:
           </S.Paragraph>
           <Button
             href="/contact-us"
