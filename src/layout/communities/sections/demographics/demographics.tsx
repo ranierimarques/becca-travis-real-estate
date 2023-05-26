@@ -25,9 +25,9 @@ const demographicData: DemographicData = {
   },
   huntsville: {
     medianAge: 37,
-    income: 66317,
+    income: 54778,
     college: 73,
-    unemployment: 2.5,
+    unemployment: 2,
   },
   athens: {
     medianAge: 41,

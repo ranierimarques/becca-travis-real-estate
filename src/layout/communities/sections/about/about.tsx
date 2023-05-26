@@ -334,7 +334,7 @@ export function About({ communityName }: AboutProps) {
   return (
     <S.Section hasMaxWidth id={`about-${communityName.toLowerCase()}`}>
       <S.Title>
-        {communityName === 'huntsville' ? 'Welcome' : 'About'}{' '}
+        {communityName === 'huntsville' ? 'Welcome to' : 'About'}{' '}
         <S.Community>{communityName}</S.Community>
       </S.Title>
       <S.Paragraph>{texts[isHamptonCove ? 'hamptonCove' : communityName]}</S.Paragraph>
