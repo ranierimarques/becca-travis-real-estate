@@ -1,81 +1,159 @@
-import { Fragment } from 'react'
 import { Box, Flex, Image } from '@/common'
 import { Tooltip } from '@/primitives'
 import { Hat, LastCall } from '@/shared'
 import { Section } from '@/template'
+import { ListItemChild, PostData, PostElements, Textual } from '@/types/post'
 import { getDate } from '@/utils/date'
 import * as S from './post.styles'
 import { ClockSvg } from './svgs'
 
-function GetList({ post }: any) {
-  return (
-    <>
-      {post.children.map((child: any, i: number) => {
-        return <S.ListItem key={i}>{child.children[0].children[0].text}</S.ListItem>
-      })}
-    </>
-  )
+function listItemChildSwitch(listItemChild: ListItemChild) {
+  return listItemChild.map((content, index) => {
+    if ('type' in content && content.type !== 'link') {
+      return contentSwitch(content, index)
+    }
+
+    return textualSwitch(content, index)
+  })
 }
 
-function contentSwitch(type: string, post: any, index: number) {
-  switch (type) {
+function textualSwitch(content: Textual, index: number) {
+  if ('type' in content && content.type === 'link') {
+    return (
+      <a
+        key={index}
+        href={content.href}
+        target={content.openInNewTab ? '_blank' : '_self'}
+        rel="noreferrer noopener"
+      >
+        {content.children.map((child, index) => textualSwitch(child, index))}
+      </a>
+    )
+  }
+
+  if ('text' in content) {
+    return (
+      <S.Text
+        key={index}
+        underline={content.underline}
+        bold={content.bold}
+        italic={content.italic}
+      >
+        {content.text}
+      </S.Text>
+    )
+  }
+
+  throw new Error(`Some case in textual switch isn't implemented`)
+}
+
+function contentSwitch(content: PostElements, index: number) {
+  switch (content.type) {
     case 'heading-one': {
-      return <S.Heading1 key={index}>{post.children[0].text}</S.Heading1>
+      return (
+        <S.Heading1 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading1>
+      )
     }
     case 'heading-two': {
-      return <S.Heading2 key={index}>{post.children[0].text}</S.Heading2>
+      return (
+        <S.Heading2 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading2>
+      )
     }
     case 'heading-three': {
-      return <S.Heading3 key={index}>{post.children[0].text}</S.Heading3>
+      return (
+        <S.Heading3 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading3>
+      )
     }
     case 'heading-four': {
-      return <S.Heading4 key={index}>{post.children[0].text}</S.Heading4>
+      return (
+        <S.Heading4 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading4>
+      )
     }
     case 'heading-five': {
-      return <S.Heading5 key={index}>{post.children[0].text}</S.Heading5>
+      return (
+        <S.Heading5 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading5>
+      )
     }
     case 'heading-six': {
-      return <S.Heading6 key={index}>{post.children[0].text}</S.Heading6>
+      return (
+        <S.Heading6 key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Heading6>
+      )
     }
     case 'paragraph': {
-      return <S.Paragraph key={index}>{post.children[0].text}</S.Paragraph>
-    }
-    case 'block-quote': {
-      return <S.Blockquote key={index}>{post.children[0].text}</S.Blockquote>
+      return (
+        <S.Paragraph key={index}>
+          {content.children.map((textual, index) => textualSwitch(textual, index))}
+        </S.Paragraph>
+      )
     }
     case 'numbered-list': {
       return (
         <S.OrderedList key={index}>
-          <GetList post={post} index={index} />
+          {content.children.map((listItem, index) => (
+            <S.ListItem key={index}>
+              {listItem.children.map(listItemChild =>
+                listItemChildSwitch(listItemChild.children)
+              )}
+            </S.ListItem>
+          ))}
         </S.OrderedList>
       )
     }
     case 'bulleted-list': {
       return (
         <S.UnorderedList key={index}>
-          <GetList post={post} index={index} />
+          {content.children.map((listItem, index) => (
+            <S.ListItem key={index}>
+              {listItem.children.map(listItemChild =>
+                listItemChildSwitch(listItemChild.children)
+              )}
+            </S.ListItem>
+          ))}
         </S.UnorderedList>
       )
     }
-    case 'image': {
+    case 'table': {
       return (
-        <Box key={index} css={{ mb: 24, br: 8, overflow: 'hidden' }}>
-          <Image
-            src={post.src}
-            alt={post.title}
-            width={post.width}
-            height={post.height}
-          />
-        </Box>
+        <S.Table key={index}>
+          <tbody>
+            {content.children[0].children.map((tableRow, index) => (
+              <S.Tr key={index}>
+                {tableRow.children.map((tableCell, index) => (
+                  <S.Th key={index}>
+                    {tableCell.children.map((content, index) =>
+                      contentSwitch(content, index)
+                    )}
+                  </S.Th>
+                ))}
+              </S.Tr>
+            ))}
+          </tbody>
+        </S.Table>
       )
     }
     default: {
-      return <Fragment key={index}>{post.children[0].text}</Fragment>
+      throw new Error(`Some case in content switch isn't implemented`)
     }
   }
 }
 
-export function Post({ data }: any) {
+type PostProps = {
+  data: PostData
+}
+
+export function Post({ data }: PostProps) {
   const article = data.post
 
   return (
@@ -160,7 +238,6 @@ export function Post({ data }: any) {
                 </Box>
               </S.PostDetails>
               <S.Divider />
-              {/* <DividerSvg /> */}
             </div>
           </Box>
         </S.Header>
@@ -168,8 +245,8 @@ export function Post({ data }: any) {
 
       <S.Content>
         <S.Container>
-          {article.postContent.raw.children.map((post: any, index: number) =>
-            contentSwitch(post.type, post, index)
+          {article.postContent.raw.children.map((post, index) =>
+            contentSwitch(post, index)
           )}
         </S.Container>
       </S.Content>

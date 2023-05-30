@@ -146,6 +146,61 @@ export const LastUpdate = styled('span', {
   },
 })
 
+export const Text = styled('span', {
+  variants: {
+    bold: {
+      true: {
+        fontWeight: 'bold',
+      },
+    },
+    italic: {
+      true: {
+        fontStyle: 'italic',
+      },
+    },
+    underline: {
+      true: {
+        textDecoration: 'underline',
+      },
+    },
+  },
+})
+
+export const Table = styled('table', {
+  background: '$grayW10',
+  borderRadius: 8,
+  padding: 16,
+
+  textAlign: 'left',
+
+  marginBottom: 16,
+})
+
+export const Tr = styled('tr', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  justifyContent: 'center',
+
+  '&:not(:last-child)': {
+    boxShadow: 'rgba($colors$blackRgb, 0.12) 0px -1px 0px inset',
+  },
+})
+
+export const Th = styled('th', {
+  padding: 24,
+
+  '@bp2': {
+    '& p': {
+      fontSize: 10,
+      lineHeight: '14px',
+    },
+    '& li': {
+      fontSize: 10,
+      lineHeight: '14px',
+    },
+  },
+})
+
 export const Heading1 = styled('h1', {
   fontWeight: '500',
   fontSize: '40px',
