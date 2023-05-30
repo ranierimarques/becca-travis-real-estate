@@ -143,6 +143,18 @@ function contentSwitch(content: PostElements, index: number) {
         </S.Table>
       )
     }
+    case 'image': {
+      return (
+        <Box key={index} css={{ mb: 24, br: 8, overflow: 'hidden' }}>
+          <Image
+            src={content.src}
+            alt={content.title}
+            width={content.width}
+            height={content.height}
+          />
+        </Box>
+      )
+    }
     default: {
       throw new Error(`Some case in content switch isn't implemented`)
     }

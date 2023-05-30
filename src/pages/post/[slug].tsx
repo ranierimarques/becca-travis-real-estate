@@ -61,7 +61,11 @@ const query = gql`
   }
 `
 
-export async function getStaticProps({ params }: any) {
+type GetStaticPropsParams = {
+  params: { slug: string }
+}
+
+export async function getStaticProps({ params }: GetStaticPropsParams) {
   const data = await request(
     'https://us-east-1.cdn.hygraph.com/content/cl5jvxz1t27ha01ujh7na0fn3/master',
     query,
