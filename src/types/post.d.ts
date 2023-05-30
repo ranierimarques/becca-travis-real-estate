@@ -16,6 +16,19 @@ type Link = {
 
 export type Textual = Text | Link
 
+// Image
+
+type Image = {
+  src: string
+  type: 'image'
+  title: string
+  width: number
+  handle: string
+  height: number
+  children: Textual[]
+  mimeType: string
+}
+
 // Heading
 
 type HeadingOne = {
@@ -117,6 +130,7 @@ export type PostElements =
   | BulletedList
   | NumberedList
   | Table
+  | Image
 
 type PostPage = {
   postTitle: string
