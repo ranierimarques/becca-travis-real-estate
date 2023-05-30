@@ -1,9 +1,10 @@
+import type { InferGetStaticPropsType, NextPage } from 'next'
 import request, { gql } from 'graphql-request'
 import getReadingTime from 'reading-time'
 import { MetaSEO } from '@/common'
 import { Post } from '@/layout/post-slug/sections'
 
-export default function PostPage({ data }: any) {
+const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ data }) => {
   return (
     <main>
       <MetaSEO
@@ -17,6 +18,8 @@ export default function PostPage({ data }: any) {
     </main>
   )
 }
+
+export default PostPage
 
 export async function getStaticPaths() {
   const data = await request(
