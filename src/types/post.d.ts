@@ -119,6 +119,19 @@ type BulletedList = {
   }[]
 }
 
+// Code block
+
+type CodeBlock = {
+  type: 'code-block'
+  children: {
+    type: 'paragraph'
+    children: {
+      code: boolean
+      text: string
+    }[]
+  }[]
+}
+
 export type PostElements =
   | HeadingOne
   | HeadingTwo
@@ -131,6 +144,7 @@ export type PostElements =
   | NumberedList
   | Table
   | Image
+  | CodeBlock
 
 type PostPage = {
   postTitle: string

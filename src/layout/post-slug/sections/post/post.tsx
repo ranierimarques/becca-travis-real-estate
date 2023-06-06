@@ -155,6 +155,13 @@ function contentSwitch(content: PostElements, index: number) {
         </Box>
       )
     }
+    case 'code-block': {
+      return (
+        <code
+          dangerouslySetInnerHTML={{ __html: content.children[0].children[0].text }}
+        />
+      )
+    }
     default: {
       throw new Error(`Some case in content switch isn't implemented`)
     }
