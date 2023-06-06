@@ -1,11 +1,6 @@
 import type { NextPage } from 'next'
 import { MetaSEO } from '@/common'
-import {
-  Hero,
-  Sellers,
-  SellingWithUs,
-  WhyARealtor,
-} from '@/layout/sellers-resources/sections'
+import { Hero, SellingWithUs, WhyARealtor } from '@/layout/sellers-resources/sections'
 import { LastCall } from '@/shared'
 
 const Home: NextPage = () => {
@@ -20,7 +15,6 @@ const Home: NextPage = () => {
 
       <Hero />
       <WhyARealtor />
-      <Sellers />
       <SellingWithUs />
       <LastCall />
     </main>
