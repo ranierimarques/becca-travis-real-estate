@@ -4,12 +4,15 @@ import { Circles } from './svgs'
 
 export const Section = styled(TemplateSection, {
   pt: 120,
+  pb: 160,
 
   '@bp5': {
     pt: 148,
+    pb: 120,
   },
   '@bp4': {
     pt: 208,
+    pb: 80,
   },
   '@bp3': {
     pt: 168,
