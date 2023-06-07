@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Box } from '@/common'
-import { Logo } from '../svgs'
+import * as Svg from '../svgs'
 import * as S from './copyrights.styles'
 
 export function Copyrights() {
@@ -12,7 +12,7 @@ export function Copyrights() {
     <Box
       css={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateColumns: '1fr auto 1fr',
         alignItems: 'center',
 
         padding: '32px 0',
@@ -36,9 +36,19 @@ export function Copyrights() {
         </S.Link>
       </S.MadeBy>
 
-      <S.LogoLink href="/">
-        <Logo />
-      </S.LogoLink>
+      <S.Logos>
+        <S.LogoLink href="/">
+          <Svg.Logo />
+        </S.LogoLink>
+        <S.Divider vertical />
+        <S.ColdLink
+          href="https://www.coldwellbanker.com/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <Svg.ColdWellLogo />
+        </S.ColdLink>
+      </S.Logos>
 
       <S.Copyright>© {new Date().getFullYear()} — All rights reserved.</S.Copyright>
 

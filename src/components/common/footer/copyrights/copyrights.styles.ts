@@ -62,20 +62,30 @@ export const Heart = styled(HeartSvg, {
   },
 })
 
-export const LogoLink = styled(NextLink, {
+export const Logos = styled('div', {
+  display: 'flex',
+  gap: 16,
+
   justifySelf: 'center',
 
+  '@bp4': {
+    order: '0',
+    marginBottom: 12,
+
+    flexDirection: 'column',
+    gap: 32,
+  },
+})
+
+export const LogoLink = styled(NextLink, {
   '&:focus-visible': {
     borderRadius: 1,
     outline: '2px auto rgba($colors$magenta1Rgb, 0.2)',
     outlineOffset: '6px',
   },
-
-  '@bp4': {
-    order: '0',
-    marginBottom: 12,
-  },
 })
+
+export const ColdLink = styled('a', LogoLink)
 
 export const Divider = styled('div', {
   display: 'none',
@@ -89,6 +99,22 @@ export const Divider = styled('div', {
 
   '@bp4': {
     display: 'block',
+  },
+
+  variants: {
+    vertical: {
+      true: {
+        height: 24,
+        width: 1,
+        background: '$grayW6',
+        margin: 0,
+        display: 'block',
+
+        '@bp4': {
+          display: 'none',
+        },
+      },
+    },
   },
 })
 
