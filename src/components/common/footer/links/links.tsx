@@ -130,7 +130,7 @@ export function Links() {
                 target="_self"
                 rel="noreferrer noopener"
               >
-                <Phone /> +1 (256) 318-9066
+                <Phone /> (256) 318-9066
               </S.ContactLink>
             </li>
           </S.LinkList>
