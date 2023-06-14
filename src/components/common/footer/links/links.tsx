@@ -197,7 +197,7 @@ export function Links() {
           },
         }}
       >
-        <S.Title>Utils</S.Title>
+        <S.Title>Terms of use</S.Title>
         <S.Separator />
         <S.LinkList>
           <GetLinks links={utilsLinks} />
