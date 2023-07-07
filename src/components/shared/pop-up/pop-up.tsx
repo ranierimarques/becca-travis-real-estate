@@ -31,8 +31,8 @@ const formSchema = z.object({
     .refine(value => isValidPhoneNumber(value), {
       message: 'Invalid phone number',
     }),
-  method_of_communication: z.enum(['phone', 'text']),
-  subject_of_preference: z.enum(['buying', 'selling']),
+  method_of_communication: z.enum(['phone', 'text']).default('text'),
+  subject_of_preference: z.enum(['buying', 'selling']).default('buying'),
 })
 
 export type FormSchemaType = z.infer<typeof formSchema>
