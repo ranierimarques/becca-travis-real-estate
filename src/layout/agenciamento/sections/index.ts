@@ -1,0 +1,6 @@
+export { Hero } from './hero/hero'
+export { Contact } from './contact/contact'
+export { Cascade } from './cascade/cascade'
+export { FinancialUnderstanding } from './financial-understanding/financial-understanding'
+export { Experience } from './experience/experience'
+export { InternacionalConnection } from './internacional-connection/internacional-connection'
