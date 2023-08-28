@@ -2,7 +2,7 @@ import * as S from './pagination.styles'
 
 const getPages = (length: number, inc = 1) => Array.from({ length }, (_, i) => i + inc)
 
-const dotts = '...'
+const dots = '...'
 
 function usePagination(totalItems: number, currentPage: number, itemsPerPage: number) {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
@@ -13,14 +13,14 @@ function usePagination(totalItems: number, currentPage: number, itemsPerPage: nu
   }
   // -> 1 2 3 4 ... 10
   if (currentPage <= 3) {
-    return [1, 2, 3, 4, dotts, totalPages]
+    return [1, 2, 3, 4, dots, totalPages]
   }
   // -> 1 ... 4 5 6 ... 10
   if (currentPage < totalPages - 2) {
-    return [1, dotts, currentPage - 1, currentPage, currentPage + 1, dotts, totalPages]
+    return [1, dots, currentPage - 1, currentPage, currentPage + 1, dots, totalPages]
   }
   // -> 1 ... 7 8 9 10
-  return [1, dotts, ...getPages(4, totalPages - 3)]
+  return [1, dots, ...getPages(4, totalPages - 3)]
 }
 
 export type PaginationProps = {
@@ -41,7 +41,7 @@ export function Pagination({
   return (
     <S.Container>
       {pages.map((pageNumber, i) =>
-        pageNumber === dotts ? (
+        pageNumber === dots ? (
           <S.Dotts key={i}>{pageNumber}</S.Dotts>
         ) : (
           <S.Link
