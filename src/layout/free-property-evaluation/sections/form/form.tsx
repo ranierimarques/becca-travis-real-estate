@@ -292,9 +292,6 @@ export function Form() {
         >
           Get your free home evaluation!
         </Button>
-        <Button type="button" onClick={() => reset()}>
-          Reset
-        </Button>
       </S.Form>
       <Toast openToast={openToast} onOpenToast={setOpenToast} form />
     </Section>
