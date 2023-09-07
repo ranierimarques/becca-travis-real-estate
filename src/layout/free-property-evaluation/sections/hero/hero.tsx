@@ -18,7 +18,7 @@ export function Hero() {
         estate dreams come true!
       </S.Paragraph>
       <S.KeepExploring onClick={scrollTo}>
-        <Svg.CircleArrow /> Continuar explorando
+        <Svg.CircleArrow /> Keep exploring
       </S.KeepExploring>
     </S.Section>
   )

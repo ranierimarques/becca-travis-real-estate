@@ -4,8 +4,8 @@ import { styled } from 'stitches.config'
 export const RadioGroupItem = styled(RadioGroup.Item, {
   all: 'unset',
   backgroundColor: 'white',
-  width: 16,
-  height: 16,
+  width: 22,
+  height: 22,
   borderRadius: '100%',
 
   outline: 'solid 2px $grayW5',
@@ -19,8 +19,8 @@ export const RadioGroupItem = styled(RadioGroup.Item, {
   variants: {
     conventional: {
       true: {
-        outline: 'solid 2px $grayW7',
-        borderRadius: '20%',
+        outline: 'solid 1px $grayW7',
+        borderRadius: 4,
       },
     },
   },
@@ -90,7 +90,7 @@ export const Label = styled('label', {
         '&:hover': {
           [`& ${RadioGroupItem}`]: {
             '&[data-state="unchecked"]': {
-              outline: 'solid 2px $grayW5',
+              outline: 'solid 1px $grayW5',
             },
           },
         },
