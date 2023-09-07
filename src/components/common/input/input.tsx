@@ -19,10 +19,12 @@ interface InputProps {
     | 'additional_information'
     | 'timeframe'
     | 'selling_price'
+    | 'property_details'
+    | 'other_comments'
   type: string
   placeholder: string
   label: string | string[]
-  required: boolean
+  required?: boolean
 }
 
 export function Input({

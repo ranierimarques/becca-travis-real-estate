@@ -15,8 +15,15 @@ export const RadioGroupItem = styled(RadioGroup.Item, {
     background: '$magenta1',
     outline: 'none',
   },
-  // '&:hover': { backgroundColor: violet.violet3 },
-  // '&:focus': { boxShadow: `0 0 0 2px black` },
+
+  variants: {
+    conventional: {
+      true: {
+        outline: 'solid 2px $grayW7',
+        borderRadius: '20%',
+      },
+    },
+  },
 })
 
 export const RadioGroupIndicator = styled(RadioGroup.Indicator, {
@@ -34,6 +41,16 @@ export const RadioGroupIndicator = styled(RadioGroup.Indicator, {
     height: 8,
     borderRadius: '50%',
     backgroundColor: '$white',
+  },
+
+  variants: {
+    conventional: {
+      true: {
+        '&::after': {
+          content: 'none',
+        },
+      },
+    },
   },
 })
 
@@ -53,4 +70,35 @@ export const Label = styled('label', {
   lineHeight: '20px',
 
   '&:focus-within': { boxShadow: `0 0 0 2px $colors$magenta5` },
+
+  variants: {
+    conventional: {
+      true: {
+        justifyContent: 'normal',
+        gap: 12,
+
+        padding: 0,
+        borderRadius: 0,
+        boxShadow: 'none',
+
+        color: '$gray3',
+        fontSize: 16,
+        lineHeight: '24px',
+        fontWeight: 500,
+
+        '&:focus-within': { boxShadow: 'none' },
+        '&:hover': {
+          [`& ${RadioGroupItem}`]: {
+            '&[data-state="unchecked"]': {
+              outline: 'solid 2px $grayW5',
+            },
+          },
+        },
+
+        '& span': {
+          order: 1,
+        },
+      },
+    },
+  },
 })
