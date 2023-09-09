@@ -9,6 +9,7 @@ type Props = {
   css?: Stitches.CSS
   background?: string
   id?: string
+  as?: string
 } & SectionVariants
 
 export function Section({ background, id, ...props }: Props) {

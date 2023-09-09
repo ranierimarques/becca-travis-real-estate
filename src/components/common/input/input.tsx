@@ -1,40 +1,10 @@
-import { Control, Controller, UseFormRegister } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import * as S from './input.styles'
-
-// register: UseFormRegister<{
-//   number: string
-//   email: string
-//   first_name: string
-//   last_name: string
-//   message: string
-//   timeframe: string
-//   selling_price: string
-//   street_address: string
-//   state: string
-//   city: string
-//   zipcode: string
-//   additional_information: string
-// }>
-
-// control?: Control<{
-//   number: string
-//   message: string
-//   first_name: string
-//   last_name: string
-//   email: string
-//   street_address: string
-//   state: string
-//   city: string
-//   zipcode: string
-//   additional_information: string
-//   timeframe: string
-//   selling_price: string
-// }>
 
 interface InputProps {
   register: any
   control?: any
-  error: undefined | string
+  error: any
   disabled: boolean
   name:
     | 'number'
@@ -49,10 +19,12 @@ interface InputProps {
     | 'additional_information'
     | 'timeframe'
     | 'selling_price'
+    | 'property_details'
+    | 'other_comments'
   type: string
   placeholder: string
   label: string | string[]
-  required: boolean
+  required?: boolean
 }
 
 export function Input({

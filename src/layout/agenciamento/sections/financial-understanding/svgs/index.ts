@@ -1,0 +1,7 @@
+export { default as Cash } from './cash.svg'
+export { default as Flag } from './flag.svg'
+export { default as Invoice } from './invoice.svg'
+export { default as Money } from './money.svg'
+export { default as Pin } from './pin.svg'
+export { default as Shield } from './shield.svg'
+export { default as Arrow } from './arrow.svg'

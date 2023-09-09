@@ -41,6 +41,15 @@ export const aboutHuntsvilleListItems = [
     color: '$colors$blue2Rgb',
     disabled: true,
   },
+  {
+    id: 4,
+    icon: <Svg.Globe className={S.SvgStyles()} />,
+    title: 'Becca Travis Agenciamento',
+    href: '/agenciamento',
+    description: 'Ajudando pessoas de todo o mundo',
+    color: '$colors$green1Rgb',
+    disabled: false,
+  },
 ]
 
 export const menus = {
@@ -101,6 +110,14 @@ export const menus = {
           title: 'Sell with us',
           description: 'We can help you sell your home',
           href: '/sell-with-us',
+          disabled: false,
+        },
+        {
+          id: 2,
+          icon: <Svg.HomeChart />,
+          title: 'Property evaluation',
+          description: 'Get your FREE property valuation',
+          href: '/free-property-evaluation',
           disabled: false,
         },
       ],

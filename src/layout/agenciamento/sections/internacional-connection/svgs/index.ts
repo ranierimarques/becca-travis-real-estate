@@ -1,0 +1,6 @@
+export { default as House } from './house.svg'
+export { default as User } from './user.svg'
+export { default as Star } from './star.svg'
+export { default as Pin } from './pin.svg'
+export { default as Chart } from './chart.svg'
+export { default as Circles } from './circles.svg'

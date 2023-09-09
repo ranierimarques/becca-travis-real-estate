@@ -117,14 +117,14 @@ export function Form({ onOpenPopup }: FormTypes) {
                 onValueChange={field.onChange}
                 {...field}
               >
-                <S.Label htmlFor="r1">
-                  <S.RadioGroupItem value="phone" id="r1">
+                <S.Label>
+                  <S.RadioGroupItem value="phone">
                     <S.RadioGroupIndicator />
                   </S.RadioGroupItem>
                   Phone
                 </S.Label>
-                <S.Label htmlFor="r2">
-                  <S.RadioGroupItem value="text" id="r2">
+                <S.Label>
+                  <S.RadioGroupItem value="text">
                     <S.RadioGroupIndicator />
                   </S.RadioGroupItem>
                   Text
@@ -148,14 +148,14 @@ export function Form({ onOpenPopup }: FormTypes) {
                 {...field}
                 onValueChange={field.onChange}
               >
-                <S.Label htmlFor="r3">
-                  <S.RadioGroupItem value="buying" id="r3">
+                <S.Label>
+                  <S.RadioGroupItem value="buying">
                     <S.RadioGroupIndicator />
                   </S.RadioGroupItem>
                   Buying
                 </S.Label>
-                <S.Label htmlFor="r4">
-                  <S.RadioGroupItem value="selling" id="r4">
+                <S.Label>
+                  <S.RadioGroupItem value="selling">
                     <S.RadioGroupIndicator />
                   </S.RadioGroupItem>
                   Selling

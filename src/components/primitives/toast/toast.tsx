@@ -20,7 +20,7 @@ export function Toast({ openToast, onOpenToast, form }: ContactInformationProps)
           <link rel="preload" href={riveWasmUrl} as="fetch" crossOrigin="anonymous" />
           <link rel="preload" href="/check.riv" as="fetch" crossOrigin="anonymous" />
         </Head>
-        <ToastPrimitive.Provider duration={10000} swipeDirection="down">
+        <ToastPrimitive.Provider duration={5000} swipeDirection="down">
           <S.Root open={openToast} onOpenChange={onOpenToast}>
             <S.ToastTitle>
               <Box css={{ w: 24, h: 24 }}>
