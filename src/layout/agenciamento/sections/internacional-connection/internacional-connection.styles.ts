@@ -1,15 +1,9 @@
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
-  // display: 'flex',
-  // alignItems: 'center',
-
   padding: '80px 0',
 
   '@bp5': {
-    flexDirection: 'column',
-    gap: 48,
-
     paddingTop: 24,
     paddingBottom: 0,
   },
@@ -38,6 +32,8 @@ export const SectionTitle = styled('h1', {
     marginBottom: 14,
   },
   '@bp2': {
+    textAlign: 'center',
+
     marginBottom: 16,
 
     fontSize: '30px',
@@ -95,11 +91,16 @@ export const SwitchButton = styled('button', {
   borderRadius: 999,
   color: '$gray5',
 
+  fontSize: 16,
+  lineHeight: '28px',
+
+  whiteSpace: 'nowrap',
+
   variants: {
     active: {
       true: {
         background: '$magenta2',
-        color: '$white',
+        color: '$grayW10',
       },
     },
   },
@@ -145,7 +146,7 @@ export const Divider = styled('div', {
 })
 
 export const Title = styled('span', {
-  width: 336,
+  maxWidth: 336,
 
   color: '$gray2',
   fontSize: '24px',
@@ -155,6 +156,10 @@ export const Title = styled('span', {
   '& em': {
     color: '$magenta1',
     fontStyle: 'normal',
+  },
+
+  '@bp2': {
+    textAlign: 'center',
   },
 })
 
@@ -190,10 +195,16 @@ export const TalkWithBecca = styled('button', {
 })
 
 export const Paragraph = styled('p', {
+  maxWidth: 612,
+
   color: '$gray3',
   fontSize: '16px',
   fontWeight: '400',
   lineHeight: '28px',
+
+  '@bp2': {
+    textAlign: 'center',
+  },
 
   variants: {
     bold: {
@@ -215,7 +226,7 @@ export const Card = styled('div', {
 
   borderRadius: 14,
 
-  width: 336,
+  maxWidth: 336,
 
   '&:after': {
     content: '',
@@ -232,6 +243,14 @@ export const Card = styled('div', {
     '-webkit-mask': 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
     '-webkit-mask-composite': 'destination-out',
     maskComposite: 'exclude',
+  },
+
+  '@bp5': {
+    maxWidth: 288,
+  },
+  '@bp4': {
+    maxWidth: 'none',
+    width: '100%',
   },
 })
 
@@ -256,5 +275,8 @@ export const CardParagraph = styled('p', {
 
   '@bp5': {
     maxWidth: 240,
+  },
+  '@bp4': {
+    maxWidth: 'none',
   },
 })

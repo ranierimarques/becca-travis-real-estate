@@ -4,13 +4,20 @@ export const Container = styled('div', {
   width: '100%',
   height: '100%',
 
-  padding: '138px 300px',
+  padding: '140px 0',
 
   position: 'relative',
 
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
+  '@bp4': {
+    padding: '48px 0',
+  },
+  '@bp2': {
+    padding: '32px 16px',
+  },
 })
 
 export const Title = styled('h3', {
@@ -20,6 +27,10 @@ export const Title = styled('h3', {
   lineHeight: '32px',
 
   marginBottom: 8,
+
+  '@bp2': {
+    textAlign: 'center',
+  },
 })
 
 export const Paragraph = styled('p', {
@@ -58,7 +69,7 @@ export const Button = styled('button', {
   lineHeight: '20px',
   whiteSpace: 'nowrap',
 
-  transition: 'all 200ms ease-in',
+  // transition: 'all 200ms ease-in',
 
   '& path': {
     transition: 'stroke 200ms ease-in',
@@ -80,5 +91,15 @@ export const Button = styled('button', {
       background:
         'linear-gradient(180deg, rgba($colors$magenta5Rgb, 0.30) 0%, rgba($colors$magenta5Rgb, 0.00) 100%)',
     },
+  },
+
+  '@bp4': {
+    padding: '24px 140px',
+  },
+  '@bp2': {
+    padding: '24px 96px',
+  },
+  '@bp1': {
+    padding: '24px 80px',
   },
 })

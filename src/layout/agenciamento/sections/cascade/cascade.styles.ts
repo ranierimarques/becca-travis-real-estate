@@ -4,6 +4,13 @@ export const SectionContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: 96,
+
+  '@bp5': {
+    gap: 80,
+  },
+  '@bp2': {
+    gap: 64,
+  },
 })
 
 export const Title = styled('h3', {
@@ -13,6 +20,10 @@ export const Title = styled('h3', {
   lineHeight: '36px',
 
   marginBottom: 16,
+
+  '@bp2': {
+    textAlign: 'center',
+  },
 })
 
 export const Paragraph = styled('h3', {
@@ -35,6 +46,10 @@ export const Container = styled('div', {
   alignItems: 'center',
   justifyContent: 'space-between',
 
+  '@bp5': {
+    gap: 100,
+  },
+
   '@bp4': {
     flexDirection: 'column',
     gap: 32,
@@ -51,5 +66,18 @@ export const TextContainer = styled('div', {
 
   '@bp4': {
     alignItems: 'center',
+  },
+})
+
+export const ImageContainer = styled('div', {
+  borderRadius: 16,
+  overflow: 'hidden',
+
+  variants: {
+    middle: {
+      true: {
+        '@bp4': { order: 2 },
+      },
+    },
   },
 })

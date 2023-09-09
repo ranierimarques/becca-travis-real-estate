@@ -72,7 +72,7 @@ export function StepsInformation({ formStep, isSubmitting }: StepsInformationPro
         })}
       </S.Steps>
 
-      {/* <ContactInformationMobile formStep={formStep} isSubmitting={isSubmitting} /> */}
+      <StepInformationMobile formStep={formStep} isSubmitting={isSubmitting} />
 
       <S.SvgBackground />
 
@@ -81,62 +81,38 @@ export function StepsInformation({ formStep, isSubmitting }: StepsInformationPro
   )
 }
 
-// function ContactInformationMobile({ formStep, isSubmitting }: StepsInformationProps) {
-//   const step1Active = formStep === 1
-//   const step2Active = formStep === 2
-//   const step3Active = formStep === 3
+function StepInformationMobile({ formStep, isSubmitting }: StepsInformationProps) {
+  return (
+    <S.StepsMobile>
+      {steps.map((step, index) => {
+        const stepShouldBeActive = !isSubmitting && formStep === index + 1
+        const stepShouldBeCompleted = formStep > index + 1
 
-//   return (
-//     <S.StepsMobile>
-//       <S.StepMobile>
-//         <S.SvgContainer active={step1Active} completed={isSubmitting || formStep > 1}>
-//           {(isSubmitting && <Svg.Checkmark />) || formStep > 1 ? (
-//             <Svg.Checkmark />
-//           ) : (
-//             <Svg.House />
-//           )}
-//         </S.SvgContainer>
+        return (
+          <>
+            <S.StepMobile key={index}>
+              <S.SvgContainer
+                active={stepShouldBeActive}
+                completed={isSubmitting || stepShouldBeCompleted}
+              >
+                {(isSubmitting && <Svg.Checkmark />) || stepShouldBeCompleted ? (
+                  <Svg.Checkmark />
+                ) : (
+                  step.svg
+                )}
+              </S.SvgContainer>
 
-//         <S.StepCircle active={step1Active} completed={isSubmitting || formStep > 1} />
-
-//         <S.StepName active={step1Active}>Property information</S.StepName>
-//       </S.StepMobile>
-
-//       <S.HrMobile active={step1Active} />
-
-//       <S.StepMobile>
-//         <S.SvgContainer active={step2Active} completed={isSubmitting || formStep > 2}>
-//           {(isSubmitting && <Svg.Checkmark />) || formStep > 2 ? (
-//             <Svg.Checkmark />
-//           ) : (
-//             <Svg.User />
-//           )}
-//         </S.SvgContainer>
-
-//         <S.StepCircle active={step2Active} completed={isSubmitting || formStep > 2} />
-
-//         <S.StepName active={step2Active}>About you</S.StepName>
-//       </S.StepMobile>
-
-//       <S.HrMobile2 active={step2Active} />
-
-//       <S.StepMobile>
-//         <S.SvgContainer
-//           active={isSubmitting ? false : step3Active}
-//           completed={isSubmitting}
-//         >
-//           {isSubmitting ? <Svg.Checkmark /> : <Svg.Content />}
-//         </S.SvgContainer>
-
-//         <S.StepCircle
-//           active={isSubmitting ? false : step3Active}
-//           completed={isSubmitting}
-//         />
-
-//         <S.StepName active={isSubmitting ? false : step3Active}>
-//           Additional details
-//         </S.StepName>
-//       </S.StepMobile>
-//     </S.StepsMobile>
-//   )
-// }
+              <Flex direction="column">
+                <S.StepName active={stepShouldBeActive}>{step.name}</S.StepName>
+                <S.StepDescription>{step.description}</S.StepDescription>
+              </Flex>
+            </S.StepMobile>
+            {steps.length > index + 1 && (
+              <S.Hr active={!isSubmitting && stepShouldBeActive} />
+            )}
+          </>
+        )
+      })}
+    </S.StepsMobile>
+  )
+}

@@ -22,8 +22,13 @@ export const Card = styled('div', {
   '@bp4': {
     width: '100%',
     minWidth: 'auto',
+    maxWidth: 'none',
     background: '$white',
     boxShadow: 'none',
+
+    margin: 0,
+
+    overflow: 'initial',
 
     display: 'flex',
     flexDirection: 'column',
@@ -170,13 +175,20 @@ export const StepName = styled('span', {
   lineHeight: '20px',
   color: '$gray4',
 
+  maxWidth: 300,
+
   '@bp4': {
     position: 'absolute',
-    transform: 'translateY(100%)',
+    transform: 'translate(-50%, 100%)',
+    left: '50%',
     bottom: -12,
-  },
 
-  '@bp2': {
+    whiteSpace: 'nowrap',
+
+    wordBreak: 'keep-all',
+  },
+  '@bp3': {
+    whiteSpace: 'normal',
     textAlign: 'center',
   },
 
@@ -208,7 +220,9 @@ export const Hr = styled('div', {
   marginLeft: 26,
 
   '@bp4': {
-    display: 'none',
+    width: '100%',
+    height: '1px',
+    marginLeft: 0,
   },
 
   variants: {
@@ -228,14 +242,17 @@ export const StepsMobile = styled('div', {
   '@bp4': {
     width: '100%',
 
+    padding: '0 46px',
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
 
-    position: 'relative',
+    // position: 'relative',
   },
 
   '@bp2': {
+    display: 'none',
     padding: '0 26px',
   },
 })
@@ -245,6 +262,8 @@ export const StepMobile = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   flexShrink: 0,
+
+  position: 'relative',
 })
 
 export const StepCircle = styled('div', {
@@ -283,36 +302,6 @@ export const StepCircle = styled('div', {
   },
 })
 
-export const HrMobile = styled('div', {
-  width: '100%',
-  maxWidth: 99,
-  height: '1px',
-  background: '$grayW8',
-
-  variants: {
-    active: {
-      true: {
-        background: '$magenta4',
-      },
-    },
-  },
-})
-
-export const HrMobile2 = styled('div', {
-  width: '100%',
-  maxWidth: 99,
-  height: '1px',
-  background: '$grayW8',
-
-  variants: {
-    active: {
-      true: {
-        background: '$magenta4',
-      },
-    },
-  },
-})
-
 export const Divisor = styled('div', {
   width: '100%',
   height: '1px',
@@ -325,7 +314,11 @@ export const Divisor = styled('div', {
 
     margin: '54px 0 24px',
   },
+
   '@bp3': {
-    margin: '64px 0 24px',
+    margin: '95px 0 24px',
+  },
+  '@bp2': {
+    margin: '0 0 12px',
   },
 })

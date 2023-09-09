@@ -14,6 +14,15 @@ export function SelectScreen({ setForm }: SelectScreenProps) {
           position: 'absolute',
           b: 0,
           zIndex: -1,
+
+          '@bp5': {
+            display: 'none',
+
+            top: '50%',
+            right: '50%',
+
+            transform: 'translate(50%, -50%)',
+          },
         }}
       >
         <Svg.Circles />
@@ -25,7 +34,14 @@ export function SelectScreen({ setForm }: SelectScreenProps) {
           com as informações
         </S.Paragraph>
 
-        <Flex align="center" css={{ gap: 24 }}>
+        <Flex
+          direction={{
+            '@initial': 'row',
+            '@bp4': 'column',
+          }}
+          align="center"
+          css={{ gap: 24 }}
+        >
           <S.Button onClick={() => setForm('selling')}>
             <S.SvgBackground>
               <Svg.Sell />

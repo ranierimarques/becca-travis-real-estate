@@ -132,7 +132,13 @@ export function SellerForm({
   }
 
   return (
-    <Flex css={{ h: 584 }}>
+    <Flex
+      direction={{
+        '@initial': 'row',
+        '@bp4': 'column',
+      }}
+      css={{ h: 584, '@bp4': { padding: '24px 32px', h: '100%' } }}
+    >
       <StepsInformation isSubmitting={isSubmitting} formStep={formStep} />
       <FormProvider {...sellerForm}>
         <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>

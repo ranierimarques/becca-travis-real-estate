@@ -51,9 +51,34 @@ export function FinancialUnderstanding() {
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     drag: false,
-    slides: {
-      perView: 4,
-    },
+    slides: () => [
+      {
+        size: 0.1,
+        spacing: 0.1,
+      },
+      {
+        size: 0.2,
+        spacing: 0.2,
+      },
+      {
+        size: 0.4,
+        spacing: 0.3,
+      },
+      {
+        size: 0.6,
+        spacing: 1,
+        origin: 0.2,
+      },
+      {
+        size: 1,
+        spacing: 0.5,
+      },
+
+      {
+        size: 0.4,
+        origin: 0.6,
+      },
+    ],
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
     },
@@ -71,57 +96,50 @@ export function FinancialUnderstanding() {
   }
 
   function handleNextSlide() {
-    console.log(instanceRef.current)
     instanceRef.current?.next()
   }
 
   return (
-    <>
-      <Section hasMaxWidth as="div" css={{ pt: 100 }}>
-        <Flex align="end" justify="between" css={{ paddingBottom: 72 }}>
-          <Flex direction="column" align="start">
-            <Hat css={{ marginBottom: 8 }}>Entendimento Financeiro</Hat>
+    <Section hasMaxWidth as="div" css={{ pt: 100 }}>
+      <Flex align="end" justify="between" css={{ paddingBottom: 72 }}>
+        <Flex direction="column" align="start">
+          <Hat css={{ marginBottom: 8 }}>Entendimento Financeiro</Hat>
 
-            <S.Title>Custos comuns ao comprar uma casa em Alabama</S.Title>
-            <S.Paragraph>
-              Entendemos a importância de ter um corretor que fale a sua língua. Em
-              parceria com a renomada Coldwell.
-            </S.Paragraph>
-          </Flex>
-          {loaded && instanceRef.current && (
-            <Flex align="center" css={{ gap: 8 }}>
-              <S.Skip
-                direction="left"
-                onClick={handlePreviousSlide}
-                disabled={isFirstSlide}
-              >
-                <Svg.Arrow />
-              </S.Skip>
-
-              <S.Skip onClick={handleNextSlide} disabled={isLastSlide}>
-                <Svg.Arrow />
-              </S.Skip>
-
-              {/* <S.Index>
-            {currentSlide + 1} {media && `/ ${media.length}`}
-          </S.Index> */}
-            </Flex>
-          )}
+          <S.Title>Custos comuns ao comprar uma casa em Alabama</S.Title>
+          <S.Paragraph>
+            Entendemos a importância de ter um corretor que fale a sua língua. Em parceria
+            com a renomada Coldwell.
+          </S.Paragraph>
         </Flex>
-      </Section>
-      <Box css={{ maxWidth: '1184px', margin: '0 0 0 auto', padding: 0 }}>
-        <S.Cards ref={sliderRef} className="keen-slider">
-          {cards.map(card => (
-            <div className="keen-slider__slide" key={card.title}>
-              <S.Card>
-                {card.image}
-                <S.CardTitle>{card.title}</S.CardTitle>
-                <S.CardParagraph>{card.paragraph}</S.CardParagraph>
-              </S.Card>
-            </div>
-          ))}
-        </S.Cards>
-      </Box>
-    </>
+        {loaded && instanceRef.current && (
+          <Flex align="center" css={{ gap: 8 }}>
+            <S.Skip
+              direction="left"
+              onClick={handlePreviousSlide}
+              disabled={isFirstSlide}
+            >
+              <Svg.Arrow />
+            </S.Skip>
+
+            <S.Skip onClick={handleNextSlide} disabled={isLastSlide}>
+              <Svg.Arrow />
+            </S.Skip>
+
+            {/* <S.Index>{currentSlide + 1}</S.Index> */}
+          </Flex>
+        )}
+      </Flex>
+      <S.Cards ref={sliderRef} className="keen-slider">
+        {cards.map(card => (
+          <div className="keen-slider__slide" key={card.title}>
+            <S.Card>
+              {card.image}
+              <S.CardTitle>{card.title}</S.CardTitle>
+              <S.CardParagraph>{card.paragraph}</S.CardParagraph>
+            </S.Card>
+          </div>
+        ))}
+      </S.Cards>
+    </Section>
   )
 }

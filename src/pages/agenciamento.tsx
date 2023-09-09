@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       <Experience />
       <Cascade />
       <InternacionalConnection />
-      <FinancialUnderstanding />
+      {/* <FinancialUnderstanding /> */}
       <Contact />
     </main>
   )

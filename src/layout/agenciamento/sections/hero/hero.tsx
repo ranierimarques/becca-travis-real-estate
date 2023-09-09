@@ -1,7 +1,8 @@
-import { Box, Button, Flex } from '@/common'
+import { Box, Button, Flex, Image } from '@/common'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
 import * as S from './hero.styles'
+import * as Img from './images'
 import * as Svg from './svgs'
 
 export function Hero() {
@@ -111,18 +112,9 @@ export function Hero() {
               },
             }}
           />
-          <Box
-            css={{
-              w: 520,
-              h: '100%',
-              minHeight: 363,
-              bg: '$grayW9',
-
-              '@bp5': {
-                w: '100%',
-              },
-            }}
-          />
+          <Box css={{ br: 16, overflow: 'hidden' }}>
+            <Image src={Img.house} alt="Image of a house" />
+          </Box>
         </Box>
       </S.Container>
     </Section>

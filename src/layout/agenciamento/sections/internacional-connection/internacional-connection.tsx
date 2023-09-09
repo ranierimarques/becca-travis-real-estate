@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { css } from '@stitches/react'
 import { Box, Flex, Image } from '@/common'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
@@ -89,75 +88,92 @@ export function InternacionalConnection() {
           </S.SwitchContainer>
         </Flex>
 
-        <div>
-          <Flex align="center" css={{ gap: 124 }}>
-            <Flex direction="column" css={{ gap: 48 }}>
-              <S.Title>
-                Te ajudamos a{' '}
-                {buying ? (
-                  <>
-                    <em>adquirir</em> uma
-                  </>
-                ) : (
-                  <>
-                    <em>vender</em> a sua
-                  </>
-                )}{' '}
-                propriedade em Alabama
-              </S.Title>
-              <S.TalkWithBecca type="button">
-                <S.Avatar>
-                  <Image src={Img.becca} alt="picture of Becca" quality={100} />
-                </S.Avatar>
-                Conversar com Becca Travis
-              </S.TalkWithBecca>
-            </Flex>
-            <Flex direction="column" css={{ gap: 8 }}>
-              <S.Paragraph>
-                {buying
-                  ? `Procurando casa nos EUA? Becca Travis Imóveis é a escolha certa!
+        <Flex
+          direction={{
+            '@initial': 'row',
+            '@bp2': 'column',
+          }}
+          align="center"
+          justify="between"
+          css={{ '@bp5': { gap: 54 }, '@bp4': { gap: 32 } }}
+        >
+          <Flex
+            direction="column"
+            align={{
+              '@initial': 'start',
+              '@bp2': 'center',
+            }}
+            css={{ gap: 48 }}
+          >
+            <S.Title>
+              Te ajudamos a{' '}
+              {buying ? (
+                <>
+                  <em>adquirir</em> uma
+                </>
+              ) : (
+                <>
+                  <em>vender</em> a sua
+                </>
+              )}{' '}
+              propriedade em Alabama
+            </S.Title>
+            <S.TalkWithBecca type="button">
+              <S.Avatar>
+                <Image src={Img.becca} alt="picture of Becca" quality={100} />
+              </S.Avatar>
+              Conversar com Becca Travis
+            </S.TalkWithBecca>
+          </Flex>
+
+          <Flex direction="column" css={{ gap: 8 }}>
+            <S.Paragraph>
+              {buying
+                ? `Procurando casa nos EUA? Becca Travis Imóveis é a escolha certa!
                 Oferecemos serviços personalizados em português, inglês e espanhol. Equipe
                 qualificada, parcerias com especialistas jurídicos, contábeis,
                 construtores e mais.`
-                  : `Venda sua casa com sucesso! Contrate um agente experiente e licenciado no mercado imobiliário de Alabama para garantir uma venda tranquila e lucrativa. Esqueça o estresse na hora de vender sua propriedade, conte com a gente!`}
-              </S.Paragraph>
-              <S.Paragraph bold>
-                {buying
-                  ? `Consultoria imobiliária, financiamento, administração, assessoria
+                : `Venda sua casa com sucesso! Contrate um agente experiente e licenciado no mercado imobiliário de Alabama para garantir uma venda tranquila e lucrativa. Esqueça o estresse na hora de vender sua propriedade, conte com a gente!`}
+            </S.Paragraph>
+            <S.Paragraph bold>
+              {buying
+                ? `Consultoria imobiliária, financiamento, administração, assessoria
                 jurídica, reforma e decoração. Várias opções de imóveis. Realize seu
                 sonho! Contate-nos.`
-                  : `Oferecemos análise de mercado, precificação precisa, melhorias estratégicas e marketing eficaz. Contate-nos para realizar a sua avaliação.`}
-              </S.Paragraph>
-            </Flex>
+                : `Oferecemos análise de mercado, precificação precisa, melhorias estratégicas e marketing eficaz. Contate-nos para realizar a sua avaliação.`}
+            </S.Paragraph>
           </Flex>
-          <S.Divider />
-          <Box
-            css={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
-              gap: 32,
-              '@bp5': { gap: 24 },
-              '@bp4': { gridTemplateColumns: '1fr 1fr', gap: 32 },
-            }}
-          >
-            {buying &&
-              buy.cards.map(card => (
-                <S.Card key={card.title}>
-                  {card.image}
-                  <S.CardTitle>{card.title}</S.CardTitle>
-                  <S.CardParagraph>{card.paragraph}</S.CardParagraph>
-                </S.Card>
-              ))}
-            {!buying &&
-              sell.cards.map(card => (
-                <S.Card key={card.title}>
-                  {card.image}
-                  <S.CardTitle>{card.title}</S.CardTitle>
-                  <S.CardParagraph>{card.paragraph}</S.CardParagraph>
-                </S.Card>
-              ))}
-          </Box>
-        </div>
+        </Flex>
+
+        <S.Divider />
+
+        <Box
+          css={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            gap: 32,
+            '@bp5': { gap: 24 },
+            '@bp4': { gridTemplateColumns: '1fr 1fr', gap: 32 },
+            '@bp2': { gridTemplateColumns: '1fr', gap: 32 },
+          }}
+        >
+          {buying &&
+            buy.cards.map(card => (
+              <S.Card key={card.title}>
+                {card.image}
+                <S.CardTitle>{card.title}</S.CardTitle>
+                <S.CardParagraph>{card.paragraph}</S.CardParagraph>
+              </S.Card>
+            ))}
+          {!buying &&
+            sell.cards.map(card => (
+              <S.Card key={card.title}>
+                {card.image}
+                <S.CardTitle>{card.title}</S.CardTitle>
+                <S.CardParagraph>{card.paragraph}</S.CardParagraph>
+              </S.Card>
+            ))}
+        </Box>
       </S.Container>
     </Section>
   )

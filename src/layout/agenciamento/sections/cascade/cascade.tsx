@@ -1,7 +1,8 @@
-import { Box } from '@/common'
+import { Image } from '@/common'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
 import * as S from './cascade.styles'
+import * as Img from './images'
 
 export function Cascade() {
   return (
@@ -18,11 +19,15 @@ export function Cascade() {
             </S.Paragraph>
           </S.TextContainer>
 
-          <Box css={{ w: 520, h: 332, bg: '$offWhite1' }} />
+          <S.ImageContainer>
+            <Image src={Img.tour} alt="Image of a house" />
+          </S.ImageContainer>
         </S.Container>
 
         <S.Container>
-          <Box css={{ w: 520, h: 332, bg: '$offWhite1', '@bp4': { order: 2 } }} />
+          <S.ImageContainer middle>
+            <Image src={Img.house} alt="Image of a house" />
+          </S.ImageContainer>
 
           <S.TextContainer>
             <Hat variant="2">PROFISSIONAIS</Hat>
@@ -48,7 +53,9 @@ export function Cascade() {
             </S.Paragraph>
           </S.TextContainer>
 
-          <Box css={{ w: 520, h: 332, bg: '$offWhite1' }} />
+          <S.ImageContainer>
+            <Image src={Img.keys} alt="Image of a house" />
+          </S.ImageContainer>
         </S.Container>
       </S.SectionContainer>
     </Section>

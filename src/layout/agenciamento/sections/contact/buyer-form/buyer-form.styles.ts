@@ -33,7 +33,7 @@ export const Form = styled('form', {
 
   '@bp4': {
     gap: 32,
-    paddingTop: 0,
+    padding: 0,
   },
   '@bp2': {
     gap: 24,
