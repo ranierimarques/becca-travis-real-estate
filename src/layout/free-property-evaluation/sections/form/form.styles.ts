@@ -1,8 +1,6 @@
 import * as SelectPrimitive from '@radix-ui/react-select'
 import { styled } from 'stitches.config'
 
-export const Form = styled('form', {})
-
 export const Label = styled('label', {
   display: 'flex',
   flexDirection: 'column',
@@ -86,28 +84,6 @@ export const Content = styled(SelectPrimitive.Content, {
   borderRadius: 8,
   boxShadow:
     '0 0 0 1px $colors$grayW8, 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
-})
-
-export const Item = styled(SelectPrimitive.Item, {
-  all: 'unset',
-  display: 'flex',
-  alignItems: 'center',
-
-  padding: '8px 20px 8px 36px',
-
-  position: 'relative',
-
-  fontWeight: 600,
-  fontSize: 14,
-  lineHeight: '30px',
-  color: '$gray2',
-  letterSpacing: '-0.02em',
-
-  userSelect: 'none',
-
-  '&[data-highlighted]': {
-    background: 'rgba($colors$grayW7Rgb, 0.15)',
-  },
 })
 
 export const ItemIndicator = styled(SelectPrimitive.ItemIndicator, {

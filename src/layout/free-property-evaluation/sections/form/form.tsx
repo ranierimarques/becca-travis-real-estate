@@ -9,6 +9,8 @@ import { formSchema, formSchemaType } from './form-schema'
 import * as S from './form.styles'
 import * as Svg from './svgs'
 
+const radioItems = ['Phone', 'Email', 'Text']
+
 const aboutYou = [
   {
     name: 'first_name',
@@ -90,8 +92,6 @@ const propertyInformations = [
   required: boolean
 }[]
 
-const radioItems = ['Phone', 'Email', 'Text']
-
 export function Form() {
   const [openToast, setOpenToast] = useState(false)
 
@@ -103,7 +103,6 @@ export function Form() {
     formState: { errors, isSubmitting },
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
-    mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
@@ -121,9 +120,6 @@ export function Form() {
       }),
     })
 
-    const data = await result.json()
-    console.log(data)
-
     if (result.status === 200) {
       setOpenToast(true)
       reset()
@@ -132,7 +128,7 @@ export function Form() {
 
   return (
     <Section hasMaxWidth>
-      <S.Form onSubmit={handleSubmit(onSubmit)} noValidate id="form">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate id="form">
         <S.StepContainer>
           <S.StepTitle>About you</S.StepTitle>
           <Box
@@ -218,6 +214,7 @@ export function Form() {
               </RadioGroupRoot>
             )}
           />
+
           <S.TextReminder>
             If you select &quot;Text,&quot; be sure the phone number you enter can receive
             texts.
@@ -292,7 +289,7 @@ export function Form() {
         >
           Get your free home evaluation!
         </Button>
-      </S.Form>
+      </form>
       <Toast openToast={openToast} onOpenToast={setOpenToast} form />
     </Section>
   )
