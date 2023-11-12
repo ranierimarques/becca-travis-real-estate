@@ -230,43 +230,46 @@ export function Form() {
               <Controller
                 control={control}
                 name="social"
-                render={({ field }) => (
-                  <SelectPrimitive.Root onValueChange={field.onChange} {...field}>
-                    <S.Trigger>
-                      <SelectPrimitive.Value
-                        placeholder={field.value ?? 'How did you find this site?'}
-                      />
-                      <SelectPrimitive.Icon>
-                        <Svg.ArrowDown />
-                      </SelectPrimitive.Icon>
-                    </S.Trigger>
+                render={({ field }) => {
+                  console.log(field.value)
+                  return (
+                    <SelectPrimitive.Root onValueChange={field.onChange} {...field}>
+                      <S.Trigger>
+                        <SelectPrimitive.Value
+                          placeholder={'How did you find this site?'}
+                        />
+                        <SelectPrimitive.Icon>
+                          <Svg.ArrowDown />
+                        </SelectPrimitive.Icon>
+                      </S.Trigger>
 
-                    <SelectPrimitive.Portal>
-                      <S.Content>
-                        <S.ScrollUpButton>
-                          <Svg.Arrow />
-                        </S.ScrollUpButton>
+                      <SelectPrimitive.Portal>
+                        <S.Content>
+                          <S.ScrollUpButton>
+                            <Svg.Arrow />
+                          </S.ScrollUpButton>
 
-                        <SelectPrimitive.Viewport>
-                          <Select.Item value="website">Website</Select.Item>
-                          <Select.Item value="facebook">Facebook</Select.Item>
-                          <Select.Item value="instagram">Instagram</Select.Item>
-                          <Select.Item value="linkedin">Linkedin</Select.Item>
-                          <Select.Item value="email">Email</Select.Item>
-                          <Select.Item value="online advertisement">
-                            Online advertisement
-                          </Select.Item>
-                          <Select.Item value="direct mail">Direct mail</Select.Item>
-                          <Select.Item value="word of mouth">Word of mouth</Select.Item>
-                        </SelectPrimitive.Viewport>
+                          <SelectPrimitive.Viewport>
+                            <Select.Item value="website">Website</Select.Item>
+                            <Select.Item value="facebook">Facebook</Select.Item>
+                            <Select.Item value="instagram">Instagram</Select.Item>
+                            <Select.Item value="linkedin">Linkedin</Select.Item>
+                            <Select.Item value="email">Email</Select.Item>
+                            <Select.Item value="online advertisement">
+                              Online advertisement
+                            </Select.Item>
+                            <Select.Item value="direct mail">Direct mail</Select.Item>
+                            <Select.Item value="word of mouth">Word of mouth</Select.Item>
+                          </SelectPrimitive.Viewport>
 
-                        <S.ScrollDownButton>
-                          <Svg.Arrow />
-                        </S.ScrollDownButton>
-                      </S.Content>
-                    </SelectPrimitive.Portal>
-                  </SelectPrimitive.Root>
-                )}
+                          <S.ScrollDownButton>
+                            <Svg.Arrow />
+                          </S.ScrollDownButton>
+                        </S.Content>
+                      </SelectPrimitive.Portal>
+                    </SelectPrimitive.Root>
+                  )
+                }}
               />
             </S.Label>
             <Input
@@ -289,6 +292,7 @@ export function Form() {
         >
           Get your free home evaluation!
         </Button>
+        <Button onClick={() => reset()}>reset</Button>
       </form>
       <Toast openToast={openToast} onOpenToast={setOpenToast} form />
     </Section>

@@ -22,10 +22,6 @@ export const Paragraph = styled('h3', {
 })
 
 export const Cards = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 32,
-
   paddingBottom: 180,
 })
 
@@ -39,6 +35,8 @@ export const Card = styled('div', {
   borderRadius: 14,
 
   boxShadow: '0px 24px 112px 0px rgba(29, 22, 18, 0.05)',
+
+  border: '1px solid rgba($colors$grayW9Rgb, 0.40)',
 })
 
 export const CardTitle = styled('h5', {
@@ -74,6 +72,50 @@ export const Skip = styled('button', {
     direction: {
       left: {
         transform: 'rotate(180deg)',
+      },
+    },
+  },
+})
+
+export const Index = styled('div', {
+  width: 144,
+  height: 5,
+  background: '$grayW9',
+  borderRadius: '12px',
+
+  position: 'relative',
+
+  '&::after': {
+    content: '',
+    display: 'block',
+
+    borderRadius: '12px',
+
+    position: 'relative',
+
+    width: 48,
+    height: 5,
+    background: '$magenta2',
+
+    transition: 'left 150ms ease',
+  },
+
+  variants: {
+    variant: {
+      '1': {
+        '&::after': {
+          left: 0,
+        },
+      },
+      '2': {
+        '&::after': {
+          left: 48,
+        },
+      },
+      '3': {
+        '&::after': {
+          left: 96,
+        },
       },
     },
   },

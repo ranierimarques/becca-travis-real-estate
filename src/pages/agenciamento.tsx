@@ -6,7 +6,7 @@ import {
   Experience,
   FinancialUnderstanding,
   Hero,
-  InternacionalConnection,
+  ReachingYourGoals,
 } from '@/layout/agenciamento/sections'
 
 const Home: NextPage = () => {
@@ -22,8 +22,8 @@ const Home: NextPage = () => {
       <Hero />
       <Experience />
       <Cascade />
-      <InternacionalConnection />
-      {/* <FinancialUnderstanding /> */}
+      <ReachingYourGoals />
+      <FinancialUnderstanding />
       <Contact />
     </main>
   )

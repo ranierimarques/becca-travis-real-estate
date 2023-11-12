@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Box, Flex, Image } from '@/common'
-import { Hat } from '@/shared'
+import { Contact, Hat } from '@/shared'
 import { Section } from '@/template'
 import * as Img from './images'
-import * as S from './internacional-connection.styles'
+import * as S from './reaching-your-goals.styles'
 import * as Svg from './svgs'
 
 const sell = {
@@ -62,7 +62,7 @@ const buy = {
   ],
 }
 
-export function InternacionalConnection() {
+export function ReachingYourGoals() {
   const [buying, setBuying] = useState(true)
 
   return (
@@ -118,12 +118,14 @@ export function InternacionalConnection() {
               )}{' '}
               propriedade em Alabama
             </S.Title>
-            <S.TalkWithBecca type="button">
-              <S.Avatar>
-                <Image src={Img.becca} alt="picture of Becca" quality={100} />
-              </S.Avatar>
-              Conversar com Becca Travis
-            </S.TalkWithBecca>
+            <Contact>
+              <S.TalkWithBecca type="button">
+                <S.Avatar>
+                  <Image src={Img.becca} alt="picture of Becca" quality={100} />
+                </S.Avatar>
+                Conversar com Becca Travis
+              </S.TalkWithBecca>
+            </Contact>
           </Flex>
 
           <Flex direction="column" css={{ gap: 8 }}>

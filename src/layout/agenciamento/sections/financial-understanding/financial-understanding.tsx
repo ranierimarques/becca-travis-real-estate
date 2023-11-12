@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
-import { Box, Flex } from '@/common'
+import { Flex } from '@/common'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
 import * as S from './financial-understanding.styles'
@@ -50,35 +50,24 @@ export function FinancialUnderstanding() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    drag: false,
-    slides: () => [
-      {
-        size: 0.1,
-        spacing: 0.1,
+    range: {
+      max: 2,
+    },
+    slides: {
+      perView: 4,
+      spacing: 32,
+    },
+    breakpoints: {
+      '(max-width: 1279px)': {
+        slides: { perView: 3.5, spacing: 24 },
       },
-      {
-        size: 0.2,
-        spacing: 0.2,
+      '(max-width: 1023px)': {
+        slides: { perView: 2.5, spacing: 24 },
+        range: {
+          max: 4,
+        },
       },
-      {
-        size: 0.4,
-        spacing: 0.3,
-      },
-      {
-        size: 0.6,
-        spacing: 1,
-        origin: 0.2,
-      },
-      {
-        size: 1,
-        spacing: 0.5,
-      },
-
-      {
-        size: 0.4,
-        origin: 0.6,
-      },
-    ],
+    },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
     },
@@ -88,8 +77,7 @@ export function FinancialUnderstanding() {
   })
 
   const isFirstSlide = currentSlide === 0
-  const isLastSlide =
-    currentSlide === (instanceRef.current?.track.details.slides.length || 1) - 1
+  const isLastSlide = currentSlide === (instanceRef.current?.slides.length ?? 1) - 1
 
   function handlePreviousSlide() {
     instanceRef.current?.prev()
@@ -101,7 +89,18 @@ export function FinancialUnderstanding() {
 
   return (
     <Section hasMaxWidth as="div" css={{ pt: 100 }}>
-      <Flex align="end" justify="between" css={{ paddingBottom: 72 }}>
+      <Flex
+        direction={{
+          '@initial': 'row',
+          '@bp4': 'column',
+        }}
+        align={{
+          '@initial': 'end',
+          '@bp4': 'start',
+        }}
+        justify="between"
+        css={{ paddingBottom: 72, '@bp4': { gap: 32 } }}
+      >
         <Flex direction="column" align="start">
           <Hat css={{ marginBottom: 8 }}>Entendimento Financeiro</Hat>
 
@@ -112,20 +111,25 @@ export function FinancialUnderstanding() {
           </S.Paragraph>
         </Flex>
         {loaded && instanceRef.current && (
-          <Flex align="center" css={{ gap: 8 }}>
-            <S.Skip
-              direction="left"
-              onClick={handlePreviousSlide}
-              disabled={isFirstSlide}
-            >
-              <Svg.Arrow />
-            </S.Skip>
+          <Flex
+            align="center"
+            justify="between"
+            css={{ gap: 112, '@bp4': { gap: 0, w: '100%' } }}
+          >
+            <S.Index variant={currentSlide + 1} />
+            <Flex align="center" css={{ gap: 8 }}>
+              <S.Skip
+                direction="left"
+                onClick={handlePreviousSlide}
+                disabled={isFirstSlide}
+              >
+                <Svg.Arrow />
+              </S.Skip>
 
-            <S.Skip onClick={handleNextSlide} disabled={isLastSlide}>
-              <Svg.Arrow />
-            </S.Skip>
-
-            {/* <S.Index>{currentSlide + 1}</S.Index> */}
+              <S.Skip onClick={handleNextSlide} disabled={isLastSlide}>
+                <Svg.Arrow />
+              </S.Skip>
+            </Flex>
           </Flex>
         )}
       </Flex>
