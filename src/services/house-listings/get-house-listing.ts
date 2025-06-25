@@ -3,16 +3,16 @@ import { formatToDollar } from '@/resources/utils/currency'
 import { getFormattedDate } from '@/resources/utils/date'
 import { GetHouseListing, House, HouseCard, Params, ReturnType, Type } from './types'
 
-const baseURL = 'https://api.bridgedataoutput.com/api/v2/valleymls/listings'
+const baseURL = 'https://api.bridgedataoutput.com/api/v2/test/listings'
 const defaultParams: Params = {
   limit: '3',
   'PropertyType.in': 'Residential',
-  'StandardStatus.in': 'Active',
-  fields:
-    // Return only this values
-    'Media.MediaURL,ListPrice,StandardStatus,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
-  sortBy: 'BridgeModificationTimestamp',
-  order: 'desc',
+  // 'StandardStatus.in': 'Active',
+  // fields:
+  //   // Return only this values
+  //   'Media.MediaURL,ListPrice,StandardStatus,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,Latitude,Longitude',
+  // sortBy: 'BridgeModificationTimestamp',
+  // order: 'desc',
 }
 
 function getAuthorization(fetchOn: 'browser' | 'server') {
@@ -44,20 +44,21 @@ export async function getHouseListing<T extends Type, P extends Params>({
   const authorization = getAuthorization(fetchOn)
 
   if (type === 'house') {
-    const newParams = {
-      fields:
-        'Media.MediaURL,PublicRemarks,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,StandardStatus,LotSizeSquareFeet,SubdivisionName,PropertySubType,CountyOrParish,CityRegion,FoundationDetails,Levels,BuildingAreaTotal,NewConstructionYN,PropertyCondition,PropertyType,Sewer,WaterSource,ElementarySchool,MiddleOrJuniorSchool,HighSchool,Coordinates',
-    }
-    const endpoint = baseURL + toURL + '?' + new URLSearchParams(newParams)
+    // const newParams = {
+    //   fields:
+    //     'Media.MediaURL,PublicRemarks,ListPrice,UnparsedAddress,LivingArea,BathroomsTotalInteger,BedroomsTotal,ListingId,StandardStatus,LotSizeSquareFeet,SubdivisionName,PropertySubType,CountyOrParish,CityRegion,FoundationDetails,Levels,BuildingAreaTotal,NewConstructionYN,PropertyCondition,PropertyType,Sewer,WaterSource,ElementarySchool,MiddleOrJuniorSchool,HighSchool,Coordinates',
+    // }
+    const endpoint = baseURL + toURL + '?' + new URLSearchParams(defaultParams)
 
     const response = await fetch(endpoint, authorization)
+
     const house: House = await response.json()
 
     const listing = {
       id: house.bundle.ListingId,
       price: formatToDollar(house.bundle.ListPrice),
       priceNumber: house.bundle.ListPrice,
-      address: house.bundle.UnparsedAddress,
+      address: `${house.bundle.UnparsedAddress}`,
       status: house.bundle.StandardStatus,
       lastUpdated: house.bundle.BridgeModificationTimestamp,
       lastUpdatedTitle: getFormattedDate(
@@ -101,6 +102,8 @@ export async function getHouseListing<T extends Type, P extends Params>({
   const response = await fetch(endpoint, authorization)
   const house: HouseCard = await response.json()
 
+  console.log(house)
+
   const listings = house.bundle.map(listing => {
     if (!listing) return []
 
@@ -109,7 +112,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
       media: listing.Media?.[0].MediaURL ?? null,
       status: listing.StandardStatus,
       price: formatToDollar(listing.ListPrice),
-      address: listing.UnparsedAddress,
+      address: `${listing.UnparsedAddress}`,
       bedroomsTotal: listing.BedroomsTotal,
       bathroomsTotal: listing.BathroomsTotalInteger,
       livingArea: convertSquareFeets(listing.LivingArea),
