@@ -1,4 +1,4 @@
-import { IBM_Plex_Serif } from '@next/font/google'
+import { IBM_Plex_Serif, Inter } from '@next/font/google'
 import { globalCss } from 'stitches.config'
 
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -21,6 +21,12 @@ const ibmPlexSerif = IBM_Plex_Serif({
   ],
 })
 
+const inter = Inter({
+  display: 'fallback',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+})
+
 export const globalStyles = globalCss({
   '*, *::before, *::after': {
     boxSizing: 'border-box',
@@ -33,6 +39,10 @@ export const globalStyles = globalCss({
 
   html: {
     '-webkit-text-size-adjust': '100%',
+    fontFamily: inter.style.fontFamily,
+  },
+
+  'h1, h2, h3, h4, h5, h6': {
     fontFamily: ibmPlexSerif.style.fontFamily,
   },
 
