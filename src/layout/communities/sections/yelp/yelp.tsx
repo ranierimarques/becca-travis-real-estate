@@ -172,10 +172,7 @@ export function Yelp({ data, communityName }: YelpProps) {
                 />
                 <S.BusinessName>{business.name}</S.BusinessName>
                 <S.BusinessRating>
-                  <Image
-                    src={businessRatingImage[business.rating]}
-                    alt="Business rating"
-                  />
+                  <Image src={businessRatingImage[5]} alt="Business rating" />
                 </S.BusinessRating>
                 <S.ReviewsCount>{business.review_count} Yelp reviews</S.ReviewsCount>
               </a>
