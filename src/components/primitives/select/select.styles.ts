@@ -67,6 +67,8 @@ export const Item = styled(SelectPrimitive.Item, {
 
   padding: '8px 20px 8px 36px',
 
+  textTransform: 'capitalize',
+
   position: 'relative',
 
   fontWeight: 600,

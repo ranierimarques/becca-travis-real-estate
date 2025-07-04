@@ -1,3 +1,4 @@
+import { getRandomHouseImage } from '@/resources/constants/houseImages'
 import { convertSquareFeets } from '@/resources/utils/convert'
 import { formatToDollar } from '@/resources/utils/currency'
 import { getFormattedDate } from '@/resources/utils/date'
@@ -54,6 +55,8 @@ export async function getHouseListing<T extends Type, P extends Params>({
 
     const house: House = await response.json()
 
+    const randomHouseImage = getRandomHouseImage()
+
     const listing = {
       id: house.bundle.ListingId,
       price: formatToDollar(house.bundle.ListPrice),
@@ -65,7 +68,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
         house.bundle.BridgeModificationTimestamp,
         'MMMM D, YYYY [at] h:mm:ss A [UTC]Z'
       ),
-      media: house.bundle.Media?.map(media => media.MediaURL) ?? null,
+      media: randomHouseImage.src,
       bathroomsTotal: house.bundle.BathroomsTotalInteger,
       bedroomsTotal: house.bundle.BedroomsTotal,
       lotSizeSquareFeet: convertSquareFeets(house.bundle.LotSizeSquareFeet),
@@ -91,7 +94,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
     return {
       success: house.success,
       listing,
-    } as ReturnType<T>
+    } as unknown as ReturnType<T>
   }
 
   const newParams = { ...defaultParams, ...params }
@@ -102,14 +105,14 @@ export async function getHouseListing<T extends Type, P extends Params>({
   const response = await fetch(endpoint, authorization)
   const house: HouseCard = await response.json()
 
-  console.log(house)
-
   const listings = house.bundle.map(listing => {
     if (!listing) return []
 
+    const randomHouseImage = getRandomHouseImage()
+
     return {
       id: listing.ListingId,
-      media: listing.Media?.[0].MediaURL ?? null,
+      media: randomHouseImage.src,
       status: listing.StandardStatus,
       price: formatToDollar(listing.ListPrice),
       address: `${listing.UnparsedAddress}`,

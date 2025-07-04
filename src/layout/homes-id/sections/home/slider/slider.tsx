@@ -7,7 +7,7 @@ import * as Svg from '../svgs'
 import * as S from './slider.styles'
 
 interface ListingMedia {
-  media: FormattedHouse['listing']['media']
+  media: FormattedHouse['listing']['media'] | string
 }
 
 export function Slider({ media }: ListingMedia) {
@@ -46,30 +46,26 @@ export function Slider({ media }: ListingMedia) {
     <S.NavigationWrapper>
       <div ref={sliderRef} className="keen-slider">
         {media ? (
-          media.map((url, index) => (
-            <Box key={index} className="keen-slider__slide" css={{ minWidth: '100%' }}>
-              <Box
-                css={{
-                  h: 395,
-                  overflow: 'hidden',
-                  '@bp5': { w: '100%' },
-                  '@bp2': { h: 211 },
-                  '@bp1': { h: 180 },
-                }}
-              >
-                {lazyImages[index] && (
-                  <Image
-                    src={url}
-                    alt="house image"
-                    priority={index === 0}
-                    style={{ objectFit: 'cover' }}
-                    loading="eager"
-                    fill
-                  />
-                )}
-              </Box>
+          <Box className="keen-slider__slide" css={{ minWidth: '100%' }}>
+            <Box
+              css={{
+                h: 395,
+                overflow: 'hidden',
+                '@bp5': { w: '100%' },
+                '@bp2': { h: 211 },
+                '@bp1': { h: 180 },
+              }}
+            >
+              <Image
+                src={media as string}
+                alt="house image"
+                priority={true}
+                style={{ objectFit: 'cover' }}
+                loading="eager"
+                fill
+              />
             </Box>
-          ))
+          </Box>
         ) : (
           <Box
             className="keen-slider__slide"
@@ -92,7 +88,7 @@ export function Slider({ media }: ListingMedia) {
           <S.SkipOverlay direction="right" onClick={handleNextPhoto} />
 
           <S.Index>
-            {currentSlide + 1} {media && `/ ${media.length}`}
+            {currentSlide + 1} {media && `/ 1`}
           </S.Index>
         </>
       )}
