@@ -36,6 +36,13 @@ function getValidParams(params: Params) {
   return Object.fromEntries(filteredParams)
 }
 
+// Returns random coordinates around Huntsville, AL (approx. 34.6–34.8 N, -86.7–-86.5 W)
+function getRandomHuntsvilleCoordinates() {
+  const latitude = 34.6 + Math.random() * 0.2
+  const longitude = -86.7 + Math.random() * 0.2
+  return { latitude, longitude }
+}
+
 export async function getHouseListing<T extends Type, P extends Params>({
   type,
   params,
@@ -56,6 +63,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
     const house: House = await response.json()
 
     const randomHouseImage = getRandomHouseImage()
+    const randomCoords = getRandomHuntsvilleCoordinates()
 
     const listing = {
       id: house.bundle.ListingId,
@@ -88,7 +96,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
       middleSchool: house.bundle.MiddleOrJuniorSchool,
       highSchool: house.bundle.HighSchool,
       publicRemarks: house.bundle.PublicRemarks,
-      coords: house.bundle.Coordinates,
+      coords: [randomCoords.latitude.toString(), randomCoords.longitude.toString()],
     }
 
     return {
@@ -108,7 +116,9 @@ export async function getHouseListing<T extends Type, P extends Params>({
   const listings = house.bundle.map(listing => {
     if (!listing) return []
 
+    console.log(listing)
     const randomHouseImage = getRandomHouseImage()
+    const coords = getRandomHuntsvilleCoordinates()
 
     return {
       id: listing.ListingId,
@@ -119,10 +129,7 @@ export async function getHouseListing<T extends Type, P extends Params>({
       bedroomsTotal: listing.BedroomsTotal,
       bathroomsTotal: listing.BathroomsTotalInteger,
       livingArea: convertSquareFeets(listing.LivingArea),
-      coordinates: {
-        latitude: listing.Latitude,
-        longitude: listing.Longitude,
-      },
+      coordinates: coords,
     }
   })
 
