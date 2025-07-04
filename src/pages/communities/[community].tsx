@@ -199,7 +199,7 @@ export async function getStaticProps({ params }: Params) {
 
   const listings = await getHouseListing({
     type: 'card',
-    params: { 'City.in': community, limit: '6' },
+    params: { limit: '6' },
   })
 
   return {

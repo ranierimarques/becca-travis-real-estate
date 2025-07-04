@@ -21,7 +21,6 @@ export function Homes({ listings, communityName }: HomesProps) {
     setIsLoading(true)
     const newListing = await getHouseListing({
       type: 'card',
-      params: { 'City.in': communityName, limit: '6', offset: `${6 * activeIndex}` },
       fetchOn: 'browser',
     })
     setActiveIndex(oldValue => oldValue + 1)
