@@ -11,7 +11,7 @@ export function NewToMarket() {
     queryFn: ({ pageParam = 0 }) =>
       getHouseListing({
         type: 'card',
-        params: { limit: '4', offset: `${pageParam * 4}` },
+        params: { limit: '10  ', offset: `${pageParam * 10}` },
         fetchOn: 'browser',
       }),
     getNextPageParam: (_, allPages) => allPages.length,
