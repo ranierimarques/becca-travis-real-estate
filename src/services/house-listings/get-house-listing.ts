@@ -113,25 +113,26 @@ export async function getHouseListing<T extends Type, P extends Params>({
   const response = await fetch(endpoint, authorization)
   const house: HouseCard = await response.json()
 
-  const listings = house.bundle.map(listing => {
-    if (!listing) return []
+  const listings = house.bundle
+    .filter(listing => listing && listing.UnparsedAddress)
+    .map(listing => {
+      if (!listing) return []
 
-    console.log(listing)
-    const randomHouseImage = getRandomHouseImage()
-    const coords = getRandomHuntsvilleCoordinates()
+      const randomHouseImage = getRandomHouseImage()
+      const coords = getRandomHuntsvilleCoordinates()
 
-    return {
-      id: listing.ListingId,
-      media: randomHouseImage.src,
-      status: listing.StandardStatus,
-      price: formatToDollar(listing.ListPrice),
-      address: `${listing.UnparsedAddress}`,
-      bedroomsTotal: listing.BedroomsTotal,
-      bathroomsTotal: listing.BathroomsTotalInteger,
-      livingArea: convertSquareFeets(listing.LivingArea),
-      coordinates: coords,
-    }
-  })
+      return {
+        id: listing.ListingId,
+        media: randomHouseImage.src,
+        status: listing.StandardStatus,
+        price: formatToDollar(listing.ListPrice),
+        address: `${listing.UnparsedAddress}`,
+        bedroomsTotal: listing.BedroomsTotal,
+        bathroomsTotal: listing.BathroomsTotalInteger,
+        livingArea: convertSquareFeets(listing.LivingArea),
+        coordinates: coords,
+      }
+    })
 
   if (type === 'card') {
     return listings as ReturnType<T>

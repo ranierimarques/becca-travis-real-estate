@@ -7,13 +7,25 @@ import * as Svg from '../svgs'
 import * as S from './slider.styles'
 
 interface ListingMedia {
-  media: FormattedHouse['listing']['media'] | string
+  media: FormattedHouse['listing']['media'] | string | null
 }
 
 export function Slider({ media }: ListingMedia) {
+  // Hard-coded additional interior photos for testing purposes
+  const additionalPhotos = [
+    '/house-images/inside-3.jpg',
+    '/house-images/inside-4.jpg',
+    '/house-images/inside-5.jpg',
+  ]
+
+  // Merge the listing main photo (if present) with the interior photos
+  const images = (
+    media ? [media as string, ...additionalPhotos] : additionalPhotos
+  ).filter(Boolean)
+
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
-  const [lazyImages, setLazyImages] = useState<boolean[]>([true, true, true, true])
+  const [lazyImages, setLazyImages] = useState<boolean[]>(Array(images.length).fill(true))
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     slideChanged(slider) {
@@ -45,8 +57,8 @@ export function Slider({ media }: ListingMedia) {
   return (
     <S.NavigationWrapper>
       <div ref={sliderRef} className="keen-slider">
-        {media ? (
-          <Box className="keen-slider__slide" css={{ minWidth: '100%' }}>
+        {images.map((src, index) => (
+          <Box key={index} className="keen-slider__slide" css={{ minWidth: '100%' }}>
             <Box
               css={{
                 h: 395,
@@ -57,23 +69,16 @@ export function Slider({ media }: ListingMedia) {
               }}
             >
               <Image
-                src={media as string}
+                src={src as string}
                 alt="house image"
-                priority={true}
+                priority={index === 0}
                 style={{ objectFit: 'cover' }}
-                loading="eager"
+                loading={index === 0 ? 'eager' : 'lazy'}
                 fill
               />
             </Box>
           </Box>
-        ) : (
-          <Box
-            className="keen-slider__slide"
-            css={{ w: 704, h: 395, overflow: 'hidden' }}
-          >
-            <Svg.NoHouse />
-          </Box>
-        )}
+        ))}
       </div>
       {loaded && instanceRef.current && (
         <>
@@ -88,7 +93,7 @@ export function Slider({ media }: ListingMedia) {
           <S.SkipOverlay direction="right" onClick={handleNextPhoto} />
 
           <S.Index>
-            {currentSlide + 1} {media && `/ 1`}
+            {currentSlide + 1} / {images.length}
           </S.Index>
         </>
       )}

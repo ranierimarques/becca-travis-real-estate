@@ -100,21 +100,21 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
     mapRef.current = map
   }
 
-  function onMapBoundsChanged() {
-    if (!mapRef.current || (isFirstRender && !variant)) {
-      setIsFirstRender(false)
-      return
-    }
+  // function onMapBoundsChanged() {
+  //   if (!mapRef.current || (isFirstRender && !variant)) {
+  //     setIsFirstRender(false)
+  //     return
+  //   }
 
-    const bounds = [
-      mapRef.current.getBounds()?.getSouthWest().lng(),
-      mapRef.current.getBounds()?.getSouthWest().lat(),
-      mapRef.current.getBounds()?.getNorthEast().lng(),
-      mapRef.current.getBounds()?.getNorthEast().lat(),
-    ] as number[]
+  //   const bounds = [
+  //     mapRef.current.getBounds()?.getSouthWest().lng(),
+  //     mapRef.current.getBounds()?.getSouthWest().lat(),
+  //     mapRef.current.getBounds()?.getNorthEast().lng(),
+  //     mapRef.current.getBounds()?.getNorthEast().lat(),
+  //   ] as number[]
 
-    setFilters('bounds', bounds)
-  }
+  //   setFilters('bounds', bounds)
+  // }
 
   function handleActiveCardById(id: string) {
     setActiveCardId(id)
@@ -135,7 +135,7 @@ export const Map = memo(({ variant, coords, zoom = 10 }: Props) => {
       mapContainerClassName={S.containerStyle({ variant })}
       center={coords}
       zoom={zoom}
-      onBoundsChanged={() => throttle(onMapBoundsChanged)}
+      // onBoundsChanged={() => throttle(onMapBoundsChanged)}
       onLoad={onLoad}
       options={mapOptions}
     >
