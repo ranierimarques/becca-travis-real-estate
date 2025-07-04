@@ -77,6 +77,9 @@ export const Value = styled('span', {
   maxWidth: '82px',
   textAlign: 'end',
 
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+
   fontWeight: '400',
   fontSize: '12px',
   lineHeight: '20px',
