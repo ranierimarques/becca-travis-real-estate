@@ -65,6 +65,7 @@ export function OurCommunities() {
           )
         })}
       </S.CommunitiesList>
+      <S.ExploreLink href="/areas">Explore all communities</S.ExploreLink>
     </Section>
   )
 }

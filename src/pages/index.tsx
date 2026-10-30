@@ -1,5 +1,4 @@
-import type { InferGetStaticPropsType, NextPage } from 'next'
-import { QueryClient, dehydrate } from '@tanstack/react-query'
+import type { NextPage } from 'next'
 import { MetaSEO } from '@/common'
 import {
   AboutHuntsville,
@@ -9,10 +8,9 @@ import {
   OurCommunities,
   Services,
 } from '@/layout/index/sections'
-import { getHouseListing } from '@/services/house-listings'
 import { ClientTestimonials, LastCall } from '@/shared'
 
-const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
+const Page: NextPage = () => {
   return (
     <main>
       <MetaSEO
@@ -33,23 +31,6 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
       <LastCall />
     </main>
   )
-}
-
-export const getStaticProps = async () => {
-  const queryClient = new QueryClient()
-  const listings = await getHouseListing({ type: 'card', params: { limit: '4' } })
-
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: ['home/new-to-market'],
-    queryFn: () => listings,
-  })
-
-  return {
-    props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-    },
-    revalidate: 60 * 10, // 10 minutes
-  }
 }
 
 export default Page

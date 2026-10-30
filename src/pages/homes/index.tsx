@@ -1,36 +1,38 @@
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import { MetaSEO } from '@/common'
-import { useVisualizationStore } from '@/layout/homes/store/visualization'
+import * as S from '@/resources/community-guides/styles'
 
-const Homes = dynamic(() => import('@/layout/homes/sections').then(mod => mod.Homes), {
-  ssr: false,
-  loading: () => <div style={{ height: '100vh' }} />,
-})
-
-const Page = () => {
-  const router = useRouter()
-  const setVisualization = useVisualizationStore(state => state.setVisualization)
-
-  useEffect(() => {
-    if (router.query.view === 'map') setVisualization('map')
-    if (router.query.view === 'gallery') setVisualization('gallery')
-  }, [router.query.view, setVisualization])
-
+export default function HomesPage() {
   return (
-    <main>
+    <S.Page>
       <MetaSEO
-        canonicalPath={'/homes'}
-        title="Homes For Sale | Becca Travis"
-        description="View listing photos and use our detailed real estate filters to find the perfect place | Becca Travis"
+        canonicalPath="/homes"
+        noindex
+        title="Find a Home | Becca Travis"
+        description="Contact Becca Travis for help finding a home in North Alabama."
         image="/sharing-cards/og-index.jpg"
-        alt="Feel at home before finding the perfect property"
+        alt="Becca Travis Real Estate"
       />
-
-      <Homes />
-    </main>
+      <S.Hero>
+        <S.Wrap>
+          <S.Eyebrow>Your home search</S.Eyebrow>
+          <S.Title>Let’s find your next home</S.Title>
+          <S.Intro>
+            Online property search is temporarily unavailable. Contact Becca for current
+            homes and a personal search.
+          </S.Intro>
+          <S.Action href="/contact-us">Contact Becca</S.Action>
+        </S.Wrap>
+      </S.Hero>
+      <S.Content>
+        <S.Body>
+          <h2>Explore the area</h2>
+          <p>
+            Discover communities across North Alabama while we help you find the right
+            property.
+          </p>
+          <S.Action href="/areas">Explore communities</S.Action>
+        </S.Body>
+      </S.Content>
+    </S.Page>
   )
 }
-
-export default Page

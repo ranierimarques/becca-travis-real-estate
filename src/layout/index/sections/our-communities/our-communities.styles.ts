@@ -166,3 +166,12 @@ export const ImageMask = styled('div', {
   background:
     'linear-gradient(180deg, rgba($colors$gray2Rgb, 0) 50%, rgba($colors$blackRgb, 0.6) 100%)',
 })
+
+export const ExploreLink = styled(NextLink, {
+  display: 'inline-block',
+  marginTop: 32,
+  color: '$magenta6',
+  fontWeight: 600,
+  textDecoration: 'underline',
+  textUnderlineOffset: 4,
+})

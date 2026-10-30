@@ -50,7 +50,7 @@ export function Copyrights() {
         </S.ColdLink>
       </S.Logos>
 
-      <S.Copyright>© {new Date().getFullYear()} — All rights reserved.</S.Copyright>
+      <S.Copyright>© {new Date().getFullYear()} All rights reserved.</S.Copyright>
 
       <S.Divider />
     </Box>

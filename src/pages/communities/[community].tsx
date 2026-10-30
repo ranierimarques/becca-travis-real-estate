@@ -1,22 +1,13 @@
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import { MetaSEO } from '@/common'
-import {
-  About,
-  CommunityMap,
-  Demographics,
-  Hero,
-  Homes,
-  Schools,
-  Yelp,
-} from '@/layout/communities/sections'
+import { About, Hero, Yelp } from '@/layout/communities/sections'
 import { capitalizeEveryWord } from '@/resources/utils/text'
-import { getHouseListing } from '@/services/house-listings'
 import { LastCall } from '@/shared'
 import { ReplaceAll } from '@/types/helpers'
 
 type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
 
-const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
+const Page: PageWithStaticProps = ({ data, community }) => {
   return (
     <main>
       <MetaSEO
@@ -24,7 +15,7 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
         title={`${capitalizeEveryWord(community)} Community | Becca Travis`}
         description={`Explore ${capitalizeEveryWord(
           community
-        )} in North Alabama, including local information, schools and community highlights.`}
+        )} in North Alabama, including local information and community highlights.`}
         image={`/sharing-cards/communities/${
           community === 'hampton cove' ? 'hampton-cove' : community
         }.jpg`}
@@ -33,12 +24,8 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
 
       <Hero communityName={community} />
       <About communityName={community} />
-      <Demographics communityName={community} />
       {/* <MarketTrends communityName={community} /> */}
-      <Schools communityName={community} schools={schools} />
-      <CommunityMap communityName={community} />
-      <Homes listings={listings} communityName={community} />
-      <Yelp data={data} communityName={community} />
+      {data.length > 0 && <Yelp data={data} communityName={community} />}
       <LastCall />
     </main>
   )
@@ -111,25 +98,6 @@ export interface SchoolList {
   Middle: SchoolsFormatted[]
 }
 
-interface SchoolData {
-  schoolList: {
-    schoolid: string
-    schoolName: string
-    url: string
-    lowGrade: string
-    highGrade: string
-    schoolLevel: 'High' | 'Elementary' | 'Middle'
-    rankHistory:
-      | {
-          rankStars: string
-        }[]
-      | null
-    schoolYearlyDetails: {
-      numberOfStudents: string
-    }[]
-  }[]
-}
-
 const endpoint = 'https://api.yelp.com/v3/businesses'
 
 const options = {
@@ -153,62 +121,33 @@ type Params = {
   }
 }
 
+async function fetchBusinesses(
+  community: CommunityName
+): Promise<FetchTypes['businesses']> {
+  if (!process.env.YELP_API_KEY) return []
+  try {
+    const location = community === 'athens' ? 'athens, alabama' : community
+    const response = await fetch(
+      `${endpoint}/search?location=${location}&sort_by=review_count&limit=6`,
+      options
+    )
+    if (!response.ok) return []
+    const data: FetchTypes = await response.json()
+    return Array.isArray(data.businesses) ? data.businesses : []
+  } catch (error) {
+    console.error('Unable to load local businesses', error)
+    return []
+  }
+}
+
 export async function getStaticProps({ params }: Params) {
-  const isAthens = params.community === 'athens'
   const community = params.community.replace('-', ' ') as CommunityName
-
-  const response = await fetch(
-    `${endpoint}/search?location=${
-      isAthens ? 'athens, alabama' : community
-    }&sort_by=review_count&limit=6`,
-    options
-  )
-
-  const schoolsResponse = await fetch(
-    `https://api.schooldigger.com/v2.0/schools?st=AL&city=${community.replace(
-      ' ',
-      '%20'
-    )}&sortBy=rank&includeUnrankedSchoolsInRankSort=${
-      community === 'meridianville' ? 'true' : 'false'
-    }&appID=${process.env.SCHOOL_DIGGER_API_ID}&appKey=${
-      process.env.SCHOOL_DIGGER_API_KEY
-    }`
-  )
-  const schoolsData: SchoolData = await schoolsResponse.json()
-
-  const schools = schoolsData.schoolList.reduce(
-    (accumulator, currentValue) => ({
-      ...accumulator,
-      [currentValue.schoolLevel]: [
-        ...(accumulator[currentValue.schoolLevel] ?? []),
-        {
-          schoolid: currentValue.schoolid,
-          schoolName: currentValue.schoolName,
-          url: currentValue.url,
-          lowGrade: currentValue.lowGrade,
-          highGrade: currentValue.highGrade,
-          schoolLevel: currentValue.schoolLevel,
-          rankStars: currentValue.rankHistory?.[0].rankStars ?? null,
-          numberOfStudents:
-            currentValue.schoolYearlyDetails?.[0].numberOfStudents ?? null,
-        },
-      ],
-    }),
-    {} as SchoolList
-  )
-  const data = (await response.json()) as FetchTypes
-
-  const listings = await getHouseListing({
-    type: 'card',
-    params: { limit: '6' },
-  })
+  const businesses = await fetchBusinesses(community)
 
   return {
     props: {
       community: community,
-      data: data.businesses,
-      schools,
-      listings,
+      data: businesses,
     },
   }
 }

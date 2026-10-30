@@ -9,5 +9,6 @@ const fullURL = `${url ? 'https://' + url : 'http://localhost:3000'}`
 module.exports = {
   siteUrl: fullURL,
   generateRobotsTxt: true,
+  exclude: ['/homes'],
   generateIndexSitemap: false,
 }

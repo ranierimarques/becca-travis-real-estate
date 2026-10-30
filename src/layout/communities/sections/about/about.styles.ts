@@ -65,3 +65,18 @@ export const Paragraph = styled('p', {
     fontSize: '14px',
   },
 })
+
+export const Highlights = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+  gap: 24,
+  width: '100%',
+  padding: '28px',
+  marginTop: 24,
+  background: 'rgba($colors$tangerine5Rgb, 0.2)',
+  borderRadius: 8,
+  '& div': { display: 'flex', flexDirection: 'column', gap: 8 },
+  '& strong': { color: '$magenta6', fontSize: 18 },
+  '& span': { color: '$gray2', fontSize: 15, lineHeight: '24px' },
+  '@bp3': { gridTemplateColumns: '1fr', gap: 20 },
+})
