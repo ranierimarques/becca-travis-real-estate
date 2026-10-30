@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
@@ -86,6 +87,8 @@ const inputs = [
 }[]
 
 export function Form({ onOpenToast, askAQuestion }: FormProps) {
+  const [submitError, setSubmitError] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const {
     register,
     handleSubmit,
@@ -97,23 +100,29 @@ export function Form({ onOpenToast, askAQuestion }: FormProps) {
   })
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
-    const result = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
-        subject: 'New Contact Form',
-        from_name: 'Becca Travis Website',
-        ...values,
-      }),
-    })
-
-    if (result.status === 200 && onOpenToast) {
-      onOpenToast(true)
+    setSubmitError(false)
+    setSubmitted(false)
+    try {
+      const result = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+          subject: 'New Contact Form',
+          from_name: 'Becca Travis Website',
+          ...values,
+        }),
+      })
+      const response = await result.json()
+      if (!result.ok || response.success !== true) throw new Error('Submission failed')
+      setSubmitted(true)
+      onOpenToast?.(true)
       reset()
+    } catch {
+      setSubmitError(true)
     }
   }
 
@@ -157,6 +166,13 @@ export function Form({ onOpenToast, askAQuestion }: FormProps) {
         })}
       </Box>
 
+      {submitError && (
+        <p role="alert">
+          Your message could not be sent. Please try again or call{' '}
+          <a href="tel:+12563189066">256 318 9066</a>.
+        </p>
+      )}
+      {submitted && <p role="status">Thank you. Your message has been sent.</p>}
       <S.DisclaimerContainer askAQuestion>
         <S.DisclaimerText askAQuestion>
           <S.Disclaimer>Disclaimer:</S.Disclaimer> By entering your information and

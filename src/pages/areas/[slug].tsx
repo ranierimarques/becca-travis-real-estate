@@ -117,6 +117,15 @@ export default function AreaPage({
         <S.Body>
           <h2>Explore the area</h2>
           <p>{area.explore}</p>
+          {area.details?.map(detail => (
+            <section key={detail.heading}>
+              <h2>{detail.heading}</h2>
+              <p>{detail.text}</p>
+              <p>
+                <a href={detail.source}>{detail.sourceName}</a>
+              </p>
+            </section>
+          ))}
           <h2>Consider your home search</h2>
           <p>{area.homeSearch}</p>
           <h2>Continue your research</h2>

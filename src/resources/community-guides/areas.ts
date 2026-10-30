@@ -6,6 +6,7 @@ export type AreaGuide = {
   homeSearch: string
   source: string
   sourceName: string
+  details?: { heading: string; text: string; source: string; sourceName: string }[]
 }
 
 const historic =
@@ -15,6 +16,34 @@ const county =
   'https://www.madisoncountyal.gov/residents/advanced-components/list-detail-pages/facility-directory-table-list/-sortn-FCAvailability/-sortd-asc'
 
 export const areaGuides: AreaGuide[] = [
+  {
+    slug: 'lincoln-mill',
+    name: 'Lincoln Mill',
+    introduction:
+      'Lincoln Mill brings together Huntsville’s textile history, space age ingenuity and a district that continues to find new uses for its historic buildings.',
+    explore:
+      'Start with the mill campus on Meridian Street, then spend time exploring the surrounding village and local businesses. Look closely at the industrial architecture and the residential streets that tell a different part of the area’s story.',
+    homeSearch:
+      'Compare individual properties rather than relying on a neighborhood label. Ask about a home’s condition, renovation history, parking and the routes you will use every day. For an older property, investigate any preservation requirements before making plans for exterior work.',
+    source:
+      'https://www.huntsville.org/rocket-city/districts-neighborhoods/lincoln-mill/',
+    sourceName: 'Huntsville visitor bureau, Lincoln Mill',
+    details: [
+      {
+        heading: 'From textile mill to a center for innovation',
+        text: 'The mill opened in 1900 as Madison Spinning Company and later became Lincoln Mill. After its textile era, the buildings found new life as offices used by engineers working on Huntsville’s early space and missile programs. The campus also played a role in development of NASA’s Lunar Rover.',
+        source: 'https://lincolnmill.com/history/',
+        sourceName: 'Lincoln Mill history',
+      },
+      {
+        heading: 'A neighborhood with a story',
+        text: 'The mill and its surrounding village are part of Huntsville’s broader industrial heritage. When you visit, allow time to see both the campus and nearby streets, and check current opening hours before visiting any business.',
+        source:
+          'https://www.huntsville.org/rocket-city/districts-neighborhoods/lincoln-mill/',
+        sourceName: 'Huntsville visitor bureau',
+      },
+    ],
+  },
   {
     slug: 'downtown-huntsville',
     name: 'Downtown Huntsville',
