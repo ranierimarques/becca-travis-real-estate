@@ -168,8 +168,48 @@ const texts: Texts = {
   ),
 }
 
+const localPhotos: Record<
+  string,
+  {
+    src: string
+    alt: string
+    source: string
+    author: string
+    license: string
+    label: string
+  }
+> = {
+  huntsville: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Big_Spring_Park.jpg',
+    alt: 'Big Spring Park in Huntsville',
+    source: 'https://commons.wikimedia.org/wiki/File:Big_Spring_Park.jpg',
+    author: 'BullDawg2021',
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    label: 'CC BY 4.0',
+  },
+  athens: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Limestone_County_Courthouse%2C_Athens%2C_Alabama_01.jpg',
+    alt: 'Limestone County Courthouse in downtown Athens',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Limestone_County_Courthouse,_Athens,_Alabama_01.jpg',
+    author: 'Carol M. Highsmith',
+    license: 'https://www.loc.gov/pictures/collection/highsm/about.html',
+    label: 'Library of Congress, no known copyright restrictions',
+  },
+  decatur: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Bank_Street_Decatur_July_2010_01.jpg',
+    alt: 'Historic buildings on Bank Street in Decatur',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Bank_Street_Decatur_July_2010_01.jpg',
+    author: 'Chris Pruitt',
+    license: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    label: 'CC BY SA 3.0',
+  },
+}
+
 export function About({ communityName }: AboutProps) {
   const isHamptonCove = communityName === 'hampton cove'
+  const photo = localPhotos[communityName]
   return (
     <S.Section hasMaxWidth id={`about-${communityName.toLowerCase()}`}>
       <S.Title>
@@ -177,6 +217,15 @@ export function About({ communityName }: AboutProps) {
         <S.Community>{communityName}</S.Community>
       </S.Title>
       <S.Paragraph>{texts[isHamptonCove ? 'hamptonCove' : communityName]}</S.Paragraph>
+      {photo && (
+        <S.LocalPhoto>
+          <img src={photo.src} alt={photo.alt} loading="lazy" />
+          <figcaption>
+            Photo by <a href={photo.source}>{photo.author}</a>,{' '}
+            <a href={photo.license}>{photo.label}</a>. No changes made.
+          </figcaption>
+        </S.LocalPhoto>
+      )}
       {communityName === 'huntsville' && (
         <>
           <S.Highlights aria-label="Huntsville guide at a glance">

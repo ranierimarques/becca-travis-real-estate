@@ -75,7 +75,7 @@ export const Photo = styled('figure', {
   '& img': {
     display: 'block',
     maxWidth: '100%',
-    maxHeight: 560,
+    maxHeight: 360,
     width: 'auto',
     height: 'auto',
     borderRadius: 8,

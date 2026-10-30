@@ -80,3 +80,19 @@ export const Highlights = styled('div', {
   '& span': { color: '$gray2', fontSize: 15, lineHeight: '24px' },
   '@bp3': { gridTemplateColumns: '1fr', gap: 20 },
 })
+
+export const LocalPhoto = styled('figure', {
+  width: '100%',
+  maxWidth: 790,
+  margin: '32px 0 0',
+  '& img': {
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: 400,
+    width: 'auto',
+    height: 'auto',
+    borderRadius: 8,
+  },
+  '& figcaption': { marginTop: 8, color: '$gray2', fontSize: 13, lineHeight: '20px' },
+  '& a': { color: '$magenta6' },
+})

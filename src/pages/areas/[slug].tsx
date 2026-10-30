@@ -20,6 +20,33 @@ const photos: Record<string, Photo> = {
     license: 'https://creativecommons.org/licenses/by/4.0/',
     licenseLabel: 'CC BY 4.0',
   },
+  'old-town': {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/8/85/600s_Holmes_Ave_Huntsville_Oct_2011.jpg',
+    alt: 'Holmes Avenue in the Old Town historic district of Huntsville',
+    credit: 'Chris Pruitt',
+    source:
+      'https://commons.wikimedia.org/wiki/File:600s_Holmes_Ave_Huntsville_Oct_2011.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    licenseLabel: 'CC BY SA 3.0',
+  },
+  hartselle: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/100s_Main_St_Hartselle_Feb_2012_01.jpg',
+    alt: 'Main Street in downtown Hartselle, Alabama',
+    credit: 'Chris Pruitt',
+    source:
+      'https://commons.wikimedia.org/wiki/File:100s_Main_St_Hartselle_Feb_2012_01.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    licenseLabel: 'CC BY SA 3.0',
+  },
+  'monte-sano': {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Monte_Sano_State_Park_Lodge_Overlook.jpg',
+    alt: 'View from the lodge overlook at Monte Sano State Park',
+    credit: 'AquilaMMXI',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Monte_Sano_State_Park_Lodge_Overlook.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+  },
   'five-points': {
     src: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/703_%26_705_Ward_Ave_Huntsville_Oct_2011.jpg',
     alt: 'Houses on Ward Avenue in the Five Points Historic District',
