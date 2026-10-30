@@ -7,8 +7,9 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title="Sellers Resources | Becca Travis"
-        description="Learn how we work and ensure your goals are my goals every step of the way | Becca Travis"
+        canonicalPath="/sellers-resources"
+        title="Home Seller Resources | Becca Travis"
+        description="Explore home selling resources and learn how Becca Travis supports sellers in North Alabama."
         image="/sharing-cards/og-sellers.jpg"
         alt="Discover your home's true value and sell confidently"
       />

@@ -16,8 +16,9 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis Real Estate"
-        description="Find your dream home today | Becca Travis"
+        canonicalPath="/"
+        title="Huntsville Real Estate | Becca Travis"
+        description="Explore homes and communities in Huntsville and North Alabama with Becca Travis Real Estate."
         image="/sharing-cards/og-index.jpg"
         alt="Feel at home before finding the perfect property."
       />

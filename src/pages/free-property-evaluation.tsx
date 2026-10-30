@@ -7,8 +7,9 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis Real Estate"
-        description="Find your dream home today | Becca Travis"
+        canonicalPath="/free-property-evaluation"
+        title="Free Home Evaluation | Becca Travis"
+        description="Request a free property evaluation from Becca Travis Real Estate."
         image="/sharing-cards/og-index.jpg"
         alt="Feel at home before finding the perfect property."
       />

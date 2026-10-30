@@ -58,7 +58,7 @@ export const Content = styled('div', {
   },
 })
 
-export const Title = styled('h1', {
+export const Title = styled('h2', {
   marginBottom: 16,
 
   maxWidth: '432px',

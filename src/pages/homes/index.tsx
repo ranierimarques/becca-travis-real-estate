@@ -21,6 +21,7 @@ const Page = () => {
   return (
     <main>
       <MetaSEO
+        canonicalPath={'/homes'}
         title="Homes For Sale | Becca Travis"
         description="View listing photos and use our detailed real estate filters to find the perfect place | Becca Travis"
         image="/sharing-cards/og-index.jpg"

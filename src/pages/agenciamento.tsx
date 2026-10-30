@@ -13,8 +13,9 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title="Becca Travis Real Estate"
-        description="Find your dream home today | Becca Travis"
+        canonicalPath="/agenciamento"
+        title="Agenciamento Imobiliário | Becca Travis"
+        description="Conheça os serviços imobiliários de Becca Travis no Alabama."
         image="/sharing-cards/og-index.jpg"
         alt="Feel at home before finding the perfect property."
       />

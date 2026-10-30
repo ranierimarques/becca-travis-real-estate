@@ -16,7 +16,7 @@ export const Container = styled('div', {
   },
 })
 
-export const SectionTitle = styled('h1', {
+export const SectionTitle = styled('h2', {
   marginBottom: 16,
 
   fontWeight: '500',

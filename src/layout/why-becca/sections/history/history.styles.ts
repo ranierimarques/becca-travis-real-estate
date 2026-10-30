@@ -1,7 +1,7 @@
 import { styled } from 'stitches.config'
 import { PathSvg } from './svgs'
 
-export const Title = styled('h1', {
+export const Title = styled('h2', {
   marginBottom: 16,
 
   fontWeight: '500',

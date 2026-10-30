@@ -7,6 +7,7 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ data }
   return (
     <main>
       <MetaSEO
+        canonicalPath="/accessibility-statement"
         title="Accessibility Statement | Becca Travis"
         description="Accessibility Assistance | Becca Travis"
         image="/sharing-cards/og-index.jpg"

@@ -7,8 +7,9 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
-        title="Why Becca? | Becca Travis"
-        description="Why Becca Travis should be your first choice | Becca Travis"
+        canonicalPath="/why-becca"
+        title="Meet Becca Travis | Huntsville Real Estate"
+        description="Learn about Becca Travis, her real estate experience, and her approach to serving North Alabama clients."
         image="/sharing-cards/og-why-becca.jpg"
         alt="From finding your dream home to negotiating terms on your behalf."
       />

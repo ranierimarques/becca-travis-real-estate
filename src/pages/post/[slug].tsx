@@ -8,6 +8,7 @@ const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ da
   return (
     <main>
       <MetaSEO
+        canonicalPath={`/post/${data.post.slug}`}
         title={`${data.post.postTitle} | Becca Travis`}
         description={`${data.post.postDescription} | Becca Travis`}
         image={data.post.postBanner.url}

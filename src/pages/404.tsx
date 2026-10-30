@@ -6,6 +6,8 @@ const Home: NextPage = () => {
   return (
     <main>
       <MetaSEO
+        canonicalPath="/404"
+        noindex
         title="404: Page Not Found | Becca Travis"
         description="Page Not Found | Becca Travis"
         image="/sharing-cards/og-index.jpg"

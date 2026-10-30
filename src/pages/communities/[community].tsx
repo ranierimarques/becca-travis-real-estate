@@ -20,10 +20,11 @@ const Page: PageWithStaticProps = ({ data, listings, community, schools }) => {
   return (
     <main>
       <MetaSEO
-        title={`${capitalizeEveryWord(community)} | Becca Travis`}
-        description={`Find out more about ${capitalizeEveryWord(
+        canonicalPath={`/communities/${community.replace(/ /g, '-')}`}
+        title={`${capitalizeEveryWord(community)} Community | Becca Travis`}
+        description={`Explore ${capitalizeEveryWord(
           community
-        )} | Becca Travis`}
+        )} in North Alabama, including local information, schools and community highlights.`}
         image={`/sharing-cards/communities/${
           community === 'hampton cove' ? 'hampton-cove' : community
         }.jpg`}

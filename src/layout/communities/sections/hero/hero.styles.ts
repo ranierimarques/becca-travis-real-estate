@@ -34,7 +34,7 @@ export const Background = styled('div', {
   zIndex: -1,
 })
 
-export const Title = styled('h2', {
+export const Title = styled('h1', {
   margin: '8px 0 16px',
 
   fontWeight: 500,

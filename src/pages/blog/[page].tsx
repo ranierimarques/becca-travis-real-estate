@@ -80,6 +80,7 @@ const Page: NextPage<PostsProps> = ({
   return (
     <main>
       <MetaSEO
+        canonicalPath={`/blog/${currentPage}`}
         title={`Blog ${
           currentPage > 1 ? '- Page (' + currentPage + ')' : ''
         } | Becca Travis`}
