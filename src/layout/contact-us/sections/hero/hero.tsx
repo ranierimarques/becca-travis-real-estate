@@ -14,7 +14,7 @@ export function Hero() {
         <Hat css={{ marginBottom: 8 }}>Contact us</Hat>
         <S.Title>Need help? Send us a message</S.Title>
         <S.Paragraph>
-          Your vision, is our business. Let&apos;s connect to bring it to pass
+          Your vision, is our business. Let&apos;s connect to bring it to pass.
         </S.Paragraph>
       </S.Header>
 
