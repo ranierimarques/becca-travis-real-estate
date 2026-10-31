@@ -241,7 +241,7 @@ export default function PlanningToolsPage() {
         <div className="section-heading">
           <p className="eyebrow">Start with an estimate</p>
           <h2>Three useful numbers for your next conversation</h2>
-          <p>Enter your own assumptions. These tools do not replace a lender quote, title estimate, or current payoff statement.</p>
+          <p>Example amounts are prefilled for the calculators. Replace them with your own written estimates. Results are not lender quotes, tax bills, title estimates, or payoff statements.</p>
         </div>
 
         <div className="calculator-shell">
