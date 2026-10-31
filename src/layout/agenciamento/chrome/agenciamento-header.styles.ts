@@ -25,6 +25,7 @@ export const Nav = styled('nav', {
   },
 
   '@bp3': {
+    gap: 12,
     minHeight: 60,
     padding: '0 24px',
   },
@@ -49,10 +50,10 @@ export const LogoLink = styled(Link, {
     outlineOffset: 5,
   },
 
-  '@bp1': {
+  '@bp2': {
     '& svg': {
-      height: 29,
-      width: 134,
+      height: 27,
+      width: 126,
     },
   },
 })
@@ -66,7 +67,8 @@ export const Credential = styled('span', {
   marginLeft: 35,
   whiteSpace: 'nowrap',
 
-  '@bp1': { fontSize: 8, marginLeft: 31 },
+  '@bp2': { fontSize: 8, marginLeft: 27 },
+  '@bp1': { fontSize: 7, marginLeft: 23 },
 })
 
 export const Links = styled('div', {
@@ -94,16 +96,16 @@ export const Links = styled('div', {
   },
 
   '@bp3': {
-    gap: 14,
+    gap: 0,
 
-    '& a:nth-child(2), & a:nth-child(3)': {
+    '& a:not(:last-child)': {
       display: 'none',
     },
-  },
 
-  '@bp1': {
-    '& a:first-child': {
-      display: 'none',
+    '& a:last-child': {
+      whiteSpace: 'nowrap',
+      padding: '10px 12px',
+      fontSize: 12,
     },
   },
 })

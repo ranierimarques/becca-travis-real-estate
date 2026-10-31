@@ -90,7 +90,8 @@ const questions: readonly PlannerQuestion[] = [
     field: 'remoteVisitPlan',
     label: 'Como você imagina conhecer os imóveis?',
     shortLabel: 'Visitas',
-    description: 'Vídeo, viagem e inspeção podem ser combinados conforme sua distância.',
+    description:
+      'Se você está no Brasil, organize como conhecer os imóveis antes de viajar. Confirme as opções de visita e fechamento com a equipe local.',
     options: [
       'Quero comprar à distância',
       'Posso fazer uma viagem curta',
