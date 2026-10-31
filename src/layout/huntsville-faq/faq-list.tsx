@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { FaqItem, faqSearchText, huntsvilleFaq } from '@/data/huntsville-faq'
+import type { FaqItem } from '../../data/huntsville-faq'
+import { faqSearchText, huntsvilleFaq } from '../../data/huntsville-faq'
 import * as S from './faq-list.styles'
 
 interface FaqListProps {

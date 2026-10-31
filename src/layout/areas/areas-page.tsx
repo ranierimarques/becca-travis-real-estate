@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Button, MetaSEO } from '@/common'
-import { huntsvilleFaq } from '@/data/huntsville-faq'
+import { huntsvilleFaq } from '../../data/huntsville-faq'
 import { PaymentEstimator } from '@/layout/communities/sections/payment-estimator/payment-estimator'
 import { FaqPreview } from '@/layout/faq-preview'
 import { LiveMlsDrawer, LiveMlsTarget } from '@/layout/live-mls-drawer'

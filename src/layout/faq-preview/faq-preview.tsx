@@ -1,4 +1,4 @@
-import { FaqItem } from '@/data/huntsville-faq'
+import type { FaqItem } from '../../data/huntsville-faq'
 import { FaqList } from '@/layout/huntsville-faq'
 import { Section } from '@/template'
 import * as S from './faq-preview.styles'
