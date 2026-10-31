@@ -22,10 +22,11 @@ export function Hero() {
       <S.ImageWrapper>
         <Image
           src={downtownHuntsville}
-          alt="Downtown Hunstsville Lake"
+          alt="Downtown Huntsville lake and park"
           style={{ objectFit: 'cover', objectPosition: '50% 35%' }}
           fill
           priority
+          sizes="100vw"
         />
         <S.ImageOverlay />
       </S.ImageWrapper>

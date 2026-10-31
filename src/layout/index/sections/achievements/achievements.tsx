@@ -92,7 +92,13 @@ export function Achievements() {
           }}
         >
           <Box css={{ br: '28px', aspectRatio: '336 / 453' }}>
-            <Image src={becca} alt="Becca Travis" quality={100} fill />
+            <Image
+              src={becca}
+              alt="Becca Travis"
+              quality={90}
+              fill
+              sizes="(max-width: 768px) 100vw, 336px"
+            />
           </Box>
         </Box>
 
