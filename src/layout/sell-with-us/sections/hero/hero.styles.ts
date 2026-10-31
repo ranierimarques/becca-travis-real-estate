@@ -80,7 +80,7 @@ export const FormContainer = styled('div', {
   },
 })
 
-export const Title = styled('h1', {
+export const Title = styled('h2', {
   marginBottom: 16,
 
   fontWeight: '500',

@@ -76,3 +76,34 @@ Add one original, low friction buyer capture system across the website. The expe
 ### Status
 
 Complete and live on `beccatravis.com` through merge commit `6bc7c57`. Targeted lint, TypeScript, the 106 page production build, desktop browser QA, 390 pixel mobile QA, 320 pixel compact QA, route-aware English and Portuguese checks, public HTTP checks and live browser console checks all passed. No test lead was submitted.
+
+## Factual listing planner release
+
+### Goal
+
+Give a homeowner who is only exploring a useful listing-preparation result before any contact request. The tool must build a working property-description draft exclusively from facts the homeowner enters, make missing proof visible, and keep every input in the browser.
+
+### Research and design decisions
+
+1. Current seller portals emphasize valuation, agent matching, and broad checklists. This release differentiates with immediate, private utility: structured facts, a live draft, source prompts, and a printable preparation plan.
+2. The page does not estimate value, suggest a price, introduce market statistics, or provide legal, tax, lending, or disclosure conclusions.
+3. Free-text property details are screened for audience-focused, steering, superlative, and unverifiable wording before they can enter the draft.
+4. The accepted visual specification uses the existing white, cool gray, plum, magenta, and restrained peach system; IBM Plex Serif headings; Inter UI copy; an open two-column desktop workspace; and a single-column mobile continuation.
+5. The tool never asks for a name, phone number, email address, or street address and never sends or submits property data.
+
+### Implementation plan
+
+1. Add an indexable `/listing-planner` page with canonical metadata and static explanatory content.
+2. Build reusable fact fields, draft generation, wording review, source/missing-fact prompts, browser-only persistence, copy, print, reset, and preparation-checklist interactions.
+3. Add the planner to desktop and mobile seller navigation and introduce it before the existing seller inquiry form.
+4. Suppress the buyer concierge on the seller planner so the page has one clear job.
+5. Verify targeted lint, TypeScript, production build, keyboard behavior, copy/print/reset behavior, local persistence, desktop layout, 390 pixel mobile layout, and 320 pixel compact layout.
+6. Release through GitHub and Vercel, then verify the public canonical URL, metadata, interactions, and console.
+
+### Status
+
+Implementation and pre-release validation are complete on `codex/factual-listing-planner`.
+Targeted lint, TypeScript, a 107 page production build, generated HTML checks, JSON-LD
+parsing, desktop browser QA, 390 pixel mobile QA, 320 pixel compact QA, persistence,
+wording review, copy, and responsive layout checks passed. Production deployment and
+public-domain verification are the remaining release gate. No test lead was submitted.
