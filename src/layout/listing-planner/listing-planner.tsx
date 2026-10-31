@@ -73,6 +73,8 @@ export function ListingPlanner() {
   const [preparation, setPreparation] = useState<Record<string, boolean>>({})
   const [notes, setNotes] = useState<Record<string, string>>({})
   const [finalReview, setFinalReview] = useState<Record<string, boolean>>({})
+  const [showHomeDetails, setShowHomeDetails] = useState(false)
+  const [showFeatures, setShowFeatures] = useState(false)
   const [hydrated, setHydrated] = useState(false)
   const [liveMessage, setLiveMessage] = useState('')
 
@@ -81,7 +83,32 @@ export function ListingPlanner() {
       const stored = window.localStorage.getItem(storageKey)
       if (stored) {
         const parsed = JSON.parse(stored) as Partial<StoredPlanner>
-        if (parsed.values) setValues({ ...initialPlannerValues, ...parsed.values })
+        if (parsed.values) {
+          setValues({ ...initialPlannerValues, ...parsed.values })
+          setShowHomeDetails(
+            Boolean(
+              parsed.values.bedrooms ||
+                parsed.values.bathrooms ||
+                parsed.values.squareFeet ||
+                parsed.values.squareFeetSource ||
+                parsed.values.yearBuilt
+            )
+          )
+          setShowFeatures(
+            Boolean(
+              parsed.values.features ||
+                parsed.values.updates ||
+                parsed.values.updateYears ||
+                parsed.values.updateVerification ||
+                parsed.values.parking ||
+                parsed.values.parkingSpaces ||
+                parsed.values.outdoorSpace ||
+                parsed.values.lotSize ||
+                parsed.values.includedItems ||
+                parsed.values.accessDetail
+            )
+          )
+        }
         if (parsed.preparation) setPreparation(parsed.preparation)
         if (parsed.notes) setNotes(parsed.notes)
         if (parsed.finalReview) setFinalReview(parsed.finalReview)
@@ -106,7 +133,13 @@ export function ListingPlanner() {
   )
   const factCount = useMemo(() => countDraftFacts(values, warnings), [values, warnings])
   const ready = factCount >= 6 && warnings.length === 0 && verificationList.length <= 2
-  const status = !draft ? 'Needs more facts' : ready ? 'Ready for review' : 'Early draft'
+  const status = !draft ? 'Start here' : ready ? 'Ready to review' : 'Taking shape'
+  const firstStep =
+    values.timing === 'Within 3 months'
+      ? 'Gather your measurements, improvement records, and repair questions for a listing conversation.'
+      : values.timing === 'Later this year'
+      ? 'Collect property records and improvement dates, then note what you want to prepare before listing.'
+      : 'Start with the property records you have and a short list of updates or questions to check.'
 
   function updateValue(field: keyof PlannerValues, value: string) {
     setValues(current => ({ ...current, [field]: value }))
@@ -117,10 +150,10 @@ export function ListingPlanner() {
     if (!draft) return
     try {
       await navigator.clipboard.writeText(draft)
-      setLiveMessage('Draft copied. Review every fact before publishing.')
+      setLiveMessage('Description copied. Review every fact before publishing.')
     } catch {
       setLiveMessage(
-        'Copy was blocked by the browser. Select the draft text and copy it manually.'
+        'Copy was blocked by the browser. Select the listing copy and copy it manually.'
       )
     }
   }
@@ -134,13 +167,15 @@ export function ListingPlanner() {
 
   function resetPlanner() {
     const shouldReset = window.confirm(
-      'Clear the draft, checklist, and notes saved in this browser?'
+      'Clear the listing copy, checklist, and notes saved in this browser?'
     )
     if (!shouldReset) return
     setValues(initialPlannerValues)
     setPreparation({})
     setNotes({})
     setFinalReview({})
+    setShowHomeDetails(false)
+    setShowFeatures(false)
     setLiveMessage('The browser only plan was cleared.')
     window.localStorage.removeItem(storageKey)
   }
@@ -150,15 +185,15 @@ export function ListingPlanner() {
       <S.Hero>
         <S.HeroInner>
           <S.HeroCopy>
-            <S.HeroTitle>Build a factual first draft for your home.</S.HeroTitle>
+            <S.HeroTitle>Get your home ready to sell.</S.HeroTitle>
             <S.HeroDescription>
-              Add only the facts you can verify. Your draft updates on this page and
-              nothing is sent.
+              Organize what you know, see what to check, and leave with a plan you can use
+              when you are ready.
             </S.HeroDescription>
             <S.HeroActions>
-              <S.PrimaryAnchor href="#basics">Start with the basics</S.PrimaryAnchor>
+              <S.PrimaryAnchor href="#basics">Build my selling plan</S.PrimaryAnchor>
               <S.TextAnchor href="#organize">
-                See what to organize <ArrowRightIcon aria-hidden="true" />
+                See the prep checklist <ArrowRightIcon aria-hidden="true" />
               </S.TextAnchor>
             </S.HeroActions>
           </S.HeroCopy>
@@ -187,19 +222,19 @@ export function ListingPlanner() {
           <li>
             <S.ProgressLink href="#basics" data-active="true">
               <S.ProgressNumber>1</S.ProgressNumber>
-              <span>Basics</span>
+              <span>Home</span>
             </S.ProgressLink>
           </li>
           <li>
             <S.ProgressLink href="#features">
               <S.ProgressNumber>2</S.ProgressNumber>
-              <span>Features</span>
+              <span>Details</span>
             </S.ProgressLink>
           </li>
           <li>
             <S.ProgressLink href="#review" data-last="true">
               <S.ProgressNumber>3</S.ProgressNumber>
-              <span>Review</span>
+              <span>Plan</span>
             </S.ProgressLink>
           </li>
         </S.Progress>
@@ -210,11 +245,10 @@ export function ListingPlanner() {
           <S.FormColumn>
             <S.FormSection id="basics" aria-labelledby="basics-heading">
               <S.SectionHeading id="basics-heading">
-                Start with the basics
+                Start with your home
               </S.SectionHeading>
               <S.SectionDescription>
-                Add the details you can support. Leave anything uncertain blank and put it
-                on the verification list.
+                Begin with a few details. You can leave anything uncertain blank.
               </S.SectionDescription>
 
               <S.FieldGrid>
@@ -259,268 +293,305 @@ export function ListingPlanner() {
                     <option>Other property</option>
                   </S.Select>
                 </S.Field>
-
-                <S.Field>
-                  Bedrooms
-                  <S.Input
-                    type="number"
-                    min="0"
-                    max="30"
-                    step="1"
-                    inputMode="numeric"
-                    value={values.bedrooms}
-                    onChange={event => updateValue('bedrooms', event.target.value)}
-                    placeholder="Enter count"
-                  />
-                </S.Field>
-
-                <S.Field>
-                  Bathrooms
-                  <S.Input
-                    type="number"
-                    min="0"
-                    max="30"
-                    step="0.5"
-                    inputMode="decimal"
-                    value={values.bathrooms}
-                    onChange={event => updateValue('bathrooms', event.target.value)}
-                    placeholder="Enter count"
-                  />
-                </S.Field>
-
-                <S.Field>
-                  Finished square feet
-                  <S.Input
-                    inputMode="numeric"
-                    value={values.squareFeet}
-                    onChange={event => updateValue('squareFeet', event.target.value)}
-                    placeholder="Example: 2,100"
-                    maxLength={12}
-                  />
-                  <S.Hint>Enter finished interior area only.</S.Hint>
-                </S.Field>
-
-                <S.Field>
-                  Source for square feet
-                  <S.Select
-                    value={values.squareFeetSource}
-                    onChange={event =>
-                      updateValue('squareFeetSource', event.target.value)
-                    }
-                  >
-                    <option value="">Select a source</option>
-                    <option>County property record</option>
-                    <option>Appraisal</option>
-                    <option>Builder plan</option>
-                    <option>Survey</option>
-                    <option>Owner measurement</option>
-                    <option>Other written record</option>
-                  </S.Select>
-                </S.Field>
-
-                <S.Field>
-                  Year built
-                  <S.Input
-                    type="number"
-                    min="1700"
-                    max="2100"
-                    inputMode="numeric"
-                    value={values.yearBuilt}
-                    onChange={event => updateValue('yearBuilt', event.target.value)}
-                    placeholder="Enter year"
-                  />
-                </S.Field>
               </S.FieldGrid>
+
+              <S.OptionalDetails
+                open={showHomeDetails}
+                onToggle={event => setShowHomeDetails(event.currentTarget.open)}
+              >
+                <S.OptionalSummary>
+                  <span>Add rooms, size, and year built</span>
+                  <small>Optional details for a fuller home summary</small>
+                </S.OptionalSummary>
+                <S.FieldGrid>
+                  <S.Field>
+                    Bedrooms
+                    <S.Input
+                      type="number"
+                      min="0"
+                      max="30"
+                      step="1"
+                      inputMode="numeric"
+                      value={values.bedrooms}
+                      onChange={event => updateValue('bedrooms', event.target.value)}
+                      placeholder="Enter count"
+                    />
+                  </S.Field>
+
+                  <S.Field>
+                    Bathrooms
+                    <S.Input
+                      type="number"
+                      min="0"
+                      max="30"
+                      step="0.5"
+                      inputMode="decimal"
+                      value={values.bathrooms}
+                      onChange={event => updateValue('bathrooms', event.target.value)}
+                      placeholder="Enter count"
+                    />
+                  </S.Field>
+
+                  <S.Field>
+                    Finished square feet
+                    <S.Input
+                      inputMode="numeric"
+                      value={values.squareFeet}
+                      onChange={event => updateValue('squareFeet', event.target.value)}
+                      placeholder="Example: 2,100"
+                      maxLength={12}
+                    />
+                    <S.Hint>Enter finished interior area only.</S.Hint>
+                  </S.Field>
+
+                  <S.Field>
+                    Source for square feet
+                    <S.Select
+                      value={values.squareFeetSource}
+                      onChange={event =>
+                        updateValue('squareFeetSource', event.target.value)
+                      }
+                    >
+                      <option value="">Select a source</option>
+                      <option>County property record</option>
+                      <option>Appraisal</option>
+                      <option>Builder plan</option>
+                      <option>Survey</option>
+                      <option>Owner measurement</option>
+                      <option>Other written record</option>
+                    </S.Select>
+                  </S.Field>
+
+                  <S.Field>
+                    Year built
+                    <S.Input
+                      type="number"
+                      min="1700"
+                      max="2100"
+                      inputMode="numeric"
+                      value={values.yearBuilt}
+                      onChange={event => updateValue('yearBuilt', event.target.value)}
+                      placeholder="Enter year"
+                    />
+                  </S.Field>
+                </S.FieldGrid>
+              </S.OptionalDetails>
             </S.FormSection>
 
             <S.FormSection id="features" aria-labelledby="features-heading">
               <S.SectionHeading id="features-heading">
-                Turn records into a cleaner draft
+                Add the details that make your home distinct
               </S.SectionHeading>
               <S.SectionDescription>
-                Use concrete physical details. The wording review keeps flagged text out
-                of the draft until you revise it.
+                Include physical features and updates you can support. Flagged wording
+                stays out of the listing copy until you revise it.
               </S.SectionDescription>
 
-              <S.FieldGroupHeading>Verified features</S.FieldGroupHeading>
-              <S.FieldGrid>
-                <S.Field wide>
-                  Physical features
-                  <S.Textarea
-                    value={values.features}
-                    onChange={event => updateValue('features', event.target.value)}
-                    placeholder="Example: hardwood floors, gas fireplace, walk in pantry"
-                    maxLength={600}
-                  />
-                  <S.Hint>
-                    Separate features with commas. Avoid opinions and buyer profiles.
-                  </S.Hint>
-                  {fieldWarnings(warnings, 'features').map(warning => (
-                    <S.FieldWarning key={warning.reason}>{warning.reason}</S.FieldWarning>
-                  ))}
-                </S.Field>
-              </S.FieldGrid>
+              <S.OptionalDetails
+                open={showFeatures}
+                onToggle={event => setShowFeatures(event.currentTarget.open)}
+              >
+                <S.OptionalSummary>
+                  <span>Add home highlights and updates</span>
+                  <small>Optional details for your listing copy</small>
+                </S.OptionalSummary>
+                <S.FieldGroupHeading>Verified features</S.FieldGroupHeading>
+                <S.FieldGrid>
+                  <S.Field wide>
+                    Physical features
+                    <S.Textarea
+                      value={values.features}
+                      onChange={event => updateValue('features', event.target.value)}
+                      placeholder="Example: hardwood floors, gas fireplace, walk in pantry"
+                      maxLength={600}
+                    />
+                    <S.Hint>
+                      Separate features with commas. Avoid opinions and buyer profiles.
+                    </S.Hint>
+                    {fieldWarnings(warnings, 'features').map(warning => (
+                      <S.FieldWarning key={warning.reason}>
+                        {warning.reason}
+                      </S.FieldWarning>
+                    ))}
+                  </S.Field>
+                </S.FieldGrid>
 
-              <S.FieldGroupHeading>Updates and dates</S.FieldGroupHeading>
-              <S.FieldGrid>
-                <S.Field>
-                  Updates
-                  <S.Textarea
-                    value={values.updates}
-                    onChange={event => updateValue('updates', event.target.value)}
-                    placeholder="Example: roof replacement, HVAC service"
-                    maxLength={600}
-                  />
-                  {fieldWarnings(warnings, 'updates').map(warning => (
-                    <S.FieldWarning key={warning.reason}>{warning.reason}</S.FieldWarning>
-                  ))}
-                </S.Field>
-                <S.Field>
-                  Year or years
-                  <S.Input
-                    value={values.updateYears}
-                    onChange={event => updateValue('updateYears', event.target.value)}
-                    placeholder="Example: 2021, 2024"
-                    maxLength={80}
-                  />
-                  <S.Hint>Match each year to an update before publishing.</S.Hint>
-                </S.Field>
-                <S.Field wide>
-                  What supports these updates?
-                  <S.Textarea
-                    value={values.updateVerification}
-                    onChange={event =>
-                      updateValue('updateVerification', event.target.value)
-                    }
-                    placeholder="Example: receipt dated May 2024; permit number to confirm"
-                    maxLength={600}
-                  />
-                  <S.Hint>
-                    This note stays in your plan and does not enter the draft.
-                  </S.Hint>
-                  {fieldWarnings(warnings, 'updateVerification').map(warning => (
-                    <S.FieldWarning key={warning.reason}>{warning.reason}</S.FieldWarning>
-                  ))}
-                </S.Field>
-              </S.FieldGrid>
+                <S.FieldGroupHeading>Updates and dates</S.FieldGroupHeading>
+                <S.FieldGrid>
+                  <S.Field>
+                    Updates
+                    <S.Textarea
+                      value={values.updates}
+                      onChange={event => updateValue('updates', event.target.value)}
+                      placeholder="Example: roof replacement, HVAC service"
+                      maxLength={600}
+                    />
+                    {fieldWarnings(warnings, 'updates').map(warning => (
+                      <S.FieldWarning key={warning.reason}>
+                        {warning.reason}
+                      </S.FieldWarning>
+                    ))}
+                  </S.Field>
+                  <S.Field>
+                    Year or years
+                    <S.Input
+                      value={values.updateYears}
+                      onChange={event => updateValue('updateYears', event.target.value)}
+                      placeholder="Example: 2021, 2024"
+                      maxLength={80}
+                    />
+                    <S.Hint>Match each year to an update before publishing.</S.Hint>
+                  </S.Field>
+                  <S.Field wide>
+                    What supports these updates?
+                    <S.Textarea
+                      value={values.updateVerification}
+                      onChange={event =>
+                        updateValue('updateVerification', event.target.value)
+                      }
+                      placeholder="Example: receipt dated May 2024; permit number to confirm"
+                      maxLength={600}
+                    />
+                    <S.Hint>
+                      This note stays in your plan and does not enter the listing copy.
+                    </S.Hint>
+                    {fieldWarnings(warnings, 'updateVerification').map(warning => (
+                      <S.FieldWarning key={warning.reason}>
+                        {warning.reason}
+                      </S.FieldWarning>
+                    ))}
+                  </S.Field>
+                </S.FieldGrid>
 
-              <S.FieldGroupHeading>Parking and outdoor space</S.FieldGroupHeading>
-              <S.FieldGrid>
-                <S.Field>
-                  Parking type
-                  <S.Select
-                    value={values.parking}
-                    onChange={event => updateValue('parking', event.target.value)}
-                  >
-                    <option value="">Select if known</option>
-                    <option>Garage</option>
-                    <option>Carport</option>
-                    <option>Driveway</option>
-                    <option>Assigned parking</option>
-                    <option>Street parking</option>
-                    <option>Other parking</option>
-                  </S.Select>
-                </S.Field>
-                <S.Field>
-                  Parking spaces
-                  <S.Input
-                    type="number"
-                    min="0"
-                    max="30"
-                    step="1"
-                    value={values.parkingSpaces}
-                    onChange={event => updateValue('parkingSpaces', event.target.value)}
-                    placeholder="Enter count"
-                  />
-                </S.Field>
-                <S.Field>
-                  Outdoor details
-                  <S.Textarea
-                    value={values.outdoorSpace}
-                    onChange={event => updateValue('outdoorSpace', event.target.value)}
-                    placeholder="Example: covered patio, fenced rear yard"
-                    maxLength={400}
-                  />
-                  {fieldWarnings(warnings, 'outdoorSpace').map(warning => (
-                    <S.FieldWarning key={warning.reason}>{warning.reason}</S.FieldWarning>
-                  ))}
-                </S.Field>
-                <S.Field>
-                  Lot size in acres
-                  <S.Input
-                    inputMode="decimal"
-                    value={values.lotSize}
-                    onChange={event => updateValue('lotSize', event.target.value)}
-                    placeholder="Example: 0.25"
-                    maxLength={12}
-                  />
-                  <S.Hint>Use a parcel record or survey and confirm the unit.</S.Hint>
-                </S.Field>
-              </S.FieldGrid>
+                <S.FieldGroupHeading>Parking and outdoor space</S.FieldGroupHeading>
+                <S.FieldGrid>
+                  <S.Field>
+                    Parking type
+                    <S.Select
+                      value={values.parking}
+                      onChange={event => updateValue('parking', event.target.value)}
+                    >
+                      <option value="">Select if known</option>
+                      <option>Garage</option>
+                      <option>Carport</option>
+                      <option>Driveway</option>
+                      <option>Assigned parking</option>
+                      <option>Street parking</option>
+                      <option>Other parking</option>
+                    </S.Select>
+                  </S.Field>
+                  <S.Field>
+                    Parking spaces
+                    <S.Input
+                      type="number"
+                      min="0"
+                      max="30"
+                      step="1"
+                      value={values.parkingSpaces}
+                      onChange={event => updateValue('parkingSpaces', event.target.value)}
+                      placeholder="Enter count"
+                    />
+                  </S.Field>
+                  <S.Field>
+                    Outdoor details
+                    <S.Textarea
+                      value={values.outdoorSpace}
+                      onChange={event => updateValue('outdoorSpace', event.target.value)}
+                      placeholder="Example: covered patio, fenced rear yard"
+                      maxLength={400}
+                    />
+                    {fieldWarnings(warnings, 'outdoorSpace').map(warning => (
+                      <S.FieldWarning key={warning.reason}>
+                        {warning.reason}
+                      </S.FieldWarning>
+                    ))}
+                  </S.Field>
+                  <S.Field>
+                    Lot size in acres
+                    <S.Input
+                      inputMode="decimal"
+                      value={values.lotSize}
+                      onChange={event => updateValue('lotSize', event.target.value)}
+                      placeholder="Example: 0.25"
+                      maxLength={12}
+                    />
+                    <S.Hint>Use a parcel record or survey and confirm the unit.</S.Hint>
+                  </S.Field>
+                </S.FieldGrid>
 
-              <S.FieldGroupHeading>What stays</S.FieldGroupHeading>
-              <S.FieldGrid>
-                <S.Field wide>
-                  Items expected to remain
-                  <S.Textarea
-                    value={values.includedItems}
-                    onChange={event => updateValue('includedItems', event.target.value)}
-                    placeholder="Example: refrigerator, mounted television brackets, window coverings"
-                    maxLength={500}
-                  />
-                  <S.Hint>
-                    Confirm included and excluded items in the final written agreement.
-                  </S.Hint>
-                  {fieldWarnings(warnings, 'includedItems').map(warning => (
-                    <S.FieldWarning key={warning.reason}>{warning.reason}</S.FieldWarning>
-                  ))}
-                </S.Field>
-                <S.Field wide>
-                  Neutral access or proximity fact
-                  <S.Input
-                    value={values.accessDetail}
-                    onChange={event => updateValue('accessDetail', event.target.value)}
-                    placeholder="Example: 0.4 miles to a named public park, verified on a map"
-                    maxLength={220}
-                  />
-                  <S.Hint>
-                    Use a named place, a measured distance, and a source. Do not rate a
-                    neighborhood.
-                  </S.Hint>
-                  {fieldWarnings(warnings, 'accessDetail').map(warning => (
-                    <S.FieldWarning key={warning.reason}>{warning.reason}</S.FieldWarning>
-                  ))}
-                </S.Field>
-              </S.FieldGrid>
+                <S.FieldGroupHeading>What stays</S.FieldGroupHeading>
+                <S.FieldGrid>
+                  <S.Field wide>
+                    Items expected to remain
+                    <S.Textarea
+                      value={values.includedItems}
+                      onChange={event => updateValue('includedItems', event.target.value)}
+                      placeholder="Example: refrigerator, mounted television brackets, window coverings"
+                      maxLength={500}
+                    />
+                    <S.Hint>
+                      Confirm included and excluded items in the final written agreement.
+                    </S.Hint>
+                    {fieldWarnings(warnings, 'includedItems').map(warning => (
+                      <S.FieldWarning key={warning.reason}>
+                        {warning.reason}
+                      </S.FieldWarning>
+                    ))}
+                  </S.Field>
+                  <S.Field wide>
+                    Neutral access or proximity fact
+                    <S.Input
+                      value={values.accessDetail}
+                      onChange={event => updateValue('accessDetail', event.target.value)}
+                      placeholder="Example: 0.4 miles to a named public park, verified on a map"
+                      maxLength={220}
+                    />
+                    <S.Hint>
+                      Use a named place, a measured distance, and a source. Do not rate a
+                      neighborhood.
+                    </S.Hint>
+                    {fieldWarnings(warnings, 'accessDetail').map(warning => (
+                      <S.FieldWarning key={warning.reason}>
+                        {warning.reason}
+                      </S.FieldWarning>
+                    ))}
+                  </S.Field>
+                </S.FieldGrid>
+              </S.OptionalDetails>
             </S.FormSection>
           </S.FormColumn>
 
           <S.DraftColumn aria-live="polite">
             <S.DraftCard>
               <S.DraftHeader>
-                <h2>Your working draft</h2>
+                <h2>Your selling plan</h2>
                 <S.Status ready={ready} data-ready={ready}>
                   {status}
                 </S.Status>
               </S.DraftHeader>
 
+              <S.FirstStep>
+                <strong>Your next step</strong>
+                <p>{firstStep}</p>
+              </S.FirstStep>
+
               <S.DraftBody>
                 {draft ? (
                   <S.DraftText>
-                    <strong>Property description draft</strong>
+                    <strong>Listing description to review</strong>
                     <p>{draft}</p>
                   </S.DraftText>
                 ) : (
                   <S.EmptyState>
                     <FileTextIcon aria-hidden="true" />
-                    <p>Add a few verified facts to begin your draft.</p>
+                    <p>Your home summary will appear here as you add details.</p>
                   </S.EmptyState>
                 )}
               </S.DraftBody>
 
               <S.ButtonRow>
                 <S.Button type="button" primary disabled={!draft} onClick={copyDraft}>
-                  <ClipboardCopyIcon aria-hidden="true" /> Copy draft
+                  <ClipboardCopyIcon aria-hidden="true" /> Copy description
                 </S.Button>
                 <S.Button type="button" onClick={printPlan}>
                   <PrinterIcon /> Print plan
@@ -529,8 +600,8 @@ export function ListingPlanner() {
               <S.LiveMessage role="status">{liveMessage}</S.LiveMessage>
 
               <S.Verification>
-                <h3>Assumptions to verify</h3>
-                <p>Missing sources and flagged wording stay visible here.</p>
+                <h3>Details to check</h3>
+                <p>Keep these questions handy before sharing a listing.</p>
                 {verificationList.length ? (
                   <ul>
                     {verificationList.slice(0, 8).map(item => (
@@ -540,7 +611,8 @@ export function ListingPlanner() {
                 ) : (
                   <ul>
                     <li>
-                      Complete the final review below and have your agent check the draft.
+                      Complete the review below and have your agent check the listing
+                      copy.
                     </li>
                   </ul>
                 )}
@@ -581,8 +653,8 @@ export function ListingPlanner() {
             <div>
               <h3>Want a second set of eyes?</h3>
               <p>
-                Copy your draft first. Nothing from this planner is sent when you choose
-                to ask Becca about a listing plan.
+                Copy your listing copy first. Your plan stays in this browser when you
+                choose to ask Becca for help.
               </p>
             </div>
             <S.HandoffLink href="/sell-with-us#seller-request">
@@ -600,7 +672,7 @@ export function ListingPlanner() {
             </S.SectionHeading>
             <p>
               Use these rows as a private working list. Notes save only in this browser
-              and do not become part of the description draft.
+              and do not become part of the listing copy.
             </p>
           </S.OrganizeHeader>
 
@@ -652,12 +724,12 @@ export function ListingPlanner() {
 
       <S.SeoSection>
         <S.SeoInner>
-          <h2>What makes a factual listing draft useful?</h2>
+          <h2>Why start your home sale with a plan?</h2>
           <div>
             <p>
-              A useful first draft separates physical property facts from marketing
-              opinions. Record the source for measurements and dates, identify what still
-              needs review, and keep included items distinct from permanent features.
+              A selling plan keeps your property details, records, and questions in one
+              place. The listing description preview uses only the facts you enter and
+              shows where a source or final review is still needed.
             </p>
             <p>
               Housing advertising should describe the property without expressing a
@@ -679,7 +751,7 @@ export function ListingPlanner() {
       <S.FaqSection aria-labelledby="planner-faq-heading">
         <S.FaqInner>
           <S.SectionHeading id="planner-faq-heading">
-            Factual listing planner questions
+            Home selling planner questions
           </S.SectionHeading>
           <S.FaqGrid>
             {listingPlannerFaq.map(item => (

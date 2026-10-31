@@ -30,9 +30,9 @@ const structuredData = {
       '@type': 'WebPage',
       '@id': 'https://beccatravis.com/listing-planner#page',
       url: 'https://beccatravis.com/listing-planner',
-      name: 'Free Home Listing Description Planner | Becca Travis',
+      name: 'Home Selling Planner and Listing Description | Becca Travis',
       description:
-        'Organize verified property facts, create a factual first listing description draft, and print a seller preparation plan without sharing contact details.',
+        'Organize your home details, see what to verify, preview listing copy, and print a seller preparation checklist.',
       inLanguage: 'en-US',
       isPartOf: { '@id': 'https://beccatravis.com/#website' },
       mainEntity: { '@id': 'https://beccatravis.com/listing-planner#app' },
@@ -54,19 +54,19 @@ const structuredData = {
     {
       '@type': 'WebApplication',
       '@id': 'https://beccatravis.com/listing-planner#app',
-      name: 'Factual Home Listing Planner',
+      name: 'Home Selling Planner',
       url: 'https://beccatravis.com/listing-planner',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web browser',
       browserRequirements: 'JavaScript and local browser storage',
       description:
-        'A browser only worksheet that turns homeowner supplied property facts into a working listing description draft and preparation checklist.',
+        'A private worksheet that organizes homeowner supplied property facts, a listing description preview, and a preparation checklist.',
       featureList: [
-        'Factual property description draft',
-        'Missing fact and source checklist',
-        'Fair housing wording review',
-        'Printable seller preparation plan',
-        'Browser only storage',
+        'Listing description preview from entered facts',
+        'Property details to verify',
+        'Wording review',
+        'Printable preparation checklist',
+        'Private browser storage',
       ],
       offers: {
         '@type': 'Offer',
@@ -100,7 +100,7 @@ const structuredData = {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Listing description planner',
+          name: 'Home selling planner',
           item: 'https://beccatravis.com/listing-planner',
         },
       ],
@@ -113,10 +113,10 @@ const Page: NextPage = () => {
     <>
       <MetaSEO
         canonicalPath="/listing-planner"
-        title="Free Home Listing Description Planner | Becca Travis"
-        description="Organize verified property facts, create a factual first listing description draft, and print a seller preparation plan. No contact details required."
+        title="Home Selling Planner and Listing Description | Becca Travis"
+        description="Organize your home details, see what to verify, preview listing copy, and print a preparation checklist. No contact details required."
         image="/images/listing-planner/hero.jpg"
-        alt="Factual home listing description planner by Becca Travis"
+        alt="Home selling planner by Becca Travis"
       />
       <Head>
         <script

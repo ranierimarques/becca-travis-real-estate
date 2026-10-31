@@ -75,9 +75,14 @@ export const preparationItems = [
 
 export const listingPlannerFaq = [
   {
+    question: 'What does this home selling planner include?',
+    answer:
+      'It organizes the home details you enter, shows records and claims to check, creates listing copy for review, and gives you a printable preparation checklist.',
+  },
+  {
     question: 'Is this a home valuation or pricing tool?',
     answer:
-      'No. The planner does not estimate value, compare sales, or recommend a listing price. It organizes property facts you enter into a working description draft.',
+      'No. The planner does not estimate value, compare sales, or recommend a listing price. It organizes the details you enter and questions to discuss with an agent.',
   },
   {
     question: 'Does the planner send my property information?',
@@ -87,7 +92,7 @@ export const listingPlannerFaq = [
   {
     question: 'Can I create a listing description without MLS access?',
     answer:
-      'Yes. You can create a working factual draft from your own verified details without MLS access. An agent should still review the final copy, MLS field limits, and local requirements before publication.',
+      'Yes. You can preview listing copy from the property details you enter without MLS access. An agent should still review the final copy, MLS field limits, and local requirements before publication.',
   },
   {
     question: 'What should I verify before publishing a property description?',
@@ -280,7 +285,7 @@ export function buildVerificationList(values: PlannerValues, warnings: ReviewWar
     items.push('Add finished square feet only if you have a source.')
   if (values.squareFeet && !values.squareFeetSource) {
     items.push(
-      'Select the source for the finished square feet before it enters the draft.'
+      'Select the source for the finished square feet before it enters the listing copy.'
     )
   }
   if (!values.yearBuilt) items.push('Confirm the year built from a record you trust.')

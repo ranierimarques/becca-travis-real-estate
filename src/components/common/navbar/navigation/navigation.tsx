@@ -145,8 +145,8 @@ export const menus = {
         {
           id: 2,
           icon: <Svg.Pencil />,
-          title: 'Listing description planner',
-          description: 'Build a factual draft without sharing contact details',
+          title: 'Home selling planner',
+          description: 'Organize your home details and next steps',
           href: '/listing-planner',
           disabled: false,
         },

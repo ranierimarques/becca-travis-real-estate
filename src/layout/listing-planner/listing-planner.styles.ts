@@ -21,10 +21,10 @@ export const HeroInner = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'minmax(390px, 0.85fr) minmax(520px, 1.15fr)',
   alignItems: 'center',
-  gap: 48,
+  gap: 40,
   width: 'min(100% - 48px, 1280px)',
   margin: '0 auto',
-  padding: '54px 0 52px',
+  padding: '42px 0 40px',
 
   '@bp4': {
     gridTemplateColumns: '1fr',
@@ -33,8 +33,8 @@ export const HeroInner = styled('div', {
   },
   '@bp2': {
     width: 'min(100% - 32px, 1200px)',
-    gap: 26,
-    padding: '38px 0 34px',
+    gap: 19,
+    padding: '25px 0 0',
   },
 })
 
@@ -47,16 +47,16 @@ export const HeroCopy = styled('div', {
 export const HeroTitle = styled('h1', {
   maxWidth: 610,
   color: '$magenta6',
-  fontSize: 'clamp(46px, 4.6vw, 68px)',
+  fontSize: 'clamp(46px, 4.2vw, 62px)',
   fontWeight: 500,
   letterSpacing: '-0.045em',
   lineHeight: 0.98,
 
   '@bp2': {
-    fontSize: 'clamp(40px, 12vw, 54px)',
+    fontSize: 'clamp(36px, 10.5vw, 48px)',
     lineHeight: 1.02,
   },
-  '@bp1': { fontSize: 38 },
+  '@bp1': { fontSize: 35 },
 })
 
 export const HeroDescription = styled('p', {
@@ -66,7 +66,7 @@ export const HeroDescription = styled('p', {
   fontSize: 18,
   lineHeight: 1.65,
 
-  '@bp2': { marginTop: 16, fontSize: 16 },
+  '@bp2': { marginTop: 12, fontSize: 15, lineHeight: 1.5 },
 })
 
 export const HeroActions = styled('div', {
@@ -76,12 +76,17 @@ export const HeroActions = styled('div', {
   gap: 28,
   marginTop: 27,
 
-  '@bp2': { alignItems: 'flex-start', flexDirection: 'column', gap: 17 },
+  '@bp2': {
+    alignItems: 'flex-start',
+    flexDirection: 'column',
+    gap: 11,
+    marginTop: 19,
+  },
 })
 
 export const HeroVisual = styled('div', {
   position: 'relative',
-  minHeight: 470,
+  minHeight: 400,
   overflow: 'hidden',
   background: '$offWhite2',
   borderRadius: 16,
@@ -92,13 +97,13 @@ export const HeroVisual = styled('div', {
 
   '@bp4': { minHeight: 410 },
   '@bp2': {
-    minHeight: 300,
+    minHeight: 205,
     margin: '0 -16px',
     borderRadius: 0,
     boxShadow: 'none',
     '& > img': { objectPosition: '58% center' },
   },
-  '@bp1': { minHeight: 270 },
+  '@bp1': { minHeight: 185 },
 })
 
 const actionBase = {
@@ -215,7 +220,7 @@ export const ProgressLink = styled('a', {
     position: 'absolute',
     top: 14,
     right: 14,
-    left: 42,
+    left: 90,
     height: 1,
     background: '$grayW8',
   },
@@ -235,7 +240,7 @@ export const ProgressLink = styled('a', {
     gridTemplateColumns: '24px 1fr',
     gap: 7,
     fontSize: 11,
-    '&::after': { top: 12, right: 8, left: 34 },
+    '&::after': { display: 'none' },
   },
 })
 
@@ -321,6 +326,47 @@ export const FieldGrid = styled('div', {
   marginTop: 21,
 
   '@bp2': { gridTemplateColumns: '1fr', gap: 17 },
+})
+
+export const OptionalDetails = styled('details', {
+  marginTop: 22,
+  padding: '17px 20px 19px',
+  background: whiteToken,
+  border: softBorder,
+  borderRadius: 12,
+
+  '&[open]': {
+    borderColor: '$magenta3',
+    '& summary::after': { content: '−' },
+  },
+  '@bp2': { padding: '15px 16px 17px' },
+})
+
+export const OptionalSummary = styled('summary', {
+  display: 'grid',
+  gap: 3,
+  paddingRight: 28,
+  color: '$magenta6',
+  cursor: 'pointer',
+  fontSize: 15,
+  fontWeight: 700,
+  listStyle: 'none',
+  position: 'relative',
+
+  '&::-webkit-details-marker': { display: 'none' },
+  '&::after': {
+    content: '＋',
+    position: 'absolute',
+    right: 0,
+    top: 1,
+    fontSize: 21,
+    fontWeight: 400,
+  },
+  '& small': { color: '$gray3', fontSize: 12, fontWeight: 450, lineHeight: 1.45 },
+  '&:focus-visible': {
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.48)',
+    outlineOffset: 4,
+  },
 })
 
 export const Field = styled('label', {
@@ -458,18 +504,18 @@ export const Status = styled('span', {
 })
 
 export const DraftBody = styled('div', {
-  minHeight: 270,
-  marginTop: 20,
+  minHeight: 160,
+  marginTop: 16,
   padding: 24,
   background: '$offWhite2',
   border: softBorder,
   borderRadius: 10,
 
-  '@bp2': { minHeight: 230, padding: 19 },
+  '@bp2': { minHeight: 145, padding: 19 },
 })
 
 export const EmptyState = styled('div', {
-  minHeight: 220,
+  minHeight: 110,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -478,8 +524,20 @@ export const EmptyState = styled('div', {
   color: '$gray4',
   textAlign: 'center',
 
-  '& svg': { width: 48, height: 48, color: '$grayW6' },
+  '& svg': { width: 31, height: 31, color: '$grayW6' },
   '& p': { maxWidth: 280, fontSize: 14, lineHeight: 1.55 },
+})
+
+export const FirstStep = styled('div', {
+  marginTop: 20,
+  padding: '16px 18px',
+  color: '$gray2',
+  background: 'rgba($colors$tangerine3Rgb, 0.22)',
+  borderLeft: '3px solid $tangerine1',
+  borderRadius: 7,
+
+  '& strong': { color: '$magenta6', fontSize: 13, fontWeight: 720 },
+  '& p': { marginTop: 4, fontSize: 13, lineHeight: 1.55 },
 })
 
 export const DraftText = styled('div', {
