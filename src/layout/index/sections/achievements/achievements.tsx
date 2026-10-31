@@ -8,19 +8,20 @@ import * as Svg from './svgs'
 const badges = [
   {
     icon: <Svg.Chip />,
-    description: `Coldwell Banker International Diamond Recipient`,
+    description: 'Personal home search and sale planning',
   },
   {
     icon: <Svg.Cup />,
-    description: 'Alabamas Top Real Estate Agent',
+    description: 'Associate Broker · Alabama license 000126941-1',
+    href: 'https://arec.alabama.gov/apps/LicenseSearch/Home/Details/131571',
   },
   {
     icon: <Svg.Flag />,
-    description: 'Fluent in English, Portuguese, and Spanish',
+    description: 'English and Portuguese; conversational Spanish',
   },
   {
     icon: <Svg.Rocket />,
-    description: '12+ Years of Experience',
+    description: 'North Alabama buyer and seller guidance',
   },
 ]
 
@@ -45,8 +46,7 @@ export function Achievements() {
         <Hat>Becca Travis Real Estate Group</Hat>
         <S.Line />
         <S.Title>
-          Experience the freedom that comes with having one of Alabama&apos;s top real
-          estate agents by your side.
+          Clear guidance from the first conversation through your next move.
         </S.Title>
       </Flex>
 
@@ -108,7 +108,15 @@ export function Achievements() {
               <S.Badge key={i}>
                 <Flex align="start" css={{ gap: 12 }}>
                   {badge.icon}
-                  <S.BadgeDescription>{badge.description}</S.BadgeDescription>
+                  <S.BadgeDescription>
+                    {'href' in badge && badge.href ? (
+                      <a href={badge.href} target="_blank" rel="noopener noreferrer">
+                        {badge.description}
+                      </a>
+                    ) : (
+                      badge.description
+                    )}
+                  </S.BadgeDescription>
                 </Flex>
                 {i !== badges.length - 1 && <Svg.Line />}
                 {i !== badges.length - 1 && <S.LineWithTriangle />}

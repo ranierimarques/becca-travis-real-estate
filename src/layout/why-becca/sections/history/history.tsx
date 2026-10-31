@@ -64,10 +64,13 @@ export function History() {
           <Hat variant="2">Meet Becca</Hat>
           <S.Title>Becca Travis Real Estate</S.Title>
           <S.Paragraph>
-            Becca&apos;s dedication to her clients has been recognized by her peers and
-            the industry. She was honored as the 2021 and 2022 Coldwell Banker
-            International Diamond Society winner, ranked in the top 50 agents in Alabama,
-            and named one of the top 20 agents on social media in Huntsville.
+            Becca helps buyers and sellers organize their priorities, compare properties,
+            and ask practical questions before a decision. Her Alabama Associate Broker
+            license can be checked through the{' '}
+            <a href="https://arec.alabama.gov/apps/LicenseSearch/Home/Details/131571">
+              Alabama Real Estate Commission
+            </a>
+            .
           </S.Paragraph>
         </S.TextContainer>
         <Box css={{ borderRadius: 8, overflow: 'hidden' }}>

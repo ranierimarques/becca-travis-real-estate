@@ -134,6 +134,47 @@ page production build, desktop and 390 and 320 pixel browser checks, disclosure 
 browser storage restoration, seller call to action styling, and buyer launcher route
 checks passed. Public deployment verification is tracked in the release report.
 
+## Live factual cleanup and buyer tools
+
+### Goal
+
+Audit the six issues raised in the October 31 pasted report against current production,
+remove confirmed placeholder or misleading content, add useful buyer research tools where
+the inputs and data sources are supportable, and verify the released site.
+
+### Rules for this pass
+
+1. Treat the pasted crawl as claims to check. Do not publish its property status, school
+   assignments, reviews, demographic figures, tax rates, loan rates, or timing benchmarks
+   without independent support.
+2. Remove fake listings and unrelated local business or school data before replacing them.
+3. Preserve the current brand, accessible mobile controls, and existing lead flow.
+4. Keep official sources close to any numerical or map result. Do not imply a buyer can
+   obtain private disclosures or insurance claims through a text button.
+5. Confirm both the rendered page and the production deployment, not only a local build.
+
+### Work plan
+
+1. Audit live routes, source data, and the pasted claims.
+2. Remove placeholder homes and stale community content; handle fake home URLs correctly.
+3. Repair homepage voice, source labels, and verifiable professional identity metadata.
+4. Build practical buyer research interactions using supported public inputs and clearly
+   labeled estimates or links.
+5. Run targeted checks, production build, responsive browser QA, and source spot checks.
+6. Deploy through GitHub and Vercel, then check production routes, console, metadata,
+   sitemap, and response codes.
+
+### Status
+
+Implementation and local verification are complete. The production release is pending.
+The current pass removes the BridgeData test feed and its fake home detail pages, adds
+four buyer research interactions, repairs the homepage search handoff, and replaces
+unsupported rankings and sales claims. The area guide and homepage now use photographic
+cards, including sourced Huntsville scenes with visible credits. Desktop, 390 pixel, and
+320 pixel layouts have been checked locally. The newly generated portrait from Becca's
+recent iPhone photo is saved for review and remains off the site until her post-preview
+choice is clear.
+
 ## Listing planner optimization pass
 
 ### Goal

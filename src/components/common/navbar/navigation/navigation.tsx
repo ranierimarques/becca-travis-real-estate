@@ -81,6 +81,14 @@ export const menus = {
       title: 'RESOURCES',
       listItem: [
         {
+          id: 4,
+          icon: <Svg.Shield />,
+          title: 'Property & tax tools',
+          description: 'Check public sources and compare your own numbers',
+          href: '/north-alabama-property-research',
+          disabled: false,
+        },
+        {
           id: 1,
           icon: <Svg.OpenBook />,
           title: 'Buyer Planning Tools',

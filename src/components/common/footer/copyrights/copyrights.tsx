@@ -34,7 +34,16 @@ export function Copyrights() {
         </S.ColdLink>
       </S.Logos>
 
-      <S.Copyright>© {new Date().getFullYear()} All rights reserved.</S.Copyright>
+      <S.Copyright>
+        <a
+          href="https://arec.alabama.gov/apps/LicenseSearch/Home/Details/131571"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Becca Travis · Associate Broker · Coldwell Banker First · AL 000126941-1
+        </a>
+        <span>© {new Date().getFullYear()} All rights reserved.</span>
+      </S.Copyright>
 
       <S.Divider />
     </Box>

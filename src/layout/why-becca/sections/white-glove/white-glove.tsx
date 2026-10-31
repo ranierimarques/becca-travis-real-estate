@@ -99,8 +99,8 @@ export function WhiteGlove() {
               </S.Header>
               <S.Content>
                 <S.ContentText>
-                  Second, We have the negotiation skills that will guarantee you great
-                  conditions for buying your property.
+                  Becca can help you prepare an offer strategy around the property,
+                  current terms, and the questions that matter to your decision.
                 </S.ContentText>
                 <Box
                   css={{

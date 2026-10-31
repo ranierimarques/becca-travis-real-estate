@@ -5,26 +5,21 @@ import * as S from './why-a-realtor.styles'
 
 const reasons = [
   {
-    title: 'Up-to-date knowledge',
-    paragraph: `Working with an experienced REALTOR® provides you with access to up-to-date knowledge that is essential when selling your home.
-     A good REALTOR® will provide you with a comparative market analysis done by a human, which will give you an accurate understanding of the current market conditions and how to price your home competitively.`,
+    title: 'A property-specific pricing review',
+    paragraph:
+      'Review comparable sales, competing listings, property condition, and your timing before choosing an asking-price strategy. The relevant information changes by property and date.',
     svg: <Svg.Certified className={S.SvgStyles()} />,
   },
   {
-    title: 'Making Marketing work for you',
-    paragraph: `An experienced REALTOR® can provide you with the latest marketing techniques to target buyers moving to the Huntsville area, including professional photography and 3-D tours.
-     In addition, they can perform a comparative market analysis, providing you with up-to-date knowledge of local home values and market trends.
-      By partnering with a knowledgeable REALTOR®, you can be confident that you have access to the most current information and tools to sell your home quickly and for top dollar.
-    `,
+    title: 'A clear marketing plan',
+    paragraph:
+      'Choose photographs, property details, showing instructions, and channels that fit your home and timeline. Verify the facts before they appear in any listing description.',
     svg: <Svg.Contract className={S.SvgStyles()} />,
   },
   {
-    title: 'Experience',
-    paragraph: `Experience is key when it comes to successfully selling a home.
-      We believe in being there for our clients every step of the way, from finding the perfect property to navigating closing negotiations.
-      we have access to relocation buyers who may be interested in your home, and we understand how to leverage the power of social media to reach even more potential buyers.
-      Our experience and resources ensure that we have the tools necessary to sell your home quickly and for top dollar.
-    `,
+    title: 'Guidance through the transaction',
+    paragraph:
+      'Compare offer terms, inspection requests, timing, and closing tasks with the professionals involved in your sale. A plan helps you make decisions as new information arrives.',
     svg: <Svg.Search className={S.SvgStyles()} />,
   },
 ]
@@ -35,12 +30,10 @@ export function WhyARealtor() {
       <S.Container>
         <S.Content>
           <Hat variant="2">Sell your home</Hat>
-          <S.Title>Why you need a REALTOR®</S.Title>
+          <S.Title>Plan the sale with Becca</S.Title>
           <S.Paragraph>
-            Selling a home can be a complex and challenging process, and while some may
-            consider going the DIY route, partnering with an experienced REALTOR® can
-            bring numerous benefits. Here are just a few reasons why having a professional
-            on your side can help you maximize your profits and minimize the headaches:
+            A property-specific plan can help you decide what to prepare, how to present
+            the home, and which questions to resolve as offers arrive.
           </S.Paragraph>
           <Button
             href="/contact-us"

@@ -96,6 +96,13 @@ const texts: Texts = {
       connects with nearby greenway and preserve routes.
       <br />
       <br />
+      <strong>A few places to visit.</strong>{' '}
+      <a href="https://www.tortoras.com/">Tortora&apos;s</a> and{' '}
+      <a href="https://buenavistacantina.com/?page_id=337">Buenavista Mexican Cantina</a>{' '}
+      both list locations in the Cove area. Check their own sites for current hours and
+      menus before you go.
+      <br />
+      <br />
       <strong>Explore with the details in mind.</strong> If a home is part of an
       association, ask for its current fees, rules, and amenity access. Confirm school
       assignments and city services for the exact address. I can help you look at the

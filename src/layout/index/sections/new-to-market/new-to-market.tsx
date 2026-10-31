@@ -20,8 +20,12 @@ export function NewToMarket() {
         <S.ViewAll href="/homes#buyer-brief">BUILD MY SEARCH BRIEF</S.ViewAll>
       </Flex>
       <p>
-        The public property search is being updated. Start a personal search brief now so
-        Becca can understand your target area, timing and priorities.
+        Start a personal search brief around your area, timing and priorities. If you want
+        to browse first, open the official{' '}
+        <a href="https://www.valleymls.com/" target="_blank" rel="noopener noreferrer">
+          ValleyMLS home search
+        </a>
+        . Listings and availability can change.
       </p>
     </Section>
   )

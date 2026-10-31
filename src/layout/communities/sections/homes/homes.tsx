@@ -1,7 +1,4 @@
-import { useState } from 'react'
-import { Button } from '@/common'
-import { getHouseListing } from '@/services/house-listings'
-import { HouseCard } from '@/shared'
+import Link from 'next/link'
 import { Section } from '@/template'
 import { FormattedHouseCards } from '@/types/houses'
 import * as S from './homes.styles'
@@ -11,62 +8,24 @@ interface HomesProps {
   communityName: string
 }
 
-export function Homes({ listings, communityName }: HomesProps) {
-  const [listingData, setListingData] = useState(listings)
-  const [activeIndex, setActiveIndex] = useState(1)
-  const [isLoading, setIsLoading] = useState(false)
-
-  async function handleRequestNewListings() {
-    if (isLoading) return
-    setIsLoading(true)
-    const newListing = await getHouseListing({
-      type: 'card',
-      fetchOn: 'browser',
-    })
-    setActiveIndex(oldValue => oldValue + 1)
-    setListingData([...listingData, ...newListing])
-    setIsLoading(false)
-  }
-
+/** Retained for community templates without rendering the retired test listing feed. */
+export function Homes({ communityName }: HomesProps) {
   return (
     <Section hasMaxWidth>
       <S.Title>
-        <S.Community>{communityName}</S.Community> Homes for Sale
+        Explore homes near <S.Community>{communityName}</S.Community>
       </S.Title>
       <S.Container>
-        <S.Houses loadedMore={activeIndex > 1}>
-          {listingData.map(listing => (
-            <HouseCard key={listing.id} listing={listing} />
-          ))}
-        </S.Houses>
-        {listings.length >= 6 && (
-          <S.OverlayWrapper>
-            <S.Overlay />
-            <Button
-              size={{
-                '@initial': '2',
-                '@bp4': '3',
-              }}
-              css={{
-                pointerEvents: 'auto',
-                zIndex: 1,
-
-                '@bp1': {
-                  padding: '12px 24px',
-                  borderRadius: '5px',
-                  fontSize: '14px',
-                  lineHeight: '21px',
-                  fontWeight: '400',
-                },
-              }}
-              onClick={handleRequestNewListings}
-              loading={isLoading}
-              disabled={isLoading}
-            >
-              View more properties
-            </Button>
-          </S.OverlayWrapper>
-        )}
+        <p>
+          Search current North Alabama listings through ValleyMLS, or tell Becca which
+          location and home details matter to you.
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginTop: 20 }}>
+          <Link href="/homes#buyer-brief">Build my search brief</Link>
+          <a href="https://www.valleymls.com/" target="_blank" rel="noopener noreferrer">
+            Browse ValleyMLS listings
+          </a>
+        </div>
       </S.Container>
     </Section>
   )

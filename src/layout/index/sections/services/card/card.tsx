@@ -1,10 +1,10 @@
-import { StaticImageData } from 'next/image'
-import { Button, Image } from '@/common'
+import Image from 'next/image'
+import { Button } from '@/common'
 import * as S from './card.styles'
 
 type cardProps = {
   data: {
-    image: StaticImageData
+    image: string
     alt: string
     title: string
     description: string
@@ -17,16 +17,13 @@ export function Card({ data }: cardProps) {
   return (
     <S.Link href={data.href} draggable="false">
       <S.TopWrapper>
-        <S.Circles />
-        <S.ImageWrapper>
-          <Image
-            src={data.image}
-            alt={data.alt}
-            quality="100"
-            css={{ pointerEvents: 'none', objectFit: 'contain', objectPosition: 'top' }}
-            skeletonBackground="rgba($colors$magenta5Rgb, 0.4)"
-          />
-        </S.ImageWrapper>
+        <Image
+          src={data.image}
+          alt={data.alt}
+          fill
+          sizes="(max-width: 720px) 100vw, (max-width: 1184px) 50vw, 33vw"
+          style={{ objectFit: 'cover' }}
+        />
       </S.TopWrapper>
       <S.BottomWrapper>
         <S.Title>{data.title}</S.Title>

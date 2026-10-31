@@ -12,7 +12,7 @@ const links = [
   {
     id: 1,
     icon: <Svg.Shield />,
-    text: 'Huntsville Buyer Hub',
+    text: 'Property & tax tools',
     href: '/north-alabama-property-research',
   },
   { id: 2, icon: <Svg.Chat />, text: 'Contact Us', href: '/contact-us' },

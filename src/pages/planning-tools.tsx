@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { MetaSEO } from '@/common'
 import { FaqPreview } from '@/layout/faq-preview'
+import { BuyerResearchLab } from '../components/shared/buyer-research-lab/buyer-research-lab'
 import { huntsvilleFaq } from '../data/huntsville-faq'
 
 type Category = 'Buying' | 'Moving' | 'Homeownership' | 'Selling'
@@ -298,6 +299,7 @@ export default function PlanningToolsPage() {
   const [openWorksheet, setOpenWorksheet] = useState<string | null>(null)
   const [checked, setChecked] = useState<Record<string, boolean>>({})
   const [notes, setNotes] = useState<Record<string, string>>({})
+  const [researchTool, setResearchTool] = useState<string | null>(null)
   const [storageReady, setStorageReady] = useState(false)
   const [storageWritable, setStorageWritable] = useState(false)
   const [saveStatus, setSaveStatus] = useState('Checking this device for a saved plan…')
@@ -465,7 +467,7 @@ export default function PlanningToolsPage() {
       item.description.toLowerCase().includes(query)
     return matchesCategory && matchesSearch
   })
-  const activePlanningTool = openWorksheet || calculatorTitles[calculator]
+  const activePlanningTool = researchTool || openWorksheet || calculatorTitles[calculator]
   const monthlyShare = (value: number) =>
     monthlyTotal > 0 ? Math.min(100, (Math.max(0, value) / monthlyTotal) * 100) : 0
 
@@ -513,6 +515,7 @@ export default function PlanningToolsPage() {
       </header>
 
       <nav className="jump-nav" aria-label="Planning tools page navigation">
+        <a href="#interactive-checks">Address and local checks</a>
         <a href="#calculators">Calculators</a>
         <a href="#worksheets">Worksheets</a>
         <Link href="/north-alabama-property-research" legacyBehavior>
@@ -545,6 +548,8 @@ export default function PlanningToolsPage() {
         </p>
       </section>
 
+      <BuyerResearchLab id="interactive-checks" onToolChange={setResearchTool} />
+
       <section id="calculators" className="content-section">
         <div className="section-heading">
           <p className="eyebrow">Start with an estimate</p>
@@ -554,13 +559,13 @@ export default function PlanningToolsPage() {
 
         <div className="calculator-shell">
           <div className="calculator-tabs" role="group" aria-label="Choose a calculator">
-            <button type="button" className={calculator === 'payment' ? 'active' : ''} aria-pressed={calculator === 'payment'} onClick={() => setCalculator('payment')}>
+            <button type="button" className={calculator === 'payment' ? 'active' : ''} aria-pressed={calculator === 'payment'} onClick={() => { setCalculator('payment'); setResearchTool(null) }}>
               Monthly payment
             </button>
-            <button type="button" className={calculator === 'buyer-cash' ? 'active' : ''} aria-pressed={calculator === 'buyer-cash'} onClick={() => setCalculator('buyer-cash')}>
+            <button type="button" className={calculator === 'buyer-cash' ? 'active' : ''} aria-pressed={calculator === 'buyer-cash'} onClick={() => { setCalculator('buyer-cash'); setResearchTool(null) }}>
               Buyer cash to close
             </button>
-            <button type="button" className={calculator === 'seller-net' ? 'active' : ''} aria-pressed={calculator === 'seller-net'} onClick={() => setCalculator('seller-net')}>
+            <button type="button" className={calculator === 'seller-net' ? 'active' : ''} aria-pressed={calculator === 'seller-net'} onClick={() => { setCalculator('seller-net'); setResearchTool(null) }}>
               Seller net proceeds
             </button>
           </div>
@@ -685,7 +690,7 @@ export default function PlanningToolsPage() {
               const isOpen = openWorksheet === item.title
               return (
                 <article className={'worksheet-card' + (isOpen ? ' expanded' : '')} key={item.title}>
-                  <button type="button" className="worksheet-toggle" aria-expanded={isOpen} onClick={() => setOpenWorksheet(isOpen ? null : item.title)}>
+                  <button type="button" className="worksheet-toggle" aria-expanded={isOpen} onClick={() => { setOpenWorksheet(isOpen ? null : item.title); setResearchTool(null) }}>
                     <span className="worksheet-category">{item.category}</span>
                     <strong>{item.title}</strong>
                     <span className="worksheet-description">{item.description}</span>

@@ -61,3 +61,11 @@ export const Cards = styled('div', {
     marginTop: '32px',
   },
 })
+
+export const PhotoCredit = styled('p', {
+  marginTop: 12,
+  color: '$gray3',
+  fontSize: 11,
+  lineHeight: 1.5,
+  '& a': { color: 'inherit', textDecoration: 'underline' },
+})

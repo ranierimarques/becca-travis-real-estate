@@ -50,12 +50,12 @@ export function SearchInput({ navigate, ...props }: SearchProps) {
 
         setSearchValue(address)
         setFilters('address', address)
+        handleNavigate(address)
       } else {
         setSearchValue(selectedItem)
         setFilters('address', selectedItem)
+        handleNavigate(selectedItem)
       }
-
-      handleNavigate()
     },
   })
 
@@ -93,9 +93,9 @@ export function SearchInput({ navigate, ...props }: SearchProps) {
     })
   }
 
-  function handleNavigate() {
+  function handleNavigate(value: string) {
     if (navigate) {
-      router.push('/homes?view=map', undefined, { shallow: true })
+      router.push({ pathname: '/homes', query: { search: value.trim() } })
     }
   }
 
@@ -103,7 +103,7 @@ export function SearchInput({ navigate, ...props }: SearchProps) {
     event.preventDefault()
     if (searchValue !== '') {
       setFilters('address', searchValue)
-      handleNavigate()
+      handleNavigate(searchValue)
     }
   }
 

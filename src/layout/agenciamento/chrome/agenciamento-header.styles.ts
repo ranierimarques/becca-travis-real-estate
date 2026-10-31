@@ -35,7 +35,7 @@ export const Nav = styled('nav', {
 })
 
 export const LogoLink = styled(Link, {
-  display: 'flex',
+  display: 'grid',
   flexShrink: 0,
 
   '& svg': {
@@ -55,6 +55,18 @@ export const LogoLink = styled(Link, {
       width: 134,
     },
   },
+})
+
+export const Credential = styled('span', {
+  color: '#694c5b',
+  fontSize: 9,
+  fontWeight: 700,
+  letterSpacing: '0.025em',
+  lineHeight: 1.2,
+  marginLeft: 35,
+  whiteSpace: 'nowrap',
+
+  '@bp1': { fontSize: 8, marginLeft: 31 },
 })
 
 export const Links = styled('div', {

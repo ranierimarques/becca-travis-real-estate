@@ -1,10 +1,8 @@
 import { useRef, useState } from 'react'
 import { Button, Flex } from '@/common'
-import { Tooltip } from '@/primitives'
 import { Hat } from '@/shared'
 import { Testimonial } from '.'
 import * as S from './client-testimonials.styles'
-import * as Svg from './svgs'
 
 const reviews = [
   {
@@ -26,8 +24,8 @@ const reviews = [
   {
     name: 'Randell P.',
     source: 'Zillow',
-    text: `Love her tenacity on the details of our transaction. Becca Travis is an all
-     -star player in my book. She knows her market and understands her client's needs very
+    text: `Love her tenacity on the details of our transaction. Becca Travis is an all-star
+     player in my book. She knows her market and understands her client's needs very
       well. If you need someone you can trust and who deeply understands the dynamics of
       the real estate process`,
   },
@@ -39,7 +37,7 @@ const reviews = [
         <S.ReviewSpan>
           &quot;Why Trust Your Future Home Purchase To Just Any Real Estate Agent?
           Discover Becca Travis - An Agent That Treats You Like Family And Not Just As A
-          Transaction
+          Transaction{' '}
         </S.ReviewSpan>
         <S.ReviewSpan>
           Looking for a new home? First time home buyer or seasoned investor?
@@ -139,14 +137,6 @@ const reviews = [
      all the complicated aspects about the home buying process when I needed it`,
   },
   {
-    name: 'Kristin Bourne',
-    source: 'Google',
-    text: `Becca is the best! She goes so far above and beyond. She is quick to respond
-     and get information from other agents. She is dream to work with. I couldn't imagine
-      working with anyone else. We live out of the area and she made the home buying
-       process easy`,
-  },
-  {
     name: 'C. Hill',
     source: 'Google',
     text: `My wife, our kids and myself were looking for a place to purchase in the
@@ -173,21 +163,14 @@ export function ClientTestimonials() {
   return (
     <section>
       <S.Wrapper>
-        <Hat css={{ mb: 8, '@bp4': { mb: 12 } }}>CUSTOMERS STORIES</Hat>
+        <Hat css={{ mb: 8, '@bp4': { mb: 12 } }}>CUSTOMER STORIES</Hat>
         <S.Title>Client stories</S.Title>
         <Flex align="end" justify="between">
           <S.Description>
-            Guiding clients to their dream home is more than just a job for me. It&apos;s
-            a passion. Nothing brings me more joy than helping each and every one of my
-            clients find the perfect home that meets their unique needs and desires.
+            Read what clients shared about their home searches and transactions with
+            Becca, including experiences from buyers searching at a distance.
           </S.Description>
-          <Tooltip content="Coming soon">
-            <S.ViewAll>VIEW ALL</S.ViewAll>
-          </Tooltip>
         </Flex>
-        <S.ViewAllLink href="/reviews">
-          View all stories <Svg.Arrow />
-        </S.ViewAllLink>
       </S.Wrapper>
 
       <S.TestimonialsContainer ref={testimonialsContainerRef} resize={resize}>

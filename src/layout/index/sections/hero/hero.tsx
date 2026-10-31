@@ -15,8 +15,8 @@ export function Hero() {
       <SearchInput navigate />
 
       <S.HelperText>
-        If you have any questions about the properties listed, <br /> please don&apos;t
-        hesitate to contact us. We&apos;re here to help!
+        Search an area or address to start a personal home search brief. <br /> Becca can
+        help you compare available homes and plan your next step.
       </S.HelperText>
 
       <S.ImageWrapper>

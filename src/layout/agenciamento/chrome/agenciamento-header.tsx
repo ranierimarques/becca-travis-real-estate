@@ -8,6 +8,7 @@ export function AgenciamentoHeader() {
       <S.Nav aria-label="Navegação em português">
         <S.LogoLink href="/" aria-label="Página inicial de Becca Travis">
           <Logo />
+          <S.Credential lang="en">Associate Broker · AL 000126941-1</S.Credential>
         </S.LogoLink>
 
         <S.Links>

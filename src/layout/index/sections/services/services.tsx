@@ -1,34 +1,35 @@
 import { Hat } from '@/shared'
 import { Section } from '@/template'
 import { Card } from '.'
-import { find, purchase, sell } from './images'
 import * as S from './services.styles'
 
 const cardsData = [
   {
-    image: purchase,
-    alt: 'A magnifying glass searching a house',
+    image: '/images/real/porch.webp',
+    alt: 'A home with a covered front porch',
     title: 'Purchase a home',
-    description: `Looking to move to Huntsville or Madison, AL? We've got you covered. With our constantly updated database, we're the go-to source for finding homes in North Alabama.
-    `,
+    description:
+      'Tell Becca your area, timing and priorities. She can help you compare available homes and plan useful next steps.',
     href: '/homes',
-    buttonText: 'Search a home',
+    buttonText: 'Start my search',
   },
   {
-    image: sell,
-    alt: 'Home sales page',
-    title: 'Sell your home today',
-    description: `Selling your home is a significant decision, and we understand that your situation is unique. We create a customized strategy to sell your property for top dollar. Trust us for exceptional service and results that exceed your expectations.`,
-    href: '/sell-with-us',
-    buttonText: 'Sell your home',
+    image: '/images/real/kitchen.webp',
+    alt: 'Kitchen with a large island',
+    title: 'Plan your sale',
+    description:
+      'Start a private listing draft, organize property facts and decide what to verify before you set a timeline.',
+    href: '/listing-planner',
+    buttonText: 'Open listing planner',
   },
   {
-    image: find,
-    alt: 'Your home price valuation chart',
-    title: 'Find your home value',
-    description: `Get a personalized estimate of your home's value with ease. Our accurate estimate system makes it simple to find out what your property is worth. Find your home's value now.`,
-    href: '/sellers-resources#home-bot',
-    buttonText: 'Estimate value',
+    image: '/images/real/big-spring-park.webp',
+    alt: 'Big Spring Park in downtown Huntsville',
+    title: 'Explore local areas',
+    description:
+      'See real places, compare your commute and find the parcel-level details worth checking before you tour.',
+    href: '/areas',
+    buttonText: 'Compare areas',
   },
 ]
 
@@ -38,10 +39,9 @@ export function Services() {
       <Hat>MAIN SERVICES</Hat>
       <S.Title>Looking to buy or sell a home?</S.Title>
       <S.Description>
-        As one of the top real estate agents in the area, I have the experience and
-        expertise to help you achieve your goals. <br /> With a consultative approach, I
-        work closely with clients to make their home buying and selling dreams a reality.
-        Don&apos;t settle for anything less than exceptional service.
+        Tell me what you are trying to accomplish, and I will help you plan the next step.{' '}
+        <br /> As an Alabama Associate Broker, I work with buyers and sellers to compare
+        options, ask the right questions, and move forward with a clear plan.
       </S.Description>
 
       <S.Cards>
@@ -49,6 +49,13 @@ export function Services() {
           <Card key={data.title} data={data} />
         ))}
       </S.Cards>
+      <S.PhotoCredit>
+        Big Spring Park photo by{' '}
+        <a href="https://commons.wikimedia.org/wiki/File:Big_Spring_Park.jpg">
+          BullDawg2021
+        </a>
+        , resized. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </S.PhotoCredit>
     </Section>
   )
 }
