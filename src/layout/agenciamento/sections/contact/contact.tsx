@@ -31,8 +31,9 @@ export function Contact() {
           <S.Title>Conte onde você quer comprar</S.Title>
         </Flex>
         <S.Paragraph>
-          Alabama ou qualquer outro estado: compartilhe seu destino, orçamento e prazo. Eu
-          vou entender seus planos e organizar o próximo passo com você.
+          Conte onde está pensando em comprar, seu orçamento e prazo. No Alabama, posso
+          ajudar diretamente com a compra. Em outros estados, ajudo a planejar a mudança e,
+          com sua autorização, faço a apresentação a um profissional licenciado no destino.
         </S.Paragraph>
       </Flex>
       <Forms buyerFirst />

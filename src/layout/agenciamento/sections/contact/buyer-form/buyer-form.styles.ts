@@ -159,3 +159,17 @@ export const Disclaimer = styled('strong', {
   lineHeight: '18px',
   color: '$gray1',
 })
+
+
+export const DisclaimerLink = styled('a', {
+  color: '$magenta6',
+  textDecoration: 'underline',
+  textUnderlineOffset: 2,
+})
+
+export const SubmissionError = styled('p', {
+  marginBottom: 20,
+  color: '$red3',
+  fontSize: '14px',
+  lineHeight: '22px',
+})

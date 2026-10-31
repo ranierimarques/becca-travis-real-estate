@@ -8,9 +8,14 @@ import { Toast } from '@/primitives'
 import { Step1, Step2, Step3, Step4, StepsInformation } from '.'
 import * as S from './buyer-form.styles'
 
-const nameRegExp = /^[a-z ,.'-]+$/i
+const nameRegExp = /^[\p{L}\p{M} ,.'\u2019-]+$/u
 
 const formSchema = z.object({
+  market_location: z
+    .string()
+    .trim()
+    .min(2, 'Informe a cidade, o estado ou a região que está considerando.')
+    .max(120, 'Use até 120 caracteres.'),
   property_information: z.enum([
     'casa',
     'multifamiliar',
@@ -35,23 +40,27 @@ const formSchema = z.object({
     '900k-1.5m',
     '1.5m+',
   ]),
-  city: z.string().min(2, 'Informe a cidade'),
-  state: z.string().min(2, 'Informe o estado'),
-  first_name: z.string().refine(value => nameRegExp.test(value), 'Invalid Name'),
-  last_name: z.string().refine(value => nameRegExp.test(value), 'Invalid Name'),
-  email: z.string().min(1, 'Email is required').email('Invalid email'),
+  first_name: z
+    .string()
+    .min(1, 'Informe seu nome.')
+    .refine(value => nameRegExp.test(value), 'Confira o nome informado.'),
+  last_name: z
+    .string()
+    .min(1, 'Informe seu sobrenome.')
+    .refine(value => nameRegExp.test(value), 'Confira o sobrenome informado.'),
+  email: z.string().min(1, 'Informe seu e-mail.').email('Digite um e-mail válido.'),
   number: z
-    .string({ required_error: 'Number is required' })
-    .refine(value => isValidPhoneNumber(value), 'Invalid phone number'),
+    .string({ required_error: 'Informe seu telefone.' })
+    .refine(value => isValidPhoneNumber(value), 'Digite um telefone válido.'),
 })
 
 type formSchemaType = z.infer<typeof formSchema>
 
 const steps: Record<number, Partial<keyof formSchemaType>[]> = {
-  1: ['property_information'],
+  1: ['market_location', 'property_information'],
   2: ['timeframe'],
   3: ['buying_price'],
-  4: ['city', 'state', 'first_name', 'last_name', 'email', 'number'],
+  4: ['first_name', 'last_name', 'email', 'number'],
 }
 
 export function BuyerForm({
@@ -61,6 +70,7 @@ export function BuyerForm({
 }) {
   const [formStep, setFormStep] = useState(1)
   const [openToast, setOpenToast] = useState(false)
+  const [submissionError, setSubmissionError] = useState(false)
 
   const buyerForm = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
@@ -75,12 +85,12 @@ export function BuyerForm({
     formState: { isSubmitting },
   } = buyerForm
 
-  const { property_information, timeframe, buying_price } = watch()
+  const { market_location, property_information, timeframe, buying_price } = watch()
 
   const isLastStep = formStep === 4
 
   const isEnumButtonDisabled: Record<number, boolean> = {
-    1: !property_information,
+    1: !property_information || !market_location?.trim(),
     2: !timeframe,
     3: !buying_price,
   }
@@ -102,25 +112,34 @@ export function BuyerForm({
     }
   }
 
-  const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
-    const result = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
-        subject: 'New Buy Property Form',
-        from_name: 'Becca Travis Website',
-        ...values,
-      }),
-    })
+  const onSubmit: SubmitHandler<formSchemaType> = async values => {
+    setSubmissionError(false)
 
-    if (result.status === 200) {
-      setFormStep(1)
-      setOpenToast(true)
-      reset()
+    try {
+      const result = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+          subject: 'New Portuguese Buyer Inquiry',
+          from_name: 'Becca Travis Website',
+          ...values,
+        }),
+      })
+      const response = await result.json()
+
+      if (result.ok && response.success) {
+        setFormStep(1)
+        setOpenToast(true)
+        reset()
+      } else {
+        setSubmissionError(true)
+      }
+    } catch {
+      setSubmissionError(true)
     }
   }
 
@@ -139,6 +158,11 @@ export function BuyerForm({
           {formStep === 2 && <Step2 />}
           {formStep === 3 && <Step3 />}
           {formStep === 4 && <Step4 />}
+          {submissionError && (
+            <S.SubmissionError role="alert">
+              Não foi possível enviar agora. Tente novamente em instantes.
+            </S.SubmissionError>
+          )}
 
           <Flex
             direction={{
@@ -160,9 +184,15 @@ export function BuyerForm({
             }}
           >
             <S.DisclaimerText lastStep={formStep === 4}>
-              <S.Disclaimer>Ao enviar:</S.Disclaimer> você concorda com os Termos de Uso e
-              a Política de Privacidade e autoriza contato por telefone, mensagem de texto
-              ou e-mail sobre sua solicitação.
+              <S.Disclaimer>Aviso:</S.Disclaimer> Ao enviar seus dados, você concorda com
+              os{' '}
+              <S.DisclaimerLink href="/terms-of-service">Termos de Uso</S.DisclaimerLink>{' '}
+              e a{' '}
+              <S.DisclaimerLink href="/privacy-notice">
+                Política de Privacidade
+              </S.DisclaimerLink>{' '}
+              e aceita receber contato por telefone, mensagem de texto ou e-mail sobre
+              esta solicitação.
             </S.DisclaimerText>
 
             <Flex
@@ -190,7 +220,7 @@ export function BuyerForm({
                 disabled={isEnumButtonDisabled[formStep] || isSubmitting}
                 type={isLastStep ? 'submit' : 'button'}
                 loading={isSubmitting}
-                onClick={nextForm}
+                onClick={isLastStep ? undefined : nextForm}
                 size="2"
               >
                 {isLastStep ? 'Enviar' : 'Continuar'}
@@ -199,7 +229,13 @@ export function BuyerForm({
           </Flex>
         </S.Form>
       </FormProvider>
-      <Toast openToast={openToast} onOpenToast={setOpenToast} form />
+      <Toast
+        openToast={openToast}
+        onOpenToast={setOpenToast}
+        form
+        title="Mensagem enviada"
+        description="Obrigada. Em breve vou falar com você."
+      />
     </Flex>
   )
 }

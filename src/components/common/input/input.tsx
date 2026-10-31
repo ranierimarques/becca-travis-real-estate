@@ -15,6 +15,7 @@ interface InputProps {
     | 'street_address'
     | 'state'
     | 'city'
+    | 'market_location'
     | 'zipcode'
     | 'additional_information'
     | 'timeframe'
@@ -49,7 +50,12 @@ export function Input({
             control={control}
             name={name}
             render={({ field }) => (
-              <S.TelInput country="US" placeholder="(000) 000-0000" {...field} />
+              <S.TelInput
+                defaultCountry="US"
+                placeholder={props.placeholder}
+                disabled={props.disabled}
+                {...field}
+/>
             )}
           />
           <S.Warning showError={hasError} />
