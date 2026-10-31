@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react'
 import { Button, MetaSEO } from '@/common'
-import { huntsvilleFaq } from '../../data/huntsville-faq'
 import { PaymentEstimator } from '@/layout/communities/sections/payment-estimator/payment-estimator'
 import { FaqPreview } from '@/layout/faq-preview'
 import { LiveMlsDrawer, LiveMlsTarget } from '@/layout/live-mls-drawer'
 import { Section } from '@/template'
+import { huntsvilleFaq } from '../../data/huntsville-faq'
 import * as S from './areas-page.styles'
 
 type CommuteHub =
@@ -13,12 +13,19 @@ type CommuteHub =
   | 'Medical District / Downtown'
   | 'Mazda-Toyota / I-65'
 
+const TAX_ZONE_UNINCORPORATED = 'unincorporated' as const
+const TAX_ZONE_CITY_SCHOOL = 'city-school' as const
+const TAX_ZONE_ADDRESS_SPECIFIC = 'address-specific' as const
+
 type AreaFocus =
   | typeof FOCUS_MOUNTAIN
   | typeof FOCUS_GOLF_GREENWAY
   | typeof FOCUS_LARGER_LOTS
 
-type TaxZone = 'unincorporated' | 'city-school' | 'address-specific'
+type TaxZone =
+  | typeof TAX_ZONE_UNINCORPORATED
+  | typeof TAX_ZONE_CITY_SCHOOL
+  | typeof TAX_ZONE_ADDRESS_SPECIFIC
 
 interface AreaCardData {
   name: string
@@ -293,30 +300,30 @@ const areas: AreaCardData[] = [
 ]
 
 const taxZoneByArea: Partial<Record<string, TaxZone>> = {
-  'Harvest and Monrovia': 'unincorporated',
-  Meridianville: 'unincorporated',
-  'New Market': 'unincorporated',
-  'Hazel Green': 'unincorporated',
-  Toney: 'unincorporated',
-  Madison: 'city-school',
-  'Jones Valley': 'city-school',
-  Blossomwood: 'city-school',
-  'South Huntsville': 'city-school',
-  Haysland: 'city-school',
-  'Village of Providence': 'city-school',
-  Twickenham: 'city-school',
-  Hartselle: 'city-school',
-  Scottsboro: 'city-school',
+  'Harvest and Monrovia': TAX_ZONE_UNINCORPORATED,
+  Meridianville: TAX_ZONE_UNINCORPORATED,
+  'New Market': TAX_ZONE_UNINCORPORATED,
+  'Hazel Green': TAX_ZONE_UNINCORPORATED,
+  Toney: TAX_ZONE_UNINCORPORATED,
+  Madison: TAX_ZONE_CITY_SCHOOL,
+  'Jones Valley': TAX_ZONE_CITY_SCHOOL,
+  Blossomwood: TAX_ZONE_CITY_SCHOOL,
+  'South Huntsville': TAX_ZONE_CITY_SCHOOL,
+  Haysland: TAX_ZONE_CITY_SCHOOL,
+  'Village of Providence': TAX_ZONE_CITY_SCHOOL,
+  Twickenham: TAX_ZONE_CITY_SCHOOL,
+  Hartselle: TAX_ZONE_CITY_SCHOOL,
+  Scottsboro: TAX_ZONE_CITY_SCHOOL,
 }
 
 const taxZoneLabels: Record<TaxZone, string> = {
-  unincorporated: 'Unincorporated / county-tax context',
-  'city-school': 'City / school-district context',
-  'address-specific': 'Mixed or verify by address',
+  [TAX_ZONE_UNINCORPORATED]: 'Unincorporated / county-tax context',
+  [TAX_ZONE_CITY_SCHOOL]: 'City / school-district context',
+  [TAX_ZONE_ADDRESS_SPECIFIC]: 'Mixed or verify by address',
 }
 
 function areaTaxZone(areaName: string): TaxZone {
-  return taxZoneByArea[areaName] ?? 'address-specific'
+  return taxZoneByArea[areaName] ?? TAX_ZONE_ADDRESS_SPECIFIC
 }
 
 const schoolLinks = [
@@ -355,9 +362,9 @@ const focusOptions: Array<'All' | AreaFocus> = [
 ]
 const taxZoneOptions: Array<'All' | TaxZone> = [
   'All',
-  'unincorporated',
-  'city-school',
-  'address-specific',
+  TAX_ZONE_UNINCORPORATED,
+  TAX_ZONE_CITY_SCHOOL,
+  TAX_ZONE_ADDRESS_SPECIFIC,
 ]
 const commuteDestinations = [
   'Redstone Arsenal Gate 9, Huntsville, Alabama',
