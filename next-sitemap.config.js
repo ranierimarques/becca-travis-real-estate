@@ -9,7 +9,7 @@ const fullURL = `${url ? 'https://' + url : 'http://localhost:3000'}`
 module.exports = {
   siteUrl: fullURL,
   generateRobotsTxt: true,
-  exclude: ['/homes'],
+  exclude: ['/homes', '/follow-up-copyboard'],
   generateIndexSitemap: false,
   robotsTxtOptions: {
     policies: [

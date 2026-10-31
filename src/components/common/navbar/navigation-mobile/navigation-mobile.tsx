@@ -252,7 +252,9 @@ export function NavigationMobile({ isOpen, toggleMenuVisibility }: Props) {
           </S.Link>
         </li>
         <li>
-          <S.DisabledLink>Local Guides</S.DisabledLink>
+          <S.Link href="/north-alabama-property-research" onClick={toggleMenuVisibility}>
+            Huntsville Buyer Hub
+          </S.Link>
         </li>
         <li>
           <S.DisabledLink>My Account</S.DisabledLink>

@@ -20,6 +20,7 @@ const sources = {
 const researchSteps = [
   {
     number: '01',
+    visualAction: 'Explore the property map',
     title: 'Locate the parcel and jurisdiction',
     description:
       'Search by the exact street address or parcel number. Save the parcel ID, map view, and the date you checked. A postal city name does not by itself confirm which city, county, or taxing district serves a property.',
@@ -32,6 +33,7 @@ const researchSteps = [
   },
   {
     number: '02',
+    visualAction: 'Explore property tax dates',
     title: 'Check taxes and exemptions',
     description:
       'Look up the parcel’s current record, then ask the county assessor how a purchase or a change in ownership may affect the next assessment. Do not treat the current owner’s bill as a quote for your future taxes.',
@@ -47,6 +49,7 @@ const researchSteps = [
   },
   {
     number: '03',
+    visualAction: 'Open the FEMA flood map',
     title: 'Review mapped flood hazards',
     description:
       'Enter the property address in FEMA’s official map service and note the current map panel and date. A map is one part of due diligence. Ask an insurance professional about the specific structure and check grading, drainage, and prior water history with the right records and experts.',
@@ -54,6 +57,7 @@ const researchSteps = [
   },
   {
     number: '04',
+    visualAction: 'Explore school resources',
     title: 'Verify schools and service providers',
     description:
       'Confirm school assignment, water, sewer, electric, and waste service directly for the address. Boundaries and providers can change within the same named community, so verify with the responsible district or utility before making a decision.',
@@ -94,6 +98,9 @@ export default function NorthAlabamaPropertyResearchPage() {
               around it.
             </p>
             <div className="hero-actions">
+              <Link href="/property-intel" legacyBehavior>
+                <a className="primary-link">Check an address</a>
+              </Link>
               <a className="primary-link" href="#research-checklist">
                 Start the address checklist
               </a>
@@ -139,26 +146,41 @@ export default function NorthAlabamaPropertyResearchPage() {
         <div className="research-grid">
           {researchSteps.map(step => (
             <article className="research-card" key={step.number}>
-              <span className="step-number">{step.number}</span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-              <ul>
-                {step.links.map(link =>
-                  'internal' in link ? (
-                    <li key={link.href}>
-                      <Link href={link.href} legacyBehavior>
-                        <a>{link.label}</a>
-                      </Link>
-                    </li>
-                  ) : (
-                    <li key={link.href}>
-                      <a href={link.href} target="_blank" rel="noreferrer noopener">
-                        {link.label} <span aria-hidden="true">↗</span>
-                      </a>
-                    </li>
-                  )
-                )}
-              </ul>
+              <a
+                className={`research-visual visual-${step.number}`}
+                href={step.links[0].href}
+                target={step.links[0].href.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer noopener"
+                aria-label={`${step.visualAction}${
+                  step.links[0].href.startsWith('http') ? ' (opens in a new tab)' : ''
+                }`}
+              >
+                <span>
+                  {step.visualAction} <span aria-hidden="true">↗</span>
+                </span>
+              </a>
+              <div className="card-copy">
+                <span className="step-number">{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+                <ul>
+                  {step.links.map(link =>
+                    'internal' in link ? (
+                      <li key={link.href}>
+                        <Link href={link.href} legacyBehavior>
+                          <a>{link.label}</a>
+                        </Link>
+                      </li>
+                    ) : (
+                      <li key={link.href}>
+                        <a href={link.href} target="_blank" rel="noreferrer noopener">
+                          {link.label} <span aria-hidden="true">↗</span>
+                        </a>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
             </article>
           ))}
         </div>
@@ -358,6 +380,46 @@ export default function NorthAlabamaPropertyResearchPage() {
           border: 1px solid #eadfe4;
           border-radius: 16px;
           box-shadow: 0 10px 32px rgba(55, 29, 41, 0.045);
+          overflow: hidden;
+        }
+        .research-visual {
+          align-items: flex-end;
+          aspect-ratio: 1.9;
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          padding: 16px;
+          transition: filter 180ms ease;
+        }
+        .visual-01 {
+          background-image: url('/images/home-inspiration/contemporary-exterior.webp');
+        }
+        .visual-02 {
+          background-image: url('/images/home-inspiration/kitchen-and-gathering.webp');
+        }
+        .visual-03 {
+          background-image: url('/images/home-inspiration/country-setting.webp');
+        }
+        .visual-04 {
+          background-image: url('/images/home-inspiration/porch-and-entry.webp');
+        }
+        .research-visual > span {
+          background: rgba(255, 255, 255, 0.95);
+          border-radius: 999px;
+          box-shadow: 0 3px 14px rgba(55, 29, 41, 0.12);
+          color: #59223f;
+          font-size: 13px;
+          font-weight: 600;
+          padding: 9px 13px;
+        }
+        .research-visual:hover {
+          filter: brightness(0.94);
+        }
+        .research-visual:focus-visible {
+          outline: 3px solid #6d294c;
+          outline-offset: -4px;
+        }
+        .card-copy {
           padding: 25px;
         }
         .step-number {
@@ -511,7 +573,7 @@ export default function NorthAlabamaPropertyResearchPage() {
           .research-grid {
             grid-template-columns: 1fr;
           }
-          .research-card {
+          .card-copy {
             padding: 21px;
           }
           .tax-note {
