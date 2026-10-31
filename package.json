@@ -8,6 +8,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
+    "test:qwen-config": "node --test tests/qwen-config.test.js",
     "prepare": "husky install",
     "commit": "git-cz",
     "eslint": "npx eslint --fix src"
