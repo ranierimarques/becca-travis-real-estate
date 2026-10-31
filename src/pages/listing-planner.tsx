@@ -36,7 +36,20 @@ const structuredData = {
       inLanguage: 'en-US',
       isPartOf: { '@id': 'https://beccatravis.com/#website' },
       mainEntity: { '@id': 'https://beccatravis.com/listing-planner#app' },
+      primaryImageOfPage: {
+        '@id': 'https://beccatravis.com/listing-planner#primary-image',
+      },
       breadcrumb: { '@id': 'https://beccatravis.com/listing-planner#breadcrumb' },
+    },
+    {
+      '@type': 'ImageObject',
+      '@id': 'https://beccatravis.com/listing-planner#primary-image',
+      contentUrl: 'https://beccatravis.com/images/listing-planner/hero.jpg',
+      url: 'https://beccatravis.com/images/listing-planner/hero.jpg',
+      width: 1800,
+      height: 1200,
+      caption: 'A home preparation workspace with organized property records.',
+      representativeOfPage: true,
     },
     {
       '@type': 'WebApplication',
@@ -102,7 +115,7 @@ const Page: NextPage = () => {
         canonicalPath="/listing-planner"
         title="Free Home Listing Description Planner | Becca Travis"
         description="Organize verified property facts, create a factual first listing description draft, and print a seller preparation plan. No contact details required."
-        image="/sharing-cards/og-sellers.jpg"
+        image="/images/listing-planner/hero.jpg"
         alt="Factual home listing description planner by Becca Travis"
       />
       <Head>

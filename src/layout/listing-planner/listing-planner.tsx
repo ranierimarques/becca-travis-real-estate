@@ -577,6 +577,18 @@ export function ListingPlanner() {
               </S.ReviewCheck>
             ))}
           </S.ReviewChecks>
+          <S.ReviewHandoff>
+            <div>
+              <h3>Want a second set of eyes?</h3>
+              <p>
+                Copy your draft first. Nothing from this planner is sent when you choose
+                to ask Becca about a listing plan.
+              </p>
+            </div>
+            <S.HandoffLink href="/sell-with-us#seller-request">
+              Ask about my listing plan <ArrowRightIcon aria-hidden="true" />
+            </S.HandoffLink>
+          </S.ReviewHandoff>
         </S.ReviewInner>
       </S.ReviewBand>
 

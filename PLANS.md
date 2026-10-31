@@ -107,3 +107,30 @@ Targeted lint, TypeScript, a 107 page production build, generated HTML checks, J
 parsing, desktop browser QA, 390 pixel mobile QA, 320 pixel compact QA, persistence,
 wording review, copy, and responsive layout checks passed. Production deployment and
 public-domain verification are the remaining release gate. No test lead was submitted.
+
+## Listing planner optimization pass
+
+### Goal
+
+Improve first load performance, make OpenAI search access explicit, remove unsupported
+social claims, and create a clearer optional seller handoff after the homeowner receives
+the private planning value.
+
+### Completed implementation
+
+1. Moved the buyer concierge and optional property assistant out of the shared application
+   bundle and load them only on routes that use them.
+2. Kept both global chat experiences off the focused listing planner route.
+3. Added an explicit `OAI-SearchBot` allow policy while preserving the sitewide crawler
+   allow policy.
+4. Replaced the planner social image that contained an illustrative price and address with
+   the original planner photograph and added an `ImageObject` to the structured data.
+5. Added a concise seller handoff after the review checklist and stated that planner data is
+   not sent automatically.
+
+### Verification
+
+Targeted lint and TypeScript pass. The 107 page production build passes. The listing planner
+first load decreased from 351 kB to 293 kB, and shared first load JavaScript decreased from
+339 kB to 273 kB in the same local production build environment. Public deployment and
+domain verification remain before closure.
