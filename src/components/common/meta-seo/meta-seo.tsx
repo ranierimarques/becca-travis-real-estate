@@ -8,6 +8,7 @@ interface MetaSEOProps {
   alt: string
   canonicalPath?: string
   noindex?: boolean
+  locale?: string
 }
 
 const environment = process.env.NEXT_PUBLIC_VERCEL_ENV
@@ -23,6 +24,7 @@ export function MetaSEO({
   alt,
   canonicalPath,
   noindex = false,
+  locale = 'en_US',
 }: MetaSEOProps) {
   const { asPath } = useRouter()
   const path = (canonicalPath || asPath).split(/[?#]/)[0] || '/'
@@ -39,7 +41,7 @@ export function MetaSEO({
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content={locale} />
       <meta property="og:site_name" content="Becca Travis" />
       <meta property="og:image" content={imagePath} />
       <meta property="og:image:secure_url" content={imagePath} />

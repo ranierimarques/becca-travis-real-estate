@@ -1,32 +1,20 @@
 import type { NextPage } from 'next'
 import { MetaSEO } from '@/common'
-import {
-  Cascade,
-  Contact,
-  Experience,
-  FinancialUnderstanding,
-  Hero,
-  InternacionalConnection,
-} from '@/layout/agenciamento/sections'
+import { NationwideBuyer } from '@/layout/agenciamento/nationwide-buyer'
 
 const Home: NextPage = () => {
   return (
-    <main>
+    <>
       <MetaSEO
         canonicalPath="/agenciamento"
-        title="Agenciamento Imobiliário | Becca Travis"
-        description="Conheça os serviços imobiliários de Becca Travis no Alabama."
+        locale="pt_BR"
+        title="Comprar Casa nos EUA em Português | Becca Travis"
+        description="Compre casa em qualquer estado dos EUA com atendimento em português, conexão com um corretor local e acompanhamento pessoal de Becca Travis."
         image="/sharing-cards/og-index.jpg"
-        alt="Feel at home before finding the perfect property."
+        alt="Compre casa nos Estados Unidos com atendimento em português de Becca Travis."
       />
-
-      <Hero />
-      <Experience />
-      <Cascade />
-      <InternacionalConnection />
-      {/* <FinancialUnderstanding /> */}
-      <Contact />
-    </main>
+      <NationwideBuyer />
+    </>
   )
 }
 

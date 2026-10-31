@@ -35,6 +35,8 @@ const formSchema = z.object({
     '900k-1.5m',
     '1.5m+',
   ]),
+  city: z.string().min(2, 'Informe a cidade'),
+  state: z.string().min(2, 'Informe o estado'),
   first_name: z.string().refine(value => nameRegExp.test(value), 'Invalid Name'),
   last_name: z.string().refine(value => nameRegExp.test(value), 'Invalid Name'),
   email: z.string().min(1, 'Email is required').email('Invalid email'),
@@ -49,7 +51,7 @@ const steps: Record<number, Partial<keyof formSchemaType>[]> = {
   1: ['property_information'],
   2: ['timeframe'],
   3: ['buying_price'],
-  4: ['first_name', 'last_name', 'email', 'number'],
+  4: ['city', 'state', 'first_name', 'last_name', 'email', 'number'],
 }
 
 export function BuyerForm({
@@ -128,7 +130,7 @@ export function BuyerForm({
         '@initial': 'row',
         '@bp4': 'column',
       }}
-      css={{ h: 584, '@bp4': { padding: '24px 32px', h: '100%' } }}
+      css={{ h: 520, '@bp4': { padding: '24px 32px', h: '100%' } }}
     >
       <StepsInformation isSubmitting={isSubmitting} formStep={formStep} />
       <FormProvider {...buyerForm}>
@@ -158,10 +160,9 @@ export function BuyerForm({
             }}
           >
             <S.DisclaimerText lastStep={formStep === 4}>
-              <S.Disclaimer>Disclaimer:</S.Disclaimer> By entering your information and
-              submitting this form, you agree to our Terms of Use and Privacy Policy and
-              that you may be contacted by phone, text message and email about your
-              inquiry.
+              <S.Disclaimer>Ao enviar:</S.Disclaimer> você concorda com os Termos de Uso e
+              a Política de Privacidade e autoriza contato por telefone, mensagem de texto
+              ou e-mail sobre sua solicitação.
             </S.DisclaimerText>
 
             <Flex

@@ -24,7 +24,7 @@ export const Background = styled('div', {
 })
 
 export const Form = styled('form', {
-  padding: 40,
+  padding: 32,
   width: '100%',
 
   display: 'flex',
