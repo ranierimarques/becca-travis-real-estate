@@ -5,6 +5,7 @@ declare namespace NodeJS {
     NEXT_PUBLIC_BING_AUTOCOMPLETE_API_KEY: string
     NEXT_PUBLIC_WEB3FORMS_API_KEY: string
     NEXT_PUBLIC_BRIDGE_API_KEY: string
+    NEXT_PUBLIC_AI_ASSISTANT_ENABLED?: 'true' | 'false'
     NEXT_PUBLIC_VERCEL_URL: string | null
     NEXT_PUBLIC_VERCEL_ENV: 'production' | 'preview' | 'development'
 
@@ -15,5 +16,9 @@ declare namespace NodeJS {
     YELP_API_KEY: string
     SCHOOL_DIGGER_API_KEY: string
     SCHOOL_DIGGER_API_ID: string
+    DASHSCOPE_API_KEY?: string
+    DASHSCOPE_BASE_URL?: string
+    QWEN_MODEL?: string
+    AI_ASSISTANT_ALLOWED_ORIGINS?: string
   }
 }
