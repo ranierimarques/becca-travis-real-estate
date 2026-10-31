@@ -15,7 +15,7 @@ const siteMapLinks = [
 
 const resourcesLinks = [
   { href: '/planning-tools', text: 'Free planning tools' },
-  { href: '/listing-planner', text: 'Listing description planner' },
+  { href: '/listing-planner', text: 'Home selling planner' },
   { href: '/sellers-resources', text: 'Sellers resources' },
   { href: '/blog', text: 'Blog' },
 ]

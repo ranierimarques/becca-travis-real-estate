@@ -10,7 +10,7 @@ const Page: NextPage = () => {
       <MetaSEO
         canonicalPath="/sell-with-us"
         title="Sell Your Home | Becca Travis"
-        description="Start with a private factual listing draft, then build a North Alabama home selling plan with Becca Travis when you are ready."
+        description="Organize your home details and next steps in a private selling plan. Talk with Becca Travis about your North Alabama sale when you are ready."
         image="/sharing-cards/og-sellers.jpg"
         alt="Discover your home's true value and sell confidently"
       />
@@ -18,15 +18,15 @@ const Page: NextPage = () => {
       <section className="seller-intro">
         <div className="seller-intro-inner">
           <div className="seller-intro-copy">
-            <h1>Start with the facts, not a form.</h1>
+            <h1>Start your home sale with a plan.</h1>
             <p>
-              Organize your property details and create a working listing description
-              before deciding whether you are ready to talk. The planner stays in your
-              browser and does not ask for contact information.
+              Get clear on your next steps before you list. Gather your home details, see
+              what to verify, and bring focused questions to a conversation when you are
+              ready.
             </p>
             <div className="seller-intro-actions">
-              <Link className="seller-primary" href="/listing-planner">
-                Build my listing draft
+              <Link href="/listing-planner" legacyBehavior>
+                <a className="seller-primary">Build my selling plan</a>
               </Link>
               <a className="seller-secondary" href="#seller-request">
                 I am ready to discuss selling
@@ -44,7 +44,7 @@ const Page: NextPage = () => {
               sizes="(max-width: 1023px) 100vw, 42vw"
             />
             <div className="seller-preview-note">
-              <strong>Build first. Share later.</strong>
+              <strong>Make a plan that fits your timing.</strong>
               <span>Private planner. No contact details required.</span>
             </div>
           </aside>

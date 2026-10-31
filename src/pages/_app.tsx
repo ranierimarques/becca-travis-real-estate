@@ -28,7 +28,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const [queryClient] = useState(() => new QueryClient())
   const isPortugueseBuyerRoute = router.pathname.startsWith('/agenciamento')
-  const isFocusedListingPlanner = router.pathname === '/listing-planner'
+  const isSellerRoute =
+    router.pathname === '/listing-planner' || router.pathname === '/sell-with-us'
   globalStyles()
 
   return (
@@ -36,11 +37,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Hydrate state={pageProps.dehydratedState}>
         {isPortugueseBuyerRoute ? <AgenciamentoHeader /> : <Navbar />}
         <Component {...pageProps} />
-        {!isFocusedListingPlanner && <BuyerConcierge />}
+        {!isSellerRoute && <BuyerConcierge />}
         <Analytics />
         {isPortugueseBuyerRoute ? <AgenciamentoFooter /> : <Footer />}
-        {!isFocusedListingPlanner &&
-          process.env.NEXT_PUBLIC_AI_ASSISTANT_ENABLED === 'true' && <AiAssistant />}
+        {!isSellerRoute && process.env.NEXT_PUBLIC_AI_ASSISTANT_ENABLED === 'true' && (
+          <AiAssistant />
+        )}
         {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && <DevTools />}
       </Hydrate>
     </QueryClientProvider>

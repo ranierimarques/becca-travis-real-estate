@@ -108,6 +108,32 @@ parsing, desktop browser QA, 390 pixel mobile QA, 320 pixel compact QA, persiste
 wording review, copy, and responsive layout checks passed. Production deployment and
 public-domain verification are the remaining release gate. No test lead was submitted.
 
+## Seller planner mobile revision
+
+### Goal
+
+Respond to the supplied mobile screenshot by making the page feel like a useful home sale
+plan instead of a long listing description form. Keep the existing brand, private browser
+storage, fact review, and factual copy safeguards.
+
+### Implementation
+
+1. Lead with a clear home sale promise and a short path into the planner.
+2. Show only location, timing, and property type at first. Place measurements and home
+   highlights in accessible optional sections.
+3. Show a useful next step in the plan panel before any description is generated.
+4. Tighten the result panel and align seller page, navigation, and search metadata with
+   the new promise.
+5. Keep the seller routes focused on their seller actions by removing the buyer plan
+   launcher from the seller page.
+
+### Status
+
+Implementation and local verification are complete. Targeted lint, TypeScript, the 107
+page production build, desktop and 390 and 320 pixel browser checks, disclosure behavior,
+browser storage restoration, seller call to action styling, and buyer launcher route
+checks passed. Public deployment verification is tracked in the release report.
+
 ## Listing planner optimization pass
 
 ### Goal

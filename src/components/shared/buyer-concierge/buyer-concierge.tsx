@@ -143,7 +143,8 @@ export function BuyerConcierge() {
   const excluded =
     router.pathname === '/contact-us' ||
     router.pathname === '/agenciamento' ||
-    router.pathname === '/listing-planner'
+    router.pathname === '/listing-planner' ||
+    router.pathname === '/sell-with-us'
   const questionStep = step === 'goal' ? 1 : step === 'location' ? 2 : 3
   const hasBack = step !== 'goal' && step !== 'success'
   const topbarLabel =
