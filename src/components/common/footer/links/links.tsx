@@ -16,6 +16,9 @@ const siteMapLinks = [
 const resourcesLinks = [
   { href: '/planning-tools', text: 'Free planning tools' },
   { href: '/listing-planner', text: 'Listing description planner' },
+  { href: '/mortgage-offer-comparison', text: 'Compare mortgage offers' },
+  { href: '/north-alabama-property-research', text: 'Property research guide' },
+  { href: '/north-alabama-closing-checklist', text: 'North Alabama closing checklist' },
   { href: '/sellers-resources', text: 'Sellers resources' },
   { href: '/blog', text: 'Blog' },
 ]

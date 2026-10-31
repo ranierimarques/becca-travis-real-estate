@@ -41,7 +41,12 @@ export function AboutHuntsville() {
         </Button>
       </S.TextContainer>
       <S.ImageContainer>
-        <Image src={huntsville} alt="Huntsville drone shoot" fill />
+        <Image
+          src={huntsville}
+          alt="Huntsville and surrounding landscape from above"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1184px) 44vw, 520px"
+        />
       </S.ImageContainer>
     </Section>
   )

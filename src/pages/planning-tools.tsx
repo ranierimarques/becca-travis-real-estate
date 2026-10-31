@@ -236,7 +236,7 @@ export default function PlanningToolsPage() {
                 src="/images/areas/downtown-huntsville.webp"
                 alt="Downtown Huntsville park pond and skyline"
                 fill
-                sizes="(max-width: 900px) 100vw, 36vw"
+                sizes="(max-width: 820px) 100vw, (max-width: 1160px) 32vw, 368px"
               />
             </div>
             <span className="note-kicker">A practical starting point</span>
@@ -251,6 +251,15 @@ export default function PlanningToolsPage() {
       <nav className="jump-nav" aria-label="Planning tools page navigation">
         <a href="#calculators">Calculators</a>
         <a href="#worksheets">Worksheets</a>
+        <Link href="/north-alabama-property-research" legacyBehavior>
+          <a>Property research guide</a>
+        </Link>
+        <Link href="/mortgage-offer-comparison" legacyBehavior>
+          <a>Compare mortgage offers</a>
+        </Link>
+        <Link href="/north-alabama-closing-checklist" legacyBehavior>
+          <a>Closing checklist</a>
+        </Link>
         <a href="#local-answers">North Alabama answers</a>
       </nav>
 
@@ -428,6 +437,28 @@ export default function PlanningToolsPage() {
         <p className="privacy-note">Your entries stay in this page and are not sent to Becca. These tools are educational aids, not loan offers, tax or legal advice, inspections, or guarantees.</p>
       </section>
 
+      <section className="research-promo">
+        <div>
+          <p className="eyebrow">Research beyond the listing</p>
+          <h2>Plan the details around the home.</h2>
+          <p>
+            Compare written loan terms, research an exact address, and keep closing steps
+            together with these free North Alabama resources.
+          </p>
+        </div>
+        <div className="resource-links">
+          <Link href="/mortgage-offer-comparison" legacyBehavior>
+            <a>Compare mortgage offers <span aria-hidden="true">→</span></a>
+          </Link>
+          <Link href="/north-alabama-property-research" legacyBehavior>
+            <a>Research a property address <span aria-hidden="true">→</span></a>
+          </Link>
+          <Link href="/north-alabama-closing-checklist" legacyBehavior>
+            <a>Open the closing checklist <span aria-hidden="true">→</span></a>
+          </Link>
+        </div>
+      </section>
+
       <section id="local-answers" className="local-answers">
         <FaqPreview title="A few North Alabama questions to plan around" id="planning-questions" items={planningFaq} />
       </section>
@@ -511,6 +542,12 @@ export default function PlanningToolsPage() {
         .result-lines b { color: #3c3036; font-weight: 600; white-space: nowrap; }
         .result-card > p { color: #6a5c64; font-size: 12px; line-height: 1.6; margin: 16px 0 0; }
         .worksheet-section { padding-top: 34px; }
+        .research-promo { align-items: center; background: #fff; border: 1px solid #eadfe4; border-radius: 16px; box-shadow: 0 10px 32px rgba(55,29,41,.045); display: flex; gap: 30px; justify-content: space-between; margin: 0 auto 54px; max-width: 1112px; padding: 27px 30px; }
+        .research-promo .eyebrow { margin-bottom: 8px; }
+        .research-promo h2 { font-size: 24px; }
+        .research-promo p:not(.eyebrow) { color: #655a60; font-size: 14px; line-height: 1.65; margin: 8px 0 0; max-width: 700px; }
+        .resource-links { display: grid; flex: 0 0 auto; gap: 9px; }
+        .resource-links a { color: #6d294c; font-size: 13px; font-weight: 700; text-underline-offset: 4px; }
         .worksheet-controls { align-items: center; display: flex; flex-wrap: wrap; gap: 14px 22px; justify-content: space-between; margin-bottom: 24px; }
         .search-field { display: block; flex: 1 1 240px; max-width: 340px; }
         .filter-pills { display: flex; flex-wrap: wrap; gap: 4px; }
@@ -543,6 +580,7 @@ export default function PlanningToolsPage() {
           .hero-inner { gap: 32px; }
           .worksheet-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .worksheet-card.expanded { grid-column: span 2; }
+          .research-promo { align-items: flex-start; flex-direction: column; margin: 0 24px 48px; }
         }
         @media (max-width: 560px) {
           .hero { padding: 52px 20px 38px; }
@@ -553,6 +591,7 @@ export default function PlanningToolsPage() {
           .fields-grid, .worksheet-grid { grid-template-columns: 1fr; }
           .worksheet-card.expanded { grid-column: span 1; }
           .contact-band { align-items: flex-start; flex-direction: column; padding: 36px 20px; }
+          .research-promo { margin: 0 18px 42px; padding: 22px 20px; }
         }
         @media print {
           .hero, .jump-nav, .calculator-shell, .worksheet-controls, .contact-band, .print-button { display: none !important; }

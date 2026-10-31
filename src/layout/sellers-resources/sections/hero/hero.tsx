@@ -105,7 +105,13 @@ export function Hero() {
               },
             }}
           >
-            <Image src={house} alt="house" fill quality={100} />
+            <Image
+              src={house}
+              alt="Home exterior"
+              fill
+              quality={90}
+              sizes="(max-width: 768px) 100vw, (max-width: 1184px) 48vw, 520px"
+            />
           </Box>
           <Box
             css={{

@@ -159,6 +159,7 @@ export function Yelp({ data, communityName }: YelpProps) {
                   alt={business.name}
                   style={{ objectFit: 'cover' }}
                   fill
+                  sizes="(max-width: 680px) 100vw, (max-width: 1000px) 50vw, 33vw"
                 />
                 <Box
                   css={{

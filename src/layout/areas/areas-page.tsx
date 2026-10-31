@@ -47,28 +47,28 @@ const HUNTSVILLE_GIS_URL =
 
 const lifestyleScenes = [
   {
-    title: 'Historic character',
-    detail: 'Tree-lined streets and homes with a sense of history.',
-    src: '/images/areas/historic-street.webp',
-    alt: 'Illustrative tree-lined historic neighborhood street',
+    title: 'Porches and welcome-home details',
+    detail: 'A look at the entry and outdoor spaces you may want in your next home.',
+    src: '/images/home-inspiration/porch-and-entry.webp',
+    alt: 'White home with a broad covered front porch',
   },
   {
-    title: 'Trail and ridge settings',
-    detail: 'Wooded paths and open valley views.',
-    src: '/images/areas/wooded-ridge.webp',
-    alt: 'Illustrative wooded ridge trail and valley view',
+    title: 'Contemporary exteriors',
+    detail: 'Clean lines, generous windows, and a modern exterior palette.',
+    src: '/images/home-inspiration/contemporary-exterior.webp',
+    alt: 'Contemporary charcoal gray home with a modern exterior',
   },
   {
-    title: 'Porch-forward homes',
-    detail: 'A home style built around outdoor sitting space.',
-    src: '/images/areas/front-porch-home.webp',
-    alt: 'Illustrative Southern home with a shaded front porch',
+    title: 'Country settings',
+    detail: 'A home set among open land and mature trees.',
+    src: '/images/home-inspiration/country-setting.webp',
+    alt: 'Farmhouse in an open country setting with mature trees',
   },
   {
-    title: 'Room to spread out',
-    detail: 'Open land and a little more space between homes.',
-    src: '/images/areas/rolling-acreage.webp',
-    alt: 'Illustrative rolling acreage with a home set in the distance',
+    title: 'Kitchens made for gathering',
+    detail: 'Consider the room, light, and counter space that make daily life easier.',
+    src: '/images/home-inspiration/kitchen-and-gathering.webp',
+    alt: 'Bright modern kitchen with a large island and gathering space',
   },
 ] as const
 
@@ -445,7 +445,7 @@ export default function AreasPage() {
         canonicalPath="/areas"
         locale="en_US"
         title="North Alabama Areas and Neighborhoods | Becca Travis"
-        description="Compare Huntsville and North Alabama communities, neighborhood listing searches, school-zone resources, and address-specific planning links."
+        description="Compare North Alabama communities, school-zone resources, address research tools, and neighborhood listing searches."
         image="/images/areas/downtown-huntsville.webp"
         alt="Downtown Huntsville skyline and park pond"
       />
@@ -461,6 +461,7 @@ export default function AreasPage() {
             <S.HeroActions>
               <Button href="#neighborhoods" size="2">Explore area guides</Button>
               <S.HeroTextLink href="#commute-overview">Compare commute hubs <span aria-hidden="true">→</span></S.HeroTextLink>
+              <S.HeroTextLink href="/north-alabama-property-research">Research a property address <span aria-hidden="true">→</span></S.HeroTextLink>
             </S.HeroActions>
           </S.HeroCopyBlock>
           <S.HeroFigure>
@@ -490,7 +491,8 @@ export default function AreasPage() {
           <S.SectionTitle>Start with the setting you want</S.SectionTitle>
           <S.Note>
             From established streets to open land, North Alabama has a wide range of home
-            settings. These AI-created illustrations show broad styles, not specific homes or locations.
+            settings. These photographs come from Becca’s collection and show home styles,
+            not active listings or specific neighborhoods.
           </S.Note>
         </S.SectionHeader>
         <S.SceneGrid>

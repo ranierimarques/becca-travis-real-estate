@@ -53,3 +53,24 @@ export const Image = styled(NextImage, {
     },
   },
 })
+
+export const Fallback = styled('div', {
+  position: 'absolute',
+  inset: 0,
+  zIndex: 1,
+  display: 'grid',
+  placeItems: 'center',
+  padding: 24,
+  background: 'linear-gradient(145deg, $tangerine5 0%, $magenta5 100%)',
+  color: '$magenta6',
+  textAlign: 'center',
+  fontSize: 14,
+  lineHeight: 1.5,
+
+  '& span': {
+    maxWidth: 320,
+    borderRadius: 999,
+    padding: '8px 14px',
+    background: 'rgba($colors$whiteRgb, 0.86)',
+  },
+})
