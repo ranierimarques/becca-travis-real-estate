@@ -11,4 +11,10 @@ module.exports = {
   generateRobotsTxt: true,
   exclude: ['/homes'],
   generateIndexSitemap: false,
+  robotsTxtOptions: {
+    policies: [
+      { userAgent: 'OAI-SearchBot', allow: '/' },
+      { userAgent: '*', allow: '/' },
+    ],
+  },
 }

@@ -1,5 +1,8 @@
 import { keyframes, styled } from 'stitches.config'
 
+const whiteToken = '$white'
+const softBorder = '1px solid $grayW9'
+
 const rise = keyframes({
   from: { opacity: 0, transform: 'translateY(10px)' },
   to: { opacity: 1, transform: 'translateY(0)' },
@@ -7,11 +10,11 @@ const rise = keyframes({
 
 export const Page = styled('main', {
   color: '$gray1',
-  background: '$white',
+  background: whiteToken,
 })
 
 export const Hero = styled('header', {
-  borderBottom: '1px solid $grayW9',
+  borderBottom: softBorder,
 })
 
 export const HeroInner = styled('div', {
@@ -118,7 +121,7 @@ export const PrimaryAnchor = styled('a', {
   ...actionBase,
   minWidth: 222,
   padding: '0 22px',
-  color: '$white',
+  color: whiteToken,
   background: '$magenta1',
   border: '1px solid $magenta1',
 
@@ -184,7 +187,7 @@ export const PrivacyNote = styled('aside', {
 
 export const ProgressBand = styled('nav', {
   background: '$offWhite2',
-  borderBottom: '1px solid $grayW9',
+  borderBottom: softBorder,
 })
 
 export const Progress = styled('ol', {
@@ -219,7 +222,7 @@ export const ProgressLink = styled('a', {
   '&[data-last="true"]::after': { display: 'none' },
   '&[data-active="true"]': { color: '$magenta6' },
   '&[data-active="true"] > span:first-child': {
-    color: '$white',
+    color: whiteToken,
     background: '$magenta1',
     borderColor: '$magenta1',
   },
@@ -345,7 +348,7 @@ const controlBase = {
   minHeight: 48,
   padding: '0 13px',
   color: '$gray1',
-  background: '$white',
+  background: whiteToken,
   border: '1px solid $grayW7',
   borderRadius: 10,
   fontSize: 14,
@@ -400,8 +403,8 @@ export const DraftColumn = styled('aside', {
 
 export const DraftCard = styled('div', {
   padding: 25,
-  background: '$white',
-  border: '1px solid $grayW9',
+  background: whiteToken,
+  border: softBorder,
   borderRadius: 14,
   boxShadow: '0 16px 38px rgba(41, 57, 74, 0.08)',
 
@@ -459,7 +462,7 @@ export const DraftBody = styled('div', {
   marginTop: 20,
   padding: 24,
   background: '$offWhite2',
-  border: '1px solid $grayW9',
+  border: softBorder,
   borderRadius: 10,
 
   '@bp2': { minHeight: 230, padding: 19 },
@@ -498,11 +501,11 @@ export const Button = styled('button', {
   gap: 9,
   padding: '0 15px',
   color: '$magenta1',
-  background: '$white',
+  background: whiteToken,
   border: '1px solid $magenta1',
 
   '& svg': { width: 17, height: 17 },
-  '&:hover:not(:disabled)': { color: '$white', background: '$magenta1' },
+  '&:hover:not(:disabled)': { color: whiteToken, background: '$magenta1' },
   '&:disabled': {
     cursor: 'not-allowed',
     color: '$grayW6',
@@ -512,7 +515,7 @@ export const Button = styled('button', {
   variants: {
     primary: {
       true: {
-        color: '$white',
+        color: whiteToken,
         background: '$magenta1',
         '&:hover:not(:disabled)': { background: '$magenta6' },
       },
@@ -532,7 +535,7 @@ export const LiveMessage = styled('p', {
 export const Verification = styled('div', {
   marginTop: 22,
   paddingTop: 20,
-  borderTop: '1px solid $grayW9',
+  borderTop: softBorder,
 
   '& h3': { color: '$magenta6', fontSize: 17, fontWeight: 600 },
   '& p': { marginTop: 6, color: '$gray4', fontSize: 12, lineHeight: 1.5 },
@@ -559,8 +562,8 @@ export const Verification = styled('div', {
 export const ReviewBand = styled('section', {
   padding: '43px 0',
   background: 'rgba($colors$grayW9Rgb, 0.55)',
-  borderTop: '1px solid $grayW9',
-  borderBottom: '1px solid $grayW9',
+  borderTop: softBorder,
+  borderBottom: softBorder,
   scrollMarginTop: 88,
 })
 
@@ -582,6 +585,43 @@ export const ReviewChecks = styled('div', {
   gap: '16px 30px',
 
   '@bp2': { gridTemplateColumns: '1fr' },
+})
+
+export const ReviewHandoff = styled('div', {
+  gridColumn: '1 / -1',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: 28,
+  marginTop: 2,
+  padding: '22px 24px',
+  background: whiteToken,
+  border: softBorder,
+  borderRadius: 12,
+
+  '& h3': { color: '$magenta6', fontSize: 19, fontWeight: 650, lineHeight: 1.3 },
+  '& p': {
+    maxWidth: 680,
+    marginTop: 5,
+    color: '$gray3',
+    fontSize: 13,
+    lineHeight: 1.55,
+  },
+
+  '@bp2': { alignItems: 'flex-start', flexDirection: 'column', padding: 19 },
+})
+
+export const HandoffLink = styled('a', {
+  ...actionBase,
+  flexShrink: 0,
+  gap: 9,
+  padding: '0 18px',
+  color: whiteToken,
+  background: '$magenta1',
+  border: '1px solid $magenta1',
+
+  '& svg': { width: 17, height: 17 },
+  '&:hover': { color: whiteToken, background: '$magenta6' },
 })
 
 export const ReviewCheck = styled('label', {
@@ -648,7 +688,7 @@ export const Notes = styled('textarea', {
   minHeight: 54,
   padding: '9px 0',
   color: '$gray2',
-  background: '$white',
+  background: whiteToken,
   borderTop: 0,
   borderRight: 0,
   borderBottom: '1px solid $grayW8',
@@ -669,7 +709,7 @@ export const FooterUtility = styled('div', {
   gap: 28,
   marginTop: 34,
   paddingTop: 24,
-  borderTop: '1px solid $grayW9',
+  borderTop: softBorder,
 
   '& p': { color: '$gray4', fontSize: 12, lineHeight: 1.6 },
   '@bp3': { gridTemplateColumns: '1fr', alignItems: 'start', gap: 18 },
@@ -693,7 +733,7 @@ export const SellerLink = styled('a', {
   gap: 8,
   minWidth: 168,
   padding: '0 18px',
-  color: '$white',
+  color: whiteToken,
   background: '$magenta1',
   border: '1px solid $magenta1',
   '&:hover': { background: '$magenta6', borderColor: '$magenta6' },
@@ -704,7 +744,7 @@ export const SeoSection = styled('section', {
   padding: '54px 0 62px',
   color: '$gray2',
   background: '$offWhite2',
-  borderTop: '1px solid $grayW9',
+  borderTop: softBorder,
 })
 
 export const SeoInner = styled('div', {
@@ -730,7 +770,7 @@ export const SeoInner = styled('div', {
 
 export const FaqSection = styled('section', {
   padding: '62px 0 70px',
-  background: '$white',
+  background: whiteToken,
 })
 
 export const FaqInner = styled('div', {
