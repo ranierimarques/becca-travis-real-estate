@@ -44,9 +44,9 @@ export const aboutHuntsvilleListItems = [
   {
     id: 4,
     icon: <Svg.Globe className={S.SvgStyles()} />,
-    title: 'Becca Travis Agenciamento',
+    title: 'Portuguese Homebuyer Support',
     href: '/agenciamento',
-    description: 'Ajudando pessoas de todo o mundo',
+    description: 'Alabama help and local agent connections',
     color: '$colors$green1Rgb',
     disabled: false,
   },

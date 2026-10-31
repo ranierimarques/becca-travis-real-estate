@@ -16,7 +16,7 @@ const faqs = [
   {
     question: 'Posso contar com sua ajuda para comprar em qualquer estado?',
     answer:
-      'Sim. Sua busca pode começar comigo em português em qualquer estado dos Estados Unidos. No Alabama, trabalho diretamente com você. Nos demais estados, conecto e colaboro com um profissional local e continuo envolvida durante o processo.',
+      'Sua busca pode começar comigo em português em qualquer estado dos Estados Unidos. No Alabama, presto atendimento imobiliário local. Fora do Alabama, ajudo com o planejamento e, com sua autorização, apresento você a um profissional licenciado no destino. Esse profissional conduz os serviços imobiliários locais.',
   },
   {
     question: 'Por onde começo se ainda não escolhi a cidade?',
@@ -41,12 +41,22 @@ const faqs = [
   {
     question: 'Você apenas envia o contato de outro corretor?',
     answer:
-      'Não. Primeiro eu entendo sua mudança e organizo o contexto. Depois faço uma apresentação pessoal, compartilho o plano com o profissional local e continuo conectada à equipe.',
+      'Eu escuto seus planos, ajudo a organizar prioridades da mudança e, com sua autorização, faço uma apresentação pessoal ao profissional local. O corretor licenciado conduz visitas, ofertas, negociação e a transação no mercado dele. Meu apoio contínuo é voltado ao planejamento da mudança e à comunicação em português.',
   },
   {
     question: 'Como funciona a conexão com profissionais de outros estados?',
     answer:
-      'Quando houver um acordo de indicação entre as corretoras, a compensação e as divulgações aplicáveis são tratadas conforme a documentação e as regras da transação. Eu explico como a conexão será organizada antes de encaminhar seu plano.',
+      'Com sua autorização, apresento você a um profissional licenciado no destino. A disponibilidade de atendimento em português varia por região. Quando houver um acordo de indicação entre corretoras, a compensação e as divulgações aplicáveis são tratadas conforme a documentação e as regras da transação.',
+  },
+  {
+    question: 'Posso falar tudo em português?',
+    answer:
+      'A conversa comigo pode ser em português brasileiro. Fora do Alabama, o idioma do atendimento local depende do profissional e da região.',
+  },
+  {
+    question: 'E se eu já estiver trabalhando com outro corretor?',
+    answer:
+      'Conte isso logo no início. Assim posso entender a melhor forma de respeitar a relação existente e ainda ajudar, quando possível.',
   },
 ]
 
@@ -97,7 +107,7 @@ export function NationwideBuyer() {
     <>
       <S.SkipLink href="#conteudo">Ir para o conteúdo</S.SkipLink>
 
-      <main id="conteudo">
+      <main id="conteudo" lang="pt-BR">
         <S.Hero css={{ backgroundImage: heroBackground }}>
           <S.Container>
             <S.HeroGrid>
@@ -109,8 +119,9 @@ export function NationwideBuyer() {
                 <S.HeroLede>
                   Para quem está mudando de cidade, estado ou país e precisa comparar
                   regiões, entender o custo completo e comprar à distância. No Alabama,
-                  trabalho diretamente com você. Nos demais estados, conecto você a um
-                  profissional local e continuo envolvida no processo.
+                  posso atuar como sua corretora local. Nos demais estados, ajudo a
+                  planejar a mudança e, com sua autorização, apresento você a um
+                  profissional licenciado no destino.
                 </S.HeroLede>
 
                 <S.BuyerPrompt href="#planejador">
@@ -151,8 +162,8 @@ export function NationwideBuyer() {
                 <span>Experiência local</span>
               </S.TrustItem>
               <S.TrustItem>
-                <strong>50 estados</strong>
-                <span>Conexões nacionais</span>
+                <strong>Outros estados</strong>
+                <span>Conexões locais</span>
               </S.TrustItem>
               <S.TrustItem>
                 <strong>Plano claro</strong>
@@ -194,15 +205,17 @@ export function NationwideBuyer() {
                   Não importa o estado. Você continua comigo.
                 </S.SectionHeading>
                 <p>
-                  Você começa a conversa comigo em português. Eu entendo o que sua família
-                  procura, onde quer chegar, seu orçamento e o que precisa para se sentir
-                  seguro na decisão.
+                  Você começa a conversa comigo em português brasileiro. Eu entendo o que
+                  sua família procura, onde quer chegar, seu orçamento e o que precisa
+                  para decidir com segurança.
                 </p>
                 <p>
-                  Quando a compra acontece fora do Alabama, eu encontro a conexão local
-                  certa, faço uma apresentação pessoal e trabalho com o profissional
-                  daquela região. Você mantém a relação de confiança. Sua compra ganha
-                  conhecimento local.
+                  No Alabama, posso atuar como sua corretora local. Em outro estado, ajudo
+                  a planejar a mudança e, com sua autorização, faço uma apresentação
+                  pessoal a um profissional licenciado na região. Esse profissional conduz
+                  visitas, ofertas, negociação e os serviços imobiliários locais. Eu
+                  continuo à disposição para apoiar sua mudança e a comunicação em
+                  português.
                 </p>
                 <S.Signature>Becca</S.Signature>
               </S.RelationshipCopy>
@@ -218,10 +231,11 @@ export function NationwideBuyer() {
           <S.Container>
             <S.Centered>
               <S.SectionTag>Dois caminhos</S.SectionTag>
-              <S.SectionHeading>A mesma Becca com você.</S.SectionHeading>
+              <S.SectionHeading>Apoio certo para cada destino.</S.SectionHeading>
               <S.SectionCopy>
-                O jeito de atender muda conforme o mercado. A relação e o compromisso com
-                a sua compra continuam.
+                No Alabama, posso atuar como sua corretora local. Em outros estados, ajudo
+                no planejamento e faço a conexão com um profissional licenciado no
+                destino.
               </S.SectionCopy>
             </S.Centered>
 
@@ -244,9 +258,10 @@ export function NationwideBuyer() {
                 <S.PathLabel>Comprando em outro estado</S.PathLabel>
                 <h3>Eu organizo sua conexão local.</h3>
                 <p>
-                  Entendo seu objetivo, encontro o corretor certo naquela região, faço uma
-                  apresentação pessoal e trabalho com ele ou ela para dar continuidade à
-                  busca.
+                  Ajudo a organizar a busca e, com sua autorização, apresento você a um
+                  corretor licenciado no destino. Esse profissional conduz os serviços
+                  imobiliários e a transação no mercado local. Posso continuar ao seu lado
+                  no planejamento da mudança, em português.
                 </p>
                 <S.ReferralNote>
                   Transparência: quando aplicável, a conexão pode envolver um acordo de
@@ -288,8 +303,8 @@ export function NationwideBuyer() {
             <h2>Sua mudança começa com um plano.</h2>
             <p>
               Conte de onde você está vindo, o que precisa encontrar e quando pretende
-              chegar. Eu ajudo você a organizar o destino, a compra e a equipe certa em
-              português.
+              chegar. Eu ajudo a organizar o destino, a mudança e, fora do Alabama, a
+              conexão autorizada com um profissional licenciado no mercado local.
             </p>
             <S.Actions centered>
               <S.PrimaryAction href="#contato">

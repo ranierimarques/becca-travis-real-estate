@@ -4,49 +4,35 @@ import * as S from './step-4.styles'
 
 const inputs = [
   {
-    name: 'city',
-    type: 'text',
-    placeholder: 'Cidade onde quer comprar',
-    label: 'Cidade',
-    required: true,
-  },
-  {
-    name: 'state',
-    type: 'text',
-    placeholder: 'Estado',
-    label: 'Estado',
-    required: true,
-  },
-  {
     name: 'first_name',
     type: 'text',
-    placeholder: 'Seu nome',
+    placeholder: 'Maria',
     label: 'Nome',
     required: true,
   },
   {
     name: 'last_name',
     type: 'text',
-    placeholder: 'Seu sobrenome',
+    placeholder: 'Silva',
     label: 'Sobrenome',
     required: true,
   },
   {
     name: 'email',
     type: 'email',
-    placeholder: 'Email',
+    placeholder: 'seu@email.com',
     label: 'E-mail',
     required: true,
   },
   {
     name: 'number',
     type: 'tel',
-    placeholder: '(000) 000-0000',
+    placeholder: '+1 (000) 000-0000 ou +55 (00) 00000-0000',
     label: 'Telefone',
     required: true,
   },
 ] as {
-  name: 'city' | 'state' | 'first_name' | 'last_name' | 'email' | 'number'
+  name: 'first_name' | 'last_name' | 'email' | 'number'
   type: string
   placeholder: string
   label: string
@@ -61,7 +47,7 @@ export function Step4() {
 
   return (
     <S.Container>
-      <S.FormTitle>Onde você quer comprar e como podemos falar com você?</S.FormTitle>
+      <S.FormTitle>Como posso falar com você?</S.FormTitle>
       <Box
         css={{
           display: 'grid',

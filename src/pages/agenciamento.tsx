@@ -9,7 +9,7 @@ const Home: NextPage = () => {
         canonicalPath="/agenciamento"
         locale="pt_BR"
         title="Comprar Casa nos EUA em Português | Becca Travis"
-        description="Planeje sua compra e mudança para qualquer estado dos EUA em português. Compare destinos, custos, visitas à distância e a conexão profissional local."
+        description="Planeje em português sua compra e mudança para qualquer estado. No Alabama, atendimento local; nos demais, conexão autorizada com profissional licenciado."
         image="/sharing-cards/og-index.jpg"
         alt="Compre casa nos Estados Unidos com atendimento em português de Becca Travis."
       />

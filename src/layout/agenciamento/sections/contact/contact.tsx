@@ -41,7 +41,9 @@ export function Contact({
         </Flex>
         <S.Paragraph>
           Complete destino, prazo, orçamento e tipo de imóvel. Suas escolhas do planejador
-          seguem com a solicitação para começarmos a conversa com contexto.
+          seguem com a solicitação. No Alabama, posso ajudar diretamente com a compra. Nos
+          demais estados, elas preparam a apresentação autorizada a um profissional
+          licenciado no destino.
         </S.Paragraph>
       </Flex>
       <Forms

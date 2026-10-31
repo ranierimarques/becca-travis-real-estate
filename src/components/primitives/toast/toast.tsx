@@ -10,9 +10,17 @@ interface ContactInformationProps {
   openToast: boolean
   onOpenToast: (open: boolean) => void
   form?: boolean
+  title?: string
+  description?: string
 }
 
-export function Toast({ openToast, onOpenToast, form }: ContactInformationProps) {
+export function Toast({
+  openToast,
+  onOpenToast,
+  form,
+  title = 'Information sent successfully',
+  description = 'i will contact you soon!',
+}: ContactInformationProps) {
   if (form) {
     return (
       <>
@@ -26,9 +34,9 @@ export function Toast({ openToast, onOpenToast, form }: ContactInformationProps)
               <Box css={{ w: 24, h: 24 }}>
                 <Rive src="/check.riv" />
               </Box>
-              Information sent successfully
+              {title}
             </S.ToastTitle>
-            <S.ToastDescription>i will contact you soon!</S.ToastDescription>
+            <S.ToastDescription>{description}</S.ToastDescription>
             <S.Action asChild altText="Close Toast">
               <S.CloseButton onClick={() => onOpenToast(false)}>
                 <Svg.Close />
