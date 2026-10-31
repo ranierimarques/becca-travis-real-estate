@@ -197,11 +197,11 @@ const areas: AreaCardData[] = [
   {
     name: 'Wheeler and the River Area',
     detail:
-      'Compare river access, downtown routes, and flood exposure by exact parcel. Confirm shoreline rights and flood insurance requirements before making an offer.',
+      'Compare river access and downtown routes. Check a parcel’s flood zone with FEMA, then ask the relevant agency about shoreline rights and insurance requirements.',
     commute: ['Medical District / Downtown'],
     focus: [],
-    sourceLabel: 'Huntsville GIS and FEMA flood maps',
-    sourceUrl: HUNTSVILLE_GIS_URL,
+    sourceLabel: 'FEMA Flood Map Service Center',
+    sourceUrl: 'https://msc.fema.gov/portal/search',
     listingUrl:
       'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52696',
   },
@@ -571,8 +571,9 @@ export default function AreasPage() {
         <S.SectionHeader>
           <S.SectionTitle>Plan the route and monthly housing costs</S.SectionTitle>
           <S.Note>
-            Start with an exact property address and destination. Maps can show a route
-            for the time you choose. Tax amounts must come from the parcel record.
+            Start with an exact property address and destination. Google Maps can show a
+            route and may let you adjust departure time. Tax amounts must come from the
+            parcel record.
           </S.Note>
         </S.SectionHeader>
         <S.CommutePanel>
@@ -613,11 +614,6 @@ export default function AreasPage() {
           </S.Note>
         </S.CommutePanel>
         <PaymentEstimator communityName="North Alabama" />
-        <S.InlineNote>
-          The monthly estimate uses only the figures you enter. It does not look up a
-          property tax bill or lender quote. Confirm tax, insurance, HOA, and other costs
-          for the exact home.
-        </S.InlineNote>
       </Section>
 
       <Section hasMaxWidth id="school-zones">
