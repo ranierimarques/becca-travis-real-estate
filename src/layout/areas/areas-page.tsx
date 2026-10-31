@@ -4,6 +4,10 @@ import { Button, MetaSEO } from '@/common'
 import { PaymentEstimator } from '@/layout/communities/sections/payment-estimator/payment-estimator'
 import { FaqPreview } from '@/layout/faq-preview'
 import { LiveMlsDrawer, LiveMlsTarget } from '@/layout/live-mls-drawer'
+import { ArwWarrantyClosingHub } from '@/layout/site-tools/arw-warranty-closing-hub/arw-warranty-closing-hub'
+import { BuydownComparison } from '@/layout/site-tools/buydown-comparison/buydown-comparison'
+import { InfrastructureExplorer } from '@/layout/site-tools/infrastructure-explorer/infrastructure-explorer'
+import { SmartConcessionOptimizer } from '@/layout/site-tools/smart-concession-optimizer/smart-concession-optimizer'
 import { Section } from '@/template'
 import { huntsvilleFaq } from '../../data/huntsville-faq'
 import * as S from './areas-page.styles'
@@ -453,7 +457,7 @@ export default function AreasPage() {
         canonicalPath="/areas"
         locale="en_US"
         title="North Alabama Areas and Neighborhoods | Becca Travis"
-        description="Compare North Alabama communities, school-zone resources, address research tools, and neighborhood listing searches."
+        description="Compare North Alabama communities, infrastructure, seller-credit options, warranty resources, school zones, and neighborhood listing searches."
         image="/images/areas/downtown-huntsville.webp"
         alt="Downtown Huntsville skyline and park pond"
       />
@@ -494,7 +498,10 @@ export default function AreasPage() {
       </S.Hero>
       <S.StickyNav aria-label="Areas page navigation">
         <a href="#neighborhoods">Neighborhoods</a>
+        <a href="#infrastructure-explorer">Infrastructure</a>
         <a href="#commute-tax-calculator">Commute &amp; tax calculator</a>
+        <a href="#smart-concession-optimizer">Seller credits</a>
+        <a href="#arw-warranty-closing-hub">Warranty</a>
         <a href="#school-zones">School zones</a>
         <a href="#local-picks">Dog parks and Purple Cup districts</a>
         <a href="#huntsville-qa">Huntsville Q&amp;A</a>
@@ -546,6 +553,8 @@ export default function AreasPage() {
           ))}
         </S.SceneGrid>
       </Section>
+
+      <InfrastructureExplorer />
 
       <Section hasMaxWidth id="commute-overview">
         <S.CommuteOverview>
@@ -701,9 +710,11 @@ export default function AreasPage() {
                     </S.ListingLink>
                     <S.ResetButton
                       type="button"
-                      onClick={() =>
-                        setListing({ label: area.name, url: area.listingUrl! })
-                      }
+                      onClick={() => {
+                        if (area.listingUrl) {
+                          setListing({ label: area.name, url: area.listingUrl })
+                        }
+                      }}
                     >
                       Ask Becca about {area.name}
                     </S.ResetButton>
@@ -769,6 +780,10 @@ export default function AreasPage() {
         </S.CommutePanel>
         <PaymentEstimator communityName="North Alabama" />
       </Section>
+
+      <BuydownComparison />
+      <SmartConcessionOptimizer />
+      <ArwWarrantyClosingHub />
 
       <Section hasMaxWidth id="school-zones">
         <S.SectionHeader>
