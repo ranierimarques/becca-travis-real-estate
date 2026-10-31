@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
 import { Button, Flex } from '@/common'
+import {
+  getRelocationJourneyStage,
+  getRelocationTiming,
+} from '@/layout/agenciamento/relocation-plan'
+import type { RelocationPlan } from '@/layout/agenciamento/relocation-plan'
 import { Toast } from '@/primitives'
+import { getLeadAttribution } from '@/services/leads/get-lead-attribution'
 import { Step1, Step2, Step3, Step4, StepsInformation } from '.'
 import * as S from './buyer-form.styles'
 
@@ -52,6 +58,13 @@ const formSchema = z.object({
   number: z
     .string({ required_error: 'Informe seu telefone.' })
     .refine(value => isValidPhoneNumber(value), 'Digite um telefone válido.'),
+  destination_stage: z.string().optional(),
+  move_window: z.string().optional(),
+  property_goal: z.string().optional(),
+  budget_band: z.string().optional(),
+  remote_visit_plan: z.string().optional(),
+  home_to_sell: z.string().optional(),
+  relocation_priority: z.string().optional(),
 })
 
 type formSchemaType = z.infer<typeof formSchema>
@@ -65,8 +78,14 @@ const steps: Record<number, Partial<keyof formSchemaType>[]> = {
 
 export function BuyerForm({
   setForm,
+  relocationPlan,
+  defaultState,
+  defaultCity,
 }: {
   setForm: (arg: 'select-screen' | 'selling' | 'buying') => void
+  relocationPlan?: RelocationPlan
+  defaultState?: string
+  defaultCity?: string
 }) {
   const [formStep, setFormStep] = useState(1)
   const [openToast, setOpenToast] = useState(false)
@@ -81,6 +100,8 @@ export function BuyerForm({
     handleSubmit,
     trigger,
     reset,
+    register,
+    setValue,
     watch,
     formState: { isSubmitting },
   } = buyerForm
@@ -88,6 +109,21 @@ export function BuyerForm({
   const { market_location, property_information, timeframe, buying_price } = watch()
 
   const isLastStep = formStep === 4
+
+  useEffect(() => {
+    setValue('destination_stage', relocationPlan?.destinationStage)
+    setValue('move_window', relocationPlan?.moveWindow)
+    setValue('property_goal', relocationPlan?.propertyGoal)
+    setValue('budget_band', relocationPlan?.budgetBand)
+    setValue('remote_visit_plan', relocationPlan?.remoteVisitPlan)
+    setValue('home_to_sell', relocationPlan?.homeToSell)
+    setValue('relocation_priority', relocationPlan?.priority)
+  }, [relocationPlan, setValue])
+
+  useEffect(() => {
+    const selectedMarket = [defaultCity, defaultState].filter(Boolean).join(', ')
+    if (selectedMarket) setValue('market_location', selectedMarket)
+  }, [defaultCity, defaultState, setValue])
 
   const isEnumButtonDisabled: Record<number, boolean> = {
     1: !property_information || !market_location?.trim(),
@@ -124,9 +160,14 @@ export function BuyerForm({
         },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
-          subject: 'New Portuguese Buyer Inquiry',
+          subject: 'Novo plano de compra e mudança',
           from_name: 'Becca Travis Website',
           ...values,
+          form_source: 'Formulário detalhado de compra em português',
+          form_version: 'relocation_detailed_v2',
+          journey_stage: getRelocationJourneyStage(relocationPlan),
+          follow_up_timing: getRelocationTiming(relocationPlan),
+          ...getLeadAttribution(),
         }),
       })
       const response = await result.json()
@@ -154,6 +195,13 @@ export function BuyerForm({
       <StepsInformation isSubmitting={isSubmitting} formStep={formStep} />
       <FormProvider {...buyerForm}>
         <S.Form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <input type="hidden" {...register('destination_stage')} />
+          <input type="hidden" {...register('move_window')} />
+          <input type="hidden" {...register('property_goal')} />
+          <input type="hidden" {...register('budget_band')} />
+          <input type="hidden" {...register('remote_visit_plan')} />
+          <input type="hidden" {...register('home_to_sell')} />
+          <input type="hidden" {...register('relocation_priority')} />
           {formStep === 1 && <Step1 />}
           {formStep === 2 && <Step2 />}
           {formStep === 3 && <Step3 />}

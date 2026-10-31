@@ -1,10 +1,19 @@
 import { Flex } from '@/common'
+import type { RelocationPlan } from '@/layout/agenciamento/relocation-plan'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
 import { Forms } from '.'
 import * as S from './contact.styles'
 
-export function Contact() {
+export function Contact({
+  relocationPlan,
+  defaultState,
+  defaultCity,
+}: {
+  relocationPlan?: RelocationPlan
+  defaultState?: string
+  defaultCity?: string
+}) {
   return (
     <Section hasMaxWidth css={{ paddingBottom: 84, paddingTop: 76 }}>
       <Flex
@@ -26,17 +35,23 @@ export function Contact() {
             '@bp2': 'center',
           }}
         >
-          <Hat css={{ marginBottom: 8 }}>Comece em português</Hat>
+          <Hat css={{ marginBottom: 8 }}>Seu plano continua aqui</Hat>
 
-          <S.Title>Conte onde você quer comprar</S.Title>
+          <S.Title>Conte onde você quer chegar</S.Title>
         </Flex>
         <S.Paragraph>
-          Conte onde está pensando em comprar, seu orçamento e prazo. No Alabama, posso
-          ajudar diretamente com a compra. Em outros estados, ajudo a planejar a mudança e,
-          com sua autorização, faço a apresentação a um profissional licenciado no destino.
+          Complete destino, prazo, orçamento e tipo de imóvel. Suas escolhas do planejador
+          seguem com a solicitação. No Alabama, posso ajudar diretamente com a compra. Nos
+          demais estados, elas preparam a apresentação autorizada a um profissional
+          licenciado no destino.
         </S.Paragraph>
       </Flex>
-      <Forms buyerFirst />
+      <Forms
+        buyerFirst
+        relocationPlan={relocationPlan}
+        defaultState={defaultState}
+        defaultCity={defaultCity}
+      />
     </Section>
   )
 }

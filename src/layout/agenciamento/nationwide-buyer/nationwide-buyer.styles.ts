@@ -759,6 +759,14 @@ export const PathCard = styled('article', {
   },
 })
 
+export const ReferralNote = styled('small', {
+  color: 'rgba($colors$whiteRgb, 0.74)',
+  display: 'block',
+  fontSize: 11,
+  lineHeight: 1.5,
+  marginTop: 14,
+})
+
 export const StateCount = styled('span', {
   position: 'absolute',
   right: 22,
@@ -1005,5 +1013,893 @@ export const MobileCta = styled('a', {
         },
       },
     },
+  },
+})
+
+export const PlannerSection = styled('section', {
+  paddingTop: 76,
+  paddingBottom: 76,
+  background: '#FFF8F4',
+  scrollMarginTop: 24,
+
+  '@bp4': {
+    paddingTop: 68,
+    paddingBottom: 68,
+  },
+  '@bp2': {
+    paddingTop: 56,
+    paddingBottom: 56,
+  },
+})
+
+export const PlannerHeading = styled('div', {
+  textAlign: 'center',
+
+  '& h2': {
+    maxWidth: 880,
+    margin: '0 auto',
+    color: '$magenta6',
+    fontSize: 'clamp(34px, 4vw, 50px)',
+    fontWeight: 500,
+    lineHeight: 1.08,
+    letterSpacing: '-0.03em',
+  },
+  '& p': {
+    marginTop: 14,
+    color: '$gray3',
+    fontSize: 17,
+    lineHeight: 1.55,
+  },
+
+  '@bp2': {
+    textAlign: 'left',
+
+    '& h2': {
+      fontSize: 34,
+    },
+    '& p': {
+      fontSize: 15,
+    },
+  },
+})
+
+export const SelectedDestination = styled('span', {
+  alignItems: 'center',
+  background: '#f8e7e1',
+  borderRadius: 999,
+  color: '#694252',
+  display: 'inline-flex',
+  flexWrap: 'wrap',
+  fontSize: 13,
+  gap: 4,
+  marginTop: 14,
+  padding: '8px 12px',
+
+  '& a': {
+    color: '$magenta1',
+    fontWeight: 800,
+    marginLeft: 6,
+  },
+})
+
+export const PlannerShell = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1.35fr 0.9fr',
+  marginTop: 36,
+  overflow: 'hidden',
+  background: '$white',
+  border: '1px solid rgba($colors$magenta1Rgb, 0.18)',
+  borderRadius: 16,
+  boxShadow: '0 20px 56px rgba(61, 26, 44, 0.08)',
+
+  '@bp4': {
+    gridTemplateColumns: '1fr',
+  },
+  '@bp2': {
+    marginTop: 28,
+    borderRadius: 12,
+  },
+})
+
+export const PlannerQuestions = styled('div', {
+  padding: 34,
+
+  '@bp2': {
+    padding: 22,
+  },
+})
+
+export const PlannerSteps = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
+  gap: 6,
+
+  '& button': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 6,
+    padding: 0,
+    color: '$gray4',
+    background: 'transparent',
+    border: 0,
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    fontSize: 13,
+    fontWeight: 600,
+    textAlign: 'center',
+  },
+  '& button b': {
+    fontSize: 10,
+    fontWeight: 700,
+    lineHeight: 1.2,
+  },
+  '& button span': {
+    width: 32,
+    height: 32,
+    display: 'grid',
+    placeItems: 'center',
+    flexShrink: 0,
+    color: '$gray3',
+    background: 'rgba($colors$tangerine5Rgb, 0.45)',
+    borderRadius: '50%',
+    fontSize: 12,
+  },
+  '& button[aria-current="step"]': {
+    color: '$magenta6',
+  },
+  '& button[aria-current="step"] span': {
+    color: '$white',
+    background: '$tangerine1',
+  },
+  '& button:focus-visible': {
+    outline: '2px solid rgba($colors$magenta1Rgb, 0.55)',
+    outlineOffset: 4,
+    borderRadius: 4,
+  },
+
+  '@bp2': {
+    gap: 4,
+
+    '& button': {
+      gap: 4,
+    },
+    '& button span': {
+      width: 26,
+      height: 26,
+    },
+    '& button b': {
+      display: 'none',
+    },
+  },
+})
+
+export const PlannerProgress = styled('div', {
+  width: '100%',
+  height: 3,
+  marginTop: 16,
+  overflow: 'hidden',
+  background: 'rgba($colors$magenta1Rgb, 0.1)',
+  borderRadius: 999,
+
+  '& span': {
+    height: '100%',
+    display: 'block',
+    background: '$tangerine1',
+    borderRadius: 'inherit',
+    transition: 'width 180ms ease',
+  },
+})
+
+export const QuestionHeader = styled('div', {
+  marginTop: 32,
+
+  '& h3': {
+    color: '$magenta6',
+    fontSize: 28,
+    fontWeight: 500,
+    lineHeight: 1.2,
+  },
+  '& p': {
+    marginTop: 7,
+    color: '$gray3',
+    fontSize: 14,
+    lineHeight: 1.55,
+  },
+
+  '@bp2': {
+    marginTop: 26,
+
+    '& h3': {
+      fontSize: 23,
+    },
+  },
+})
+
+export const OptionList = styled('div', {
+  display: 'grid',
+  gap: 10,
+  marginTop: 22,
+})
+
+export const OptionButton = styled('button', {
+  minHeight: 54,
+  display: 'flex',
+  alignItems: 'center',
+  gap: 14,
+  width: '100%',
+  padding: '10px 16px',
+  color: '$magenta6',
+  background: '$white',
+  border: '1px solid rgba($colors$magenta1Rgb, 0.18)',
+  borderRadius: 9,
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  fontSize: 15,
+  fontWeight: 500,
+  textAlign: 'left',
+  transition: 'border-color 150ms ease, background 150ms ease, transform 150ms ease',
+
+  '& > span': {
+    width: 22,
+    height: 22,
+    position: 'relative',
+    flexShrink: 0,
+    background: '$white',
+    border: '2px solid rgba($colors$magenta1Rgb, 0.32)',
+    borderRadius: '50%',
+  },
+  '&:hover': {
+    borderColor: 'rgba($colors$magenta1Rgb, 0.48)',
+    transform: 'translateY(-1px)',
+  },
+  '&:focus-visible': {
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.35)',
+    outlineOffset: 2,
+  },
+
+  variants: {
+    selected: {
+      true: {
+        background: 'rgba($colors$tangerine5Rgb, 0.25)',
+        borderColor: '$tangerine1',
+
+        '& > span': {
+          borderColor: '$tangerine1',
+        },
+        '& > span::after': {
+          content: '',
+          position: 'absolute',
+          inset: 4,
+          background: '$tangerine1',
+          borderRadius: '50%',
+        },
+      },
+    },
+  },
+})
+
+export const PlanResult = styled('aside', {
+  display: 'flex',
+  flexDirection: 'column',
+  padding: 34,
+  background: 'rgba($colors$tangerine5Rgb, 0.18)',
+  borderLeft: '1px solid rgba($colors$magenta1Rgb, 0.14)',
+
+  '& > h3': {
+    color: '$magenta6',
+    fontSize: 32,
+    fontWeight: 500,
+    lineHeight: 1.15,
+  },
+  '& > p': {
+    marginTop: 8,
+    color: '$gray3',
+    fontSize: 14,
+    lineHeight: 1.55,
+  },
+
+  '@bp4': {
+    borderLeft: 0,
+    borderTop: '1px solid rgba($colors$magenta1Rgb, 0.14)',
+  },
+  '@bp2': {
+    padding: 22,
+
+    '& > h3': {
+      fontSize: 27,
+    },
+  },
+})
+
+export const GuidanceList = styled('ul', {
+  display: 'grid',
+  gap: 18,
+  marginTop: 24,
+
+  '& li': {
+    display: 'grid',
+    gridTemplateColumns: '42px 1fr',
+    alignItems: 'start',
+    gap: 12,
+  },
+  '& strong': {
+    display: 'block',
+    color: '$magenta6',
+    fontSize: 15,
+    fontWeight: 600,
+    lineHeight: 1.35,
+  },
+  '& li div > span': {
+    display: 'block',
+    marginTop: 3,
+    color: '$gray3',
+    fontSize: 13,
+    lineHeight: 1.5,
+  },
+})
+
+export const GuidanceIcon = styled('span', {
+  width: 42,
+  height: 42,
+  display: 'grid',
+  placeItems: 'center',
+  color: '$magenta1',
+  background: 'rgba($colors$tangerine5Rgb, 0.72)',
+  borderRadius: '50%',
+
+  '& svg': {
+    width: 20,
+    height: 20,
+  },
+})
+
+export const PlanFacts = styled('ul', {
+  display: 'grid',
+  gap: 7,
+  gridTemplateColumns: '1fr 1fr',
+  marginTop: 20,
+
+  '& li': {
+    background: 'rgba($colors$whiteRgb, 0.72)',
+    border: '1px solid rgba($colors$magenta1Rgb, 0.11)',
+    borderRadius: 6,
+    padding: '9px 10px',
+  },
+
+  '& span': {
+    color: '$gray4',
+    display: 'block',
+    fontSize: 9,
+    fontWeight: 750,
+    letterSpacing: '0.04em',
+    textTransform: 'uppercase',
+  },
+
+  '& strong': {
+    color: '$magenta6',
+    display: 'block',
+    fontSize: 11,
+    lineHeight: 1.35,
+    marginTop: 3,
+  },
+
+  '@bp1': {
+    gridTemplateColumns: '1fr',
+  },
+})
+
+export const PlannerButton = styled('button', {
+  minHeight: 50,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 10,
+  marginTop: 'auto',
+  padding: '0 20px',
+  color: '$white',
+  background: '$magenta1',
+  border: 0,
+  borderRadius: 7,
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  fontSize: 14,
+  fontWeight: 700,
+
+  '&:hover:not(:disabled)': {
+    background: '$magenta9',
+  },
+  '&:focus-visible': {
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.45)',
+    outlineOffset: 3,
+  },
+  '&:disabled': {
+    cursor: 'not-allowed',
+    opacity: 0.45,
+  },
+  '& svg': {
+    width: 18,
+    height: 18,
+  },
+
+  '@bp4': {
+    marginTop: 28,
+  },
+})
+
+export const PlannerTextLink = styled('a', {
+  alignSelf: 'center',
+  marginTop: 14,
+  color: '$magenta1',
+  fontSize: 13,
+  fontWeight: 600,
+
+  '&:hover': {
+    textDecoration: 'underline',
+    textUnderlineOffset: 3,
+  },
+})
+
+export const QuickLeadForm = styled('form', {
+  marginTop: 24,
+  paddingTop: 22,
+  borderTop: '1px solid rgba($colors$magenta1Rgb, 0.16)',
+
+  '& h4': {
+    color: '$magenta6',
+    fontSize: 19,
+    fontWeight: 600,
+    lineHeight: 1.3,
+  },
+  '& > p': {
+    marginTop: 6,
+    color: '$gray3',
+    fontSize: 13,
+    lineHeight: 1.5,
+  },
+})
+
+export const QuickLeadGrid = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: 10,
+  marginTop: 16,
+
+  '& label': {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+  },
+  '& label span': {
+    color: '$magenta6',
+    fontSize: 11,
+    fontWeight: 600,
+  },
+  '& input, & textarea': {
+    width: '100%',
+    minHeight: 42,
+    padding: '10px 11px',
+    color: '$gray1',
+    background: '$white',
+    border: '1px solid rgba($colors$magenta1Rgb, 0.2)',
+    borderRadius: 6,
+    fontFamily: 'inherit',
+    fontSize: 13,
+    resize: 'vertical',
+  },
+  '& input:focus, & textarea:focus': {
+    borderColor: '$magenta1',
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.22)',
+  },
+
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+  },
+})
+
+export const QuickLeadWide = styled('label', {
+  gridColumn: '1 / -1',
+})
+
+export const QuickLeadConsent = styled('p', {
+  marginTop: 12,
+  color: '$gray4',
+  fontSize: 10,
+  lineHeight: 1.45,
+
+  '& a': {
+    color: '$magenta1',
+    textDecoration: 'underline',
+    textUnderlineOffset: 2,
+  },
+})
+
+export const FieldError = styled('small', {
+  color: '#9d1f45',
+  display: 'block',
+  fontSize: 12,
+  fontWeight: 700,
+  lineHeight: 1.35,
+  marginTop: 6,
+})
+
+export const QuickLeadSubmit = styled('button', {
+  width: '100%',
+  minHeight: 48,
+  marginTop: 14,
+  padding: '0 18px',
+  color: '$white',
+  background: '$magenta1',
+  border: 0,
+  borderRadius: 7,
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  fontSize: 13,
+  fontWeight: 700,
+
+  '&:hover:not(:disabled)': {
+    background: '$magenta9',
+  },
+  '&:focus-visible': {
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.45)',
+    outlineOffset: 3,
+  },
+  '&:disabled': {
+    cursor: 'wait',
+    opacity: 0.65,
+  },
+})
+
+export const LeadError = styled('p', {
+  marginTop: 10,
+  color: '$red1',
+  fontSize: 12,
+  lineHeight: 1.45,
+
+  '& a': {
+    color: 'inherit',
+    fontWeight: 700,
+    textDecoration: 'underline',
+  },
+})
+
+export const LeadSuccess = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '38px 1fr',
+  alignItems: 'start',
+  gap: 12,
+  marginTop: 24,
+  padding: 18,
+  color: '$magenta6',
+  background: '$white',
+  border: '1px solid rgba($colors$magenta1Rgb, 0.18)',
+  borderRadius: 8,
+
+  '& > svg': {
+    width: 32,
+    height: 32,
+    color: '$magenta1',
+  },
+  '& strong': {
+    display: 'block',
+    fontSize: 16,
+  },
+  '& span': {
+    display: 'block',
+    marginTop: 4,
+    color: '$gray3',
+    fontSize: 12,
+    lineHeight: 1.5,
+  },
+  '& a': {
+    display: 'inline-block',
+    marginTop: 8,
+    color: '$magenta1',
+    fontSize: 12,
+    fontWeight: 700,
+  },
+})
+
+export const ValueSection = styled('section', {
+  paddingTop: 78,
+  paddingBottom: 78,
+  background: '$white',
+  scrollMarginTop: 24,
+
+  '@bp4': {
+    paddingTop: 68,
+    paddingBottom: 68,
+  },
+  '@bp2': {
+    paddingTop: 56,
+    paddingBottom: 56,
+  },
+})
+
+export const ValueHeading = styled('div', {
+  textAlign: 'center',
+
+  '& h2': {
+    maxWidth: 760,
+    margin: '0 auto',
+    color: '$magenta6',
+    fontSize: 'clamp(34px, 4vw, 50px)',
+    fontWeight: 500,
+    lineHeight: 1.08,
+    letterSpacing: '-0.03em',
+  },
+  '& p': {
+    marginTop: 14,
+    color: '$gray3',
+    fontSize: 17,
+    lineHeight: 1.55,
+  },
+
+  '@bp2': {
+    textAlign: 'left',
+
+    '& h2': {
+      fontSize: 34,
+    },
+    '& p': {
+      fontSize: 15,
+    },
+  },
+})
+
+export const Deliverables = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(5, 1fr)',
+  gap: 22,
+  marginTop: 42,
+
+  '@bp4': {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+    gap: 0,
+    marginTop: 30,
+  },
+})
+
+export const Deliverable = styled('article', {
+  minWidth: 0,
+
+  '& h3': {
+    marginTop: 18,
+    color: '$magenta6',
+    fontSize: 20,
+    fontWeight: 500,
+    lineHeight: 1.25,
+  },
+  '& p': {
+    marginTop: 8,
+    color: '$gray3',
+    fontSize: 14,
+    lineHeight: 1.6,
+  },
+
+  '@bp2': {
+    display: 'grid',
+    gridTemplateColumns: '54px 1fr',
+    columnGap: 14,
+    padding: '20px 0',
+    borderBottom: '1px solid rgba($colors$magenta1Rgb, 0.16)',
+
+    '& h3': {
+      marginTop: 1,
+    },
+    '& p': {
+      gridColumn: 2,
+    },
+  },
+})
+
+export const DeliverableTop = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 12,
+
+  '& > span': {
+    color: 'rgba($colors$tangerine1Rgb, 0.82)',
+    fontSize: 31,
+    fontWeight: 500,
+    lineHeight: 1,
+  },
+
+  '@bp2': {
+    gridRow: '1 / span 2',
+    alignItems: 'flex-start',
+
+    '& > span': {
+      display: 'none',
+    },
+  },
+})
+
+export const DeliverableIcon = styled('span', {
+  width: 50,
+  height: 50,
+  display: 'grid',
+  placeItems: 'center',
+  flexShrink: 0,
+  color: '$magenta1',
+  background: 'rgba($colors$tangerine5Rgb, 0.62)',
+  borderRadius: '50%',
+
+  '& svg': {
+    width: 23,
+    height: 23,
+  },
+})
+
+export const TimelineHeader = styled('div', {
+  display: 'flex',
+  alignItems: 'end',
+  justifyContent: 'space-between',
+  gap: 32,
+  marginTop: 58,
+  paddingTop: 44,
+  borderTop: '1px solid rgba($colors$magenta1Rgb, 0.16)',
+
+  '& h3': {
+    color: '$magenta6',
+    fontSize: 'clamp(28px, 3vw, 38px)',
+    fontWeight: 500,
+    lineHeight: 1.15,
+  },
+  '& p': {
+    maxWidth: 680,
+    marginTop: 9,
+    color: '$gray3',
+    fontSize: 14,
+    lineHeight: 1.6,
+  },
+  '& > a': {
+    flexShrink: 0,
+    color: '$magenta1',
+    fontSize: 13,
+    fontWeight: 700,
+  },
+  '& > a:hover': {
+    textDecoration: 'underline',
+    textUnderlineOffset: 3,
+  },
+
+  '@bp3': {
+    alignItems: 'start',
+    flexDirection: 'column',
+    gap: 14,
+  },
+})
+
+export const MoveTimeline = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  marginTop: 26,
+  borderTop: '1px solid rgba($colors$magenta1Rgb, 0.18)',
+  borderBottom: '1px solid rgba($colors$magenta1Rgb, 0.18)',
+
+  '@bp4': {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  '@bp2': {
+    gridTemplateColumns: '1fr',
+  },
+})
+
+export const TimelinePhase = styled('article', {
+  padding: '26px 24px 28px',
+  borderRight: '1px solid rgba($colors$magenta1Rgb, 0.16)',
+
+  '&:last-child': {
+    borderRight: 0,
+  },
+  '& > span': {
+    color: '$tangerine1',
+    fontSize: 11,
+    fontWeight: 700,
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+  },
+  '& h4': {
+    marginTop: 8,
+    color: '$magenta6',
+    fontSize: 19,
+    fontWeight: 500,
+    lineHeight: 1.3,
+  },
+  '& ul': {
+    display: 'grid',
+    gap: 9,
+    marginTop: 14,
+  },
+  '& li': {
+    position: 'relative',
+    paddingLeft: 17,
+    color: '$gray3',
+    fontSize: 13,
+    lineHeight: 1.5,
+  },
+  '& li::before': {
+    content: '✓',
+    position: 'absolute',
+    left: 0,
+    color: '$magenta1',
+    fontWeight: 700,
+  },
+
+  '@bp4': {
+    '&:nth-child(2)': {
+      borderRight: 0,
+    },
+    '&:nth-child(-n+2)': {
+      borderBottom: '1px solid rgba($colors$magenta1Rgb, 0.16)',
+    },
+  },
+  '@bp2': {
+    borderRight: 0,
+    borderBottom: '1px solid rgba($colors$magenta1Rgb, 0.16)',
+
+    '&:last-child': {
+      borderBottom: 0,
+    },
+  },
+})
+
+export const ValueCallout = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  alignItems: 'center',
+  gap: 54,
+  marginTop: 54,
+  padding: '34px 42px',
+  background: 'rgba($colors$tangerine5Rgb, 0.34)',
+  borderRadius: 12,
+
+  '& h3': {
+    color: '$magenta6',
+    fontSize: 'clamp(29px, 3vw, 40px)',
+    fontWeight: 500,
+    lineHeight: 1.15,
+  },
+  '& p': {
+    color: '$gray3',
+    fontSize: 15,
+    lineHeight: 1.6,
+  },
+
+  '@bp3': {
+    gridTemplateColumns: '1fr',
+    gap: 24,
+  },
+  '@bp2': {
+    marginTop: 34,
+    padding: '28px 22px',
+  },
+})
+
+export const ValueAction = styled('a', {
+  minHeight: 50,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  marginTop: 18,
+  padding: '0 22px',
+  color: '$white',
+  background: '$magenta1',
+  borderRadius: 7,
+  fontSize: 14,
+  fontWeight: 700,
+  textAlign: 'center',
+
+  '&:hover': {
+    background: '$magenta9',
+  },
+  '&:focus-visible': {
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.45)',
+    outlineOffset: 3,
   },
 })

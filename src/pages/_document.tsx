@@ -1,3 +1,4 @@
+import type { DocumentProps } from 'next/document'
 import { Head, Html, Main, NextScript } from 'next/document'
 import { RuntimeLoader } from '@rive-app/react-canvas'
 import { getCssText } from 'stitches.config'
@@ -8,9 +9,11 @@ export const riveWasmUrl = 'https://unpkg.com/@rive-app/canvas/rive.wasm'
 
 RuntimeLoader.setWasmUrl(riveWasmUrl)
 
-export default function Document() {
+export default function Document({ __NEXT_DATA__ }: DocumentProps) {
+  const language = __NEXT_DATA__.page.startsWith('/agenciamento') ? 'pt-BR' : 'en'
+
   return (
-    <Html lang="en">
+    <Html lang={language}>
       <Head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link

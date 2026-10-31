@@ -160,7 +160,6 @@ export const Disclaimer = styled('strong', {
   color: '$gray1',
 })
 
-
 export const DisclaimerLink = styled('a', {
   color: '$magenta6',
   textDecoration: 'underline',

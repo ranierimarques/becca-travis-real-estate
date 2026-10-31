@@ -55,7 +55,7 @@ export function Input({
                 placeholder={props.placeholder}
                 disabled={props.disabled}
                 {...field}
-/>
+              />
             )}
           />
           <S.Warning showError={hasError} />
