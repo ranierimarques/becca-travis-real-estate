@@ -141,7 +141,9 @@ export function BuyerConcierge() {
     [answers, context.language]
   )
   const excluded =
-    router.pathname === '/contact-us' || router.pathname === '/agenciamento'
+    router.pathname === '/contact-us' ||
+    router.pathname === '/agenciamento' ||
+    router.pathname === '/listing-planner'
   const questionStep = step === 'goal' ? 1 : step === 'location' ? 2 : 3
   const hasBack = step !== 'goal' && step !== 'success'
   const topbarLabel =
