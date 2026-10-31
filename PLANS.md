@@ -132,5 +132,8 @@ the private planning value.
 
 Targeted lint and TypeScript pass. The 107 page production build passes. The listing planner
 first load decreased from 351 kB to 293 kB, and shared first load JavaScript decreased from
-339 kB to 273 kB in the same local production build environment. Public deployment and
-domain verification remain before closure.
+339 kB to 273 kB in the same local production build environment. The optimization release
+is live on `beccatravis.com` through merge commit `c80c7f9`. Production canonical, robots,
+sitemap, OAI SearchBot access, structured data, social image, desktop layout, 390 pixel
+mobile layout, seller handoff, image delivery, and browser console checks passed. No test
+lead was submitted.
