@@ -134,7 +134,11 @@ export default function AreaPage({
             Confirm property details and school assignments with the relevant providers.
           </p>
         </S.Body>
-        <S.Action href="/contact-us">Talk with Becca about {area.name}</S.Action>
+        <S.Action
+          href={`/contact-us?intent=area-help&area=${encodeURIComponent(area.name)}`}
+        >
+          Ask Becca to help compare {area.name}
+        </S.Action>
         <br />
         <S.Action href="/areas">Explore more communities</S.Action>
       </S.Content>

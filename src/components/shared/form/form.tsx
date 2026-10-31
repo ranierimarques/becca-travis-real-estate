@@ -1,20 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
 import { Box, Button, Input } from '@/common'
+import { getLeadAttribution } from '@/services/leads/get-lead-attribution'
 import * as S from './form.styles'
 
-const nameRegExp = /^[a-z ,.'-]+$/i
+const nameRegExp = /^[\p{L}\p{M} ,.'\u2019-]+$/u
 
 const formSchema = z.object({
   first_name: z.string().refine(value => nameRegExp.test(value), {
     message: 'Invalid Name',
   }),
-  last_name: z.string().refine(value => nameRegExp.test(value), {
-    message: 'Invalid Name',
-  }),
+  last_name: z
+    .string()
+    .optional()
+    .refine(value => !value || nameRegExp.test(value), {
+      message: 'Invalid Name',
+    }),
   email: z
     .string()
     .min(1, {
@@ -24,10 +28,9 @@ const formSchema = z.object({
       message: 'Invalid email',
     }),
   number: z
-    .string({
-      required_error: 'Number is required',
-    })
-    .refine(value => isValidPhoneNumber(value), {
+    .string()
+    .optional()
+    .refine(value => !value || isValidPhoneNumber(value), {
       message: 'Invalid phone number',
     }),
   message: z.string().min(1, {
@@ -40,6 +43,8 @@ type formSchemaType = z.infer<typeof formSchema>
 interface FormProps {
   onOpenToast?: (value: boolean) => void
   askAQuestion?: boolean
+  initialMessage?: string
+  formSource?: string
 }
 
 const inputs = [
@@ -54,8 +59,8 @@ const inputs = [
     name: 'last_name',
     type: 'text',
     placeholder: 'Scott',
-    label: 'Last Name',
-    required: true,
+    label: 'Last Name (optional)',
+    required: false,
   },
   {
     name: 'email',
@@ -68,8 +73,8 @@ const inputs = [
     name: 'number',
     type: 'tel',
     placeholder: '(000) 000-0000',
-    label: 'Number',
-    required: true,
+    label: 'Phone (optional)',
+    required: false,
   },
   {
     name: 'message',
@@ -86,7 +91,12 @@ const inputs = [
   required: boolean
 }[]
 
-export function Form({ onOpenToast, askAQuestion }: FormProps) {
+export function Form({
+  onOpenToast,
+  askAQuestion,
+  initialMessage,
+  formSource = 'General contact page',
+}: FormProps) {
   const [submitError, setSubmitError] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const {
@@ -94,10 +104,15 @@ export function Form({ onOpenToast, askAQuestion }: FormProps) {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
+
+  useEffect(() => {
+    if (initialMessage) setValue('message', initialMessage)
+  }, [initialMessage, setValue])
 
   const onSubmit: SubmitHandler<formSchemaType> = async (values: formSchemaType) => {
     setSubmitError(false)
@@ -113,7 +128,9 @@ export function Form({ onOpenToast, askAQuestion }: FormProps) {
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
           subject: 'New Contact Form',
           from_name: 'Becca Travis Website',
+          form_source: formSource,
           ...values,
+          ...getLeadAttribution(),
         }),
       })
       const response = await result.json()

@@ -33,7 +33,7 @@ export function Step3() {
               }}
             >
               <RadioGroupItem label="Abaixo de 300k" />
-              <RadioGroupItem label="350k-450k" />
+              <RadioGroupItem label="300k-450k" />
               <RadioGroupItem label="450k-600k" />
               <RadioGroupItem label="600k-900k" />
               <RadioGroupItem label="900k-1.5M" />

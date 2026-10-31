@@ -17,11 +17,11 @@ export function NewToMarket() {
         css={{ w: '100%', margin: '8px 0 24px' }}
       >
         <S.Title>Let’s find your next home</S.Title>
-        <S.ViewAll href="/contact-us">CONTACT BECCA</S.ViewAll>
+        <S.ViewAll href="/homes#buyer-brief">BUILD MY SEARCH BRIEF</S.ViewAll>
       </Flex>
       <p>
-        Online property search is temporarily unavailable. Contact Becca for current homes
-        and a personal search.
+        The public property search is being updated. Start a personal search brief now so
+        Becca can understand your target area, timing and priorities.
       </p>
     </Section>
   )

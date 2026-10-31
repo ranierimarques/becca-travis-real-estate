@@ -4,7 +4,12 @@ export type DestinationStage =
   | 'Estou comparando estados'
   | 'Ainda estou começando'
 
-export type MoveWindow = 'Até 3 meses' | '3 a 6 meses' | '6 a 12 meses' | 'Mais de 1 ano'
+export type MoveWindow =
+  | 'Até 3 meses'
+  | '3 a 6 meses'
+  | '6 a 12 meses'
+  | 'Mais de 1 ano'
+  | 'Ainda pesquisando'
 
 export type RelocationPriority =
   | 'Escolher a região certa'
@@ -23,6 +28,7 @@ export type BudgetBand =
   | 'US$ 300 mil a US$ 500 mil'
   | 'US$ 500 mil a US$ 900 mil'
   | 'Acima de US$ 900 mil'
+  | 'Ainda não sei'
 
 export type RemoteVisitPlan =
   | 'Quero comprar à distância'
@@ -58,6 +64,7 @@ const moveWindows: MoveWindow[] = [
   '3 a 6 meses',
   '6 a 12 meses',
   'Mais de 1 ano',
+  'Ainda pesquisando',
 ]
 
 const relocationPriorities: RelocationPriority[] = [
@@ -79,6 +86,7 @@ const budgetBands: BudgetBand[] = [
   'US$ 300 mil a US$ 500 mil',
   'US$ 500 mil a US$ 900 mil',
   'Acima de US$ 900 mil',
+  'Ainda não sei',
 ]
 
 const remoteVisitPlans: RemoteVisitPlan[] = [

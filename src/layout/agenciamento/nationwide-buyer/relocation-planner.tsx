@@ -57,6 +57,7 @@ const questions: readonly PlannerQuestion[] = [
       '3 a 6 meses',
       '6 a 12 meses',
       'Mais de 1 ano',
+      'Ainda pesquisando',
     ] as readonly MoveWindow[],
   },
   {
@@ -82,6 +83,7 @@ const questions: readonly PlannerQuestion[] = [
       'US$ 300 mil a US$ 500 mil',
       'US$ 500 mil a US$ 900 mil',
       'Acima de US$ 900 mil',
+      'Ainda não sei',
     ] as readonly BudgetBand[],
   },
   {
@@ -159,6 +161,10 @@ const timingGuidance: Record<MoveWindow, { title: string; text: string }> = {
     title: 'Construa sua base de decisão',
     text: 'Organize prioridades e referências agora para evitar uma escolha apressada depois.',
   },
+  'Ainda pesquisando': {
+    title: 'Pesquise com critérios claros',
+    text: 'Você não precisa definir uma data agora. Comece organizando destino, custo e rotina.',
+  },
 }
 
 const priorityGuidance: Record<RelocationPriority, { title: string; text: string }> = {
@@ -223,40 +229,15 @@ type RelocationPlannerProps = {
   defaultDestination?: string
 }
 
-export function RelocationPlanner({
+function QuickLeadCapture({
   plan,
-  onPlanChange,
   defaultDestination,
-}: RelocationPlannerProps) {
-  const [step, setStep] = useState(0)
-  const [showLeadForm, setShowLeadForm] = useState(false)
+}: Pick<RelocationPlannerProps, 'plan' | 'defaultDestination'>) {
   const [leadStatus, setLeadStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>(
     'idle'
   )
   const [phoneError, setPhoneError] = useState('')
-  const question = questions[step]
-  const selectedValue = plan[question.field]
-
-  const guidance = getPlanGuidance(plan)
-  const planFacts = [
-    { label: 'Imóvel', value: plan.propertyGoal },
-    { label: 'Faixa', value: plan.budgetBand },
-    { label: 'Visitas', value: plan.remoteVisitPlan },
-    { label: 'Imóvel para vender', value: plan.homeToSell },
-  ].filter(fact => fact.value)
-
-  function selectOption(value: string) {
-    onPlanChange({ ...plan, [question.field]: value } as RelocationPlan)
-  }
-
-  function continuePlan() {
-    if (step < questions.length - 1) {
-      setStep(current => current + 1)
-      return
-    }
-
-    setShowLeadForm(true)
-  }
+  const [contactChannel, setContactChannel] = useState<'email' | 'phone'>('email')
 
   async function submitQuickPlan(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -264,7 +245,7 @@ export function RelocationPlanner({
     const form = new FormData(event.currentTarget)
     const phone = String(form.get('phone') || '')
 
-    if (!isPlausiblePhoneNumber(phone)) {
+    if (contactChannel === 'phone' && !isPlausiblePhoneNumber(phone)) {
       setPhoneError('Informe um telefone válido com código do país ou código de área.')
       return
     }
@@ -288,6 +269,7 @@ export function RelocationPlanner({
           first_name: form.get('first_name'),
           email: form.get('email'),
           phone,
+          reply_channel: contactChannel === 'email' ? 'E-mail' : 'Telefone ou WhatsApp',
           current_location: form.get('current_location'),
           destination: form.get('destination'),
           optional_context: form.get('optional_context'),
@@ -304,11 +286,171 @@ export function RelocationPlanner({
           ...getLeadAttribution(),
         }),
       })
+      const response = await result.json()
 
-      setLeadStatus(result.status === 200 ? 'sent' : 'error')
+      setLeadStatus(result.ok && response.success === true ? 'sent' : 'error')
     } catch {
       setLeadStatus('error')
     }
+  }
+
+  if (leadStatus === 'sent') {
+    return (
+      <S.LeadSuccess role="status">
+        <CheckCircledIcon aria-hidden="true" />
+        <div>
+          <strong>Seu plano foi enviado.</strong>
+          <span>
+            Becca vai revisar suas respostas e falar com você em português pelo canal
+            escolhido. Fora do Alabama, uma apresentação local só acontece com sua
+            autorização. Você decide se quer seguir.
+          </span>
+          <a href="#contato">Acrescentar detalhes, se quiser</a>
+        </div>
+      </S.LeadSuccess>
+    )
+  }
+
+  return (
+    <S.QuickLeadForm onSubmit={submitQuickPlan}>
+      <h4>Salvar e pedir uma revisão em português</h4>
+      <p>
+        Informe seu primeiro nome e escolha como prefere receber a resposta. As respostas
+        do planejador já seguem juntas.
+      </p>
+      <S.ContactChoice role="radiogroup" aria-label="Canal de resposta">
+        <button
+          type="button"
+          role="radio"
+          aria-checked={contactChannel === 'email'}
+          data-selected={contactChannel === 'email'}
+          onClick={() => setContactChannel('email')}
+        >
+          E-mail
+        </button>
+        <button
+          type="button"
+          role="radio"
+          aria-checked={contactChannel === 'phone'}
+          data-selected={contactChannel === 'phone'}
+          onClick={() => setContactChannel('phone')}
+        >
+          Telefone ou WhatsApp
+        </button>
+      </S.ContactChoice>
+      <S.QuickLeadGrid>
+        <label>
+          <span>Nome</span>
+          <input name="first_name" type="text" autoComplete="given-name" required />
+        </label>
+        {contactChannel === 'email' ? (
+          <label>
+            <span>E-mail</span>
+            <input name="email" type="email" autoComplete="email" required />
+          </label>
+        ) : (
+          <label>
+            <span>Telefone ou WhatsApp</span>
+            <input
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              aria-describedby={phoneError ? 'planner-phone-error' : undefined}
+              aria-invalid={Boolean(phoneError)}
+              onChange={() => phoneError && setPhoneError('')}
+              placeholder="Com código do país ou área"
+              required
+            />
+            {phoneError && (
+              <S.FieldError id="planner-phone-error" role="alert">
+                {phoneError}
+              </S.FieldError>
+            )}
+          </label>
+        )}
+        <label>
+          <span>De onde você está vindo? Opcional</span>
+          <input
+            name="current_location"
+            type="text"
+            autoComplete="address-level1"
+            placeholder="Cidade, estado ou país"
+          />
+        </label>
+        <label>
+          <span>Destino, se já souber</span>
+          <input
+            name="destination"
+            type="text"
+            autoComplete="address-level1"
+            defaultValue={defaultDestination}
+          />
+        </label>
+        <S.QuickLeadWide>
+          <span>Algo mais que devo considerar?</span>
+          <textarea
+            name="optional_context"
+            rows={3}
+            placeholder="Exemplo: idioma, investimento, acessibilidade ou prazo especial"
+          />
+        </S.QuickLeadWide>
+      </S.QuickLeadGrid>
+      <input
+        name="botcheck"
+        type="checkbox"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ display: 'none' }}
+      />
+      <S.QuickLeadConsent>
+        Ao enviar, você autoriza contato sobre sua solicitação e concorda com os{' '}
+        <Link href="/terms-of-service">Termos de Uso</Link> e a{' '}
+        <Link href="/privacy-notice">Política de Privacidade</Link>. Seus dados não são
+        compartilhados com um profissional local sem sua autorização.
+      </S.QuickLeadConsent>
+      <S.QuickLeadSubmit type="submit" disabled={leadStatus === 'sending'}>
+        {leadStatus === 'sending' ? 'Enviando plano' : 'Salvar meu plano e pedir revisão'}
+      </S.QuickLeadSubmit>
+      {leadStatus === 'error' && (
+        <S.LeadError role="alert">
+          Não foi possível enviar agora. Você pode{' '}
+          <a href="tel:+12563189066">ligar para (256) 318-9066</a>.
+        </S.LeadError>
+      )}
+    </S.QuickLeadForm>
+  )
+}
+
+export function RelocationPlanner({
+  plan,
+  onPlanChange,
+  defaultDestination,
+}: RelocationPlannerProps) {
+  const [step, setStep] = useState(0)
+  const [showLeadForm, setShowLeadForm] = useState(false)
+  const question = questions[step]
+  const selectedValue = plan[question.field]
+
+  const guidance = getPlanGuidance(plan)
+  const planFacts = [
+    { label: 'Imóvel', value: plan.propertyGoal },
+    { label: 'Faixa', value: plan.budgetBand },
+    { label: 'Visitas', value: plan.remoteVisitPlan },
+    { label: 'Imóvel para vender', value: plan.homeToSell },
+  ].filter(fact => fact.value)
+
+  function selectOption(value: string) {
+    onPlanChange({ ...plan, [question.field]: value } as RelocationPlan)
+  }
+
+  function continuePlan() {
+    if (step < questions.length - 1) {
+      setStep(current => current + 1)
+      return
+    }
+
+    setShowLeadForm(true)
   }
 
   return (
@@ -368,8 +510,11 @@ export function RelocationPlanner({
           </S.PlannerQuestions>
 
           <S.PlanResult aria-live="polite">
-            <h3>Seu plano inicial</h3>
-            <p>Suas respostas organizam os próximos passos da compra e da mudança.</p>
+            <h3>Seu Resumo de Mudança</h3>
+            <p>
+              Veja seu ponto de partida agora. Salve quando quiser uma revisão humana em
+              português.
+            </p>
 
             <S.GuidanceList>
               {guidance.map((item, index) => {
@@ -401,112 +546,7 @@ export function RelocationPlanner({
             )}
 
             {showLeadForm ? (
-              leadStatus === 'sent' ? (
-                <S.LeadSuccess role="status">
-                  <CheckCircledIcon aria-hidden="true" />
-                  <div>
-                    <strong>Seu plano foi enviado.</strong>
-                    <span>
-                      Quer acrescentar cidades, características e mais detalhes? Complete
-                      a solicitação abaixo.
-                    </span>
-                    <a href="#contato">Completar detalhes da compra</a>
-                  </div>
-                </S.LeadSuccess>
-              ) : (
-                <S.QuickLeadForm onSubmit={submitQuickPlan}>
-                  <h4>Salve este plano com a Becca</h4>
-                  <p>
-                    Envie o destino e seu contato. As respostas do planejador seguem
-                    juntas para a conversa começar com contexto.
-                  </p>
-                  <S.QuickLeadGrid>
-                    <label>
-                      <span>Nome</span>
-                      <input
-                        name="first_name"
-                        type="text"
-                        autoComplete="given-name"
-                        required
-                      />
-                    </label>
-                    <label>
-                      <span>E-mail</span>
-                      <input name="email" type="email" autoComplete="email" required />
-                    </label>
-                    <label>
-                      <span>Telefone</span>
-                      <input
-                        name="phone"
-                        type="tel"
-                        autoComplete="tel"
-                        aria-describedby={phoneError ? 'planner-phone-error' : undefined}
-                        aria-invalid={Boolean(phoneError)}
-                        onChange={() => phoneError && setPhoneError('')}
-                        placeholder="Com código do país ou área"
-                        required
-                      />
-                      {phoneError && (
-                        <S.FieldError id="planner-phone-error" role="alert">
-                          {phoneError}
-                        </S.FieldError>
-                      )}
-                    </label>
-                    <label>
-                      <span>De onde você está vindo?</span>
-                      <input
-                        name="current_location"
-                        type="text"
-                        autoComplete="address-level1"
-                        placeholder="Cidade, estado ou país"
-                        required
-                      />
-                    </label>
-                    <label>
-                      <span>Cidade ou estado desejado</span>
-                      <input
-                        name="destination"
-                        type="text"
-                        autoComplete="address-level1"
-                        defaultValue={defaultDestination}
-                        required
-                      />
-                    </label>
-                    <S.QuickLeadWide>
-                      <span>Algo mais que devo considerar?</span>
-                      <textarea
-                        name="optional_context"
-                        rows={3}
-                        placeholder="Exemplo: idioma, investimento, acessibilidade ou prazo especial"
-                      />
-                    </S.QuickLeadWide>
-                  </S.QuickLeadGrid>
-                  <input
-                    name="botcheck"
-                    type="checkbox"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    aria-hidden="true"
-                    style={{ display: 'none' }}
-                  />
-                  <S.QuickLeadConsent>
-                    Ao enviar, você autoriza contato sobre sua solicitação e concorda com
-                    os <Link href="/terms-of-service">Termos de Uso</Link> e a{' '}
-                    <Link href="/privacy-notice">Política de Privacidade</Link>.
-                  </S.QuickLeadConsent>
-                  <S.QuickLeadSubmit type="submit" disabled={leadStatus === 'sending'}>
-                    {leadStatus === 'sending'
-                      ? 'Enviando plano'
-                      : 'Enviar meu plano para a Becca'}
-                  </S.QuickLeadSubmit>
-                  {leadStatus === 'error' && (
-                    <S.LeadError role="alert">
-                      Não foi possível enviar agora. Você pode{' '}
-                      <a href="tel:+12563189066">ligar para (256) 318-9066</a>.
-                    </S.LeadError>
-                  )}
-                </S.QuickLeadForm>
-              )
+              <QuickLeadCapture plan={plan} defaultDestination={defaultDestination} />
             ) : (
               <>
                 <S.PlannerButton

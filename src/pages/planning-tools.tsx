@@ -272,11 +272,77 @@ export default function PlanningToolsPage() {
           property inspections or guarantees. Information stays in your browser unless you
           choose to contact Becca separately.
         </p>
-        <Link href="/contact-us" style={{ color: '#6d294c', fontWeight: 600 }}>
-          Have questions about your move? Contact Becca
-        </Link>
+        <aside
+          className="planning-help"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0,1fr) auto',
+            alignItems: 'center',
+            gap: 28,
+            marginTop: 34,
+            padding: '26px 28px',
+            color: 'white',
+            background: '#58243c',
+            borderRadius: 12,
+          }}
+        >
+          <div>
+            <strong style={{ display: 'block', fontSize: 21 }}>
+              Turn this worksheet into a next step
+            </strong>
+            <span
+              style={{
+                display: 'block',
+                maxWidth: 650,
+                marginTop: 7,
+                color: 'rgba(255,255,255,.78)',
+                lineHeight: 1.6,
+              }}
+            >
+              Tell Becca what you are deciding. The selected tool, {tools[active][0]},
+              will be carried into your message so you do not have to start over.
+            </span>
+            <Link
+              href="/agenciamento?origem=planning-tools#planejador"
+              style={{
+                display: 'inline-block',
+                marginTop: 12,
+                color: '#ffc6a2',
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Prefere planejar sua mudança em português?
+            </Link>
+          </div>
+          <Link
+            href={`/contact-us?intent=planning-help&tool=${encodeURIComponent(
+              tools[active][0]
+            )}`}
+            style={{
+              display: 'inline-flex',
+              minHeight: 48,
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0 20px',
+              color: '#58243c',
+              background: 'white',
+              borderRadius: 7,
+              fontWeight: 700,
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Ask Becca about this plan
+          </Link>
+        </aside>
       </section>
       <style jsx global>{`
+        @media (max-width: 700px) {
+          .planning-help {
+            grid-template-columns: 1fr !important;
+          }
+        }
         @media print {
           header,
           nav,
