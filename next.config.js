@@ -1,4 +1,13 @@
 /** @type {import('next').NextConfig} */
+const { getApprovedSmartFrameOrigin } = require('./src/config/idx-smart-frame')
+
+const smartFrameOrigin = getApprovedSmartFrameOrigin(
+  process.env.VALLEYMLS_IDX_SMARTFRAME_URL
+)
+const frameSources = ["'self'", 'https://vercel.live', smartFrameOrigin]
+  .filter(Boolean)
+  .join(' ')
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -74,6 +83,7 @@ const ContentSecurityPolicy = `
   img-src * blob: data:;
   media-src 'self';
   connect-src *;
+  frame-src ${frameSources};
   font-src 'self' fonts.gstatic.com assets.vercel.com;
 `
 
