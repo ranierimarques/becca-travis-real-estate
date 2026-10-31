@@ -4,7 +4,9 @@ const { getApprovedSmartFrameOrigin } = require('./src/config/idx-smart-frame')
 const smartFrameOrigin = getApprovedSmartFrameOrigin(
   process.env.VALLEYMLS_IDX_SMARTFRAME_URL
 )
-const frameSources = ["'self'", smartFrameOrigin].filter(Boolean).join(' ')
+const frameSources = ["'self'", 'https://vercel.live', smartFrameOrigin]
+  .filter(Boolean)
+  .join(' ')
 
 const nextConfig = {
   reactStrictMode: true,
