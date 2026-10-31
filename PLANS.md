@@ -204,3 +204,35 @@ is live on `beccatravis.com` through merge commit `c80c7f9`. Production canonica
 sitemap, OAI SearchBot access, structured data, social image, desktop layout, 390 pixel
 mobile layout, seller handoff, image delivery, and browser console checks passed. No test
 lead was submitted.
+
+## Planning tools private workspace upgrade
+
+### Goal
+
+Let visitors resume their calculator and worksheet work on the same browser and move a
+backup between devices, while keeping the existing calculator and 14 worksheet library.
+
+### Implementation
+
+1. Add versioned, bounded local browser storage for calculator inputs, worksheet filter and
+   selection, checked prompts, and notes.
+2. Add JSON backup download and validated import, plus an explicit reset action.
+3. Keep unsupported or malformed saved data untouched until the visitor imports a backup
+   or confirms a reset; show the save state and explain shared-profile privacy.
+4. Mark the existing above-the-fold image as a loading priority after browser QA identified
+   it as the Largest Contentful Paint candidate.
+
+### Status
+
+Implemented on a review branch. The existing five-test configuration suite passes, normal
+targeted lint exits successfully, and browser QA verified autosave, reload restore, worksheet
+ticks and notes, JSON import/export, reset, and 1280, 390, and 320 pixel layouts without
+horizontal overflow. A malformed future-version save remains untouched and does not replace
+the visitor's data. The top image now carries Next.js loading priority.
+
+The full build and project-wide TypeScript check are blocked by the shared local dependency
+tree: it has Next.js 13.5.11 and TypeScript 5.9.3, while this repository declares Next.js
+13.1.6 and TypeScript 4.9.5. Both checks stop at an existing React Hook Form type mismatch
+in `src/layout/homes-id/sections/home/payment-calculator/input/input.tsx`, outside this
+change. No dependency install was run. The public page remains unchanged; merge and
+production deployment still require review and the Vercel production path.

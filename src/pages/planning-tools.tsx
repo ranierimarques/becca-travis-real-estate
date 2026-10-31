@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { MetaSEO } from '@/common'
-import { BuyerResearchLab } from '../components/shared/buyer-research-lab/buyer-research-lab'
 import { FaqPreview } from '@/layout/faq-preview'
+import { BuyerResearchLab } from '../components/shared/buyer-research-lab/buyer-research-lab'
 import { huntsvilleFaq } from '../data/huntsville-faq'
 
 type Category = 'Buying' | 'Moving' | 'Homeownership' | 'Selling'
@@ -104,6 +104,136 @@ const worksheets: Worksheet[] = [
 ]
 
 const categories = ['All tools', 'Buying', 'Moving', 'Homeownership', 'Selling'] as const
+type CategoryFilter = (typeof categories)[number]
+type PlannerValues = {
+  calculator: CalculatorMode
+  price: number
+  down: number
+  rate: number
+  years: number
+  monthlyTax: number
+  monthlyInsurance: number
+  monthlyHoa: number
+  buyerFees: number
+  buyerPrepaids: number
+  earnestMoney: number
+  buyerCredits: number
+  buyerOther: number
+  salePrice: number
+  mortgagePayoff: number
+  commission: number
+  sellerClosing: number
+  sellerCredits: number
+  sellerProrations: number
+  sellerOther: number
+  category: CategoryFilter
+  search: string
+  openWorksheet: string | null
+  checked: Record<string, boolean>
+  notes: Record<string, string>
+}
+
+interface StoredPlanner {
+  version: 1
+  savedAt: string
+  values: PlannerValues
+}
+
+const plannerStorageKey = 'becca-planning-tools:v1'
+const defaultPlannerValues: PlannerValues = {
+  calculator: 'payment', price: 350000, down: 70000, rate: 6.5, years: 30,
+  monthlyTax: 0, monthlyInsurance: 0, monthlyHoa: 0, buyerFees: 4500,
+  buyerPrepaids: 2500, earnestMoney: 2500, buyerCredits: 0, buyerOther: 0,
+  salePrice: 400000, mortgagePayoff: 250000, commission: 0, sellerClosing: 0,
+  sellerCredits: 0, sellerProrations: 0, sellerOther: 0, category: 'All tools',
+  search: '', openWorksheet: null, checked: {}, notes: {},
+}
+
+const worksheetTitles = new Set(worksheets.map(item => item.title))
+const worksheetStepKeys = new Set(
+  worksheets.flatMap(item => item.steps.map(step => `${item.title}:${step}`)),
+)
+const calculatorModes: CalculatorMode[] = ['payment', 'buyer-cash', 'seller-net']
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+function boundedNumber(value: Record<string, unknown>, key: string, fallback: number, max = 1_000_000_000) {
+  const candidate = value[key]
+  return typeof candidate === 'number' && Number.isFinite(candidate)
+    ? Math.min(Math.max(candidate, 0), max)
+    : fallback
+}
+
+function sanitizeChecked(value: unknown): Record<string, boolean> {
+  const source = isRecord(value) ? value : {}
+  const checked: Record<string, boolean> = {}
+  worksheetStepKeys.forEach(key => {
+    if (typeof source[key] === 'boolean') checked[key] = source[key] as boolean
+  })
+  return checked
+}
+
+function sanitizeNotes(value: unknown): Record<string, string> {
+  const source = isRecord(value) ? value : {}
+  const notes: Record<string, string> = {}
+  worksheetTitles.forEach(title => {
+    if (typeof source[title] === 'string') notes[title] = (source[title] as string).slice(0, 5000)
+  })
+  return notes
+}
+
+function sanitizePlannerValues(value: unknown): PlannerValues | null {
+  if (!isRecord(value)) return null
+
+  return {
+    calculator: calculatorModes.includes(value.calculator as CalculatorMode)
+      ? (value.calculator as CalculatorMode)
+      : 'payment',
+    price: boundedNumber(value, 'price', defaultPlannerValues.price),
+    down: boundedNumber(value, 'down', defaultPlannerValues.down),
+    rate: boundedNumber(value, 'rate', defaultPlannerValues.rate, 100),
+    years: boundedNumber(value, 'years', defaultPlannerValues.years, 100),
+    monthlyTax: boundedNumber(value, 'monthlyTax', 0),
+    monthlyInsurance: boundedNumber(value, 'monthlyInsurance', 0),
+    monthlyHoa: boundedNumber(value, 'monthlyHoa', 0),
+    buyerFees: boundedNumber(value, 'buyerFees', defaultPlannerValues.buyerFees),
+    buyerPrepaids: boundedNumber(value, 'buyerPrepaids', defaultPlannerValues.buyerPrepaids),
+    earnestMoney: boundedNumber(value, 'earnestMoney', defaultPlannerValues.earnestMoney),
+    buyerCredits: boundedNumber(value, 'buyerCredits', 0),
+    buyerOther: boundedNumber(value, 'buyerOther', 0),
+    salePrice: boundedNumber(value, 'salePrice', defaultPlannerValues.salePrice),
+    mortgagePayoff: boundedNumber(value, 'mortgagePayoff', defaultPlannerValues.mortgagePayoff),
+    commission: boundedNumber(value, 'commission', 0),
+    sellerClosing: boundedNumber(value, 'sellerClosing', 0),
+    sellerCredits: boundedNumber(value, 'sellerCredits', 0),
+    sellerProrations: boundedNumber(value, 'sellerProrations', 0),
+    sellerOther: boundedNumber(value, 'sellerOther', 0),
+    category: categories.includes(value.category as CategoryFilter)
+      ? (value.category as CategoryFilter)
+      : 'All tools',
+    search: typeof value.search === 'string' ? value.search.slice(0, 120) : '',
+    openWorksheet:
+      typeof value.openWorksheet === 'string' && worksheetTitles.has(value.openWorksheet)
+        ? value.openWorksheet
+        : null,
+    checked: sanitizeChecked(value.checked),
+    notes: sanitizeNotes(value.notes),
+  }
+}
+
+function parseStoredPlanner(value: unknown): StoredPlanner | null {
+  if (!isRecord(value) || value.version !== 1) return null
+  const values = sanitizePlannerValues(value.values)
+  if (!values) return null
+  return {
+    version: 1,
+    savedAt: typeof value.savedAt === 'string' ? value.savedAt : new Date(0).toISOString(),
+    values,
+  }
+}
+
 const planningFaq = [huntsvilleFaq[3], huntsvilleFaq[6], huntsvilleFaq[8], huntsvilleFaq[9]]
 const calculatorTitles: Record<CalculatorMode, string> = {
   payment: 'Monthly housing cost calculator',
@@ -170,6 +300,139 @@ export default function PlanningToolsPage() {
   const [checked, setChecked] = useState<Record<string, boolean>>({})
   const [notes, setNotes] = useState<Record<string, string>>({})
   const [researchTool, setResearchTool] = useState<string | null>(null)
+  const [storageReady, setStorageReady] = useState(false)
+  const [storageWritable, setStorageWritable] = useState(false)
+  const [saveStatus, setSaveStatus] = useState('Checking this device for a saved plan…')
+
+  const applyPlannerValues = useCallback((values: PlannerValues) => {
+    setCalculator(values.calculator)
+    setPrice(values.price)
+    setDown(values.down)
+    setRate(values.rate)
+    setYears(values.years)
+    setMonthlyTax(values.monthlyTax)
+    setMonthlyInsurance(values.monthlyInsurance)
+    setMonthlyHoa(values.monthlyHoa)
+    setBuyerFees(values.buyerFees)
+    setBuyerPrepaids(values.buyerPrepaids)
+    setEarnestMoney(values.earnestMoney)
+    setBuyerCredits(values.buyerCredits)
+    setBuyerOther(values.buyerOther)
+    setSalePrice(values.salePrice)
+    setMortgagePayoff(values.mortgagePayoff)
+    setCommission(values.commission)
+    setSellerClosing(values.sellerClosing)
+    setSellerCredits(values.sellerCredits)
+    setSellerProrations(values.sellerProrations)
+    setSellerOther(values.sellerOther)
+    setCategory(values.category)
+    setSearch(values.search)
+    setOpenWorksheet(values.openWorksheet)
+    setChecked(values.checked)
+    setNotes(values.notes)
+  }, [])
+
+  const plannerValues = useMemo<PlannerValues>(() => ({
+    calculator, price, down, rate, years, monthlyTax, monthlyInsurance, monthlyHoa,
+    buyerFees, buyerPrepaids, earnestMoney, buyerCredits, buyerOther, salePrice,
+    mortgagePayoff, commission, sellerClosing, sellerCredits, sellerProrations,
+    sellerOther, category, search, openWorksheet, checked, notes,
+  }), [
+    calculator, price, down, rate, years, monthlyTax, monthlyInsurance, monthlyHoa,
+    buyerFees, buyerPrepaids, earnestMoney, buyerCredits, buyerOther, salePrice,
+    mortgagePayoff, commission, sellerClosing, sellerCredits, sellerProrations,
+    sellerOther, category, search, openWorksheet, checked, notes,
+  ])
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(plannerStorageKey)
+      if (saved === null) {
+        setStorageWritable(true)
+        setSaveStatus('Autosave is ready on this device.')
+      } else {
+        const restored = parseStoredPlanner(JSON.parse(saved))
+        if (restored) {
+          applyPlannerValues(restored.values)
+          setStorageWritable(true)
+          setSaveStatus('Saved plan restored from this device.')
+        } else {
+          setStorageWritable(false)
+          setSaveStatus('A saved plan could not be read. Import a backup or reset this device’s planner.')
+        }
+      }
+    } catch {
+      setStorageWritable(false)
+      setSaveStatus('This browser could not read the saved plan. You can still download or import a backup.')
+    }
+    setStorageReady(true)
+  }, [applyPlannerValues])
+
+  useEffect(() => {
+    if (!storageReady || !storageWritable) return
+    setSaveStatus('Saving on this device…')
+    const timer = window.setTimeout(() => {
+      const snapshot: StoredPlanner = {
+        version: 1,
+        savedAt: new Date().toISOString(),
+        values: plannerValues,
+      }
+      try {
+        window.localStorage.setItem(plannerStorageKey, JSON.stringify(snapshot))
+        setSaveStatus('Saved on this device.')
+      } catch {
+        setSaveStatus('Autosave is unavailable. Download a backup to keep your plan.')
+      }
+    }, 350)
+    return () => window.clearTimeout(timer)
+  }, [plannerValues, storageReady, storageWritable])
+
+  const downloadBackup = () => {
+    const snapshot: StoredPlanner = {
+      version: 1,
+      savedAt: new Date().toISOString(),
+      values: plannerValues,
+    }
+    const file = new Blob([JSON.stringify(snapshot, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(file)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'becca-planning-tools-backup.json'
+    link.click()
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+    setSaveStatus('Backup downloaded to your device.')
+  }
+
+  const importBackup = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+    event.target.value = ''
+    if (file.size > 1_000_000) {
+      setSaveStatus('That backup is too large to import. Choose a file under 1 MB.')
+      return
+    }
+    try {
+      const imported = parseStoredPlanner(JSON.parse(await file.text()))
+      if (!imported) throw new Error('Unsupported backup format')
+      applyPlannerValues(imported.values)
+      setStorageWritable(true)
+      setSaveStatus('Backup loaded. Saving this plan on your device…')
+    } catch {
+      setSaveStatus('That backup could not be read. Your current plan is unchanged.')
+    }
+  }
+
+  const resetPlanner = () => {
+    if (!window.confirm('Clear this device’s saved plan and reset all calculator and worksheet entries?')) return
+    try {
+      window.localStorage.removeItem(plannerStorageKey)
+      applyPlannerValues(defaultPlannerValues)
+      setStorageWritable(true)
+      setSaveStatus('Planner reset. Your default workspace will save on this device.')
+    } catch {
+      setSaveStatus('This browser could not clear its saved plan. Your current entries are unchanged.')
+    }
+  }
 
   const principalAndInterest = useMemo(() => {
     const principal = Math.max(price - down, 0)
@@ -238,12 +501,13 @@ export default function PlanningToolsPage() {
                 src="/images/areas/downtown-huntsville.webp"
                 alt="Downtown Huntsville park pond and skyline"
                 fill
+                priority
                 sizes="(max-width: 820px) 100vw, (max-width: 1160px) 32vw, 368px"
               />
             </div>
             <span className="note-kicker">A practical starting point</span>
             <strong>Your plan, built around your numbers.</strong>
-            <p>Estimates update as you type. The inputs stay on this page and are not sent to Becca.</p>
+            <p>Estimates update as you type. Your entries stay in this browser and are not sent to Becca.</p>
             <div className="note-divider" />
             <p className="note-small">Check taxes, insurance, loan terms, and closing costs against current written estimates.</p>
           </aside>
@@ -265,6 +529,24 @@ export default function PlanningToolsPage() {
         </Link>
         <a href="#local-answers">North Alabama answers</a>
       </nav>
+
+      <section className="planner-savebar" aria-label="Save and back up your plan">
+        <div className="planner-save-copy">
+          <strong>Your private planning workspace</strong>
+          <p aria-live="polite">{saveStatus}</p>
+        </div>
+        <div className="planner-save-actions">
+          <button type="button" onClick={downloadBackup}>Download backup</button>
+          <label className="import-backup-button">
+            Import backup
+            <input type="file" accept="application/json,.json" onChange={importBackup} />
+          </label>
+          <button type="button" className="reset-plan-button" onClick={resetPlanner}>Reset plan</button>
+        </div>
+        <p className="planner-save-privacy">
+          Autosaved only in this browser profile. Your plan is not sent to Becca. Anyone with access to this browser profile may be able to view it.
+        </p>
+      </section>
 
       <BuyerResearchLab id="interactive-checks" onToolChange={setResearchTool} />
 
@@ -439,7 +721,7 @@ export default function PlanningToolsPage() {
         ) : (
           <p className="no-results">No worksheets match that search. Try a different word or choose All tools.</p>
         )}
-        <p className="privacy-note">Your entries stay in this page and are not sent to Becca. These tools are educational aids, not loan offers, tax or legal advice, inspections, or guarantees.</p>
+        <p className="privacy-note">Your entries are saved only in this browser profile and are not sent to Becca. Anyone with access to this profile may be able to view them. These tools are educational aids, not loan offers, tax or legal advice, inspections, or guarantees.</p>
       </section>
 
       <section className="research-promo">
@@ -515,6 +797,16 @@ export default function PlanningToolsPage() {
         .hero-note .note-small { font-size: 12px; margin: 0; }
         .jump-nav { background: rgba(255,255,255,.96); border-bottom: 1px solid #eee6e9; border-top: 1px solid #eee6e9; display: flex; gap: 30px; justify-content: center; overflow-x: auto; padding: 14px 20px; position: sticky; top: 0; z-index: 5; }
         .jump-nav a { color: #604252; flex: 0 0 auto; font-size: 13px; font-weight: 600; text-decoration: none; }
+        .planner-savebar { align-items: center; background: #fbf8f9; border-bottom: 1px solid #eee6e9; display: grid; gap: 8px 24px; grid-template-columns: minmax(220px, 1fr) auto; margin: 0 auto; padding: 18px max(24px, calc((100vw - 1112px) / 2)); }
+        .planner-save-copy strong { color: #3d3036; display: block; font-size: 14px; }
+        .planner-save-copy p { color: #655a60; font-size: 12px; line-height: 1.5; margin: 4px 0 0; }
+        .planner-save-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
+        .planner-save-actions button, .import-backup-button { background: #fff; border: 1px solid #d9cbd2; border-radius: 999px; color: #5d2844; cursor: pointer; display: inline-flex; font: inherit; font-size: 12px; font-weight: 600; justify-content: center; min-height: 40px; padding: 10px 14px; position: relative; }
+        .planner-save-actions button:hover, .import-backup-button:hover { background: #f4e8ee; border-color: #caa9b8; }
+        .planner-save-actions button:focus-visible, .import-backup-button:focus-within { outline: 3px solid rgba(141,73,103,.25); outline-offset: 2px; }
+        .import-backup-button input { cursor: pointer; height: 100%; inset: 0; opacity: 0; position: absolute; width: 100%; }
+        .planner-save-actions .reset-plan-button { color: #685d63; }
+        .planner-save-privacy { color: #776b71; font-size: 11px; grid-column: 1 / -1; line-height: 1.5; margin: 0; }
         .content-section { margin: 0 auto; max-width: 1160px; padding: 76px 24px; scroll-margin-top: 70px; }
         .section-heading { margin: 0 auto 34px; max-width: 740px; text-align: center; }
         h2 { color: #3a2d33; font-size: clamp(28px, 3.5vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; margin: 0; }
@@ -591,6 +883,10 @@ export default function PlanningToolsPage() {
           .hero { padding: 52px 20px 38px; }
           .hero-description { font-size: 16px; }
           .jump-nav { justify-content: flex-start; }
+          .planner-savebar { grid-template-columns: 1fr; padding: 16px 18px; scroll-margin-top: 56px; }
+          .planner-save-actions { width: 100%; }
+          .planner-save-actions button, .import-backup-button { flex: 1 1 auto; }
+          .planner-save-privacy { grid-column: auto; }
           .content-section { padding: 54px 18px; }
           .calculator-grid { gap: 22px; padding: 20px; }
           .fields-grid, .worksheet-grid { grid-template-columns: 1fr; }
@@ -599,7 +895,7 @@ export default function PlanningToolsPage() {
           .research-promo { margin: 0 18px 42px; padding: 22px 20px; }
         }
         @media print {
-          .hero, .jump-nav, .calculator-shell, .worksheet-controls, .contact-band, .print-button { display: none !important; }
+          .hero, .jump-nav, .planner-savebar, .calculator-shell, .worksheet-controls, .contact-band, .print-button { display: none !important; }
           .worksheet-card:not(.expanded) { display: none !important; }
           .worksheet-card.expanded { box-shadow: none; grid-column: span 3; }
         }
