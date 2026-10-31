@@ -1,4 +1,5 @@
 export { ClientTestimonials } from './client-testimonials/client-testimonials'
+export { BuyerConcierge } from './buyer-concierge/buyer-concierge'
 export { Contact } from './contact/contact'
 export { Form } from './form/form'
 export { PopUp } from './pop-up/pop-up'

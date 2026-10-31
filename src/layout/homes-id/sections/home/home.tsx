@@ -1,5 +1,4 @@
 import { FormattedHouse } from '@/services/house-listings/types'
-import { PopUp } from '@/shared'
 import {
   AskAQuestion,
   Description,
@@ -31,7 +30,6 @@ export function Home({ listing }: Listing) {
       <FasterContact />
       <PaymentCalculator price={listing.priceNumber} />
       <RelatedProperties id={listing.id} coords={listing.coords} />
-      <PopUp />
     </S.Section>
   )
 }

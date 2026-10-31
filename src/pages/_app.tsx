@@ -5,6 +5,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query
 import { Analytics } from '@vercel/analytics/react'
 import { DevTools, Footer, Navbar } from '@/common'
 import { AgenciamentoFooter, AgenciamentoHeader } from '@/layout/agenciamento/chrome'
+import { BuyerConcierge } from '@/shared'
 import { globalStyles } from '@/styles/global'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Hydrate state={pageProps.dehydratedState}>
         {isPortugueseBuyerRoute ? <AgenciamentoHeader /> : <Navbar />}
         <Component {...pageProps} />
+        <BuyerConcierge />
         <Analytics />
         {isPortugueseBuyerRoute ? <AgenciamentoFooter /> : <Footer />}
         {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && <DevTools />}

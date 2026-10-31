@@ -46,3 +46,33 @@ Turn high intent buyer visits into useful, contextual requests without requiring
 ### Verification
 
 Targeted lint and TypeScript pass. The full 105 page production build passes. Desktop and mobile browser QA passed for the homepage, homes brief, planning tools handoff, contextual contact page, and Portuguese planner. No browser console errors or warnings were found. Production deployment and public verification are in progress.
+
+## Sitewide buyer concierge conversion pass
+
+### Goal
+
+Add one original, low friction buyer capture system across the website. The experience combines one question at a time qualification with a streamlined search interface, while giving buyers a useful plan before requesting contact information.
+
+### Accepted design specification
+
+1. A compact fixed launcher opens a 420 pixel desktop drawer or a mobile bottom sheet.
+2. Three short questions collect the buyer goal, destination and timing.
+3. The current route supplies relevant context such as an area, state, planning tool or property page.
+4. A personalized buyer plan appears before the optional contact step.
+5. Contact requires only a first name and one selected reply method.
+6. English and Portuguese routes use localized copy and preserve the same interaction model.
+7. The component uses the existing magenta, plum, peach, white and cool gray system with IBM Plex Serif and Inter typography.
+
+### Implementation plan
+
+1. Build a reusable route aware buyer concierge component and mount it from the application shell.
+2. Add accessible dialog behavior, focus management, escape handling, progress state and session persistence.
+3. Generate useful plan recommendations from the selected goal, location, timing and current page context.
+4. Submit verified provider responses with source attribution, versioning and the full buyer plan.
+5. Remove the older property detail pop up so buyers never encounter competing lead forms.
+6. Run targeted lint, TypeScript, production build and desktop and mobile browser interaction testing.
+7. Release through GitHub and Vercel, then verify the production domain and public routes.
+
+### Status
+
+Research, visual concepts, implementation, targeted lint, TypeScript, the 106 page production build and desktop/mobile browser QA are complete. Production release and public verification are in progress.
