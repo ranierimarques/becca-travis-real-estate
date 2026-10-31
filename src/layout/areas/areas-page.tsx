@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import { Button, MetaSEO } from '@/common'
 import { PaymentEstimator } from '@/layout/communities/sections/payment-estimator/payment-estimator'
@@ -43,6 +44,40 @@ const FOCUS_GOLF_GREENWAY = 'Golf & greenway' as const
 const FOCUS_LARGER_LOTS = 'Half-acre+ / no HOA' as const
 const HUNTSVILLE_GIS_URL =
   'https://www.huntsvilleal.gov/development/building-construction/gis/'
+
+const lifestyleScenes = [
+  {
+    title: 'Historic character',
+    detail: 'Tree-lined streets and homes with a sense of history.',
+    src: '/images/areas/historic-street.webp',
+    alt: 'Illustrative tree-lined historic neighborhood street',
+  },
+  {
+    title: 'Trail and ridge settings',
+    detail: 'Wooded paths and open valley views.',
+    src: '/images/areas/wooded-ridge.webp',
+    alt: 'Illustrative wooded ridge trail and valley view',
+  },
+  {
+    title: 'Porch-forward homes',
+    detail: 'A home style built around outdoor sitting space.',
+    src: '/images/areas/front-porch-home.webp',
+    alt: 'Illustrative Southern home with a shaded front porch',
+  },
+  {
+    title: 'Room to spread out',
+    detail: 'Open land and a little more space between homes.',
+    src: '/images/areas/rolling-acreage.webp',
+    alt: 'Illustrative rolling acreage with a home set in the distance',
+  },
+] as const
+
+const commuteHubs: { destination: CommuteHub; placement: 'northwest' | 'northeast' | 'southwest' | 'southeast' }[] = [
+  { destination: 'Redstone Gate 9 / Research Park', placement: 'northwest' },
+  { destination: 'Redstone Gate 1 & 3', placement: 'northeast' },
+  { destination: 'Medical District / Downtown', placement: 'southwest' },
+  { destination: 'Mazda-Toyota / I-65', placement: 'southeast' },
+]
 
 const areas: AreaCardData[] = [
   {
@@ -411,16 +446,36 @@ export default function AreasPage() {
         locale="en_US"
         title="North Alabama Areas and Neighborhoods | Becca Travis"
         description="Compare Huntsville and North Alabama communities, neighborhood listing searches, school-zone resources, and address-specific planning links."
-        image="/sharing-cards/communities/huntsville.jpg"
-        alt="North Alabama communities"
+        image="/images/areas/downtown-huntsville.webp"
+        alt="Downtown Huntsville skyline and park pond"
       />
       <S.Hero>
-        <S.Eyebrow>North Alabama</S.Eyebrow>
-        <S.HeroTitle>Find the area that fits your life</S.HeroTitle>
-        <S.HeroCopy>
-          Start with the setting you want, then verify the home, school, taxes, utilities,
-          and commute by exact address.
-        </S.HeroCopy>
+        <S.HeroInner>
+          <S.HeroCopyBlock>
+            <S.Eyebrow>North Alabama</S.Eyebrow>
+            <S.HeroTitle>Find the area that fits your life</S.HeroTitle>
+            <S.HeroCopy>
+              Compare local settings, then narrow the search by commute, schools, taxes,
+              and the details that change from one address to the next.
+            </S.HeroCopy>
+            <S.HeroActions>
+              <Button href="#neighborhoods" size="2">Explore area guides</Button>
+              <S.HeroTextLink href="#commute-overview">Compare commute hubs <span aria-hidden="true">→</span></S.HeroTextLink>
+            </S.HeroActions>
+          </S.HeroCopyBlock>
+          <S.HeroFigure>
+            <S.HeroImage>
+              <Image
+                src="/images/areas/downtown-huntsville.webp"
+                alt="Downtown Huntsville skyline beside a landscaped park pond"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 52vw"
+              />
+            </S.HeroImage>
+            <S.ImageCaption>Downtown Huntsville, Alabama</S.ImageCaption>
+          </S.HeroFigure>
+        </S.HeroInner>
       </S.Hero>
       <S.StickyNav aria-label="Areas page navigation">
         <a href="#neighborhoods">Neighborhoods</a>
@@ -429,6 +484,69 @@ export default function AreasPage() {
         <a href="#local-picks">Dog parks and Purple Cup districts</a>
         <a href="#huntsville-qa">Huntsville Q&amp;A</a>
       </S.StickyNav>
+
+      <Section hasMaxWidth id="lifestyle-settings">
+        <S.SectionHeader>
+          <S.SectionTitle>Start with the setting you want</S.SectionTitle>
+          <S.Note>
+            From established streets to open land, North Alabama has a wide range of home
+            settings. These AI-created illustrations show broad styles, not specific homes or locations.
+          </S.Note>
+        </S.SectionHeader>
+        <S.SceneGrid>
+          {lifestyleScenes.map(scene => (
+            <S.SceneCard key={scene.title}>
+              <S.SceneFrame>
+                <Image
+                  src={scene.src}
+                  alt={scene.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+              </S.SceneFrame>
+              <S.SceneTitle>{scene.title}</S.SceneTitle>
+              <S.SceneDetail>{scene.detail}</S.SceneDetail>
+            </S.SceneCard>
+          ))}
+        </S.SceneGrid>
+      </Section>
+
+      <Section hasMaxWidth id="commute-overview">
+        <S.CommuteOverview>
+          <S.CommuteIntro>
+            <S.SectionTitle>Begin with the drive that shapes your week</S.SectionTitle>
+            <S.Note>
+              Choose the work hub or corridor you use most. The area list below will narrow
+              to places tagged for that search context.
+            </S.Note>
+            <S.CommuteDisclaimer>Conceptual comparison, not a map or drive-time estimate. Check the route from the exact address.</S.CommuteDisclaimer>
+          </S.CommuteIntro>
+          <S.CommuteMap role="group" aria-label="Filter areas by commute destination">
+            <S.MapConnectors aria-hidden="true">
+              <svg viewBox="0 0 1000 400" preserveAspectRatio="none">
+                <path d="M500 200 250 100M500 200 750 100M500 200 250 300M500 200 750 300" />
+              </svg>
+            </S.MapConnectors>
+            <S.CommuteCenter aria-hidden="true">Your<br />home search</S.CommuteCenter>
+            {commuteHubs.map(hub => (
+              <S.CommuteHubButton
+                key={hub.destination}
+                type="button"
+                placement={hub.placement}
+                active={commute === hub.destination}
+                aria-pressed={commute === hub.destination}
+                onClick={() => {
+                  setCommute(hub.destination)
+                  document.getElementById('neighborhoods')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+              >
+                <span>{hub.destination}</span>
+                <small>Filter area guide</small>
+              </S.CommuteHubButton>
+            ))}
+          </S.CommuteMap>
+        </S.CommuteOverview>
+      </Section>
 
       <Section hasMaxWidth id="neighborhoods">
         <S.SectionHeader>

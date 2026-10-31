@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { MetaSEO } from '@/common'
 import { FaqList } from '@/layout/huntsville-faq'
@@ -25,8 +26,8 @@ export default function HuntsvilleFaqPage() {
         canonicalPath="/huntsville-faq"
         title="Huntsville Home Buying Questions | Becca Travis"
         description="Search clear, source-linked answers about North Alabama homes, property taxes, schools, inspections, VA loans, utilities, and closing."
-        image="/sharing-cards/og-index.jpg"
-        alt="Huntsville and North Alabama home buying questions"
+        image="/images/areas/downtown-huntsville.webp"
+        alt="Downtown Huntsville skyline beside a landscaped park pond"
       />
       <script
         id="huntsville-faq-schema"
@@ -47,6 +48,17 @@ export default function HuntsvilleFaqPage() {
             <Link href="/planning-tools">Use the planning tools</Link>
           </nav>
         </div>
+        <figure className="faq-hero-image">
+          <Image
+            src="/images/areas/downtown-huntsville.webp"
+            alt="Downtown Huntsville skyline beside a landscaped park pond"
+            width={1920}
+            height={1080}
+            priority
+            sizes="(max-width: 700px) 100vw, 42vw"
+          />
+          <figcaption>Huntsville, Alabama</figcaption>
+        </figure>
       </header>
 
       <section className="answers-section" aria-labelledby="answers-title">
@@ -69,8 +81,11 @@ export default function HuntsvilleFaqPage() {
 
       <style jsx>{`
         .faq-page { background: #fff; color: #27232a; }
-        .faq-hero { background: linear-gradient(118deg, #fbf3ef 0%, #f8e7df 58%, #f5eee9 100%); padding: 72px 24px 60px; }
-        .hero-inner { margin: 0 auto; max-width: 1000px; }
+        .faq-hero { align-items: center; background: #f8e7df; display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); padding: 60px max(24px, calc((100vw - 1180px) / 2)); }
+        .hero-inner { margin: 0; max-width: 700px; }
+        .faq-hero-image { margin: 0; min-width: 0; }
+        .faq-hero-image img { aspect-ratio: 1.48; border-radius: 12px; display: block; height: auto; object-fit: cover; width: 100%; }
+        .faq-hero-image figcaption { color: #655a60; font-size: 12px; line-height: 1.4; margin-top: 9px; }
         .eyebrow { color: #8d4967; font-size: 12px; font-weight: 700; letter-spacing: .12em; line-height: 1.4; margin: 0 0 14px; text-transform: uppercase; }
         h1 { color: #59223f; font-size: clamp(38px, 5vw, 60px); font-weight: 500; letter-spacing: -.035em; line-height: 1.08; margin: 0; max-width: 770px; }
         .intro { color: #51474d; font-size: 18px; line-height: 1.7; margin: 20px 0 0; max-width: 730px; }
@@ -84,8 +99,13 @@ export default function HuntsvilleFaqPage() {
         .contact-band h2 { font-size: 30px; }
         .contact-band p:last-child { color: #655a60; line-height: 1.6; margin: 10px 0 0; max-width: 650px; }
         .contact-band a { background: #6d294c; border-radius: 999px; color: #fff; flex: 0 0 auto; font-size: 14px; font-weight: 600; padding: 14px 20px; text-decoration: none; }
+        @media (max-width: 700px) {
+          .faq-hero { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px 40px; }
+          .faq-hero-image { order: 2; }
+          .hero-inner { order: 1; }
+          .faq-hero-image img { aspect-ratio: 1.55; }
+        }
         @media (max-width: 600px) {
-          .faq-hero { padding: 52px 20px 42px; }
           .intro { font-size: 16px; }
           .answers-section { padding: 54px 20px 62px; }
           .contact-band { align-items: flex-start; flex-direction: column; padding: 36px 20px; }

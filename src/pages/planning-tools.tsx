@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { MetaSEO } from '@/common'
@@ -202,6 +203,8 @@ export default function PlanningToolsPage() {
     return matchesCategory && matchesSearch
   })
   const activePlanningTool = openWorksheet || calculatorTitles[calculator]
+  const monthlyShare = (value: number) =>
+    monthlyTotal > 0 ? Math.min(100, (Math.max(0, value) / monthlyTotal) * 100) : 0
 
   return (
     <main className="planning-page">
@@ -209,8 +212,8 @@ export default function PlanningToolsPage() {
         canonicalPath="/planning-tools"
         title="Free Home Buying and Selling Tools | Becca Travis"
         description="Estimate monthly housing costs, buyer cash to close, or seller proceeds, then organize your next steps with free North Alabama planning tools."
-        image="/sharing-cards/og-index.jpg"
-        alt="Free home buying and selling planning tools"
+        image="/images/areas/downtown-huntsville.webp"
+        alt="Downtown Huntsville park pond and skyline"
       />
 
       <header className="hero">
@@ -228,6 +231,14 @@ export default function PlanningToolsPage() {
             </div>
           </div>
           <aside className="hero-note" aria-label="How to use these tools">
+            <div className="hero-photo">
+              <Image
+                src="/images/areas/downtown-huntsville.webp"
+                alt="Downtown Huntsville park pond and skyline"
+                fill
+                sizes="(max-width: 900px) 100vw, 36vw"
+              />
+            </div>
             <span className="note-kicker">A practical starting point</span>
             <strong>Your plan, built around your numbers.</strong>
             <p>Estimates update as you type. The inputs stay on this page and are not sent to Becca.</p>
@@ -281,6 +292,15 @@ export default function PlanningToolsPage() {
               <aside className="result-card" aria-live="polite">
                 <span className="result-label">Estimated monthly total</span>
                 <strong className="result-value">{money(monthlyTotal)}</strong>
+                <div className="payment-visual" aria-hidden="true">
+                  <span className="payment-visual-label">Monthly estimate at a glance</span>
+                  <div className="payment-stack">
+                    <span className="payment-principal" style={{ width: `${monthlyShare(principalAndInterest)}%` }} />
+                    <span className="payment-tax" style={{ width: `${monthlyShare(monthlyTax)}%` }} />
+                    <span className="payment-insurance" style={{ width: `${monthlyShare(monthlyInsurance)}%` }} />
+                    <span className="payment-hoa" style={{ width: `${monthlyShare(monthlyHoa)}%` }} />
+                  </div>
+                </div>
                 <div className="result-lines">
                   <span>Principal and interest <b>{money(principalAndInterest)}</b></span>
                   <span>Property tax <b>{money(monthlyTax)}</b></span>
@@ -449,7 +469,9 @@ export default function PlanningToolsPage() {
         .button, .contact-band a { border-radius: 999px; display: inline-flex; font-size: 14px; font-weight: 600; justify-content: center; padding: 14px 20px; text-decoration: none; }
         .button-primary { background: #6d294c; color: #fff; }
         .text-link { color: #6d294c; font-size: 14px; font-weight: 600; text-underline-offset: 4px; }
-        .hero-note { background: rgba(255,255,255,.8); border: 1px solid rgba(109,41,76,.12); border-radius: 18px; box-shadow: 0 14px 40px rgba(67,35,51,.06); padding: 26px; }
+        .hero-note { background: rgba(255,255,255,.88); border: 1px solid rgba(109,41,76,.12); border-radius: 18px; box-shadow: 0 14px 40px rgba(67,35,51,.06); padding: 26px; overflow: hidden; }
+        .hero-photo { position: relative; aspect-ratio: 2.1; width: calc(100% + 52px); margin: -26px -26px 22px; overflow: hidden; }
+        .hero-photo img { object-fit: cover; }
         .note-kicker { color: #8d4967; display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
         .hero-note strong { color: #392b32; display: block; font-size: 21px; font-weight: 600; line-height: 1.35; margin-top: 12px; }
         .hero-note p { color: #655a60; font-size: 14px; line-height: 1.65; margin: 10px 0 0; }
@@ -476,6 +498,14 @@ export default function PlanningToolsPage() {
         .result-card { align-self: stretch; background: #f8f1f4; border: 1px solid #efdee6; border-radius: 16px; padding: 26px; }
         .result-label { color: #6d294c; display: block; font-size: 12px; font-weight: 700; letter-spacing: .06em; line-height: 1.5; text-transform: uppercase; }
         .result-value { color: #5b2341; display: block; font-size: clamp(34px, 4vw, 46px); font-weight: 500; letter-spacing: -.04em; line-height: 1.15; margin: 10px 0 20px; }
+        .payment-visual { display: grid; gap: 8px; margin: -4px 0 16px; }
+        .payment-visual-label { color: #655a60; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+        .payment-stack { background: #f0e8ec; border-radius: 999px; display: flex; height: 12px; overflow: hidden; width: 100%; }
+        .payment-stack span { display: block; min-width: 0; transition: width 180ms ease; }
+        .payment-principal { background: #6d294c; }
+        .payment-tax { background: #d87092; }
+        .payment-insurance { background: #e8a486; }
+        .payment-hoa { background: #8e9f78; }
         .result-lines { border-bottom: 1px solid #e5d3dc; border-top: 1px solid #e5d3dc; display: grid; gap: 12px; padding: 16px 0; }
         .result-lines span { color: #62565d; display: flex; font-size: 13px; gap: 12px; justify-content: space-between; }
         .result-lines b { color: #3c3036; font-weight: 600; white-space: nowrap; }
