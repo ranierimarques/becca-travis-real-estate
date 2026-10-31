@@ -175,3 +175,46 @@ export const ExploreLink = styled(NextLink, {
   textDecoration: 'underline',
   textUnderlineOffset: 4,
 })
+
+export const MoreAreas = styled('div', {
+  width: '100%',
+  marginTop: 40,
+  padding: 24,
+  border: '1px solid $grayW9',
+  borderRadius: 12,
+  background: 'rgba($colors$tangerine5Rgb, 0.18)',
+  '@bp2': { marginTop: 28, padding: 18 },
+})
+
+export const MoreAreasTitle = styled('h3', {
+  margin: '0 0 16px',
+  color: '$magenta6',
+  fontSize: 20,
+  fontWeight: 600,
+  '@bp2': { fontSize: 18 },
+})
+
+export const MoreAreasLinks = styled('ul', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 10,
+  margin: 0,
+  padding: 0,
+  listStyle: 'none',
+})
+
+export const MoreAreaLink = styled(NextLink, {
+  display: 'inline-flex',
+  alignItems: 'center',
+  minHeight: 38,
+  padding: '6px 14px',
+  border: '1px solid $grayW9',
+  borderRadius: 999,
+  background: '$white',
+  color: '$magenta6',
+  fontSize: 14,
+  fontWeight: 500,
+  textDecoration: 'none',
+  '&:hover': { borderColor: '$magenta6', textDecoration: 'underline' },
+  '&:focus-visible': { outline: '3px solid $magenta6', outlineOffset: 2 },
+})

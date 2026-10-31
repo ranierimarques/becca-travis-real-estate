@@ -19,7 +19,14 @@ const structuredData = {
       '@type': 'Person',
       '@id': 'https://beccatravis.com/#becca-travis',
       name: 'Becca Travis',
+      jobTitle: 'Associate Broker',
       url: 'https://beccatravis.com',
+      identifier: {
+        '@type': 'PropertyValue',
+        name: 'Alabama real estate license',
+        value: '000126941-1',
+        url: 'https://arec.alabama.gov/apps/LicenseSearch/Home/Details/131571',
+      },
       sameAs: [
         'https://www.facebook.com/beccatravisrealestate/',
         'https://www.instagram.com/beccatravisrealestate/',

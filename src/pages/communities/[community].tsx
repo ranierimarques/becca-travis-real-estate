@@ -1,6 +1,10 @@
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import { MetaSEO } from '@/common'
 import { About, Hero, Yelp } from '@/layout/communities/sections'
+import {
+  getYelpSearchParams,
+  isAlabamaBusiness,
+} from '@/resources/community-guides/yelp-search'
 import { capitalizeEveryWord } from '@/resources/utils/text'
 import { LastCall } from '@/shared'
 import { ReplaceAll } from '@/types/helpers'
@@ -126,14 +130,12 @@ async function fetchBusinesses(
 ): Promise<FetchTypes['businesses']> {
   if (!process.env.YELP_API_KEY) return []
   try {
-    const location = community === 'athens' ? 'athens, alabama' : community
-    const response = await fetch(
-      `${endpoint}/search?location=${location}&sort_by=review_count&limit=6`,
-      options
-    )
+    const params = getYelpSearchParams(community, 'dining')
+    if (!params) return []
+    const response = await fetch(`${endpoint}/search?${params.toString()}`, options)
     if (!response.ok) return []
     const data: FetchTypes = await response.json()
-    return Array.isArray(data.businesses) ? data.businesses : []
+    return Array.isArray(data.businesses) ? data.businesses.filter(isAlabamaBusiness) : []
   } catch (error) {
     console.error('Unable to load local businesses', error)
     return []

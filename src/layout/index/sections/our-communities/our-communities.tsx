@@ -1,3 +1,4 @@
+import { areaGuides } from '@/resources/community-guides/areas'
 import { Hat } from '@/shared'
 import { Section } from '@/template'
 import {
@@ -12,28 +13,40 @@ import * as S from './our-communities.styles'
 import { ArrowLeftSvg } from './svgs'
 
 const communitiesData = [
-  { image: harvest, alt: 'Harvest road', name: 'Harvest', href: '/communities/harvest' },
+  { image: harvest, name: 'Harvest', href: '/communities/harvest' },
   {
     image: huntsville,
-    alt: 'forest',
     name: 'Huntsville',
     href: '/communities/huntsville',
   },
   {
     image: hamptomCove,
-    alt: 'lake',
     name: 'Hampton Cove',
     href: '/communities/hampton-cove',
   },
-  { image: decatur, alt: 'home', name: 'Decatur', href: '/communities/decatur' },
-  { image: athens, alt: 'river', name: 'Athens', href: '/communities/athens' },
+  { image: decatur, name: 'Decatur', href: '/communities/decatur' },
+  { image: athens, name: 'Athens', href: '/communities/athens' },
   {
     image: meridianville,
-    alt: 'house',
     name: 'Meridianville',
     href: '/communities/meridianville',
   },
 ]
+
+const featuredAreaSlugs = [
+  'downtown-huntsville',
+  'five-points',
+  'jones-valley',
+  'monte-sano',
+  'big-cove',
+  'mcmullen-cove',
+  'owens-cross-roads',
+  'madison',
+  'hazel-green',
+  'guntersville',
+]
+
+const featuredAreas = areaGuides.filter(guide => featuredAreaSlugs.includes(guide.slug))
 
 export function OurCommunities() {
   return (
@@ -49,11 +62,7 @@ export function OurCommunities() {
           return (
             <li key={community.name}>
               <S.CommunityLink href={community.href}>
-                <S.Image
-                  src={community.image}
-                  alt={`${community.name} ${community.alt}`}
-                  fill
-                />
+                <S.Image src={community.image} alt="" fill />
                 <S.ImageMask />
                 <S.Description>{community.name}, AL</S.Description>
                 <S.HoverSpan>
@@ -65,6 +74,16 @@ export function OurCommunities() {
           )
         })}
       </S.CommunitiesList>
+      <S.MoreAreas aria-label="More North Alabama area guides">
+        <S.MoreAreasTitle>Explore more local guides</S.MoreAreasTitle>
+        <S.MoreAreasLinks>
+          {featuredAreas.map(area => (
+            <li key={area.slug}>
+              <S.MoreAreaLink href={`/areas/${area.slug}`}>{area.name}</S.MoreAreaLink>
+            </li>
+          ))}
+        </S.MoreAreasLinks>
+      </S.MoreAreas>
       <S.ExploreLink href="/areas">Explore all communities</S.ExploreLink>
     </Section>
   )

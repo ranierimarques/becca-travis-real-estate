@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Image, MetaSEO } from '@/common'
+import { BuyerResearchLab } from '../components/shared/buyer-research-lab/buyer-research-lab'
 
 const sources = {
   huntsvilleProperty: 'https://maps.huntsvilleal.gov/propertydetail/',
@@ -83,8 +84,8 @@ export default function NorthAlabamaPropertyResearchPage() {
         canonicalPath="/north-alabama-property-research"
         title="North Alabama Property Research Guide | Becca Travis"
         description="Use official North Alabama parcel, tax, flood, school, and utility resources to research a property address before you buy."
-        image="/images/home-inspiration/porch-and-entry.webp"
-        alt="Home with a broad covered porch from Becca Travis’s home inspiration collection"
+        image="/images/real/porch.webp"
+        alt="A home with a covered porch"
       />
 
       <header className="hero">
@@ -98,12 +99,12 @@ export default function NorthAlabamaPropertyResearchPage() {
               around it.
             </p>
             <div className="hero-actions">
-              <Link href="/property-intel" legacyBehavior>
-                <a className="primary-link">Check an address</a>
-              </Link>
-              <a className="primary-link" href="#research-checklist">
-                Start the address checklist
+              <a className="primary-link" href="#interactive-checks">
+                Try the four checks
               </a>
+              <Link href="/property-intel" legacyBehavior>
+                <a>Open the full address report</a>
+              </Link>
               <Link href="/planning-tools" legacyBehavior>
                 <a>Open the free planning tools</a>
               </Link>
@@ -112,7 +113,7 @@ export default function NorthAlabamaPropertyResearchPage() {
           <figure className="hero-image">
             <div className="photo-frame">
               <Image
-                src="/images/home-inspiration/porch-and-entry.webp"
+                src="/images/real/porch.webp"
                 alt="A home with a broad covered porch and welcoming front entry"
                 fill
                 priority
@@ -120,15 +121,16 @@ export default function NorthAlabamaPropertyResearchPage() {
                 style={{ objectFit: 'cover' }}
               />
             </div>
-            <figcaption>Home style photograph from Becca’s collection</figcaption>
           </figure>
         </div>
       </header>
 
+      <BuyerResearchLab id="interactive-checks" />
+
       <section id="research-checklist" className="content-section">
         <div className="section-heading">
           <p className="eyebrow">A practical research file</p>
-          <h2>Four checks to make before you write an offer</h2>
+          <h2>Keep the official records behind each decision</h2>
           <p>
             Start with the official record for the exact property, not a neighborhood
             average. These links open public government resources. The notes you enter in
@@ -392,16 +394,16 @@ export default function NorthAlabamaPropertyResearchPage() {
           transition: filter 180ms ease;
         }
         .visual-01 {
-          background-image: url('/images/home-inspiration/contemporary-exterior.webp');
+          background-image: url('/images/real/contemporary-exterior.webp');
         }
         .visual-02 {
-          background-image: url('/images/home-inspiration/kitchen-and-gathering.webp');
+          background-image: url('/images/real/kitchen.webp');
         }
         .visual-03 {
-          background-image: url('/images/home-inspiration/country-setting.webp');
+          background-image: url('/images/real/country-setting.webp');
         }
         .visual-04 {
-          background-image: url('/images/home-inspiration/porch-and-entry.webp');
+          background-image: url('/images/real/porch.webp');
         }
         .research-visual > span {
           background: rgba(255, 255, 255, 0.95);

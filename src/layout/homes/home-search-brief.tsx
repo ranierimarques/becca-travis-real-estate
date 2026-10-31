@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { CheckCircledIcon } from '@radix-ui/react-icons'
@@ -11,6 +12,8 @@ function isPlausiblePhoneNumber(value: string) {
 }
 
 export function HomeSearchBrief() {
+  const { query } = useRouter()
+  const searchedPlace = typeof query.search === 'string' ? query.search.slice(0, 160) : ''
   const [contactChannel, setContactChannel] = useState<'email' | 'phone'>('email')
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [phoneError, setPhoneError] = useState('')
@@ -84,6 +87,7 @@ export function HomeSearchBrief() {
           Share a few details so Becca can understand what a useful home search looks like
           for you.
         </p>
+        {searchedPlace && <p>Your search started with: {searchedPlace}</p>}
         <ul>
           <li>Focus the search around your location and timing</li>
           <li>Turn must haves into useful property criteria</li>
@@ -92,7 +96,7 @@ export function HomeSearchBrief() {
         <Link href="/agenciamento#planejador">Prefere atendimento em português?</Link>
       </S.ValuePanel>
 
-      <S.Form onSubmit={submitBrief} noValidate>
+      <S.Form onSubmit={submitBrief}>
         <h2>Tell Becca what you need</h2>
         <p>Only your first name and one reply method are required.</p>
 
@@ -148,8 +152,14 @@ export function HomeSearchBrief() {
             </label>
           )}
           <label>
-            <span>Target area, if known</span>
-            <input name="target_area" type="text" placeholder="City, community or area" />
+            <span>Area or address you searched</span>
+            <input
+              key={searchedPlace}
+              name="target_area"
+              type="text"
+              defaultValue={searchedPlace}
+              placeholder="City, community or address"
+            />
           </label>
           <label>
             <span>When are you hoping to move?</span>

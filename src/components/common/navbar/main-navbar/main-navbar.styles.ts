@@ -28,11 +28,26 @@ export const Nav = styled('nav', {
 })
 
 export const Link = styled(NextLink, {
+  display: 'inline-grid',
+  justifyItems: 'start',
+
   '&:focus-visible': {
     borderRadius: 1,
     outline: '2px auto rgba($colors$magenta1Rgb, 0.2)',
     outlineOffset: '6px',
   },
+})
+
+export const Credential = styled('span', {
+  color: '$magenta6',
+  fontSize: 9,
+  fontWeight: 700,
+  letterSpacing: '0.035em',
+  lineHeight: 1.2,
+  marginLeft: 38,
+  whiteSpace: 'nowrap',
+
+  '@bp1': { fontSize: 8 },
 })
 
 export const LargeLanguage = styled(Svg.LargeLanguage, {

@@ -49,8 +49,7 @@ export function Yelp({ data, communityName }: YelpProps) {
   const [yelpData, setYelpData] = useState(data)
   const [activeIndex, setActiveIndex] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
-
-  const isAthens = communityName === 'Athens'
+  const [hasMore, setHasMore] = useState(data.length === RESULTS_LIMIT)
 
   async function handleRequestNewData(category: CategoriesName) {
     if (category === activeCategory) return
@@ -64,14 +63,16 @@ export function Yelp({ data, communityName }: YelpProps) {
 
     try {
       const response = await fetch(
-        `/api/yelp?category=${category}&community=${
-          isAthens ? 'athens, alabama' : communityName
-        }&limit=${RESULTS_LIMIT}&offset=0`,
+        `/api/yelp?category=${category}&community=${encodeURIComponent(
+          communityName
+        )}&limit=${RESULTS_LIMIT}&offset=0`,
         { signal: controllerRef.current.signal }
       )
+      if (!response.ok) throw new Error('Unable to load Yelp businesses')
       const data = await response.json()
       if (category !== lastActiveCategoryRef.current) return
-      setYelpData(data)
+      setYelpData(Array.isArray(data) ? data : [])
+      setHasMore(Array.isArray(data) && data.length === RESULTS_LIMIT)
     } catch (e) {
       console.log(e)
     }
@@ -85,14 +86,17 @@ export function Yelp({ data, communityName }: YelpProps) {
       setIsLoading(true)
       const offset = activeIndex * RESULTS_LIMIT
       const response = await fetch(
-        `/api/yelp?category=${activeCategory}&community=${
-          isAthens ? 'athens, alabama' : communityName
-        }&offset=${offset}&limit=${RESULTS_LIMIT}`,
+        `/api/yelp?category=${activeCategory}&community=${encodeURIComponent(
+          communityName
+        )}&offset=${offset}&limit=${RESULTS_LIMIT}`,
         { signal: controllerRef.current.signal }
       )
+      if (!response.ok) throw new Error('Unable to load Yelp businesses')
       const data = await response.json()
+      if (!Array.isArray(data)) return
       setActiveIndex(oldValue => oldValue + 1)
       setYelpData([...yelpData, ...data])
+      setHasMore(data.length === RESULTS_LIMIT)
     } catch (e) {
       console.log(e)
     } finally {
@@ -111,8 +115,9 @@ export function Yelp({ data, communityName }: YelpProps) {
           Living in <S.Community>{communityName}</S.Community>
         </S.Title>
         <S.Description>
-          Explore the best restaurants, businesses, and activities near{' '}
-          {capitalizeEveryWord(communityName)}.
+          Explore dining, activities, and businesses near{' '}
+          {capitalizeEveryWord(communityName)}. Confirm locations and hours with each
+          business.
         </S.Description>
         <S.Options>
           {buttonOptions.map(option => (
@@ -173,21 +178,26 @@ export function Yelp({ data, communityName }: YelpProps) {
                 />
                 <S.BusinessName>{business.name}</S.BusinessName>
                 <S.BusinessRating>
-                  <Image src={businessRatingImage[5]} alt="Business rating" />
+                  <Image
+                    src={businessRatingImage[business.rating] || Img.rating0}
+                    alt={`${business.rating} out of 5 stars on Yelp`}
+                  />
                 </S.BusinessRating>
                 <S.ReviewsCount>{business.review_count} Yelp reviews</S.ReviewsCount>
               </a>
             </S.Card>
           ))}
         </S.CardsGrid>
-        <Button
-          size="2"
-          onClick={handleRequestMoreData}
-          loading={isLoading}
-          css={{ mt: 48 }}
-        >
-          Load More
-        </Button>
+        {hasMore && (
+          <Button
+            size="2"
+            onClick={handleRequestMoreData}
+            loading={isLoading}
+            css={{ mt: 48 }}
+          >
+            Load more
+          </Button>
+        )}
       </Flex>
     </Section>
   )

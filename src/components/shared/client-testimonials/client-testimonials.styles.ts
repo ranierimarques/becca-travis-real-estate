@@ -1,4 +1,3 @@
-import NextLink from 'next/link'
 import { css, styled } from 'stitches.config'
 
 const Breakpoints = css({
@@ -61,37 +60,6 @@ export const Description = styled('p', {
 
   '@bp4': {
     fontSize: '14px',
-  },
-})
-
-export const ViewAll = styled('span', {
-  fontWeight: '500',
-  fontSize: '14px',
-  lineHeight: '20px',
-  color: 'rgba($colors$magenta9Rgb, .5)',
-
-  cursor: 'default',
-
-  '@bp3': {
-    display: 'none',
-  },
-})
-
-export const ViewAllLink = styled(NextLink, {
-  display: 'none',
-  gap: 8,
-
-  padding: '14px 24px',
-
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '21px',
-  color: '$magenta2',
-
-  marginTop: 16,
-
-  '@bp3': {
-    display: 'flex',
   },
 })
 

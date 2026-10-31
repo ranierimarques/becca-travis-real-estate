@@ -47,36 +47,44 @@ const HUNTSVILLE_GIS_URL =
 
 const lifestyleScenes = [
   {
-    title: 'Porches and welcome-home details',
-    detail: 'A look at the entry and outdoor spaces you may want in your next home.',
-    src: '/images/home-inspiration/porch-and-entry.webp',
-    alt: 'White home with a broad covered front porch',
+    title: 'Big Spring Park',
+    detail: 'A downtown Huntsville walk beside the water',
+    src: '/images/real/big-spring-park.webp',
+    alt: 'Big Spring Park lake with downtown Huntsville buildings beyond it',
+    href: '/communities/huntsville',
+    photoSource: 'https://commons.wikimedia.org/wiki/File:Big_Spring_Park.jpg',
+    photoCredit: 'Photo by BullDawg2021, resized',
+    photoLicense: 'https://creativecommons.org/licenses/by/4.0/',
+    photoLicenseLabel: 'CC BY 4.0',
   },
   {
-    title: 'Contemporary exteriors',
-    detail: 'Clean lines, generous windows, and a modern exterior palette.',
-    src: '/images/home-inspiration/contemporary-exterior.webp',
-    alt: 'Contemporary charcoal gray home with a modern exterior',
+    title: 'A Huntsville welcome',
+    detail: 'The downtown Welcome to Huntsville mural',
+    src: '/images/real/huntsville-mural.webp',
+    alt: 'Welcome to Huntsville mural in downtown Huntsville',
+    href: '/communities/huntsville',
+    photoSource: 'https://unsplash.com/pt-br/fotografias/6Qo5-GUXFqc',
+    photoCredit: 'Photo via Unsplash',
   },
   {
-    title: 'Country settings',
-    detail: 'A home set among open land and mature trees.',
-    src: '/images/home-inspiration/country-setting.webp',
-    alt: 'Farmhouse in an open country setting with mature trees',
-  },
-  {
-    title: 'Kitchens made for gathering',
-    detail: 'Consider the room, light, and counter space that make daily life easier.',
-    src: '/images/home-inspiration/kitchen-and-gathering.webp',
-    alt: 'Bright modern kitchen with a large island and gathering space',
+    title: 'Hays Nature Preserve',
+    detail: 'Flint River Greenway in southeast Huntsville',
+    src: '/images/real/hays-nature-preserve.webp',
+    alt: 'Footbridge over the Flint River at Hays Nature Preserve',
+    href: '/communities/hampton-cove',
+    photoSource:
+      'https://commons.wikimedia.org/wiki/File:Hays_Nature_Preserve_-_Flint_River_Greenway_Bridge.jpg',
+    photoCredit: 'Photo by GranCavallo, cropped',
+    photoLicense: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    photoLicenseLabel: 'CC BY SA 4.0',
   },
 ] as const
 
-const commuteHubs: { destination: CommuteHub; placement: 'northwest' | 'northeast' | 'southwest' | 'southeast' }[] = [
-  { destination: 'Redstone Gate 9 / Research Park', placement: 'northwest' },
-  { destination: 'Redstone Gate 1 & 3', placement: 'northeast' },
-  { destination: 'Medical District / Downtown', placement: 'southwest' },
-  { destination: 'Mazda-Toyota / I-65', placement: 'southeast' },
+const commuteHubs: { destination: CommuteHub }[] = [
+  { destination: 'Redstone Gate 9 / Research Park' },
+  { destination: 'Redstone Gate 1 & 3' },
+  { destination: 'Medical District / Downtown' },
+  { destination: 'Mazda-Toyota / I-65' },
 ]
 
 const areas: AreaCardData[] = [
@@ -94,7 +102,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS, zoning, and city maps',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'http://beccatravis1.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=51647&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=51647',
   },
   {
     name: 'Madison',
@@ -116,7 +124,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS and city maps',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'http://beccatravis1.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52270&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52270',
   },
   {
     name: 'Harvest and Monrovia',
@@ -171,7 +179,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52551&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52551',
   },
   {
     name: 'Blossomwood',
@@ -182,7 +190,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS and maps',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=51903&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=51903',
   },
   {
     name: 'South Huntsville',
@@ -193,7 +201,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS and park maps',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'http://beccatravis1.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52478&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52478',
   },
   {
     name: 'Haysland',
@@ -204,7 +212,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS and park maps',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52594&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52594',
   },
   {
     name: 'Village of Providence',
@@ -215,7 +223,7 @@ const areas: AreaCardData[] = [
     sourceLabel: 'Huntsville GIS and city maps',
     sourceUrl: HUNTSVILLE_GIS_URL,
     listingUrl:
-      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=51977&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=51977',
   },
   {
     name: 'Twickenham',
@@ -227,7 +235,7 @@ const areas: AreaCardData[] = [
     sourceUrl:
       'https://www.huntsvilleal.gov/development/building-construction/planning/historic-preservation/',
     listingUrl:
-      'http://beccatravis1.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52441&Page=2',
+      'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=52441',
   },
   {
     name: 'Wheeler and the River Area',
@@ -365,19 +373,19 @@ const schoolLinks = [
   {
     name: 'Bob Jones High School zone',
     district: 'Madison City Schools',
-    url: 'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=61011&Page=2',
+    url: 'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=61011',
     map: 'https://www.madisoncity.k12.al.us/school-zones-2',
   },
   {
     name: 'Huntsville High School zone',
     district: 'Huntsville City Schools',
-    url: 'http://beccatravis1.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=61008&Page=2',
+    url: 'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=61008',
     map: 'https://huntsvilleal.gisllcmaps.com/',
   },
   {
     name: 'James Clemens High School zone',
     district: 'Madison City Schools',
-    url: 'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=61013&Page=2',
+    url: 'https://beccatravis.valleymls.com/Listing/ProcessJumpSearch.aspx?JumpSearch=61013',
     map: 'https://www.madisoncity.k12.al.us/school-zones-2',
   },
 ]
@@ -459,9 +467,15 @@ export default function AreasPage() {
               and the details that change from one address to the next.
             </S.HeroCopy>
             <S.HeroActions>
-              <Button href="#neighborhoods" size="2">Explore area guides</Button>
-              <S.HeroTextLink href="#commute-overview">Compare commute hubs <span aria-hidden="true">→</span></S.HeroTextLink>
-              <S.HeroTextLink href="/north-alabama-property-research">Research a property address <span aria-hidden="true">→</span></S.HeroTextLink>
+              <Button href="#neighborhoods" size="2">
+                Explore area guides
+              </Button>
+              <S.HeroTextLink href="#commute-overview">
+                Compare commute hubs <span aria-hidden="true">→</span>
+              </S.HeroTextLink>
+              <S.HeroTextLink href="/north-alabama-property-research">
+                Research a property address <span aria-hidden="true">→</span>
+              </S.HeroTextLink>
             </S.HeroActions>
           </S.HeroCopyBlock>
           <S.HeroFigure>
@@ -488,11 +502,10 @@ export default function AreasPage() {
 
       <Section hasMaxWidth id="lifestyle-settings">
         <S.SectionHeader>
-          <S.SectionTitle>Start with the setting you want</S.SectionTitle>
+          <S.SectionTitle>See the real places behind the search</S.SectionTitle>
           <S.Note>
-            From established streets to open land, North Alabama has a wide range of home
-            settings. These photographs come from Becca’s collection and show home styles,
-            not active listings or specific neighborhoods.
+            A few views of Huntsville to help you get oriented. Open an area guide for the
+            details to check before choosing an address.
           </S.Note>
         </S.SectionHeader>
         <S.SceneGrid>
@@ -503,11 +516,32 @@ export default function AreasPage() {
                   src={scene.src}
                   alt={scene.alt}
                   fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
+                <S.ScenePhotoLabel href={scene.href}>{scene.title}</S.ScenePhotoLabel>
               </S.SceneFrame>
-              <S.SceneTitle>{scene.title}</S.SceneTitle>
               <S.SceneDetail>{scene.detail}</S.SceneDetail>
+              {'photoSource' in scene && (
+                <>
+                  <S.SceneCredit
+                    href={scene.photoSource}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {scene.photoCredit}
+                  </S.SceneCredit>
+                  {'photoLicense' in scene && (
+                    <S.SceneCredit
+                      href={scene.photoLicense}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      {' '}
+                      · {scene.photoLicenseLabel}
+                    </S.SceneCredit>
+                  )}
+                </>
+              )}
             </S.SceneCard>
           ))}
         </S.SceneGrid>
@@ -518,28 +552,26 @@ export default function AreasPage() {
           <S.CommuteIntro>
             <S.SectionTitle>Begin with the drive that shapes your week</S.SectionTitle>
             <S.Note>
-              Choose the work hub or corridor you use most. The area list below will narrow
-              to places tagged for that search context.
+              Choose the work hub or corridor you use most. The area list below will
+              narrow to places tagged for that search context.
             </S.Note>
-            <S.CommuteDisclaimer>Conceptual comparison, not a map or drive-time estimate. Check the route from the exact address.</S.CommuteDisclaimer>
+            <S.CommuteDisclaimer>
+              Downtown Huntsville photograph. These choices filter area guides; check the
+              actual route from any home address.
+            </S.CommuteDisclaimer>
           </S.CommuteIntro>
           <S.CommuteMap role="group" aria-label="Filter areas by commute destination">
-            <S.MapConnectors aria-hidden="true">
-              <svg viewBox="0 0 1000 400" preserveAspectRatio="none">
-                <path d="M500 200 250 100M500 200 750 100M500 200 250 300M500 200 750 300" />
-              </svg>
-            </S.MapConnectors>
-            <S.CommuteCenter aria-hidden="true">Your<br />home search</S.CommuteCenter>
             {commuteHubs.map(hub => (
               <S.CommuteHubButton
                 key={hub.destination}
                 type="button"
-                placement={hub.placement}
                 active={commute === hub.destination}
                 aria-pressed={commute === hub.destination}
                 onClick={() => {
                   setCommute(hub.destination)
-                  document.getElementById('neighborhoods')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  document
+                    .getElementById('neighborhoods')
+                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }}
               >
                 <span>{hub.destination}</span>
@@ -669,7 +701,9 @@ export default function AreasPage() {
                     </S.ListingLink>
                     <S.ResetButton
                       type="button"
-                      onClick={() => setListing({ label: area.name, url: area.listingUrl! })}
+                      onClick={() =>
+                        setListing({ label: area.name, url: area.listingUrl! })
+                      }
                     >
                       Ask Becca about {area.name}
                     </S.ResetButton>
@@ -754,11 +788,7 @@ export default function AreasPage() {
               <S.SourceLink href={school.map} target="_blank" rel="noreferrer noopener">
                 Open official school-zone information
               </S.SourceLink>
-              <S.ListingLink
-                href={school.url}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+              <S.ListingLink href={school.url} target="_blank" rel="noreferrer noopener">
                 Browse Live ValleyMLS Listings →
               </S.ListingLink>
               <S.ResetButton

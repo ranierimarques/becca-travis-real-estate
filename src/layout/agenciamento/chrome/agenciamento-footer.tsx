@@ -14,6 +14,15 @@ export function AgenciamentoFooter() {
             Planejamento de compra e mudança em português, do primeiro destino ao novo
             endereço.
           </p>
+          <p>
+            <a
+              href="https://arec.alabama.gov/apps/LicenseSearch/Home/Details/131571"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Becca Travis · Associate Broker · Coldwell Banker First · AL 000126941-1
+            </a>
+          </p>
         </S.Brand>
 
         <S.LinkGroup>

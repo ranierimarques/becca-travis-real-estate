@@ -98,8 +98,8 @@ export default function NorthAlabamaClosingChecklistPage() {
         canonicalPath="/north-alabama-closing-checklist"
         title="North Alabama Home Closing and Utility Checklist | Becca Travis"
         description="A practical North Alabama home closing checklist for lender documents, final walk-through, utility setup, and Alabama property tax follow-up."
-        image="/images/home-inspiration/porch-and-entry.webp"
-        alt="Covered porch and front entry from Becca Travis’s home inspiration collection"
+        image="/images/real/porch.webp"
+        alt="Home with a covered front porch"
       />
 
       <header className="hero">

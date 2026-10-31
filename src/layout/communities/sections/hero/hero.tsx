@@ -16,6 +16,9 @@ type Communities = {
     image: StaticImageData
     imageAlt: string
     source: string
+    credit?: string
+    license?: string
+    licenseLabel?: string
   }
 }
 
@@ -25,7 +28,7 @@ const communities: Communities = {
     description:
       'Explore northwest Madison County with a practical guide to local neighborhoods, everyday routes, and the details to check by address.',
     image: Img.harvest,
-    imageAlt: 'Wooded North Alabama hills in warm evening light',
+    imageAlt: 'Wooded hills in warm evening light',
     source: 'https://unsplash.com/pt-br/fotografias/uttvGsYg1DI',
   },
   huntsville: {
@@ -40,25 +43,37 @@ const communities: Communities = {
     title: 'Explore Hampton Cove',
     description:
       'Get to know southeast Huntsville, from neighborhood settings to the questions worth checking before you choose an address.',
-    image: Img.hamptonCove,
-    imageAlt: 'Water cascading over a broad rocky ledge',
-    source: 'https://unsplash.com/pt-br/fotografias/HrwSidHL9fM',
+    image: Img.haysNaturePreserve,
+    imageAlt: 'Footbridge over the Flint River at Hays Nature Preserve',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Hays_Nature_Preserve_-_Flint_River_Greenway_Bridge.jpg',
+    credit: 'GranCavallo',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
   },
   decatur: {
     title: 'Explore life in Decatur',
     description:
       'Start with the river city’s neighborhoods, downtown character, and the local details that can shape your home search.',
-    image: Img.decatur,
-    imageAlt: 'Historic brick storefront on a downtown Decatur street',
-    source: 'https://unsplash.com/pt-br/fotografias/uttvGsYg1DI',
+    image: Img.bankStreetDecatur,
+    imageAlt: 'Historic buildings on Bank Street in Decatur',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Bank_Street_Decatur_July_2010_01.jpg',
+    credit: 'Chris Pruitt',
+    license: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    licenseLabel: 'CC BY SA 3.0',
   },
   athens: {
     title: 'Make room for Athens',
     description:
       'Compare historic Athens and nearby Limestone County communities with a clear guide to local settings and address-specific details.',
-    image: Img.athens,
-    imageAlt: 'Golden autumn leaves filling the canopy above a park',
-    source: 'https://unsplash.com/pt-br/fotografias/aPgxZw4zcyc',
+    image: Img.limestoneCourthouse,
+    imageAlt: 'Limestone County Courthouse in downtown Athens',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Limestone_County_Courthouse,_Athens,_Alabama_01.jpg',
+    credit: 'Carol M. Highsmith',
+    license: 'https://www.loc.gov/pictures/collection/highsm/about.html',
+    licenseLabel: 'Library of Congress',
   },
   meridianville: {
     title: 'Discover Meridianville',
@@ -103,10 +118,30 @@ export function Hero({ communityName }: HeroProps) {
             />
           </S.ImageFrame>
           <S.ImageSource>
-            Illustrative photo via{' '}
-            <a href={community.source} target="_blank" rel="noreferrer">
-              Unsplash
-            </a>
+            {community.credit ? (
+              <>
+                Photo by{' '}
+                <a href={community.source} target="_blank" rel="noopener noreferrer">
+                  {community.credit}
+                </a>
+                {community.license && (
+                  <>
+                    ,{' '}
+                    <a href={community.license} target="_blank" rel="noopener noreferrer">
+                      {community.licenseLabel}
+                    </a>
+                  </>
+                )}
+                . Display crop only.
+              </>
+            ) : (
+              <>
+                Illustrative photo via{' '}
+                <a href={community.source} target="_blank" rel="noopener noreferrer">
+                  Unsplash
+                </a>
+              </>
+            )}
           </S.ImageSource>
         </S.Figure>
       </S.Container>

@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
-import { Box, Flex } from '@/common'
+import { Flex } from '@/common'
 import { Dialog } from '@/primitives'
-import * as Svg from '../svgs'
 import * as S from './testimonial.styles'
 
 interface ReviewProps {
@@ -28,21 +27,13 @@ export function Testimonial({ review, resize }: ReviewProps) {
                 <S.Name>{review.name}</S.Name>
                 <Flex align="center" css={{ gap: 6 }}>
                   <S.Source>{review.source}</S.Source>
-                  <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
-                  <Flex css={{ gap: 2 }}>
-                    <Svg.Star />
-                    <Svg.Star />
-                    <Svg.Star />
-                    <Svg.Star />
-                    <Svg.Star />
-                  </Flex>
                 </Flex>
               </Flex>
 
               <S.LinkSvgHover />
             </Flex>
 
-            <S.Text>{review.text}&quot;...</S.Text>
+            <S.Text>{review.text}</S.Text>
           </S.Testimonial>
         </Dialog.Trigger>
 
@@ -56,14 +47,6 @@ export function Testimonial({ review, resize }: ReviewProps) {
             <S.ModalName>{review.name}</S.ModalName>
             <Flex align="center" css={{ gap: 6 }}>
               <S.ModalSource>{review.source}</S.ModalSource>
-              <Box css={{ size: 4, bg: '$grayW9', br: '50%' }} />
-              <Flex css={{ gap: 2 }}>
-                <Svg.Star />
-                <Svg.Star />
-                <Svg.Star />
-                <Svg.Star />
-                <Svg.Star />
-              </Flex>
             </Flex>
 
             <S.ModalLogo />

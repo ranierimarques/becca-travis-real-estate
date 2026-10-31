@@ -35,6 +35,7 @@ export function MainNavbar() {
     <S.Nav>
       <S.Link href="/" onClick={hiddenMenuVisibility}>
         <Svg.Logo />
+        <S.Credential>Associate Broker · AL 000126941-1</S.Credential>
       </S.Link>
 
       <Box

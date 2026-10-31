@@ -118,11 +118,23 @@ export const Divider = styled('div', {
   },
 })
 
-export const Copyright = styled('span', {
+export const Copyright = styled('div', {
+  display: 'grid',
+  gap: 4,
+  justifyItems: 'end',
   textAlign: 'right',
 
   fontWeight: '400',
-  fontSize: '14px',
-  lineHeight: '32px',
+  fontSize: '12px',
+  lineHeight: '18px',
   color: '$gray3',
+
+  '& a': {
+    color: '$magenta6',
+    textDecoration: 'none',
+    '&:hover': { textDecoration: 'underline' },
+    '&:focus-visible': { outline: '2px solid $magenta3', outlineOffset: 3 },
+  },
+
+  '@bp4': { justifyItems: 'center', textAlign: 'center' },
 })

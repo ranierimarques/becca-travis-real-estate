@@ -33,9 +33,7 @@ export const ViewAll = styled(NextLink, {
     outlineOffset: 2,
   },
 
-  '@bp3': {
-    display: 'none',
-  },
+  '@bp3': { marginTop: 10 },
 })
 
 export const Houses = styled('ul', {

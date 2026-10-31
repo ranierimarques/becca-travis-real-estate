@@ -334,7 +334,6 @@ export const ResetButton = styled('button', {
   textDecoration: 'underline',
 })
 
-
 export const HeroInner = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'minmax(0, 0.92fr) minmax(0, 1.08fr)',
@@ -380,10 +379,10 @@ export const ImageCaption = styled('figcaption', {
 })
 export const SceneGrid = styled('div', {
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   gap: 22,
-  '@bp4': { gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 18 },
-  '@bp2': { gap: 14 },
+  '@bp4': { gap: 18 },
+  '@bp2': { gridTemplateColumns: '1fr', gap: 18 },
 })
 export const SceneCard = styled('article', { minWidth: 0 })
 export const SceneFrame = styled('div', {
@@ -396,18 +395,30 @@ export const SceneFrame = styled('div', {
   '& img': { objectFit: 'cover', transition: 'transform 220ms ease' },
   '&:hover img': { transform: 'scale(1.025)' },
 })
-export const SceneTitle = styled('h3', {
-  margin: '12px 0 4px',
-  color: '$magenta6',
-  fontSize: 16,
+export const ScenePhotoLabel = styled('a', {
+  position: 'absolute',
+  inset: 'auto 0 0',
+  padding: '36px 16px 14px',
+  background: 'linear-gradient(transparent, rgba(24, 25, 33, 0.78))',
+  color: 'white',
+  fontSize: 17,
   fontWeight: 600,
   lineHeight: 1.3,
+  textDecoration: 'none',
+  '&:hover, &:focus-visible': { textDecoration: 'underline' },
+  '&:focus-visible': { outline: '3px solid white', outlineOffset: -4 },
 })
 export const SceneDetail = styled('p', {
-  margin: 0,
+  margin: '10px 0 2px',
   color: '$gray2',
   fontSize: 13,
   lineHeight: 1.5,
+})
+export const SceneCredit = styled('a', {
+  color: '$gray3',
+  fontSize: 11,
+  lineHeight: 1.4,
+  textDecoration: 'underline',
 })
 export const CommuteOverview = styled('div', {
   display: 'grid',
@@ -428,45 +439,20 @@ export const CommuteDisclaimer = styled('p', {
   lineHeight: 1.5,
 })
 export const CommuteMap = styled('div', {
-  position: 'relative',
   display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1fr) 124px minmax(0, 1fr)',
-  gridTemplateRows: '1fr 106px 1fr',
-  alignItems: 'center',
-  gap: '12px 8px',
-  minHeight: 300,
-  isolation: 'isolate',
+  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+  alignContent: 'center',
+  gap: 12,
+  minHeight: 276,
+  padding: 24,
+  borderRadius: 14,
+  background:
+    'linear-gradient(rgba(27, 30, 43, 0.58), rgba(27, 30, 43, 0.58)), url("/images/areas/downtown-huntsville.webp") center / cover',
   '@bp2': {
-    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-    gridTemplateRows: 'auto auto auto',
-    gap: 12,
+    gridTemplateColumns: '1fr',
     minHeight: 0,
+    padding: 16,
   },
-})
-export const MapConnectors = styled('div', {
-  position: 'absolute',
-  inset: '5% 3%',
-  zIndex: -1,
-  pointerEvents: 'none',
-  '& svg': { width: '100%', height: '100%' },
-  '& path': { fill: 'none', stroke: '$colors$magenta6', strokeWidth: 2, strokeDasharray: '5 9', opacity: 0.36 },
-  '@bp2': { display: 'none' },
-})
-export const CommuteCenter = styled('div', {
-  gridArea: '2 / 2 / 3 / 3',
-  display: 'grid',
-  placeContent: 'center',
-  width: 120,
-  height: 120,
-  justifySelf: 'center',
-  borderRadius: '50%',
-  background: '$magenta6',
-  color: '$white',
-  fontSize: 14,
-  fontWeight: 600,
-  lineHeight: 1.35,
-  textAlign: 'center',
-  '@bp2': { gridArea: '1 / 1 / 2 / -1', width: 98, height: 98, fontSize: 12, marginBottom: 4 },
 })
 export const CommuteHubButton = styled('button', {
   display: 'grid',
@@ -477,7 +463,7 @@ export const CommuteHubButton = styled('button', {
   padding: '12px 14px',
   border: '1px solid $colors$grayW7',
   borderRadius: 9,
-  background: '$white',
+  background: 'rgba(255, 255, 255, 0.96)',
   color: '$gray1',
   cursor: 'pointer',
   fontFamily: 'inherit',
@@ -489,17 +475,5 @@ export const CommuteHubButton = styled('button', {
   '&:focus-visible': { outline: '2px solid $colors$magenta6', outlineOffset: 2 },
   variants: {
     active: { true: { borderColor: '$magenta6', background: '$tangerine5' } },
-    placement: {
-      northwest: { gridArea: '1 / 1 / 2 / 2' },
-      northeast: { gridArea: '1 / 3 / 2 / 4' },
-      southwest: { gridArea: '3 / 1 / 4 / 2' },
-      southeast: { gridArea: '3 / 3 / 4 / 4' },
-    },
   },
-  compoundVariants: [
-    { placement: 'northwest', css: { '@bp2': { gridArea: '2 / 1 / 3 / 2' } } },
-    { placement: 'northeast', css: { '@bp2': { gridArea: '2 / 2 / 3 / 3' } } },
-    { placement: 'southwest', css: { '@bp2': { gridArea: '3 / 1 / 4 / 2' } } },
-    { placement: 'southeast', css: { '@bp2': { gridArea: '3 / 2 / 4 / 3' } } },
-  ],
 })
