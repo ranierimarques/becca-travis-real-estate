@@ -20,5 +20,6 @@ declare namespace NodeJS {
     DASHSCOPE_BASE_URL?: string
     QWEN_MODEL?: string
     AI_ASSISTANT_ALLOWED_ORIGINS?: string
+    VALLEYMLS_IDX_SMARTFRAME_URL?: string
   }
 }

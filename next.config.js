@@ -74,6 +74,7 @@ const ContentSecurityPolicy = `
   img-src * blob: data:;
   media-src 'self';
   connect-src *;
+  frame-src 'self' https://*.paragonrels.com https://*.rapmls.com https://*.valleymls.com;
   font-src 'self' fonts.gstatic.com assets.vercel.com;
 `
 
