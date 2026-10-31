@@ -45,7 +45,7 @@ Turn high intent buyer visits into useful, contextual requests without requiring
 
 ### Verification
 
-Targeted lint and TypeScript pass. The full 105 page production build passes. Desktop and mobile browser QA passed for the homepage, homes brief, planning tools handoff, contextual contact page, and Portuguese planner. No browser console errors or warnings were found. Production deployment and public verification are in progress.
+Targeted lint and TypeScript pass. The full 105 page production build passes. Desktop and mobile browser QA passed for the homepage, homes brief, planning tools handoff, contextual contact page, and Portuguese planner. No browser console errors or warnings were found. This conversion pass is live in production.
 
 ## Sitewide buyer concierge conversion pass
 
@@ -75,4 +75,4 @@ Add one original, low friction buyer capture system across the website. The expe
 
 ### Status
 
-Research, visual concepts, implementation, targeted lint, TypeScript, the 106 page production build and desktop/mobile browser QA are complete. Production release and public verification are in progress.
+Complete and live on `beccatravis.com` through merge commit `6bc7c57`. Targeted lint, TypeScript, the 106 page production build, desktop browser QA, 390 pixel mobile QA, 320 pixel compact QA, route-aware English and Portuguese checks, public HTTP checks and live browser console checks all passed. No test lead was submitted.
