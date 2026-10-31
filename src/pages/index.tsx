@@ -3,6 +3,7 @@ import { MetaSEO } from '@/common'
 import {
   AboutHuntsville,
   Achievements,
+  BuyerPaths,
   Hero,
   NewToMarket,
   OurCommunities,
@@ -22,6 +23,7 @@ const Page: NextPage = () => {
       />
 
       <Hero />
+      <BuyerPaths />
       <Services />
       <Achievements />
       <NewToMarket />

@@ -25,4 +25,24 @@ Publish a useful Portuguese language relocation page for every US state, connect
 
 ## Status
 
-Content, routes, lead flow, metadata, structured data, internal links, and Portuguese UI are complete. Lint, TypeScript, the 105 page production build, desktop QA, mobile QA, form validation, region preselection, and sitemap coverage have passed. Production deployment and public URL verification are in progress.
+Content, routes, lead flow, metadata, structured data, internal links, and Portuguese UI are complete and live.
+
+## Buyer conversion pass
+
+### Goal
+
+Turn high intent buyer visits into useful, contextual requests without requiring buyers to repeat information or surrender contact details before receiving value.
+
+### Completed implementation
+
+1. Added four compact buyer paths beneath the homepage hero.
+2. Replaced the unavailable homes search dead end with a personal search brief that requires a first name and one reply method.
+3. Changed the Portuguese planner result into a visible relocation summary and reduced its contact gate to one reply method.
+4. Added uncertain timing and budget choices, fixed the missing detailed budget range, and aligned local introduction language with buyer authorization.
+5. Added a contextual planning tools handoff that preserves the selected worksheet in the contact request.
+6. Added contextual area guide requests and enabled buyer planning tools in desktop and mobile navigation.
+7. Added source attribution and verified provider responses before showing lead success.
+
+### Verification
+
+Targeted lint and TypeScript pass. The full 105 page production build passes. Desktop and mobile browser QA passed for the homepage, homes brief, planning tools handoff, contextual contact page, and Portuguese planner. No browser console errors or warnings were found. Production deployment and public verification are in progress.

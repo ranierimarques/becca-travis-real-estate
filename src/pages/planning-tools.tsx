@@ -103,6 +103,11 @@ const worksheets: Worksheet[] = [
 
 const categories = ['All tools', 'Buying', 'Moving', 'Homeownership', 'Selling'] as const
 const planningFaq = [huntsvilleFaq[3], huntsvilleFaq[6], huntsvilleFaq[8], huntsvilleFaq[9]]
+const calculatorTitles: Record<CalculatorMode, string> = {
+  payment: 'Monthly housing cost calculator',
+  'buyer-cash': 'Buyer cash to close calculator',
+  'seller-net': 'Seller proceeds calculator',
+}
 
 const money = (value: number) =>
   new Intl.NumberFormat('en-US', {
@@ -196,6 +201,7 @@ export default function PlanningToolsPage() {
       item.description.toLowerCase().includes(query)
     return matchesCategory && matchesSearch
   })
+  const activePlanningTool = openWorksheet || calculatorTitles[calculator]
 
   return (
     <main className="planning-page">
@@ -408,11 +414,27 @@ export default function PlanningToolsPage() {
 
       <section className="contact-band">
         <div>
-          <p className="eyebrow">A local question?</p>
-          <h2>Bring your plan to Becca.</h2>
-          <p>When you are ready, talk through the address, timeline, and questions that still need a local answer.</p>
+          <p className="eyebrow">A useful next step</p>
+          <h2>Bring this plan to Becca.</h2>
+          <p>
+            The selected tool, {activePlanningTool}, will be carried into your message so
+            you can start with the decision that still needs a local answer.
+          </p>
+          <Link
+            className="contact-band-copy-link"
+            href="/agenciamento?origem=planning-tools#planejador"
+          >
+            Prefere planejar sua mudança em português?
+          </Link>
         </div>
-        <Link href="/contact-us">Contact Becca</Link>
+        <Link
+          className="contact-button"
+          href={`/contact-us?intent=planning-help&tool=${encodeURIComponent(
+            activePlanningTool
+          )}`}
+        >
+          Ask Becca about this plan
+        </Link>
       </section>
 
       <style jsx>{`
@@ -483,7 +505,8 @@ export default function PlanningToolsPage() {
         .contact-band { align-items: center; background: #f7eee9; display: flex; gap: 36px; justify-content: space-between; margin-top: 30px; padding: 48px max(24px, calc((100vw - 1112px) / 2)); }
         .contact-band h2 { font-size: 30px; }
         .contact-band p:last-child { color: #655a60; line-height: 1.6; margin: 10px 0 0; max-width: 620px; }
-        .contact-band a { background: #6d294c; color: #fff; flex: 0 0 auto; }
+        .contact-band .contact-button { background: #6d294c; color: #fff; flex: 0 0 auto; }
+        .contact-band .contact-band-copy-link { color: #6d294c; display: inline-block; font-size: 13px; font-weight: 600; margin-top: 12px; text-underline-offset: 4px; }
         .visually-hidden { clip: rect(0,0,0,0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
         @media (max-width: 820px) {
           .hero-inner, .calculator-grid { grid-template-columns: 1fr; }
@@ -510,4 +533,3 @@ export default function PlanningToolsPage() {
     </main>
   )
 }
-

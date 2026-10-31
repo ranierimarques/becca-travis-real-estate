@@ -19,7 +19,7 @@ const processSteps = [
   },
   {
     title: 'Monte a conexão local',
-    text: 'Becca entende seu plano em português e conecta você a um profissional da região quando necessário.',
+    text: 'Becca entende seu plano em português e, com sua autorização, apresenta você a um profissional da região quando necessário.',
   },
   {
     title: 'Planeje visitas e decisão',
@@ -61,9 +61,9 @@ function getServiceCopy(guide: StateGuideData) {
   }
 
   return {
-    label: 'Conexão local selecionada',
+    label: 'Conexão local coordenada',
     title: `Seu plano ${getDestinationPhrase(guide.locationPhrase)} começa com Becca`,
-    text: `Becca organiza sua mudança em português, apresenta você a um profissional local ${guide.locationPhrase} e continua conectada ao processo.`,
+    text: `Becca organiza sua mudança em português e, com sua autorização, apresenta você a um profissional local ${guide.locationPhrase}. Esse profissional conduz os serviços imobiliários no destino.`,
   }
 }
 
@@ -165,7 +165,7 @@ export function StateGuide({ guide, relatedGuides }: StateGuideProps) {
                 <S.HeroCopy>{guide.summary}</S.HeroCopy>
                 <S.Actions>
                   <S.PrimaryAction href={`/agenciamento?estado=${guide.slug}#planejador`}>
-                    Montar meu plano de mudança
+                    Criar meu plano para {guide.name}
                   </S.PrimaryAction>
                   <S.SecondaryAction href="#regioes">Comparar regiões</S.SecondaryAction>
                 </S.Actions>
@@ -386,8 +386,8 @@ export function StateGuide({ guide, relatedGuides }: StateGuideProps) {
               chegar. Becca organiza o ponto de partida em português.
             </p>
             <S.Actions>
-              <S.PrimaryAction href={`/agenciamento?estado=${guide.slug}#contato`}>
-                Contar meus planos à Becca
+              <S.PrimaryAction href={`/agenciamento?estado=${guide.slug}#planejador`}>
+                Salvar meu plano para {guide.name}
               </S.PrimaryAction>
               <S.SecondaryAction href="tel:+12563189066">
                 Ligar para (256) 318-9066

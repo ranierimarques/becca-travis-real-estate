@@ -40,7 +40,7 @@ const formSchema = z.object({
   ]),
   buying_price: z.enum([
     'abaixo de 300k',
-    '350k-450k',
+    '300k-450k',
     '450k-600k',
     '600k-900k',
     '900k-1.5m',

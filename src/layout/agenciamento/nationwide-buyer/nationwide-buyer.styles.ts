@@ -1459,6 +1459,42 @@ export const QuickLeadForm = styled('form', {
   },
 })
 
+export const ContactChoice = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: 8,
+  marginTop: 16,
+  padding: 4,
+  background: 'rgba($colors$magenta1Rgb, 0.07)',
+  borderRadius: 9,
+
+  '& button': {
+    minHeight: 40,
+    padding: '8px 10px',
+    color: '$magenta6',
+    background: 'transparent',
+    border: '1px solid transparent',
+    borderRadius: 7,
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    fontSize: 12,
+    fontWeight: 650,
+  },
+  '& button[data-selected="true"]': {
+    background: '$white',
+    borderColor: 'rgba($colors$magenta1Rgb, 0.18)',
+    boxShadow: '0 3px 12px rgba($colors$magenta1Rgb, 0.08)',
+  },
+  '& button:focus-visible': {
+    outline: '3px solid rgba($colors$tangerine1Rgb, 0.35)',
+    outlineOffset: 1,
+  },
+
+  '@bp1': {
+    gridTemplateColumns: '1fr',
+  },
+})
+
 export const QuickLeadGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',

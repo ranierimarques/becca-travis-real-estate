@@ -4,7 +4,7 @@ import { Image } from '@/common'
 import becca from '@/layout/index/sections/achievements/images/becca.jpg'
 import downtownHuntsville from '@/layout/index/sections/hero/images/downtown-huntsville.jpg'
 import { stateGuideBySlug } from '@/resources/relocation/state-guides'
-import type { RelocationPlan } from '../relocation-plan'
+import type { DestinationStage, RelocationPlan } from '../relocation-plan'
 import { readStoredRelocationPlan } from '../relocation-plan'
 import { Contact } from '../sections'
 import * as S from './nationwide-buyer.styles'
@@ -103,6 +103,10 @@ export function NationwideBuyer() {
     window.sessionStorage.setItem('becca-relocation-plan', JSON.stringify(relocationPlan))
   }, [planStorageReady, relocationPlan])
 
+  function startWithStage(destinationStage: DestinationStage) {
+    setRelocationPlan(currentPlan => ({ ...currentPlan, destinationStage }))
+  }
+
   return (
     <>
       <S.SkipLink href="#conteudo">Ir para o conteúdo</S.SkipLink>
@@ -134,9 +138,24 @@ export function NationwideBuyer() {
                 </S.BuyerPrompt>
 
                 <S.RouteLinks aria-label="Escolha seu ponto de partida">
-                  <a href="#planejador">Já escolhi a cidade</a>
-                  <a href="#planejador">Comparando estados</a>
-                  <a href="#planejador">Ainda estou começando</a>
+                  <a
+                    href="#planejador"
+                    onClick={() => startWithStage('Já escolhi a cidade')}
+                  >
+                    Já escolhi a cidade
+                  </a>
+                  <a
+                    href="#planejador"
+                    onClick={() => startWithStage('Estou comparando estados')}
+                  >
+                    Comparando estados
+                  </a>
+                  <a
+                    href="#planejador"
+                    onClick={() => startWithStage('Ainda estou começando')}
+                  >
+                    Ainda estou começando
+                  </a>
                   <a href="tel:+12563189066">Ligar em português</a>
                 </S.RouteLinks>
 
@@ -163,7 +182,7 @@ export function NationwideBuyer() {
               </S.TrustItem>
               <S.TrustItem>
                 <strong>Outros estados</strong>
-                <span>Conexões locais</span>
+                <span>Conexão local coordenada</span>
               </S.TrustItem>
               <S.TrustItem>
                 <strong>Plano claro</strong>
@@ -248,7 +267,9 @@ export function NationwideBuyer() {
                   Ajudo você a conhecer as regiões, encontrar imóveis, avaliar opções,
                   preparar a oferta, negociar e acompanhar a compra.
                 </p>
-                <S.TextLink href="#contato">Quero comprar no Alabama →</S.TextLink>
+                <S.TextLink href="#planejador">
+                  Criar meu plano para o Alabama →
+                </S.TextLink>
               </S.PathCard>
 
               <S.PathCard featured>
@@ -267,8 +288,8 @@ export function NationwideBuyer() {
                   Transparência: quando aplicável, a conexão pode envolver um acordo de
                   indicação entre corretoras, devidamente documentado.
                 </S.ReferralNote>
-                <S.TextLink light href="#contato">
-                  Quero comprar em outro estado →
+                <S.TextLink light href="#planejador">
+                  Criar meu plano para outro estado →
                 </S.TextLink>
               </S.PathCard>
             </S.PathsGrid>
@@ -307,8 +328,8 @@ export function NationwideBuyer() {
               conexão autorizada com um profissional licenciado no mercado local.
             </p>
             <S.Actions centered>
-              <S.PrimaryAction href="#contato">
-                Conte seus planos à Becca <span aria-hidden="true">→</span>
+              <S.PrimaryAction href="#planejador">
+                Criar meu resumo de mudança <span aria-hidden="true">→</span>
               </S.PrimaryAction>
               <S.LightAction href="tel:+12563189066">
                 Ligar para (256) 318-9066
@@ -326,7 +347,7 @@ export function NationwideBuyer() {
         </S.ContactAnchor>
       </main>
 
-      <S.MobileCta visible={showMobileCta} href="#contato">
+      <S.MobileCta visible={showMobileCta} href="#planejador">
         Montar meu plano com a Becca →
       </S.MobileCta>
     </>
