@@ -177,7 +177,7 @@ export function ClientTestimonials() {
         <S.Title>Client stories</S.Title>
         <Flex align="end" justify="between">
           <S.Description>
-            Guiding clients to their dream home is more than just a job for me – it&apos;s
+            Guiding clients to their dream home is more than just a job for me. It&apos;s
             a passion. Nothing brings me more joy than helping each and every one of my
             clients find the perfect home that meets their unique needs and desires.
           </S.Description>

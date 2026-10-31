@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { BuyerForm, SelectScreen, SellerForm } from '..'
 import * as S from './forms.styles'
 
-export function Forms() {
+export function Forms({ buyerFirst = false }: { buyerFirst?: boolean }) {
   const [form, setForm] = useState<'select-screen' | 'selling' | 'buying'>(
-    'select-screen'
+    buyerFirst ? 'buying' : 'select-screen'
   )
 
   return (

@@ -5,22 +5,22 @@ import * as S from './steps-information.styles'
 const steps = [
   {
     name: 'Informações de compra',
-    description: 'Propriedades a venda',
+    description: 'Tipo de imóvel',
     svg: <Svg.House />,
   },
   {
     name: 'Tempo de compra',
-    description: 'Endereço da propriedade',
+    description: 'Quando pretende comprar',
     svg: <Svg.Calendar />,
   },
   {
     name: 'Orçamento',
-    description: 'Property information',
+    description: 'Faixa de investimento',
     svg: <Svg.Currency />,
   },
   {
-    name: 'Informações de envio',
-    description: 'Property information',
+    name: 'Destino e contato',
+    description: 'Cidade, estado e seus dados',
     svg: <Svg.Send />,
   },
 ]
@@ -34,9 +34,9 @@ export function StepsInformation({ formStep, isSubmitting }: StepsInformationPro
   return (
     <S.Card>
       <Box css={{ p: '32px 0 0 32px', '@bp4': { p: 0 } }}>
-        <S.Title>Quero comprar</S.Title>
+        <S.Title>Quero comprar nos EUA</S.Title>
         <S.Description>
-          Escolha a opção de acordo com os seus interesses e preencha o formulário
+          Conte seus planos e eu preparo o próximo passo com você
         </S.Description>
       </Box>
 

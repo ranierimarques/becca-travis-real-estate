@@ -36,7 +36,7 @@ function getValidParams(params: Params) {
   return Object.fromEntries(filteredParams)
 }
 
-// Returns random coordinates around Huntsville, AL (approx. 34.6–34.8 N, -86.7–-86.5 W)
+// Returns random coordinates around Huntsville, AL (approx. 34.6 to 34.8 N, -86.7 to -86.5 W)
 function getRandomHuntsvilleCoordinates() {
   const latitude = 34.6 + Math.random() * 0.2
   const longitude = -86.7 + Math.random() * 0.2
