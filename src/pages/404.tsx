@@ -10,8 +10,8 @@ const Home: NextPage = () => {
         noindex
         title="404: Page Not Found | Becca Travis"
         description="Page Not Found | Becca Travis"
-        image="/sharing-cards/og-index.jpg"
-        alt="Feel at home before finding the perfect property."
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
 
       <Hero />

@@ -46,7 +46,11 @@ export function MetaSEO({
       <meta property="og:image" content={imagePath} />
       <meta property="og:image:secure_url" content={imagePath} />
       <meta property="og:image:alt" content={alt} />
-      <meta property="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={imagePath} />
+      <meta name="twitter:image:alt" content={alt} />
       <link rel="canonical" href={pageURL} />
       <meta
         name="robots"

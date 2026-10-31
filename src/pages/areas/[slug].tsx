@@ -94,8 +94,8 @@ export default function AreaPage({
         canonicalPath={`/areas/${area.slug}`}
         title={`${area.name}, Alabama | Becca Travis`}
         description={`Explore ${area.name}, Alabama, with local information and practical questions for your home search.`}
-        image={photo?.src || '/sharing-cards/og-index.jpg'}
-        alt={photo?.alt || 'Becca Travis Real Estate'}
+        image={photo?.src || '/images/home-inspiration/living-room-fireplace.webp'}
+        alt={photo?.alt || 'Bright living room with a fireplace and windows'}
       />
       <S.Hero>
         <S.Wrap>

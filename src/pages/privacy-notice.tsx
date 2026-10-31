@@ -10,8 +10,8 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ data }
         canonicalPath="/privacy-notice"
         title="Privacy Notice | Becca Travis"
         description="Privacy Notice | Becca Travis"
-        image="/sharing-cards/og-index.jpg"
-        alt="Feel at home before finding the perfect property."
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
 
       <Terms terms={data} />

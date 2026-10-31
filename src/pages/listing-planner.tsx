@@ -51,11 +51,12 @@ const structuredData = {
     {
       '@type': 'ImageObject',
       '@id': 'https://beccatravis.com/listing-planner#primary-image',
-      contentUrl: 'https://beccatravis.com/images/listing-planner/hero.jpg',
-      url: 'https://beccatravis.com/images/listing-planner/hero.jpg',
-      width: 1800,
-      height: 1200,
-      caption: 'A home preparation workspace with organized property records.',
+      contentUrl:
+        'https://beccatravis.com/images/home-inspiration/living-room-fireplace.webp',
+      url: 'https://beccatravis.com/images/home-inspiration/living-room-fireplace.webp',
+      width: 1600,
+      height: 1066,
+      caption: 'A bright living room with a fireplace and windows.',
       representativeOfPage: true,
     },
     {
@@ -122,8 +123,8 @@ const Page: NextPage = () => {
         canonicalPath="/listing-planner"
         title="Home Selling Planner and Listing Description | Becca Travis"
         description="Organize your home details, see what to verify, preview listing copy, and print a preparation checklist. No contact details required."
-        image="/images/listing-planner/hero.jpg"
-        alt="Home selling planner by Becca Travis"
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
       <Head>
         <script

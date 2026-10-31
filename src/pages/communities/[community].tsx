@@ -5,6 +5,8 @@ import {
   getYelpSearchParams,
   isAlabamaBusiness,
 } from '@/resources/community-guides/yelp-search'
+import { getCommunityHero } from '@/layout/communities/sections/hero/hero'
+import { LocalPhotoGallery } from '@/layout/communities/sections/local-photo-gallery'
 import { capitalizeEveryWord } from '@/resources/utils/text'
 import { LastCall } from '@/shared'
 import { ReplaceAll } from '@/types/helpers'
@@ -12,6 +14,7 @@ import { ReplaceAll } from '@/types/helpers'
 type PageWithStaticProps = NextPage<InferGetStaticPropsType<typeof getStaticProps>>
 
 const Page: PageWithStaticProps = ({ data, community }) => {
+  const hero = getCommunityHero(community)
   return (
     <main>
       <MetaSEO
@@ -20,13 +23,22 @@ const Page: PageWithStaticProps = ({ data, community }) => {
         description={`Explore ${capitalizeEveryWord(
           community
         )} in North Alabama, including local information and community highlights.`}
-        image={`/sharing-cards/communities/${
-          community === 'hampton cove' ? 'hampton-cove' : community
-        }.jpg`}
-        alt={community}
+        image={
+          community === 'huntsville'
+            ? '/images/areas/downtown-huntsville.webp'
+            : typeof hero.image === 'string'
+            ? hero.image
+            : hero.image.src
+        }
+        alt={
+          community === 'huntsville'
+            ? 'Downtown Huntsville skyline beside Big Spring Park'
+            : hero.imageAlt
+        }
       />
 
       <Hero communityName={community} />
+      {community === 'huntsville' && <LocalPhotoGallery />}
       <About communityName={community} />
       {/* <MarketTrends communityName={community} /> */}
       {data.length > 0 && <Yelp data={data} communityName={community} />}

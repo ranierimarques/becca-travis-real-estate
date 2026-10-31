@@ -13,9 +13,10 @@ type Communities = {
   [key: string]: {
     title: string
     description: string
-    image: StaticImageData
+    image: StaticImageData | string
     imageAlt: string
-    source: string
+    source?: string
+    caption?: string
     credit?: string
     license?: string
     licenseLabel?: string
@@ -35,9 +36,9 @@ const communities: Communities = {
     title: 'Find your place in Huntsville',
     description:
       'Explore Huntsville neighborhoods and compare home styles, commute routes, and the places that shape your daily routine.',
-    image: Img.huntsville,
-    imageAlt: 'Welcome to Huntsville mural beneath downtown trees',
-    source: 'https://unsplash.com/pt-br/fotografias/6Qo5-GUXFqc',
+    image: '/images/home-inspiration/big-spring-park-camera-roll.webp',
+    imageAlt: 'Fountain and skyline at Big Spring Park in downtown Huntsville',
+    caption: 'Big Spring Park, Huntsville · From Becca’s photo library',
   },
   'hampton cove': {
     title: 'Explore Hampton Cove',
@@ -85,9 +86,13 @@ const communities: Communities = {
   },
 }
 
-export function Hero({ communityName }: HeroProps) {
+export function getCommunityHero(communityName: string) {
   const normalizedName = communityName.toLowerCase().replace(/-/g, ' ')
-  const community = communities[normalizedName] || communities.huntsville
+  return communities[normalizedName] || communities.huntsville
+}
+
+export function Hero({ communityName }: HeroProps) {
+  const community = getCommunityHero(communityName)
 
   return (
     <Section hasMaxWidth background="rgba($colors$tangerine5Rgb, 0.3)">
@@ -118,7 +123,9 @@ export function Hero({ communityName }: HeroProps) {
             />
           </S.ImageFrame>
           <S.ImageSource>
-            {community.credit ? (
+            {community.caption ? (
+              community.caption
+            ) : community.credit ? (
               <>
                 Photo by{' '}
                 <a href={community.source} target="_blank" rel="noopener noreferrer">
@@ -136,7 +143,7 @@ export function Hero({ communityName }: HeroProps) {
               </>
             ) : (
               <>
-                Illustrative photo via{' '}
+                Representative photo via{' '}
                 <a href={community.source} target="_blank" rel="noopener noreferrer">
                   Unsplash
                 </a>

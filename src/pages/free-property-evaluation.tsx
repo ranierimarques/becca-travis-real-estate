@@ -10,8 +10,8 @@ const Home: NextPage = () => {
         canonicalPath="/free-property-evaluation"
         title="Free Home Evaluation | Becca Travis"
         description="Request a free property evaluation from Becca Travis Real Estate."
-        image="/sharing-cards/og-index.jpg"
-        alt="Feel at home before finding the perfect property."
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
 
       <Hero />

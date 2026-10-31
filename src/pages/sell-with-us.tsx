@@ -11,8 +11,8 @@ const Page: NextPage = () => {
         canonicalPath="/sell-with-us"
         title="Sell Your Home | Becca Travis"
         description="Organize your home details and next steps in a private selling plan. Talk with Becca Travis about your North Alabama sale when you are ready."
-        image="/sharing-cards/og-sellers.jpg"
-        alt="Discover your home's true value and sell confidently"
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
 
       <section className="seller-intro">
@@ -37,8 +37,8 @@ const Page: NextPage = () => {
           <aside className="seller-preview" aria-label="Listing planner benefits">
             <Image
               className="seller-preview-image"
-              src="/images/listing-planner/hero.jpg"
-              alt="Illustrative home preparation workspace with organized property records"
+              src="/images/home-inspiration/living-room-fireplace.webp"
+              alt="Bright living room with a fireplace and windows"
               fill
               priority
               sizes="(max-width: 1023px) 100vw, 42vw"

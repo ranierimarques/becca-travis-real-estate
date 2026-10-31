@@ -10,8 +10,8 @@ const Home: NextPage = () => {
         canonicalPath="/sellers-resources"
         title="Home Seller Resources | Becca Travis"
         description="Explore home selling resources and learn how Becca Travis supports sellers in North Alabama."
-        image="/sharing-cards/og-sellers.jpg"
-        alt="Discover your home's true value and sell confidently"
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
 
       <Hero />

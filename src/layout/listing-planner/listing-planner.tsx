@@ -200,8 +200,8 @@ export function ListingPlanner() {
 
           <S.HeroVisual>
             <Image
-              src="/images/listing-planner/hero.jpg"
-              alt="Illustrative home preparation workspace with organized property records"
+              src="/images/home-inspiration/living-room-fireplace.webp"
+              alt="Bright living room with a fireplace and windows"
               fill
               priority
               sizes="(max-width: 1023px) 100vw, 56vw"

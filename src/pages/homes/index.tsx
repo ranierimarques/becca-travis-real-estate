@@ -10,8 +10,8 @@ export default function HomesPage() {
         noindex
         title="Find a Home | Becca Travis"
         description="Contact Becca Travis for help finding a home in North Alabama."
-        image="/sharing-cards/og-index.jpg"
-        alt="Becca Travis Real Estate"
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
       <S.Hero>
         <S.Wrap>

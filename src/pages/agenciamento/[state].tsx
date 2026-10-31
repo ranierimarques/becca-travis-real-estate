@@ -22,8 +22,8 @@ export default function StatePage({
         locale="pt_BR"
         title={title}
         description={guide.summary}
-        image="/sharing-cards/og-index.jpg"
-        alt={`Guia em português para comprar casa ${guide.locationPhrase}`}
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Sala de estar iluminada com lareira e janelas"
       />
       <StateGuide guide={guide} relatedGuides={relatedGuides} />
     </>

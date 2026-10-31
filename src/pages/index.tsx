@@ -18,8 +18,8 @@ const Page: NextPage = () => {
         canonicalPath="/"
         title="Huntsville Real Estate | Becca Travis"
         description="Explore homes and communities in Huntsville and North Alabama with Becca Travis Real Estate."
-        image="/sharing-cards/og-index.jpg"
-        alt="Feel at home before finding the perfect property."
+        image="/images/home-inspiration/living-room-fireplace.webp"
+        alt="Bright living room with a fireplace and windows"
       />
 
       <Hero />
