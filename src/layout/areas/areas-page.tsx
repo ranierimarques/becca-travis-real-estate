@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { Button, MetaSEO } from '@/common'
 import { PaymentEstimator } from '@/layout/communities/sections/payment-estimator/payment-estimator'
@@ -501,7 +502,7 @@ export default function AreasPage() {
         <a href="#infrastructure-explorer">Infrastructure</a>
         <a href="#commute-tax-calculator">Commute &amp; tax calculator</a>
         <a href="#smart-concession-optimizer">Seller credits</a>
-        <a href="/alabama-home-warranty">Home warranty</a>
+        <Link href="/alabama-home-warranty">Home warranty</Link>
         <a href="#school-zones">School zones</a>
         <a href="#local-picks">Dog parks and Purple Cup districts</a>
         <a href="#huntsville-qa">Huntsville Q&amp;A</a>
