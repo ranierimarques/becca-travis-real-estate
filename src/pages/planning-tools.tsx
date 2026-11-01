@@ -663,9 +663,9 @@ export default function PlanningToolsPage() {
               <a className="button button-primary" href="#calculators">
                 Explore the calculators
               </a>
-              <a className="text-link" href="/alabama-home-warranty">
+              <Link className="text-link" href="/alabama-home-warranty">
                 Compare warranty plans
-              </a>
+              </Link>
             </div>
           </div>
           <aside className="hero-note" aria-label="Choose a planning path">
@@ -688,10 +688,10 @@ export default function PlanningToolsPage() {
                 <b>02</b>
                 <span>Plan seller credits</span>
               </a>
-              <a href="/alabama-home-warranty">
+              <Link href="/alabama-home-warranty">
                 <b>03</b>
                 <span>Compare warranty plans</span>
-              </a>
+              </Link>
             </div>
           </aside>
         </div>
@@ -702,7 +702,7 @@ export default function PlanningToolsPage() {
         <a href="#calculators">Calculators</a>
         <a href="#buydown-comparison">Rate comparison</a>
         <a href="#smart-concession-optimizer">Seller credits</a>
-        <a href="/alabama-home-warranty">Warranty</a>
+        <Link href="/alabama-home-warranty">Warranty</Link>
         <a href="#infrastructure-explorer">Infrastructure</a>
         <a href="#estate-property-organizer">Estate property</a>
         <a href="#worksheets">Worksheets</a>

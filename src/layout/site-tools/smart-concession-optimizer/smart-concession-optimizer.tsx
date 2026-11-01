@@ -349,9 +349,9 @@ export function SmartConcessionOptimizer() {
           </p>
           <div className="hero-actions">
             <a href="#concession-workspace">Build my scenario</a>
-            <a className="quiet-link" href="/alabama-home-warranty">
+            <Link className="quiet-link" href="/alabama-home-warranty">
               Compare warranty plans ↓
-            </a>
+            </Link>
           </div>
         </div>
       </div>
