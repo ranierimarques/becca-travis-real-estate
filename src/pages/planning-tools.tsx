@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { MetaSEO } from '@/common'
 import { FaqPreview } from '@/layout/faq-preview'
-import { ArwWarrantyClosingHub } from '@/layout/site-tools/arw-warranty-closing-hub/arw-warranty-closing-hub'
+import { WarrantyResourceLink } from '@/layout/site-tools/arw-warranty-closing-hub/warranty-resource-link'
 import { BuydownComparison } from '@/layout/site-tools/buydown-comparison/buydown-comparison'
 import { EstatePropertyOrganizer } from '@/layout/site-tools/estate-property-organizer/estate-property-organizer'
 import { InfrastructureExplorer } from '@/layout/site-tools/infrastructure-explorer/infrastructure-explorer'
@@ -663,7 +663,7 @@ export default function PlanningToolsPage() {
               <a className="button button-primary" href="#calculators">
                 Explore the calculators
               </a>
-              <a className="text-link" href="#arw-warranty-closing-hub">
+              <a className="text-link" href="/alabama-home-warranty">
                 Compare warranty plans
               </a>
             </div>
@@ -688,7 +688,7 @@ export default function PlanningToolsPage() {
                 <b>02</b>
                 <span>Plan seller credits</span>
               </a>
-              <a href="#arw-warranty-closing-hub">
+              <a href="/alabama-home-warranty">
                 <b>03</b>
                 <span>Compare warranty plans</span>
               </a>
@@ -702,7 +702,7 @@ export default function PlanningToolsPage() {
         <a href="#calculators">Calculators</a>
         <a href="#buydown-comparison">Rate comparison</a>
         <a href="#smart-concession-optimizer">Seller credits</a>
-        <a href="#arw-warranty-closing-hub">Warranty</a>
+        <a href="/alabama-home-warranty">Warranty</a>
         <a href="#infrastructure-explorer">Infrastructure</a>
         <a href="#estate-property-organizer">Estate property</a>
         <a href="#worksheets">Worksheets</a>
@@ -1050,7 +1050,7 @@ export default function PlanningToolsPage() {
 
       <BuydownComparison />
       <SmartConcessionOptimizer />
-      <ArwWarrantyClosingHub />
+      <WarrantyResourceLink audience="buyers" />
       <InfrastructureExplorer />
       <EstatePropertyOrganizer />
 
