@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { Button, MetaSEO } from '@/common'
 import { PaymentEstimator } from '@/layout/communities/sections/payment-estimator/payment-estimator'
 import { FaqPreview } from '@/layout/faq-preview'
 import { LiveMlsDrawer, LiveMlsTarget } from '@/layout/live-mls-drawer'
-import { ArwWarrantyClosingHub } from '@/layout/site-tools/arw-warranty-closing-hub/arw-warranty-closing-hub'
+import { WarrantyResourceLink } from '@/layout/site-tools/arw-warranty-closing-hub/warranty-resource-link'
 import { BuydownComparison } from '@/layout/site-tools/buydown-comparison/buydown-comparison'
 import { InfrastructureExplorer } from '@/layout/site-tools/infrastructure-explorer/infrastructure-explorer'
 import { SmartConcessionOptimizer } from '@/layout/site-tools/smart-concession-optimizer/smart-concession-optimizer'
@@ -502,7 +503,7 @@ export default function AreasPage() {
         <a href="#infrastructure-explorer">Infrastructure</a>
         <a href="#commute-tax-calculator">Commute &amp; tax calculator</a>
         <a href="#smart-concession-optimizer">Seller credits</a>
-        <a href="#arw-warranty-closing-hub">Warranty</a>
+        <Link href="/alabama-home-warranty">Home warranty</Link>
         <a href="#school-zones">School zones</a>
         <a href="#local-picks">Dog parks and Purple Cup districts</a>
         <a href="#huntsville-qa">Huntsville Q&amp;A</a>
@@ -784,7 +785,7 @@ export default function AreasPage() {
 
       <BuydownComparison />
       <SmartConcessionOptimizer />
-      <ArwWarrantyClosingHub />
+      <WarrantyResourceLink audience="areas" />
 
       <Section hasMaxWidth id="school-zones">
         <S.SectionHeader>

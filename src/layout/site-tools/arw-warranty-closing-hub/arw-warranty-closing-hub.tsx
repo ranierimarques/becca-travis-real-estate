@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 
@@ -24,7 +25,8 @@ const plans: Array<{
     name: 'Home Essential',
     price: 600,
     position: 'Core plan to compare',
-    prompt: 'Start here when you want to review the core systems and appliances first.',
+    prompt:
+      'Core home systems, plumbing, and appliances, subject to ARW terms and limits.',
   },
   {
     id: 'complete',
@@ -32,7 +34,7 @@ const plans: Array<{
     price: 750,
     position: 'Expanded plan to compare',
     prompt:
-      'Compare this tier when broader current-plan coverage matters to the household.',
+      'Adds garage door springs and tracks, washer and dryer, and external water and sewer lines to the core plan.',
   },
   {
     id: 'premier',
@@ -40,7 +42,7 @@ const plans: Array<{
     price: 850,
     position: 'Broadest listed tier to compare',
     prompt:
-      'Review this tier when you want the broadest current real-estate plan comparison.',
+      'Includes the Home Complete additions and higher coverage limits; confirm exact limits in ARW terms.',
   },
 ]
 
@@ -245,53 +247,49 @@ export function ArwWarrantyClosingHub() {
   }
 
   return (
-    <section id="arw-warranty-closing-hub" className="warranty-section">
+    <section id="alabama-home-warranty" className="warranty-section">
       <div className="warranty-hero">
-        <div className="hero-photo">
-          <video
-            controls
-            playsInline
-            preload="metadata"
-            poster="/images/listing-planner/hero.jpg"
-            aria-label="Becca Travis introducing the home buying and selling experience"
-          >
-            <source src="/dream-home.mp4" type="video/mp4" />
-            Your browser does not support the video. You can still use every planning tool
-            below.
-          </video>
-          <div className="hero-shade" />
-          <div className="photo-caption">
-            <span>Real home. Real documents. Clear next step.</span>
-            <strong>Warranty planning without the fine-print fog.</strong>
-          </div>
-        </div>
         <div className="hero-copy">
           <div className="partner-line">
-            <span>ARW Home partner resources</span>
+            <span>Alabama home warranty plans</span>
             <a href={officialPlanUrl} target="_blank" rel="noreferrer">
-              Visit ARW Home ↗
+              Official ARW plan information ↗
             </a>
           </div>
-          <p className="eyebrow">Home warranty + closing readiness</p>
-          <h2>Compare the plan. Read the sample. Then decide.</h2>
+          <p className="eyebrow">For Alabama home buyers and sellers</p>
+          <h1>Alabama home warranty plans: compare before you decide.</h1>
           <p>
-            See current listed prices, flag the home systems you want to discuss, and send
-            Becca one clear plan request. Coverage begins only under ARW&apos;s issued
-            contract and declaration—not from this page.
+            Review ARW&apos;s listed real-estate plan prices, compare the documents, and
+            decide whether to get a quote directly from ARW. You can also send Becca a
+            separate request to help organize your questions.
           </p>
           <div className="hero-actions">
-            <a className="primary-action" href="#warranty-plan-builder">
-              Build my comparison
+            <a className="primary-action" href={officialPlanUrl} target="_blank" rel="noreferrer">
+              Get a quote from ARW ↗
             </a>
-            <a href={sampleDeclarationUrl} target="_blank" rel="noreferrer">
-              View sample Alabama coverage PDF
+            <a className="secondary-action" href="#warranty-plan-builder">
+              Compare the plans
             </a>
           </div>
+          <p className="relationship-disclosure">
+            Becca Travis is an independent real-estate professional, not ARW Home, the
+            warranty provider, or claims administrator. I have a financial interest in
+            ARW plan sales.
+          </p>
           <p className="sample-note">
             <strong>Sample only:</strong> ARW provided this Home Essential sample
             declaration for Alabama planning. It is not your contract or proof of
             coverage. A funded order&apos;s issued declaration and terms control.
           </p>
+        </div>
+        <div className="hero-photo">
+          <Image
+            src="/images/real/contemporary-exterior.webp"
+            alt="Contemporary home exterior"
+            fill
+            priority
+            sizes="(max-width: 980px) 100vw, 48vw"
+          />
         </div>
       </div>
 
@@ -304,6 +302,14 @@ export function ArwWarrantyClosingHub() {
               <h3>Choose a tier to review</h3>
             </div>
           </div>
+
+          <p className="price-verification-note">
+            Prices on this page were listed by ARW on November 1, 2026. Confirm the
+            current amount and availability for the property ZIP before enrolling.{' '}
+            <a href={officialPlanUrl} target="_blank" rel="noreferrer">
+              Check ARW&apos;s latest plan page ↗
+            </a>
+          </p>
 
           <div className="plan-grid" role="radiogroup" aria-label="ARW plan to compare">
             {plans.map(item => (
@@ -318,7 +324,7 @@ export function ArwWarrantyClosingHub() {
                 <span>{item.position}</span>
                 <strong>{item.name}</strong>
                 <b>${item.price}</b>
-                <small>currently listed plan price</small>
+                <small>ARW listed annual price</small>
                 <p>{item.prompt}</p>
               </button>
             ))}
@@ -716,24 +722,11 @@ export function ArwWarrantyClosingHub() {
         </div>
       </div>
 
-      <div className="compensation-disclosure">
-        <strong>Transparent partner compensation</strong>
-        <p>
-          ARW advertises a $100 professional service fee for qualifying plan sales when a
-          separate fee agreement is in place. Becca Travis Real Estate has an ARW Home PRO
-          fee agreement; whether any particular transaction qualifies and is paid is
-          determined by ARW. This relationship does not change the listed plan price shown
-          here. Choose a plan only after reviewing its current coverage, limits,
-          exclusions, service-call fee, and alternatives.
-        </p>
-      </div>
-
       <p className="section-disclosure">
-        Prices above were listed on ARW&apos;s real-estate professional page when this
-        tool was prepared and may change. Becca Travis Real Estate is not the warranty
-        obligor or claims administrator. Only ARW&apos;s issued contract, declaration, and
-        applicable terms establish coverage. This page is educational and is not legal,
-        lending, inspection, repair, or coverage advice.
+        Prices were checked against ARW&apos;s real-estate plan page on November 1, 2026 and
+        may change. Confirm the current price and availability for the property ZIP with
+        ARW. Its issued contract, declaration, and terms control coverage; a request to
+        Becca is not enrollment or confirmation of coverage.
       </p>
 
       <style jsx>{`
@@ -745,63 +738,30 @@ export function ArwWarrantyClosingHub() {
         }
         .warranty-hero {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 470px;
+          grid-template-columns: 1.05fr 0.95fr;
           overflow: hidden;
-          background: #321223;
-          border-radius: 26px;
-          box-shadow: 0 26px 72px rgba(54, 22, 39, 0.16);
+          background: #fff;
+          border: 1px solid #eadfe4;
+          border-radius: 18px;
         }
         .hero-photo {
           position: relative;
-          min-height: 470px;
+          min-height: 440px;
           overflow: hidden;
         }
-        .hero-photo :global(video) {
+        .hero-photo :global(img) {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          background: #170b12;
-        }
-        .hero-shade {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          background: linear-gradient(180deg, rgba(30, 9, 20, 0.82), transparent 48%);
-        }
-        .photo-caption {
-          position: absolute;
-          right: 32px;
-          top: 28px;
-          left: 32px;
-          color: #fff;
-          pointer-events: none;
-        }
-        .photo-caption span {
-          display: block;
-          margin-bottom: 8px;
-          color: #facdbd;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-        }
-        .photo-caption strong {
-          display: block;
-          max-width: 520px;
-          font-family: Georgia, serif;
-          font-size: clamp(28px, 3vw, 42px);
-          font-weight: 500;
-          line-height: 1.05;
         }
         .hero-copy {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 42px;
-          color: #fff;
+          padding: clamp(24px, 4vw, 48px);
+          color: #352c31;
         }
         .partner-line {
           display: flex;
@@ -811,17 +771,17 @@ export function ArwWarrantyClosingHub() {
           gap: 8px;
           margin-bottom: 29px;
           padding-bottom: 14px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+          border-bottom: 1px solid #eadfe4;
         }
         .partner-line span {
-          color: #f2bda9;
+          color: #9d446e;
           font-size: 10px;
           font-weight: 800;
           letter-spacing: 0.1em;
           text-transform: uppercase;
         }
         .partner-line a {
-          color: #fff;
+          color: #6e294d;
           font-size: 11px;
           font-weight: 800;
           text-underline-offset: 3px;
@@ -834,22 +794,19 @@ export function ArwWarrantyClosingHub() {
           letter-spacing: 0.12em;
           text-transform: uppercase;
         }
-        .hero-copy .eyebrow {
-          color: #efb8a4;
-        }
-        h2 {
+        .hero-copy h1 {
           max-width: 560px;
           margin: 0;
-          color: #fff;
+          color: #321223;
           font-family: Georgia, serif;
-          font-size: clamp(36px, 4.5vw, 57px);
+          font-size: clamp(34px, 4vw, 52px);
           font-weight: 500;
           letter-spacing: -0.035em;
           line-height: 1.02;
         }
-        .hero-copy > p:not(.eyebrow):not(.sample-note) {
+        .hero-copy > p:not(.eyebrow):not(.sample-note):not(.relationship-disclosure) {
           margin: 18px 0 0;
-          color: #eadde4;
+          color: #655a60;
           font-size: 14px;
           line-height: 1.75;
         }
@@ -861,7 +818,7 @@ export function ArwWarrantyClosingHub() {
           margin-top: 25px;
         }
         .hero-actions a {
-          color: #fff;
+          color: #6e294d;
           font-size: 11px;
           font-weight: 800;
           text-underline-offset: 4px;
@@ -872,23 +829,51 @@ export function ArwWarrantyClosingHub() {
           align-items: center;
           justify-content: center;
           padding: 0 18px;
-          color: #42152f;
-          background: #ffd4c4;
-          border-radius: 999px;
+          color: #fff;
+          background: #6e294d;
+          border: 1px solid #6e294d;
+          border-radius: 8px;
           text-decoration: none;
         }
+        .hero-actions .secondary-action {
+          display: inline-flex;
+          min-height: 46px;
+          align-items: center;
+          justify-content: center;
+          padding: 0 18px;
+          color: #42152f;
+          background: #ffd4c4;
+          border: 1px solid #ffd4c4;
+          border-radius: 8px;
+          text-decoration: none;
+        }
+        .relationship-disclosure {
+          max-width: 660px;
+          margin: 18px 0 0;
+          padding: 10px 12px;
+          color: #51464c;
+          background: #f8f3f5;
+          border-left: 3px solid #9d446e;
+          font-size: 11px;
+          line-height: 1.5;
+        }
+        .price-verification-note a {
+          color: #6e294d;
+          font-weight: 700;
+          text-underline-offset: 3px;
+        }
         .sample-note {
-          margin: 21px 0 0;
-          padding: 13px 15px;
-          color: #d8c8d0;
-          background: rgba(255, 255, 255, 0.07);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 11px;
-          font-size: 9px;
+          margin: 12px 0 0;
+          padding: 10px 12px;
+          color: #665a60;
+          background: #fff9f6;
+          border: 1px solid #ecdcd4;
+          border-radius: 8px;
+          font-size: 11px;
           line-height: 1.55;
         }
         .sample-note strong {
-          color: #ffd4c4;
+          color: #6e294d;
         }
         .hub-grid {
           display: grid;
@@ -986,13 +971,19 @@ export function ArwWarrantyClosingHub() {
         }
         .plan-card > small {
           color: #8b7c83;
-          font-size: 8px;
+          font-size: 10px;
           text-transform: uppercase;
         }
         .plan-card > p {
           margin: 13px 0 0;
           color: #70646a;
-          font-size: 9px;
+          font-size: 12px;
+          line-height: 1.55;
+        }
+        .price-verification-note {
+          margin: -10px 0 18px;
+          color: #655a60;
+          font-size: 12px;
           line-height: 1.55;
         }
         .seller-plan-note {
@@ -1408,32 +1399,11 @@ export function ArwWarrantyClosingHub() {
           font-size: 10px;
           font-weight: 800;
         }
-        .compensation-disclosure {
-          display: grid;
-          grid-template-columns: 0.28fr 0.72fr;
-          gap: 24px;
-          margin-top: 18px;
-          padding: 21px 24px;
-          color: #4f4048;
-          background: #fff6f2;
-          border: 1px solid #ecdcd4;
-          border-radius: 14px;
-        }
-        .compensation-disclosure strong {
-          color: #6e294d;
-          font-size: 11px;
-        }
-        .compensation-disclosure p {
-          margin: 0;
-          color: #71636a;
-          font-size: 9px;
-          line-height: 1.65;
-        }
         .section-disclosure {
           max-width: 980px;
           margin: 17px auto 0;
-          color: #7b7075;
-          font-size: 8px;
+          color: #655a60;
+          font-size: 11px;
           line-height: 1.65;
           text-align: center;
         }
@@ -1443,24 +1413,17 @@ export function ArwWarrantyClosingHub() {
           .closing-grid {
             grid-template-columns: 1fr;
           }
-          .hero-photo {
-            min-height: 390px;
-          }
         }
         @media (max-width: 700px) {
           .warranty-section {
             padding: 60px 18px;
           }
           .warranty-hero {
+            grid-template-columns: 1fr;
             border-radius: 18px;
           }
           .hero-photo {
-            min-height: 310px;
-          }
-          .photo-caption {
-            right: 20px;
-            bottom: 20px;
-            left: 20px;
+            min-height: 250px;
           }
           .hero-copy {
             padding: 27px 22px;
@@ -1474,8 +1437,7 @@ export function ArwWarrantyClosingHub() {
           }
           .plan-grid,
           .document-grid,
-          .form-grid,
-          .compensation-disclosure {
+          .form-grid {
             grid-template-columns: 1fr;
           }
           .plan-card > span {
@@ -1493,9 +1455,6 @@ export function ArwWarrantyClosingHub() {
           }
           .detail-actions button {
             width: 100%;
-          }
-          .compensation-disclosure {
-            gap: 8px;
           }
         }
       `}</style>
