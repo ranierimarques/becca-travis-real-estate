@@ -217,13 +217,13 @@ export const areaGuides: AreaGuide[] = [
     slug: 'madison',
     name: 'Madison',
     introduction:
-      'Madison has a historic downtown and a range of residential areas within the Huntsville region.',
+      'Explore historic Madison Station, local trails, Town Madison and the distinct home search areas around the city.',
     explore:
-      'Visit the downtown area, then explore the city’s parks and the Town Madison district. The visitor bureau offers a useful guide to the city.',
+      'Use our Madison guide to plan a visit to downtown, parks and the Toyota Field district, with official sources for each stop.',
     homeSearch:
-      'Compare city boundaries, school assignments, neighborhood rules and the routes you would use most often. Confirm each detail for the address.',
-    source: 'https://www.huntsville.org/rocket-city/our-cities/madison/',
-    sourceName: 'Huntsville visitor bureau, Madison',
+      'Verify the city limit, school assignment, association documents and your daily route for each address you consider.',
+    source: 'https://www.madisonal.gov/',
+    sourceName: 'City of Madison',
   },
   {
     slug: 'town-madison',

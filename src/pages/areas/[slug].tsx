@@ -147,7 +147,9 @@ export default function AreaPage({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: areaGuides.map(area => ({ params: { slug: area.slug } })),
+  paths: areaGuides
+    .filter(area => area.slug !== 'madison')
+    .map(area => ({ params: { slug: area.slug } })),
   fallback: false,
 })
 export const getStaticProps: GetStaticProps<{ area: AreaGuide }> = async ({ params }) => {
