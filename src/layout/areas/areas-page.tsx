@@ -110,8 +110,9 @@ const areas: AreaCardData[] = [
   },
   {
     name: 'Madison',
+    route: '/areas/madison',
     detail:
-      'Clift Farm, Town Madison, West Highlands, and established subdivisions offer different access to shopping, schools, and daily routes.',
+      'Explore historic Madison Station, local trails, Clift Farm, and Town Madison, then compare the exact address, route, and property details.',
     commute: ['Redstone Gate 9 / Research Park'],
     focus: [FOCUS_GOLF_GREENWAY],
     sourceLabel: 'City of Madison services and maps',
