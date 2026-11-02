@@ -9,6 +9,8 @@ const fullURL = `${url ? 'https://' + url : 'http://localhost:3000'}`
 module.exports = {
   siteUrl: fullURL,
   generateRobotsTxt: true,
+  // Only publish lastmod when it reflects an actual page-content update.
+  autoLastmod: false,
   exclude: ['/homes', '/follow-up-copyboard'],
   generateIndexSitemap: false,
   robotsTxtOptions: {
