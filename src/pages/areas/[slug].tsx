@@ -206,6 +206,10 @@ export default function AreaPage({
       : huntsvilleNeighborhoods.includes(area.slug)
       ? `${area.name}, Huntsville, Alabama`
       : `${area.name}, Alabama`
+  const metaDescription =
+    area.introduction.length < 100
+      ? `${area.introduction} Plan your home search with Becca Travis.`
+      : area.introduction
   const contactHref = `/contact-us?intent=area-help&area=${encodeURIComponent(area.name)}`
   const relatedSlugs = relatedBySlug[area.slug] || [
     'downtown-huntsville',
@@ -223,7 +227,7 @@ export default function AreaPage({
       <MetaSEO
         canonicalPath={`/areas/${area.slug}`}
         title={`${seoPlace} Home Search Guide | Becca Travis`}
-        description={`${area.introduction} Compare homes and plan a visit with Becca Travis.`}
+        description={metaDescription}
         image={photo.src}
         alt={photo.alt}
       />
