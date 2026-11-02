@@ -228,11 +228,13 @@ export default function AreaPage({
   ]
   const seoPlace =
     huntsvilleNeighborhoods.includes(area.slug) && !area.name.includes('Huntsville')
-      ? `${area.name}, Huntsville AL`
-      : `${area.name}, AL`
+      ? `${area.name}, Huntsville, Alabama`
+      : `${area.name}, Alabama`
   const seoTitle =
     area.slug === 'village-of-providence'
-      ? `${seoPlace} Guide | Becca Travis`
+      ? `${seoPlace} | Becca Travis`
+      : huntsvilleNeighborhoods.includes(area.slug)
+      ? `${seoPlace} Home Guide | Becca Travis`
       : `${seoPlace} Home Search Guide | Becca Travis`
   const metaDescription =
     area.introduction.length < 100
