@@ -7,9 +7,11 @@ type Photo = {
   src: string
   alt: string
   credit: string
-  source: string
-  license: string
-  licenseLabel: string
+  source?: string
+  license?: string
+  licenseLabel?: string
+  caption?: string
+  changes?: string
 }
 const photos: Record<string, Photo> = {
   'downtown-huntsville': {
@@ -82,20 +84,86 @@ const photos: Record<string, Photo> = {
     license: 'https://creativecommons.org/licenses/by-sa/4.0/',
     licenseLabel: 'CC BY SA 4.0',
   },
+  scottsboro: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Jackson_County_Courthouse%2C_Scottsboro%2C_Alabama.jpg',
+    alt: 'Jackson County Courthouse in Scottsboro, Alabama',
+    credit: 'Carol M. Highsmith',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Jackson_County_Courthouse,_Scottsboro,_Alabama.jpg',
+    license: 'https://www.loc.gov/pictures/item/2010639631/',
+    licenseLabel: 'Public domain',
+  },
+}
+
+// Regional scenes are explicitly captioned with the place photographed, not the
+// guide destination. They are used until a destination-specific photo is available.
+const regionalPhotos: Record<string, Photo> = {
+  park: {
+    src: '/images/home-inspiration/big-spring-park-camera-roll.webp',
+    alt: 'Fountain and lake at Big Spring Park in downtown Huntsville',
+    credit: 'Becca Travis',
+    caption:
+      'Big Spring Park in Huntsville. A North Alabama regional view from Becca’s camera roll.',
+  },
+  bridge: {
+    src: '/images/home-inspiration/big-spring-red-bridge.webp',
+    alt: 'Red bridge at Big Spring Park in downtown Huntsville',
+    credit: 'Becca Travis',
+    caption:
+      'Big Spring Park in Huntsville. A North Alabama regional view from Becca’s camera roll.',
+  },
+  mountain: {
+    src: '/images/home-inspiration/monte-sano-overlook.webp',
+    alt: 'Wooded hills seen from the Monte Sano area of Huntsville',
+    credit: 'Becca Travis',
+    caption:
+      'Monte Sano area in Huntsville. A North Alabama regional view from Becca’s camera roll.',
+  },
+  hays: {
+    src: '/images/real/hays-nature-preserve.webp',
+    alt: 'Flint River Greenway bridge at Hays Nature Preserve in Huntsville',
+    credit: 'GranCavallo',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Hays_Nature_Preserve_-_Flint_River_Greenway_Bridge.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+    caption: 'Hays Nature Preserve in Huntsville. A North Alabama regional view.',
+    changes: 'Cropped.',
+  },
+}
+
+const regionalPhotoForArea: Record<string, keyof typeof regionalPhotos> = {
+  'lincoln-mill': 'bridge',
+  blossomwood: 'mountain',
+  'jones-valley': 'mountain',
+  'village-of-providence': 'park',
+  midcity: 'bridge',
+  'west-huntsville': 'park',
+  'south-huntsville': 'mountain',
+  'big-cove': 'hays',
+  'mcmullen-cove': 'hays',
+  'owens-cross-roads': 'hays',
+  'town-madison': 'bridge',
+  'clift-farm': 'park',
+  'hazel-green': 'mountain',
+  toney: 'bridge',
+  'new-market': 'mountain',
+  gurley: 'hays',
 }
 
 export default function AreaPage({
   area,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const photo = photos[area.slug]
+  const photo =
+    photos[area.slug] || regionalPhotos[regionalPhotoForArea[area.slug] || 'park']
   return (
     <S.Page>
       <MetaSEO
         canonicalPath={`/areas/${area.slug}`}
         title={`${area.name}, Alabama | Becca Travis`}
         description={`Explore ${area.name}, Alabama, with local information and practical questions for your home search.`}
-        image={photo?.src || '/images/home-inspiration/living-room-fireplace.webp'}
-        alt={photo?.alt || 'Bright living room with a fireplace and windows'}
+        image={photo.src}
+        alt={photo.alt}
       />
       <S.Hero>
         <S.Wrap>
@@ -105,15 +173,23 @@ export default function AreaPage({
         </S.Wrap>
       </S.Hero>
       <S.Content>
-        {photo && (
-          <S.Photo>
-            <img src={photo.src} alt={photo.alt} loading="lazy" />
-            <figcaption>
-              Photo by <a href={photo.source}>{photo.credit}</a>,{' '}
-              <a href={photo.license}>{photo.licenseLabel}</a>. No changes made.
-            </figcaption>
-          </S.Photo>
-        )}
+        <S.Photo>
+          <img src={photo.src} alt={photo.alt} loading="lazy" />
+          <figcaption>
+            {photo.caption && <>{photo.caption} </>}
+            {photo.source && (
+              <>
+                Photo by <a href={photo.source}>{photo.credit}</a>
+                {photo.license && (
+                  <>
+                    , <a href={photo.license}>{photo.licenseLabel}</a>
+                  </>
+                )}
+                . {photo.changes || 'No changes made.'}
+              </>
+            )}
+          </figcaption>
+        </S.Photo>
         <S.Body>
           <h2>Explore the area</h2>
           <p>{area.explore}</p>
