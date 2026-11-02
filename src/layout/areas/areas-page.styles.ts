@@ -187,6 +187,28 @@ export const AreaCard = styled('article', {
   transition: 'border-color 160ms ease',
   '&:hover': { borderColor: '$magenta6' },
 })
+export const AreaPreview = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '128px minmax(0, 1fr)',
+  alignItems: 'start',
+  gap: 16,
+  width: '100%',
+  minWidth: 0,
+  '@bp2': { gridTemplateColumns: '104px minmax(0, 1fr)', gap: 14 },
+})
+export const AreaThumbnail = styled('figure', {
+  margin: 0,
+  minWidth: 0,
+  '& img': { width: '100%', height: 88, objectFit: 'cover', borderRadius: 6 },
+  '& figcaption': { marginTop: 5, color: '$gray3', fontSize: 10, lineHeight: 1.4 },
+  '& a': { color: '$magenta6', textDecoration: 'underline' },
+  '@bp2': { '& img': { height: 76 } },
+})
+export const AreaPreviewCopy = styled('div', {
+  display: 'grid',
+  gap: 8,
+  minWidth: 0,
+})
 export const ResourceCard = styled(AreaCard, {
   padding: 24,
   border: '1px solid $colors$grayW8',

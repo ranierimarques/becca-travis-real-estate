@@ -347,6 +347,132 @@ const areas: AreaCardData[] = [
   },
 ]
 
+type OverviewPhoto = {
+  src: string
+  alt: string
+  caption: string
+  source?: string
+  credit?: string
+  license?: string
+  licenseLabel?: string
+  changes?: string
+}
+
+// Each caption names the place photographed, including for regional views.
+const overviewPhotos: Record<string, OverviewPhoto> = {
+  park: {
+    src: '/images/home-inspiration/big-spring-park-camera-roll.webp',
+    alt: 'Fountain at Big Spring Park in downtown Huntsville',
+    caption: 'Big Spring Park, Huntsville · regional view',
+  },
+  bridge: {
+    src: '/images/home-inspiration/big-spring-red-bridge.webp',
+    alt: 'Red bridge at Big Spring Park in Huntsville',
+    caption: 'Big Spring Park, Huntsville · regional view',
+  },
+  mountain: {
+    src: '/images/home-inspiration/monte-sano-overlook.webp',
+    alt: 'Wooded hills seen from the Monte Sano area of Huntsville',
+    caption: 'Monte Sano, Huntsville · regional view',
+  },
+  space: {
+    src: '/images/home-inspiration/space-center-exhibit.webp',
+    alt: 'Outdoor rocket display at the U.S. Space and Rocket Center in Huntsville',
+    caption: 'Space & Rocket Center, Huntsville · regional view',
+  },
+  hays: {
+    src: '/images/real/hays-nature-preserve.webp',
+    alt: 'Flint River Greenway bridge at Hays Nature Preserve in Huntsville',
+    caption: 'Hays Nature Preserve, Huntsville · regional view',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Hays_Nature_Preserve_-_Flint_River_Greenway_Bridge.jpg',
+    credit: 'GranCavallo',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+    changes: 'cropped to fit',
+  },
+  madison: {
+    src: '/images/areas/madison-station-2024.jpg',
+    alt: 'Storefronts in historic downtown Madison, Alabama',
+    caption: 'Downtown Madison',
+    source: 'https://commons.wikimedia.org/wiki/File:Madison_Alabama_Downtown_2024.jpg',
+    credit: 'Republic of Selmaria',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+    changes: 'resized and cropped to fit',
+  },
+  hartselle: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/100s_Main_St_Hartselle_Feb_2012_01.jpg',
+    alt: 'Main Street in Hartselle, Alabama',
+    caption: 'Main Street, Hartselle',
+    source:
+      'https://commons.wikimedia.org/wiki/File:100s_Main_St_Hartselle_Feb_2012_01.jpg',
+    credit: 'Chris Pruitt',
+    license: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    licenseLabel: 'CC BY SA 3.0',
+    changes: 'cropped to fit',
+  },
+  guntersville: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Guntersville_City_and_Lake_%2835108179154%29.jpg',
+    alt: 'Aerial view of Guntersville and the lake',
+    caption: 'Guntersville and the lake',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Guntersville_City_and_Lake_(35108179154).jpg',
+    credit: 'formulanone',
+    license: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    licenseLabel: 'CC BY SA 2.0',
+    changes: 'cropped to fit',
+  },
+  scottsboro: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Jackson_County_Courthouse%2C_Scottsboro%2C_Alabama.jpg',
+    alt: 'Jackson County Courthouse in Scottsboro, Alabama',
+    caption: 'Jackson County Courthouse, Scottsboro',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Jackson_County_Courthouse,_Scottsboro,_Alabama.jpg',
+    credit: 'Carol M. Highsmith',
+    license: 'https://www.loc.gov/pictures/item/2010639631/',
+    licenseLabel: 'Public domain',
+  },
+  twickenham: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Cox_House%2C_Huntsville%2C_AL._Twickenham.jpg',
+    alt: 'Cox House in the Twickenham Historic District of Huntsville',
+    caption: 'Twickenham, Huntsville',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Cox_House,_Huntsville,_AL._Twickenham.jpg',
+    credit: 'Voxinferior',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+    changes: 'cropped to fit',
+  },
+}
+
+const overviewPhotoKeys: Record<string, keyof typeof overviewPhotos> = {
+  Huntsville: 'park',
+  Madison: 'madison',
+  'Hampton Cove and Big Cove': 'hays',
+  'Harvest and Monrovia': 'mountain',
+  Meridianville: 'bridge',
+  'Athens and East Limestone': 'madison',
+  'Decatur and Priceville': 'park',
+  'Jones Valley': 'mountain',
+  Blossomwood: 'mountain',
+  'South Huntsville': 'hays',
+  Haysland: 'space',
+  'Village of Providence': 'space',
+  Twickenham: 'twickenham',
+  'Wheeler and the River Area': 'bridge',
+  'New Market': 'mountain',
+  'Hazel Green': 'park',
+  Toney: 'bridge',
+  'Gurley and Brownsboro': 'hays',
+  Triana: 'space',
+  'Guntersville and Lake Guntersville': 'guntersville',
+  Hartselle: 'hartselle',
+  Scottsboro: 'scottsboro',
+  'Arab and Albertville': 'guntersville',
+  'Cullman and Smith Lake': 'mountain',
+}
+
 const taxZoneByArea: Partial<Record<string, TaxZone>> = {
   'Harvest and Monrovia': TAX_ZONE_UNINCORPORATED,
   Meridianville: TAX_ZONE_UNINCORPORATED,
@@ -682,48 +808,101 @@ export default function AreasPage() {
           {filteredAreas.length} {filteredAreas.length === 1 ? 'area' : 'areas'} shown
         </S.ResultCount>
         <S.AreaGrid>
-          {filteredAreas.map(area => (
-            <S.AreaCard key={area.name}>
-              <S.AreaName>{area.name}</S.AreaName>
-              <S.AreaDetail>{area.detail}</S.AreaDetail>
-              <S.TaxZoneTag>{taxZoneLabels[areaTaxZone(area.name)]}</S.TaxZoneTag>
-              <S.SourceLink
-                href={area.sourceUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                {area.sourceLabel}
-              </S.SourceLink>
-              <S.CardActions>
-                {area.route && (
-                  <Button href={area.route} size="2">
-                    Read the area guide
-                  </Button>
-                )}
-                {area.listingUrl && (
-                  <>
-                    <S.ListingLink
-                      href={area.listingUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      Browse Live ValleyMLS Listings <span aria-hidden="true">→</span>
-                    </S.ListingLink>
-                    <S.ResetButton
-                      type="button"
-                      onClick={() => {
-                        if (area.listingUrl) {
-                          setListing({ label: area.name, url: area.listingUrl })
-                        }
-                      }}
-                    >
-                      Ask Becca about {area.name}
-                    </S.ResetButton>
-                  </>
-                )}
-              </S.CardActions>
-            </S.AreaCard>
-          ))}
+          {filteredAreas.map(area => {
+            const photo = overviewPhotos[overviewPhotoKeys[area.name] || 'park']
+            const regionalLabel =
+              area.name === 'Athens and East Limestone' ||
+              area.name === 'Arab and Albertville'
+                ? ' · regional view'
+                : ''
+            return (
+              <S.AreaCard key={area.name}>
+                <S.AreaPreview>
+                  <S.AreaThumbnail>
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      width="128"
+                      height="88"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption>
+                      {photo.caption}
+                      {regionalLabel}.{' '}
+                      {photo.source ? (
+                        <>
+                          <a
+                            href={photo.source}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                          >
+                            {photo.credit}
+                          </a>
+                          {photo.changes ? `, ${photo.changes}` : ''}
+                          {photo.license && (
+                            <>
+                              ,{' '}
+                              <a
+                                href={photo.license}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                              >
+                                {photo.licenseLabel}
+                              </a>
+                            </>
+                          )}
+                          .
+                        </>
+                      ) : (
+                        'Becca’s camera roll.'
+                      )}
+                    </figcaption>
+                  </S.AreaThumbnail>
+                  <S.AreaPreviewCopy>
+                    <S.AreaName>{area.name}</S.AreaName>
+                    <S.AreaDetail>{area.detail}</S.AreaDetail>
+                  </S.AreaPreviewCopy>
+                </S.AreaPreview>
+                <S.TaxZoneTag>{taxZoneLabels[areaTaxZone(area.name)]}</S.TaxZoneTag>
+                <S.SourceLink
+                  href={area.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {area.sourceLabel}
+                </S.SourceLink>
+                <S.CardActions>
+                  {area.route && (
+                    <Button href={area.route} size="2">
+                      Read the area guide
+                    </Button>
+                  )}
+                  {area.listingUrl && (
+                    <>
+                      <S.ListingLink
+                        href={area.listingUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Browse Live ValleyMLS Listings <span aria-hidden="true">→</span>
+                      </S.ListingLink>
+                      <S.ResetButton
+                        type="button"
+                        onClick={() => {
+                          if (area.listingUrl) {
+                            setListing({ label: area.name, url: area.listingUrl })
+                          }
+                        }}
+                      >
+                        Ask Becca about {area.name}
+                      </S.ResetButton>
+                    </>
+                  )}
+                </S.CardActions>
+              </S.AreaCard>
+            )
+          })}
           {filteredAreas.length === 0 && (
             <S.EmptyState>
               <strong>No areas match those filters.</strong>
