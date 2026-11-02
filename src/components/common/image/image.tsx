@@ -18,17 +18,24 @@ export function Image({ skeletonBackground, ...props }: ImageProps) {
   )
 }
 
-function ImageWithState({ skeletonBackground, ...props }: ImageProps) {
+function ImageWithState({
+  skeletonBackground,
+  onLoad,
+  onLoadingComplete,
+  onError,
+  ...props
+}: ImageProps) {
   const [state, setState] = useState<'loading' | 'loaded' | 'error'>('loading')
 
-  const handleLoad = (image: HTMLImageElement) => {
+  const handleLoad = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setState('loaded')
-    props.onLoadingComplete?.(image)
+    onLoad?.(event)
+    onLoadingComplete?.(event.currentTarget)
   }
 
   const handleError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setState('error')
-    props.onError?.(event)
+    onError?.(event)
   }
 
   return (
@@ -46,7 +53,7 @@ function ImageWithState({ skeletonBackground, ...props }: ImageProps) {
         {...props}
         aria-hidden={state === 'error' || undefined}
         loaded={state === 'loaded'}
-        onLoadingComplete={handleLoad}
+        onLoad={handleLoad}
         onError={handleError}
       />
     </S.Container>

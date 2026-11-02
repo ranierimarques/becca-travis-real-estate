@@ -62,7 +62,12 @@ export function OurCommunities() {
           return (
             <li key={community.name}>
               <S.CommunityLink href={community.href}>
-                <S.Image src={community.image} alt="" fill />
+                <S.Image
+                  src={community.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
                 <S.ImageMask />
                 <S.Description>{community.name}, AL</S.Description>
                 <S.HoverSpan>

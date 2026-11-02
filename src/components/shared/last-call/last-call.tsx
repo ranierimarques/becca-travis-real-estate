@@ -231,6 +231,7 @@ export function LastCall() {
             alt="Becca Travis"
             quality="100"
             fill
+            sizes="291px"
             skeletonBackground="rgba($colors$tangerine10Rgb)"
           />
         </Box>
