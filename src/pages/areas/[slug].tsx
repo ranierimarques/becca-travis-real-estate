@@ -43,13 +43,14 @@ const photos: Record<string, Photo> = {
     licenseLabel: 'CC BY SA 3.0',
   },
   'monte-sano': {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Monte_Sano_State_Park_Lodge_Overlook.jpg',
+    src: '/images/real/monte-sano-state-park.webp',
     alt: 'View from the lodge overlook at Monte Sano State Park',
     credit: 'AquilaMMXI',
     source:
       'https://commons.wikimedia.org/wiki/File:Monte_Sano_State_Park_Lodge_Overlook.jpg',
     license: 'https://creativecommons.org/licenses/by-sa/4.0/',
     licenseLabel: 'CC BY SA 4.0',
+    changes: 'Resized and cropped for display.',
   },
   'five-points': {
     src: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/703_%26_705_Ward_Ave_Huntsville_Oct_2011.jpg',
@@ -112,25 +113,36 @@ const photos: Record<string, Photo> = {
 // guide destination. They are used until a destination-specific photo is available.
 const regionalPhotos: Record<string, Photo> = {
   park: {
-    src: '/images/home-inspiration/big-spring-park-camera-roll.webp',
-    alt: 'Fountain and lake at Big Spring Park in downtown Huntsville',
-    credit: 'Becca Travis',
-    caption:
-      'Big Spring Park in Huntsville. A North Alabama regional view from Becca’s camera roll.',
+    src: '/images/real/big-spring-park.webp',
+    alt: 'Big Spring Park in downtown Huntsville',
+    credit: 'BullDawg2021',
+    source: 'https://commons.wikimedia.org/wiki/File:Big_Spring_Park.jpg',
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    licenseLabel: 'CC BY 4.0',
+    caption: 'Regional photo: Big Spring Park in downtown Huntsville.',
+    changes: 'Resized and cropped for display.',
   },
   bridge: {
-    src: '/images/home-inspiration/big-spring-red-bridge.webp',
-    alt: 'Red bridge at Big Spring Park in downtown Huntsville',
-    credit: 'Becca Travis',
-    caption:
-      'Big Spring Park in Huntsville. A North Alabama regional view from Becca’s camera roll.',
+    src: '/images/real/hays-nature-preserve.webp',
+    alt: 'Footbridge over the Flint River at Hays Nature Preserve in east Huntsville',
+    credit: 'GranCavallo',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Hays_Nature_Preserve_-_Flint_River_Greenway_Bridge.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+    caption: 'Regional photo: Hays Nature Preserve in east Huntsville.',
+    changes: 'Resized and cropped for display.',
   },
   mountain: {
-    src: '/images/home-inspiration/monte-sano-overlook.webp',
-    alt: 'Wooded hills seen from the Monte Sano area of Huntsville',
-    credit: 'Becca Travis',
-    caption:
-      'Monte Sano area in Huntsville. A North Alabama regional view from Becca’s camera roll.',
+    src: '/images/real/monte-sano-state-park.webp',
+    alt: 'View from the lodge overlook at Monte Sano State Park',
+    credit: 'AquilaMMXI',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Monte_Sano_State_Park_Lodge_Overlook.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    licenseLabel: 'CC BY SA 4.0',
+    caption: 'Regional photo: Monte Sano State Park overlook in Huntsville.',
+    changes: 'Resized and cropped for display.',
   },
   hays: {
     src: '/images/real/hays-nature-preserve.webp',
@@ -140,8 +152,8 @@ const regionalPhotos: Record<string, Photo> = {
       'https://commons.wikimedia.org/wiki/File:Hays_Nature_Preserve_-_Flint_River_Greenway_Bridge.jpg',
     license: 'https://creativecommons.org/licenses/by-sa/4.0/',
     licenseLabel: 'CC BY SA 4.0',
-    caption: 'Hays Nature Preserve in Huntsville. A North Alabama regional view.',
-    changes: 'Cropped.',
+    caption: 'Regional photo: Hays Nature Preserve in east Huntsville.',
+    changes: 'Resized and cropped for display.',
   },
 }
 
