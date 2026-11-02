@@ -7,6 +7,8 @@ export type AreaGuide = {
   source: string
   sourceName: string
   details?: { heading: string; text: string; source: string; sourceName: string }[]
+  visitPlan?: string
+  buyerQuestions?: string[]
 }
 
 const historic =
@@ -56,6 +58,28 @@ export const areaGuides: AreaGuide[] = [
     source:
       'https://www.huntsville.org/rocket-city/districts-neighborhoods/downtown/neighborhoods/',
     sourceName: 'Huntsville visitor bureau, downtown neighborhoods',
+    visitPlan:
+      'Start at Big Spring Park, then walk toward the courthouse square and the surrounding residential streets. A short visit lets you compare the feel of the civic center with the blocks where you might actually live.',
+    buyerQuestions: [
+      'Where would you park at the specific property, and what rules apply?',
+      'Which daily destinations would you walk to, and which would still require a drive?',
+      'Is the address inside a local historic district with exterior work review?',
+    ],
+    details: [
+      {
+        heading: 'Big Spring Park is a useful starting point',
+        text: 'The City of Huntsville lists Big Spring Park at 200 Church Street with a walking path and open green space. It is a practical first stop before exploring nearby streets and residential options.',
+        source:
+          'https://www.huntsvilleal.gov/environment/parks-recreation/parks-and-nature/find-a-park/',
+        sourceName: 'City of Huntsville park directory',
+      },
+      {
+        heading: 'Historic districts have their own boundaries',
+        text: 'Twickenham, Old Town and Five Points are distinct locally designated districts near the center of Huntsville. Check the city map for a particular address before assuming district rules apply.',
+        source: historic,
+        sourceName: 'City of Huntsville historic district guide',
+      },
+    ],
   },
   {
     slug: 'twickenham',
@@ -68,6 +92,28 @@ export const areaGuides: AreaGuide[] = [
       'Review the history and condition of each home, and check city preservation requirements before planning exterior alterations.',
     source: historic,
     sourceName: 'City of Huntsville, historic districts',
+    visitPlan:
+      'Walk the public sidewalks to compare the varied architecture, then check the city district map before treating any particular address as part of the preservation district.',
+    buyerQuestions: [
+      'Which exterior changes, if any, would need city review?',
+      'What do the inspection and maintenance records show for this home?',
+      'How do parking, access and the daily route work at this exact address?',
+    ],
+    details: [
+      {
+        heading: 'Huntsville’s first preservation district',
+        text: 'The city designated Twickenham as its first historic preservation district in 1972. Its official history describes architecture from several periods, including Federal, Greek Revival, Italianate and Bungalow examples.',
+        source: historic,
+        sourceName: 'City of Huntsville district history',
+      },
+      {
+        heading: 'Check the city process before planning changes',
+        text: 'The city historic preservation office publishes district guidance and is the right starting point for questions about exterior work. A listing description alone cannot establish what may be changed on a specific home.',
+        source:
+          'https://www.huntsvilleal.gov/development/building-construction/historic-preservation/',
+        sourceName: 'City of Huntsville historic preservation office',
+      },
+    ],
   },
   {
     slug: 'old-town',
@@ -80,6 +126,21 @@ export const areaGuides: AreaGuide[] = [
       'Ask about the property’s age, maintenance history and any historic district requirements that apply to proposed exterior work.',
     source: historic,
     sourceName: 'City of Huntsville, historic districts',
+    visitPlan:
+      'Walk Holmes Avenue and adjacent public streets to see how architecture, lot sizes and parking differ from block to block. Use the city district information to check the exact home afterward.',
+    buyerQuestions: [
+      'What is the maintenance history of the home’s major systems?',
+      'Is the property inside the locally designated district?',
+      'What access and parking are available at this address?',
+    ],
+    details: [
+      {
+        heading: 'A district with several building eras',
+        text: 'Huntsville designated Old Town as a preservation district in 1974. The city describes homes dating from the nineteenth century onward, with Victorian buildings as well as later Colonial Revival homes and bungalows.',
+        source: historic,
+        sourceName: 'City of Huntsville district history',
+      },
+    ],
   },
   {
     slug: 'five-points',
@@ -93,6 +154,28 @@ export const areaGuides: AreaGuide[] = [
     source:
       'https://www.huntsville.org/rocket-city/districts-neighborhoods/downtown/neighborhoods/',
     sourceName: 'Huntsville visitor bureau, downtown neighborhoods',
+    visitPlan:
+      'Walk several streets rather than judging the area from one intersection. Notice the street grid, rear alleys and the differences between the homes you pass.',
+    buyerQuestions: [
+      'Does the lot have rear alley access, and what is its condition?',
+      'What exterior changes would require review at this address?',
+      'What do the age and maintenance records reveal about this home?',
+    ],
+    details: [
+      {
+        heading: 'Architecture from more than one period',
+        text: 'The City of Huntsville designated the Five Points Historic District in 1999. Its history describes Victorian homes, bungalows, Cape Cod houses and ranch homes, which is why two nearby properties may need very different inspections and plans.',
+        source: historic,
+        sourceName: 'City of Huntsville district history',
+      },
+      {
+        heading: 'The street pattern matters',
+        text: 'The city describes broad parallel streets, narrow lots and rear service alleys in the historic district. Check the actual lot and parking arrangement before assuming every address works the same way.',
+        source:
+          'https://www.huntsvilleal.gov/historicmarkers/five-points-historic-district/',
+        sourceName: 'City of Huntsville Five Points historic marker',
+      },
+    ],
   },
   {
     slug: 'blossomwood',
@@ -177,6 +260,22 @@ export const areaGuides: AreaGuide[] = [
       'For a mountain property, consider slope, drainage, access, insurance and maintenance alongside the home itself. Check applicable rules for the exact parcel.',
     source: 'https://www.alapark.com/parks/monte-sano-state-park',
     sourceName: 'Alabama State Parks, Monte Sano',
+    visitPlan:
+      'Use the official state park map to pick a trail or overlook, then drive the routes you would use from a home under consideration. Park access and a home’s setting are separate address level questions.',
+    buyerQuestions: [
+      'How does the lot handle slope and drainage?',
+      'What access and maintenance questions arise at the exact property?',
+      'What does an insurer say about this particular home?',
+    ],
+    details: [
+      {
+        heading: 'Plan an outdoor visit with the park map',
+        text: 'Alabama State Parks publishes a Monte Sano trail map and describes hiking and biking routes with different difficulty levels. Check the current map and park guidance before you go.',
+        source:
+          'https://www.alapark.com/parks/monte-sano-state-park/hiking-biking-trails',
+        sourceName: 'Alabama State Parks trail guide',
+      },
+    ],
   },
   {
     slug: 'big-cove',
@@ -189,6 +288,22 @@ export const areaGuides: AreaGuide[] = [
       'Distinguish the broader area from the individual subdivision. Check association documents, schools and services for the exact address.',
     source: 'https://choosehuntsville.com/live-here/neighborhoods/big-cove/',
     sourceName: 'Choose Huntsville, Big Cove',
+    visitPlan:
+      'Visit Hays Nature Preserve and drive the roads near the homes on your list. The broader Big Cove name includes different communities, so use the specific property address for every service and school check.',
+    buyerQuestions: [
+      'Which municipality and school district serve this exact address?',
+      'Are there association rules or fees for this particular property?',
+      'How do the lot, slope and drainage compare with nearby homes?',
+    ],
+    details: [
+      {
+        heading: 'Explore the Flint River corridor',
+        text: 'The City of Huntsville describes trails and greenways at Hays Nature Preserve along the Flint River. Its official page lists parking and visitor amenities, making it a useful stop during an area visit.',
+        source:
+          'https://www.huntsvilleal.gov/environment/green-team/nature-preserves/hays-nature-preserve/',
+        sourceName: 'City of Huntsville, Hays Nature Preserve',
+      },
+    ],
   },
   {
     slug: 'mcmullen-cove',
