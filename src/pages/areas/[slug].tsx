@@ -25,22 +25,24 @@ const photos: Record<string, Photo> = {
     changes: 'Resized and cropped for display.',
   },
   'old-town': {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/8/85/600s_Holmes_Ave_Huntsville_Oct_2011.jpg',
+    src: '/images/real/old-town-holmes-avenue.webp',
     alt: 'Holmes Avenue in the Old Town historic district of Huntsville',
     credit: 'Chris Pruitt',
     source:
       'https://commons.wikimedia.org/wiki/File:600s_Holmes_Ave_Huntsville_Oct_2011.jpg',
     license: 'https://creativecommons.org/licenses/by-sa/3.0/',
     licenseLabel: 'CC BY SA 3.0',
+    changes: 'Resized, converted to WebP, and cropped for display.',
   },
   hartselle: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/100s_Main_St_Hartselle_Feb_2012_01.jpg',
+    src: '/images/real/hartselle-main-street.webp',
     alt: 'Main Street in downtown Hartselle, Alabama',
     credit: 'Chris Pruitt',
     source:
       'https://commons.wikimedia.org/wiki/File:100s_Main_St_Hartselle_Feb_2012_01.jpg',
     license: 'https://creativecommons.org/licenses/by-sa/3.0/',
     licenseLabel: 'CC BY SA 3.0',
+    changes: 'Resized, converted to WebP, and cropped for display.',
   },
   'monte-sano': {
     src: '/images/real/monte-sano-state-park.webp',
@@ -53,22 +55,24 @@ const photos: Record<string, Photo> = {
     changes: 'Resized and cropped for display.',
   },
   'five-points': {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/703_%26_705_Ward_Ave_Huntsville_Oct_2011.jpg',
+    src: '/images/real/five-points-ward-avenue.webp',
     alt: 'Houses on Ward Avenue in the Five Points Historic District',
     credit: 'Chris Pruitt',
     source:
       'https://commons.wikimedia.org/wiki/File:703_%26_705_Ward_Ave_Huntsville_Oct_2011.jpg',
     license: 'https://creativecommons.org/licenses/by-sa/3.0/',
     licenseLabel: 'CC BY SA 3.0',
+    changes: 'Resized, converted to WebP, and cropped for display.',
   },
   guntersville: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Guntersville_City_and_Lake_%2835108179154%29.jpg',
+    src: '/images/real/guntersville-city-lake.webp',
     alt: 'Aerial view of Guntersville and the lake',
     credit: 'formulanone',
     source:
       'https://commons.wikimedia.org/wiki/File:Guntersville_City_and_Lake_(35108179154).jpg',
     license: 'https://creativecommons.org/licenses/by-sa/2.0/',
     licenseLabel: 'CC BY SA 2.0',
+    changes: 'Resized, converted to WebP, and cropped for display.',
   },
   madison: {
     src: '/images/areas/madison-station-2024.jpg',
@@ -80,22 +84,24 @@ const photos: Record<string, Photo> = {
     changes: 'Resized and cropped for display.',
   },
   twickenham: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Cox_House%2C_Huntsville%2C_AL._Twickenham.jpg',
+    src: '/images/real/twickenham-cox-house.webp',
     alt: 'Cox House in Huntsville’s Twickenham Historic District',
     credit: 'Voxinferior',
     source:
       'https://commons.wikimedia.org/wiki/File:Cox_House,_Huntsville,_AL._Twickenham.jpg',
     license: 'https://creativecommons.org/licenses/by-sa/4.0/',
     licenseLabel: 'CC BY SA 4.0',
+    changes: 'Auto-oriented, resized, converted to WebP, and cropped for display.',
   },
   scottsboro: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Jackson_County_Courthouse%2C_Scottsboro%2C_Alabama.jpg',
+    src: '/images/real/scottsboro-courthouse.webp',
     alt: 'Jackson County Courthouse in Scottsboro, Alabama',
     credit: 'Carol M. Highsmith',
     source:
       'https://commons.wikimedia.org/wiki/File:Jackson_County_Courthouse,_Scottsboro,_Alabama.jpg',
     license: 'https://www.loc.gov/pictures/item/2010639631/',
     licenseLabel: 'Public domain',
+    changes: 'Converted to WebP and cropped for display.',
   },
   'big-cove': {
     src: '/images/real/hays-nature-preserve.webp',
@@ -206,18 +212,28 @@ export default function AreaPage({
   const photo =
     photos[area.slug] || regionalPhotos[regionalPhotoForArea[area.slug] || 'park']
   const huntsvilleNeighborhoods = [
+    'lincoln-mill',
+    'downtown-huntsville',
     'twickenham',
     'old-town',
     'five-points',
+    'blossomwood',
+    'jones-valley',
+    'village-of-providence',
+    'midcity',
+    'west-huntsville',
+    'south-huntsville',
     'monte-sano',
     'big-cove',
   ]
   const seoPlace =
-    area.slug === 'downtown-huntsville'
-      ? 'Downtown Huntsville, Alabama'
-      : huntsvilleNeighborhoods.includes(area.slug)
-      ? `${area.name}, Huntsville, Alabama`
-      : `${area.name}, Alabama`
+    huntsvilleNeighborhoods.includes(area.slug) && !area.name.includes('Huntsville')
+      ? `${area.name}, Huntsville AL`
+      : `${area.name}, AL`
+  const seoTitle =
+    area.slug === 'village-of-providence'
+      ? `${seoPlace} Guide | Becca Travis`
+      : `${seoPlace} Home Search Guide | Becca Travis`
   const metaDescription =
     area.introduction.length < 100
       ? `${area.introduction} Plan your home search with Becca Travis.`
@@ -238,7 +254,7 @@ export default function AreaPage({
     <S.Page>
       <MetaSEO
         canonicalPath={`/areas/${area.slug}`}
-        title={`${seoPlace} Home Search Guide | Becca Travis`}
+        title={seoTitle}
         description={metaDescription}
         image={photo.src}
         alt={photo.alt}
