@@ -29,9 +29,9 @@ const faqs = [
       'Além do preço e da parcela, vale organizar impostos, seguro, HOA quando houver, custos de fechamento, viagem, transporte da mudança, armazenamento e possível moradia temporária. Os valores exatos precisam ser confirmados com os profissionais da região e do financiamento.',
   },
   {
-    question: 'É possível comprar sem estar presente em todas as etapas?',
+    question: 'Moro no Brasil. Posso começar antes de viajar?',
     answer:
-      'Muitas etapas podem ser organizadas à distância, dependendo do imóvel, do financiamento e das regras locais. Visitas em vídeo, inspeções, assinaturas e opções de fechamento precisam ser planejadas com a equipe da transação.',
+      'Sim. Podemos começar à distância, em português brasileiro, organizando destino, prioridades e uma forma prática de conhecer as opções antes da viagem. Visitas virtuais podem ajudar no planejamento, mas confirme com o profissional local quais etapas podem ser feitas remotamente no seu caso. A instituição financeira define os requisitos de financiamento e documentos. Assinaturas e fechamento dependem da equipe da transação e das regras locais. Para imigração e tributos, procure profissionais qualificados nesses assuntos.',
   },
   {
     question: 'Quando devo começar a planejar?',
@@ -82,7 +82,13 @@ export function NationwideBuyer() {
 
   useEffect(() => {
     function updateMobileCta() {
-      setShowMobileCta(window.scrollY > 520)
+      const plannerBounds = document.getElementById('planejador')?.getBoundingClientRect()
+      const plannerIsVisible =
+        plannerBounds !== undefined &&
+        plannerBounds.top < window.innerHeight &&
+        plannerBounds.bottom > 0
+
+      setShowMobileCta(window.scrollY > 520 && !plannerIsVisible)
     }
 
     updateMobileCta()
@@ -121,11 +127,12 @@ export function NationwideBuyer() {
                   Você define o destino. <em>Eu acompanho sua compra.</em>
                 </S.HeroTitle>
                 <S.HeroLede>
-                  Para quem está mudando de cidade, estado ou país e precisa comparar
-                  regiões, entender o custo completo e comprar à distância. No Alabama,
-                  posso atuar como sua corretora local. Nos demais estados, ajudo a
-                  planejar a mudança e, com sua autorização, apresento você a um
-                  profissional licenciado no destino.
+                  Atendimento em português brasileiro para quem está no Brasil ou nos
+                  Estados Unidos e planeja comprar em qualquer estado. Se você está no
+                  Brasil, podemos começar à distância e organizar como conhecer as opções
+                  antes de viajar. No Alabama, posso atuar como sua corretora local. Nos
+                  demais estados, ajudo a planejar a mudança e, com sua autorização,
+                  apresento você a um profissional licenciado no destino.
                 </S.HeroLede>
 
                 <S.BuyerPrompt href="#planejador">
