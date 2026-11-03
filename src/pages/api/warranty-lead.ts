@@ -83,7 +83,7 @@ function web3FormsPayload(data: LeadData, requestId: string, accessKey: string) 
     property_address: data.propertyAddress || 'Not provided',
     estimated_closing_date: data.closingDate || 'Not provided',
     notes: data.notes || 'Not provided',
-    page_path: '/planning-tools#arw-warranty-closing-hub',
+    page_path: '/alabama-home-warranty#warranty-plan-builder',
   }
 }
 
